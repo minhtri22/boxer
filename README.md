@@ -39,11 +39,37 @@ It is:
 
 > Can a mobile player, in first-person POV, read an opponent, control distance, evade punches by physically moving the phone, counterattack with touch gestures, and feel that they are boxing rather than operating a gesture interface?
 
-Until that is proven, character creation, career simulation, equipment, coaches, hospitals, economy, arenas, and multiplayer remain deferred.
+Until that is proven, character creation, career simulation, equipment, coaches, hospitals, economy, arenas, multiplayer, and reusable engine work remain deferred.
+
+## Engine Strategy
+
+The long-term architectural direction is a reusable **Embodied POV Engine** that may later support other first-person mobile game domains such as racing, fighter aircraft, or sword combat.
+
+However, the engine is explicitly **LOCKED during Phase 0**.
+
+The required order is:
+
+```text
+prove embodied POV interaction in boxing
+→ Phase 0 PASS
+→ extract/build reusable engine primitives
+→ harden the engine with Boxer as the first reference domain
+→ prove reuse with a second-domain micro-prototype
+```
+
+Boxing is therefore the **first proof domain and first engine reference domain**.
+
+Do not generalize experimental Phase 0 code into a universal framework before the control thesis passes.
+
+Architecture rule:
+
+> **No abstraction without evidence of reuse.**
+
+See [`docs/foundation/engine-strategy.md`](docs/foundation/engine-strategy.md).
 
 ## Product Vision
 
-If the core interaction is proven, the long-term experience may include:
+If the core interaction is proven, the long-term boxing experience may include:
 
 - Fighter creation by nationality, appearance, height, weight, reach, stance, and weight class.
 - Progression from underground/street fights through amateur, regional, national, international, and championship competition.
@@ -59,7 +85,7 @@ None of these features are authorization to implement them now.
 
 ## Phase 0 — POV Embodied Control Proof
 
-Phase 0 exists to validate the core interaction model before game production begins.
+Phase 0 exists to validate the core interaction model before game production or engine production begins.
 
 Current proof areas:
 
@@ -70,12 +96,16 @@ Current proof areas:
 5. **Defensive model** — can idle guard remain useful without becoming a free invulnerability state?
 6. **Embodied boxing feel** — does the interaction become learned motor behavior rather than gesture memorization?
 7. **Comfort** — can the game remain readable and comfortable without excessive motion sickness, fatigue, or screen instability?
+8. **Feedback/energy** — do haptics and audio add enough value without unacceptable sensor interference, battery cost, or thermal cost?
 
-See [`docs/protocols/phase-0-pov-embodied-control-proof.md`](docs/protocols/phase-0-pov-embodied-control-proof.md).
+See:
+
+- [`docs/protocols/phase-0-pov-embodied-control-proof.md`](docs/protocols/phase-0-pov-embodied-control-proof.md)
+- [`docs/protocols/phase-0-feedback-energy-proof.md`](docs/protocols/phase-0-feedback-energy-proof.md)
 
 ## Phase 0 Gate
 
-No production combat engine should be started until Phase 0 passes its hard criteria.
+No production combat engine or reusable POV engine should be started until Phase 0 passes its hard criteria.
 
 The only implementation allowed during Phase 0 is a **measurement harness / experimental simulator** whose purpose is to test hypotheses, capture data, and support a go/no-go decision.
 
@@ -105,21 +135,27 @@ If the latter is the dominant behavior, the control model has failed regardless 
 
 ## Repository Structure
 
+Current foundation:
+
 ```text
 boxer/
 ├─ README.md
 ├─ plan.md
 └─ docs/
    ├─ foundation/
-   │  └─ product-thesis.md
+   │  ├─ product-thesis.md
+   │  └─ engine-strategy.md
    └─ protocols/
-      └─ phase-0-pov-embodied-control-proof.md
+      ├─ phase-0-pov-embodied-control-proof.md
+      └─ phase-0-feedback-energy-proof.md
 ```
 
-Source code, engine selection, networking architecture, content pipelines, and production assets will be introduced only after the relevant proof gates authorize them.
+A future `engine/` layer may be introduced only after Phase 0 PASS. Repository structure must follow proven architecture rather than lead it.
 
 ## Current Status
 
 **Stage:** Phase 0 — foundation and proof design  
-**Implementation status:** Production implementation not authorized  
+**Boxing domain:** Active proof vehicle  
+**Production game implementation:** Not authorized  
+**Reusable Embodied POV Engine:** Locked until Phase 0 PASS  
 **Primary risk:** Whether POV + touch + physical-device motion produces readable, comfortable, repeatable boxing behavior on a mobile device.
