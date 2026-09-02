@@ -241,3 +241,109 @@ The desired reaction is:
 The product vision is considered **promising but unproven**.
 
 The embodied control architecture has enough technical plausibility to justify a dedicated Phase 0 experimental harness. It does not yet justify production development of the full game.
+
+## 13. Impact Feedback and Energy Budget
+
+Impact feedback is part of the embodied-control thesis, not a decorative effect.
+
+### 13.1 Haptic thesis
+
+The phone should communicate punch impact through short, event-based haptic feedback:
+
+- blocked or light jab → very light, short feedback,
+- clean straight → medium feedback,
+- heavy hook / power shot → stronger, short feedback,
+- body shot → distinct profile where supported,
+- knockdown / major impact → strongest allowed profile, still bounded for comfort.
+
+Haptic strength should not be a simple linear mapping from numerical damage. Punch type, impact quality, target region, guard state, and knockdown state may influence the feedback profile.
+
+The design principle is:
+
+> **Proportional but sparse.**
+
+Do not vibrate continuously and do not emit haptic feedback for every low-value contact if it creates noise, fatigue, thermal cost, battery cost, or motion-sensor interference.
+
+### 13.2 Haptic settings
+
+Players must be able to disable or reduce haptics.
+
+Candidate settings:
+
+- Off
+- Low
+- Normal
+- Strong
+
+The exact options depend on platform capability and Phase 0 evidence.
+
+### 13.3 Haptic / motion-sensor interaction
+
+Because the physical device also represents the player's head, game-generated haptic events must be timestamped in the sensor pipeline.
+
+The motion detector must be evaluated for false head movement caused by haptic impulses. A heavy hit must not accidentally become an evade input.
+
+### 13.4 Audio thesis
+
+Audio is a complementary feedback channel, not a mandatory gameplay dependency.
+
+Candidate layers:
+
+1. **Impact** — glove, guard, head and body contact.
+2. **Body state** — breathing, heartbeat, muffled hearing, recovery cues.
+3. **Environment** — crowd, coach, announcer, arena ambience.
+
+A player who disables audio must still be able to understand and play the fight through visual and haptic channels.
+
+Candidate audio settings:
+
+- Sound Effects On / Off
+- Crowd / Ambience Off / Low / Full
+- Voice / Coach / Announcer controls if needed later
+
+### 13.5 Energy and thermal principle
+
+The game must treat battery drain and thermal load as measurable product constraints.
+
+Haptics and audio contribute to device energy use, but the total budget must also account for:
+
+- rendering load,
+- target frame rate,
+- display brightness assumptions,
+- physics,
+- motion sampling,
+- audio processing,
+- networking when introduced later.
+
+The project must not assume that haptics or audio are harmless or dominant. Their actual incremental cost must be measured on real devices.
+
+### 13.6 Player modes
+
+Candidate operating presets to prove later:
+
+- **Full Immersion** — haptic + sound + full impact feedback.
+- **Balanced** — reduced haptic/camera effects with sound retained.
+- **Battery Saver** — haptic off by default, reduced frame/visual load, optional audio.
+
+These presets are hypotheses, not production commitments.
+
+### 13.7 Proof requirement
+
+Before production defaults are frozen, the project must compare at least:
+
+- Full Feedback,
+- No Haptic,
+- No Audio,
+- Battery Saver / reduced-feedback configuration.
+
+Evidence should include:
+
+- perceived impact,
+- hit-strength recognition,
+- fatigue / annoyance,
+- false motion events,
+- battery drain,
+- thermal behavior,
+- frame stability.
+
+Feedback features are retained only if their experiential value justifies their measurable device cost.
