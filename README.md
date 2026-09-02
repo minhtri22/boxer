@@ -41,6 +41,21 @@ It is:
 
 Until that is proven, character creation, career simulation, equipment, coaches, hospitals, economy, arenas, multiplayer, and reusable engine work remain deferred.
 
+## Development & Test Environment
+
+The current project environment is fixed for Phase 0 unless a later documented decision changes it:
+
+- **Primary development OS:** Windows 11 Home Single Language, 64-bit
+- **CPU:** Intel Core Ultra 7 258V
+- **RAM:** 32 GB
+- **GPU:** Intel Arc 140V
+- **Game development stack:** **Unity + C#**
+- **Primary real-device test target:** **iPhone 12**
+
+Codex and other implementation agents must read [`docs/foundation/development-environment.md`](docs/foundation/development-environment.md) before choosing implementation or test strategy.
+
+Important constraint: the project develops primarily on Windows, while native iOS signing/deployment requires an available macOS/Xcode path. If such a path is unavailable during a task, Unity-side implementation and synthetic/editor tests should proceed, but iPhone-only proofs must remain explicitly blocked rather than being inferred or fabricated.
+
 ## Engine Strategy
 
 The long-term architectural direction is a reusable **Embodied POV Engine** that may later support other first-person mobile game domains such as racing, fighter aircraft, or sword combat.
@@ -102,6 +117,7 @@ See:
 
 - [`docs/protocols/phase-0-pov-embodied-control-proof.md`](docs/protocols/phase-0-pov-embodied-control-proof.md)
 - [`docs/protocols/phase-0-feedback-energy-proof.md`](docs/protocols/phase-0-feedback-energy-proof.md)
+- [`docs/foundation/development-environment.md`](docs/foundation/development-environment.md)
 
 ## Phase 0 Gate
 
@@ -144,7 +160,8 @@ boxer/
 └─ docs/
    ├─ foundation/
    │  ├─ product-thesis.md
-   │  └─ engine-strategy.md
+   │  ├─ engine-strategy.md
+   │  └─ development-environment.md
    └─ protocols/
       ├─ phase-0-pov-embodied-control-proof.md
       └─ phase-0-feedback-energy-proof.md
@@ -156,6 +173,8 @@ A future `engine/` layer may be introduced only after Phase 0 PASS. Repository s
 
 **Stage:** Phase 0 — foundation and proof design  
 **Boxing domain:** Active proof vehicle  
+**Development stack:** Unity + C# on Windows  
+**Primary test device:** iPhone 12  
 **Production game implementation:** Not authorized  
 **Reusable Embodied POV Engine:** Locked until Phase 0 PASS  
 **Primary risk:** Whether POV + touch + physical-device motion produces readable, comfortable, repeatable boxing behavior on a mobile device.
