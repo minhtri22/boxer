@@ -1,47 +1,33 @@
 # Boxer — Master Proof-First Project Plan
 
-## 0. Project Operating Rule
+## 0. Operating Rule
 
-Boxer follows one non-negotiable development rule:
+Boxer follows one non-negotiable rule:
 
-> **PROVE → DECIDE → IMPLEMENT**
+> **PROVE ONLY WHAT IS STILL UNCERTAIN → DECIDE → IMPLEMENT**
 
-No production feature is authorized merely because it is attractive, marketable, technically possible, or part of the long-term vision.
+The project must not repeat proofs that are already well established by prior art, platform capability, existing games, or accepted engineering practice unless Boxer introduces a materially different risk.
 
-Every phase must define:
-
-1. The hypothesis being tested.
-2. Why the hypothesis matters.
-3. The smallest experiment capable of testing it.
-4. What evidence must be collected.
-5. Explicit PASS / CONDITIONAL PASS / FAIL criteria.
-6. The decision unlocked by a PASS.
-7. What remains explicitly locked.
-
-A phase is not complete because a prototype looks impressive. It is complete only when the evidence supports the hypothesis strongly enough to unlock the next phase.
+A proof phase exists only for assumptions that can still invalidate the product.
 
 ---
 
 # 1. Product Thesis
 
-Boxer is a **first-person boxing career simulator** built around an embodied-control thesis:
+Boxer is a **first-person boxing career simulator** built around one embodied control model:
 
-> **Do not control a boxer. Be the boxer.**
+- **Phone = Head**
+- **Left Thumb = Feet**
+- **Right Thumb = Fists**
+- **No active action = Return to Guard**
 
-Frozen Phase 0 control hypothesis:
-
-- **Phone = Head** — physical device movement controls head movement/evasion.
-- **Left Thumb = Feet** — left-thumb gestures control footwork.
-- **Right Thumb = Fists** — right-thumb gestures express punch intent.
-- **No active action = Return to Guard** — the boxer naturally returns to defensive stance.
-
-The target boxing loop is:
+Target player loop:
 
 ```text
 SEE → READ → MOVE / GUARD / EVADE → CREATE OPENING → COUNTER → RESET
 ```
 
-The anti-goal is:
+Failure loop:
 
 ```text
 SWIPE → SWIPE → SWIPE → SPAM → WIN
@@ -49,884 +35,622 @@ SWIPE → SWIPE → SWIPE → SPAM → WIN
 
 Reference documents:
 
+- `README.md`
 - `docs/foundation/product-thesis.md`
+- `docs/foundation/engine-strategy.md`
+- `docs/foundation/development-environment.md`
 - `docs/protocols/phase-0-pov-embodied-control-proof.md`
 - `docs/protocols/phase-0-feedback-energy-proof.md`
 
 ---
 
-# 2. Evidence and Repository Rules
+# 2. Development Environment
 
-## 2.1 Evidence-first repository structure
+Current project environment:
 
-All proof work should eventually follow a structure similar to:
+- Windows 11 64-bit
+- Intel Core Ultra 7 258V
+- 32 GB RAM
+- Intel Arc 140V
+- Unity + C#
+- Primary real-device target: iPhone 12
 
-```text
-docs/
-  foundation/
-  protocols/
-  result/
+The reusable Embodied POV Engine remains **LOCKED until Phase 0 PASS**.
 
-experiments/
-  phase0/
-  phase1/
-  ...
-
-evidence/
-  phase0/
-  phase1/
-  ...
-```
-
-Exact folders may evolve, but experimental outputs must remain reproducible and attributable to a build/commit.
-
-## 2.2 Required experiment provenance
-
-Every proof report must record at minimum:
-
-```text
-Experiment name
-Protocol version
-Git commit/build
-Device
-OS/version
-Refresh rate
-Participant/test ID
-Frozen thresholds
-Raw evidence path
-Result
-PASS / CONDITIONAL PASS / FAIL
-Reason
-Next authorized action
-```
-
-## 2.3 Threshold discipline
-
-Thresholds must be frozen before the experiment whenever practical.
-
-Do not tune a failing threshold merely to obtain PASS.
-
-If a criterion is changed, record:
-
-1. original criterion,
-2. observed problem,
-3. why the metric was invalid or misleading,
-4. revised criterion,
-5. whether revision occurred before rerun.
-
-## 2.4 Commit discipline
-
-Preferred workflow for each phase:
-
-1. Commit protocol/specification.
-2. Implement only the authorized experimental artifact.
-3. Run QA and collect evidence.
-4. Write result report.
-5. Decide PASS / CONDITIONAL PASS / FAIL.
-6. Commit evidence/result documentation.
-7. Only after PASS, update `plan.md` to unlock the next phase.
-
-Do not mix speculative next-phase production work into a proof commit.
+Phase 0 uses boxing as the first concrete proof domain.
 
 ---
 
-# Phase 0 — POV Embodied Control Proof
+# 3. Prior-Art Accepted — Do Not Re-Prove in P0
+
+The following are considered sufficiently established to proceed directly to integration unless Boxer-specific evidence later shows a problem:
+
+## 3.1 Mobile motion sensing exists and is usable
+
+Accepted:
+
+- modern smartphones expose orientation / attitude / gyroscope / accelerometer data,
+- device motion can be sampled at interactive rates,
+- relative orientation and calibration are standard engineering problems.
+
+Do not spend Phase 0 proving that gyroscopes work.
+
+## 3.2 Touch and device motion can coexist
+
+Accepted:
+
+- mobile games and HCI systems already combine touch input and physical device motion,
+- multiple simultaneous input channels are technically feasible.
+
+Do not run a standalone research program merely to prove touch + tilt coexistence.
+
+## 3.3 Haptics are viable mobile feedback
+
+Accepted:
+
+- phones can produce event-based haptic feedback,
+- varying haptic profiles can communicate different impact classes,
+- users may disable haptics.
+
+Battery/thermal cost is an engineering optimization question unless actual Boxer measurements reveal a material problem.
+
+## 3.4 Audio feedback is viable
+
+Accepted:
+
+- impact audio, body-state audio and ambience are standard game feedback channels,
+- audio may be optional,
+- gameplay must not depend exclusively on audio.
+
+Do not make audio feasibility a Phase 0 gate.
+
+## 3.5 Geometry-based hit detection is established
+
+Accepted:
+
+- trajectories, colliders, hitboxes, guard regions and HIT/MISS/BLOCK outcomes are standard game mechanics.
+
+Boxer should use them rather than trying to prove collision detection itself.
+
+## 3.6 POV gameplay is established
+
+Accepted:
+
+- first-person gameplay is a proven presentation model,
+- motion-controlled and touch-controlled first-person interaction already exists in commercial games and prototypes.
+
+The open question is not whether POV works in general.
+
+---
+
+# 4. What Phase 0 Actually Needs to Prove
+
+# Phase 0 — Boxer Interaction Integration Proof
 
 ## Status
 
 **ACTIVE**
 
-Production game implementation remains **BLOCKED**.
-
 ## Goal
 
-Prove that a mobile player can use touch plus physical device motion in first-person POV to produce readable, comfortable, boxing-like behavior.
+Answer one product question:
 
-This phase is not intended to prove the entire combat system. It proves the embodied interface on which later combat depends.
+> **Does Boxer’s specific combination of phone-as-head, left-thumb footwork, right-thumb punching and automatic return-to-guard create a convincing, readable and enjoyable boxing exchange in first-person POV?**
 
----
+Phase 0 is therefore an **integration + game-feel proof**, not a sensor-research phase.
 
-## P0.1 — Sensor and Motion Feasibility
-
-### Question
-
-Can iOS/Android device-motion sensors provide stable, low-latency relative orientation suitable for continuous head movement?
-
-### Required proof
-
-- neutral calibration,
-- relative roll/orientation tracking,
-- angular velocity capture,
-- dead-zone behavior,
-- saturation behavior,
-- frame-by-frame sensor update stability.
-
-### Status
-
-Technical feasibility is supported strongly enough to build the experimental harness, but real-device validation is still required.
+Only four uncertainties remain central.
 
 ---
 
-## P0.2 — Signal Separation
+## P0-A — Phone = Head
 
 ### Question
 
-Can intentional head movement be separated from:
+When the player physically moves/leans the phone to evade, does it feel like moving the boxer’s head rather than triggering a device gesture?
 
-- natural hand jitter,
-- grip drift,
-- left-thumb movement,
-- right-thumb punch gestures,
-- simultaneous two-thumb activity,
-- haptic-generated vibration?
+### Required behavior
 
-### PASS targets
+- continuous head displacement,
+- bounded movement,
+- natural return toward center,
+- actual punch trajectory can miss because head position moved,
+- no separate dodge button required.
 
-- intentional evade detection: **≥ 90%**
-- false evade activation: **≤ 5%**
-- left/right direction correctness: **≥ 95%**
+### Failure condition
 
-Synthetic evidence is useful for tuning candidates but cannot substitute for human-on-device data.
+The interaction feels like:
+
+> tilt phone → trigger dodge animation
+
+instead of:
+
+> see punch → move head out of line
 
 ---
 
-## P0.3 — Continuous Head Geometry
+## P0-B — Feet + Head + Fists Integration
 
 ### Question
 
-Does device movement physically move the virtual head out of punch trajectories rather than merely triggering a dodge animation?
+Can the player combine all three control channels naturally in one exchange?
 
-### Required implementation principle
-
-```text
-punch trajectory ∩ head hitbox = HIT
-punch trajectory ∩ guard = BLOCK
-no intersection = MISS
-```
-
-The harness must not use a discrete `dodged=true` flag as the source of truth.
-
-### Candidate motion range
-
-Initial experimental values only:
-
-- neutral dead zone: approximately `±2°`
-- active range: approximately `2°–12°`
-- saturation: approximately `12°–15°`
-
-These are not production constants.
-
----
-
-## P0.4 — Simultaneous Embodied Control
-
-### Question
-
-Can footwork, head movement, and attack input operate concurrently without unacceptable conflict?
-
-Target sequence:
+Required target sequence:
 
 ```text
 left-thumb retreat
-+ physical device slip
++ phone/head slip
 + right-thumb counter
 ```
 
-### Required observation
+A PASS requires that the channels feel complementary rather than mutually disruptive.
 
-The player should remain focused on the opponent rather than on remembering input syntax.
+The project does not need to prove that simultaneous inputs are technically possible; it must prove that **this specific Boxer mapping is usable**.
 
 ---
 
-## P0.5 — POV Readability
+## P0-C — Boxing Read → Evade → Counter Loop
 
 ### Question
 
-Can the player perceive:
+Does the player react to the opponent rather than memorize gestures?
 
-- incoming punch direction,
-- timing,
-- distance/range,
-- head vs body threat,
-- guard state,
-- opponent pressure,
-- return-to-center state,
+The minimum desirable loop is:
 
-without depending on large directional warning UI?
+```text
+READ PUNCH
+→ EVADE OR GUARD
+→ CREATE OPENING
+→ COUNTER
+→ RESET
+```
 
-If the game only works with intrusive arrows or command prompts, this proof remains unresolved.
+### Failure conditions
+
+- swipe spam dominates,
+- player watches controls instead of opponent,
+- automatic guard makes inactivity optimal,
+- dodge has no tactical counter value,
+- opponent attacks are unreadable without intrusive warning arrows.
 
 ---
 
-## P0.6 — Embodied Boxing Feel
+## P0-D — Immediate Product Feel
 
 ### Question
 
-Does the player think:
+After a short bout, does the player want another fight because the exchange itself feels satisfying?
 
-> "I moved my head and made the punch miss"
+This is the decisive Phase 0 product criterion.
 
-rather than:
+The reaction:
 
-> "I triggered the dodge command"?
+> “It looks good.”
 
-### PASS targets
+is insufficient.
 
-- controls understood within 2 minutes: **≥ 80% of participants**
-- slip-counter success after tutorial: **≥ 70%**
-- embodied-control rating: **≥ 4/5**
-- voluntary immediate replay: **≥ 70%**
+The desired reaction is:
 
----
-
-## P0.7 — Comfort and Physical Usability
-
-### Question
-
-Does repeated device motion remain comfortable and visually usable?
-
-Measure:
-
-- wrist fatigue,
-- grip fatigue,
-- difficulty seeing the opponent while moving the phone,
-- nausea/dizziness,
-- exaggerated-motion requirement,
-- fear of dropping the phone,
-- neutral drift over time.
-
-### PASS target
-
-Significant motion discomfort: **≤ 10% of participants**.
+> “Let me fight again.”
 
 ---
 
-## P0.8 — Haptic Impact Proof
+# 5. Phase 0 Authorized Artifact
 
-### Hypothesis
+Build one **Unity Boxer Micro-Prototype**.
 
-Haptic feedback improves impact perception and punch-weight readability without creating excessive noise, fatigue, energy cost, or motion-sensor corruption.
+This is no longer a generic sensor laboratory.
 
-### Required behavior candidates
+It should be just complete enough to create a real boxing exchange.
 
-- light contact / jab → short light haptic,
-- clean cross → stronger short haptic,
-- heavy hook / major impact → strongest bounded haptic,
-- guard impact → distinct reduced feedback,
-- knockdown → exceptional impact profile.
-
-Principle:
-
-> **Feedback must be proportional but sparse.**
-
-Haptics must never become continuous vibration during active exchanges.
-
-### Required sensor rule
-
-Every game-generated haptic event must be timestamped so sensor analysis can distinguish self-generated vibration from intentional player motion.
-
-### Required settings
-
-At minimum:
-
-- Haptics: `Off / Low / Normal / Strong`
-
-The proof must confirm that `Off` removes haptic cost without breaking gameplay readability.
-
----
-
-## P0.9 — Audio Feedback Proof
-
-### Hypothesis
-
-Audio increases punch readability and immersion but must remain optional.
-
-Candidate layers:
-
-1. **Impact** — glove, guard, body and head contact.
-2. **Body state** — breathing, heartbeat, muffled hearing after major hits.
-3. **Environment** — crowd, coach, announcer, venue ambience.
-
-### Constraint
-
-Audio must not be the only channel communicating essential combat information.
-
-### Required settings
-
-At minimum:
-
-- Sound Effects: `On / Off`
-- Crowd/Ambience: `Off / Low / Full`
-
----
-
-## P0.10 — Battery and Thermal Proof
-
-### Question
-
-What is the real battery and thermal cost of the immersive feedback stack on representative devices?
-
-### Required configurations
-
-At minimum compare:
-
-1. **Full Immersion** — haptic + audio + normal visual impact.
-2. **No Haptic** — audio + normal visual impact.
-3. **No Audio** — haptic + normal visual impact.
-4. **Battery Saver** — haptic off or reduced, reduced visual/FPS budget, optional reduced ambience.
-
-### Collect
-
-- test duration,
-- starting/ending battery level where measurable,
-- OS thermal state where exposed,
-- frame-time stability,
-- FPS behavior,
-- device surface-temperature observation where practical,
-- haptic event count,
-- audio mode,
-- visual/FPS mode,
-- sensor false-evade rate,
-- participant immersion rating.
-
-### Decision principle
-
-Do not assume haptic or audio is the dominant energy cost. Measure the complete rendering + feedback stack on device.
-
-Battery Saver must be a real operating mode, not a cosmetic toggle.
-
----
-
-# Phase 0 Authorized Artifact — Sensor Combat Harness
-
-Only this experimental artifact is authorized.
-
-Minimum required components:
+Minimum scope:
 
 - first-person camera,
 - two placeholder player gloves,
-- one opponent mannequin,
-- player head hitbox,
-- minimal body hit regions,
-- scripted opponent punch trajectories,
-- device attitude/orientation input,
-- angular velocity where available,
-- left/right touch zones,
-- neutral calibration,
-- bounded continuous head displacement,
-- minimal high-guard state,
-- HIT / MISS / BLOCK / COUNTER outcomes,
-- haptic-event timestamps,
-- selectable haptic intensity,
-- selectable audio mode,
-- optional battery-saver mode,
-- debug overlays,
-- timestamped sensor/input/event logs,
-- frame-time logging.
+- one opponent,
+- neutral simple ring/space,
+- phone motion → head displacement,
+- left-thumb footwork,
+- right-thumb punch input,
+- automatic high guard when inactive,
+- basic jab/cross/hook or equivalent minimal attack set,
+- opponent jab/cross/hook/body threat,
+- head/body/guard collision,
+- HIT / MISS / BLOCK,
+- one meaningful counter window,
+- basic stamina/recovery only if needed to prevent spam,
+- lightweight haptic impact,
+- basic impact audio,
+- debug/logging sufficient to diagnose control issues.
 
-### Explicitly forbidden during Phase 0
+Visual polish is not required.
 
-Do not build:
+---
 
+# 6. Phase 0 Explicit Non-Goals
+
+Do not build during Phase 0:
+
+- reusable Embodied POV Engine,
+- generic plugin/framework architecture,
 - production characters,
-- polished arenas,
-- crowd simulation,
+- championship arena art,
+- character creator,
 - career mode,
-- fighter creator,
-- inventory/shop,
+- gym,
 - coach system,
-- hospital system,
+- inventory,
+- shop,
+- hospital,
 - economy,
-- live-service systems,
-- networking,
+- progression,
 - multiplayer,
 - backend,
 - monetization.
 
----
+Phase 0 code may be clean, but must not be prematurely generalized into an engine.
 
-# Phase 0 Required Experiment Set
+Architecture rule:
 
-## Test A — Calibration and Noise Baseline
-
-Measure natural hold/touch noise and neutral drift.
-
-## Test B — Intentional Left/Right Motion
-
-Measure detection, direction accuracy, latency, overshoot and return-to-neutral.
-
-## Test C — Pure Dodge
-
-Player may only move the phone/head against scripted attacks.
-
-## Test D — Touch Interference
-
-Player attacks and moves while opponent is passive; measure accidental head movement.
-
-## Test E — Slip → Counter
-
-Measure the first meaningful boxing exchange.
-
-## Test F — Move + Evade + Counter
-
-Prove simultaneous feet/head/fist control.
-
-## Test G — Unknown Attack Sequence
-
-Determine whether player reads the opponent instead of memorizing sequence.
-
-## Test H — Three-Minute Motor Learning Trial
-
-Observe whether boxing-like behavior emerges after a short tutorial.
-
-## Test I — Comfort Trial
-
-Minimum repeated-use session after control understanding.
-
-## Test J — Haptic A/B
-
-Compare impact recognition and perceived punch weight with haptic ON vs OFF.
-
-## Test K — Haptic Sensor Interference
-
-Determine whether generated vibration causes false dodge/head displacement.
-
-## Test L — Audio A/B
-
-Compare impact/readability/immersion with audio ON vs OFF.
-
-## Test M — Energy/Thermal Matrix
-
-Compare Full Immersion / No Haptic / No Audio / Battery Saver under the same workload.
+> **No abstraction without evidence of reuse.**
 
 ---
 
-# Phase 0 Hard Gate
+# 7. Phase 0 Test Procedure
 
-Phase 0 cannot PASS unless the central embodied-control targets are satisfied.
+## Test 1 — First Contact
 
-| Metric | PASS target |
-| --- | ---: |
-| Intentional evade detection | ≥ 90% |
-| False evade activation | ≤ 5% |
-| Median motion-to-visual latency | ≤ 60 ms |
-| Correct left/right mapping | ≥ 95% |
-| Slip-counter success after tutorial | ≥ 70% |
-| Controls understood within 2 min | ≥ 80% |
-| Immediate replay intent | ≥ 70% |
-| Embodied-control rating | ≥ 4/5 |
-| Significant motion discomfort | ≤ 10% |
-| Mandatory additional dodge button | Not required |
+Give the player at most a very short explanation:
 
-Haptic/audio/energy tests do not need to prove that every immersive feature must be enabled by default. They must determine which modes are safe, useful, efficient, and optional.
+- left thumb moves,
+- right thumb punches,
+- move the phone to move the head,
+- release input to return to guard.
 
-## Phase 0 decision outcomes
+Then begin a short bout.
 
-### PASS
-
-Embodied control is proven strongly enough to begin Combat Foundation.
-
-Unlock: **Phase 1 only**.
-
-### CONDITIONAL PASS
-
-Core embodied mapping is supported but an isolated technical problem remains.
-
-Examples:
-
-- filtering,
-- calibration,
-- head-range scaling,
-- haptic interference,
-- feedback intensity,
-- energy mode configuration.
-
-Unlock: only the targeted follow-up proof.
-
-### FAIL — REDESIGN
-
-Players understand the idea but the mapping causes unacceptable conflict, readability, comfort, or control problems.
-
-Action: redesign Phase 0 control hypothesis and rerun.
-
-### FAIL — STOP
-
-Physical-device head control provides insufficient embodied value or creates unacceptable usability cost.
-
-Action: do not compensate by building more game systems.
+Observe whether the player understands the mapping without persistent UI instruction.
 
 ---
 
-# Phase 1 — Combat Foundation
+## Test 2 — Slip → Counter
+
+Opponent throws a readable straight attack.
+
+Player should:
+
+```text
+see attack
+→ move phone/head
+→ punch misses
+→ counter
+→ return to guard
+```
+
+This is the primary Phase 0 interaction test.
+
+---
+
+## Test 3 — Move + Evade + Counter
+
+Opponent applies pressure.
+
+Player must combine:
+
+```text
+footwork
++ head movement
++ counter punch
+```
+
+Observe control conflict and cognitive load.
+
+---
+
+## Test 4 — Unscripted Short Bout
+
+Run a short unscripted fight with mixed attacks.
+
+Look for spontaneous emergence of:
+
+```text
+move → read → guard/evade → counter → reset
+```
+
+versus:
+
+```text
+spam punches → hope to win
+```
+
+---
+
+## Test 5 — Replay Intent
+
+Immediately after the bout ask only the practical question:
+
+> Do you want to fight again?
+
+Record the answer.
+
+Do not substitute developer enthusiasm for player replay intent.
+
+---
+
+# 8. Phase 0 Acceptance Gate
+
+Phase 0 should be evaluated primarily as a product integration gate, not a laboratory benchmark suite.
+
+Minimum PASS criteria:
+
+| Criterion | PASS |
+| --- | --- |
+| Phone movement clearly feels connected to head evasion | Yes |
+| No mandatory separate dodge button needed | Yes |
+| Player can combine feet + head + fists | Yes |
+| Player can intentionally execute slip → counter | Yes |
+| Incoming attacks are readable without intrusive directional UI | Yes |
+| Swipe spam is not clearly dominant | Yes |
+| Automatic guard does not make inactivity optimal | Yes |
+| Control mapping is understood after short instruction | Yes |
+| Player voluntarily wants another bout | Yes |
+| No severe physical discomfort in the short P0 session | Yes |
+
+Quantitative telemetry may be collected for diagnosis, but Phase 0 should not be blocked by arbitrary laboratory thresholds for already-established technology.
+
+If latency, false motion, haptic interference, battery or thermal behavior is visibly problematic in the actual prototype, it becomes a targeted engineering issue and must be measured then.
+
+---
+
+# 9. Phase 0 Decision
+
+## PASS
+
+The integrated Boxer control loop feels sufficiently convincing to justify further development.
+
+Unlock:
+
+1. **Embodied POV Engine architecture/extraction work**
+2. **Boxer Combat Foundation**
+
+These should begin as separate explicitly scoped tasks after Phase 0 PASS.
+
+## CONDITIONAL PASS
+
+The core loop works but one contained issue remains, for example:
+
+- head-motion scaling,
+- control conflict,
+- attack readability,
+- guard behavior,
+- punch recovery,
+- input latency.
+
+Only fix and retest that issue.
+
+## FAIL — REDESIGN
+
+The player understands the concept but the mapping does not produce good boxing interaction.
+
+Redesign the control model before adding systems.
+
+## FAIL — STOP
+
+The embodied POV interaction provides insufficient value relative to its usability cost.
+
+Do not compensate by building career, graphics or content.
+
+---
+
+# 10. Post-P0 — Embodied POV Engine Foundation
 
 ## Status
 
-**LOCKED UNTIL PHASE 0 PASS**
+**LOCKED UNTIL P0 PASS**
 
-## Goal
+Once Boxer proves the integrated interaction, extract only the reusable primitives supported by evidence.
 
-Prove that the embodied controls support a deep boxing exchange rather than gesture spam.
+Candidate engine primitives:
 
-## Proof areas
+- device-motion input abstraction,
+- touch/gesture abstraction,
+- configurable action mapping,
+- POV camera/body rig,
+- interaction trajectory/collision events,
+- haptic feedback abstraction,
+- audio event abstraction,
+- device/performance profiles,
+- telemetry hooks.
+
+Do not make Boxer-specific concepts such as `Jab`, `Petrov`, `Ring`, or `WeightClass` part of the generic engine layer.
+
+---
+
+# 11. Boxer Combat Foundation
+
+## Status
+
+**LOCKED UNTIL P0 PASS**
+
+Goal:
+
+> Turn the proven interaction into a deep boxing system.
+
+Proof/build areas:
 
 - distance/range,
-- jab/cross/hook/uppercut taxonomy,
-- punch trajectories,
-- head/body hit geometry,
-- high/low guard logic,
+- jab/cross/hook/uppercut,
+- body vs head attacks,
+- guard geometry,
 - stamina,
 - recovery,
 - balance,
 - counter windows,
-- body vs head damage,
 - knockdown,
 - get-up interaction,
-- basic round structure.
+- round structure.
 
-## Core question
+Core question:
 
-> Can timing, range, defense and counters matter more than raw swipe frequency?
-
-## Exit evidence
-
-A short fight should repeatedly produce intentional sequences such as:
-
-```text
-probe with jab
-→ manage distance
-→ read attack
-→ evade/block
-→ counter
-→ reset
-```
-
-without requiring production graphics.
+> Can timing, range, defense and counters matter more than swipe frequency?
 
 ---
 
-# Phase 2 — Opponent Intelligence and Boxing Styles
+# 12. Opponent Intelligence & Boxing Styles
 
 ## Status
 
-**LOCKED UNTIL PHASE 1 PASS**
+**LOCKED UNTIL COMBAT FOUNDATION IS SOUND**
 
-## Goal
-
-Prove that different opponents create meaningfully different boxing decisions.
-
-## Candidate styles
+Candidate styles:
 
 - pressure fighter,
 - out-boxer,
 - counter puncher,
 - power puncher,
-- defensive specialist,
-- orthodox/southpaw variants where justified.
+- defensive specialist.
 
-## Proof areas
+Goal:
 
-- readable telegraphs,
-- adaptive attack selection,
-- distance preference,
-- counter behavior,
-- fatigue behavior,
-- difficulty without simple HP/stat inflation,
-- exploitable strengths and weaknesses.
-
-## Core question
-
-> Can the player identify an opponent's style and adapt tactically?
+> Different opponents must force different tactical decisions, not merely have larger stats.
 
 ---
 
-# Phase 3 — Minimal Career Loop
+# 13. Minimal Career Loop
 
 ## Status
 
-**LOCKED UNTIL PHASE 2 PASS**
+**LOCKED UNTIL CORE COMBAT IS FUN**
 
-## Goal
-
-Prove that a lightweight career layer strengthens the meaning of each fight.
-
-## Candidate minimal loop
+Candidate loop:
 
 ```text
 choose fight
 → prepare/train
 → fight
 → win/loss/injury
-→ money/ranking change
+→ money/ranking
 → recovery
-→ next decision
+→ next fight
 ```
 
-## Candidate systems
+Candidate systems:
 
 - fight selection,
 - rankings,
 - purses,
-- basic expenses,
-- training camp choices,
+- training choices,
 - recovery,
-- injuries,
+- basic injuries,
 - first coach effects,
 - first gym effects,
-- limited equipment choices.
-
-## Constraint
+- limited equipment.
 
 Every system must answer:
 
 > How does this change the next fight or the meaning of the career?
 
-If it cannot answer this, defer or remove it.
-
-## Core question
-
-> Does the career layer make the player care more about the next bout?
-
 ---
 
-# Phase 4 — Fighter Identity and World Progression
+# 14. Fighter Identity & World Progression
 
-## Status
-
-**LOCKED UNTIL PHASE 3 PASS**
-
-## Goal
-
-Prove that player identity remains valuable despite POV gameplay.
-
-## Candidate systems
+Candidate systems after career loop is proven:
 
 - nationality,
-- fighter name,
-- face/hair features,
+- face/hair,
 - height,
 - weight,
 - reach,
 - stance,
-- weight class,
-- clothing/gloves,
-- walkout presentation,
-- mirrors,
-- weigh-ins,
-- profile cards,
+- weight classes,
+- outfits,
+- walkouts,
 - fight posters,
-- replay/highlight presentation.
+- arena ladder from street to championship.
 
-## World ladder candidate
+POV-specific question:
 
-1. Street / underground
-2. Amateur
-3. Regional professional
-4. National contender
-5. International contender
-6. Championship level
-
-Possible environments may include:
-
-- street/parking areas,
-- improvised underground venues,
-- cages/club spaces,
-- local halls,
-- casinos/regional arenas,
-- national stadiums,
-- championship arenas.
-
-## Core question
-
-> Does identity and venue progression create an earned rise-from-nobody fantasy?
+> Does customization remain meaningful when the player rarely sees their own full body during combat?
 
 ---
 
-# Phase 5 — Career Depth
+# 15. Career Depth
 
-## Status
+Later candidate systems:
 
-**LOCKED UNTIL PHASE 4 PASS**
-
-## Candidate proof areas
-
-- deeper coaches,
-- gym progression,
-- injury consequence,
-- medical treatment,
-- hospital presentation,
-- nutrition/weight management,
-- contracts,
-- promoters/managers,
-- rivals/rematches,
+- coaches,
+- gyms,
+- equipment,
+- nutrition,
+- injuries,
+- medical treatment/hospital,
+- rivalries,
+- rematches,
 - sponsors,
-- travel,
-- optional lifestyle presentation.
+- contracts,
+- travel.
 
-## Constraint
-
-Avoid turning Boxer into a generic life simulator.
-
-Career depth exists to strengthen:
-
-- fight preparation,
-- identity,
-- consequence,
-- progression,
-- emergent story.
+Avoid artificial waiting/paywall mechanics unless later evidence strongly supports them.
 
 ---
 
-# Phase 6 — MVP Production Proof
+# 16. Cross-Domain Reuse Proof
 
-## Status
+The Embodied POV Engine may only be called genuinely reusable after a second domain proves reuse.
 
-**LOCKED UNTIL CORE CAREER IS PROVEN**
+Candidate second-domain micro-prototype:
 
-## Goal
+- racing,
+- fighter aircraft,
+- sword/kendo combat.
 
-Convert proven systems into the smallest production-quality vertical slice that can validate product appeal.
+Do not build a full second game.
 
-## Candidate MVP slice
-
-- one player boxer,
-- limited identity customization,
-- small opponent roster,
-- small arena ladder,
-- proven combat controls,
-- one lightweight career loop,
-- training/recovery subset,
-- haptic/audio/battery settings,
-- production-grade telemetry,
-- stable performance on target devices.
-
-## MVP success questions
-
-- Do players want another fight?
-- Do they continue the career?
-- Does POV remain the defining feature after novelty wears off?
-- Does the game run acceptably on the target mobile hardware envelope?
+The goal is to determine whether proven primitives can be reused while replacing domain rules, assets and mappings.
 
 ---
 
-# Phase 7 — Online PvP Feasibility
+# 17. Online PvP
 
-## Status
+**Late-stage proof only.**
 
-**LOCKED UNTIL OFFLINE MVP IS PROVEN**
+Required before production PvP:
 
-## Required proofs
-
-- acceptable network-latency envelope,
-- authoritative hit validation,
+- latency envelope,
+- hit validation,
 - prediction/rollback strategy if needed,
-- fair matchmaking,
+- matchmaking fairness,
 - stat normalization,
 - anti-cheat assumptions,
 - disconnect handling,
-- device-performance variance,
 - pay-to-win prevention.
 
-## Core question
+---
 
-> Can timing-based POV boxing remain fair and readable under real mobile-network conditions?
+# 18. Commit / Evidence Discipline
 
-PvP is an end-state candidate, not a prerequisite for proving Boxer.
+For each meaningful proof or implementation gate:
+
+1. Define scope.
+2. Commit specification if needed.
+3. Implement only authorized work.
+4. Run tests.
+5. Record evidence/results.
+6. Decide PASS / CONDITIONAL PASS / FAIL.
+7. Update `plan.md` only after the decision.
+
+Do not mix speculative next-phase work into proof commits.
 
 ---
 
-# Phase 8 — Live Product and Expansion
+# 19. Current Project State
 
-## Status
-
-**NOT AUTHORIZED**
-
-Only considered after MVP and, if pursued, PvP feasibility are proven.
-
-Potential areas:
-
-- larger career world,
-- new cities/arenas,
-- deeper fighter customization,
-- additional boxing styles,
-- live events,
-- seasonal competition,
-- cosmetics,
-- social systems,
-- monetization.
-
-All monetization must preserve boxing skill as the primary determinant of competitive performance.
-
----
-
-# 3. Energy / Accessibility / Settings Baseline
-
-The product must support users who prioritize battery life, thermal comfort, accessibility, or quiet play.
-
-Candidate settings baseline:
-
-```text
-Haptics: Off / Low / Normal / Strong
-Sound Effects: Off / On
-Crowd/Ambience: Off / Low / Full
-Camera Impact: Reduced / Normal
-Motion Blur: Off / On
-Frame Rate: 30 / 60 / High where supported
-Power Mode: Full Immersion / Balanced / Battery Saver
-```
-
-Exact production settings remain subject to proof.
-
-Gameplay must remain understandable with haptic and audio disabled.
-
----
-
-# 4. Scope Guard
-
-The following remain explicitly out of scope before their proof gate:
-
-- large-scale character creator,
-- large arena catalog,
-- cosmetic store,
-- deep hospital system,
-- lifestyle simulation,
-- sponsor ecosystem,
-- live-service economy,
-- PvP matchmaking,
-- guild/social systems,
-- production backend,
-- monetization implementation.
-
-These remain product possibilities, not implementation commitments.
-
----
-
-# 5. Current Project State
-
-**Repository:** `minhtri22/boxer`  
-**Current phase:** `Phase 0 — POV Embodied Control Proof`  
-**Current decision state:** `PROVE`  
-**Production implementation:** `BLOCKED`  
-**Authorized implementation:** `Sensor Combat Harness only`  
-**Primary protocol:** `docs/protocols/phase-0-pov-embodied-control-proof.md`  
-**Feedback/energy protocol:** `docs/protocols/phase-0-feedback-energy-proof.md`  
-**Next engineering artifact:** `Phase 0 Sensor Combat Harness Specification`  
-**Next evidence gate:** `Human-on-device validation`  
-
----
-
-# 6. Immediate Next Actions
-
-Only the following sequence is currently authorized:
-
-1. Write the **Sensor Combat Harness Specification**.
-2. Freeze the first device/orientation/touch/logging design.
-3. Choose the smallest mobile technical stack capable of collecting valid sensor data.
-4. Implement the harness without production art or career systems.
-5. Run developer/device QA.
-6. Run Phase 0 human-on-device tests.
-7. Run haptic/audio/energy experiments.
-8. Produce raw evidence and Phase 0 result report.
-9. Decide `PASS / CONDITIONAL PASS / FAIL`.
-10. Update this plan only after evidence determines what is unlocked.
-
-Until step 9 produces PASS, **Phase 1 remains locked**.
+**Current phase:** Phase 0 — Boxer Interaction Integration Proof  
+**Current stack:** Unity + C#  
+**Primary development machine:** Windows / Core Ultra 7 258V / 32 GB / Arc 140V  
+**Primary real-device target:** iPhone 12  
+**Boxing domain:** Active proof vehicle  
+**Reusable Embodied POV Engine:** LOCKED until P0 PASS  
+**Production career/game systems:** BLOCKED  
+**Authorized next work:** Unity Boxer micro-prototype sufficient to test phone=head + feet/head/fists integration + read/evade/counter + replay intent  
+**Primary gate:** Does the integrated boxing interaction feel good enough that the player wants another fight?
