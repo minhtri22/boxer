@@ -42,7 +42,103 @@ The resulting kinetic-chain quality influences punch effectiveness, balance, rec
 
 ---
 
-# 2. Left-Thumb Input Features
+# 2. Player Controls Intent; Simulation Resolves Anatomy
+
+A critical complexity constraint for P1 is:
+
+> **Player controls intent; simulation resolves anatomy.**
+
+The left thumb does **not** mean "left leg" and the right thumb does **not** mean "right hand".
+
+Instead:
+
+- **Left Thumb = footwork / lower-body intent**
+- **Right Thumb = punch / upper-body intent**
+- **Phone = head intent**
+
+The player should not be required to explicitly encode which anatomical limb moves first for every action.
+
+The combat model must contain an `IntentToAnatomyResolver` that maps intent into stance-correct virtual-body actions.
+
+Conceptually:
+
+```text
+PLAYER INPUT
+→ MOVEMENT / PUNCH INTENT
+→ STANCE + CURRENT BODY STATE
+→ INTENT-TO-ANATOMY RESOLVER
+→ RESOLVED FOOT / ARM / HIP / TRUNK ACTION
+→ BIOMECHANICAL STATE
+```
+
+Examples:
+
+```text
+left-thumb advance intent
++ orthodox stance
+→ lead foot initiates
+→ rear foot follows
+→ stance width preserved
+```
+
+```text
+right-thumb fast straight intent
++ orthodox stance
++ neutral attack state
+→ lead-hand jab candidate
+```
+
+```text
+right-thumb committed straight intent
++ rear-side kinetic setup
++ viable range
+→ rear-hand cross candidate
+```
+
+The exact gesture grammar remains subject to P1 calibration, but anatomy resolution must not require the player to micromanage each limb.
+
+This constraint is intended to keep Boxer from becoming a gesture-language simulator.
+
+---
+
+# 3. Complexity Guardrail
+
+Do not require the player to simultaneously encode all of the following directly:
+
+- left/right hand identity,
+- left/right foot identity,
+- gesture direction,
+- gesture speed,
+- timing,
+- stance,
+- pivot,
+- weight transfer.
+
+Those variables may exist in the simulation, but only the smallest tactically meaningful subset should be exposed as player input.
+
+Recommended abstraction:
+
+```text
+Player specifies:
+- where the boxer should move,
+- what kind of punch intent is being expressed,
+- when and how strongly/quickly the action is expressed,
+- where the head should move.
+
+Simulation resolves:
+- which foot initiates,
+- which foot follows,
+- which arm executes,
+- pivot amount,
+- hip/trunk rotation,
+- weight transfer,
+- stance preservation,
+- balance consequence.
+```
+
+---
+
+# 4. Left-Thumb Input Features
 
 For each left-thumb gesture, derive at minimum:
 
@@ -65,15 +161,23 @@ Examples:
 - lateral component → sidestep / angle change,
 - diagonal component → combined translation and rotational setup.
 
-The left-thumb gesture should contribute to an inferred lower-body vector:
+The left-thumb gesture should first express a `FootworkIntent`, then the resolver derives stance-correct anatomical action.
+
+Conceptually:
 
 ```text
-FootDriveVector = f(L.direction_angle, L.speed, stance, current_velocity)
+FootworkIntent = f(L.direction_angle, L.speed, L.magnitude)
+
+ResolvedFootAction =
+resolve(FootworkIntent, stance, facing, current_foot_state, balance)
+
+FootDriveVector =
+g(ResolvedFootAction, current_velocity)
 ```
 
 ---
 
-# 3. Right-Thumb Punch Features
+# 5. Right-Thumb Punch Features
 
 For each right-thumb punch gesture, derive at minimum:
 
@@ -88,28 +192,39 @@ R.peak_tick
 R.end_tick
 ```
 
-Gesture classification may later map these features to:
+Gesture classification may later map these features to intent classes such as:
 
 ```text
-jab
-cross
-hook_left/right
-uppercut
-body variant
+fast straight
+committed straight
+hook-like curved attack
+uppercut-like rising attack
+body-target variant
 ```
 
-But the biomechanical model should retain the continuous input features, not only the discrete punch label.
+The simulation then resolves the actual arm/punch based on stance and current state.
+
+Conceptually:
+
+```text
+PunchIntent = classify(R.features)
+
+ResolvedPunchAction =
+resolve(PunchIntent, stance, lead/rear availability, guard, range, recovery)
+```
+
+The biomechanical model should retain continuous input features, not only the final discrete punch label.
 
 ---
 
-# 4. Coordination Window
+# 6. Coordination Window
 
-The relationship between foot and punch input should be evaluated over a short temporal window around punch commitment.
+The relationship between resolved foot action and resolved punch action should be evaluated over a short temporal window around punch commitment.
 
 Define conceptually:
 
 ```text
-Δt_coord = R.peak_tick - L.peak_tick
+Δt_coord = PunchPeakTick - FootDrivePeakTick
 ```
 
 or another calibrated measure of phase alignment.
@@ -120,25 +235,28 @@ A poorly synchronized punch should still execute, but with reduced kinetic effic
 
 ---
 
-# 5. Derived Hip Angular Velocity
+# 7. Derived Hip Angular Velocity
 
 `HipAngularVelocity` should be a gameplay-derived biomechanical variable.
+
+It must be derived **after** intent has been resolved into stance-correct lower- and upper-body actions.
 
 Candidate normalized structure:
 
 ```text
 FootAngularContribution =
-    g(L.direction_angle,
+    g(ResolvedFootAction,
+      L.direction_angle,
       L.speed,
       stance,
       facing,
       current_foot_state)
 
 PunchAngularDemand =
-    h(R.direction_angle,
+    h(ResolvedPunchAction,
+      R.direction_angle,
       R.speed,
       R.curvature,
-      punch_type,
       lead/rear side)
 
 Coordination =
@@ -155,11 +273,11 @@ HipAngularVelocity_est =
 
 This is a **gameplay estimation model**, not a claim that touchscreen input directly measures the player's biological hip velocity.
 
-The point is to make virtual hip rotation causally reflect the player's coordinated foot + hand input.
+The point is to make virtual hip rotation causally reflect the player's coordinated lower-body + upper-body intent while preserving stance-correct anatomy.
 
 ---
 
-# 6. Directional Coupling
+# 8. Directional Coupling
 
 Direction must matter.
 
@@ -187,7 +305,7 @@ Exact values remain tunable P1 parameters.
 
 ---
 
-# 7. Kinetic Chain Quality
+# 9. Kinetic Chain Quality
 
 `HipAngularVelocity_est` is one contributor to a broader `KineticChainQuality`.
 
@@ -223,18 +341,24 @@ This makes a powerful strike emerge from coordinated player input plus fighter c
 
 ---
 
-# 8. Examples
+# 10. Examples
 
 ## Example A — Strong coordinated cross
 
 ```text
 left thumb:
-forward/right-biased drive appropriate to stance
+forward/right-biased drive intent appropriate to stance
 high but controlled velocity
 
+resolver:
+stance-correct rear-side drive / pivot contribution
+
 right thumb:
-rear-hand straight trajectory
+committed straight intent
 high velocity
+
+resolver:
+rear-hand cross
 
 coordination:
 peaks aligned inside valid timing window
@@ -252,10 +376,13 @@ commitment/recovery ↑
 
 ```text
 left thumb:
-backward vector
+backward movement intent
 
 right thumb:
-rear-hand straight
+committed straight intent
+
+resolver:
+retreat foot sequence + rear straight
 
 result:
 less forward drive
@@ -273,10 +400,10 @@ The punch is not prohibited.
 
 ```text
 left thumb:
-abrupt contradictory lateral input
+abrupt contradictory lateral intent
 
 right thumb:
-fast curved hook
+fast curved hook intent
 
 result:
 PunchAngularDemand high
@@ -297,7 +424,10 @@ left thumb:
 neutral
 
 right thumb:
-fast short straight gesture
+fast short straight intent
+
+resolver:
+lead-hand jab
 
 result:
 low required hip contribution
@@ -310,14 +440,14 @@ This prevents the system from demanding full-body input for every punch.
 
 ---
 
-# 9. Head Movement Interaction
+# 11. Head Movement Interaction
 
 Phone/head input is a third concurrent channel:
 
 ```text
 Phone = Head
-Left Thumb = Feet / lower-body drive
-Right Thumb = Fists / upper-body attack intent
+Left Thumb = Footwork / lower-body intent
+Right Thumb = Punch / upper-body intent
 ```
 
 Head movement may affect kinetic-chain quality and balance if the player attempts a punch while far outside stable head/COM alignment.
@@ -326,7 +456,7 @@ Example:
 
 ```text
 extreme slip left
-+ immediate opposite-side heavy hook
++ immediate opposite-side heavy hook intent
 ```
 
 may be mechanically strong or weak depending on stance, target angle and recovery timing; P1 should model this as coordination rather than forbid it categorically.
@@ -340,9 +470,9 @@ The head channel must therefore contribute to:
 
 ---
 
-# 10. Replay Requirement
+# 12. Replay Requirement
 
-The action log must preserve enough data to reconstruct the derived biomechanics.
+The action log must preserve enough data to reconstruct both intent and resolved anatomy.
 
 For meaningful attacks, store or make reproducible:
 
@@ -350,10 +480,14 @@ For meaningful attacks, store or make reproducible:
 left_input_direction
 left_input_speed
 left_input_peak_tick
+footwork_intent
+resolved_foot_action
 right_input_direction
 right_input_speed
 right_input_path/curvature
 right_input_peak_tick
+punch_intent
+resolved_punch_action
 head_offset
 stance
 balance_before
@@ -362,7 +496,7 @@ KineticChainQuality
 ImpactQuality
 ```
 
-This allows cinematic replay to animate not merely "a cross happened", but the **specific quality and coordination of that cross**.
+This allows cinematic replay to animate not merely "a cross happened", but the **specific quality, anatomy resolution and coordination of that cross**.
 
 For example, a high-quality finishing cross can later drive:
 
@@ -374,7 +508,7 @@ For example, a high-quality finishing cross can later drive:
 
 ---
 
-# 11. Validation Requirement
+# 13. Validation Requirement
 
 P1 must test these invariants:
 
@@ -386,10 +520,14 @@ P1 must test these invariants:
 6. Cross/hook reward stronger coordinated foot/hip contribution.
 7. Player can intentionally learn and reproduce a better coordinated punch.
 8. Replay can reconstruct the distinction between poorly and well coordinated strikes.
+9. Left thumb never implicitly means left leg.
+10. Right thumb never implicitly means right hand.
+11. Stance changes can alter resolved limb sequence without changing the player's high-level intent grammar.
+12. The control model remains learnable without requiring explicit per-limb micromanagement.
 
 ---
 
-# 12. Design Constraint
+# 14. Design Constraint
 
 Do not pretend the phone/thumbs directly measure real human biomechanics.
 
@@ -397,4 +535,4 @@ The system models the **virtual boxer's biomechanics from intentional control si
 
 That distinction is fundamental:
 
-> The player's inputs specify movement intent and coordination; the Boxer simulation converts that intent into a biomechanically plausible virtual body action.
+> The player's inputs specify movement intent and coordination; the Boxer simulation resolves stance-correct anatomy and converts that intent into a biomechanically plausible virtual body action.
