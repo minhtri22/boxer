@@ -1,0 +1,204 @@
+using System;
+using UnityEngine;
+
+namespace BoxerP0
+{
+    public sealed class BoxerInput : MonoBehaviour
+    {
+        public event Action<PunchIntent> PunchRequested;
+
+        public Vector2 MovementIntent { get; private set; }
+        public float HeadAngleDegrees { get; private set; }
+        public string HeadInputSource { get; private set; } = "SYNTHETIC";
+        public PunchIntent LastPunchIntent { get; private set; }
+
+        private int _leftFinger = -1;
+        private Vector2 _leftOrigin;
+        private int _rightFinger = -1;
+        private Vector2 _rightStart;
+        private Vector2 _rightPrevious;
+        private float _rightPathLength;
+        private float _rightStartTime;
+        private Quaternion _neutralAttitude = Quaternion.identity;
+        private bool _gyroReady;
+        private float _syntheticHeadAngle;
+        private bool _syntheticDemo;
+        private float _demoStart;
+        private int _demoPunchIndex;
+
+        private void Start()
+        {
+            _syntheticDemo = Array.Exists(Environment.GetCommandLineArgs(), value => value == "-p0SyntheticDemo");
+            _demoStart = Time.unscaledTime;
+            if (_syntheticDemo)
+            {
+                HeadInputSource = "SYNTHETIC_DEMO";
+                return;
+            }
+
+            if (Application.isMobilePlatform && SystemInfo.supportsGyroscope)
+            {
+                Input.gyro.enabled = true;
+                _neutralAttitude = Input.gyro.attitude;
+                _gyroReady = true;
+                HeadInputSource = "REAL_DEVICE";
+            }
+        }
+
+        private void Update()
+        {
+            if (_syntheticDemo)
+            {
+                UpdateSyntheticDemo();
+                return;
+            }
+
+            UpdateHeadInput();
+            UpdateTouchInput();
+            UpdateEditorFallback();
+        }
+
+        private void UpdateSyntheticDemo()
+        {
+            float elapsed = Time.unscaledTime - _demoStart;
+            MovementIntent = new Vector2(Mathf.Sin(elapsed * 0.9f) * 0.45f, Mathf.Cos(elapsed * 0.7f) * 0.35f);
+            HeadAngleDegrees = Mathf.Sin(elapsed * 2.2f) * 14f;
+
+            float nextPunchTime = 1.0f + _demoPunchIndex * 1.05f;
+            if (_demoPunchIndex < 4 && elapsed >= nextPunchTime)
+            {
+                PunchIntent intent = (_demoPunchIndex % 3) switch
+                {
+                    0 => PunchIntent.Jab,
+                    1 => PunchIntent.Cross,
+                    _ => PunchIntent.Hook
+                };
+                _demoPunchIndex++;
+                RequestPunch(intent);
+            }
+        }
+
+        public void RecalibrateHead()
+        {
+            if (_gyroReady)
+            {
+                _neutralAttitude = Input.gyro.attitude;
+            }
+            else
+            {
+                _syntheticHeadAngle = 0f;
+            }
+        }
+
+        private void UpdateHeadInput()
+        {
+            if (_gyroReady)
+            {
+                Quaternion relative = Quaternion.Inverse(_neutralAttitude) * Input.gyro.attitude;
+                HeadAngleDegrees = Mathf.DeltaAngle(0f, relative.eulerAngles.z);
+                return;
+            }
+
+            float axis = 0f;
+            if (Input.GetKey(KeyCode.Q)) axis -= 1f;
+            if (Input.GetKey(KeyCode.E)) axis += 1f;
+            _syntheticHeadAngle = Mathf.MoveTowards(_syntheticHeadAngle, axis * 18f, 90f * Time.deltaTime);
+            HeadAngleDegrees = _syntheticHeadAngle;
+        }
+
+        private void UpdateTouchInput()
+        {
+            if (Input.touchCount == 0)
+            {
+                if (_leftFinger >= 0)
+                {
+                    _leftFinger = -1;
+                    MovementIntent = Vector2.zero;
+                }
+                return;
+            }
+
+            for (int i = 0; i < Input.touchCount; i++)
+            {
+                Touch touch = Input.GetTouch(i);
+                bool leftHalf = touch.position.x < Screen.width * 0.5f;
+
+                if (touch.phase == TouchPhase.Began)
+                {
+                    if (leftHalf && _leftFinger < 0)
+                    {
+                        _leftFinger = touch.fingerId;
+                        _leftOrigin = touch.position;
+                    }
+                    else if (!leftHalf && _rightFinger < 0)
+                    {
+                        _rightFinger = touch.fingerId;
+                        _rightStart = touch.position;
+                        _rightPrevious = touch.position;
+                        _rightPathLength = 0f;
+                        _rightStartTime = Time.unscaledTime;
+                    }
+                }
+
+                if (touch.fingerId == _leftFinger)
+                {
+                    if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
+                    {
+                        _leftFinger = -1;
+                        MovementIntent = Vector2.zero;
+                    }
+                    else
+                    {
+                        Vector2 drag = (touch.position - _leftOrigin) / Mathf.Max(80f, Screen.dpi * 0.45f);
+                        MovementIntent = Vector2.ClampMagnitude(drag, 1f);
+                    }
+                }
+
+                if (touch.fingerId == _rightFinger)
+                {
+                    if (touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Stationary)
+                    {
+                        _rightPathLength += Vector2.Distance(_rightPrevious, touch.position);
+                        _rightPrevious = touch.position;
+                    }
+
+                    if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
+                    {
+                        _rightPathLength += Vector2.Distance(_rightPrevious, touch.position);
+                        float duration = Mathf.Max(0.001f, Time.unscaledTime - _rightStartTime);
+                        float scale = Mathf.Max(1f, Screen.dpi / 160f);
+                        GestureMetrics metrics = new(touch.position - _rightStart, _rightPathLength, duration);
+                        PunchIntent intent = PunchGestureClassifier.Classify(metrics, scale);
+                        _rightFinger = -1;
+                        RequestPunch(intent);
+                    }
+                }
+            }
+        }
+
+        private void UpdateEditorFallback()
+        {
+            if (Application.isMobilePlatform)
+            {
+                return;
+            }
+
+            MovementIntent = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+            MovementIntent = Vector2.ClampMagnitude(MovementIntent, 1f);
+
+            if (Input.GetKeyDown(KeyCode.J)) RequestPunch(PunchIntent.Jab);
+            if (Input.GetKeyDown(KeyCode.K)) RequestPunch(PunchIntent.Cross);
+            if (Input.GetKeyDown(KeyCode.L)) RequestPunch(PunchIntent.Hook);
+            if (Input.GetKeyDown(KeyCode.R)) RecalibrateHead();
+        }
+
+        private void RequestPunch(PunchIntent intent)
+        {
+            LastPunchIntent = intent;
+            if (intent != PunchIntent.None)
+            {
+                PunchRequested?.Invoke(intent);
+            }
+        }
+    }
+}
