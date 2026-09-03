@@ -106,7 +106,7 @@ namespace BoxerP0
                 "Player Right Glove", playerRoot.transform, new Vector3(0.22f, 1.38f, 0.48f), new Color(0.15f, 0.35f, 0.95f));
 
             GameObject opponentRoot = new("Opponent");
-            opponentRoot.transform.position = new Vector3(0f, 0f, 2.15f);
+            opponentRoot.transform.position = new Vector3(0f, 0f, 0.70f);
             opponentRoot.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
             _opponent = opponentRoot.AddComponent<OpponentBoxer>();
 
@@ -131,9 +131,9 @@ namespace BoxerP0
             opponentHeadCollider.radius = 0.5f;
 
             (Transform leftOpponentGlove, SphereCollider leftOpponentCollider) = CreateGlove(
-                "Opponent Left Glove", opponentRoot.transform, new Vector3(-0.22f, 1.38f, -0.45f), new Color(0.90f, 0.16f, 0.12f));
+                "Opponent Left Glove", opponentRoot.transform, new Vector3(-0.22f, 1.38f, 0.45f), new Color(0.90f, 0.16f, 0.12f));
             (Transform rightOpponentGlove, SphereCollider rightOpponentCollider) = CreateGlove(
-                "Opponent Right Glove", opponentRoot.transform, new Vector3(0.22f, 1.38f, -0.45f), new Color(0.90f, 0.16f, 0.12f));
+                "Opponent Right Glove", opponentRoot.transform, new Vector3(0.22f, 1.38f, 0.45f), new Color(0.90f, 0.16f, 0.12f));
 
             _player.Initialize(
                 _input,

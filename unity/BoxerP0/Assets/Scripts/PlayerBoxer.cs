@@ -68,6 +68,7 @@ namespace BoxerP0
             if (_input == null) return;
 
             UpdateFootwork();
+            FaceOpponent();
             UpdateHead();
             UpdatePunch();
         }
@@ -79,8 +80,19 @@ namespace BoxerP0
             transform.position += delta;
             Vector3 p = transform.position;
             p.x = Mathf.Clamp(p.x, -2.25f, 2.25f);
-            p.z = Mathf.Clamp(p.z, -1.3f, 1.4f);
+            p.z = Mathf.Clamp(p.z, -1.3f, -0.05f);
             transform.position = p;
+        }
+
+        private void FaceOpponent()
+        {
+            if (_opponent == null) return;
+            Vector3 toward = _opponent.transform.position - transform.position;
+            toward.y = 0f;
+            if (toward.sqrMagnitude > 0.01f)
+            {
+                transform.rotation = Quaternion.LookRotation(toward.normalized, Vector3.up);
+            }
         }
 
         private void UpdateHead()
@@ -218,4 +230,3 @@ namespace BoxerP0
         }
     }
 }
-

@@ -152,8 +152,9 @@ namespace BoxerP0
         {
             float leftRadius = _leftGuardCollider.radius * MaxScale(_leftGuardCollider.transform);
             float rightRadius = _rightGuardCollider.radius * MaxScale(_rightGuardCollider.transform);
-            if (CombatGeometry.SegmentSphereIntersects(start, end, _leftGlove.position, punchRadius + leftRadius) ||
-                CombatGeometry.SegmentSphereIntersects(start, end, _rightGlove.position, punchRadius + rightRadius))
+            if (!CounterWindowOpen &&
+                (CombatGeometry.SegmentSphereIntersects(start, end, _leftGlove.position, punchRadius + leftRadius) ||
+                 CombatGeometry.SegmentSphereIntersects(start, end, _rightGlove.position, punchRadius + rightRadius)))
             {
                 return CombatOutcome.Block;
             }
@@ -195,4 +196,3 @@ namespace BoxerP0
         }
     }
 }
-
