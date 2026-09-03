@@ -1,0 +1,8 @@
+evidence=SYNTHETIC
+unity=6000.5.8f1
+platform=Windows x64 Development player
+mode=-batchmode -nographics -p0SyntheticDemo -p0SmokeSeconds=6
+result=PASS
+completion_marker=P0_SMOKE_COMPLETE
+runtime_exception=NONE_OBSERVED_IN_FINAL_RUN
+note=This verifies runtime execution only and is not human game-feel evidence.

@@ -1,0 +1,13 @@
+evidence=SYNTHETIC
+unity=6000.5.8f1
+utc=2026-09-03T02:29:23.8369279Z
+PASS head dead zone
+PASS head sign and bound
+PASS gesture jab
+PASS gesture cross
+PASS gesture hook
+PASS geometry hit and miss
+PASS default fight range can connect
+PASS anti-spam state transition
+PASS counter recovery window
+TOTAL=9 PASS

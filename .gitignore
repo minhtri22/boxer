@@ -20,3 +20,9 @@
 
 evidence/phase0/EDITOR/windows-build/*
 !evidence/phase0/EDITOR/windows-build/build-metadata.txt
+evidence/phase0/EDITOR/create-project.log
+evidence/phase0/EDITOR/scene-build.log
+evidence/phase0/EDITOR/windows-build-unity.log
+evidence/phase0/SYNTHETIC/self-tests-unity.log
+evidence/phase0/SYNTHETIC/windows-runtime-smoke.log
+evidence/phase0/SYNTHETIC/windows-runtime-telemetry.csv

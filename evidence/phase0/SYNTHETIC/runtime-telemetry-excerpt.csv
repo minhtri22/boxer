@@ -1,0 +1,7 @@
+utc_seconds,head_input_deg,head_offset_m,move_x,move_y,punch_intent,player_action,opponent_action,guard_state,outcome,counter_state,event
+1.848,-11.18,-0.169,0.45,0.10,Jab,GUARD,Cross:Extend,HIGH,BLOCK,CLOSED,OPPONENT_BLOCK
+1.915,-12.29,-0.191,0.44,0.08,Jab,GUARD,Cross:Recover,HIGH,BLOCK,OPEN,OPPONENT_BLOCK
+2.065,-13.80,-0.237,0.43,0.04,Cross,Cross:Commit,Cross:Recover,OPEN,BLOCK,OPEN,PLAYER_COMMIT_Cross
+2.215,-13.82,-0.251,0.41,0.01,Cross,Cross:Extend,Cross:Recover,OPEN,BLOCK,OPEN,PLAYER_COMMIT_Cross
+2.265,-13.49,-0.247,0.40,-0.01,Cross,Cross:Extend,Cross:Recover,OPEN,HIT,OPEN,PLAYER_COUNTER_HIT
+3.920,10.05,0.185,-0.17,-0.32,Hook,GUARD,Cross:Extend,HIGH,HIT,CLOSED,OPPONENT_HIT
