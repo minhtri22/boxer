@@ -23,6 +23,9 @@ namespace BoxerP0.Editor
             Run("anti-spam state transition", TestActionState, results);
             Run("counter recovery window", TestCounterWindow, results);
             Run("action reset to guard", TestActionReset, results);
+            Run("onboarding head progress", TestOnboardingHead, results);
+            Run("onboarding footwork progress", TestOnboardingFootwork, results);
+            Run("onboarding punch progress", TestOnboardingPunches, results);
 
             string repoRoot = Directory.GetParent(
                 Directory.GetParent(
@@ -135,6 +138,38 @@ namespace BoxerP0.Editor
             AssertEqual(ActionPhase.Guard, state.Phase);
             AssertEqual(PunchIntent.None, state.Intent);
             AssertTrue(!state.IsBusy, "reset must lock action back to guard");
+        }
+
+        private static void TestOnboardingHead()
+        {
+            OnboardingProgress progress = new();
+            progress.ObserveHead(-0.16f);
+            AssertTrue(progress.HeadLeft, "left head motion must register");
+            AssertTrue(!progress.HeadReady, "one side alone must not complete head drill");
+            progress.ObserveHead(0.17f);
+            AssertTrue(progress.HeadReady, "both head directions must complete head drill");
+        }
+
+        private static void TestOnboardingFootwork()
+        {
+            OnboardingProgress progress = new();
+            progress.ObserveMovement(new Vector2(-0.8f, 0f));
+            progress.ObserveMovement(new Vector2(0.8f, 0f));
+            progress.ObserveMovement(new Vector2(0f, 0.8f));
+            AssertTrue(!progress.FootworkReady, "three directions must not complete footwork drill");
+            progress.ObserveMovement(new Vector2(0f, -0.8f));
+            AssertTrue(progress.FootworkReady, "four directions must complete footwork drill");
+        }
+
+        private static void TestOnboardingPunches()
+        {
+            OnboardingProgress progress = new();
+            progress.ObservePunch(PunchIntent.Jab);
+            progress.ObservePunch(PunchIntent.Cross);
+            progress.ObservePunch(PunchIntent.LeadHook);
+            AssertTrue(!progress.PunchesReady, "three punch types must not complete punch drill");
+            progress.ObservePunch(PunchIntent.RearHook);
+            AssertTrue(progress.PunchesReady, "all four punch types must complete punch drill");
         }
 
         private static void AssertNear(float expected, float actual, float tolerance)
