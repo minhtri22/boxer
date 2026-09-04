@@ -12,6 +12,7 @@ namespace BoxerP0
         private float _instructionUntil;
         private float _boutEnd;
         private float _smokeQuitAt = -1f;
+        private bool _webBoutStarted;
 
         private void Awake()
         {
@@ -25,6 +26,14 @@ namespace BoxerP0
 
         private void Update()
         {
+#if UNITY_WEBGL && !UNITY_EDITOR
+            if (!_webBoutStarted && _input != null && _input.BrowserCalibrated)
+            {
+                _webBoutStarted = true;
+                _instructionUntil = Time.unscaledTime + 6f;
+                _boutEnd = Time.unscaledTime + 75f;
+            }
+#endif
             if (_smokeQuitAt > 0f && Time.unscaledTime >= _smokeQuitAt)
             {
                 Debug.Log("P0_SMOKE_COMPLETE");
@@ -176,13 +185,16 @@ namespace BoxerP0
             if (_input == null || _player == null || _opponent == null || _telemetry == null) return;
 
             string debug =
-                $"HEAD {_input.HeadAngleDegrees:F1}° → {_player.HeadOffset:F2}m [{_input.HeadInputSource}]\n" +
+                $"MOTION {_input.BrowserMotionPermission}  SRC {_input.HeadInputSource}\n" +
+                $"RAW a{_input.BrowserAlpha:F1} b{_input.BrowserBeta:F1} g{_input.BrowserGamma:F1}  N {_input.BrowserNeutralGamma:F1}\n" +
+                $"HEAD {_input.HeadAngleDegrees:F1}° → {_player.HeadOffset:F2}m\n" +
                 $"MOVE {_input.MovementIntent.x:F2},{_input.MovementIntent.y:F2}\n" +
+                $"PUNCH {_input.LastPunchIntent}\n" +
                 $"PLAYER {_player.ActionLabel}  GUARD {(_player.GuardActive ? "HIGH" : "OPEN")}\n" +
                 $"OPP {_opponent.ActionLabel}  COUNTER {(_opponent.CounterWindowOpen ? "OPEN" : "CLOSED")}\n" +
                 $"LAST {_telemetry.LastOutcome} / {_telemetry.LastEvent}\n" +
-                $"BOUT {Mathf.Max(0f, _boutEnd - Time.unscaledTime):F0}s";
-            GUI.Box(new Rect(20, Screen.height - 190, Mathf.Min(Screen.width - 40, 680), 170), debug);
+                $"BOUT {GetBoutSecondsRemaining():F0}s  FRAME {(Time.unscaledDeltaTime * 1000f):F1}ms";
+            GUI.Box(new Rect(20, Screen.height - 250, Mathf.Min(Screen.width - 40, 680), 230), debug);
 
             if (!Application.isMobilePlatform)
             {
@@ -190,11 +202,29 @@ namespace BoxerP0
                     "EDITOR SYNTHETIC\nWASD feet · Q/E head\nJ jab · K cross · L hook\nR recalibrate · M audio · H haptic");
             }
 
-            if (Time.unscaledTime >= _boutEnd)
+            if (BoutIsComplete())
             {
-                GUI.Box(new Rect(Screen.width * 0.5f - 180, Screen.height * 0.5f - 55, 360, 110),
-                    "BOUT COMPLETE\nDo you want to fight again?");
+                GUI.Box(new Rect(Screen.width * 0.5f - 260, Screen.height * 0.5f - 95, 520, 190),
+                    "BOUT COMPLETE — CONTROL COMPREHENSION & AGENCY\n\n" +
+                    "Bạn có cảm thấy chính thao tác đầu/chân/tay của mình tạo ra kết quả vừa xảy ra không?\n\n" +
+                    "Hãy mô tả một tình huống vừa rồi: tại sao đòn đó trúng / trượt / bị đỡ / phản đòn được?");
             }
+        }
+
+        private float GetBoutSecondsRemaining()
+        {
+#if UNITY_WEBGL && !UNITY_EDITOR
+            if (!_webBoutStarted) return 75f;
+#endif
+            return Mathf.Max(0f, _boutEnd - Time.unscaledTime);
+        }
+
+        private bool BoutIsComplete()
+        {
+#if UNITY_WEBGL && !UNITY_EDITOR
+            if (!_webBoutStarted) return false;
+#endif
+            return Time.unscaledTime >= _boutEnd;
         }
 
         private static (Transform transform, SphereCollider collider) CreateGlove(

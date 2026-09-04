@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using UnityEngine;
 
 namespace BoxerP0
@@ -11,6 +12,13 @@ namespace BoxerP0
         public float HeadAngleDegrees { get; private set; }
         public string HeadInputSource { get; private set; } = "SYNTHETIC";
         public PunchIntent LastPunchIntent { get; private set; }
+        public string BrowserMotionPermission { get; private set; } = "N/A";
+        public float BrowserAlpha { get; private set; }
+        public float BrowserBeta { get; private set; }
+        public float BrowserGamma { get; private set; }
+        public float BrowserNeutralGamma { get; private set; }
+        public bool BrowserOrientationReceived { get; private set; }
+        public bool BrowserCalibrated { get; private set; }
 
         private int _leftFinger = -1;
         private Vector2 _leftOrigin;
@@ -35,6 +43,13 @@ namespace BoxerP0
                 HeadInputSource = "SYNTHETIC_DEMO";
                 return;
             }
+
+#if UNITY_WEBGL && !UNITY_EDITOR
+            HeadInputSource = "WEB_ORIENTATION_PENDING";
+            BrowserMotionPermission = "PENDING";
+            Time.timeScale = 0f;
+            return;
+#endif
 
             if (Application.isMobilePlatform && SystemInfo.supportsGyroscope)
             {
@@ -80,6 +95,17 @@ namespace BoxerP0
 
         public void RecalibrateHead()
         {
+#if UNITY_WEBGL && !UNITY_EDITOR
+            if (BrowserOrientationReceived)
+            {
+                BrowserNeutralGamma = BrowserGamma;
+                BrowserCalibrated = true;
+                HeadAngleDegrees = 0f;
+                HeadInputSource = "WEB_ORIENTATION";
+                Time.timeScale = 1f;
+            }
+            return;
+#endif
             if (_gyroReady)
             {
                 _neutralAttitude = Input.gyro.attitude;
@@ -92,6 +118,17 @@ namespace BoxerP0
 
         private void UpdateHeadInput()
         {
+#if UNITY_WEBGL && !UNITY_EDITOR
+            if (BrowserOrientationReceived && BrowserCalibrated)
+            {
+                HeadAngleDegrees = Mathf.DeltaAngle(BrowserNeutralGamma, BrowserGamma);
+            }
+            else
+            {
+                HeadAngleDegrees = 0f;
+            }
+            return;
+#endif
             if (_gyroReady)
             {
                 Quaternion relative = Quaternion.Inverse(_neutralAttitude) * Input.gyro.attitude;
@@ -178,6 +215,9 @@ namespace BoxerP0
 
         private void UpdateEditorFallback()
         {
+#if UNITY_WEBGL && !UNITY_EDITOR
+            return;
+#endif
             if (Application.isMobilePlatform)
             {
                 return;
@@ -199,6 +239,41 @@ namespace BoxerP0
             {
                 PunchRequested?.Invoke(intent);
             }
+        }
+
+        // Called by the WebGL host page through unityInstance.SendMessage.
+        public void BrowserSetMotionStatus(string status)
+        {
+            BrowserMotionPermission = string.IsNullOrWhiteSpace(status) ? "UNKNOWN" : status.Trim().ToUpperInvariant();
+            if (BrowserMotionPermission != "GRANTED")
+            {
+                HeadInputSource = $"WEB_{BrowserMotionPermission}";
+            }
+        }
+
+        // Payload: alpha|beta|gamma, invariant-culture decimal values.
+        public void BrowserSetOrientation(string payload)
+        {
+            if (string.IsNullOrWhiteSpace(payload)) return;
+            string[] fields = payload.Split('|');
+            if (fields.Length != 3) return;
+            if (!float.TryParse(fields[0], NumberStyles.Float, CultureInfo.InvariantCulture, out float alpha)) return;
+            if (!float.TryParse(fields[1], NumberStyles.Float, CultureInfo.InvariantCulture, out float beta)) return;
+            if (!float.TryParse(fields[2], NumberStyles.Float, CultureInfo.InvariantCulture, out float gamma)) return;
+
+            BrowserAlpha = alpha;
+            BrowserBeta = beta;
+            BrowserGamma = gamma;
+            BrowserOrientationReceived = true;
+            if (!BrowserCalibrated)
+            {
+                HeadInputSource = "WEB_ORIENTATION_READY";
+            }
+        }
+
+        public void BrowserCalibrate(string unused)
+        {
+            RecalibrateHead();
         }
     }
 }
