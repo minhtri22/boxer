@@ -1,0 +1,9 @@
+evidence=WEB_BUILD
+unity=6000.5.8f1
+target=WebGL
+result=Succeeded
+output=D:\WORK\RESEARCH\POVGame\boxer\builds\web\boxer-p0-web
+size_bytes=36431792
+template=PROJECT:BoxerP0Mobile
+compression=disabled_for_static_pages
+development_build=true

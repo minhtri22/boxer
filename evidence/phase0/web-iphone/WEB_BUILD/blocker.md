@@ -15,3 +15,5 @@ Logs:
 
 - `../WINDOWS_EDITOR/self-tests.log`
 - `../WINDOWS_EDITOR/self-tests-noupm.log`
+
+Resolution: **RESOLVED FOR INTERACTIVE LOCAL BUILD** after Unity Hub sign-in. Unity Personal initialized in the normal Editor and the WebGL build succeeded on 2026-09-04. This file remains historical evidence for the earlier restricted sandbox failure.

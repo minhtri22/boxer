@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Boxer P0 — P0 Web iPhone</title>
+  <link rel="stylesheet" href="TemplateData/style.css">
+</head>
+<body>
+  <div id="gate">
+    <div class="panel">
+      <h1>BOXER P0</h1>
+      <p id="status">Motion permission is required for the iPhone surrogate test.</p>
+      <button id="enable">ENABLE MOTION &amp; START</button>
+      <button id="calibrate" class="hidden">CALIBRATE &amp; START BOUT</button>
+      <p class="small">Hold the phone in a comfortable neutral portrait position before calibrating.</p>
+    </div>
+  </div>
+  <div id="unity-container" class="hidden">
+    <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
+  </div>
+  <script>
+    const gate = document.getElementById('gate');
+    const statusEl = document.getElementById('status');
+    const enableButton = document.getElementById('enable');
+    const calibrateButton = document.getElementById('calibrate');
+    const container = document.getElementById('unity-container');
+    const canvas = document.getElementById('unity-canvas');
+    let unityInstance = null;
+    let permissionStatus = 'PENDING';
+    let orientationReceived = false;
+    let latestOrientationPayload = '';
+    let unityLoading = false;
+
+    const buildUrl = 'Build';
+    const loaderUrl = buildUrl + '/boxer-p0-web.loader.js';
+    const config = {
+      dataUrl: buildUrl + '/boxer-p0-web.data',
+      frameworkUrl: buildUrl + '/boxer-p0-web.framework.js',
+      codeUrl: buildUrl + '/boxer-p0-web.wasm',
+      streamingAssetsUrl: 'StreamingAssets',
+      companyName: "Boxer Research",
+      productName: "Boxer P0",
+      productVersion: "1.0",
+    };
+
+    function setStatus(text) {
+      statusEl.textContent = text;
+    }
+
+    function send(method, payload) {
+      if (unityInstance) unityInstance.SendMessage('P0 Systems', method, payload || '');
+    }
+
+    function onOrientation(event) {
+      if (event.alpha == null && event.beta == null && event.gamma == null) return;
+      orientationReceived = true;
+      const a = Number(event.alpha || 0).toFixed(4);
+      const b = Number(event.beta || 0).toFixed(4);
+      const g = Number(event.gamma || 0).toFixed(4);
+      latestOrientationPayload = `${a}|${b}|${g}`;
+      send('BrowserSetOrientation', latestOrientationPayload);
+      if (unityInstance && !calibrateButton.disabled) {
+        setStatus('MOTION GRANTED — orientation received. Hold neutral, then calibrate.');
+      }
+    }
+
+    async function requestMotionPermission() {
+      if (!window.isSecureContext) return 'HTTPS REQUIRED';
+      if (typeof DeviceOrientationEvent === 'undefined') return 'UNAVAILABLE';
+      try {
+        if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+          const result = await DeviceOrientationEvent.requestPermission();
+          return result === 'granted' ? 'GRANTED' : 'DENIED';
+        }
+        return 'GRANTED';
+      } catch (error) {
+        console.error(error);
+        return 'DENIED';
+      }
+    }
+
+    function loadUnity() {
+      if (unityLoading || unityInstance) return;
+      unityLoading = true;
+      container.classList.remove('hidden');
+      const script = document.createElement('script');
+      script.src = loaderUrl;
+      script.onload = () => {
+        createUnityInstance(canvas, config).then(instance => {
+          unityInstance = instance;
+          send('BrowserSetMotionStatus', permissionStatus);
+          if (latestOrientationPayload) send('BrowserSetOrientation', latestOrientationPayload);
+          calibrateButton.classList.remove('hidden');
+          calibrateButton.disabled = !orientationReceived;
+          setStatus(orientationReceived
+            ? 'MOTION GRANTED — hold neutral, then calibrate.'
+            : 'MOTION GRANTED — waiting for device orientation...');
+          gate.classList.add('compact');
+        }).catch(message => {
+          setStatus('UNITY LOAD FAILED — ' + message);
+        });
+      };
+      document.body.appendChild(script);
+    }
+
+    enableButton.addEventListener('click', async () => {
+      enableButton.disabled = true;
+      permissionStatus = await requestMotionPermission();
+      setStatus('MOTION ' + permissionStatus);
+      if (permissionStatus !== 'GRANTED') {
+        enableButton.disabled = false;
+        return;
+      }
+      window.addEventListener('deviceorientation', onOrientation, true);
+      setTimeout(() => {
+        if (!orientationReceived) setStatus('DEVICE ORIENTATION NOT RECEIVED');
+      }, 2500);
+      loadUnity();
+    });
+
+    calibrateButton.addEventListener('click', () => {
+      if (!unityInstance || !orientationReceived) return;
+      send('BrowserCalibrate', '1');
+      gate.classList.add('hidden');
+      container.classList.remove('hidden');
+      canvas.focus();
+    });
+
+    setInterval(() => {
+      if (unityInstance && permissionStatus === 'GRANTED') {
+        calibrateButton.disabled = !orientationReceived;
+      }
+    }, 250);
+
+    document.addEventListener('touchmove', event => {
+      if (!gate.contains(event.target)) event.preventDefault();
+    }, { passive: false });
+    document.addEventListener('gesturestart', event => event.preventDefault(), { passive: false });
+    document.addEventListener('gesturechange', event => event.preventDefault(), { passive: false });
+  </script>
+</body>
+</html>

@@ -10,7 +10,7 @@
 
 The Web surrogate routes Safari `deviceorientation` events through the existing `BoxerInput` head-control path, provides explicit permission/calibration UI, preserves the existing left/right touch controls, exposes Web debug state, and prepares a local WebGL build for static HTTPS hosting.
 
-Static repository checks pass (`git diff --check`; Unity custom-template tokens match the installed Unity 6000.5.8f1 default template contract). A real Unity WebGL build could not be produced inside the Codex sandbox because Unity licensing cannot initialize with the sandbox's read-only external licensing database. See `evidence/phase0/web-iphone/WEB_BUILD/blocker.md`.
+Static repository checks pass. After Unity Hub sign-in, the normal interactive Unity 6000.5.8f1 Editor initialized a Unity Personal license and produced a successful WebGL Development build at builds/web/boxer-p0-web using the PROJECT:BoxerP0Mobile template. The build is 36,431,792 bytes (34.74 MiB) and contains index.html, loader, framework, data, and wasm outputs. Local HTTP/headless Edge smoke loaded the page and Unity instance successfully; desktop correctly reported DEVICE ORIENTATION NOT RECEIVED, which is not an iPhone motion result. The earlier sandbox licensing blocker is retained as historical tooling evidence in evidence/phase0/web-iphone/WEB_BUILD/blocker.md.
 
 ## Required real-device evidence
 
