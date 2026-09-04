@@ -6,7 +6,7 @@
 
 The P0 micro-prototype is implemented and has passed deterministic, build and
 synthetic runtime QA. Overall PASS is not authorized because the required
-iPhone 12 / human interaction and replay-intent observation have not been run.
+iPhone 12 / human interaction and Control Comprehension & Agency observation have not been run.
 
 ## P0-A — Phone = Head
 
@@ -72,16 +72,17 @@ Missing decisive evidence:
 - evidence that swipe spam is not behaviorally dominant;
 - evidence that automatic guard does not make inactivity optimal.
 
-## P0-D — Immediate Replay Intent
+## P0-D — Immediate Control Comprehension & Agency
 
 **Status: NOT TESTED**
 
-The 75-second bout and end prompt are implemented, but no participant completed
-the required session and answered:
+The decisive question is now:
 
-> Do you want to fight again?
+> “Bạn có cảm thấy chính thao tác đầu/chân/tay của mình tạo ra kết quả vừa xảy ra không?”
 
-No replay-intent result is inferred from developer or synthetic testing.
+The tester must then explain one exchange: why the attack hit, missed, was blocked,
+or was countered. PASS requires a meaningful cause/effect explanation tied to the
+tester’s own controls. Replay intent is not used as a P0 acceptance criterion.
 
 ## Acceptance gate
 
@@ -96,7 +97,7 @@ No replay-intent result is inferred from developer or synthetic testing.
 | Auto guard not inactivity-optimal | MECHANISM IMPLEMENTED; HUMAN NOT TESTED |
 | Mapping understood after short instruction | NOT TESTED |
 | No severe short-session discomfort | NOT TESTED |
-| Player wants another bout | NOT TESTED |
+| Player explains an exchange from their own control actions | NOT TESTED |
 
 ## Evidence used
 
@@ -107,6 +108,17 @@ No replay-intent result is inferred from developer or synthetic testing.
 - Concurrent-input telemetry: `evidence/phase0/SYNTHETIC/runtime-telemetry-excerpt.csv`
 - Windows build metadata: `evidence/phase0/EDITOR/windows-build/build-metadata.txt`
 - iPhone blocker: `evidence/phase0/REAL_DEVICE/blocker.md`
+
+## Web iPhone surrogate evidence
+
+The native iOS path remains **NOT TESTED**. A Web-delivered surrogate is authorized
+to test embodied interaction through Safari using real iPhone motion + touch.
+Web delivery quality is reported separately from P0 interaction quality; Safari
+loading/rendering overhead alone does not fail the interaction concept.
+
+See `docs/specs/phase-0-web-iphone-surrogate-spec.md`,
+`docs/qa/phase-0-web-iphone-qa.md`, and
+`docs/result/phase-0-web-iphone-result.md`.
 
 ## Next authorized action
 

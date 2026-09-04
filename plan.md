@@ -215,23 +215,17 @@ READ PUNCH
 
 ---
 
-## P0-D — Immediate Product Feel
+## P0-D — Immediate Control Comprehension & Agency
 
 ### Question
 
-After a short bout, does the player want another fight because the exchange itself feels satisfying?
+After a short bout, does the player understand that their own head, footwork and punch inputs caused the observed combat outcome?
 
-This is the decisive Phase 0 product criterion.
+Ask:
 
-The reaction:
+> “Bạn có cảm thấy chính thao tác đầu/chân/tay của mình tạo ra kết quả vừa xảy ra không?”
 
-> “It looks good.”
-
-is insufficient.
-
-The desired reaction is:
-
-> “Let me fight again.”
+Then ask the player to explain one exchange: why the attack hit, missed, was blocked, or was countered. PASS requires a meaningful cause/effect explanation tied to the player's own inputs.
 
 ---
 
@@ -365,15 +359,9 @@ spam punches → hope to win
 
 ---
 
-## Test 5 — Replay Intent
+## Test 5 — Control Comprehension & Agency
 
-Immediately after the bout ask only the practical question:
-
-> Do you want to fight again?
-
-Record the answer.
-
-Do not substitute developer enthusiasm for player replay intent.
+Immediately after the bout ask the P0-D agency question and ask the tester to explain one successful or failed exchange. Replay intent is not a Phase 0 acceptance criterion for the placeholder-visual prototype.
 
 ---
 
@@ -393,7 +381,7 @@ Minimum PASS criteria:
 | Swipe spam is not clearly dominant | Yes |
 | Automatic guard does not make inactivity optimal | Yes |
 | Control mapping is understood after short instruction | Yes |
-| Player voluntarily wants another bout | Yes |
+| Player can explain the outcome of an exchange from their own controls | Yes |
 | No severe physical discomfort in the short P0 session | Yes |
 
 Quantitative telemetry may be collected for diagnosis, but Phase 0 should not be blocked by arbitrary laboratory thresholds for already-established technology.
@@ -652,5 +640,5 @@ Do not mix speculative next-phase work into proof commits.
 **Boxing domain:** Active proof vehicle  
 **Reusable Embodied POV Engine:** LOCKED until P0 PASS  
 **Production career/game systems:** BLOCKED  
-**Authorized next work:** Unity Boxer micro-prototype sufficient to test phone=head + feet/head/fists integration + read/evade/counter + replay intent  
-**Primary gate:** Does the integrated boxing interaction feel good enough that the player wants another fight?
+**Authorized next work:** Unity Boxer micro-prototype sufficient to test phone=head + feet/head/fists integration + read/evade/counter + control comprehension/agency
+**Primary gate:** Does the player understand that their own embodied controls caused the observed combat outcome?

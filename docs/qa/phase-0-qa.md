@@ -7,7 +7,7 @@ QA covers the Unity Boxer Micro-Prototype defined by
 
 Automated and synthetic checks verify deterministic implementation behavior only.
 They do not establish boxing feel, visual readability, comfort, learnability, or
-replay intent.
+human control comprehension/agency.
 
 ## Environment
 
@@ -159,7 +159,7 @@ Status: **FIXED**.
 | Slip → Counter | implementation and synthetic geometry/state path exists | BLOCKED for human/device validation |
 | Move + Evade + Counter | synthetic telemetry shows all channels active during an exchange | BLOCKED for human/device validation |
 | 60–90 s unscripted bout | 75 s mode implemented; no human bout completed | NOT TESTED |
-| Replay intent question | prompt exists; no participant answer | NOT TESTED |
+| Control Comprehension & Agency | revised question prepared; no participant answer | NOT TESTED |
 
 ## Real-device status
 
@@ -186,4 +186,4 @@ Evidence: `evidence/phase0/REAL_DEVICE/blocker.md`.
 The Unity implementation compiles, builds and survives a synthetic concurrent
 runtime exchange with geometry-derived outcomes and a working counter opening.
 The decisive Phase 0 product gate remains open because the required iPhone/human
-interaction has not been performed.
+interaction and Control Comprehension & Agency observation have not been performed.

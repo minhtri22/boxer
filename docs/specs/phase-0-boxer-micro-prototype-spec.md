@@ -351,7 +351,7 @@ Overall PASS requires actual player/device evidence for all of the following:
 - automatic guard does not make inactivity optimal;
 - short instruction is sufficient;
 - no severe short-session discomfort;
-- player answers yes to `Do you want to fight again?`.
+- player can connect a representative HIT / MISS / BLOCK / COUNTER result to their own head, footwork and punch actions. Replay intent is not a decisive P0 gate for the placeholder-visual prototype.
 
 Until actual human/device interaction is recorded, these product criteria remain
 NOT TESTED even if editor implementation and deterministic tests pass.
@@ -360,6 +360,6 @@ NOT TESTED even if editor implementation and deterministic tests pass.
 
 When sufficient evidence exists to answer:
 
-> Can I move, read, evade, counter, reset — and immediately want another fight?
+> Can I move, read, evade, counter, reset — and understand how my own inputs caused the outcome?
 
 stop P0 work and report the evidence. Do not begin P1 or engine extraction.
