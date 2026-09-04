@@ -28,6 +28,69 @@ namespace BoxerP0
         Recover
     }
 
+    public enum OnboardingStage
+    {
+        WaitingForCalibration,
+        HeadControl,
+        Footwork,
+        Punches,
+        Guard,
+        Counter,
+        Bout,
+        Complete
+    }
+
+    public sealed class OnboardingProgress
+    {
+        public bool HeadLeft { get; private set; }
+        public bool HeadRight { get; private set; }
+        public bool MoveLeft { get; private set; }
+        public bool MoveRight { get; private set; }
+        public bool MoveForward { get; private set; }
+        public bool MoveBack { get; private set; }
+        public bool LeadJab { get; private set; }
+        public bool RearCross { get; private set; }
+        public bool LeadHook { get; private set; }
+        public bool RearHook { get; private set; }
+
+        public bool HeadReady => HeadLeft && HeadRight;
+        public bool FootworkReady => MoveLeft && MoveRight && MoveForward && MoveBack;
+        public bool PunchesReady => LeadJab && RearCross && LeadHook && RearHook;
+
+        public void ObserveHead(float offsetMeters, float threshold = 0.12f)
+        {
+            if (offsetMeters <= -threshold) HeadLeft = true;
+            if (offsetMeters >= threshold) HeadRight = true;
+        }
+
+        public void ObserveMovement(Vector2 intent, float threshold = 0.45f)
+        {
+            if (intent.x <= -threshold) MoveLeft = true;
+            if (intent.x >= threshold) MoveRight = true;
+            if (intent.y >= threshold) MoveForward = true;
+            if (intent.y <= -threshold) MoveBack = true;
+        }
+
+        public void ObservePunch(PunchIntent intent)
+        {
+            switch (intent)
+            {
+                case PunchIntent.Jab:
+                    LeadJab = true;
+                    break;
+                case PunchIntent.Cross:
+                    RearCross = true;
+                    break;
+                case PunchIntent.LeadHook:
+                    LeadHook = true;
+                    break;
+                case PunchIntent.RearHook:
+                    RearHook = true;
+                    break;
+            }
+        }
+    }
+
     public static class PunchLabels
     {
         public static string Display(PunchIntent intent)
@@ -80,8 +143,6 @@ namespace BoxerP0
             bool curvedOrLateral = metrics.Straightness < 0.82f || horizontalBias > 1.15f;
             if (curvedOrLateral)
             {
-                // Right-thumb punch controller: inward/left hook gesture resolves lead hand,
-                // outward/right hook gesture resolves rear hand. Jab/cross remain lead/rear straights.
                 return metrics.Displacement.x <= 0f ? PunchIntent.LeadHook : PunchIntent.RearHook;
             }
 
