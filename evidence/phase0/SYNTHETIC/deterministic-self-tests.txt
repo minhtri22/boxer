@@ -1,6 +1,6 @@
 evidence=SYNTHETIC
 unity=6000.5.8f1
-utc=2026-09-04T07:03:26.7396506Z
+utc=2026-09-04T08:05:42.7175300Z
 PASS head dead zone
 PASS head sign and bound
 PASS gesture lead jab
@@ -13,4 +13,7 @@ PASS default fight range can connect
 PASS anti-spam state transition
 PASS counter recovery window
 PASS action reset to guard
-TOTAL=12 PASS
+PASS onboarding head progress
+PASS onboarding footwork progress
+PASS onboarding punch progress
+TOTAL=15 PASS
