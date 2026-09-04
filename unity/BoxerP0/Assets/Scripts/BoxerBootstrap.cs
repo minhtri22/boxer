@@ -9,38 +9,45 @@ namespace BoxerP0
         private OpponentBoxer _opponent;
         private Phase0Telemetry _telemetry;
         private BoxerFeedback _feedback;
-        private float _instructionUntil;
+        private readonly OnboardingProgress _training = new();
         private float _boutEnd;
+        private float _stageEnd;
         private float _smokeQuitAt = -1f;
         private bool _boutStarted;
         private bool _boutCompleted;
+        private int _guardBlockBaseline;
+        private int _counterHitBaseline;
+        private OnboardingStage _stage = OnboardingStage.WaitingForCalibration;
 
-        private const float BoutSeconds = 90f;
+        private const float BoutSeconds = 45f;
 
         private void Awake()
         {
             Application.targetFrameRate = 60;
-            _instructionUntil = Time.unscaledTime + 6f;
             ConfigureSmokeQuit();
             BuildLightingAndRing();
             BuildActors();
 
 #if UNITY_WEBGL && !UNITY_EDITOR
-            _boutStarted = false;
+            _stage = OnboardingStage.WaitingForCalibration;
             _boutEnd = float.PositiveInfinity;
+            _player?.SetCombatEnabled(false);
+            _opponent?.SetCombatEnabled(false);
 #else
-            StartBout();
+            BeginOnboarding();
 #endif
         }
 
         private void Update()
         {
 #if UNITY_WEBGL && !UNITY_EDITOR
-            if (!_boutStarted && _input != null && _input.BrowserCalibrated)
+            if (_stage == OnboardingStage.WaitingForCalibration && _input != null && _input.BrowserCalibrated)
             {
-                StartBout();
+                BeginOnboarding();
             }
 #endif
+            UpdateOnboarding();
+
             if (_boutStarted && !_boutCompleted && Time.unscaledTime >= _boutEnd)
             {
                 CompleteBout();
@@ -53,11 +60,101 @@ namespace BoxerP0
             }
         }
 
+        private void BeginOnboarding()
+        {
+            EnterStage(OnboardingStage.HeadControl);
+        }
+
+        private void UpdateOnboarding()
+        {
+            if (_input == null || _player == null || _opponent == null || _telemetry == null) return;
+
+            switch (_stage)
+            {
+                case OnboardingStage.HeadControl:
+                    _training.ObserveHead(_player.HeadOffset);
+                    if (_training.HeadReady || StageTimedOut()) EnterStage(OnboardingStage.Footwork);
+                    break;
+
+                case OnboardingStage.Footwork:
+                    _training.ObserveMovement(_input.MovementIntent);
+                    if (_training.FootworkReady || StageTimedOut()) EnterStage(OnboardingStage.Punches);
+                    break;
+
+                case OnboardingStage.Punches:
+                    _training.ObservePunch(_input.LastPunchIntent);
+                    if (_training.PunchesReady || StageTimedOut()) EnterStage(OnboardingStage.Guard);
+                    break;
+
+                case OnboardingStage.Guard:
+                    if (_telemetry.PlayerBlocks - _guardBlockBaseline >= 2 || StageTimedOut())
+                    {
+                        EnterStage(OnboardingStage.Counter);
+                    }
+                    break;
+
+                case OnboardingStage.Counter:
+                    if (_telemetry.PlayerCounterHits - _counterHitBaseline >= 1 || StageTimedOut())
+                    {
+                        StartBout();
+                    }
+                    break;
+            }
+        }
+
+        private bool StageTimedOut()
+        {
+            return Time.unscaledTime >= _stageEnd;
+        }
+
+        private void EnterStage(OnboardingStage stage)
+        {
+            if (_stage != OnboardingStage.WaitingForCalibration)
+            {
+                _telemetry?.RecordEvent($"TRAINING_STAGE_END_{_stage.ToString().ToUpperInvariant()}");
+            }
+
+            _stage = stage;
+            _telemetry?.RecordEvent($"TRAINING_STAGE_START_{stage.ToString().ToUpperInvariant()}");
+
+            switch (stage)
+            {
+                case OnboardingStage.HeadControl:
+                    _stageEnd = Time.unscaledTime + 10f;
+                    _player?.SetCombatEnabled(false);
+                    _opponent?.SetCombatEnabled(false);
+                    break;
+                case OnboardingStage.Footwork:
+                    _stageEnd = Time.unscaledTime + 12f;
+                    _player?.SetCombatEnabled(false);
+                    _opponent?.SetCombatEnabled(false);
+                    break;
+                case OnboardingStage.Punches:
+                    _stageEnd = Time.unscaledTime + 18f;
+                    _player?.SetCombatEnabled(true);
+                    _opponent?.SetCombatEnabled(false);
+                    break;
+                case OnboardingStage.Guard:
+                    _stageEnd = Time.unscaledTime + 12f;
+                    _guardBlockBaseline = _telemetry?.PlayerBlocks ?? 0;
+                    _player?.SetCombatEnabled(true);
+                    _opponent?.SetCombatEnabled(true);
+                    break;
+                case OnboardingStage.Counter:
+                    _stageEnd = Time.unscaledTime + 18f;
+                    _counterHitBaseline = _telemetry?.PlayerCounterHits ?? 0;
+                    _player?.SetCombatEnabled(true);
+                    _opponent?.SetCombatEnabled(true);
+                    break;
+            }
+        }
+
         private void StartBout()
         {
+            _telemetry?.RecordEvent("TRAINING_COMPLETE");
+            _stage = OnboardingStage.Bout;
             _boutStarted = true;
             _boutCompleted = false;
-            _instructionUntil = Time.unscaledTime + 6f;
             _boutEnd = Time.unscaledTime + BoutSeconds;
             _player?.SetCombatEnabled(true);
             _opponent?.SetCombatEnabled(true);
@@ -67,6 +164,7 @@ namespace BoxerP0
         private void CompleteBout()
         {
             _boutCompleted = true;
+            _stage = OnboardingStage.Complete;
             _player?.SetCombatEnabled(false);
             _opponent?.SetCombatEnabled(false);
             string result = _telemetry?.CompleteBout() ?? "UNKNOWN";
@@ -210,15 +308,17 @@ namespace BoxerP0
             GUI.skin.label.fontSize = Mathf.Clamp(Screen.height / 52, 12, 22);
             GUI.skin.box.fontSize = GUI.skin.label.fontSize;
 
-            if (Time.unscaledTime < _instructionUntil)
-            {
-                GUI.Box(new Rect(20, 20, Mathf.Min(Screen.width - 40, 650), 125),
-                    "Left thumb = feet.\nRight thumb = punch controller.\nPhone = head.\nHook left/inward = lead · hook right/outward = rear.");
-            }
-
             if (_input == null || _player == null || _opponent == null || _telemetry == null) return;
 
+            if (_stage != OnboardingStage.Bout && _stage != OnboardingStage.Complete)
+            {
+                string training = GetTrainingText();
+                float width = Mathf.Min(Screen.width - 40, 680);
+                GUI.Box(new Rect((Screen.width - width) * 0.5f, 20, width, 155), training);
+            }
+
             string debug =
+                $"STAGE {_stage}\n" +
                 $"MOTION {_input.BrowserMotionPermission}  SRC {_input.HeadInputSource}\n" +
                 $"HEAD {_input.HeadAngleDegrees:F1}° → {_player.HeadOffset:F2}m\n" +
                 $"MOVE {_input.MovementIntent.x:F2},{_input.MovementIntent.y:F2}\n" +
@@ -227,11 +327,11 @@ namespace BoxerP0
                 $"OPP {_opponent.ActionLabel}  COUNTER {(_opponent.CounterWindowOpen ? "OPEN" : "CLOSED")}\n" +
                 $"LAST {_telemetry.LastOutcome} / {_telemetry.LastEvent}\n" +
                 $"BOUT {GetBoutSecondsRemaining():F0}s  FRAME {(Time.unscaledDeltaTime * 1000f):F1}ms";
-            GUI.Box(new Rect(20, Screen.height - 235, Mathf.Min(Screen.width - 40, 680), 215), debug);
+            GUI.Box(new Rect(20, Screen.height - 255, Mathf.Min(Screen.width - 40, 680), 235), debug);
 
             if (!Application.isMobilePlatform)
             {
-                GUI.Box(new Rect(Screen.width - 295, 20, 275, 170),
+                GUI.Box(new Rect(Screen.width - 295, 190, 275, 170),
                     "EDITOR SYNTHETIC\nWASD feet · Q/E head\nJ lead jab · K rear cross\nL lead hook · ; rear hook\nR recalibrate · M audio · H haptic");
             }
 
@@ -251,12 +351,34 @@ namespace BoxerP0
                     $"OPPONENT  Hits {_telemetry.OpponentHits}  Counters {_telemetry.OpponentCounterHits}  Blocks {_telemetry.OpponentBlocks}\n\n" +
                     $"RESULT: {resultText}\n\n" +
                     "Win rule: valid landed hits only.\n" +
-                    "Bạn có hiểu thao tác đầu/chân/tay nào tạo ra kết quả vừa rồi không?";
+                    "Sau onboarding: control còn quá tải không? Bạn có bắt đầu đọc đối thủ thay vì chỉ spam đấm không?";
 
                 float width = Mathf.Min(Screen.width - 40, 620);
-                GUI.Box(new Rect((Screen.width - width) * 0.5f, Screen.height * 0.5f - 140, width, 280), summary);
+                GUI.Box(new Rect((Screen.width - width) * 0.5f, Screen.height * 0.5f - 150, width, 300), summary);
             }
         }
+
+        private string GetTrainingText()
+        {
+            float seconds = Mathf.Max(0f, _stageEnd - Time.unscaledTime);
+            return _stage switch
+            {
+                OnboardingStage.WaitingForCalibration => "ONBOARDING — CALIBRATE PHONE FIRST",
+                OnboardingStage.HeadControl =>
+                    $"1/5 HEAD CONTROL  {seconds:F0}s\nPhone = head. Nghiêng đầu/máy sang TRÁI rồi PHẢI.\nLEFT {Mark(_training.HeadLeft)}   RIGHT {Mark(_training.HeadRight)}",
+                OnboardingStage.Footwork =>
+                    $"2/5 FOOTWORK  {seconds:F0}s\nLeft thumb = feet. Thử đủ 4 hướng.\nLEFT {Mark(_training.MoveLeft)}  RIGHT {Mark(_training.MoveRight)}  FORWARD {Mark(_training.MoveForward)}  BACK {Mark(_training.MoveBack)}",
+                OnboardingStage.Punches =>
+                    $"3/5 PUNCHES  {seconds:F0}s\nRight thumb = punch controller. Làm đủ 4 đòn.\nJAB {Mark(_training.LeadJab)}  CROSS {Mark(_training.RearCross)}  LEAD HOOK {Mark(_training.LeadHook)}  REAR HOOK {Mark(_training.RearHook)}",
+                OnboardingStage.Guard =>
+                    $"4/5 GUARD  {seconds:F0}s\nDỪNG vuốt tay phải = trở về HIGH GUARD. Đỡ 2 đòn.\nBLOCKS {Mathf.Max(0, _telemetry.PlayerBlocks - _guardBlockBaseline)}/2",
+                OnboardingStage.Counter =>
+                    $"5/5 COUNTER  {seconds:F0}s\nĐọc đòn → né/đỡ → phản công trong recovery. Làm 1 counter.\nCOUNTERS {Mathf.Max(0, _telemetry.PlayerCounterHits - _counterHitBaseline)}/1",
+                _ => string.Empty
+            };
+        }
+
+        private static string Mark(bool value) => value ? "OK" : "—";
 
         private float GetBoutSecondsRemaining()
         {
@@ -296,9 +418,6 @@ namespace BoxerP0
         {
             if (renderer == null) return;
 
-            // Runtime primitives appeared magenta in the Web surrogate when the built-in
-            // shader was stripped. Load the tiny project-owned shader from Resources so
-            // WebGL always packages the material path used by these runtime primitives.
             Shader shader = Resources.Load<Shader>("BoxerP0UnlitColor");
             if (shader != null)
             {
