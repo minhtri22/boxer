@@ -14,6 +14,14 @@ namespace BoxerP0
         public string LastEvent { get; private set; } = "BOOT";
         public string LogPath { get; private set; }
 
+        public int PlayerHits { get; private set; }
+        public int PlayerCounterHits { get; private set; }
+        public int PlayerBlocks { get; private set; }
+        public int OpponentHits { get; private set; }
+        public int OpponentCounterHits { get; private set; }
+        public int OpponentBlocks { get; private set; }
+        public string BoutResult { get; private set; } = "PENDING";
+
         public BoxerInput InputSource { get; set; }
         public PlayerBoxer Player { get; set; }
         public OpponentBoxer Opponent { get; set; }
@@ -46,10 +54,63 @@ namespace BoxerP0
             WriteRow();
         }
 
+        public void RecordBoutStart()
+        {
+            PlayerHits = 0;
+            PlayerCounterHits = 0;
+            PlayerBlocks = 0;
+            OpponentHits = 0;
+            OpponentCounterHits = 0;
+            OpponentBlocks = 0;
+            BoutResult = "IN_PROGRESS";
+            LastOutcome = "NONE";
+            RecordEvent("BOUT_START");
+        }
+
+        public string CompleteBout()
+        {
+            // P0 TEST-ONLY WIN RULE: valid landed hits only. Counter hits are a subset and are not double-counted.
+            BoutResult = PlayerHits > OpponentHits
+                ? "PLAYER_WIN"
+                : PlayerHits < OpponentHits
+                    ? "OPPONENT_WIN"
+                    : "DRAW";
+
+            RecordEvent($"BOUT_END PLAYER_HITS={PlayerHits} OPPONENT_HITS={OpponentHits}");
+            RecordEvent($"RESULT_{BoutResult}");
+            return BoutResult;
+        }
+
         public void RecordOutcome(string actor, CombatOutcome outcome, bool counter)
         {
             LastOutcome = outcome.ToString().ToUpperInvariant();
             LastEvent = counter ? $"{actor}_COUNTER_{LastOutcome}" : $"{actor}_{LastOutcome}";
+
+            if (actor == "PLAYER")
+            {
+                if (outcome == CombatOutcome.Hit)
+                {
+                    PlayerHits++;
+                    if (counter) PlayerCounterHits++;
+                }
+                else if (outcome == CombatOutcome.Block)
+                {
+                    OpponentBlocks++;
+                }
+            }
+            else if (actor == "OPPONENT")
+            {
+                if (outcome == CombatOutcome.Hit)
+                {
+                    OpponentHits++;
+                    if (counter) OpponentCounterHits++;
+                }
+                else if (outcome == CombatOutcome.Block)
+                {
+                    PlayerBlocks++;
+                }
+            }
+
             WriteRow();
         }
 
@@ -72,7 +133,7 @@ namespace BoxerP0
                 Player.HeadOffset.ToString("F3", CultureInfo.InvariantCulture),
                 InputSource.MovementIntent.x.ToString("F2", CultureInfo.InvariantCulture),
                 InputSource.MovementIntent.y.ToString("F2", CultureInfo.InvariantCulture),
-                InputSource.LastPunchIntent,
+                InputSource.LastPunchLabel,
                 Player.ActionLabel,
                 Opponent.ActionLabel,
                 Player.GuardActive ? "HIGH" : "OPEN",
@@ -91,4 +152,3 @@ namespace BoxerP0
         }
     }
 }
-

@@ -27,7 +27,8 @@ namespace BoxerP0
 
         public float HeadOffset { get; private set; }
         public bool GuardActive => !_action.IsBusy;
-        public string ActionLabel => _action.IsBusy ? $"{_action.Intent}:{_action.Phase}" : "GUARD";
+        public bool CombatEnabled { get; private set; } = true;
+        public string ActionLabel => _action.IsBusy ? $"{PunchLabels.Display(_action.Intent)}:{_action.Phase}" : "GUARD";
         public Transform Head => _head;
         public Transform LeftGlove => _leftGlove;
         public Transform RightGlove => _rightGlove;
@@ -73,6 +74,16 @@ namespace BoxerP0
             UpdatePunch();
         }
 
+        public void SetCombatEnabled(bool enabled)
+        {
+            CombatEnabled = enabled;
+            if (!enabled)
+            {
+                _action.ResetToGuard();
+                _resolvedThisPunch = false;
+            }
+        }
+
         private void UpdateFootwork()
         {
             Vector2 intent = _input.MovementIntent;
@@ -106,14 +117,21 @@ namespace BoxerP0
 
         private void OnPunchRequested(PunchIntent intent)
         {
+            string token = PunchLabels.EventToken(intent);
+            if (!CombatEnabled)
+            {
+                _telemetry?.RecordEvent($"PLAYER_BOUT_LOCK_REJECT_{token}");
+                return;
+            }
+
             if (_action.TryStart(intent))
             {
                 _resolvedThisPunch = false;
-                _telemetry?.RecordEvent($"PLAYER_COMMIT_{intent}");
+                _telemetry?.RecordEvent($"PLAYER_PUNCH_{token}");
             }
             else
             {
-                _telemetry?.RecordEvent($"PLAYER_SPAM_REJECT_{intent}");
+                _telemetry?.RecordEvent($"PLAYER_SPAM_REJECT_{token}");
             }
         }
 
@@ -164,7 +182,7 @@ namespace BoxerP0
 
         private void ResolvePlayerPunch(Transform glove, Vector3 localStart, Vector3 localEnd)
         {
-            if (_opponent == null) return;
+            if (!CombatEnabled || _opponent == null) return;
             Vector3 start = transform.TransformPoint(localStart);
             Vector3 end = transform.TransformPoint(localEnd);
             CombatOutcome outcome = _opponent.ResolveIncomingPunch(start, end, 0.09f);
@@ -175,6 +193,8 @@ namespace BoxerP0
 
         public CombatOutcome ResolveOpponentPunch(Vector3 start, Vector3 end, float punchRadius, bool bodyAttack)
         {
+            if (!CombatEnabled) return CombatOutcome.Miss;
+
             float leftRadius = _leftGuardCollider.radius * MaxScale(_leftGuardCollider.transform);
             float rightRadius = _rightGuardCollider.radius * MaxScale(_rightGuardCollider.transform);
             if (!bodyAttack &&
@@ -197,7 +217,7 @@ namespace BoxerP0
             return intent switch
             {
                 PunchIntent.Cross => _rightGlove,
-                PunchIntent.Hook => _leftGlove,
+                PunchIntent.RearHook => _rightGlove,
                 _ => _leftGlove
             };
         }
@@ -208,7 +228,8 @@ namespace BoxerP0
             {
                 PunchIntent.Jab => new Vector3(-0.10f, 1.46f, 1.26f),
                 PunchIntent.Cross => new Vector3(0.04f, 1.44f, 1.34f),
-                PunchIntent.Hook => new Vector3(left ? 0.11f : -0.11f, 1.39f, 1.05f),
+                PunchIntent.LeadHook => new Vector3(0.11f, 1.39f, 1.05f),
+                PunchIntent.RearHook => new Vector3(-0.11f, 1.39f, 1.05f),
                 _ => new Vector3(left ? -0.22f : 0.22f, 1.38f, 0.48f)
             };
         }

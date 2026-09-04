@@ -12,33 +12,65 @@ namespace BoxerP0
         private float _instructionUntil;
         private float _boutEnd;
         private float _smokeQuitAt = -1f;
-        private bool _webBoutStarted;
+        private bool _boutStarted;
+        private bool _boutCompleted;
+
+        private const float BoutSeconds = 90f;
 
         private void Awake()
         {
             Application.targetFrameRate = 60;
             _instructionUntil = Time.unscaledTime + 6f;
-            _boutEnd = Time.unscaledTime + 75f;
             ConfigureSmokeQuit();
             BuildLightingAndRing();
             BuildActors();
+
+#if UNITY_WEBGL && !UNITY_EDITOR
+            _boutStarted = false;
+            _boutEnd = float.PositiveInfinity;
+#else
+            StartBout();
+#endif
         }
 
         private void Update()
         {
 #if UNITY_WEBGL && !UNITY_EDITOR
-            if (!_webBoutStarted && _input != null && _input.BrowserCalibrated)
+            if (!_boutStarted && _input != null && _input.BrowserCalibrated)
             {
-                _webBoutStarted = true;
-                _instructionUntil = Time.unscaledTime + 6f;
-                _boutEnd = Time.unscaledTime + 75f;
+                StartBout();
             }
 #endif
+            if (_boutStarted && !_boutCompleted && Time.unscaledTime >= _boutEnd)
+            {
+                CompleteBout();
+            }
+
             if (_smokeQuitAt > 0f && Time.unscaledTime >= _smokeQuitAt)
             {
                 Debug.Log("P0_SMOKE_COMPLETE");
                 Application.Quit(0);
             }
+        }
+
+        private void StartBout()
+        {
+            _boutStarted = true;
+            _boutCompleted = false;
+            _instructionUntil = Time.unscaledTime + 6f;
+            _boutEnd = Time.unscaledTime + BoutSeconds;
+            _player?.SetCombatEnabled(true);
+            _opponent?.SetCombatEnabled(true);
+            _telemetry?.RecordBoutStart();
+        }
+
+        private void CompleteBout()
+        {
+            _boutCompleted = true;
+            _player?.SetCombatEnabled(false);
+            _opponent?.SetCombatEnabled(false);
+            string result = _telemetry?.CompleteBout() ?? "UNKNOWN";
+            Debug.Log($"P0_BOUT_COMPLETE {result}");
         }
 
         private void ConfigureSmokeQuit()
@@ -70,7 +102,7 @@ namespace BoxerP0
             floor.name = "Neutral Ring Floor";
             floor.transform.position = new Vector3(0f, -0.08f, 0.2f);
             floor.transform.localScale = new Vector3(5.2f, 0.15f, 5.2f);
-            ApplyColor(floor.GetComponent<Renderer>(), new Color(0.16f, 0.18f, 0.20f));
+            ApplyColor(floor.GetComponent<Renderer>(), new Color(0.12f, 0.14f, 0.18f));
 
             CreateBoundary(new Vector3(0f, 0.6f, 2.75f), new Vector3(5.4f, 0.08f, 0.08f));
             CreateBoundary(new Vector3(0f, 0.6f, -2.35f), new Vector3(5.4f, 0.08f, 0.08f));
@@ -109,22 +141,24 @@ namespace BoxerP0
             SphereCollider bodyCollider = bodyObject.AddComponent<SphereCollider>();
             bodyCollider.radius = 0.29f;
 
+            Color playerColor = new(0.05f, 0.55f, 1.00f);
             (Transform leftPlayerGlove, SphereCollider leftPlayerCollider) = CreateGlove(
-                "Player Left Glove", playerRoot.transform, new Vector3(-0.22f, 1.38f, 0.48f), new Color(0.15f, 0.35f, 0.95f));
+                "Player Left Glove", playerRoot.transform, new Vector3(-0.22f, 1.38f, 0.48f), playerColor);
             (Transform rightPlayerGlove, SphereCollider rightPlayerCollider) = CreateGlove(
-                "Player Right Glove", playerRoot.transform, new Vector3(0.22f, 1.38f, 0.48f), new Color(0.15f, 0.35f, 0.95f));
+                "Player Right Glove", playerRoot.transform, new Vector3(0.22f, 1.38f, 0.48f), playerColor);
 
             GameObject opponentRoot = new("Opponent");
             opponentRoot.transform.position = new Vector3(0f, 0f, 0.70f);
             opponentRoot.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
             _opponent = opponentRoot.AddComponent<OpponentBoxer>();
 
+            Color opponentColor = new(1.00f, 0.20f, 0.08f);
             GameObject opponentBody = GameObject.CreatePrimitive(PrimitiveType.Capsule);
             opponentBody.name = "Opponent Body";
             opponentBody.transform.SetParent(opponentRoot.transform, false);
             opponentBody.transform.localPosition = new Vector3(0f, 1.05f, 0f);
             opponentBody.transform.localScale = new Vector3(0.58f, 0.62f, 0.42f);
-            ApplyColor(opponentBody.GetComponent<Renderer>(), new Color(0.44f, 0.43f, 0.41f));
+            ApplyColor(opponentBody.GetComponent<Renderer>(), opponentColor);
             Collider originalBodyCollider = opponentBody.GetComponent<Collider>();
             Destroy(originalBodyCollider);
             SphereCollider opponentBodyCollider = opponentBody.AddComponent<SphereCollider>();
@@ -135,14 +169,14 @@ namespace BoxerP0
             opponentHead.transform.SetParent(opponentRoot.transform, false);
             opponentHead.transform.localPosition = new Vector3(0f, 1.62f, 0f);
             opponentHead.transform.localScale = Vector3.one * 0.36f;
-            ApplyColor(opponentHead.GetComponent<Renderer>(), new Color(0.70f, 0.57f, 0.48f));
+            ApplyColor(opponentHead.GetComponent<Renderer>(), new Color(1.00f, 0.42f, 0.10f));
             SphereCollider opponentHeadCollider = opponentHead.GetComponent<SphereCollider>();
             opponentHeadCollider.radius = 0.5f;
 
             (Transform leftOpponentGlove, SphereCollider leftOpponentCollider) = CreateGlove(
-                "Opponent Left Glove", opponentRoot.transform, new Vector3(-0.22f, 1.38f, 0.45f), new Color(0.90f, 0.16f, 0.12f));
+                "Opponent Left Glove", opponentRoot.transform, new Vector3(-0.22f, 1.38f, 0.45f), opponentColor);
             (Transform rightOpponentGlove, SphereCollider rightOpponentCollider) = CreateGlove(
-                "Opponent Right Glove", opponentRoot.transform, new Vector3(0.22f, 1.38f, 0.45f), new Color(0.90f, 0.16f, 0.12f));
+                "Opponent Right Glove", opponentRoot.transform, new Vector3(0.22f, 1.38f, 0.45f), opponentColor);
 
             _player.Initialize(
                 _input,
@@ -173,58 +207,61 @@ namespace BoxerP0
 
         private void OnGUI()
         {
-            GUI.skin.label.fontSize = Mathf.Clamp(Screen.height / 45, 14, 24);
+            GUI.skin.label.fontSize = Mathf.Clamp(Screen.height / 52, 12, 22);
             GUI.skin.box.fontSize = GUI.skin.label.fontSize;
 
             if (Time.unscaledTime < _instructionUntil)
             {
                 GUI.Box(new Rect(20, 20, Mathf.Min(Screen.width - 40, 650), 125),
-                    "Left thumb moves.\nRight thumb punches.\nMove the phone to move your head.\nRelease actions to return to guard.");
+                    "Left thumb = feet.\nRight thumb = punch controller.\nPhone = head.\nHook left/inward = lead · hook right/outward = rear.");
             }
 
             if (_input == null || _player == null || _opponent == null || _telemetry == null) return;
 
             string debug =
                 $"MOTION {_input.BrowserMotionPermission}  SRC {_input.HeadInputSource}\n" +
-                $"RAW a{_input.BrowserAlpha:F1} b{_input.BrowserBeta:F1} g{_input.BrowserGamma:F1}  N {_input.BrowserNeutralGamma:F1}\n" +
                 $"HEAD {_input.HeadAngleDegrees:F1}° → {_player.HeadOffset:F2}m\n" +
                 $"MOVE {_input.MovementIntent.x:F2},{_input.MovementIntent.y:F2}\n" +
-                $"PUNCH {_input.LastPunchIntent}\n" +
+                $"PLAYER PUNCH: {_input.LastPunchLabel}\n" +
                 $"PLAYER {_player.ActionLabel}  GUARD {(_player.GuardActive ? "HIGH" : "OPEN")}\n" +
                 $"OPP {_opponent.ActionLabel}  COUNTER {(_opponent.CounterWindowOpen ? "OPEN" : "CLOSED")}\n" +
                 $"LAST {_telemetry.LastOutcome} / {_telemetry.LastEvent}\n" +
                 $"BOUT {GetBoutSecondsRemaining():F0}s  FRAME {(Time.unscaledDeltaTime * 1000f):F1}ms";
-            GUI.Box(new Rect(20, Screen.height - 250, Mathf.Min(Screen.width - 40, 680), 230), debug);
+            GUI.Box(new Rect(20, Screen.height - 235, Mathf.Min(Screen.width - 40, 680), 215), debug);
 
             if (!Application.isMobilePlatform)
             {
-                GUI.Box(new Rect(Screen.width - 285, 20, 265, 155),
-                    "EDITOR SYNTHETIC\nWASD feet · Q/E head\nJ jab · K cross · L hook\nR recalibrate · M audio · H haptic");
+                GUI.Box(new Rect(Screen.width - 295, 20, 275, 170),
+                    "EDITOR SYNTHETIC\nWASD feet · Q/E head\nJ lead jab · K rear cross\nL lead hook · ; rear hook\nR recalibrate · M audio · H haptic");
             }
 
-            if (BoutIsComplete())
+            if (_boutCompleted)
             {
-                GUI.Box(new Rect(Screen.width * 0.5f - 260, Screen.height * 0.5f - 95, 520, 190),
-                    "BOUT COMPLETE — CONTROL COMPREHENSION & AGENCY\n\n" +
-                    "Bạn có cảm thấy chính thao tác đầu/chân/tay của mình tạo ra kết quả vừa xảy ra không?\n\n" +
-                    "Hãy mô tả một tình huống vừa rồi: tại sao đòn đó trúng / trượt / bị đỡ / phản đòn được?");
+                string resultText = _telemetry.BoutResult switch
+                {
+                    "PLAYER_WIN" => "PLAYER WIN",
+                    "OPPONENT_WIN" => "OPPONENT WIN",
+                    "DRAW" => "DRAW",
+                    _ => _telemetry.BoutResult
+                };
+
+                string summary =
+                    "BOUT COMPLETE — P0 TEST ONLY\n\n" +
+                    $"PLAYER  Hits {_telemetry.PlayerHits}  Counters {_telemetry.PlayerCounterHits}  Blocks {_telemetry.PlayerBlocks}\n" +
+                    $"OPPONENT  Hits {_telemetry.OpponentHits}  Counters {_telemetry.OpponentCounterHits}  Blocks {_telemetry.OpponentBlocks}\n\n" +
+                    $"RESULT: {resultText}\n\n" +
+                    "Win rule: valid landed hits only.\n" +
+                    "Bạn có hiểu thao tác đầu/chân/tay nào tạo ra kết quả vừa rồi không?";
+
+                float width = Mathf.Min(Screen.width - 40, 620);
+                GUI.Box(new Rect((Screen.width - width) * 0.5f, Screen.height * 0.5f - 140, width, 280), summary);
             }
         }
 
         private float GetBoutSecondsRemaining()
         {
-#if UNITY_WEBGL && !UNITY_EDITOR
-            if (!_webBoutStarted) return 75f;
-#endif
+            if (!_boutStarted) return BoutSeconds;
             return Mathf.Max(0f, _boutEnd - Time.unscaledTime);
-        }
-
-        private bool BoutIsComplete()
-        {
-#if UNITY_WEBGL && !UNITY_EDITOR
-            if (!_webBoutStarted) return false;
-#endif
-            return Time.unscaledTime >= _boutEnd;
         }
 
         private static (Transform transform, SphereCollider collider) CreateGlove(
@@ -250,15 +287,28 @@ namespace BoxerP0
             boundary.name = "Ring Rope";
             boundary.transform.position = position;
             boundary.transform.localScale = scale;
-            ApplyColor(boundary.GetComponent<Renderer>(), new Color(0.68f, 0.68f, 0.72f));
+            ApplyColor(boundary.GetComponent<Renderer>(), new Color(0.72f, 0.74f, 0.78f));
         }
 
         private static void ApplyColor(Renderer renderer, Color color)
         {
-            Material material = renderer.material;
-            if (material == null) return;
-            if (material.HasProperty("_BaseColor")) material.SetColor("_BaseColor", color);
-            if (material.HasProperty("_Color")) material.SetColor("_Color", color);
+            if (renderer == null) return;
+
+            // Runtime primitives appeared magenta in the first iPhone Web test.
+            // Prefer the built-in WebGL-safe unlit shader so P0 colors remain legible.
+            Shader shader = Shader.Find("Unlit/Color");
+            if (shader != null)
+            {
+                Material material = new(shader);
+                material.color = color;
+                renderer.sharedMaterial = material;
+                return;
+            }
+
+            Material fallback = renderer.material;
+            if (fallback == null) return;
+            if (fallback.HasProperty("_BaseColor")) fallback.SetColor("_BaseColor", color);
+            if (fallback.HasProperty("_Color")) fallback.SetColor("_Color", color);
         }
     }
 }

@@ -8,7 +8,8 @@ namespace BoxerP0
         None,
         Jab,
         Cross,
-        Hook
+        LeadHook,
+        RearHook
     }
 
     public enum CombatOutcome
@@ -25,6 +26,26 @@ namespace BoxerP0
         Commit,
         Extend,
         Recover
+    }
+
+    public static class PunchLabels
+    {
+        public static string Display(PunchIntent intent)
+        {
+            return intent switch
+            {
+                PunchIntent.Jab => "LEAD JAB",
+                PunchIntent.Cross => "REAR CROSS",
+                PunchIntent.LeadHook => "LEAD HOOK",
+                PunchIntent.RearHook => "REAR HOOK",
+                _ => "NONE"
+            };
+        }
+
+        public static string EventToken(PunchIntent intent)
+        {
+            return Display(intent).Replace(' ', '_');
+        }
     }
 
     public readonly struct GestureMetrics
@@ -59,7 +80,9 @@ namespace BoxerP0
             bool curvedOrLateral = metrics.Straightness < 0.82f || horizontalBias > 1.15f;
             if (curvedOrLateral)
             {
-                return PunchIntent.Hook;
+                // Right-thumb punch controller: inward/left hook gesture resolves lead hand,
+                // outward/right hook gesture resolves rear hand. Jab/cross remain lead/rear straights.
+                return metrics.Displacement.x <= 0f ? PunchIntent.LeadHook : PunchIntent.RearHook;
             }
 
             bool shortFast = metrics.StraightDistance < 165f * pixelScale && metrics.Speed > 430f * pixelScale;
@@ -163,10 +186,16 @@ namespace BoxerP0
             }
         }
 
+        public void ResetToGuard()
+        {
+            Phase = ActionPhase.Guard;
+            Intent = PunchIntent.None;
+            PhaseTime = 0f;
+        }
+
         public float NormalizedPhase(float duration)
         {
             return duration <= 0f ? 1f : Mathf.Clamp01(PhaseTime / duration);
         }
     }
 }
-

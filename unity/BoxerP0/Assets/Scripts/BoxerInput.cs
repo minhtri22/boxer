@@ -12,6 +12,7 @@ namespace BoxerP0
         public float HeadAngleDegrees { get; private set; }
         public string HeadInputSource { get; private set; } = "SYNTHETIC";
         public PunchIntent LastPunchIntent { get; private set; }
+        public string LastPunchLabel => PunchLabels.Display(LastPunchIntent);
         public string BrowserMotionPermission { get; private set; } = "N/A";
         public float BrowserAlpha { get; private set; }
         public float BrowserBeta { get; private set; }
@@ -82,11 +83,12 @@ namespace BoxerP0
             float nextPunchTime = 1.0f + _demoPunchIndex * 1.05f;
             if (_demoPunchIndex < 4 && elapsed >= nextPunchTime)
             {
-                PunchIntent intent = (_demoPunchIndex % 3) switch
+                PunchIntent intent = _demoPunchIndex switch
                 {
                     0 => PunchIntent.Jab,
                     1 => PunchIntent.Cross,
-                    _ => PunchIntent.Hook
+                    2 => PunchIntent.LeadHook,
+                    _ => PunchIntent.RearHook
                 };
                 _demoPunchIndex++;
                 RequestPunch(intent);
@@ -228,7 +230,8 @@ namespace BoxerP0
 
             if (Input.GetKeyDown(KeyCode.J)) RequestPunch(PunchIntent.Jab);
             if (Input.GetKeyDown(KeyCode.K)) RequestPunch(PunchIntent.Cross);
-            if (Input.GetKeyDown(KeyCode.L)) RequestPunch(PunchIntent.Hook);
+            if (Input.GetKeyDown(KeyCode.L)) RequestPunch(PunchIntent.LeadHook);
+            if (Input.GetKeyDown(KeyCode.Semicolon)) RequestPunch(PunchIntent.RearHook);
             if (Input.GetKeyDown(KeyCode.R)) RecalibrateHead();
         }
 

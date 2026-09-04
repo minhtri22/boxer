@@ -26,7 +26,8 @@ namespace BoxerP0
         private const float RecoverSeconds = 0.48f;
 
         public bool CounterWindowOpen => _action.CounterWindowOpen;
-        public string ActionLabel => _action.IsBusy ? $"{_action.Intent}:{_action.Phase}" : "READING";
+        public bool CombatEnabled { get; private set; } = true;
+        public string ActionLabel => _action.IsBusy ? $"{PunchLabels.Display(_action.Intent)}:{_action.Phase}" : "READING";
 
         public void Initialize(
             PlayerBoxer player,
@@ -56,12 +57,32 @@ namespace BoxerP0
             if (_player == null) return;
 
             FacePlayer();
+            if (!CombatEnabled)
+            {
+                ReturnToGuard();
+                return;
+            }
+
             if (!_action.IsBusy && Time.time >= _nextAttackTime)
             {
                 StartAttack();
             }
 
             UpdateAttack();
+        }
+
+        public void SetCombatEnabled(bool enabled)
+        {
+            CombatEnabled = enabled;
+            if (!enabled)
+            {
+                _action.ResetToGuard();
+                _resolvedThisAttack = false;
+            }
+            else
+            {
+                _nextAttackTime = Time.time + 0.6f;
+            }
         }
 
         private void FacePlayer()
@@ -81,14 +102,16 @@ namespace BoxerP0
             {
                 0 => PunchIntent.Jab,
                 1 => PunchIntent.Cross,
-                2 => PunchIntent.Hook,
+                2 => PunchIntent.LeadHook,
                 _ => PunchIntent.Cross
             };
             _bodyAttack = selection == 3;
             if (_action.TryStart(intent))
             {
                 _resolvedThisAttack = false;
-                _telemetry?.RecordEvent(_bodyAttack ? "OPPONENT_COMMIT_BODY" : $"OPPONENT_COMMIT_{intent}");
+                _telemetry?.RecordEvent(_bodyAttack
+                    ? "OPPONENT_COMMIT_BODY"
+                    : $"OPPONENT_PUNCH_{PunchLabels.EventToken(intent)}");
             }
         }
 
@@ -101,7 +124,7 @@ namespace BoxerP0
                 _nextAttackTime = Time.time + NextFloat(0.65f, 1.2f);
             }
 
-            Transform active = _action.Intent == PunchIntent.Cross ? _rightGlove : _leftGlove;
+            Transform active = ActiveGlove(_action.Intent);
             Transform passive = active == _leftGlove ? _rightGlove : _leftGlove;
             Vector3 activeGuard = active == _leftGlove ? _leftGuardLocal : _rightGuardLocal;
             Vector3 passiveGuard = passive == _leftGlove ? _leftGuardLocal : _rightGuardLocal;
@@ -109,8 +132,7 @@ namespace BoxerP0
 
             if (!_action.IsBusy)
             {
-                _leftGlove.localPosition = Vector3.Lerp(_leftGlove.localPosition, _leftGuardLocal, 14f * Time.deltaTime);
-                _rightGlove.localPosition = Vector3.Lerp(_rightGlove.localPosition, _rightGuardLocal, 14f * Time.deltaTime);
+                ReturnToGuard();
                 return;
             }
 
@@ -141,6 +163,7 @@ namespace BoxerP0
 
         private void ResolveOpponentAttack(Vector3 localStart, Vector3 localEnd)
         {
+            if (!CombatEnabled) return;
             Vector3 start = transform.TransformPoint(localStart);
             Vector3 end = transform.TransformPoint(localEnd);
             CombatOutcome outcome = _player.ResolveOpponentPunch(start, end, 0.075f, _bodyAttack);
@@ -150,6 +173,8 @@ namespace BoxerP0
 
         public CombatOutcome ResolveIncomingPunch(Vector3 start, Vector3 end, float punchRadius)
         {
+            if (!CombatEnabled) return CombatOutcome.Miss;
+
             float leftRadius = _leftGuardCollider.radius * MaxScale(_leftGuardCollider.transform);
             float rightRadius = _rightGuardCollider.radius * MaxScale(_rightGuardCollider.transform);
             if (!CounterWindowOpen &&
@@ -171,6 +196,17 @@ namespace BoxerP0
             return CombatGeometry.SegmentSphereIntersects(start, end, bodyCenter, punchRadius + bodyRadius)
                 ? CombatOutcome.Hit
                 : CombatOutcome.Miss;
+        }
+
+        private Transform ActiveGlove(PunchIntent intent)
+        {
+            return intent == PunchIntent.Cross || intent == PunchIntent.RearHook ? _rightGlove : _leftGlove;
+        }
+
+        private void ReturnToGuard()
+        {
+            _leftGlove.localPosition = Vector3.Lerp(_leftGlove.localPosition, _leftGuardLocal, 14f * Time.deltaTime);
+            _rightGlove.localPosition = Vector3.Lerp(_rightGlove.localPosition, _rightGuardLocal, 14f * Time.deltaTime);
         }
 
         private int NextInt(int minInclusive, int maxExclusive)
