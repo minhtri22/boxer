@@ -159,7 +159,7 @@ namespace BoxerP0
             opponentBody.transform.localPosition = new Vector3(0f, 1.05f, 0f);
             opponentBody.transform.localScale = new Vector3(0.58f, 0.62f, 0.42f);
             ApplyColor(opponentBody.GetComponent<Renderer>(), opponentColor);
-            Collider originalBodyCollider = opponentBody.GetComponent<Collider>();
+            CapsuleCollider originalBodyCollider = opponentBody.GetComponent<CapsuleCollider>();
             Destroy(originalBodyCollider);
             SphereCollider opponentBodyCollider = opponentBody.AddComponent<SphereCollider>();
             opponentBodyCollider.radius = 0.48f;
@@ -287,6 +287,8 @@ namespace BoxerP0
             boundary.name = "Ring Rope";
             boundary.transform.position = position;
             boundary.transform.localScale = scale;
+            BoxCollider boundaryCollider = boundary.GetComponent<BoxCollider>();
+            if (boundaryCollider != null) boundaryCollider.enabled = false;
             ApplyColor(boundary.GetComponent<Renderer>(), new Color(0.72f, 0.74f, 0.78f));
         }
 
@@ -294,9 +296,10 @@ namespace BoxerP0
         {
             if (renderer == null) return;
 
-            // Runtime primitives appeared magenta in the first iPhone Web test.
-            // Prefer the built-in WebGL-safe unlit shader so P0 colors remain legible.
-            Shader shader = Shader.Find("Unlit/Color");
+            // Runtime primitives appeared magenta in the Web surrogate when the built-in
+            // shader was stripped. Load the tiny project-owned shader from Resources so
+            // WebGL always packages the material path used by these runtime primitives.
+            Shader shader = Resources.Load<Shader>("BoxerP0UnlitColor");
             if (shader != null)
             {
                 Material material = new(shader);
