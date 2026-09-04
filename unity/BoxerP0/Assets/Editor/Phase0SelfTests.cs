@@ -13,13 +13,16 @@ namespace BoxerP0.Editor
             List<string> results = new();
             Run("head dead zone", TestHeadDeadZone, results);
             Run("head sign and bound", TestHeadSignAndBound, results);
-            Run("gesture jab", TestGestureJab, results);
-            Run("gesture cross", TestGestureCross, results);
-            Run("gesture hook", TestGestureHook, results);
+            Run("gesture lead jab", TestGestureJab, results);
+            Run("gesture rear cross", TestGestureCross, results);
+            Run("gesture lead hook", TestGestureLeadHook, results);
+            Run("gesture rear hook", TestGestureRearHook, results);
+            Run("punch labels", TestPunchLabels, results);
             Run("geometry hit and miss", TestGeometry, results);
             Run("default fight range can connect", TestDefaultFightRange, results);
             Run("anti-spam state transition", TestActionState, results);
             Run("counter recovery window", TestCounterWindow, results);
+            Run("action reset to guard", TestActionReset, results);
 
             string repoRoot = Directory.GetParent(
                 Directory.GetParent(
@@ -62,10 +65,24 @@ namespace BoxerP0.Editor
             AssertEqual(PunchIntent.Cross, PunchGestureClassifier.Classify(metrics));
         }
 
-        private static void TestGestureHook()
+        private static void TestGestureLeadHook()
+        {
+            GestureMetrics metrics = new(new Vector2(-180f, 30f), 235f, 0.34f);
+            AssertEqual(PunchIntent.LeadHook, PunchGestureClassifier.Classify(metrics));
+        }
+
+        private static void TestGestureRearHook()
         {
             GestureMetrics metrics = new(new Vector2(180f, 30f), 235f, 0.34f);
-            AssertEqual(PunchIntent.Hook, PunchGestureClassifier.Classify(metrics));
+            AssertEqual(PunchIntent.RearHook, PunchGestureClassifier.Classify(metrics));
+        }
+
+        private static void TestPunchLabels()
+        {
+            AssertEqual("LEAD JAB", PunchLabels.Display(PunchIntent.Jab));
+            AssertEqual("REAR CROSS", PunchLabels.Display(PunchIntent.Cross));
+            AssertEqual("LEAD HOOK", PunchLabels.Display(PunchIntent.LeadHook));
+            AssertEqual("REAR HOOK", PunchLabels.Display(PunchIntent.RearHook));
         }
 
         private static void TestGeometry()
@@ -108,6 +125,16 @@ namespace BoxerP0.Editor
             AssertTrue(!state.CounterWindowOpen, "counter window must not open during extension");
             state.Step(0.15f, 0.09f, 0.14f, 0.28f);
             AssertTrue(state.CounterWindowOpen, "counter window must open during recovery");
+        }
+
+        private static void TestActionReset()
+        {
+            TimedActionState state = new();
+            state.TryStart(PunchIntent.RearHook);
+            state.ResetToGuard();
+            AssertEqual(ActionPhase.Guard, state.Phase);
+            AssertEqual(PunchIntent.None, state.Intent);
+            AssertTrue(!state.IsBusy, "reset must lock action back to guard");
         }
 
         private static void AssertNear(float expected, float actual, float tolerance)
