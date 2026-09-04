@@ -1,0 +1,107 @@
+name: P0 iOS Personal Team Probe
+
+on:
+  push:
+    branches:
+      - research/p0-ios-personal-team-probe
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  personal-team-environment-probe:
+    runs-on: macos-15
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Record host and Xcode environment
+        shell: bash
+        run: |
+          set -euxo pipefail
+          mkdir -p evidence/phase0/ios-personal-team-probe
+          {
+            echo "=== sw_vers ==="
+            sw_vers
+            echo
+            echo "=== uname ==="
+            uname -a
+            echo
+            echo "=== xcode-select ==="
+            xcode-select -p
+            echo
+            echo "=== xcodebuild version ==="
+            xcodebuild -version
+            echo
+            echo "=== sdk list ==="
+            xcodebuild -showsdks
+          } | tee evidence/phase0/ios-personal-team-probe/environment.txt
+
+      - name: Inspect provisioning-related xcodebuild capabilities
+        shell: bash
+        run: |
+          set -uo pipefail
+          xcodebuild -help > /tmp/xcodebuild-help.txt 2>&1 || true
+          grep -i -E -C 3 'allowProvisioningUpdates|allowProvisioningDeviceRegistration|authenticationKey|provision' /tmp/xcodebuild-help.txt \
+            | tee evidence/phase0/ios-personal-team-probe/xcodebuild-provisioning-help.txt || true
+
+      - name: Inspect attached Apple devices
+        shell: bash
+        run: |
+          set -uo pipefail
+          {
+            echo "=== devicectl list devices ==="
+            xcrun devicectl list devices 2>&1 || true
+            echo
+            echo "=== xctrace list devices ==="
+            xcrun xctrace list devices 2>&1 || true
+          } | tee evidence/phase0/ios-personal-team-probe/devices.txt
+
+      - name: Inspect local Xcode account and signing state
+        shell: bash
+        run: |
+          set -uo pipefail
+          {
+            echo "=== signing identities ==="
+            security find-identity -v -p codesigning 2>&1 || true
+            echo
+            echo "=== provisioning profiles ==="
+            find "$HOME/Library/MobileDevice/Provisioning Profiles" -maxdepth 1 -type f -print 2>/dev/null || true
+            echo
+            echo "=== Xcode account-related preferences (keys only where visible) ==="
+            defaults read com.apple.dt.Xcode 2>&1 | grep -i -E 'account|team|developer' || true
+          } | tee evidence/phase0/ios-personal-team-probe/signing-state.txt
+
+      - name: Write probe verdict
+        shell: bash
+        run: |
+          cat > evidence/phase0/ios-personal-team-probe/verdict.md <<'EOF'
+          # P0 iOS Free Provisioning Probe — GitHub Actions + Apple Personal Team
+
+          This run intentionally does not contain Apple credentials.
+
+          It tests whether a fresh GitHub-hosted macOS runner supplies enough pre-existing state to bootstrap Apple Personal Team / free provisioning without access to a Mac with an interactive Xcode account session or an attached iPhone.
+
+          Expected interpretation:
+
+          - macOS/Xcode availability: environmental feasibility only.
+          - no physical iPhone on the runner: expected for GitHub-hosted runners.
+          - no local Apple signing identity/profile/account session: expected on a fresh ephemeral runner.
+          - `-allowProvisioningUpdates` does not itself authenticate an Apple Account; it only allows Xcode to communicate with Apple when valid account/API-key context already exists.
+          - Apple Personal Team setup is managed directly by signing into an Apple Account in Xcode, and device registration for automatic signing is normally driven by a connected device.
+
+          Therefore a clean GitHub-hosted runner can provide macOS/Xcode, but it cannot by itself bootstrap a Personal Team free-provisioning identity/device/profile from zero.
+          EOF
+          cat evidence/phase0/ios-personal-team-probe/verdict.md
+
+      - name: Upload probe evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: p0-ios-personal-team-probe
+          path: evidence/phase0/ios-personal-team-probe/
+          if-no-files-found: error
