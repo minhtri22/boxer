@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - research/p0-ios-personal-team-probe
+  pull_request:
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
