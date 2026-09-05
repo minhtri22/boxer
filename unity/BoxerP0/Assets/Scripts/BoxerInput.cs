@@ -12,6 +12,7 @@ namespace BoxerP0
         public float HeadAngleDegrees { get; private set; }
         public string HeadInputSource { get; private set; } = "SYNTHETIC";
         public PunchIntent LastPunchIntent { get; private set; }
+        public PunchFamily LastPunchFamily => PunchLabels.Family(LastPunchIntent);
         public string LastPunchLabel => PunchLabels.Display(LastPunchIntent);
         public string BrowserMotionPermission { get; private set; } = "N/A";
         public float BrowserAlpha { get; private set; }
@@ -89,15 +90,15 @@ namespace BoxerP0
             float nextPunchTime = 1.0f + _demoPunchIndex * 1.05f;
             if (_demoPunchIndex < 4 && elapsed >= nextPunchTime)
             {
-                PunchIntent intent = _demoPunchIndex switch
+                PunchFamily family = _demoPunchIndex switch
                 {
-                    0 => PunchIntent.Jab,
-                    1 => PunchIntent.Cross,
-                    2 => PunchIntent.LeadHook,
-                    _ => PunchIntent.RearHook
+                    0 => PunchFamily.Straight,
+                    1 => PunchFamily.Hook,
+                    2 => PunchFamily.Uppercut,
+                    _ => PunchFamily.Overhand
                 };
                 _demoPunchIndex++;
-                RequestPunch(intent);
+                RequestPunch(PunchHandSelector.Select(family, LastPunchIntent));
             }
         }
 
@@ -220,7 +221,8 @@ namespace BoxerP0
                         float duration = Mathf.Max(0.001f, Time.unscaledTime - _rightStartTime);
                         float scale = Mathf.Max(1f, Screen.dpi / 160f);
                         GestureMetrics metrics = new(touch.position - _rightStart, _rightPathLength, duration);
-                        PunchIntent intent = PunchGestureClassifier.Classify(metrics, scale);
+                        PunchFamily family = PunchGestureClassifier.ClassifyFamily(metrics, scale);
+                        PunchIntent intent = PunchHandSelector.Select(family, LastPunchIntent);
                         _rightFinger = -1;
                         RequestPunch(intent);
                     }
@@ -245,6 +247,9 @@ namespace BoxerP0
             if (Input.GetKeyDown(KeyCode.K)) RequestPunch(PunchIntent.Cross);
             if (Input.GetKeyDown(KeyCode.L)) RequestPunch(PunchIntent.LeadHook);
             if (Input.GetKeyDown(KeyCode.Semicolon)) RequestPunch(PunchIntent.RearHook);
+            if (Input.GetKeyDown(KeyCode.U)) RequestPunch(PunchIntent.LeadUppercut);
+            if (Input.GetKeyDown(KeyCode.I)) RequestPunch(PunchIntent.RearUppercut);
+            if (Input.GetKeyDown(KeyCode.O)) RequestPunch(PunchIntent.RearOverhand);
             if (Input.GetKeyDown(KeyCode.R)) RecalibrateHead();
         }
 
