@@ -174,11 +174,18 @@ namespace BoxerP0
             Vector3 targetPose = PunchTargetLocal(_action.Intent, left);
             if (_hasP1PunchSnapshot)
             {
-                // P1-A1 remains isolated: only straight-punch forward reach is step-coupled.
+                // P1-A1: only straight-punch forward reach is step-coupled.
                 targetPose = P1PunchMechanics.ApplyA1StraightReach(
                     _action.Intent,
                     targetPose,
                     _p1PunchSnapshot.StepState);
+
+                // P1-A3.1: only hooks gain a close-range/far-range forward-extension consequence.
+                // Uppercut and overhand body coupling remain intentionally locked.
+                targetPose = P1PunchMechanics.ApplyA3FamilyCoupling(
+                    _action.Intent,
+                    targetPose,
+                    _p1PunchSnapshot.DistanceMeters);
             }
 
             switch (_action.Phase)
