@@ -1,22 +1,43 @@
+using System;
 using UnityEngine;
 
 namespace BoxerP0
 {
     /// <summary>
     /// Lightweight P0.5 visual shell for the Web surrogate.
-    /// Pure presentation only: no combat state, hit resolution, input mapping, or P1 systems.
-    /// Everything is generated from cheap primitives so the shell can be removed/replaced later.
+    /// Presentation only: reactive HP/stamina are non-authoritative HUD feedback and never gate combat.
     /// </summary>
+    [DefaultExecutionOrder(100)]
     public sealed class BoxerVisualShell : MonoBehaviour
     {
         private Phase0Telemetry _telemetry;
+        private BoxerInput _input;
+        private OpponentBoxer _opponent;
         private float _observedBoutStart = -1f;
+        private string _lastBoutResult = "PENDING";
+        private string _lastTelemetryEvent = string.Empty;
+        private string _trainingStage = "CALIBRATE";
+
+        private float _playerHp = 1f;
+        private float _opponentHp = 1f;
+        private float _playerStamina = 1f;
+        private float _opponentStamina = 1f;
+        private uint _lastPlayerPunchCount;
+        private uint _lastOpponentAttackCount;
 
         private GUIStyle _hudLabel;
         private GUIStyle _hudSmall;
         private GUIStyle _timerStyle;
+        private GUIStyle _trainingStepStyle;
+        private GUIStyle _trainingActionStyle;
+        private GUIStyle _trainingHintStyle;
 
         private const float TestBoutSeconds = 45f;
+        private const float HpLossPerHit = 0.08f;
+        private const float PlayerStaminaCostPerPunch = 0.12f;
+        private const float OpponentStaminaCostPerPunch = 0.10f;
+        private const float PlayerStaminaRecoveryPerSecond = 0.22f;
+        private const float OpponentStaminaRecoveryPerSecond = 0.18f;
 
         private static readonly Color Charcoal = new(0.045f, 0.050f, 0.060f, 1f);
         private static readonly Color Brick = new(0.12f, 0.065f, 0.055f, 1f);
@@ -32,6 +53,11 @@ namespace BoxerP0
         private void Start()
         {
             _telemetry = FindFirstObjectByType<Phase0Telemetry>();
+            _input = FindFirstObjectByType<BoxerInput>();
+            _opponent = FindFirstObjectByType<OpponentBoxer>();
+            if (_input != null) _lastPlayerPunchCount = _input.PunchEventCount;
+            if (_opponent != null) _lastOpponentAttackCount = _opponent.AttackEventCount;
+
             BuildWarehouseShell();
             RestyleExistingRing();
             RestylePlayerGloves();
@@ -41,25 +67,85 @@ namespace BoxerP0
         private void Update()
         {
             if (_telemetry == null) return;
-            if (_observedBoutStart < 0f && _telemetry.BoutResult == "IN_PROGRESS")
+
+            TrackTrainingStage();
+            TrackBoutTransition();
+            UpdateReactiveHudState();
+        }
+
+        private void TrackTrainingStage()
+        {
+            string value = _telemetry.LastEvent ?? string.Empty;
+            if (value == _lastTelemetryEvent) return;
+            _lastTelemetryEvent = value;
+
+            const string prefix = "TRAINING_STAGE_START_";
+            if (value.StartsWith(prefix, StringComparison.Ordinal))
+            {
+                _trainingStage = value.Substring(prefix.Length);
+            }
+            else if (value == "TRAINING_COMPLETE" || value == "BOUT_START")
+            {
+                _trainingStage = string.Empty;
+            }
+        }
+
+        private void TrackBoutTransition()
+        {
+            string current = _telemetry.BoutResult ?? "PENDING";
+            if (current == _lastBoutResult) return;
+
+            if (current == "IN_PROGRESS")
             {
                 _observedBoutStart = Time.unscaledTime;
+                _playerStamina = 1f;
+                _opponentStamina = 1f;
+                if (_input != null) _lastPlayerPunchCount = _input.PunchEventCount;
+                if (_opponent != null) _lastOpponentAttackCount = _opponent.AttackEventCount;
             }
-            else if (_telemetry.BoutResult != "IN_PROGRESS" && _telemetry.BoutResult != "PENDING")
+
+            _lastBoutResult = current;
+        }
+
+        private void UpdateReactiveHudState()
+        {
+            _playerHp = Mathf.Clamp01(1f - _telemetry.OpponentHits * HpLossPerHit);
+            _opponentHp = Mathf.Clamp01(1f - _telemetry.PlayerHits * HpLossPerHit);
+
+            if (_input != null)
             {
-                // Preserve the last start so the timer stays at zero on the result screen.
+                uint count = _input.PunchEventCount;
+                uint delta = count - _lastPlayerPunchCount;
+                if (delta > 0)
+                {
+                    _playerStamina = Mathf.Clamp01(_playerStamina - delta * PlayerStaminaCostPerPunch);
+                    _lastPlayerPunchCount = count;
+                }
             }
+
+            if (_opponent != null)
+            {
+                uint count = _opponent.AttackEventCount;
+                uint delta = count - _lastOpponentAttackCount;
+                if (delta > 0)
+                {
+                    _opponentStamina = Mathf.Clamp01(_opponentStamina - delta * OpponentStaminaCostPerPunch);
+                    _lastOpponentAttackCount = count;
+                }
+            }
+
+            float dt = Time.unscaledDeltaTime;
+            _playerStamina = Mathf.MoveTowards(_playerStamina, 1f, PlayerStaminaRecoveryPerSecond * dt);
+            _opponentStamina = Mathf.MoveTowards(_opponentStamina, 1f, OpponentStaminaRecoveryPerSecond * dt);
         }
 
         private void BuildWarehouseShell()
         {
-            // Back/side walls: large unlit slabs, no colliders.
             CreateDecor(PrimitiveType.Cube, "Warehouse Back Wall", new Vector3(0f, 2.4f, 4.4f), new Vector3(8.0f, 4.8f, 0.18f), Brick);
             CreateDecor(PrimitiveType.Cube, "Warehouse Left Wall", new Vector3(-4.1f, 2.4f, 0.3f), new Vector3(0.18f, 4.8f, 8.0f), Charcoal);
             CreateDecor(PrimitiveType.Cube, "Warehouse Right Wall", new Vector3(4.1f, 2.4f, 0.3f), new Vector3(0.18f, 4.8f, 8.0f), Charcoal);
             CreateDecor(PrimitiveType.Cube, "Warehouse Ceiling", new Vector3(0f, 4.75f, 0.3f), new Vector3(8.2f, 0.12f, 8.2f), Charcoal);
 
-            // Cheap overhead lamp + warm bulbs. Unlit emissive-look colors, not real lights.
             CreateDecor(PrimitiveType.Cylinder, "Hanging Lamp", new Vector3(0f, 3.7f, 1.3f), new Vector3(0.42f, 0.08f, 0.42f), new Color(0.14f, 0.12f, 0.09f, 1f));
             CreateDecor(PrimitiveType.Sphere, "Hanging Lamp Glow", new Vector3(0f, 3.58f, 1.3f), Vector3.one * 0.19f, WarmLight);
 
@@ -69,7 +155,6 @@ namespace BoxerP0
                 CreateDecor(PrimitiveType.Sphere, "String Bulb", new Vector3(x, 3.05f + Mathf.Abs(i) * 0.04f, 2.5f), Vector3.one * 0.075f, WarmLight);
             }
 
-            // Crates/tires imply an underground venue without expensive assets.
             CreateDecor(PrimitiveType.Cube, "Crate L", new Vector3(-3.0f, 0.35f, 2.7f), new Vector3(0.75f, 0.70f, 0.75f), new Color(0.24f, 0.15f, 0.08f, 1f));
             CreateDecor(PrimitiveType.Cube, "Crate R", new Vector3(3.05f, 0.27f, 2.9f), new Vector3(0.62f, 0.54f, 0.62f), new Color(0.20f, 0.13f, 0.07f, 1f));
 
@@ -117,7 +202,6 @@ namespace BoxerP0
                 if (go.name == "Ring Rope") ApplyColor(go.GetComponent<Renderer>(), Rope);
             }
 
-            // Generic championship motif; intentionally no real-world federation branding.
             CreateDecor(PrimitiveType.Cylinder, "Generic Championship Medallion", new Vector3(0f, 0.018f, -1.65f), new Vector3(0.48f, 0.018f, 0.48f), Gold).transform.rotation = Quaternion.Euler(90f, 0f, 0f);
             CreateDecor(PrimitiveType.Cube, "Generic Championship Strap", new Vector3(0f, 0.010f, -1.65f), new Vector3(1.85f, 0.018f, 0.30f), new Color(0.04f, 0.18f, 0.10f, 1f));
         }
@@ -200,12 +284,20 @@ namespace BoxerP0
         private void OnGUI()
         {
             EnsureStyles();
+            if (ShouldShowTrainingOverlay()) DrawTrainingOverlay();
             DrawGameHud();
+        }
+
+        private bool ShouldShowTrainingOverlay()
+        {
+            if (_telemetry == null) return true;
+            return _telemetry.BoutResult == "PENDING" && !string.IsNullOrEmpty(_trainingStage);
         }
 
         private void EnsureStyles()
         {
             if (_hudLabel != null) return;
+
             _hudLabel = new GUIStyle(GUI.skin.label)
             {
                 fontSize = Mathf.Clamp(Screen.height / 48, 12, 24),
@@ -223,6 +315,80 @@ namespace BoxerP0
                 fontStyle = FontStyle.Bold,
                 alignment = TextAnchor.MiddleCenter
             };
+            _trainingStepStyle = new GUIStyle(GUI.skin.label)
+            {
+                fontSize = Mathf.Clamp(Screen.height / 34, 20, 34),
+                fontStyle = FontStyle.Bold,
+                alignment = TextAnchor.MiddleCenter,
+                wordWrap = true
+            };
+            _trainingActionStyle = new GUIStyle(GUI.skin.label)
+            {
+                fontSize = Mathf.Clamp(Screen.height / 27, 26, 44),
+                fontStyle = FontStyle.Bold,
+                alignment = TextAnchor.MiddleCenter,
+                wordWrap = true
+            };
+            _trainingHintStyle = new GUIStyle(GUI.skin.label)
+            {
+                fontSize = Mathf.Clamp(Screen.height / 43, 17, 28),
+                alignment = TextAnchor.MiddleCenter,
+                wordWrap = true
+            };
+        }
+
+        private void DrawTrainingOverlay()
+        {
+            GetTrainingCopy(out string step, out string action, out string hint);
+
+            float panelHeight = Mathf.Clamp(Screen.height * 0.36f, 245f, 360f);
+            Color old = GUI.color;
+            GUI.color = new Color(0.025f, 0.025f, 0.030f, 0.94f);
+            GUI.DrawTexture(new Rect(0f, 0f, Screen.width, panelHeight), Texture2D.whiteTexture);
+            GUI.color = old;
+
+            float side = Mathf.Max(18f, Screen.width * 0.04f);
+            float hudBottom = Mathf.Max(100f, Screen.height * 0.13f);
+            GUI.Label(new Rect(side, hudBottom, Screen.width - side * 2f, 42f), step, _trainingStepStyle);
+            GUI.Label(new Rect(side, hudBottom + 40f, Screen.width - side * 2f, 92f), action, _trainingActionStyle);
+            GUI.Label(new Rect(side, hudBottom + 128f, Screen.width - side * 2f, 68f), hint, _trainingHintStyle);
+        }
+
+        private void GetTrainingCopy(out string step, out string action, out string hint)
+        {
+            switch (_trainingStage)
+            {
+                case "HEADCONTROL":
+                    step = "1/5  HEAD CONTROL";
+                    action = "NGHIÊNG TRÁI  →  PHẢI";
+                    hint = "Phone = head. Cảm nhận đầu nhân vật đi theo chuyển động của máy.";
+                    return;
+                case "FOOTWORK":
+                    step = "2/5  FOOTWORK";
+                    action = "DI CHUYỂN ĐỦ 4 HƯỚNG";
+                    hint = "Ngón cái trái = chân:  ←  →  ↑  ↓";
+                    return;
+                case "PUNCHES":
+                    step = "3/5  PUNCHES";
+                    action = "THỬ 4 ĐÒN BẰNG TAY PHẢI";
+                    hint = "JAB  ·  CROSS  ·  LEAD HOOK  ·  REAR HOOK";
+                    return;
+                case "GUARD":
+                    step = "4/5  GUARD";
+                    action = "DỪNG ĐẤM = HIGH GUARD";
+                    hint = "Không vuốt tay phải. Hãy đỡ 2 đòn của đối thủ.";
+                    return;
+                case "COUNTER":
+                    step = "5/5  COUNTER";
+                    action = "ĐỌC ĐÒN  →  NÉ/ĐỠ  →  PHẢN CÔNG";
+                    hint = "Phản công khi đối thủ đang hồi đòn.";
+                    return;
+                default:
+                    step = "CALIBRATE";
+                    action = "GIỮ ĐIỆN THOẠI Ở TƯ THẾ THOẢI MÁI";
+                    hint = "Cho phép Motion, giữ máy thẳng tự nhiên rồi bấm CALIBRATE.";
+                    return;
+            }
         }
 
         private void DrawGameHud()
@@ -232,8 +398,8 @@ namespace BoxerP0
             float barWidth = hudWidth - 10f;
             float top = Mathf.Max(12f, Screen.height * 0.018f);
 
-            DrawFighterHud(new Rect(margin, top, hudWidth, 88f), "LV 12  BOXER", barWidth, true);
-            DrawFighterHud(new Rect(Screen.width - margin - hudWidth, top, hudWidth, 88f), "LV 15  OPPONENT", barWidth, false);
+            DrawFighterHud(new Rect(margin, top, hudWidth, 88f), "LV 12  BOXER", barWidth, _playerHp, _playerStamina);
+            DrawFighterHud(new Rect(Screen.width - margin - hudWidth, top, hudWidth, 88f), "LV 15  OPPONENT", barWidth, _opponentHp, _opponentStamina);
 
             string timerText = "TRAINING";
             if (_telemetry != null && _telemetry.BoutResult == "IN_PROGRESS" && _observedBoutStart >= 0f)
@@ -248,17 +414,17 @@ namespace BoxerP0
 
             float timerWidth = Mathf.Min(115f, Screen.width * 0.17f);
             GUI.Box(new Rect((Screen.width - timerWidth) * 0.5f, top, timerWidth, 46f), timerText, _timerStyle);
-            GUI.Label(new Rect((Screen.width - 170f) * 0.5f, top + 48f, 170f, 22f), "P0 TEST HUD", _hudSmall);
+            GUI.Label(new Rect((Screen.width - 210f) * 0.5f, top + 48f, 210f, 22f), "P0 REACTIVE HUD", _hudSmall);
         }
 
-        private void DrawFighterHud(Rect rect, string title, float barWidth, bool player)
+        private void DrawFighterHud(Rect rect, string title, float barWidth, float hp, float stamina)
         {
             GUI.Box(rect, string.Empty);
             GUI.Label(new Rect(rect.x + 8f, rect.y + 3f, rect.width - 16f, 24f), title, _hudLabel);
             GUI.Label(new Rect(rect.x + 8f, rect.y + 28f, 68f, 18f), "HP", _hudSmall);
-            DrawBar(new Rect(rect.x + 42f, rect.y + 31f, barWidth - 42f, 12f), player ? 0.72f : 0.82f, new Color(0.78f, 0.10f, 0.07f, 1f));
+            DrawBar(new Rect(rect.x + 42f, rect.y + 31f, barWidth - 42f, 12f), hp, new Color(0.78f, 0.10f, 0.07f, 1f));
             GUI.Label(new Rect(rect.x + 8f, rect.y + 51f, 68f, 18f), "STAMINA", _hudSmall);
-            DrawBar(new Rect(rect.x + 74f, rect.y + 54f, barWidth - 74f, 12f), player ? 0.66f : 0.74f, new Color(0.94f, 0.67f, 0.10f, 1f));
+            DrawBar(new Rect(rect.x + 74f, rect.y + 54f, barWidth - 74f, 12f), stamina, new Color(0.94f, 0.67f, 0.10f, 1f));
         }
 
         private static void DrawBar(Rect rect, float fill, Color color)
