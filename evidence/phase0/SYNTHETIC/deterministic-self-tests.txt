@@ -1,13 +1,14 @@
 evidence=SYNTHETIC
 unity=6000.5.8f1
-utc=2026-09-04T08:05:42.7175300Z
+utc=2026-09-05T06:25:15.5729680Z
 PASS head dead zone
 PASS head sign and bound
-PASS gesture lead jab
-PASS gesture rear cross
-PASS gesture lead hook
-PASS gesture rear hook
-PASS punch labels
+PASS P1-A2 tap straight family
+PASS P1-A2 held swipe up uppercut
+PASS P1-A2 held swipe down overhand
+PASS P1-A2 held swipe horizontal hook
+PASS P1-A2 hand selector
+PASS punch labels and families
 PASS geometry hit and miss
 PASS default fight range can connect
 PASS anti-spam state transition
@@ -15,5 +16,11 @@ PASS counter recovery window
 PASS action reset to guard
 PASS onboarding head progress
 PASS onboarding footwork progress
-PASS onboarding punch progress
-TOTAL=15 PASS
+PASS onboarding punch-family progress
+PASS P1-A1 straight reach ordering
+PASS P1-A1 neutral baseline
+PASS P1-A1 non-straights unchanged
+PASS P1-A1 causal same-distance boundary
+PASS P1-B1 opponent reach clamp
+PASS P1-B1 in-range endpoint unchanged
+TOTAL=22 PASS

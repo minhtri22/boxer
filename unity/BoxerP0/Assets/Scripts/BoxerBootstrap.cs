@@ -463,7 +463,7 @@ namespace BoxerP0
                 OnboardingStage.Footwork =>
                     $"2/5 FOOTWORK  {seconds:F0}s\nLeft thumb = feet. Thử đủ 4 hướng.\nLEFT {Mark(_training.MoveLeft)}  RIGHT {Mark(_training.MoveRight)}  FORWARD {Mark(_training.MoveForward)}  BACK {Mark(_training.MoveBack)}",
                 OnboardingStage.Punches =>
-                    $"3/5 PUNCHES  {seconds:F0}s\nRight thumb = punch controller. Làm đủ 4 đòn.\nJAB {Mark(_training.LeadJab)}  CROSS {Mark(_training.RearCross)}  LEAD HOOK {Mark(_training.LeadHook)}  REAR HOOK {Mark(_training.RearHook)}",
+                    $"3/5 PUNCHES  {seconds:F0}s\nRight thumb = punch controller. Làm đủ 4 đòn.\nSTRAIGHT {Mark(_training.Straight)}  UPPERCUT {Mark(_training.Uppercut)}  HOOK {Mark(_training.Hook)}  OVERHAND {Mark(_training.Overhand)}",
                 OnboardingStage.Guard =>
                     $"4/5 GUARD  {seconds:F0}s\nDỪNG vuốt tay phải = trở về HIGH GUARD. Đỡ 2 đòn.\nBLOCKS {Mathf.Max(0, _telemetry.PlayerBlocks - _guardBlockBaseline)}/2",
                 OnboardingStage.Counter =>
