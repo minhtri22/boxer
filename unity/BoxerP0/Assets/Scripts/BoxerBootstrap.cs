@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace BoxerP0
@@ -10,6 +11,7 @@ namespace BoxerP0
         private Phase0Telemetry _telemetry;
         private BoxerFeedback _feedback;
         private readonly OnboardingProgress _training = new();
+
         private float _boutEnd;
         private float _stageEnd;
         private float _smokeQuitAt = -1f;
@@ -20,6 +22,29 @@ namespace BoxerP0
         private OnboardingStage _stage = OnboardingStage.WaitingForCalibration;
 
         private const float BoutSeconds = 45f;
+        private const int PerfWindowSize = 180;
+        private const float UiRefreshSeconds = 0.25f;
+
+        private readonly float[] _frameMs = new float[PerfWindowSize];
+        private readonly float[] _frameScratch = new float[PerfWindowSize];
+        private int _frameCount;
+        private int _frameCursor;
+        private float _nextUiRefresh;
+        private float _lastPerfRefreshRealtime;
+        private uint _lastOrientationCount;
+        private uint _lastTouchCount;
+        private float _fpsCurrent;
+        private float _fpsAverage;
+        private float _frameP95Ms;
+        private float _frameMaxMs;
+        private float _orientationAgeMs = -1f;
+        private float _touchAgeMs = -1f;
+        private float _orientationRate;
+        private float _touchRate;
+        private string _perfState = "OK";
+        private string _debugText = string.Empty;
+        private string _trainingText = string.Empty;
+        private string _resultText = string.Empty;
 
         private void Awake()
         {
@@ -27,6 +52,8 @@ namespace BoxerP0
             ConfigureSmokeQuit();
             BuildLightingAndRing();
             BuildActors();
+            _lastPerfRefreshRealtime = Time.realtimeSinceStartup;
+            _nextUiRefresh = _lastPerfRefreshRealtime;
 
 #if UNITY_WEBGL && !UNITY_EDITOR
             _stage = OnboardingStage.WaitingForCalibration;
@@ -36,10 +63,13 @@ namespace BoxerP0
 #else
             BeginOnboarding();
 #endif
+            RefreshCachedUi();
         }
 
         private void Update()
         {
+            SampleFrame();
+
 #if UNITY_WEBGL && !UNITY_EDITOR
             if (_stage == OnboardingStage.WaitingForCalibration && _input != null && _input.BrowserCalibrated)
             {
@@ -57,6 +87,11 @@ namespace BoxerP0
             {
                 Debug.Log("P0_SMOKE_COMPLETE");
                 Application.Quit(0);
+            }
+
+            if (Time.realtimeSinceStartup >= _nextUiRefresh)
+            {
+                RefreshCachedUi();
             }
         }
 
@@ -168,21 +203,107 @@ namespace BoxerP0
             _player?.SetCombatEnabled(false);
             _opponent?.SetCombatEnabled(false);
             string result = _telemetry?.CompleteBout() ?? "UNKNOWN";
+            _resultText = BuildResultText();
             Debug.Log($"P0_BOUT_COMPLETE {result}");
         }
 
         private void ConfigureSmokeQuit()
         {
-            foreach (string argument in System.Environment.GetCommandLineArgs())
+            foreach (string argument in Environment.GetCommandLineArgs())
             {
                 const string prefix = "-p0SmokeSeconds=";
-                if (!argument.StartsWith(prefix, System.StringComparison.OrdinalIgnoreCase)) continue;
+                if (!argument.StartsWith(prefix, StringComparison.OrdinalIgnoreCase)) continue;
                 if (float.TryParse(argument.Substring(prefix.Length), System.Globalization.NumberStyles.Float,
                         System.Globalization.CultureInfo.InvariantCulture, out float seconds) && seconds > 0f)
                 {
                     _smokeQuitAt = Time.unscaledTime + seconds;
                 }
             }
+        }
+
+        private void SampleFrame()
+        {
+            float ms = Mathf.Max(0f, Time.unscaledDeltaTime * 1000f);
+            _frameMs[_frameCursor] = ms;
+            _frameCursor = (_frameCursor + 1) % PerfWindowSize;
+            if (_frameCount < PerfWindowSize) _frameCount++;
+        }
+
+        private void RefreshCachedUi()
+        {
+            if (_input == null || _player == null || _opponent == null || _telemetry == null) return;
+
+            float now = Time.realtimeSinceStartup;
+            float interval = Mathf.Max(0.001f, now - _lastPerfRefreshRealtime);
+            _lastPerfRefreshRealtime = now;
+            _nextUiRefresh = now + UiRefreshSeconds;
+
+            float totalMs = 0f;
+            int count = _frameCount;
+            for (int i = 0; i < count; i++)
+            {
+                float value = _frameMs[i];
+                _frameScratch[i] = value;
+                totalMs += value;
+            }
+
+            if (count > 0)
+            {
+                Array.Sort(_frameScratch, 0, count);
+                float currentMs = Mathf.Max(0.001f, Time.unscaledDeltaTime * 1000f);
+                float avgMs = Mathf.Max(0.001f, totalMs / count);
+                int p95Index = Mathf.Clamp(Mathf.CeilToInt(count * 0.95f) - 1, 0, count - 1);
+                _fpsCurrent = 1000f / currentMs;
+                _fpsAverage = 1000f / avgMs;
+                _frameP95Ms = _frameScratch[p95Index];
+                _frameMaxMs = _frameScratch[count - 1];
+            }
+
+            uint orientationCount = _input.OrientationEventCount;
+            uint touchCount = _input.TouchEventCount;
+            _orientationRate = (orientationCount - _lastOrientationCount) / interval;
+            _touchRate = (touchCount - _lastTouchCount) / interval;
+            _lastOrientationCount = orientationCount;
+            _lastTouchCount = touchCount;
+
+            _orientationAgeMs = _input.LastOrientationEventRealtime < 0f
+                ? -1f
+                : Mathf.Max(0f, (now - _input.LastOrientationEventRealtime) * 1000f);
+            _touchAgeMs = _input.LastTouchEventRealtime < 0f
+                ? -1f
+                : Mathf.Max(0f, (now - _input.LastTouchEventRealtime) * 1000f);
+
+            bool inputStalled = (_input.BrowserCalibrated && _orientationAgeMs >= 1000f) ||
+                                (_input.TouchActive && _touchAgeMs >= 1000f);
+            if (_frameMaxMs >= 500f || inputStalled)
+            {
+                _perfState = "STALLED";
+            }
+            else if (_frameP95Ms >= 45f)
+            {
+                _perfState = "DEGRADED";
+            }
+            else
+            {
+                _perfState = "OK";
+            }
+
+            _trainingText = GetTrainingText();
+            _debugText =
+                $"BUILD {Application.version}  PERF {_perfState}\n" +
+                $"FPS {_fpsCurrent:F0} now / {_fpsAverage:F0} avg  FRAME p95 {_frameP95Ms:F1}ms max {_frameMaxMs:F1}ms\n" +
+                $"ORIENT age {AgeText(_orientationAgeMs)}  rate {_orientationRate:F1}/s\n" +
+                $"TOUCH age {AgeText(_touchAgeMs)}  rate {_touchRate:F1}/s  active {(_input.TouchActive ? "YES" : "NO")}\n" +
+                $"STAGE {_stage}  MOTION {_input.BrowserMotionPermission}  SRC {_input.HeadInputSource}\n" +
+                $"HEAD {_input.HeadAngleDegrees:F1}° → {_player.HeadOffset:F2}m  MOVE {_input.MovementIntent.x:F2},{_input.MovementIntent.y:F2}\n" +
+                $"PUNCH {_input.LastPunchLabel}  PLAYER {_player.ActionLabel}  GUARD {(_player.GuardActive ? "HIGH" : "OPEN")}\n" +
+                $"OPP {_opponent.ActionLabel}  COUNTER {(_opponent.CounterWindowOpen ? "OPEN" : "CLOSED")}\n" +
+                $"LAST {_telemetry.LastOutcome} / {_telemetry.LastEvent}  BOUT {GetBoutSecondsRemaining():F0}s";
+        }
+
+        private static string AgeText(float ageMs)
+        {
+            return ageMs < 0f ? "N/A" : $"{ageMs:F0}ms";
         }
 
         private void BuildLightingAndRing()
@@ -312,22 +433,11 @@ namespace BoxerP0
 
             if (_stage != OnboardingStage.Bout && _stage != OnboardingStage.Complete)
             {
-                string training = GetTrainingText();
                 float width = Mathf.Min(Screen.width - 40, 680);
-                GUI.Box(new Rect((Screen.width - width) * 0.5f, 20, width, 155), training);
+                GUI.Box(new Rect((Screen.width - width) * 0.5f, 20, width, 155), _trainingText);
             }
 
-            string debug =
-                $"STAGE {_stage}\n" +
-                $"MOTION {_input.BrowserMotionPermission}  SRC {_input.HeadInputSource}\n" +
-                $"HEAD {_input.HeadAngleDegrees:F1}° → {_player.HeadOffset:F2}m\n" +
-                $"MOVE {_input.MovementIntent.x:F2},{_input.MovementIntent.y:F2}\n" +
-                $"PLAYER PUNCH: {_input.LastPunchLabel}\n" +
-                $"PLAYER {_player.ActionLabel}  GUARD {(_player.GuardActive ? "HIGH" : "OPEN")}\n" +
-                $"OPP {_opponent.ActionLabel}  COUNTER {(_opponent.CounterWindowOpen ? "OPEN" : "CLOSED")}\n" +
-                $"LAST {_telemetry.LastOutcome} / {_telemetry.LastEvent}\n" +
-                $"BOUT {GetBoutSecondsRemaining():F0}s  FRAME {(Time.unscaledDeltaTime * 1000f):F1}ms";
-            GUI.Box(new Rect(20, Screen.height - 255, Mathf.Min(Screen.width - 40, 680), 235), debug);
+            GUI.Box(new Rect(20, Screen.height - 330, Mathf.Min(Screen.width - 40, 720), 310), _debugText);
 
             if (!Application.isMobilePlatform)
             {
@@ -337,24 +447,8 @@ namespace BoxerP0
 
             if (_boutCompleted)
             {
-                string resultText = _telemetry.BoutResult switch
-                {
-                    "PLAYER_WIN" => "PLAYER WIN",
-                    "OPPONENT_WIN" => "OPPONENT WIN",
-                    "DRAW" => "DRAW",
-                    _ => _telemetry.BoutResult
-                };
-
-                string summary =
-                    "BOUT COMPLETE — P0 TEST ONLY\n\n" +
-                    $"PLAYER  Hits {_telemetry.PlayerHits}  Counters {_telemetry.PlayerCounterHits}  Blocks {_telemetry.PlayerBlocks}\n" +
-                    $"OPPONENT  Hits {_telemetry.OpponentHits}  Counters {_telemetry.OpponentCounterHits}  Blocks {_telemetry.OpponentBlocks}\n\n" +
-                    $"RESULT: {resultText}\n\n" +
-                    "Win rule: valid landed hits only.\n" +
-                    "Sau onboarding: control còn quá tải không? Bạn có bắt đầu đọc đối thủ thay vì chỉ spam đấm không?";
-
                 float width = Mathf.Min(Screen.width - 40, 620);
-                GUI.Box(new Rect((Screen.width - width) * 0.5f, Screen.height * 0.5f - 150, width, 300), summary);
+                GUI.Box(new Rect((Screen.width - width) * 0.5f, Screen.height * 0.5f - 150, width, 300), _resultText);
             }
         }
 
@@ -376,6 +470,25 @@ namespace BoxerP0
                     $"5/5 COUNTER  {seconds:F0}s\nĐọc đòn → né/đỡ → phản công trong recovery. Làm 1 counter.\nCOUNTERS {Mathf.Max(0, _telemetry.PlayerCounterHits - _counterHitBaseline)}/1",
                 _ => string.Empty
             };
+        }
+
+        private string BuildResultText()
+        {
+            string resultText = _telemetry.BoutResult switch
+            {
+                "PLAYER_WIN" => "PLAYER WIN",
+                "OPPONENT_WIN" => "OPPONENT WIN",
+                "DRAW" => "DRAW",
+                _ => _telemetry.BoutResult
+            };
+
+            return
+                "BOUT COMPLETE — P0 TEST ONLY\n\n" +
+                $"PLAYER  Hits {_telemetry.PlayerHits}  Counters {_telemetry.PlayerCounterHits}  Blocks {_telemetry.PlayerBlocks}\n" +
+                $"OPPONENT  Hits {_telemetry.OpponentHits}  Counters {_telemetry.OpponentCounterHits}  Blocks {_telemetry.OpponentBlocks}\n\n" +
+                $"RESULT: {resultText}\n\n" +
+                "Win rule: valid landed hits only.\n" +
+                "Sau onboarding: control còn quá tải không? Bạn có bắt đầu đọc đối thủ thay vì chỉ spam đấm không?";
         }
 
         private static string Mark(bool value) => value ? "OK" : "—";
