@@ -65,6 +65,7 @@ namespace BoxerP0.Editor
             string buildMarker = Environment.GetEnvironmentVariable("BOXER_BUILD_MARKER");
             if (string.IsNullOrWhiteSpace(buildMarker)) buildMarker = "local-web";
             PlayerSettings.bundleVersion = buildMarker.Trim();
+            PlayerSettings.WebGL.compressionFormat = WebGLCompressionFormat.Disabled;
             AssetDatabase.SaveAssets();
 
             string repoRoot = Directory.GetParent(

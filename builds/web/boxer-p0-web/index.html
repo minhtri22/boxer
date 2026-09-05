@@ -34,15 +34,18 @@
     let unityLoading = false;
 
     const buildUrl = 'Build';
-    const loaderUrl = buildUrl + '/boxer-p0-web.loader.js';
+    const productVersion = "1e7f15c";
+    const assetVersion = encodeURIComponent(productVersion || 'unknown');
+    const versioned = (url) => `${url}?v=${assetVersion}`;
+    const loaderUrl = versioned(buildUrl + '/boxer-p0-web.loader.js');
     const config = {
-      dataUrl: buildUrl + '/boxer-p0-web.data',
-      frameworkUrl: buildUrl + '/boxer-p0-web.framework.js',
-      codeUrl: buildUrl + '/boxer-p0-web.wasm',
+      dataUrl: versioned(buildUrl + '/boxer-p0-web.data'),
+      frameworkUrl: versioned(buildUrl + '/boxer-p0-web.framework.js'),
+      codeUrl: versioned(buildUrl + '/boxer-p0-web.wasm'),
       streamingAssetsUrl: 'StreamingAssets',
       companyName: "Boxer Research",
       productName: "Boxer P0",
-      productVersion: "1.0",
+      productVersion: productVersion,
     };
 
     function setStatus(text) {
@@ -62,7 +65,7 @@
       latestOrientationPayload = `${a}|${b}|${g}`;
       send('BrowserSetOrientation', latestOrientationPayload);
       if (unityInstance && !calibrateButton.disabled) {
-        setStatus('MOTION GRANTED — orientation received. Hold neutral, then calibrate.');
+        setStatus(`MOTION GRANTED — orientation received. Build ${productVersion}. Hold neutral, then calibrate.`);
       }
     }
 
@@ -95,11 +98,11 @@
           calibrateButton.classList.remove('hidden');
           calibrateButton.disabled = !orientationReceived;
           setStatus(orientationReceived
-            ? 'MOTION GRANTED — hold neutral, then calibrate.'
-            : 'MOTION GRANTED — waiting for device orientation...');
+            ? `MOTION GRANTED — build ${productVersion}. Hold neutral, then calibrate.`
+            : `MOTION GRANTED — build ${productVersion}. Waiting for device orientation...`);
           gate.classList.add('compact');
         }).catch(message => {
-          setStatus('UNITY LOAD FAILED — ' + message);
+          setStatus(`UNITY LOAD FAILED — build ${productVersion} — ${message}`);
         });
       };
       document.body.appendChild(script);
@@ -108,14 +111,14 @@
     enableButton.addEventListener('click', async () => {
       enableButton.disabled = true;
       permissionStatus = await requestMotionPermission();
-      setStatus('MOTION ' + permissionStatus);
+      setStatus('MOTION ' + permissionStatus + ' — build ' + productVersion);
       if (permissionStatus !== 'GRANTED') {
         enableButton.disabled = false;
         return;
       }
       window.addEventListener('deviceorientation', onOrientation, true);
       setTimeout(() => {
-        if (!orientationReceived) setStatus('DEVICE ORIENTATION NOT RECEIVED');
+        if (!orientationReceived) setStatus('DEVICE ORIENTATION NOT RECEIVED — build ' + productVersion);
       }, 2500);
       loadUnity();
     });
