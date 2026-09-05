@@ -18,6 +18,7 @@ namespace BoxerP0.Editor
             Scene scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
             GameObject root = new("Boxer P0 Bootstrap");
             root.AddComponent<BoxerBootstrap>();
+            root.AddComponent<BoxerVisualShell>();
             string scenePath = "Assets/Scenes/Phase0Boxer.unity";
             EditorSceneManager.SaveScene(scene, scenePath);
             EditorBuildSettings.scenes = new[] { new EditorBuildSettingsScene(scenePath, true) };
@@ -109,6 +110,7 @@ namespace BoxerP0.Editor
                 $"wasm_sha256={wasmSha256}\n" +
                 $"diagnostic_overlay=true\n" +
                 $"web_telemetry_mode=in_memory_counters_no_csv\n" +
+                $"visual_shell=procedural_p0_5\n" +
                 $"build_commit={buildMarker}\n");
             Debug.Log($"P0_WEB_BUILD={buildDir} marker={buildMarker} data={dataSha256} wasm={wasmSha256}");
         }
