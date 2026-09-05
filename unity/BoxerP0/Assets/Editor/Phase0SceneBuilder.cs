@@ -1,4 +1,6 @@
+using System;
 using System.IO;
+using System.Security.Cryptography;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -8,6 +10,8 @@ namespace BoxerP0.Editor
 {
     public static class Phase0SceneBuilder
     {
+        private const int WebTargetFps = 60;
+
         public static void Build()
         {
             Directory.CreateDirectory("Assets/Scenes");
@@ -45,7 +49,7 @@ namespace BoxerP0.Editor
             UnityEditor.Build.Reporting.BuildReport report = BuildPipeline.BuildPlayer(options);
             if (report.summary.result != UnityEditor.Build.Reporting.BuildResult.Succeeded)
             {
-                throw new System.Exception($"Windows build failed: {report.summary.result} / {report.summary.totalErrors} errors");
+                throw new Exception($"Windows build failed: {report.summary.result} / {report.summary.totalErrors} errors");
             }
 
             File.WriteAllText(
@@ -57,6 +61,11 @@ namespace BoxerP0.Editor
         public static void BuildWebPlayer()
         {
             Build();
+            string buildMarker = Environment.GetEnvironmentVariable("BOXER_BUILD_MARKER");
+            if (string.IsNullOrWhiteSpace(buildMarker)) buildMarker = "local-web";
+            PlayerSettings.bundleVersion = buildMarker.Trim();
+            AssetDatabase.SaveAssets();
+
             string repoRoot = Directory.GetParent(
                 Directory.GetParent(
                     Directory.GetParent(Application.dataPath).FullName).FullName).FullName;
@@ -73,15 +82,53 @@ namespace BoxerP0.Editor
             UnityEditor.Build.Reporting.BuildReport report = BuildPipeline.BuildPlayer(options);
             if (report.summary.result != UnityEditor.Build.Reporting.BuildResult.Succeeded)
             {
-                throw new System.Exception($"WebGL build failed: {report.summary.result} / {report.summary.totalErrors} errors");
+                throw new Exception($"WebGL build failed: {report.summary.result} / {report.summary.totalErrors} errors");
             }
+
+            string buildFilesDir = Path.Combine(buildDir, "Build");
+            string dataPath = FindSingleBuildFile(buildFilesDir, "*.data");
+            string wasmPath = FindSingleBuildFile(buildFilesDir, "*.wasm");
+            string dataSha256 = Sha256(dataPath);
+            string wasmSha256 = Sha256(wasmPath);
 
             string evidenceDir = Path.Combine(repoRoot, "evidence", "phase0", "web-iphone", "WEB_BUILD");
             Directory.CreateDirectory(evidenceDir);
             File.WriteAllText(
                 Path.Combine(evidenceDir, "build-metadata.txt"),
-                $"evidence=WEB_BUILD\nunity={Application.unityVersion}\ntarget=WebGL\nresult={report.summary.result}\noutput={buildDir}\nsize_bytes={report.summary.totalSize}\ntemplate=PROJECT:BoxerP0Mobile\ncompression=disabled_for_static_pages\ndevelopment_build=false\n");
-            Debug.Log($"P0_WEB_BUILD={buildDir}");
+                $"evidence=WEB_BUILD\n" +
+                $"unity={Application.unityVersion}\n" +
+                $"target=WebGL\n" +
+                $"result={report.summary.result}\n" +
+                $"output={buildDir}\n" +
+                $"size_bytes={report.summary.totalSize}\n" +
+                $"template=PROJECT:BoxerP0Mobile\n" +
+                $"compression=disabled_for_static_pages\n" +
+                $"development_build=false\n" +
+                $"target_fps={WebTargetFps}\n" +
+                $"data_sha256={dataSha256}\n" +
+                $"wasm_sha256={wasmSha256}\n" +
+                $"diagnostic_overlay=true\n" +
+                $"web_telemetry_mode=in_memory_counters_no_csv\n" +
+                $"build_commit={buildMarker}\n");
+            Debug.Log($"P0_WEB_BUILD={buildDir} marker={buildMarker} data={dataSha256} wasm={wasmSha256}");
+        }
+
+        private static string FindSingleBuildFile(string directory, string pattern)
+        {
+            string[] files = Directory.GetFiles(directory, pattern, SearchOption.TopDirectoryOnly);
+            if (files.Length != 1)
+            {
+                throw new Exception($"Expected exactly one {pattern} in {directory}, found {files.Length}");
+            }
+            return files[0];
+        }
+
+        private static string Sha256(string path)
+        {
+            using SHA256 sha = SHA256.Create();
+            using FileStream stream = File.OpenRead(path);
+            byte[] hash = sha.ComputeHash(stream);
+            return BitConverter.ToString(hash).Replace("-", string.Empty);
         }
     }
 }
