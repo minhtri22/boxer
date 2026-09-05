@@ -20,6 +20,11 @@ namespace BoxerP0
         public float BrowserNeutralGamma { get; private set; }
         public bool BrowserOrientationReceived { get; private set; }
         public bool BrowserCalibrated { get; private set; }
+        public float LastOrientationEventRealtime { get; private set; } = -1f;
+        public float LastTouchEventRealtime { get; private set; } = -1f;
+        public uint OrientationEventCount { get; private set; }
+        public uint TouchEventCount { get; private set; }
+        public bool TouchActive => _leftFinger >= 0 || _rightFinger >= 0;
 
         private int _leftFinger = -1;
         private Vector2 _leftOrigin;
@@ -160,6 +165,13 @@ namespace BoxerP0
             for (int i = 0; i < Input.touchCount; i++)
             {
                 Touch touch = Input.GetTouch(i);
+                if (touch.phase == TouchPhase.Began || touch.phase == TouchPhase.Moved ||
+                    touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
+                {
+                    LastTouchEventRealtime = Time.realtimeSinceStartup;
+                    TouchEventCount++;
+                }
+
                 bool leftHalf = touch.position.x < Screen.width * 0.5f;
 
                 if (touch.phase == TouchPhase.Began)
@@ -244,7 +256,6 @@ namespace BoxerP0
             }
         }
 
-        // Called by the WebGL host page through unityInstance.SendMessage.
         public void BrowserSetMotionStatus(string status)
         {
             BrowserMotionPermission = string.IsNullOrWhiteSpace(status) ? "UNKNOWN" : status.Trim().ToUpperInvariant();
@@ -254,7 +265,6 @@ namespace BoxerP0
             }
         }
 
-        // Payload: alpha|beta|gamma, invariant-culture decimal values.
         public void BrowserSetOrientation(string payload)
         {
             if (string.IsNullOrWhiteSpace(payload)) return;
@@ -268,6 +278,8 @@ namespace BoxerP0
             BrowserBeta = beta;
             BrowserGamma = gamma;
             BrowserOrientationReceived = true;
+            LastOrientationEventRealtime = Time.realtimeSinceStartup;
+            OrientationEventCount++;
             if (!BrowserCalibrated)
             {
                 HeadInputSource = "WEB_ORIENTATION_READY";
