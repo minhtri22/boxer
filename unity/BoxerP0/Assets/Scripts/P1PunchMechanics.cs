@@ -7,6 +7,7 @@ namespace BoxerP0
     /// Snapshot of whole-body state at punch start.
     /// E0 fields remain diagnostic. P1-A1 promotes only categorical step direction into
     /// a small straight-punch reach coupling; coordination/head metrics remain diagnostic-only.
+    /// P1-A2 adds punch family/hand semantics without changing A1's causal scope.
     /// </summary>
     public readonly struct P1PunchSnapshot
     {
@@ -58,6 +59,8 @@ namespace BoxerP0
             return string.Join(" ",
                 "P1_PUNCH",
                 $"TYPE={PunchLabels.EventToken(Intent)}",
+                $"FAMILY={PunchLabels.Family(Intent).ToString().ToUpperInvariant()}",
+                $"HAND={(PunchLabels.IsRearHand(Intent) ? "REAR" : "LEAD")}",
                 $"STEP={StepState}",
                 $"DIST={F(DistanceMeters)}",
                 $"MOVE_FWD={F(MoveForward)}",
@@ -103,7 +106,7 @@ namespace BoxerP0
             // E0 continuous diagnostic baseline; still not authoritative gameplay logic.
             float rangeFactor = Mathf.Clamp(1f + forward * 0.12f, 0.88f, 1.12f);
 
-            // Coordination remains diagnostic-only in P1-A1.
+            // Coordination remains diagnostic-only in P1-A1/A2.
             float score = 0.72f;
             score += Mathf.Max(0f, forward) * 0.16f;
             score -= Mathf.Max(0f, -forward) * 0.12f;
@@ -137,7 +140,7 @@ namespace BoxerP0
 
         public static bool IsStraightPunch(PunchIntent intent)
         {
-            return intent == PunchIntent.Jab || intent == PunchIntent.Cross;
+            return PunchLabels.Family(intent) == PunchFamily.Straight;
         }
 
         public static float EffectiveStraightReachFactor(PunchIntent intent, string stepState)
@@ -157,7 +160,7 @@ namespace BoxerP0
             float factor = EffectiveStraightReachFactor(intent, stepState);
             if (Mathf.Approximately(factor, 1f)) return targetPose;
 
-            // Only forward extension changes. Height/lateral aim, timing, radius, damage and hooks stay unchanged.
+            // Only forward extension changes. Height/lateral aim, timing, radius, damage and non-straights stay unchanged.
             targetPose.z *= factor;
             return targetPose;
         }
