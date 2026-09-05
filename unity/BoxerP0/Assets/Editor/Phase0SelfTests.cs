@@ -13,11 +13,12 @@ namespace BoxerP0.Editor
             List<string> results = new();
             Run("head dead zone", TestHeadDeadZone, results);
             Run("head sign and bound", TestHeadSignAndBound, results);
-            Run("gesture lead jab", TestGestureJab, results);
-            Run("gesture rear cross", TestGestureCross, results);
-            Run("gesture lead hook", TestGestureLeadHook, results);
-            Run("gesture rear hook", TestGestureRearHook, results);
-            Run("punch labels", TestPunchLabels, results);
+            Run("P1-A2 tap straight family", TestGestureTapStraight, results);
+            Run("P1-A2 held swipe up uppercut", TestGestureUppercut, results);
+            Run("P1-A2 held swipe down overhand", TestGestureOverhand, results);
+            Run("P1-A2 held swipe horizontal hook", TestGestureHook, results);
+            Run("P1-A2 hand selector", TestPunchHandSelector, results);
+            Run("punch labels and families", TestPunchLabels, results);
             Run("geometry hit and miss", TestGeometry, results);
             Run("default fight range can connect", TestDefaultFightRange, results);
             Run("anti-spam state transition", TestActionState, results);
@@ -25,11 +26,13 @@ namespace BoxerP0.Editor
             Run("action reset to guard", TestActionReset, results);
             Run("onboarding head progress", TestOnboardingHead, results);
             Run("onboarding footwork progress", TestOnboardingFootwork, results);
-            Run("onboarding punch progress", TestOnboardingPunches, results);
+            Run("onboarding punch-family progress", TestOnboardingPunches, results);
             Run("P1-A1 straight reach ordering", TestP1A1StraightReachOrdering, results);
             Run("P1-A1 neutral baseline", TestP1A1NeutralBaseline, results);
-            Run("P1-A1 hooks unchanged", TestP1A1HooksUnchanged, results);
+            Run("P1-A1 non-straights unchanged", TestP1A1NonStraightsUnchanged, results);
             Run("P1-A1 causal same-distance boundary", TestP1A1CausalBoundary, results);
+            Run("P1-B1 opponent reach clamp", TestOpponentReachClamp, results);
+            Run("P1-B1 in-range endpoint unchanged", TestOpponentReachInsideUnchanged, results);
 
             string repoRoot = Directory.GetParent(
                 Directory.GetParent(
@@ -60,28 +63,40 @@ namespace BoxerP0.Editor
             AssertNear(0.34f, HeadMotionMath.ResolveOffset(30f), 0.0001f);
         }
 
-        private static void TestGestureJab()
+        private static void TestGestureTapStraight()
         {
-            GestureMetrics metrics = new(new Vector2(10f, 110f), 112f, 0.18f);
-            AssertEqual(PunchIntent.Jab, PunchGestureClassifier.Classify(metrics));
+            GestureMetrics metrics = new(new Vector2(4f, 3f), 6f, 0.10f);
+            AssertEqual(PunchFamily.Straight, PunchGestureClassifier.ClassifyFamily(metrics));
         }
 
-        private static void TestGestureCross()
+        private static void TestGestureUppercut()
         {
-            GestureMetrics metrics = new(new Vector2(20f, 255f), 260f, 0.42f);
-            AssertEqual(PunchIntent.Cross, PunchGestureClassifier.Classify(metrics));
+            GestureMetrics metrics = new(new Vector2(8f, 120f), 123f, 0.24f);
+            AssertEqual(PunchFamily.Uppercut, PunchGestureClassifier.ClassifyFamily(metrics));
         }
 
-        private static void TestGestureLeadHook()
+        private static void TestGestureOverhand()
         {
-            GestureMetrics metrics = new(new Vector2(-180f, 30f), 235f, 0.34f);
-            AssertEqual(PunchIntent.LeadHook, PunchGestureClassifier.Classify(metrics));
+            GestureMetrics metrics = new(new Vector2(-6f, -125f), 128f, 0.26f);
+            AssertEqual(PunchFamily.Overhand, PunchGestureClassifier.ClassifyFamily(metrics));
         }
 
-        private static void TestGestureRearHook()
+        private static void TestGestureHook()
         {
-            GestureMetrics metrics = new(new Vector2(180f, 30f), 235f, 0.34f);
-            AssertEqual(PunchIntent.RearHook, PunchGestureClassifier.Classify(metrics));
+            GestureMetrics metrics = new(new Vector2(150f, 24f), 158f, 0.25f);
+            AssertEqual(PunchFamily.Hook, PunchGestureClassifier.ClassifyFamily(metrics));
+
+            GestureMetrics tooFast = new(new Vector2(150f, 10f), 151f, 0.06f);
+            AssertEqual(PunchFamily.None, PunchGestureClassifier.ClassifyFamily(tooFast));
+        }
+
+        private static void TestPunchHandSelector()
+        {
+            AssertEqual(PunchIntent.Jab, PunchHandSelector.Select(PunchFamily.Straight, PunchIntent.None));
+            AssertEqual(PunchIntent.Cross, PunchHandSelector.Select(PunchFamily.Straight, PunchIntent.Jab));
+            AssertEqual(PunchIntent.LeadHook, PunchHandSelector.Select(PunchFamily.Hook, PunchIntent.Cross));
+            AssertEqual(PunchIntent.RearUppercut, PunchHandSelector.Select(PunchFamily.Uppercut, PunchIntent.LeadHook));
+            AssertEqual(PunchIntent.RearOverhand, PunchHandSelector.Select(PunchFamily.Overhand, PunchIntent.None));
         }
 
         private static void TestPunchLabels()
@@ -90,6 +105,11 @@ namespace BoxerP0.Editor
             AssertEqual("REAR CROSS", PunchLabels.Display(PunchIntent.Cross));
             AssertEqual("LEAD HOOK", PunchLabels.Display(PunchIntent.LeadHook));
             AssertEqual("REAR HOOK", PunchLabels.Display(PunchIntent.RearHook));
+            AssertEqual("LEAD UPPERCUT", PunchLabels.Display(PunchIntent.LeadUppercut));
+            AssertEqual("REAR UPPERCUT", PunchLabels.Display(PunchIntent.RearUppercut));
+            AssertEqual("REAR OVERHAND", PunchLabels.Display(PunchIntent.RearOverhand));
+            AssertEqual(PunchFamily.Uppercut, PunchLabels.Family(PunchIntent.LeadUppercut));
+            AssertEqual(PunchFamily.Overhand, PunchLabels.Family(PunchIntent.RearOverhand));
         }
 
         private static void TestGeometry()
@@ -169,11 +189,11 @@ namespace BoxerP0.Editor
         {
             OnboardingProgress progress = new();
             progress.ObservePunch(PunchIntent.Jab);
-            progress.ObservePunch(PunchIntent.Cross);
             progress.ObservePunch(PunchIntent.LeadHook);
-            AssertTrue(!progress.PunchesReady, "three punch types must not complete punch drill");
-            progress.ObservePunch(PunchIntent.RearHook);
-            AssertTrue(progress.PunchesReady, "all four punch types must complete punch drill");
+            progress.ObservePunch(PunchIntent.LeadUppercut);
+            AssertTrue(!progress.PunchesReady, "three punch families must not complete punch drill");
+            progress.ObservePunch(PunchIntent.RearOverhand);
+            AssertTrue(progress.PunchesReady, "straight/hook/uppercut/overhand must complete punch drill");
         }
 
         private static void TestP1A1StraightReachOrdering()
@@ -197,13 +217,26 @@ namespace BoxerP0.Editor
             AssertNear(target.z, applied.z, 0.0001f);
         }
 
-        private static void TestP1A1HooksUnchanged()
+        private static void TestP1A1NonStraightsUnchanged()
         {
-            Vector3 hook = new(0.11f, 1.39f, 1.05f);
-            Vector3 advancing = P1PunchMechanics.ApplyA1StraightReach(PunchIntent.LeadHook, hook, "ADVANCING");
-            Vector3 retreating = P1PunchMechanics.ApplyA1StraightReach(PunchIntent.RearHook, hook, "RETREATING");
-            AssertNear(hook.z, advancing.z, 0.0001f);
-            AssertNear(hook.z, retreating.z, 0.0001f);
+            Vector3 target = new(0.11f, 1.39f, 1.05f);
+            PunchIntent[] nonStraights =
+            {
+                PunchIntent.LeadHook,
+                PunchIntent.RearHook,
+                PunchIntent.LeadUppercut,
+                PunchIntent.RearUppercut,
+                PunchIntent.LeadOverhand,
+                PunchIntent.RearOverhand
+            };
+
+            foreach (PunchIntent intent in nonStraights)
+            {
+                Vector3 advancing = P1PunchMechanics.ApplyA1StraightReach(intent, target, "ADVANCING");
+                Vector3 retreating = P1PunchMechanics.ApplyA1StraightReach(intent, target, "RETREATING");
+                AssertNear(target.z, advancing.z, 0.0001f);
+                AssertNear(target.z, retreating.z, 0.0001f);
+            }
         }
 
         private static void TestP1A1CausalBoundary()
@@ -221,6 +254,25 @@ namespace BoxerP0.Editor
             Vector3 nearBoundary = new(0f, 0f, 0.97f);
             AssertTrue(CombatGeometry.SegmentSphereIntersects(start, neutral, nearBoundary, 0.01f), "neutral jab must cross near boundary");
             AssertTrue(!CombatGeometry.SegmentSphereIntersects(start, retreating, nearBoundary, 0.01f), "retreating jab must not cross near boundary");
+        }
+
+        private static void TestOpponentReachClamp()
+        {
+            Vector3 start = Vector3.zero;
+            Vector3 desired = new(0f, 0f, 2f);
+            Vector3 clamped = OpponentReachMath.ClampEndpoint(start, desired, 1.02f);
+            AssertNear(1.02f, Vector3.Distance(start, clamped), 0.0001f);
+            AssertTrue(clamped.z < desired.z, "out-of-range target must be clamped before visual/hit resolution");
+        }
+
+        private static void TestOpponentReachInsideUnchanged()
+        {
+            Vector3 start = new(0.1f, 1.3f, 0.2f);
+            Vector3 desired = new(0.1f, 1.5f, -0.5f);
+            Vector3 resolved = OpponentReachMath.ClampEndpoint(start, desired, 1.02f);
+            AssertNear(desired.x, resolved.x, 0.0001f);
+            AssertNear(desired.y, resolved.y, 0.0001f);
+            AssertNear(desired.z, resolved.z, 0.0001f);
         }
 
         private static void AssertNear(float expected, float actual, float tolerance)
