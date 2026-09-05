@@ -1,3 +1,4 @@
+using System.Globalization;
 using UnityEngine;
 
 namespace BoxerP0
@@ -16,6 +17,9 @@ namespace BoxerP0
         private SphereCollider _rightGuardCollider;
         private Vector3 _leftGuardLocal;
         private Vector3 _rightGuardLocal;
+        private Vector3 _attackTargetLocal;
+        private float _attackReachMeters;
+        private bool _attackWasClamped;
         private float _nextAttackTime;
         private bool _bodyAttack;
         private bool _resolvedThisAttack;
@@ -24,6 +28,8 @@ namespace BoxerP0
         private const float CommitSeconds = 0.34f;
         private const float ExtendSeconds = 0.17f;
         private const float RecoverSeconds = 0.48f;
+        private const float MaxHeadReachMeters = 1.02f;
+        private const float MaxBodyReachMeters = 0.96f;
 
         public bool CounterWindowOpen => _action.CounterWindowOpen;
         public bool CombatEnabled { get; private set; } = true;
@@ -88,6 +94,9 @@ namespace BoxerP0
 
         private void FacePlayer()
         {
+            // P1-B1 fairness: once a punch commits it must not home/rotate after a retreating player.
+            if (_action.IsBusy) return;
+
             Vector3 toward = _player.transform.position - transform.position;
             toward.y = 0f;
             if (toward.sqrMagnitude > 0.01f)
@@ -109,12 +118,30 @@ namespace BoxerP0
             _bodyAttack = selection == 3;
             if (_action.TryStart(intent))
             {
+                LockAttackTarget(intent);
                 AttackEventCount++;
                 _resolvedThisAttack = false;
-                _telemetry?.RecordEvent(_bodyAttack
+                string baseEvent = _bodyAttack
                     ? "OPPONENT_COMMIT_BODY"
-                    : $"OPPONENT_PUNCH_{PunchLabels.EventToken(intent)}");
+                    : $"OPPONENT_PUNCH_{PunchLabels.EventToken(intent)}";
+                _telemetry?.RecordEvent(
+                    $"{baseEvent} REACH={F(_attackReachMeters)} CLAMPED={(_attackWasClamped ? 1 : 0)}");
             }
+        }
+
+        private void LockAttackTarget(PunchIntent intent)
+        {
+            Transform active = ActiveGlove(intent);
+            Vector3 guardLocal = active == _leftGlove ? _leftGuardLocal : _rightGuardLocal;
+            Vector3 startWorld = transform.TransformPoint(guardLocal);
+            Vector3 desiredWorld = _bodyAttack
+                ? _player.transform.TransformPoint(new Vector3(0f, 1.02f, 0.03f))
+                : _player.transform.TransformPoint(new Vector3(0f, 1.62f, 0.03f));
+
+            _attackReachMeters = _bodyAttack ? MaxBodyReachMeters : MaxHeadReachMeters;
+            Vector3 clampedWorld = OpponentReachMath.ClampEndpoint(startWorld, desiredWorld, _attackReachMeters);
+            _attackWasClamped = (clampedWorld - desiredWorld).sqrMagnitude > 0.000001f;
+            _attackTargetLocal = transform.InverseTransformPoint(clampedWorld);
         }
 
         private void UpdateAttack()
@@ -139,10 +166,7 @@ namespace BoxerP0
             }
 
             Vector3 commitPose = activeGuard + new Vector3(active == _leftGlove ? -0.10f : 0.10f, 0.08f, 0.18f);
-            Vector3 worldTarget = _bodyAttack
-                ? _player.transform.TransformPoint(new Vector3(0f, 1.02f, 0.03f))
-                : _player.transform.TransformPoint(new Vector3(0f, 1.62f, 0.03f));
-            Vector3 targetLocal = transform.InverseTransformPoint(worldTarget);
+            Vector3 targetLocal = _attackTargetLocal;
 
             switch (_action.Phase)
             {
@@ -202,7 +226,7 @@ namespace BoxerP0
 
         private Transform ActiveGlove(PunchIntent intent)
         {
-            return intent == PunchIntent.Cross || intent == PunchIntent.RearHook ? _rightGlove : _leftGlove;
+            return PunchLabels.IsRearHand(intent) ? _rightGlove : _leftGlove;
         }
 
         private void ReturnToGuard()
@@ -225,6 +249,7 @@ namespace BoxerP0
             return Mathf.Lerp(min, max, t);
         }
 
+        private static string F(float value) => value.ToString("F3", CultureInfo.InvariantCulture);
         private static float Smooth01(float t) => t * t * (3f - 2f * t);
 
         private static float MaxScale(Transform value)
