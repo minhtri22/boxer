@@ -171,6 +171,15 @@ namespace BoxerP0
 
             Vector3 commitPose = activeGuard + new Vector3(active == _leftGlove ? -0.08f : 0.08f, -0.06f, -0.08f);
             Vector3 targetPose = PunchTargetLocal(_action.Intent, active == _leftGlove);
+            if (_hasP1PunchSnapshot)
+            {
+                // P1-A1: promote ONLY step direction into straight-punch reach.
+                // Hooks, timing, radius, coordination score, head state and damage semantics remain unchanged.
+                targetPose = P1PunchMechanics.ApplyA1StraightReach(
+                    _action.Intent,
+                    targetPose,
+                    _p1PunchSnapshot.StepState);
+            }
 
             switch (_action.Phase)
             {
