@@ -26,6 +26,10 @@ namespace BoxerP0.Editor
             Run("onboarding head progress", TestOnboardingHead, results);
             Run("onboarding footwork progress", TestOnboardingFootwork, results);
             Run("onboarding punch progress", TestOnboardingPunches, results);
+            Run("P1-A1 straight reach ordering", TestP1A1StraightReachOrdering, results);
+            Run("P1-A1 neutral baseline", TestP1A1NeutralBaseline, results);
+            Run("P1-A1 hooks unchanged", TestP1A1HooksUnchanged, results);
+            Run("P1-A1 causal same-distance boundary", TestP1A1CausalBoundary, results);
 
             string repoRoot = Directory.GetParent(
                 Directory.GetParent(
@@ -170,6 +174,53 @@ namespace BoxerP0.Editor
             AssertTrue(!progress.PunchesReady, "three punch types must not complete punch drill");
             progress.ObservePunch(PunchIntent.RearHook);
             AssertTrue(progress.PunchesReady, "all four punch types must complete punch drill");
+        }
+
+        private static void TestP1A1StraightReachOrdering()
+        {
+            float advancing = P1PunchMechanics.EffectiveStraightReachFactor(PunchIntent.Jab, "ADVANCING");
+            float neutral = P1PunchMechanics.EffectiveStraightReachFactor(PunchIntent.Jab, "NEUTRAL");
+            float retreating = P1PunchMechanics.EffectiveStraightReachFactor(PunchIntent.Jab, "RETREATING");
+            AssertTrue(advancing > neutral, "advancing straight reach must exceed neutral");
+            AssertTrue(neutral > retreating, "neutral straight reach must exceed retreating");
+            AssertNear(1.06f, advancing, 0.0001f);
+            AssertNear(1.00f, neutral, 0.0001f);
+            AssertNear(0.94f, retreating, 0.0001f);
+        }
+
+        private static void TestP1A1NeutralBaseline()
+        {
+            Vector3 target = new(0.04f, 1.44f, 1.34f);
+            Vector3 applied = P1PunchMechanics.ApplyA1StraightReach(PunchIntent.Cross, target, "NEUTRAL");
+            AssertNear(target.x, applied.x, 0.0001f);
+            AssertNear(target.y, applied.y, 0.0001f);
+            AssertNear(target.z, applied.z, 0.0001f);
+        }
+
+        private static void TestP1A1HooksUnchanged()
+        {
+            Vector3 hook = new(0.11f, 1.39f, 1.05f);
+            Vector3 advancing = P1PunchMechanics.ApplyA1StraightReach(PunchIntent.LeadHook, hook, "ADVANCING");
+            Vector3 retreating = P1PunchMechanics.ApplyA1StraightReach(PunchIntent.RearHook, hook, "RETREATING");
+            AssertNear(hook.z, advancing.z, 0.0001f);
+            AssertNear(hook.z, retreating.z, 0.0001f);
+        }
+
+        private static void TestP1A1CausalBoundary()
+        {
+            Vector3 start = Vector3.zero;
+            Vector3 baseTarget = new(0f, 0f, 1f);
+            Vector3 advancing = P1PunchMechanics.ApplyA1StraightReach(PunchIntent.Jab, baseTarget, "ADVANCING");
+            Vector3 neutral = P1PunchMechanics.ApplyA1StraightReach(PunchIntent.Jab, baseTarget, "NEUTRAL");
+            Vector3 retreating = P1PunchMechanics.ApplyA1StraightReach(PunchIntent.Jab, baseTarget, "RETREATING");
+
+            Vector3 farBoundary = new(0f, 0f, 1.03f);
+            AssertTrue(CombatGeometry.SegmentSphereIntersects(start, advancing, farBoundary, 0.01f), "advancing jab must cross far boundary");
+            AssertTrue(!CombatGeometry.SegmentSphereIntersects(start, neutral, farBoundary, 0.01f), "neutral jab must not cross far boundary");
+
+            Vector3 nearBoundary = new(0f, 0f, 0.97f);
+            AssertTrue(CombatGeometry.SegmentSphereIntersects(start, neutral, nearBoundary, 0.01f), "neutral jab must cross near boundary");
+            AssertTrue(!CombatGeometry.SegmentSphereIntersects(start, retreating, nearBoundary, 0.01f), "retreating jab must not cross near boundary");
         }
 
         private static void AssertNear(float expected, float actual, float tolerance)
