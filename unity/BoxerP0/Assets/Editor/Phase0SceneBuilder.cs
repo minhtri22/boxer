@@ -19,6 +19,7 @@ namespace BoxerP0.Editor
             GameObject root = new("Boxer P0 Bootstrap");
             root.AddComponent<BoxerBootstrap>();
             root.AddComponent<BoxerVisualShell>();
+            root.AddComponent<P1PunchGuide>();
             string scenePath = "Assets/Scenes/Phase0Boxer.unity";
             EditorSceneManager.SaveScene(scene, scenePath);
             EditorBuildSettings.scenes = new[] { new EditorBuildSettingsScene(scenePath, true) };
@@ -112,8 +113,11 @@ namespace BoxerP0.Editor
                 $"diagnostic_overlay=true\n" +
                 $"web_telemetry_mode=in_memory_counters_no_csv\n" +
                 $"visual_shell=procedural_p0_5\n" +
-                $"training_ui=mobile_readability_overlay\n" +
+                $"training_ui=mobile_readability_overlay+p1_a2_punch_guide\n" +
                 $"hud_semantics=reactive_visual_only_no_combat_gating\n" +
+                $"p1_a1=step_to_straight_reach_1.06_1.00_0.94\n" +
+                $"p1_a2=tap_straight_hold_up_uppercut_hold_horizontal_hook_hold_down_overhand\n" +
+                $"p1_b1=locked_opponent_target_finite_reach_no_homing\n" +
                 $"build_commit={buildMarker}\n");
             Debug.Log($"P0_WEB_BUILD={buildDir} marker={buildMarker} data={dataSha256} wasm={wasmSha256}");
         }
