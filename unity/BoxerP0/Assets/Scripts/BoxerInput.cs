@@ -55,7 +55,8 @@ namespace BoxerP0
 #if UNITY_WEBGL && !UNITY_EDITOR
             HeadInputSource = "WEB_ORIENTATION_PENDING";
             BrowserMotionPermission = "PENDING";
-            Time.timeScale = 0f;
+            // P1 UAT startup fix: never freeze the global simulation while Safari motion is pending.
+            // Head input may remain neutral until orientation arrives, while footwork/punch/training keep running.
             return;
 #endif
 
@@ -111,7 +112,6 @@ namespace BoxerP0
                 BrowserCalibrated = true;
                 HeadAngleDegrees = 0f;
                 HeadInputSource = "WEB_ORIENTATION";
-                Time.timeScale = 1f;
             }
             return;
 #endif
@@ -266,8 +266,19 @@ namespace BoxerP0
         public void BrowserSetMotionStatus(string status)
         {
             BrowserMotionPermission = string.IsNullOrWhiteSpace(status) ? "UNKNOWN" : status.Trim().ToUpperInvariant();
-            if (BrowserMotionPermission != "GRANTED")
+            if (BrowserMotionPermission == "GRANTED")
             {
+                // BrowserCalibrated also serves as the existing Bootstrap readiness flag.
+                // Gameplay is unlocked immediately; the first orientation event establishes the neutral head angle.
+                BrowserCalibrated = true;
+                if (!BrowserOrientationReceived)
+                {
+                    HeadInputSource = "WEB_MOTION_GRANTED_WAITING_ORIENTATION";
+                }
+            }
+            else
+            {
+                BrowserCalibrated = false;
                 HeadInputSource = $"WEB_{BrowserMotionPermission}";
             }
         }
@@ -281,15 +292,29 @@ namespace BoxerP0
             if (!float.TryParse(fields[1], NumberStyles.Float, CultureInfo.InvariantCulture, out float beta)) return;
             if (!float.TryParse(fields[2], NumberStyles.Float, CultureInfo.InvariantCulture, out float gamma)) return;
 
+            bool firstOrientation = !BrowserOrientationReceived;
             BrowserAlpha = alpha;
             BrowserBeta = beta;
             BrowserGamma = gamma;
             BrowserOrientationReceived = true;
             LastOrientationEventRealtime = Time.realtimeSinceStartup;
             OrientationEventCount++;
-            if (!BrowserCalibrated)
+
+            if (firstOrientation && BrowserMotionPermission == "GRANTED")
+            {
+                // Late sensor delivery is allowed: establish neutral on the first real sample without reload.
+                BrowserNeutralGamma = BrowserGamma;
+                BrowserCalibrated = true;
+                HeadAngleDegrees = 0f;
+                HeadInputSource = "WEB_ORIENTATION";
+            }
+            else if (!BrowserCalibrated)
             {
                 HeadInputSource = "WEB_ORIENTATION_READY";
+            }
+            else
+            {
+                HeadInputSource = "WEB_ORIENTATION";
             }
         }
 
