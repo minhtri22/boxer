@@ -4,8 +4,9 @@ using UnityEngine;
 namespace BoxerP0
 {
     /// <summary>
-    /// P1-E0 diagnostic-only snapshot of whole-body state at punch start.
-    /// This model MUST NOT alter combat outcomes until a later P1 experiment explicitly promotes it.
+    /// Snapshot of whole-body state at punch start.
+    /// E0 fields remain diagnostic. P1-A1 promotes only categorical step direction into
+    /// a small straight-punch reach coupling; coordination/head metrics remain diagnostic-only.
     /// </summary>
     public readonly struct P1PunchSnapshot
     {
@@ -50,6 +51,8 @@ namespace BoxerP0
             CoordinationScore = coordinationScore;
         }
 
+        public float A1StraightReachFactor => P1PunchMechanics.EffectiveStraightReachFactor(Intent, StepState);
+
         public string ToSemanticEvent(CombatOutcome outcome, bool counter)
         {
             return string.Join(" ",
@@ -62,6 +65,7 @@ namespace BoxerP0
                 $"HEAD_DEG={F(HeadDegrees)}",
                 $"HEAD_OFF={F(HeadOffsetMeters)}",
                 $"RANGE={F(RangeFactor)}",
+                $"A1_REACH={F(A1StraightReachFactor)}",
                 $"COORD={F(CoordinationScore)}",
                 $"OUTCOME={outcome.ToString().ToUpperInvariant()}",
                 $"COUNTER={(counter ? 1 : 0)}");
@@ -74,6 +78,11 @@ namespace BoxerP0
     {
         private const float AdvancingThreshold = 0.20f;
         private const float RetreatingThreshold = -0.20f;
+
+        // P1-A1 intentionally uses a small categorical effect to isolate one causal variable.
+        public const float A1AdvancingStraightReach = 1.06f;
+        public const float A1NeutralStraightReach = 1.00f;
+        public const float A1RetreatingStraightReach = 0.94f;
 
         public static P1PunchSnapshot Capture(
             PunchIntent intent,
@@ -89,16 +98,12 @@ namespace BoxerP0
 
             float forward = Mathf.Clamp(movementIntent.y, -1f, 1f);
             float lateral = Mathf.Clamp(movementIntent.x, -1f, 1f);
-            string stepState = forward > AdvancingThreshold
-                ? "ADVANCING"
-                : forward < RetreatingThreshold
-                    ? "RETREATING"
-                    : "NEUTRAL";
+            string stepState = ResolveStepState(forward);
 
-            // P1-E0 diagnostic baseline only. This does not modify punch range yet.
+            // E0 continuous diagnostic baseline; still not authoritative gameplay logic.
             float rangeFactor = Mathf.Clamp(1f + forward * 0.12f, 0.88f, 1.12f);
 
-            // Coordination is deliberately simple/falsifiable for E0 instrumentation.
+            // Coordination remains diagnostic-only in P1-A1.
             float score = 0.72f;
             score += Mathf.Max(0f, forward) * 0.16f;
             score -= Mathf.Max(0f, -forward) * 0.12f;
@@ -119,6 +124,42 @@ namespace BoxerP0
                 stepState,
                 rangeFactor,
                 coordination);
+        }
+
+        public static string ResolveStepState(float forward)
+        {
+            return forward > AdvancingThreshold
+                ? "ADVANCING"
+                : forward < RetreatingThreshold
+                    ? "RETREATING"
+                    : "NEUTRAL";
+        }
+
+        public static bool IsStraightPunch(PunchIntent intent)
+        {
+            return intent == PunchIntent.Jab || intent == PunchIntent.Cross;
+        }
+
+        public static float EffectiveStraightReachFactor(PunchIntent intent, string stepState)
+        {
+            if (!IsStraightPunch(intent)) return 1f;
+
+            return stepState switch
+            {
+                "ADVANCING" => A1AdvancingStraightReach,
+                "RETREATING" => A1RetreatingStraightReach,
+                _ => A1NeutralStraightReach
+            };
+        }
+
+        public static Vector3 ApplyA1StraightReach(PunchIntent intent, Vector3 targetPose, string stepState)
+        {
+            float factor = EffectiveStraightReachFactor(intent, stepState);
+            if (Mathf.Approximately(factor, 1f)) return targetPose;
+
+            // Only forward extension changes. Height/lateral aim, timing, radius, damage and hooks stay unchanged.
+            targetPose.z *= factor;
+            return targetPose;
         }
     }
 }
