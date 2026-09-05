@@ -68,7 +68,7 @@ namespace BoxerP0.Editor
                 scenes = new[] { "Assets/Scenes/Phase0Boxer.unity" },
                 locationPathName = buildDir,
                 target = BuildTarget.WebGL,
-                options = BuildOptions.Development
+                options = BuildOptions.None
             };
             UnityEditor.Build.Reporting.BuildReport report = BuildPipeline.BuildPlayer(options);
             if (report.summary.result != UnityEditor.Build.Reporting.BuildResult.Succeeded)
@@ -80,7 +80,7 @@ namespace BoxerP0.Editor
             Directory.CreateDirectory(evidenceDir);
             File.WriteAllText(
                 Path.Combine(evidenceDir, "build-metadata.txt"),
-                $"evidence=WEB_BUILD\nunity={Application.unityVersion}\ntarget=WebGL\nresult={report.summary.result}\noutput={buildDir}\nsize_bytes={report.summary.totalSize}\ntemplate=PROJECT:BoxerP0Mobile\ncompression=disabled_for_static_pages\ndevelopment_build=true\n");
+                $"evidence=WEB_BUILD\nunity={Application.unityVersion}\ntarget=WebGL\nresult={report.summary.result}\noutput={buildDir}\nsize_bytes={report.summary.totalSize}\ntemplate=PROJECT:BoxerP0Mobile\ncompression=disabled_for_static_pages\ndevelopment_build=false\n");
             Debug.Log($"P0_WEB_BUILD={buildDir}");
         }
     }
