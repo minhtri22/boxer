@@ -24,6 +24,7 @@ namespace BoxerP0
         public float LastTouchEventRealtime { get; private set; } = -1f;
         public uint OrientationEventCount { get; private set; }
         public uint TouchEventCount { get; private set; }
+        public uint PunchEventCount { get; private set; }
         public bool TouchActive => _leftFinger >= 0 || _rightFinger >= 0;
 
         private int _leftFinger = -1;
@@ -252,6 +253,7 @@ namespace BoxerP0
             LastPunchIntent = intent;
             if (intent != PunchIntent.None)
             {
+                PunchEventCount++;
                 PunchRequested?.Invoke(intent);
             }
         }
