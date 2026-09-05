@@ -9,7 +9,20 @@ namespace BoxerP0
         Jab,
         Cross,
         LeadHook,
-        RearHook
+        RearHook,
+        LeadUppercut,
+        RearUppercut,
+        LeadOverhand,
+        RearOverhand
+    }
+
+    public enum PunchFamily
+    {
+        None,
+        Straight,
+        Hook,
+        Uppercut,
+        Overhand
     }
 
     public enum CombatOutcome
@@ -48,14 +61,14 @@ namespace BoxerP0
         public bool MoveRight { get; private set; }
         public bool MoveForward { get; private set; }
         public bool MoveBack { get; private set; }
-        public bool LeadJab { get; private set; }
-        public bool RearCross { get; private set; }
-        public bool LeadHook { get; private set; }
-        public bool RearHook { get; private set; }
+        public bool Straight { get; private set; }
+        public bool Hook { get; private set; }
+        public bool Uppercut { get; private set; }
+        public bool Overhand { get; private set; }
 
         public bool HeadReady => HeadLeft && HeadRight;
         public bool FootworkReady => MoveLeft && MoveRight && MoveForward && MoveBack;
-        public bool PunchesReady => LeadJab && RearCross && LeadHook && RearHook;
+        public bool PunchesReady => Straight && Hook && Uppercut && Overhand;
 
         public void ObserveHead(float offsetMeters, float threshold = 0.12f)
         {
@@ -73,19 +86,19 @@ namespace BoxerP0
 
         public void ObservePunch(PunchIntent intent)
         {
-            switch (intent)
+            switch (PunchLabels.Family(intent))
             {
-                case PunchIntent.Jab:
-                    LeadJab = true;
+                case PunchFamily.Straight:
+                    Straight = true;
                     break;
-                case PunchIntent.Cross:
-                    RearCross = true;
+                case PunchFamily.Hook:
+                    Hook = true;
                     break;
-                case PunchIntent.LeadHook:
-                    LeadHook = true;
+                case PunchFamily.Uppercut:
+                    Uppercut = true;
                     break;
-                case PunchIntent.RearHook:
-                    RearHook = true;
+                case PunchFamily.Overhand:
+                    Overhand = true;
                     break;
             }
         }
@@ -101,8 +114,32 @@ namespace BoxerP0
                 PunchIntent.Cross => "REAR CROSS",
                 PunchIntent.LeadHook => "LEAD HOOK",
                 PunchIntent.RearHook => "REAR HOOK",
+                PunchIntent.LeadUppercut => "LEAD UPPERCUT",
+                PunchIntent.RearUppercut => "REAR UPPERCUT",
+                PunchIntent.LeadOverhand => "LEAD OVERHAND",
+                PunchIntent.RearOverhand => "REAR OVERHAND",
                 _ => "NONE"
             };
+        }
+
+        public static PunchFamily Family(PunchIntent intent)
+        {
+            return intent switch
+            {
+                PunchIntent.Jab or PunchIntent.Cross => PunchFamily.Straight,
+                PunchIntent.LeadHook or PunchIntent.RearHook => PunchFamily.Hook,
+                PunchIntent.LeadUppercut or PunchIntent.RearUppercut => PunchFamily.Uppercut,
+                PunchIntent.LeadOverhand or PunchIntent.RearOverhand => PunchFamily.Overhand,
+                _ => PunchFamily.None
+            };
+        }
+
+        public static bool IsRearHand(PunchIntent intent)
+        {
+            return intent == PunchIntent.Cross ||
+                   intent == PunchIntent.RearHook ||
+                   intent == PunchIntent.RearUppercut ||
+                   intent == PunchIntent.RearOverhand;
         }
 
         public static string EventToken(PunchIntent intent)
@@ -128,26 +165,69 @@ namespace BoxerP0
         public float Speed => PathLength / Duration;
     }
 
+    /// <summary>
+    /// P1-A2 gesture vocabulary. Gesture selects punch FAMILY only:
+    /// tap = straight, held up = uppercut, held horizontal = hook, held down = overhand.
+    /// Hand selection is intentionally separate from gesture classification.
+    /// </summary>
     public static class PunchGestureClassifier
     {
+        public const float HoldSeconds = 0.12f;
+
+        public static PunchFamily ClassifyFamily(GestureMetrics metrics, float pixelScale = 1f)
+        {
+            float tapTravel = 24f * pixelScale;
+            float swipeTravel = 42f * pixelScale;
+
+            if (metrics.StraightDistance <= tapTravel && metrics.PathLength <= tapTravel * 1.35f)
+            {
+                return PunchFamily.Straight;
+            }
+
+            if (metrics.Duration < HoldSeconds ||
+                metrics.PathLength < swipeTravel ||
+                metrics.StraightDistance < swipeTravel * 0.65f)
+            {
+                return PunchFamily.None;
+            }
+
+            float absX = Mathf.Abs(metrics.Displacement.x);
+            float absY = Mathf.Abs(metrics.Displacement.y);
+            if (absX >= absY * 0.85f)
+            {
+                return PunchFamily.Hook;
+            }
+
+            return metrics.Displacement.y > 0f
+                ? PunchFamily.Uppercut
+                : PunchFamily.Overhand;
+        }
+
+        // Compatibility helper for synthetic/editor callers. Runtime touch input uses
+        // ClassifyFamily + PunchHandSelector so gesture never directly encodes the hand.
         public static PunchIntent Classify(GestureMetrics metrics, float pixelScale = 1f)
         {
-            float minTravel = 42f * pixelScale;
-            if (metrics.PathLength < minTravel || metrics.StraightDistance < minTravel * 0.65f)
-            {
-                return PunchIntent.None;
-            }
+            return PunchHandSelector.Select(ClassifyFamily(metrics, pixelScale), PunchIntent.None);
+        }
+    }
 
-            float horizontalBias = Mathf.Abs(metrics.Displacement.x) /
-                                   Mathf.Max(1f, Mathf.Abs(metrics.Displacement.y));
-            bool curvedOrLateral = metrics.Straightness < 0.82f || horizontalBias > 1.15f;
-            if (curvedOrLateral)
-            {
-                return metrics.Displacement.x <= 0f ? PunchIntent.LeadHook : PunchIntent.RearHook;
-            }
+    public static class PunchHandSelector
+    {
+        public static PunchIntent Select(PunchFamily family, PunchIntent previousIntent)
+        {
+            bool previousRear = PunchLabels.IsRearHand(previousIntent);
+            bool useRear = family == PunchFamily.Overhand
+                ? true
+                : previousIntent != PunchIntent.None && !previousRear;
 
-            bool shortFast = metrics.StraightDistance < 165f * pixelScale && metrics.Speed > 430f * pixelScale;
-            return shortFast ? PunchIntent.Jab : PunchIntent.Cross;
+            return family switch
+            {
+                PunchFamily.Straight => useRear ? PunchIntent.Cross : PunchIntent.Jab,
+                PunchFamily.Hook => useRear ? PunchIntent.RearHook : PunchIntent.LeadHook,
+                PunchFamily.Uppercut => useRear ? PunchIntent.RearUppercut : PunchIntent.LeadUppercut,
+                PunchFamily.Overhand => useRear ? PunchIntent.RearOverhand : PunchIntent.LeadOverhand,
+                _ => PunchIntent.None
+            };
         }
     }
 
@@ -185,6 +265,21 @@ namespace BoxerP0
             float t = Mathf.Clamp01(Vector3.Dot(center - start, segment) / lengthSq);
             Vector3 closest = start + segment * t;
             return (center - closest).sqrMagnitude <= radius * radius;
+        }
+    }
+
+    public static class OpponentReachMath
+    {
+        public static Vector3 ClampEndpoint(Vector3 start, Vector3 desiredEnd, float maxReach)
+        {
+            Vector3 delta = desiredEnd - start;
+            float distance = delta.magnitude;
+            if (distance <= Mathf.Max(0f, maxReach) || distance <= 0.0001f)
+            {
+                return desiredEnd;
+            }
+
+            return start + delta / distance * maxReach;
         }
     }
 
