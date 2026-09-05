@@ -34,20 +34,23 @@
     let unityLoading = false;
 
     const buildUrl = 'Build';
-    const loaderUrl = buildUrl + '/{{{ LOADER_FILENAME }}}';
+    const productVersion = {{{ JSON.stringify(PRODUCT_VERSION) }}};
+    const assetVersion = encodeURIComponent(productVersion || 'unknown');
+    const versioned = (url) => `${url}?v=${assetVersion}`;
+    const loaderUrl = versioned(buildUrl + '/{{{ LOADER_FILENAME }}}');
     const config = {
-      dataUrl: buildUrl + '/{{{ DATA_FILENAME }}}',
-      frameworkUrl: buildUrl + '/{{{ FRAMEWORK_FILENAME }}}',
+      dataUrl: versioned(buildUrl + '/{{{ DATA_FILENAME }}}'),
+      frameworkUrl: versioned(buildUrl + '/{{{ FRAMEWORK_FILENAME }}}'),
 #if USE_WASM
-      codeUrl: buildUrl + '/{{{ CODE_FILENAME }}}',
+      codeUrl: versioned(buildUrl + '/{{{ CODE_FILENAME }}}'),
 #endif
 #if SYMBOLS_FILENAME
-      symbolsUrl: buildUrl + '/{{{ SYMBOLS_FILENAME }}}',
+      symbolsUrl: versioned(buildUrl + '/{{{ SYMBOLS_FILENAME }}}'),
 #endif
       streamingAssetsUrl: 'StreamingAssets',
       companyName: {{{ JSON.stringify(COMPANY_NAME) }}},
       productName: {{{ JSON.stringify(PRODUCT_NAME) }}},
-      productVersion: {{{ JSON.stringify(PRODUCT_VERSION) }}},
+      productVersion: productVersion,
     };
 
     function setStatus(text) {
@@ -67,7 +70,7 @@
       latestOrientationPayload = `${a}|${b}|${g}`;
       send('BrowserSetOrientation', latestOrientationPayload);
       if (unityInstance && !calibrateButton.disabled) {
-        setStatus('MOTION GRANTED — orientation received. Hold neutral, then calibrate.');
+        setStatus(`MOTION GRANTED — orientation received. Build ${productVersion}. Hold neutral, then calibrate.`);
       }
     }
 
@@ -100,11 +103,11 @@
           calibrateButton.classList.remove('hidden');
           calibrateButton.disabled = !orientationReceived;
           setStatus(orientationReceived
-            ? 'MOTION GRANTED — hold neutral, then calibrate.'
-            : 'MOTION GRANTED — waiting for device orientation...');
+            ? `MOTION GRANTED — build ${productVersion}. Hold neutral, then calibrate.`
+            : `MOTION GRANTED — build ${productVersion}. Waiting for device orientation...`);
           gate.classList.add('compact');
         }).catch(message => {
-          setStatus('UNITY LOAD FAILED — ' + message);
+          setStatus(`UNITY LOAD FAILED — build ${productVersion} — ${message}`);
         });
       };
       document.body.appendChild(script);
@@ -113,14 +116,14 @@
     enableButton.addEventListener('click', async () => {
       enableButton.disabled = true;
       permissionStatus = await requestMotionPermission();
-      setStatus('MOTION ' + permissionStatus);
+      setStatus('MOTION ' + permissionStatus + ' — build ' + productVersion);
       if (permissionStatus !== 'GRANTED') {
         enableButton.disabled = false;
         return;
       }
       window.addEventListener('deviceorientation', onOrientation, true);
       setTimeout(() => {
-        if (!orientationReceived) setStatus('DEVICE ORIENTATION NOT RECEIVED');
+        if (!orientationReceived) setStatus('DEVICE ORIENTATION NOT RECEIVED — build ' + productVersion);
       }, 2500);
       loadUnity();
     });
