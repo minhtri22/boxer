@@ -28,6 +28,7 @@ namespace BoxerP0
         public bool CounterWindowOpen => _action.CounterWindowOpen;
         public bool CombatEnabled { get; private set; } = true;
         public string ActionLabel => _action.IsBusy ? $"{PunchLabels.Display(_action.Intent)}:{_action.Phase}" : "READING";
+        public uint AttackEventCount { get; private set; }
 
         public void Initialize(
             PlayerBoxer player,
@@ -108,6 +109,7 @@ namespace BoxerP0
             _bodyAttack = selection == 3;
             if (_action.TryStart(intent))
             {
+                AttackEventCount++;
                 _resolvedThisAttack = false;
                 _telemetry?.RecordEvent(_bodyAttack
                     ? "OPPONENT_COMMIT_BODY"
