@@ -28,6 +28,12 @@ namespace BoxerP0
 
         private void Start()
         {
+#if UNITY_WEBGL && !UNITY_EDITOR
+            // Safari/WebGL is only the P0 interaction surrogate. Keep authoritative counters and
+            // last-event state in memory, but avoid persistent CSV/file-system churn during combat.
+            LogPath = "WEB_IN_MEMORY_ONLY";
+            return;
+#else
             try
             {
                 string directory = Path.Combine(Application.persistentDataPath, "BoxerP0");
@@ -41,10 +47,14 @@ namespace BoxerP0
             {
                 Debug.LogWarning($"P0 telemetry file unavailable: {ex.Message}");
             }
+#endif
         }
 
         private void Update()
         {
+#if UNITY_WEBGL && !UNITY_EDITOR
+            return;
+#else
             if (Time.unscaledTime < _nextSample || InputSource == null || Player == null || Opponent == null)
             {
                 return;
@@ -52,6 +62,7 @@ namespace BoxerP0
 
             _nextSample = Time.unscaledTime + 0.1f;
             WriteRow();
+#endif
         }
 
         public void RecordBoutStart()
@@ -69,7 +80,6 @@ namespace BoxerP0
 
         public string CompleteBout()
         {
-            // P0 TEST-ONLY WIN RULE: valid landed hits only. Counter hits are a subset and are not double-counted.
             BoutResult = PlayerHits > OpponentHits
                 ? "PLAYER_WIN"
                 : PlayerHits < OpponentHits
@@ -111,13 +121,17 @@ namespace BoxerP0
                 }
             }
 
+#if !(UNITY_WEBGL && !UNITY_EDITOR)
             WriteRow();
+#endif
         }
 
         public void RecordEvent(string value)
         {
             LastEvent = value;
+#if !(UNITY_WEBGL && !UNITY_EDITOR)
             WriteRow();
+#endif
         }
 
         private void WriteRow()
