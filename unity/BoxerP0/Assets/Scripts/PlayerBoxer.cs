@@ -165,16 +165,16 @@ namespace BoxerP0
                 return;
             }
 
-            Vector3 activeGuard = active == _leftGlove ? _leftGuardLocal : _rightGuardLocal;
+            bool left = active == _leftGlove;
+            Vector3 activeGuard = left ? _leftGuardLocal : _rightGuardLocal;
             Vector3 passiveGuard = passive == _leftGlove ? _leftGuardLocal : _rightGuardLocal;
             passive.localPosition = Vector3.Lerp(passive.localPosition, passiveGuard, 18f * Time.deltaTime);
 
-            Vector3 commitPose = activeGuard + new Vector3(active == _leftGlove ? -0.08f : 0.08f, -0.06f, -0.08f);
-            Vector3 targetPose = PunchTargetLocal(_action.Intent, active == _leftGlove);
+            Vector3 commitPose = PunchCommitPose(_action.Intent, activeGuard, left);
+            Vector3 targetPose = PunchTargetLocal(_action.Intent, left);
             if (_hasP1PunchSnapshot)
             {
-                // P1-A1: promote ONLY step direction into straight-punch reach.
-                // Hooks, timing, radius, coordination score, head state and damage semantics remain unchanged.
+                // P1-A1 remains isolated: only straight-punch forward reach is step-coupled.
                 targetPose = P1PunchMechanics.ApplyA1StraightReach(
                     _action.Intent,
                     targetPose,
@@ -190,7 +190,7 @@ namespace BoxerP0
                     active.localPosition = Vector3.Lerp(commitPose, targetPose, Smooth01(_action.NormalizedPhase(ExtendSeconds)));
                     if (!_resolvedThisPunch && _action.NormalizedPhase(ExtendSeconds) >= 0.72f)
                     {
-                        ResolvePlayerPunch(active, activeGuard, targetPose);
+                        ResolvePlayerPunch(activeGuard, targetPose);
                         _resolvedThisPunch = true;
                     }
                     break;
@@ -200,7 +200,7 @@ namespace BoxerP0
             }
         }
 
-        private void ResolvePlayerPunch(Transform glove, Vector3 localStart, Vector3 localEnd)
+        private void ResolvePlayerPunch(Vector3 localStart, Vector3 localEnd)
         {
             if (!CombatEnabled || _opponent == null) return;
             Vector3 start = transform.TransformPoint(localStart);
@@ -239,11 +239,18 @@ namespace BoxerP0
 
         private Transform ActiveGlove(PunchIntent intent)
         {
-            return intent switch
+            return PunchLabels.IsRearHand(intent) ? _rightGlove : _leftGlove;
+        }
+
+        private static Vector3 PunchCommitPose(PunchIntent intent, Vector3 guard, bool left)
+        {
+            float side = left ? -1f : 1f;
+            return PunchLabels.Family(intent) switch
             {
-                PunchIntent.Cross => _rightGlove,
-                PunchIntent.RearHook => _rightGlove,
-                _ => _leftGlove
+                PunchFamily.Hook => guard + new Vector3(side * 0.18f, -0.03f, 0.02f),
+                PunchFamily.Uppercut => guard + new Vector3(side * 0.05f, -0.30f, -0.02f),
+                PunchFamily.Overhand => guard + new Vector3(side * 0.08f, 0.24f, -0.05f),
+                _ => guard + new Vector3(side * 0.08f, -0.06f, -0.08f)
             };
         }
 
@@ -255,6 +262,10 @@ namespace BoxerP0
                 PunchIntent.Cross => new Vector3(0.04f, 1.44f, 1.34f),
                 PunchIntent.LeadHook => new Vector3(0.11f, 1.39f, 1.05f),
                 PunchIntent.RearHook => new Vector3(-0.11f, 1.39f, 1.05f),
+                PunchIntent.LeadUppercut => new Vector3(-0.05f, 1.50f, 0.98f),
+                PunchIntent.RearUppercut => new Vector3(0.05f, 1.51f, 1.04f),
+                PunchIntent.LeadOverhand => new Vector3(-0.04f, 1.48f, 1.17f),
+                PunchIntent.RearOverhand => new Vector3(0.04f, 1.50f, 1.24f),
                 _ => new Vector3(left ? -0.22f : 0.22f, 1.38f, 0.48f)
             };
         }
