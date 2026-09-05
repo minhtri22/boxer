@@ -112,6 +112,8 @@ namespace BoxerP0.Editor
                 $"diagnostic_overlay=true\n" +
                 $"web_telemetry_mode=in_memory_counters_no_csv\n" +
                 $"visual_shell=procedural_p0_5\n" +
+                $"training_ui=mobile_readability_overlay\n" +
+                $"hud_semantics=reactive_visual_only_no_combat_gating\n" +
                 $"build_commit={buildMarker}\n");
             Debug.Log($"P0_WEB_BUILD={buildDir} marker={buildMarker} data={dataSha256} wasm={wasmSha256}");
         }
