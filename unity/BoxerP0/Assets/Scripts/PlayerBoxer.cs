@@ -20,6 +20,8 @@ namespace BoxerP0
         private Vector3 _rightGuardLocal;
         private float _headVelocity;
         private bool _resolvedThisPunch;
+        private P1PunchSnapshot _p1PunchSnapshot;
+        private bool _hasP1PunchSnapshot;
 
         private const float CommitSeconds = 0.09f;
         private const float ExtendSeconds = 0.14f;
@@ -81,6 +83,7 @@ namespace BoxerP0
             {
                 _action.ResetToGuard();
                 _resolvedThisPunch = false;
+                _hasP1PunchSnapshot = false;
             }
         }
 
@@ -127,6 +130,14 @@ namespace BoxerP0
             if (_action.TryStart(intent))
             {
                 _resolvedThisPunch = false;
+                _p1PunchSnapshot = P1PunchMechanics.Capture(
+                    intent,
+                    transform.position,
+                    _opponent != null ? _opponent.transform.position : transform.position,
+                    _input.MovementIntent,
+                    _input.HeadAngleDegrees,
+                    HeadOffset);
+                _hasP1PunchSnapshot = true;
                 _telemetry?.RecordEvent($"PLAYER_PUNCH_{token}");
             }
             else
@@ -188,6 +199,11 @@ namespace BoxerP0
             CombatOutcome outcome = _opponent.ResolveIncomingPunch(start, end, 0.09f);
             bool counter = outcome == CombatOutcome.Hit && _opponent.CounterWindowOpen;
             _telemetry?.RecordOutcome("PLAYER", outcome, counter);
+            if (_hasP1PunchSnapshot)
+            {
+                _telemetry?.RecordEvent(_p1PunchSnapshot.ToSemanticEvent(outcome, counter));
+                _hasP1PunchSnapshot = false;
+            }
             BoxerFeedback.Emit(outcome);
         }
 
