@@ -6,11 +6,13 @@ P0 is closed for interaction feasibility. Safari/WebGL remains a surrogate-only 
 
 P1 opens on branch `p1/whole-body-mechanics` from P0 artifact commit `076427513ee4da4cfa0f440e9c13805f4e1ed956`.
 
-Current verified state:
+Current source state:
 
 - P1-E0 instrumentation: PASS
 - P1-A1 step-to-straight-reach implementation: PASS
-- P1-A1 human learnability: PENDING
+- P1-A1 human learnability: PENDING REAL-DEVICE UAT
+- P1-A2 punch gesture vocabulary: IMPLEMENTED, PENDING COMPILE/BUILD/HUMAN UAT
+- P1-B1 opponent punch embodiment/fair reach correction: IMPLEMENTED, PENDING COMPILE/BUILD/HUMAN UAT
 
 ## Product thesis
 
@@ -25,21 +27,21 @@ A player can improve punch quality by coordinating position, footwork, head/body
 ## Revised priority order
 
 1. **P1-A1 — Step Direction → Effective Straight-Punch Reach**
-   - Existing controlled coupling experiment.
    - Only LEAD_JAB / REAR_CROSS are affected.
    - ADVANCING = 1.06x, NEUTRAL = 1.00x, RETREATING = 0.94x.
    - Implementation PASS; human learnability still required for full A1 PASS.
 
 2. **P1-A2 — Punch Gesture Vocabulary**
    - Complete the right-thumb punch vocabulary before deeper body coupling.
-   - Gesture should express punch trajectory/family, not force the player to memorize arbitrary short-vs-long swipe thresholds.
-   - Proposed canonical mapping:
+   - Canonical mapping:
      - TAP → STRAIGHT
      - HOLD + SWIPE UP → UPPERCUT
      - HOLD + SWIPE HORIZONTAL → HOOK
      - HOLD + SWIPE DOWN → OVERHAND
-   - Hand selection is a separate concern from punch-family selection. Gesture selects the family; stance/body state/previous punch may select lead vs rear hand.
-   - A2 must be implemented and human-tested before adding family-specific whole-body mechanics.
+   - Gesture selects punch family only; hand selection is separate.
+   - Current implementation uses deterministic minimal hand selection from previous punch state; OVERHAND defaults to rear hand.
+   - New player trajectories exist for uppercut and overhand.
+   - Existing A1 step-reach coupling remains authoritative only for straights.
 
 3. **P1-A3 — Family-Specific Whole-Body Coupling**
    - Straight → step/reach coupling.
@@ -51,6 +53,15 @@ A player can improve punch quality by coordinating position, footwork, head/body
 4. **P1-B — Range / Balance / Recovery**
    - Position and movement direction must have tactical consequences.
    - Bad body state should reduce punch quality naturally rather than via arbitrary cooldowns.
+
+   **P1-B1 — Opponent Punch Embodiment & Fair Reach** is pulled forward as a corrective prerequisite after human observation that the opponent glove could visually “fly” toward a retreating player while still registering a hit.
+
+   B1 rule:
+   - opponent punch target is locked at commitment;
+   - opponent must not home/rotate after punch commitment;
+   - punch endpoint is clamped to a finite physical reach;
+   - the same clamped endpoint drives both the visible glove trajectory and hit resolution;
+   - if the player retreats beyond that physical endpoint, the punch must visibly and logically miss.
 
 5. **P1-C — Counter Geometry**
    - Correct evade direction/timing should create a geometrically meaningful counter opportunity.
@@ -69,8 +80,6 @@ This separates two problems cleanly:
 - **Intent selection**: what punch family the player wants.
 - **Physical execution**: which hand, range, body state, balance, timing, and recovery determine the quality/outcome.
 
-The vocabulary must remain small enough to learn without a move list.
-
 ### Canonical A2 mapping
 
 | Gesture | Punch family | Physical intuition |
@@ -80,49 +89,57 @@ The vocabulary must remain small enough to learn without a move list.
 | HOLD + SWIPE HORIZONTAL | HOOK | horizontal circular arc |
 | HOLD + SWIPE DOWN | OVERHAND | hand travels over and down |
 
+### Current A2 implementation freeze
+
+- `HoldSeconds = 0.12s`
+- TAP tolerates small accidental movement.
+- Held swipe requires deterministic minimum travel.
+- Horizontal wins when `absX >= absY * 0.85`.
+- Otherwise positive vertical displacement = UPPERCUT.
+- Otherwise negative vertical displacement = OVERHAND.
+- Gesture classification never changes damage, stamina, balance or power.
+
 ### Hand-selection principle
 
-A2 should not require a separate gesture vocabulary for lead/rear variants.
+A2 does not require a separate gesture vocabulary for lead/rear variants.
 
-Preferred architecture:
+Architecture:
 
 `gesture → punch family`
 
 then:
 
-`stance + previous punch + body state → lead/rear hand`
+`previous punch/body state → lead/rear hand`
 
-Examples to validate later:
+Current minimal implementation:
 
-- first TAP from guard → lead jab
-- follow-up TAP in valid timing → rear cross
-- horizontal swipe → lead/rear hook based on stance and direction/context
-- upward swipe → lead/rear uppercut based on stance/context
-- downward swipe → usually rear overhand unless the state machine has a valid lead variant
+- first STRAIGHT from guard → LEAD JAB
+- follow-up STRAIGHT after lead hand → REAR CROSS
+- HOOK/UPPERCUT alternate hand from prior requested punch state
+- OVERHAND defaults to REAR OVERHAND
 
-This is a hypothesis to test, not a final combo system.
+This selector is intentionally minimal and can be replaced later by stance/body-state logic without changing gesture vocabulary.
 
 ## Replayability principle
 
 > Every meaningful combat action should produce replayable semantic data.
 
-P1 combat events should be rich enough to later reconstruct or generate KO/highlight clips without re-architecting the combat core.
-
-Minimum semantic fields for a player punch event:
+P1 punch semantic events include:
 
 - timestamp
+- exact punch type
 - punch family
 - selected hand
-- gesture family
 - player position
 - opponent position
 - distance at punch start
 - movement intent at punch start
 - head angle / head offset at punch start
-- whether the player is stepping in, neutral, or retreating
-- quality score/components
+- step state
+- A1 authoritative straight-reach factor
+- diagnostic range/coordination values
 - outcome: HIT / MISS / BLOCK
-- whether it is a counter
+- counter status
 
 Future fields may include impact point, glove velocity, body/hip rotation, balance, fall state, and camera state.
 
@@ -130,15 +147,15 @@ Future fields may include impact point, glove velocity, body/hip rotation, balan
 
 P1-E0 is closed PASS. It established punch-state semantic snapshots without changing combat outcomes.
 
-## P1-A1 — Current experiment
+## P1-A1 — Current causal experiment
 
 P1-A1 promotes only step direction into effective straight-punch reach.
 
 A1 does not pass because a formula exists. Full A1 PASS requires real-device human evidence that the player can intentionally exploit step-in reach and perceive retreating as giving up reach.
 
-## P1-A2 acceptance gate
+A2 and B1 source corrections may be present in the same future UAT build, but A1 human evaluation must remain a separate question: can the player intentionally exploit step-in/retreating straight reach?
 
-A2 must prove the punch vocabulary is both complete enough and immediately learnable.
+## P1-A2 acceptance gate
 
 Minimum implementation evidence:
 
@@ -146,25 +163,42 @@ Minimum implementation evidence:
 2. HOLD + UP deterministically resolves to UPPERCUT family.
 3. HOLD + HORIZONTAL deterministically resolves to HOOK family.
 4. HOLD + DOWN deterministically resolves to OVERHAND family.
-5. Short accidental movement around TAP does not misclassify as a held swipe.
-6. Hold threshold and directional dead zones are deterministic and documented.
-7. Existing head/foot controls remain unchanged.
-8. Gesture classification does not itself modify damage, power, balance, or stamina.
+5. Small accidental TAP movement does not misclassify as a held swipe.
+6. Hold threshold and directional boundary are deterministic.
+7. Uppercut/overhand have visibly distinct trajectories.
+8. Existing head/foot controls remain unchanged.
+9. A1 reach affects only STRAIGHT family.
+10. Gesture classification does not itself modify damage, power, balance, stamina or winner logic.
 
 Minimum human evidence:
 
-1. Player can discover/remember the four gesture families without opening a move list repeatedly.
+1. Player can discover/remember the four gesture families without repeatedly opening a move list.
 2. Player can intentionally request each family under combat pressure.
 3. Misclassification is uncommon enough that the player trusts the control.
-4. The vocabulary feels like punch trajectory, not arbitrary UI gestures.
+4. The gesture feels like punch trajectory rather than arbitrary UI input.
 
-A2 does not need final hand-selection sophistication to pass gesture-family learnability. A minimal deterministic hand-selection rule is acceptable during the experiment.
+## P1-B1 acceptance gate
+
+Implementation evidence:
+
+1. Out-of-range opponent target is clamped to finite reach.
+2. In-range target is unchanged.
+3. Opponent facing is frozen during an active punch.
+4. Visible glove endpoint and hit-test endpoint are the same locked endpoint.
+5. Existing opponent punch timing/radius remain unchanged.
+
+Human evidence:
+
+1. Retreating beyond opponent reach visibly causes a miss.
+2. Opponent glove no longer appears detached/flying from the body.
+3. When a hit lands, the player can visually understand why the punch reached.
+4. The correction does not make all opponent punches trivially avoidable at normal fight range.
 
 ## P1-A3 acceptance principle
 
 Do not create a universal `coordination_score → everything` mechanic.
 
-Each punch family should earn its own physically interpretable coupling and causal test. Examples:
+Each punch family should earn its own physically interpretable coupling and causal test:
 
 - step-in increases straight reach
 - poor range weakens hook effectiveness
@@ -173,7 +207,7 @@ Each punch family should earn its own physically interpretable coupling and caus
 
 These are future hypotheses, not frozen tuning values.
 
-## Non-goals during P1-A
+## Non-goals during current P1 slice
 
 Do not add yet:
 
@@ -188,7 +222,7 @@ Do not add yet:
 - production graphics
 - native iOS optimization
 
-KO/highlight generation remains a later consumer of the semantic combat stream, not a P1-A implementation target.
+KO/highlight generation remains a later consumer of the semantic combat stream, not a current implementation target.
 
 ## Decision rule
 
