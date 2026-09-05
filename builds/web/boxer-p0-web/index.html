@@ -4,17 +4,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <title>Boxer P0 — P0 Web iPhone</title>
+  <title>Boxer P0 — P1 Web UAT</title>
   <link rel="stylesheet" href="TemplateData/style.css">
 </head>
 <body>
   <div id="gate">
     <div class="panel">
-      <h1>BOXER P0</h1>
-      <p id="status">Motion permission is required for the iPhone surrogate test.</p>
+      <h1>BOXER P1</h1>
+      <p id="status">Enable Motion for head control. Footwork and punches must remain usable even if Safari orientation is delayed.</p>
       <button id="enable">ENABLE MOTION &amp; START</button>
-      <button id="calibrate" class="hidden">CALIBRATE &amp; START BOUT</button>
-      <p class="small">Hold the phone in a comfortable neutral portrait position before calibrating.</p>
+      <p class="small">Hold the phone in a comfortable neutral portrait position while starting. The first orientation sample becomes the neutral head angle automatically.</p>
     </div>
   </div>
   <div id="unity-container" class="hidden">
@@ -24,7 +23,6 @@
     const gate = document.getElementById('gate');
     const statusEl = document.getElementById('status');
     const enableButton = document.getElementById('enable');
-    const calibrateButton = document.getElementById('calibrate');
     const container = document.getElementById('unity-container');
     const canvas = document.getElementById('unity-canvas');
     let unityInstance = null;
@@ -34,7 +32,7 @@
     let unityLoading = false;
 
     const buildUrl = 'Build';
-    const productVersion = "464257f";
+    const productVersion = "055489c";
     const assetVersion = encodeURIComponent(productVersion || 'unknown');
     const versioned = (url) => `${url}?v=${assetVersion}`;
     const loaderUrl = versioned(buildUrl + '/boxer-p0-web.loader.js');
@@ -56,6 +54,12 @@
       if (unityInstance) unityInstance.SendMessage('P0 Systems', method, payload || '');
     }
 
+    function enterGame() {
+      gate.classList.add('hidden');
+      container.classList.remove('hidden');
+      canvas.focus();
+    }
+
     function onOrientation(event) {
       if (event.alpha == null && event.beta == null && event.gamma == null) return;
       orientationReceived = true;
@@ -64,9 +68,6 @@
       const g = Number(event.gamma || 0).toFixed(4);
       latestOrientationPayload = `${a}|${b}|${g}`;
       send('BrowserSetOrientation', latestOrientationPayload);
-      if (unityInstance && !calibrateButton.disabled) {
-        setStatus(`MOTION GRANTED — orientation received. Build ${productVersion}. Hold neutral, then calibrate.`);
-      }
     }
 
     async function requestMotionPermission() {
@@ -95,15 +96,23 @@
           unityInstance = instance;
           send('BrowserSetMotionStatus', permissionStatus);
           if (latestOrientationPayload) send('BrowserSetOrientation', latestOrientationPayload);
-          calibrateButton.classList.remove('hidden');
-          calibrateButton.disabled = !orientationReceived;
+
           setStatus(orientationReceived
-            ? `MOTION GRANTED — build ${productVersion}. Hold neutral, then calibrate.`
-            : `MOTION GRANTED — build ${productVersion}. Waiting for device orientation...`);
-          gate.classList.add('compact');
+            ? `MOTION ACTIVE — build ${productVersion}`
+            : `MOTION GRANTED — build ${productVersion}. Orientation may arrive later; touch gameplay is unlocked now.`);
+
+          // P1 UAT startup rule: never keep the game behind a second orientation/calibration gate.
+          enterGame();
         }).catch(message => {
           setStatus(`UNITY LOAD FAILED — build ${productVersion} — ${message}`);
+          gate.classList.remove('hidden');
+          container.classList.add('hidden');
+          enableButton.disabled = false;
         });
+      };
+      script.onerror = () => {
+        setStatus(`UNITY LOADER FAILED — build ${productVersion}`);
+        enableButton.disabled = false;
       };
       document.body.appendChild(script);
     }
@@ -116,26 +125,16 @@
         enableButton.disabled = false;
         return;
       }
+
       window.addEventListener('deviceorientation', onOrientation, true);
-      setTimeout(() => {
-        if (!orientationReceived) setStatus('DEVICE ORIENTATION NOT RECEIVED — build ' + productVersion);
-      }, 2500);
       loadUnity();
-    });
 
-    calibrateButton.addEventListener('click', () => {
-      if (!unityInstance || !orientationReceived) return;
-      send('BrowserCalibrate', '1');
-      gate.classList.add('hidden');
-      container.classList.remove('hidden');
-      canvas.focus();
+      setTimeout(() => {
+        if (!orientationReceived && !unityInstance) {
+          setStatus('MOTION GRANTED — waiting for Unity. Orientation has not arrived yet — build ' + productVersion);
+        }
+      }, 2500);
     });
-
-    setInterval(() => {
-      if (unityInstance && permissionStatus === 'GRANTED') {
-        calibrateButton.disabled = !orientationReceived;
-      }
-    }, 250);
 
     document.addEventListener('touchmove', event => {
       if (!gate.contains(event.target)) event.preventDefault();
