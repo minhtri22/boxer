@@ -50,9 +50,7 @@ namespace BoxerP0.Editor
             };
             UnityEditor.Build.Reporting.BuildReport report = BuildPipeline.BuildPlayer(options);
             if (report.summary.result != UnityEditor.Build.Reporting.BuildResult.Succeeded)
-            {
                 throw new Exception($"Windows build failed: {report.summary.result} / {report.summary.totalErrors} errors");
-            }
 
             File.WriteAllText(
                 Path.Combine(buildDir, "build-metadata.txt"),
@@ -84,9 +82,7 @@ namespace BoxerP0.Editor
             };
             UnityEditor.Build.Reporting.BuildReport report = BuildPipeline.BuildPlayer(options);
             if (report.summary.result != UnityEditor.Build.Reporting.BuildResult.Succeeded)
-            {
                 throw new Exception($"WebGL build failed: {report.summary.result} / {report.summary.totalErrors} errors");
-            }
 
             string buildFilesDir = Path.Combine(buildDir, "Build");
             string dataPath = FindSingleBuildFile(buildFilesDir, "*.data");
@@ -120,6 +116,7 @@ namespace BoxerP0.Editor
                 $"p1_a3_1=hook_close_range_full_1.05m_falloff_to_0.86_by_1.25m\n" +
                 $"p1_b1=locked_opponent_target_finite_reach_no_homing\n" +
                 $"p1_b1_5_arm_embodiment=true\n" +
+                $"p1_b1_5r_explicit_elbow_chain=true\n" +
                 $"startup_gate=motion_permission_unblocks_gameplay_orientation_optional_late_neutral\n" +
                 $"source_provenance=build_marker_must_match_clean_committed_source_head\n" +
                 $"build_commit={buildMarker}\n");
@@ -130,9 +127,7 @@ namespace BoxerP0.Editor
         {
             string[] files = Directory.GetFiles(directory, pattern, SearchOption.TopDirectoryOnly);
             if (files.Length != 1)
-            {
                 throw new Exception($"Expected exactly one {pattern} in {directory}, found {files.Length}");
-            }
             return files[0];
         }
 
