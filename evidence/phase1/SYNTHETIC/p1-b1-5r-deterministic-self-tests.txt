@@ -1,0 +1,11 @@
+evidence=SYNTHETIC
+unity=6000.5.8f1
+utc=2026-09-06T18:24:59.2972945Z
+PASS P1-B1.5R arm length preservation
+PASS P1-B1.5R max reach clamp
+PASS P1-B1.5R straight near extension
+PASS P1-B1.5R hook visibly bent
+PASS P1-B1.5R uppercut elbow lower
+PASS P1-B1.5R overhand elbow higher
+PASS P1-B1.5R mirrored consistency
+TOTAL=7 PASS
