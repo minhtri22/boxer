@@ -6,13 +6,17 @@ P0 is closed for interaction feasibility. Safari/WebGL remains a surrogate-only 
 
 P1 opens on branch `p1/whole-body-mechanics` from P0 artifact commit `076427513ee4da4cfa0f440e9c13805f4e1ed956`.
 
-Current source state:
+Current verified state after real-device UAT on the P1-A3.1 candidate:
 
 - P1-E0 instrumentation: PASS
 - P1-A1 step-to-straight-reach implementation: PASS
-- P1-A1 human learnability: PENDING REAL-DEVICE UAT
-- P1-A2 punch gesture vocabulary: IMPLEMENTED, PENDING COMPILE/BUILD/HUMAN UAT
-- P1-B1 opponent punch embodiment/fair reach correction: IMPLEMENTED, PENDING COMPILE/BUILD/HUMAN UAT
+- P1-A1 human learnability: PASS — player can perceive/use the step-in reach advantage
+- P1-A2 punch gesture vocabulary implementation: PASS
+- P1-A2 human control mapping: PASS — TAP/UP/HORIZONTAL/DOWN all produced the expected punch families on real iPhone
+- P1-B1 opponent punch embodiment/fair reach implementation: PASS
+- P1-B1 human visual fairness: PENDING FURTHER REVIEW — opponent hand/reach still needs closer inspection
+- P1-A3.1 hook close-range coupling implementation: PASS
+- P1-A3.1 human learnability/effect: PENDING EXPLICIT CLOSE-vs-FAR HOOK UAT
 
 ## Product thesis
 
@@ -29,10 +33,10 @@ A player can improve punch quality by coordinating position, footwork, head/body
 1. **P1-A1 — Step Direction → Effective Straight-Punch Reach**
    - Only LEAD_JAB / REAR_CROSS are affected.
    - ADVANCING = 1.06x, NEUTRAL = 1.00x, RETREATING = 0.94x.
-   - Implementation PASS; human learnability still required for full A1 PASS.
+   - Implementation PASS.
+   - Real-device human learnability PASS: player reported a noticeable/useful advantage from stepping in before straight punches.
 
 2. **P1-A2 — Punch Gesture Vocabulary**
-   - Complete the right-thumb punch vocabulary before deeper body coupling.
    - Canonical mapping:
      - TAP → STRAIGHT
      - HOLD + SWIPE UP → UPPERCUT
@@ -40,21 +44,28 @@ A player can improve punch quality by coordinating position, footwork, head/body
      - HOLD + SWIPE DOWN → OVERHAND
    - Gesture selects punch family only; hand selection is separate.
    - Current implementation uses deterministic minimal hand selection from previous punch state; OVERHAND defaults to rear hand.
-   - New player trajectories exist for uppercut and overhand.
-   - Existing A1 step-reach coupling remains authoritative only for straights.
+   - Real-device UAT PASS for gesture mapping: all four requested families triggered as expected.
 
 3. **P1-A3 — Family-Specific Whole-Body Coupling**
-   - Straight → step/reach coupling.
-   - Hook → close-range + lateral/rotational coupling.
-   - Uppercut → close-range + load/vertical-drive coupling.
-   - Overhand → forward commitment + downward arc / guard-reading coupling.
-   - Do not activate all couplings at once; each must be introduced as a controlled experiment.
+   - A3.1 currently active only for HOOK close-range coupling.
+   - Straight → step/reach coupling already proven under A1.
+   - Hook → close-range coupling active under A3.1.
+   - Uppercut → close-range + load/vertical-drive coupling remains LOCKED.
+   - Overhand → forward commitment + downward arc / recovery coupling remains LOCKED.
+   - Do not activate A3.2/A3.3 until observability is sufficient to inspect biomechanics and hit reasons.
 
-4. **P1-B — Range / Balance / Recovery**
+4. **P1-O1 — Combat Observability & Biomechanics Inspector**
+   - Add an in-memory fight log for WebGL/mobile UAT.
+   - Add explicit hit-resolution explanations.
+   - Add debug hitbox/trajectory visualization.
+   - Add enough body-state instrumentation to audit biomechanics without requiring production character graphics.
+   - This is observability only; it must not change mechanics.
+
+5. **P1-B — Range / Balance / Recovery**
    - Position and movement direction must have tactical consequences.
    - Bad body state should reduce punch quality naturally rather than via arbitrary cooldowns.
 
-   **P1-B1 — Opponent Punch Embodiment & Fair Reach** is pulled forward as a corrective prerequisite after human observation that the opponent glove could visually “fly” toward a retreating player while still registering a hit.
+   **P1-B1 — Opponent Punch Embodiment & Fair Reach** was pulled forward as a corrective prerequisite after human observation that the opponent glove could visually “fly” toward a retreating player while still registering a hit.
 
    B1 rule:
    - opponent punch target is locked at commitment;
@@ -63,13 +74,48 @@ A player can improve punch quality by coordinating position, footwork, head/body
    - the same clamped endpoint drives both the visible glove trajectory and hit resolution;
    - if the player retreats beyond that physical endpoint, the punch must visibly and logically miss.
 
-5. **P1-C — Counter Geometry**
+   Current human status:
+   - implementation regression gates PASS;
+   - real-device visual fairness remains under review because opponent hand/reach still needs closer inspection.
+
+6. **P1-C — Counter Geometry**
    - Correct evade direction/timing should create a geometrically meaningful counter opportunity.
 
-6. **P1-D — Lightweight Opponent Attributes**
+7. **P1-D — Lightweight Opponent Attributes**
    - Reach/aggression/speed only, enough to force tactical adaptation.
 
 Progression, ranking, shopping, social sharing, and KO clip generation are later layers. P1 only preserves the data needed to support them.
+
+## Onboarding product rule
+
+The current training flow is a **first-time onboarding sequence**, not a pre-fight ritual.
+
+Product rule:
+
+> A player should complete the full controls onboarding once as a new player. Normal subsequent bouts should start directly without replaying the full training sequence.
+
+Implications:
+
+- full Head / Footwork / Punch / Guard / Counter onboarding is one-time;
+- completion state must eventually persist across sessions/account/profile scope;
+- future access to training should be explicit and optional (for example: Training / Controls / Practice), not forced before every bout;
+- test builds may temporarily expose a reset/replay control for research, but production flow must not force repeated onboarding.
+
+This correction is product-flow documentation only for now; do not implement persistence until the relevant product/session layer is opened.
+
+## HP / stamina authority rule
+
+Current HP and stamina bars are **non-authoritative research HUD semantics**. They were introduced as reactive visual feedback and are not backed by a validated boxing damage/fatigue model.
+
+Therefore:
+
+- current HP values must NOT be treated as physically meaningful damage;
+- current stamina drain/recovery must NOT be treated as validated exertion/fatigue;
+- they must not be used as evidence for biomechanics correctness;
+- do not tune combat around the current bars;
+- a future damage/fatigue phase must define explicit formulas and evidence before HP/stamina become authoritative gameplay state.
+
+Until then, the authoritative outcome evidence remains the validated hit/block/miss/counter geometry and semantic combat events, not the visual HP/stamina percentages.
 
 ## Punch vocabulary design rule
 
@@ -137,6 +183,7 @@ P1 punch semantic events include:
 - head angle / head offset at punch start
 - step state
 - A1 authoritative straight-reach factor
+- A3 family-coupling mode/factor where active
 - diagnostic range/coordination values
 - outcome: HIT / MISS / BLOCK
 - counter status
@@ -147,17 +194,15 @@ Future fields may include impact point, glove velocity, body/hip rotation, balan
 
 P1-E0 is closed PASS. It established punch-state semantic snapshots without changing combat outcomes.
 
-## P1-A1 — Current causal experiment
+## P1-A1 — Causal experiment
 
 P1-A1 promotes only step direction into effective straight-punch reach.
 
-A1 does not pass because a formula exists. Full A1 PASS requires real-device human evidence that the player can intentionally exploit step-in reach and perceive retreating as giving up reach.
-
-A2 and B1 source corrections may be present in the same future UAT build, but A1 human evaluation must remain a separate question: can the player intentionally exploit step-in/retreating straight reach?
+Implementation PASS and real-device human learnability PASS.
 
 ## P1-A2 acceptance gate
 
-Minimum implementation evidence:
+Implementation evidence:
 
 1. TAP deterministically resolves to STRAIGHT family.
 2. HOLD + UP deterministically resolves to UPPERCUT family.
@@ -170,12 +215,9 @@ Minimum implementation evidence:
 9. A1 reach affects only STRAIGHT family.
 10. Gesture classification does not itself modify damage, power, balance, stamina or winner logic.
 
-Minimum human evidence:
+Human evidence status:
 
-1. Player can discover/remember the four gesture families without repeatedly opening a move list.
-2. Player can intentionally request each family under combat pressure.
-3. Misclassification is uncommon enough that the player trusts the control.
-4. The gesture feels like punch trajectory rather than arbitrary UI input.
+- all four gesture families intentionally triggered as expected on real iPhone: PASS.
 
 ## P1-B1 acceptance gate
 
@@ -194,6 +236,22 @@ Human evidence:
 3. When a hit lands, the player can visually understand why the punch reached.
 4. The correction does not make all opponent punches trivially avoidable at normal fight range.
 
+Current human verdict: PENDING FURTHER REVIEW.
+
+## P1-A3.1 — Hook close-range coupling
+
+Frozen experiment:
+
+- `distance <= 1.05m` → `A3_FACTOR = 1.00`
+- `1.05m < distance < 1.25m` → linear falloff
+- `distance >= 1.25m` → `A3_FACTOR = 0.86`
+- only HOOK family is affected
+- distance is frozen at accepted punch start
+
+Implementation classification: `P1-A3.1_IMPLEMENTATION_PASS`.
+
+Human classification remains pending until close-vs-far hook behavior is explicitly judged on real device.
+
 ## P1-A3 acceptance principle
 
 Do not create a universal `coordination_score → everything` mechanic.
@@ -205,7 +263,7 @@ Each punch family should earn its own physically interpretable coupling and caus
 - uppercut requires close range / loaded position
 - overhand rewards commitment but exposes recovery
 
-These are future hypotheses, not frozen tuning values.
+Do not open A3.2/A3.3 until combat observability makes the physical reason for HIT/BLOCK/MISS auditable.
 
 ## Non-goals during current P1 slice
 
@@ -217,7 +275,7 @@ Do not add yet:
 - cosmetic shop
 - KO sharing pipeline
 - final damage model
-- fatigue system
+- authoritative fatigue/stamina system
 - skill tree
 - production graphics
 - native iOS optimization
@@ -228,4 +286,4 @@ KO/highlight generation remains a later consumer of the semantic combat stream, 
 
 PROVE ONLY WHAT IS STILL UNCERTAIN → DECIDE → IMPLEMENT.
 
-Do not deepen body mechanics on an incomplete punch vocabulary. Complete and prove A2 first, then activate family-specific mechanics one controlled coupling at a time.
+Do not deepen biomechanics when the current hit/reach reason cannot yet be inspected clearly. Preserve causal isolation and add observability before the next family coupling.
