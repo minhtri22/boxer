@@ -117,6 +117,7 @@ namespace BoxerP0.Editor
                 $"p1_b1=locked_opponent_target_finite_reach_no_homing\n" +
                 $"p1_b1_5_arm_embodiment=true\n" +
                 $"p1_b1_5r_explicit_elbow_chain=true\n" +
+                $"p1_b1_5s_shoulder_contact_coherence=true\n" +
                 $"startup_gate=motion_permission_unblocks_gameplay_orientation_optional_late_neutral\n" +
                 $"source_provenance=build_marker_must_match_clean_committed_source_head\n" +
                 $"build_commit={buildMarker}\n");

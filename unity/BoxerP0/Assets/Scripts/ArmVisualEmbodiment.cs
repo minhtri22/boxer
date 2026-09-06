@@ -150,8 +150,8 @@ namespace BoxerP0
 
         private VisualArm BuildArm(string prefix, Transform root, Transform originalGlove, bool left, bool player)
         {
+            // Shoulder X is relative to the character's own left/right, regardless of root rotation
             float localX = left ? -_shoulderWidth : _shoulderWidth;
-            if (!player) localX = -localX; // opponent root faces 180 degrees
 
             VisualArm arm = new()
             {
