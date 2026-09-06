@@ -119,6 +119,7 @@ namespace BoxerP0.Editor
                 $"p1_a2=tap_straight_hold_up_uppercut_hold_horizontal_hook_hold_down_overhand\n" +
                 $"p1_a3_1=hook_close_range_full_1.05m_falloff_to_0.86_by_1.25m\n" +
                 $"p1_b1=locked_opponent_target_finite_reach_no_homing\n" +
+                $"p1_b1_5_arm_embodiment=true\n" +
                 $"startup_gate=motion_permission_unblocks_gameplay_orientation_optional_late_neutral\n" +
                 $"source_provenance=build_marker_must_match_clean_committed_source_head\n" +
                 $"build_commit={buildMarker}\n");

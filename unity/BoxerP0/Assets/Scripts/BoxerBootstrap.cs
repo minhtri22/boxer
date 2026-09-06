@@ -10,6 +10,7 @@ namespace BoxerP0
         private OpponentBoxer _opponent;
         private Phase0Telemetry _telemetry;
         private BoxerFeedback _feedback;
+        private ArmVisualEmbodiment _armVisual;
         private readonly OnboardingProgress _training = new();
 
         private float _boutEnd;
@@ -422,6 +423,10 @@ namespace BoxerP0
             _telemetry.InputSource = _input;
             _telemetry.Player = _player;
             _telemetry.Opponent = _opponent;
+
+            // P1-B1.5: Initialize arm visual embodiment
+            _armVisual = gameObject.AddComponent<ArmVisualEmbodiment>();
+            _armVisual.Initialize(_player, _opponent, _telemetry);
         }
 
         private void OnGUI()

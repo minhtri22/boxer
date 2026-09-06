@@ -36,6 +36,13 @@ namespace BoxerP0
         public string ActionLabel => _action.IsBusy ? $"{PunchLabels.Display(_action.Intent)}:{_action.Phase}" : "READING";
         public uint AttackEventCount { get; private set; }
 
+        // P1-B1.5: Visual embodiment read-only access
+        public bool IsActionBusy => _action.IsBusy;
+        public PunchIntent CurrentIntent => _action.IsBusy ? _action.Intent : PunchIntent.None;
+        public ActionPhase CurrentPhase => _action.Phase;
+        public float ActionNormalizedPhase(float phaseDuration) => _action.NormalizedPhase(phaseDuration);
+        public Vector3 AttackTargetLocal => _attackTargetLocal;
+
         public void Initialize(
             PlayerBoxer player,
             Phase0Telemetry telemetry,

@@ -39,6 +39,14 @@ namespace BoxerP0
         public SphereCollider LeftGuardCollider => _leftGuardCollider;
         public SphereCollider RightGuardCollider => _rightGuardCollider;
 
+        // P1-B1.5: Visual embodiment read-only access
+        public bool IsActionBusy => _action.IsBusy;
+        public PunchIntent CurrentIntent => _action.IsBusy ? _action.Intent : PunchIntent.None;
+        public ActionPhase CurrentPhase => _action.Phase;
+        public float ActionNormalizedPhase(float phaseDuration) => _action.NormalizedPhase(phaseDuration);
+        public bool HasP1PunchSnapshot => _hasP1PunchSnapshot;
+        public P1PunchSnapshot P1PunchSnapshot => _p1PunchSnapshot;
+
         public void Initialize(
             BoxerInput input,
             OpponentBoxer opponent,
