@@ -23,7 +23,7 @@ namespace BoxerP0
     }
 
     /// <summary>
-    /// Pure visual two-bone arm solver used by P1-B1.5R. Combat geometry remains authoritative elsewhere.
+    /// Pure visual two-bone arm solver used by P1-B1.5T. Combat geometry remains authoritative elsewhere.
     /// </summary>
     public static class ArmChainMath
     {
@@ -70,24 +70,33 @@ namespace BoxerP0
     }
 
     /// <summary>
-    /// P1-B1.5R visual-only anatomical chain:
-    /// shoulder joint -> upper arm -> explicit elbow joint -> forearm -> visual glove proxy.
+    /// P1-B1.5T visual-only anatomical chain with correct topology:
+    /// SHOULDER → UPPER ARM → ELBOW JOINT → FOREARM → GLOVE
+    /// Exactly TWO limb segments: UPPER ARM + FOREARM. Elbow is a JOINT only.
     /// Original glove transforms/colliders remain untouched and authoritative for combat.
     /// </summary>
     [DefaultExecutionOrder(200)]
     public sealed class ArmVisualEmbodiment : MonoBehaviour
     {
+        [Header("Anthropometric Constants (Frozen)")]
         [SerializeField] private bool _enableDebugVisuals = false;
+        [SerializeField] private bool _showCombatTraceDebug = false;
         [SerializeField] private float _shoulderWidth = 0.38f;
         [SerializeField] private float _upperArmLength = 0.34f;
         [SerializeField] private float _forearmLength = 0.31f;
         [SerializeField] private float _jointRadius = 0.075f;
-        [SerializeField] private float _armRadius = 0.060f;
+        [SerializeField] private float _upperArmRadius = 0.072f;  // Thicker than forearm for readability
+        [SerializeField] private float _forearmRadius = 0.056f;   // Slightly thinner
         [SerializeField] private float _visualGloveRadius = 0.115f;
 
-        public float UpperArmLength => _upperArmLength;
-        public float ForearmLength => _forearmLength;
-        public float MaxVisualReach => _upperArmLength + _forearmLength;
+        // Frozen anthropometric constants
+        public const float UpperArmLength = 0.34f;
+        public const float ForearmLength = 0.31f;
+        public const float MaxVisualReach = UpperArmLength + ForearmLength; // 0.65f
+        
+        public float UpperArmLengthProp => UpperArmLength;
+        public float ForearmLengthProp => ForearmLength;
+        public float MaxVisualReachProp => MaxVisualReach;
 
         private PlayerBoxer _playerBoxer;
         private OpponentBoxer _opponentBoxer;
@@ -113,8 +122,16 @@ namespace BoxerP0
         private float _playerDistance = 1f;
         private Vector3 _opponentTargetLocal;
 
+        // Anthropometric constants - frozen per P1-B1.5T
+        private const float BodyHeight = 1.8f;
         private const float ShoulderHeight = 1.43f;
         private const float ShoulderForward = 0.02f;
+        private const float ShoulderHeightRatio = ShoulderHeight / BodyHeight; // ~0.794
+        private const float ShoulderWidthRatio = 0.38f / BodyHeight; // ~0.211
+        private const float UpperArmRatio = 0.34f / BodyHeight; // ~0.189
+        private const float ForearmRatio = 0.31f / BodyHeight; // ~0.172
+        private const float TotalArmRatio = 0.65f / BodyHeight; // ~0.361
+        private const float ShoulderWidthRatio2 = 0.38f / BodyHeight;
 
         private sealed class VisualArm
         {
@@ -160,11 +177,20 @@ namespace BoxerP0
                 OriginalGlove = originalGlove
             };
 
+            // SHOULDER JOINT - small sphere at shoulder socket
             arm.ShoulderJoint = CreateSphere(prefix + " Shoulder Joint", root, Skin,
                 new Vector3(localX, ShoulderHeight, ShoulderForward), _jointRadius * 1.08f);
-            arm.UpperArm = CreateCapsule(prefix + " Upper Arm", root, Skin, _armRadius);
+
+            // UPPER ARM - single capsule from shoulder to elbow
+            arm.UpperArm = CreateCapsule(prefix + " Upper Arm", root, Skin, _upperArmRadius);
+
+            // ELBOW JOINT - small sphere at elbow (JOINT ONLY, not a limb segment)
             arm.ElbowJoint = CreateSphere(prefix + " Elbow Joint", root, ElbowColor, Vector3.zero, _jointRadius);
-            arm.Forearm = CreateCapsule(prefix + " Forearm", root, Skin, _armRadius * 0.92f);
+
+            // FOREARM - single capsule from elbow to wrist
+            arm.Forearm = CreateCapsule(prefix + " Forearm", root, Skin, _forearmRadius);
+
+            // VISUAL GLOVE - end effector at wrist
             arm.VisualGlove = CreateSphere(prefix + " Visual Glove", root,
                 player ? PlayerGlove : OpponentGlove, Vector3.zero, _visualGloveRadius);
 
@@ -263,13 +289,16 @@ namespace BoxerP0
             Vector3 requestedWrist = arm.Root.TransformPoint(requestedWristLocal);
             Vector3 poleLocal = FamilyPoleLocal(family, phase, arm.Left, player);
             Vector3 poleWorld = shoulder + arm.Root.TransformDirection(poleLocal);
-            ArmChainSolution solved = ArmChainMath.Solve(shoulder, requestedWrist, poleWorld, _upperArmLength, _forearmLength);
+            ArmChainSolution solved = ArmChainMath.Solve(shoulder, requestedWrist, poleWorld, UpperArmLength, ForearmLength);
 
-            arm.ShoulderJoint.position = shoulder;
+            // Update joint positions
+            arm.ShoulderJoint.position = solved.Shoulder;
             arm.ElbowJoint.position = solved.Elbow;
             arm.VisualGlove.position = solved.Wrist;
-            PlaceSegment(arm.UpperArm, solved.Shoulder, solved.Elbow, _armRadius);
-            PlaceSegment(arm.Forearm, solved.Elbow, solved.Wrist, _armRadius * 0.92f);
+
+            // Place segments using explicit endpoints - each segment from its exact endpoints
+            SetSegmentBetween(arm.UpperArm, solved.Shoulder, solved.Elbow, _upperArmRadius);
+            SetSegmentBetween(arm.Forearm, solved.Elbow, solved.Wrist, _forearmRadius);
         }
 
         private static Vector3 FamilyPoleLocal(PunchFamily family, ActionPhase phase, bool left, bool player)
@@ -370,17 +399,22 @@ namespace BoxerP0
             return go.transform;
         }
 
-        private static void PlaceSegment(Transform segment, Vector3 a, Vector3 b, float radius)
+        // Helper: place a capsule segment between two exact endpoints
+        private static void SetSegmentBetween(Transform segment, Vector3 start, Vector3 end, float radius)
         {
-            Vector3 delta = b - a;
+            Vector3 delta = end - start;
             float length = Mathf.Max(0.001f, delta.magnitude);
-            segment.position = (a + b) * 0.5f;
+            segment.position = (start + end) * 0.5f;
             segment.rotation = Quaternion.FromToRotation(Vector3.up, delta / length);
             segment.localScale = new Vector3(radius * 2f, length * 0.5f, radius * 2f);
         }
 
         private void DrawDebugVisuals()
         {
+            // Debug visuals are OFF by default (_enableDebugVisuals = false)
+            // Only draws when explicitly enabled for developer debugging
+            if (!_enableDebugVisuals) return;
+            
             DrawArmDebug(_playerLeft); DrawArmDebug(_playerRight);
             DrawArmDebug(_opponentLeft); DrawArmDebug(_opponentRight);
         }
@@ -388,6 +422,7 @@ namespace BoxerP0
         private static void DrawArmDebug(VisualArm arm)
         {
             if (arm == null) return;
+            // Yellow = upper arm, Cyan = forearm, Magenta = combat glove offset
             Debug.DrawLine(arm.ShoulderJoint.position, arm.ElbowJoint.position, Color.yellow);
             Debug.DrawLine(arm.ElbowJoint.position, arm.VisualGlove.position, Color.cyan);
             if (arm.OriginalGlove != null) Debug.DrawLine(arm.VisualGlove.position, arm.OriginalGlove.position, Color.magenta);
