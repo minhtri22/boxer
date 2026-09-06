@@ -1,0 +1,8 @@
+evidence=SYNTHETIC
+unity=6000.5.8f1
+utc=2026-09-06T15:30:01.1989885Z
+PASS P1-A3.1 close hook baseline
+PASS P1-A3.1 far hook falloff
+PASS P1-A3.1 non-hook unchanged
+PASS P1-A3.1 causal hook boundary
+TOTAL=4 PASS
