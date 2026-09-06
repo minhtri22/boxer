@@ -1,321 +1,325 @@
-using System;
 using UnityEngine;
 
 namespace BoxerP0
 {
+    public readonly struct ArmChainSolution
+    {
+        public readonly Vector3 Shoulder;
+        public readonly Vector3 Elbow;
+        public readonly Vector3 Wrist;
+        public readonly float UpperLength;
+        public readonly float ForearmLength;
+        public readonly bool Clamped;
+
+        public ArmChainSolution(Vector3 shoulder, Vector3 elbow, Vector3 wrist, float upperLength, float forearmLength, bool clamped)
+        {
+            Shoulder = shoulder;
+            Elbow = elbow;
+            Wrist = wrist;
+            UpperLength = upperLength;
+            ForearmLength = forearmLength;
+            Clamped = clamped;
+        }
+    }
+
     /// <summary>
-    /// P1-B1.5 Arm Embodiment + Punch Readability
-    /// Visual-only arm chain: shoulder → upper arm → elbow → forearm → glove
-    /// Does NOT affect combat/hit detection. Purely visual readability layer.
+    /// Pure visual two-bone arm solver used by P1-B1.5R. Combat geometry remains authoritative elsewhere.
     /// </summary>
-    [DefaultExecutionOrder(200)] // After PlayerBoxer/OpponentBoxer (which run at default 0)
+    public static class ArmChainMath
+    {
+        public static ArmChainSolution Solve(
+            Vector3 shoulder,
+            Vector3 requestedWrist,
+            Vector3 polePoint,
+            float upperArmLength,
+            float forearmLength)
+        {
+            float maxReach = Mathf.Max(0.001f, upperArmLength + forearmLength);
+            float minReach = Mathf.Max(0.001f, Mathf.Abs(upperArmLength - forearmLength) + 0.001f);
+            Vector3 toRequested = requestedWrist - shoulder;
+            float requestedDistance = toRequested.magnitude;
+            Vector3 axis = requestedDistance > 0.0001f ? toRequested / requestedDistance : Vector3.forward;
+            float solvedDistance = Mathf.Clamp(requestedDistance, minReach, maxReach - 0.001f);
+            bool clamped = !Mathf.Approximately(solvedDistance, requestedDistance);
+            Vector3 wrist = shoulder + axis * solvedDistance;
+
+            float x = (upperArmLength * upperArmLength - forearmLength * forearmLength + solvedDistance * solvedDistance) /
+                      (2f * solvedDistance);
+            float hSq = Mathf.Max(0f, upperArmLength * upperArmLength - x * x);
+            float h = Mathf.Sqrt(hSq);
+
+            Vector3 pole = polePoint - shoulder;
+            Vector3 bend = pole - axis * Vector3.Dot(pole, axis);
+            if (bend.sqrMagnitude < 0.0001f)
+            {
+                bend = Vector3.Cross(axis, Vector3.up);
+                if (bend.sqrMagnitude < 0.0001f) bend = Vector3.Cross(axis, Vector3.right);
+            }
+            bend.Normalize();
+
+            Vector3 elbow = shoulder + axis * x + bend * h;
+            return new ArmChainSolution(shoulder, elbow, wrist, upperArmLength, forearmLength, clamped);
+        }
+
+        public static float ElbowAngleDegrees(ArmChainSolution solution)
+        {
+            Vector3 a = solution.Shoulder - solution.Elbow;
+            Vector3 b = solution.Wrist - solution.Elbow;
+            return Vector3.Angle(a, b);
+        }
+    }
+
+    /// <summary>
+    /// P1-B1.5R visual-only anatomical chain:
+    /// shoulder joint -> upper arm -> explicit elbow joint -> forearm -> visual glove proxy.
+    /// Original glove transforms/colliders remain untouched and authoritative for combat.
+    /// </summary>
+    [DefaultExecutionOrder(200)]
     public sealed class ArmVisualEmbodiment : MonoBehaviour
     {
-        [Header("Configuration")]
         [SerializeField] private bool _enableDebugVisuals = false;
         [SerializeField] private float _shoulderWidth = 0.38f;
-        [SerializeField] private float _upperArmLength = 0.30f;
-        [SerializeField] private float _forearmLength = 0.26f;
+        [SerializeField] private float _upperArmLength = 0.34f;
+        [SerializeField] private float _forearmLength = 0.31f;
+        [SerializeField] private float _jointRadius = 0.075f;
+        [SerializeField] private float _armRadius = 0.060f;
+        [SerializeField] private float _visualGloveRadius = 0.115f;
 
-        // References
+        public float UpperArmLength => _upperArmLength;
+        public float ForearmLength => _forearmLength;
+        public float MaxVisualReach => _upperArmLength + _forearmLength;
+
         private PlayerBoxer _playerBoxer;
         private OpponentBoxer _opponentBoxer;
-        private Phase0Telemetry _telemetry;
 
-        // Player arm chain
-        private Transform _playerLeftShoulder;
-        private Transform _playerLeftElbow;
-        private Transform _playerLeftForearm;
-        private Transform _playerRightShoulder;
-        private Transform _playerRightElbow;
-        private Transform _playerRightForearm;
+        private VisualArm _playerLeft;
+        private VisualArm _playerRight;
+        private VisualArm _opponentLeft;
+        private VisualArm _opponentRight;
 
-        // Opponent arm chain
-        private Transform _opponentLeftShoulder;
-        private Transform _opponentLeftElbow;
-        private Transform _opponentLeftForearm;
-        private Transform _opponentRightShoulder;
-        private Transform _opponentRightElbow;
-        private Transform _opponentRightForearm;
-
-        // Guard positions (local to boxer root)
         private Vector3 _playerLeftGuardLocal;
         private Vector3 _playerRightGuardLocal;
         private Vector3 _opponentLeftGuardLocal;
         private Vector3 _opponentRightGuardLocal;
 
-        // Cached state for visual update (read via public properties/methods)
-        private PunchIntent _cachedPlayerIntent;
-        private PunchIntent _cachedOpponentIntent;
-        private ActionPhase _cachedPlayerPhase;
-        private ActionPhase _cachedOpponentPhase;
-        private bool _cachedPlayerIsBusy;
-        private bool _cachedOpponentIsBusy;
-        private string _cachedPlayerStepState;
-        private float _cachedPlayerDistanceMeters;
-        private bool _cachedPlayerHasSnapshot;
-        private Vector3 _cachedOpponentAttackTargetLocal;
+        private PunchIntent _playerIntent;
+        private PunchIntent _opponentIntent;
+        private ActionPhase _playerPhase;
+        private ActionPhase _opponentPhase;
+        private bool _playerBusy;
+        private bool _opponentBusy;
+        private bool _playerHasSnapshot;
+        private string _playerStep = "NEUTRAL";
+        private float _playerDistance = 1f;
+        private Vector3 _opponentTargetLocal;
 
-        private const float ShoulderHeightOffset = 1.37f;
-        private const float ShoulderForwardOffset = 0.0f;
+        private const float ShoulderHeight = 1.43f;
+        private const float ShoulderForward = 0.02f;
 
-        public void Initialize(
-            PlayerBoxer playerBoxer,
-            OpponentBoxer opponentBoxer,
-            Phase0Telemetry telemetry)
+        private sealed class VisualArm
+        {
+            public Transform Root;
+            public Transform ShoulderJoint;
+            public Transform UpperArm;
+            public Transform ElbowJoint;
+            public Transform Forearm;
+            public Transform VisualGlove;
+            public Transform OriginalGlove;
+            public bool Left;
+        }
+
+        public void Initialize(PlayerBoxer playerBoxer, OpponentBoxer opponentBoxer, Phase0Telemetry telemetry)
         {
             _playerBoxer = playerBoxer;
             _opponentBoxer = opponentBoxer;
-            _telemetry = telemetry;
 
-            BuildPlayerArmChain();
-            BuildOpponentArmChain();
-            CaptureGuardPositions();
-        }
+            _playerLeft = BuildArm("Player Left", playerBoxer.transform, playerBoxer.LeftGlove, true, true);
+            _playerRight = BuildArm("Player Right", playerBoxer.transform, playerBoxer.RightGlove, false, true);
 
-        private void BuildPlayerArmChain()
-        {
-            Transform playerRoot = _playerBoxer.transform;
-
-            // Left arm
-            _playerLeftShoulder = CreateArmSegment("Player Left Shoulder", playerRoot, Skin, new Vector3(-_shoulderWidth, ShoulderHeightOffset, ShoulderForwardOffset), new Vector3(0.12f, 0.14f, 0.12f));
-            _playerLeftElbow = CreateArmSegment("Player Left Elbow", _playerLeftShoulder, Skin, new Vector3(0f, -_upperArmLength * 0.5f, 0f), new Vector3(0.09f, _upperArmLength * 0.5f, 0.09f));
-            _playerLeftForearm = CreateArmSegment("Player Left Forearm", _playerLeftElbow, Skin, new Vector3(0f, -_forearmLength * 0.5f, 0f), new Vector3(0.08f, _forearmLength * 0.5f, 0.08f));
-
-            // Right arm
-            _playerRightShoulder = CreateArmSegment("Player Right Shoulder", playerRoot, Skin, new Vector3(_shoulderWidth, ShoulderHeightOffset, ShoulderForwardOffset), new Vector3(0.12f, 0.14f, 0.12f));
-            _playerRightElbow = CreateArmSegment("Player Right Elbow", _playerRightShoulder, Skin, new Vector3(0f, -_upperArmLength * 0.5f, 0f), new Vector3(0.09f, _upperArmLength * 0.5f, 0.09f));
-            _playerRightForearm = CreateArmSegment("Player Right Forearm", _playerRightElbow, Skin, new Vector3(0f, -_forearmLength * 0.5f, 0f), new Vector3(0.08f, _forearmLength * 0.5f, 0.08f));
-        }
-
-        private void BuildOpponentArmChain()
-        {
-            Transform opponentRoot = _opponentBoxer.transform;
-
-            // Opponent faces player (rotated 180), so shoulders are mirrored
-            _opponentLeftShoulder = CreateArmSegment("Opponent Left Shoulder", opponentRoot, Skin, new Vector3(_shoulderWidth, ShoulderHeightOffset, ShoulderForwardOffset), new Vector3(0.12f, 0.14f, 0.12f));
-            _opponentLeftElbow = CreateArmSegment("Opponent Left Elbow", _opponentLeftShoulder, Skin, new Vector3(0f, -_upperArmLength * 0.5f, 0f), new Vector3(0.09f, _upperArmLength * 0.5f, 0.09f));
-            _opponentLeftForearm = CreateArmSegment("Opponent Left Forearm", _opponentLeftElbow, Skin, new Vector3(0f, -_forearmLength * 0.5f, 0f), new Vector3(0.08f, _forearmLength * 0.5f, 0.08f));
-
-            _opponentRightShoulder = CreateArmSegment("Opponent Right Shoulder", opponentRoot, Skin, new Vector3(-_shoulderWidth, ShoulderHeightOffset, ShoulderForwardOffset), new Vector3(0.12f, 0.14f, 0.12f));
-            _opponentRightElbow = CreateArmSegment("Opponent Right Elbow", _opponentRightShoulder, Skin, new Vector3(0f, -_upperArmLength * 0.5f, 0f), new Vector3(0.09f, _upperArmLength * 0.5f, 0.09f));
-            _opponentRightForearm = CreateArmSegment("Opponent Right Forearm", _opponentRightElbow, Skin, new Vector3(0f, -_forearmLength * 0.5f, 0f), new Vector3(0.08f, _forearmLength * 0.5f, 0.08f));
-        }
-
-        private Transform CreateArmSegment(string name, Transform parent, Color color, Vector3 localPosition, Vector3 localScale)
-        {
-            GameObject segment = GameObject.CreatePrimitive(PrimitiveType.Capsule);
-            segment.name = name;
-            segment.transform.SetParent(parent, false);
-            segment.transform.localPosition = localPosition;
-            segment.transform.localScale = localScale;
-            segment.transform.localRotation = Quaternion.Euler(90f, 0f, 0f); // Capsule upright
-            DisableCollider(segment);
-            ApplyColor(segment.GetComponent<Renderer>(), color);
-            return segment.transform;
-        }
-
-        private void CaptureGuardPositions()
-        {
-            _playerLeftGuardLocal = _playerBoxer.LeftGlove.localPosition;
-            _playerRightGuardLocal = _playerBoxer.RightGlove.localPosition;
-
-            Transform opponentRoot = _opponentBoxer.transform;
+            Transform opponentRoot = opponentBoxer.transform;
             Transform oppLeftGlove = opponentRoot.Find("Opponent Left Glove");
             Transform oppRightGlove = opponentRoot.Find("Opponent Right Glove");
+            _opponentLeft = BuildArm("Opponent Left", opponentRoot, oppLeftGlove, true, false);
+            _opponentRight = BuildArm("Opponent Right", opponentRoot, oppRightGlove, false, false);
+
+            _playerLeftGuardLocal = playerBoxer.LeftGlove.localPosition;
+            _playerRightGuardLocal = playerBoxer.RightGlove.localPosition;
             if (oppLeftGlove != null) _opponentLeftGuardLocal = oppLeftGlove.localPosition;
             if (oppRightGlove != null) _opponentRightGuardLocal = oppRightGlove.localPosition;
+        }
+
+        private VisualArm BuildArm(string prefix, Transform root, Transform originalGlove, bool left, bool player)
+        {
+            float localX = left ? -_shoulderWidth : _shoulderWidth;
+            if (!player) localX = -localX; // opponent root faces 180 degrees
+
+            VisualArm arm = new()
+            {
+                Root = root,
+                Left = left,
+                OriginalGlove = originalGlove
+            };
+
+            arm.ShoulderJoint = CreateSphere(prefix + " Shoulder Joint", root, Skin,
+                new Vector3(localX, ShoulderHeight, ShoulderForward), _jointRadius * 1.08f);
+            arm.UpperArm = CreateCapsule(prefix + " Upper Arm", root, Skin, _armRadius);
+            arm.ElbowJoint = CreateSphere(prefix + " Elbow Joint", root, ElbowColor, Vector3.zero, _jointRadius);
+            arm.Forearm = CreateCapsule(prefix + " Forearm", root, Skin, _armRadius * 0.92f);
+            arm.VisualGlove = CreateSphere(prefix + " Visual Glove", root,
+                player ? PlayerGlove : OpponentGlove, Vector3.zero, _visualGloveRadius);
+
+            if (originalGlove != null)
+            {
+                foreach (Renderer renderer in originalGlove.GetComponentsInChildren<Renderer>(true))
+                    renderer.enabled = false;
+            }
+
+            return arm;
         }
 
         private void Update()
         {
             if (_playerBoxer == null || _opponentBoxer == null) return;
-
             CacheState();
             UpdatePlayerArms();
             UpdateOpponentArms();
-
-            if (_enableDebugVisuals)
-            {
-                DrawDebugVisuals();
-            }
+            if (_enableDebugVisuals) DrawDebugVisuals();
         }
 
         private void CacheState()
         {
-            // Cache player state using public properties
-            _cachedPlayerIsBusy = _playerBoxer.IsActionBusy;
-            _cachedPlayerIntent = _playerBoxer.CurrentIntent;
-            _cachedPlayerPhase = _playerBoxer.CurrentPhase;
-            _cachedPlayerStepState = _playerBoxer.HasP1PunchSnapshot ? _playerBoxer.P1PunchSnapshot.StepState : "NEUTRAL";
-            _cachedPlayerDistanceMeters = _playerBoxer.HasP1PunchSnapshot ? _playerBoxer.P1PunchSnapshot.DistanceMeters : 1.0f;
-            _cachedPlayerHasSnapshot = _playerBoxer.HasP1PunchSnapshot;
+            _playerBusy = _playerBoxer.IsActionBusy;
+            _playerIntent = _playerBoxer.CurrentIntent;
+            _playerPhase = _playerBoxer.CurrentPhase;
+            _playerHasSnapshot = _playerBoxer.HasP1PunchSnapshot;
+            if (_playerHasSnapshot)
+            {
+                _playerStep = _playerBoxer.P1PunchSnapshot.StepState;
+                _playerDistance = _playerBoxer.P1PunchSnapshot.DistanceMeters;
+            }
 
-            // Cache opponent state using public properties
-            _cachedOpponentIsBusy = _opponentBoxer.IsActionBusy;
-            _cachedOpponentIntent = _opponentBoxer.CurrentIntent;
-            _cachedOpponentPhase = _opponentBoxer.CurrentPhase;
-            _cachedOpponentAttackTargetLocal = _opponentBoxer.AttackTargetLocal;
+            _opponentBusy = _opponentBoxer.IsActionBusy;
+            _opponentIntent = _opponentBoxer.CurrentIntent;
+            _opponentPhase = _opponentBoxer.CurrentPhase;
+            _opponentTargetLocal = _opponentBoxer.AttackTargetLocal;
         }
 
         private void UpdatePlayerArms()
         {
-            PunchIntent intent = _cachedPlayerIntent;
-            ActionPhase phase = _cachedPlayerPhase;
+            bool activeLeft = IsLeadHand(_playerIntent);
+            VisualArm active = activeLeft ? _playerLeft : _playerRight;
+            VisualArm passive = activeLeft ? _playerRight : _playerLeft;
+            Vector3 activeGuard = activeLeft ? _playerLeftGuardLocal : _playerRightGuardLocal;
+            Vector3 passiveGuard = activeLeft ? _playerRightGuardLocal : _playerLeftGuardLocal;
 
-            bool left = IsLeadHand(intent);
-            Transform activeShoulder = left ? _playerLeftShoulder : _playerRightShoulder;
-            Transform activeElbow = left ? _playerLeftElbow : _playerRightElbow;
-            Transform activeForearm = left ? _playerLeftForearm : _playerRightForearm;
-            Transform passiveShoulder = left ? _playerRightShoulder : _playerLeftShoulder;
-            Transform passiveElbow = left ? _playerRightElbow : _playerLeftElbow;
-            Transform passiveForearm = left ? _playerRightForearm : _playerLeftForearm;
-
-            Vector3 activeGuardLocal = left ? _playerLeftGuardLocal : _playerRightGuardLocal;
-            Vector3 passiveGuardLocal = left ? _playerRightGuardLocal : _playerLeftGuardLocal;
-
-            if (!_cachedPlayerIsBusy)
+            if (!_playerBusy)
             {
-                UpdateArmToGuard(activeShoulder, activeElbow, activeForearm, activeGuardLocal);
-                UpdateArmToGuard(passiveShoulder, passiveElbow, passiveForearm, passiveGuardLocal);
+                PoseArm(active, activeGuard, PunchFamily.None, ActionPhase.Guard, true);
+                PoseArm(passive, passiveGuard, PunchFamily.None, ActionPhase.Guard, true);
                 return;
             }
 
-            Vector3 targetLocal = GetPlayerPunchTargetLocal(intent, left);
-            Vector3 commitPose = GetPlayerPunchCommitPose(intent, activeGuardLocal, left);
-
-            if (_cachedPlayerHasSnapshot)
+            Vector3 target = GetPlayerPunchTargetLocal(_playerIntent, activeLeft);
+            Vector3 commit = GetPlayerPunchCommitPose(_playerIntent, activeGuard, activeLeft);
+            if (_playerHasSnapshot)
             {
-                targetLocal = P1PunchMechanics.ApplyA1StraightReach(intent, targetLocal, _cachedPlayerStepState);
-                targetLocal = P1PunchMechanics.ApplyA3FamilyCoupling(intent, targetLocal, _cachedPlayerDistanceMeters);
+                target = P1PunchMechanics.ApplyA1StraightReach(_playerIntent, target, _playerStep);
+                target = P1PunchMechanics.ApplyA3FamilyCoupling(_playerIntent, target, _playerDistance);
             }
 
-            UpdateArmChain(activeShoulder, activeElbow, activeForearm, activeGuardLocal, commitPose, targetLocal, phase, true);
-            UpdateArmToGuard(passiveShoulder, passiveElbow, passiveForearm, passiveGuardLocal);
+            Vector3 desired = PhaseTarget(activeGuard, commit, target, _playerPhase,
+                _playerBoxer.ActionNormalizedPhase(PhaseDuration(_playerPhase, true)));
+            PoseArm(active, desired, PunchLabels.Family(_playerIntent), _playerPhase, true);
+            PoseArm(passive, passiveGuard, PunchFamily.None, ActionPhase.Guard, true);
         }
 
         private void UpdateOpponentArms()
         {
-            PunchIntent intent = _cachedOpponentIntent;
-            ActionPhase phase = _cachedOpponentPhase;
+            bool activeLeft = IsLeadHand(_opponentIntent);
+            VisualArm active = activeLeft ? _opponentLeft : _opponentRight;
+            VisualArm passive = activeLeft ? _opponentRight : _opponentLeft;
+            Vector3 activeGuard = activeLeft ? _opponentLeftGuardLocal : _opponentRightGuardLocal;
+            Vector3 passiveGuard = activeLeft ? _opponentRightGuardLocal : _opponentLeftGuardLocal;
 
-            bool left = IsLeadHand(intent);
-            Transform activeShoulder = left ? _opponentLeftShoulder : _opponentRightShoulder;
-            Transform activeElbow = left ? _opponentLeftElbow : _opponentRightElbow;
-            Transform activeForearm = left ? _opponentLeftForearm : _opponentRightForearm;
-            Transform passiveShoulder = left ? _opponentRightShoulder : _opponentLeftShoulder;
-            Transform passiveElbow = left ? _opponentRightElbow : _opponentLeftElbow;
-            Transform passiveForearm = left ? _opponentRightForearm : _opponentLeftForearm;
-
-            Vector3 activeGuardLocal = left ? _opponentLeftGuardLocal : _opponentRightGuardLocal;
-            Vector3 passiveGuardLocal = left ? _opponentRightGuardLocal : _opponentLeftGuardLocal;
-
-            if (!_cachedOpponentIsBusy)
+            if (!_opponentBusy)
             {
-                UpdateArmToGuard(activeShoulder, activeElbow, activeForearm, activeGuardLocal);
-                UpdateArmToGuard(passiveShoulder, passiveElbow, passiveForearm, passiveGuardLocal);
+                PoseArm(active, activeGuard, PunchFamily.None, ActionPhase.Guard, false);
+                PoseArm(passive, passiveGuard, PunchFamily.None, ActionPhase.Guard, false);
                 return;
             }
 
-            Vector3 targetLocal = _cachedOpponentAttackTargetLocal;
-            Vector3 commitPose = activeGuardLocal + new Vector3(left ? -0.10f : 0.10f, 0.08f, 0.18f);
-
-            UpdateArmChain(activeShoulder, activeElbow, activeForearm, activeGuardLocal, commitPose, targetLocal, phase, false);
-            UpdateArmToGuard(passiveShoulder, passiveElbow, passiveForearm, passiveGuardLocal);
+            PunchFamily family = PunchLabels.Family(_opponentIntent);
+            Vector3 commit = OpponentCommitPose(activeGuard, family, activeLeft);
+            Vector3 desired = PhaseTarget(activeGuard, commit, _opponentTargetLocal, _opponentPhase,
+                _opponentBoxer.ActionNormalizedPhase(PhaseDuration(_opponentPhase, false)));
+            PoseArm(active, desired, family, _opponentPhase, false);
+            PoseArm(passive, passiveGuard, PunchFamily.None, ActionPhase.Guard, false);
         }
 
-        private void UpdateArmChain(
-            Transform shoulder,
-            Transform elbow,
-            Transform forearm,
-            Vector3 guardLocal,
-            Vector3 commitPoseLocal,
-            Vector3 targetLocal,
-            ActionPhase phase,
-            bool isPlayer)
+        private void PoseArm(VisualArm arm, Vector3 requestedWristLocal, PunchFamily family, ActionPhase phase, bool player)
         {
-            Vector3 shoulderWorld = shoulder.parent.TransformPoint(shoulder.localPosition);
-            Vector3 gloveTargetWorld;
+            if (arm == null || arm.Root == null) return;
+            Vector3 shoulder = arm.ShoulderJoint.position;
+            Vector3 requestedWrist = arm.Root.TransformPoint(requestedWristLocal);
+            Vector3 poleLocal = FamilyPoleLocal(family, phase, arm.Left, player);
+            Vector3 poleWorld = shoulder + arm.Root.TransformDirection(poleLocal);
+            ArmChainSolution solved = ArmChainMath.Solve(shoulder, requestedWrist, poleWorld, _upperArmLength, _forearmLength);
 
-            float commitDuration = isPlayer ? 0.09f : 0.34f;
-            float extendDuration = isPlayer ? 0.14f : 0.17f;
-            float recoverDuration = isPlayer ? 0.28f : 0.48f;
+            arm.ShoulderJoint.position = shoulder;
+            arm.ElbowJoint.position = solved.Elbow;
+            arm.VisualGlove.position = solved.Wrist;
+            PlaceSegment(arm.UpperArm, solved.Shoulder, solved.Elbow, _armRadius);
+            PlaceSegment(arm.Forearm, solved.Elbow, solved.Wrist, _armRadius * 0.92f);
+        }
 
-            float normalizedPhase;
-            if (isPlayer)
+        private static Vector3 FamilyPoleLocal(PunchFamily family, ActionPhase phase, bool left, bool player)
+        {
+            float side = left ? -1f : 1f;
+            float opponentFlip = player ? 1f : -1f;
+            return family switch
             {
-                normalizedPhase = _playerBoxer.ActionNormalizedPhase(
-                    phase == ActionPhase.Commit ? commitDuration :
-                    phase == ActionPhase.Extend ? extendDuration : recoverDuration);
-            }
-            else
+                PunchFamily.Hook => new Vector3(side * 0.70f, 0.20f, 0.08f * opponentFlip),
+                PunchFamily.Uppercut => new Vector3(side * 0.42f, -0.52f, -0.10f * opponentFlip),
+                PunchFamily.Overhand => new Vector3(side * 0.45f, 0.58f, -0.06f * opponentFlip),
+                PunchFamily.Straight => new Vector3(side * 0.28f, 0.10f, -0.12f * opponentFlip),
+                _ => new Vector3(side * 0.48f, -0.08f, -0.22f * opponentFlip)
+            };
+        }
+
+        private static Vector3 PhaseTarget(Vector3 guard, Vector3 commit, Vector3 target, ActionPhase phase, float t)
+        {
+            t = Smooth01(Mathf.Clamp01(t));
+            return phase switch
             {
-                normalizedPhase = _opponentBoxer.ActionNormalizedPhase(
-                    phase == ActionPhase.Commit ? commitDuration :
-                    phase == ActionPhase.Extend ? extendDuration : recoverDuration);
-            }
+                ActionPhase.Commit => Vector3.Lerp(guard, commit, t),
+                ActionPhase.Extend => Vector3.Lerp(commit, target, t),
+                ActionPhase.Recover => Vector3.Lerp(target, guard, t),
+                _ => guard
+            };
+        }
 
-            switch (phase)
+        private static float PhaseDuration(ActionPhase phase, bool player)
+        {
+            if (player)
+                return phase == ActionPhase.Commit ? 0.09f : phase == ActionPhase.Extend ? 0.14f : 0.28f;
+            return phase == ActionPhase.Commit ? 0.34f : phase == ActionPhase.Extend ? 0.17f : 0.48f;
+        }
+
+        private static Vector3 OpponentCommitPose(Vector3 guard, PunchFamily family, bool left)
+        {
+            float side = left ? -1f : 1f;
+            return family switch
             {
-                case ActionPhase.Commit:
-                    gloveTargetWorld = shoulder.parent.TransformPoint(Vector3.Lerp(guardLocal, commitPoseLocal, Smooth01(normalizedPhase)));
-                    break;
-                case ActionPhase.Extend:
-                    gloveTargetWorld = shoulder.parent.TransformPoint(Vector3.Lerp(commitPoseLocal, targetLocal, Smooth01(normalizedPhase)));
-                    break;
-                case ActionPhase.Recover:
-                    gloveTargetWorld = shoulder.parent.TransformPoint(Vector3.Lerp(targetLocal, guardLocal, Smooth01(normalizedPhase)));
-                    break;
-                default:
-                    gloveTargetWorld = shoulder.parent.TransformPoint(guardLocal);
-                    break;
-            }
-
-            SolveArmIK(shoulder, elbow, forearm, gloveTargetWorld);
+                PunchFamily.Hook => guard + new Vector3(side * 0.18f, 0.02f, 0.02f),
+                PunchFamily.Uppercut => guard + new Vector3(side * 0.05f, -0.24f, -0.02f),
+                PunchFamily.Overhand => guard + new Vector3(side * 0.08f, 0.24f, -0.04f),
+                _ => guard + new Vector3(side * 0.08f, -0.04f, -0.06f)
+            };
         }
 
-        private void UpdateArmToGuard(Transform shoulder, Transform elbow, Transform forearm, Vector3 guardLocal)
-        {
-            Vector3 guardWorld = shoulder.parent.TransformPoint(guardLocal);
-            SolveArmIK(shoulder, elbow, forearm, guardWorld);
-        }
+        private static bool IsLeadHand(PunchIntent intent) => !PunchLabels.IsRearHand(intent);
 
-        private void SolveArmIK(Transform shoulder, Transform elbow, Transform forearm, Vector3 targetWorld)
-        {
-            Vector3 shoulderWorld = shoulder.position;
-            Vector3 shoulderToTarget = targetWorld - shoulderWorld;
-            float distance = shoulderToTarget.magnitude;
-
-            float maxReach = _upperArmLength + _forearmLength;
-
-            Vector3 clampedTarget = distance > maxReach
-                ? shoulderWorld + shoulderToTarget.normalized * maxReach
-                : targetWorld;
-
-            Vector3 dirToTarget = (clampedTarget - shoulderWorld).normalized;
-            float d = Vector3.Distance(shoulderWorld, clampedTarget);
-
-            float cosShoulder = (d > 0.001f)
-                ? Mathf.Clamp((_upperArmLength * _upperArmLength + d * d - _forearmLength * _forearmLength) / (2f * _upperArmLength * d), -1f, 1f)
-                : 1f;
-            float shoulderAngle = Mathf.Acos(cosShoulder);
-
-            Vector3 elbowDir = Vector3.Cross(dirToTarget, Vector3.right).normalized;
-            Vector3 elbowPos = shoulderWorld + dirToTarget * _upperArmLength * cosShoulder + elbowDir * _upperArmLength * Mathf.Sin(shoulderAngle);
-
-            shoulder.rotation = Quaternion.LookRotation(dirToTarget, Vector3.up) * Quaternion.Euler(90f, 0f, 0f);
-            elbow.position = elbowPos;
-            elbow.rotation = Quaternion.LookRotation((clampedTarget - elbowPos).normalized, Vector3.up) * Quaternion.Euler(90f, 0f, 0f);
-            forearm.position = clampedTarget;
-            forearm.rotation = elbow.rotation;
-        }
-
-        private static bool IsLeadHand(PunchIntent intent)
-        {
-            return !PunchLabels.IsRearHand(intent);
-        }
-
-        private Vector3 GetPlayerPunchTargetLocal(PunchIntent intent, bool left)
+        private static Vector3 GetPlayerPunchTargetLocal(PunchIntent intent, bool left)
         {
             return intent switch
             {
@@ -331,7 +335,7 @@ namespace BoxerP0
             };
         }
 
-        private Vector3 GetPlayerPunchCommitPose(PunchIntent intent, Vector3 guard, bool left)
+        private static Vector3 GetPlayerPunchCommitPose(PunchIntent intent, Vector3 guard, bool left)
         {
             float side = left ? -1f : 1f;
             return PunchLabels.Family(intent) switch
@@ -343,88 +347,79 @@ namespace BoxerP0
             };
         }
 
-        private static float Smooth01(float t) => t * t * (3f - 2f * t);
+        private Transform CreateSphere(string name, Transform parent, Color color, Vector3 localPosition, float radius)
+        {
+            GameObject go = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            go.name = name;
+            go.transform.SetParent(parent, false);
+            go.transform.localPosition = localPosition;
+            go.transform.localScale = Vector3.one * (radius * 2f);
+            DisableCollider(go);
+            ApplyColor(go.GetComponent<Renderer>(), color);
+            return go.transform;
+        }
+
+        private Transform CreateCapsule(string name, Transform parent, Color color, float radius)
+        {
+            GameObject go = GameObject.CreatePrimitive(PrimitiveType.Capsule);
+            go.name = name;
+            go.transform.SetParent(parent, true);
+            go.transform.localScale = new Vector3(radius * 2f, 0.1f, radius * 2f);
+            DisableCollider(go);
+            ApplyColor(go.GetComponent<Renderer>(), color);
+            return go.transform;
+        }
+
+        private static void PlaceSegment(Transform segment, Vector3 a, Vector3 b, float radius)
+        {
+            Vector3 delta = b - a;
+            float length = Mathf.Max(0.001f, delta.magnitude);
+            segment.position = (a + b) * 0.5f;
+            segment.rotation = Quaternion.FromToRotation(Vector3.up, delta / length);
+            segment.localScale = new Vector3(radius * 2f, length * 0.5f, radius * 2f);
+        }
 
         private void DrawDebugVisuals()
         {
-            Color debugColor = Color.yellow;
-            float duration = 0f;
-
-            // Player left arm
-            if (_playerLeftShoulder != null && _playerLeftElbow != null)
-                Debug.DrawLine(_playerLeftShoulder.position, _playerLeftElbow.position, debugColor, duration);
-            if (_playerLeftElbow != null && _playerLeftForearm != null)
-                Debug.DrawLine(_playerLeftElbow.position, _playerLeftForearm.position, debugColor, duration);
-            if (_playerLeftForearm != null)
-            {
-                Vector3 glovePos = _playerBoxer.LeftGlove.position;
-                Debug.DrawLine(_playerLeftForearm.position, glovePos, debugColor, duration);
-            }
-
-            // Player right arm
-            if (_playerRightShoulder != null && _playerRightElbow != null)
-                Debug.DrawLine(_playerRightShoulder.position, _playerRightElbow.position, debugColor, duration);
-            if (_playerRightElbow != null && _playerRightForearm != null)
-                Debug.DrawLine(_playerRightElbow.position, _playerRightForearm.position, debugColor, duration);
-            if (_playerRightForearm != null)
-            {
-                Vector3 glovePos = _playerBoxer.RightGlove.position;
-                Debug.DrawLine(_playerRightForearm.position, glovePos, debugColor, duration);
-            }
-
-            // Opponent left arm
-            if (_opponentLeftShoulder != null && _opponentLeftElbow != null)
-                Debug.DrawLine(_opponentLeftShoulder.position, _opponentLeftElbow.position, debugColor, duration);
-            if (_opponentLeftElbow != null && _opponentLeftForearm != null)
-                Debug.DrawLine(_opponentLeftElbow.position, _opponentLeftForearm.position, debugColor, duration);
-            if (_opponentLeftForearm != null)
-            {
-                Transform oppLeftGlove = _opponentBoxer.transform.Find("Opponent Left Glove");
-                if (oppLeftGlove != null)
-                    Debug.DrawLine(_opponentLeftForearm.position, oppLeftGlove.position, debugColor, duration);
-            }
-
-            // Opponent right arm
-            if (_opponentRightShoulder != null && _opponentRightElbow != null)
-                Debug.DrawLine(_opponentRightShoulder.position, _opponentRightElbow.position, debugColor, duration);
-            if (_opponentRightElbow != null && _opponentRightForearm != null)
-                Debug.DrawLine(_opponentRightElbow.position, _opponentRightForearm.position, debugColor, duration);
-            if (_opponentRightForearm != null)
-            {
-                Transform oppRightGlove = _opponentBoxer.transform.Find("Opponent Right Glove");
-                if (oppRightGlove != null)
-                    Debug.DrawLine(_opponentRightForearm.position, oppRightGlove.position, debugColor, duration);
-            }
+            DrawArmDebug(_playerLeft); DrawArmDebug(_playerRight);
+            DrawArmDebug(_opponentLeft); DrawArmDebug(_opponentRight);
         }
+
+        private static void DrawArmDebug(VisualArm arm)
+        {
+            if (arm == null) return;
+            Debug.DrawLine(arm.ShoulderJoint.position, arm.ElbowJoint.position, Color.yellow);
+            Debug.DrawLine(arm.ElbowJoint.position, arm.VisualGlove.position, Color.cyan);
+            if (arm.OriginalGlove != null) Debug.DrawLine(arm.VisualGlove.position, arm.OriginalGlove.position, Color.magenta);
+        }
+
+        private static float Smooth01(float t) => t * t * (3f - 2f * t);
 
         private static void DisableCollider(GameObject go)
         {
-            Collider c = go.GetComponent<Collider>();
-            if (c != null) c.enabled = false;
+            Collider collider = go.GetComponent<Collider>();
+            if (collider != null) collider.enabled = false;
         }
 
         private static void ApplyColor(Renderer renderer, Color color)
         {
             if (renderer == null) return;
-
             Shader shader = Resources.Load<Shader>("BoxerP0UnlitColor");
             if (shader != null)
             {
-                Material material = new(shader);
-                material.color = color;
+                Material material = new(shader) { color = color };
                 renderer.sharedMaterial = material;
                 return;
             }
-
             Material fallback = renderer.material;
             if (fallback == null) return;
             if (fallback.HasProperty("_BaseColor")) fallback.SetColor("_BaseColor", color);
             if (fallback.HasProperty("_Color")) fallback.SetColor("_Color", color);
         }
 
-        // Color constants
         private static readonly Color Skin = new(0.56f, 0.31f, 0.22f, 1f);
-        private static readonly Color GloveBlack = new(0.035f, 0.040f, 0.045f, 1f);
+        private static readonly Color ElbowColor = new(0.68f, 0.40f, 0.29f, 1f);
+        private static readonly Color PlayerGlove = new(0.035f, 0.040f, 0.045f, 1f);
         private static readonly Color OpponentGlove = new(0.72f, 0.66f, 0.52f, 1f);
     }
 }
