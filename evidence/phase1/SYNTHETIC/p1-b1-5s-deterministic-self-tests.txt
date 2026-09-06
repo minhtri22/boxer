@@ -1,0 +1,9 @@
+evidence=SYNTHETIC
+unity=6000.5.8f1
+utc=2026-09-06T18:59:42.2833280Z
+PASS P1-B1.5S opponent shoulder anchors lateralized
+PASS P1-B1.5S opponent arm root continuity
+PASS P1-B1.5S no default projectile presentation
+PASS P1-B1.5S glove remains visible end effector
+PASS P1-B1.5S family continuity preserved
+TOTAL=6 PASS
