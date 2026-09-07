@@ -1,0 +1,10 @@
+evidence=SYNTHETIC
+unity=6000.5.8f1
+utc=2026-09-07T09:37:20.6017942Z
+PASS P1-B1.5V opponent guard compactness improved
+PASS P1-B1.5V opponent guard asymmetry plausible
+PASS P1-B1.5V recover returns to frozen guard
+PASS P1-B1.5V no default yellow player projectile
+PASS P1-B1.5V arm topology preserved
+PASS P1-B1.5V punch family readability preserved
+TOTAL=6 PASS

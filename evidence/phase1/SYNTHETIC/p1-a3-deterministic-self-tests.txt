@@ -1,6 +1,6 @@
 evidence=SYNTHETIC
 unity=6000.5.8f1
-utc=2026-09-07T03:19:14.2497996Z
+utc=2026-09-07T10:10:49.4988720Z
 PASS P1-A3.1 close hook baseline
 PASS P1-A3.1 far hook falloff
 PASS P1-A3.1 non-hook unchanged

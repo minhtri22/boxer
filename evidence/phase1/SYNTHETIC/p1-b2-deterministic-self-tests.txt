@@ -1,0 +1,17 @@
+evidence=SYNTHETIC
+unity=6000.5.8f1
+utc=2026-09-07T09:51:39.7080229Z
+PASS P1-B2 pelvis exists and anchors legs
+PASS P1-B2 exactly two segments per leg
+PASS P1-B2 knee is a joint not segment
+PASS P1-B2 feet exist as endpoints
+PASS P1-B2 no pedestal lower-body topology
+PASS P1-B2 neutral stance valid
+PASS P1-B2 leg targets finite and continuous
+PELVIS_HEIGHT=0,920
+HIP_WIDTH=0,260
+THIGH_LENGTH=0,460
+SHIN_LENGTH=0,440
+FOOT_LENGTH=0,220
+KNEE_RADIUS=0,055
+TOTAL=13 PASS

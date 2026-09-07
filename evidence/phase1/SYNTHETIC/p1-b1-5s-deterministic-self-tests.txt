@@ -1,6 +1,6 @@
 evidence=SYNTHETIC
 unity=6000.5.8f1
-utc=2026-09-06T18:59:42.2833280Z
+utc=2026-09-07T10:38:44.0276369Z
 PASS P1-B1.5S opponent shoulder anchors lateralized
 PASS P1-B1.5S opponent arm root continuity
 PASS P1-B1.5S no default projectile presentation
