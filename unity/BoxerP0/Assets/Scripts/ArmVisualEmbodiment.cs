@@ -98,15 +98,16 @@ namespace BoxerP0
         public float ForearmLengthProp => ForearmLength;
         public float MaxVisualReachProp => MaxVisualReach;
 
-        // P1-B1.5U: Natural Boxing Guard Parameters (Frozen)
-        [Header("P1-B1.5U Natural Boxing Guard Parameters (Frozen)")]
-        [SerializeField] private float _opponentGloveHeightOffset = 0.12f;      // Glove height above chest
-        [SerializeField] private float _opponentGloveForwardOffset = 0.18f;     // Glove forward from chest
-        [SerializeField] private float _opponentGloveLateralInset = 0.10f;      // Glove inward from shoulder
-        [SerializeField] private float _opponentElbowInwardBias = 0.08f;        // Elbow inward from shoulder
-        [SerializeField] private float _opponentElbowHeightOffset = -0.05f;     // Elbow slightly below shoulder
-        [SerializeField] private float _opponentLeftRightHeightDiff = 0.03f;    // Left slightly higher than right
-        [SerializeField] private float _opponentElbowInwardBiasGuard = 0.12f;   // Elbow closer to torso in guard
+        // P1-B1.5V: Natural Boxing Guard Parameters (Frozen, refined from 5U)
+        [Header("P1-B1.5V Natural Boxing Guard Parameters (Frozen)")]
+        [SerializeField] private float _opponentGloveHeightOffset = 0.16f;      // Glove height above chest (raised toward face)
+        [SerializeField] private float _opponentGloveForwardOffset = 0.16f;     // Glove forward from chest
+        [SerializeField] private float _opponentGloveLateralInset = 0.16f;      // Glove inward from shoulder (tighter guard)
+        [SerializeField] private float _opponentElbowInwardBias = 0.10f;        // Elbow inward from shoulder
+        [SerializeField] private float _opponentElbowHeightOffset = -0.08f;     // Elbow dropped toward ribs
+        [SerializeField] private float _opponentLeftRightHeightDiff = 0.04f;    // Lead hand higher than rear
+        [SerializeField] private float _opponentElbowInwardBiasGuard = 0.16f;   // Elbow tucked close to torso in guard
+        [SerializeField] private float _opponentElbowForwardBias = 0.04f;       // Elbow slightly forward of shoulder
 
         private PlayerBoxer _playerBoxer;
         private OpponentBoxer _opponentBoxer;
@@ -206,11 +207,22 @@ namespace BoxerP0
 
             if (originalGlove != null)
             {
-                foreach (Renderer renderer in originalGlove.GetComponentsInChildren<Renderer>(true))
-                    renderer.enabled = false;
+                HideOriginalGlove(originalGlove);
             }
 
             return arm;
+        }
+
+        /// <summary>
+        /// Hides the authoritative combat glove and any decorations (gold cuff/panel)
+        /// added by BoxerVisualShell. Called every frame to defeat the ordering issue
+        /// where BoxerVisualShell.Start() re-adds visible children after Initialize().
+        /// </summary>
+        private static void HideOriginalGlove(Transform originalGlove)
+        {
+            if (originalGlove == null) return;
+            foreach (Renderer renderer in originalGlove.GetComponentsInChildren<Renderer>(true))
+                renderer.enabled = false;
         }
 
         private void Update()
@@ -219,6 +231,11 @@ namespace BoxerP0
             CacheState();
             UpdatePlayerArms();
             UpdateOpponentArms();
+            // Re-hide original gloves every frame to defeat late decoration ordering.
+            HideOriginalGlove(_playerLeft?.OriginalGlove);
+            HideOriginalGlove(_playerRight?.OriginalGlove);
+            HideOriginalGlove(_opponentLeft?.OriginalGlove);
+            HideOriginalGlove(_opponentRight?.OriginalGlove);
             // Debug visuals are OFF by default (_enableDebugVisuals = false)
             if (_enableDebugVisuals) DrawDebugVisuals();
         }
@@ -315,19 +332,11 @@ namespace BoxerP0
 
         private void PoseArmOpponentGuard(VisualArm arm, Vector3 guardLocal, bool left, bool player)
         {
-            // P1-B1.5U: Natural boxing guard pose for opponent
-            // Uses explicit guard parameters instead of PunchFamily.None
+            // P1-B1.5V: Natural boxing guard pose for opponent.
+            // Tighter, less flared guard: elbows tucked forward/inward toward ribs,
+            // gloves raised toward the face with a natural lead/rear asymmetry.
             
             Vector3 shoulder = arm.ShoulderJoint.position;
-            
-            // Natural boxing guard parameters
-            float gloveHeightOffset = _opponentGloveHeightOffset;
-            float gloveForwardOffset = _opponentGloveForwardOffset;
-            float gloveLateralInset = _opponentGloveLateralInset;
-            float elbowInwardBias = _opponentElbowInwardBias;
-            float elbowHeightOffset = _opponentElbowHeightOffset;
-            float leftRightHeightDiff = _opponentLeftRightHeightDiff;
-            float elbowInwardBiasGuard = _opponentElbowInwardBiasGuard;
             
             // Adjust for left/right
             float leftRightSign = left ? -1f : 1f;
@@ -335,22 +344,22 @@ namespace BoxerP0
             // Shoulder position (already set by BuildArm)
             Vector3 shoulderPos = shoulder;
             
-            // Glove position in guard: slightly forward, at chest height, inset laterally
+            // Glove position in guard: raised toward face, forward, tucked inward
             Vector3 gloveTargetLocal = new Vector3(
                 leftRightSign * (_shoulderWidth - _opponentGloveLateralInset), 
                 _opponentGloveHeightOffset, 
                 _opponentGloveForwardOffset
             );
             
-            // Left/right height difference (left slightly higher)
-            float heightOffset = (left ? -1f : 1f) * _opponentLeftRightHeightDiff * 0.5f;
+            // Lead/rear height difference (lead slightly higher)
+            float heightOffset = (left ? 1f : -1f) * _opponentLeftRightHeightDiff * 0.5f;
             gloveTargetLocal.y += heightOffset;
             
-            // Elbow position: inward from shoulder, slightly below shoulder height
+            // Elbow position: tucked inward and slightly forward (toward ribs), dropped below shoulder
             Vector3 elbowTargetLocal = new Vector3(
                 leftRightSign * (_shoulderWidth - _opponentElbowInwardBias - _opponentElbowInwardBiasGuard), 
                 _opponentElbowHeightOffset, 
-                0f  // No forward offset for elbow in guard
+                _opponentElbowForwardBias
             );
             elbowTargetLocal.y += heightOffset;
             

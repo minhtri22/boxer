@@ -11,6 +11,7 @@ namespace BoxerP0
         private Phase0Telemetry _telemetry;
         private BoxerFeedback _feedback;
         private ArmVisualEmbodiment _armVisual;
+        private OpponentLegEmbodiment _opponentLegs;
         private readonly OnboardingProgress _training = new();
 
         private float _boutEnd;
@@ -373,15 +374,19 @@ namespace BoxerP0
             _opponent = opponentRoot.AddComponent<OpponentBoxer>();
 
             Color opponentColor = new(1.00f, 0.20f, 0.08f);
+            // P1-B2: shrink the visible torso capsule so it no longer reads as a
+            // lower-body pedestal. Pelvis + legs are now separate visual geometry.
+            // The authoritative combat SphereCollider below is unchanged.
             GameObject opponentBody = GameObject.CreatePrimitive(PrimitiveType.Capsule);
             opponentBody.name = "Opponent Body";
             opponentBody.transform.SetParent(opponentRoot.transform, false);
-            opponentBody.transform.localPosition = new Vector3(0f, 1.05f, 0f);
-            opponentBody.transform.localScale = new Vector3(0.58f, 0.62f, 0.42f);
+            opponentBody.transform.localPosition = new Vector3(0f, 1.24f, 0f);
+            opponentBody.transform.localScale = new Vector3(0.50f, 0.32f, 0.38f);
             ApplyColor(opponentBody.GetComponent<Renderer>(), opponentColor);
             CapsuleCollider originalBodyCollider = opponentBody.GetComponent<CapsuleCollider>();
             Destroy(originalBodyCollider);
             SphereCollider opponentBodyCollider = opponentBody.AddComponent<SphereCollider>();
+            opponentBodyCollider.center = new Vector3(0f, -0.19f, 0f);
             opponentBodyCollider.radius = 0.48f;
 
             GameObject opponentHead = GameObject.CreatePrimitive(PrimitiveType.Sphere);
@@ -427,6 +432,10 @@ namespace BoxerP0
             // P1-B1.5: Initialize arm visual embodiment
             _armVisual = gameObject.AddComponent<ArmVisualEmbodiment>();
             _armVisual.Initialize(_player, _opponent, _telemetry);
+
+            // P1-B2: Initialize opponent lower-body (pelvis + legs) embodiment
+            _opponentLegs = gameObject.AddComponent<OpponentLegEmbodiment>();
+            _opponentLegs.Initialize(opponentRoot.transform);
         }
 
         private void OnGUI()
