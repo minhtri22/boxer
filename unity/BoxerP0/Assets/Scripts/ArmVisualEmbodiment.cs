@@ -70,7 +70,7 @@ namespace BoxerP0
     }
 
     /// <summary>
-    /// P1-B1.5T visual-only anatomical chain with correct topology:
+    /// P1-B1.5U visual-only anatomical chain with correct topology and natural boxing guard:
     /// SHOULDER → UPPER ARM → ELBOW JOINT → FOREARM → GLOVE
     /// Exactly TWO limb segments: UPPER ARM + FOREARM. Elbow is a JOINT only.
     /// Original glove transforms/colliders remain untouched and authoritative for combat.
@@ -97,6 +97,16 @@ namespace BoxerP0
         public float UpperArmLengthProp => UpperArmLength;
         public float ForearmLengthProp => ForearmLength;
         public float MaxVisualReachProp => MaxVisualReach;
+
+        // P1-B1.5U: Natural Boxing Guard Parameters (Frozen)
+        [Header("P1-B1.5U Natural Boxing Guard Parameters (Frozen)")]
+        [SerializeField] private float _opponentGloveHeightOffset = 0.12f;      // Glove height above chest
+        [SerializeField] private float _opponentGloveForwardOffset = 0.18f;     // Glove forward from chest
+        [SerializeField] private float _opponentGloveLateralInset = 0.10f;      // Glove inward from shoulder
+        [SerializeField] private float _opponentElbowInwardBias = 0.08f;        // Elbow inward from shoulder
+        [SerializeField] private float _opponentElbowHeightOffset = -0.05f;     // Elbow slightly below shoulder
+        [SerializeField] private float _opponentLeftRightHeightDiff = 0.03f;    // Left slightly higher than right
+        [SerializeField] private float _opponentElbowInwardBiasGuard = 0.12f;   // Elbow closer to torso in guard
 
         private PlayerBoxer _playerBoxer;
         private OpponentBoxer _opponentBoxer;
@@ -209,6 +219,7 @@ namespace BoxerP0
             CacheState();
             UpdatePlayerArms();
             UpdateOpponentArms();
+            // Debug visuals are OFF by default (_enableDebugVisuals = false)
             if (_enableDebugVisuals) DrawDebugVisuals();
         }
 
@@ -269,8 +280,9 @@ namespace BoxerP0
 
             if (!_opponentBusy)
             {
-                PoseArm(active, activeGuard, PunchFamily.None, ActionPhase.Guard, false);
-                PoseArm(passive, passiveGuard, PunchFamily.None, ActionPhase.Guard, false);
+                // P1-B1.5U: Use natural boxing guard pose for idle opponent
+                PoseArmOpponentGuard(active, activeGuard, activeLeft, false);
+                PoseArmOpponentGuard(passive, passiveGuard, !activeLeft, false);
                 return;
             }
 
@@ -299,6 +311,57 @@ namespace BoxerP0
             // Place segments using explicit endpoints - each segment from its exact endpoints
             SetSegmentBetween(arm.UpperArm, solved.Shoulder, solved.Elbow, _upperArmRadius);
             SetSegmentBetween(arm.Forearm, solved.Elbow, solved.Wrist, _forearmRadius);
+        }
+
+        private void PoseArmOpponentGuard(VisualArm arm, Vector3 guardLocal, bool left, bool player)
+        {
+            // P1-B1.5U: Natural boxing guard pose for opponent
+            // Uses explicit guard parameters instead of PunchFamily.None
+            
+            Vector3 shoulder = arm.ShoulderJoint.position;
+            
+            // Natural boxing guard parameters
+            float gloveHeightOffset = _opponentGloveHeightOffset;
+            float gloveForwardOffset = _opponentGloveForwardOffset;
+            float gloveLateralInset = _opponentGloveLateralInset;
+            float elbowInwardBias = _opponentElbowInwardBias;
+            float elbowHeightOffset = _opponentElbowHeightOffset;
+            float leftRightHeightDiff = _opponentLeftRightHeightDiff;
+            float elbowInwardBiasGuard = _opponentElbowInwardBiasGuard;
+            
+            // Adjust for left/right
+            float leftRightSign = left ? -1f : 1f;
+            
+            // Shoulder position (already set by BuildArm)
+            Vector3 shoulderPos = shoulder;
+            
+            // Glove position in guard: slightly forward, at chest height, inset laterally
+            Vector3 gloveTargetLocal = new Vector3(
+                leftRightSign * (_shoulderWidth - _opponentGloveLateralInset), 
+                _opponentGloveHeightOffset, 
+                _opponentGloveForwardOffset
+            );
+            
+            // Left/right height difference (left slightly higher)
+            float heightOffset = (left ? -1f : 1f) * _opponentLeftRightHeightDiff * 0.5f;
+            gloveTargetLocal.y += heightOffset;
+            
+            // Elbow position: inward from shoulder, slightly below shoulder height
+            Vector3 elbowTargetLocal = new Vector3(
+                leftRightSign * (_shoulderWidth - _opponentElbowInwardBias - _opponentElbowInwardBiasGuard), 
+                _opponentElbowHeightOffset, 
+                0f  // No forward offset for elbow in guard
+            );
+            elbowTargetLocal.y += heightOffset;
+            
+            // Update joint positions
+            arm.ShoulderJoint.position = arm.ShoulderJoint.position; // Already at shoulder
+            arm.ElbowJoint.position = shoulderPos + arm.Root.TransformDirection(elbowTargetLocal);
+            arm.VisualGlove.position = shoulderPos + arm.Root.TransformDirection(gloveTargetLocal);
+            
+            // Place segments using explicit endpoints - each segment from its exact endpoints
+            SetSegmentBetween(arm.UpperArm, arm.ShoulderJoint.position, arm.ElbowJoint.position, _upperArmRadius);
+            SetSegmentBetween(arm.Forearm, arm.ElbowJoint.position, arm.VisualGlove.position, _forearmRadius);
         }
 
         private static Vector3 FamilyPoleLocal(PunchFamily family, ActionPhase phase, bool left, bool player)

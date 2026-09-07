@@ -119,6 +119,7 @@ namespace BoxerP0.Editor
                 $"p1_b1_5r_explicit_elbow_chain=true\n" +
                 $"p1_b1_5s_shoulder_contact_coherence=true\n" +
                 $"p1_b1_5t_upper_arm_trace_cleanup=true\n" +
+                $"p1_b1_5u_guard_pose_trace_final=true\n" +
                 $"p1_arm_topology=shoulder_upperarm_elbowjoint_forearm_glove\n" +
                 $"startup_gate=motion_permission_unblocks_gameplay_orientation_optional_late_neutral\n" +
                 $"source_provenance=build_marker_must_match_clean_committed_source_head\n" +
