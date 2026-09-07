@@ -1,0 +1,10 @@
+evidence=SYNTHETIC
+unity=6000.5.8f1
+utc=2026-09-07T03:17:52.8414646Z
+PASS P1-B1.5U opponent guard compactness
+PASS P1-B1.5U opponent guard asymmetry plausibility
+PASS P1-B1.5U recover returns to guard
+PASS P1-B1.5U no default yellow player trace
+PASS P1-B1.5U topology preserved
+PASS P1-B1.5U family readability preserved
+TOTAL=7 PASS
