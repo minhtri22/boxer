@@ -1,0 +1,34 @@
+{
+  "snapshot_date": "2026-09-08",
+  "accepted_artifact": "4a985574f44d458357f875a1b7a6d3d00c7f9386",
+  "accepted_source": "4939e2bd5f44513d9d2ad3732ae07ac02f2ea148",
+  "latest_combined_deterministic": "64/64 PASS",
+  "research_docs": [
+    "docs/research/p1-a1-step-reach-experiment.md",
+    "docs/research/p1-a3-family-coupling-experiment.md",
+    "docs/research/p1-a3-1-build-result.md",
+    "docs/research/p1-a3-1-real-device-uat.md",
+    "docs/research/p1-b1-5r-explicit-elbow-chain.md",
+    "docs/research/p1-b1-5r-build-result.md",
+    "docs/research/p1-b1-5s-shoulder-contact-coherence-result.md",
+    "docs/research/p1-b1-5t-upper-arm-trace-cleanup-result.md",
+    "docs/research/p1-b1-5u-guard-pose-trace-final-result.md",
+    "docs/research/p1-b1-5v-b2-upper-cleanup-opponent-legs-result.md"
+  ],
+  "evidence_roots": {
+    "phase0_synthetic": "evidence/phase0/SYNTHETIC/",
+    "phase1_synthetic": "evidence/phase1/SYNTHETIC/",
+    "web_build_metadata": "evidence/phase0/web-iphone/WEB_BUILD/build-metadata.txt",
+    "web_build": "builds/web/boxer-p0-web/"
+  },
+  "latest_build": {
+    "marker": "4939e2b",
+    "data_sha256": "CEC7B56DB844F7B2D3C4CB7C8B7DF09B693CE0EB1B5113E91D0CD65E908CD381",
+    "wasm_sha256": "008E9737919271CC23C250C1279F2E7DF59C220AD171A895B107B0A5F95EDC68"
+  },
+  "human_verdicts": {
+    "p1_a3_1": "HUMAN_PASS",
+    "p1_b1_5": "HUMAN_PASS",
+    "p1_b2": "HUMAN_PASS"
+  }
+}
