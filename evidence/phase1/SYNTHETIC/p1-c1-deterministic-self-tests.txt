@@ -1,0 +1,14 @@
+evidence=SYNTHETIC
+unity=6000.5.8f1
+utc=2026-09-09T10:53:34.2428917Z
+PASS P1-C1 guard load is neutral
+PASS P1-C1 commit preloads rearward
+PASS P1-C1 extend drives forward continuously
+PASS P1-C1 recovery returns neutral continuously
+PASS P1-C1 state is family independent
+PASS P1-C1 state is hand independent
+PASS P1-C1 offset is finite and bounded
+NEUTRAL_LOAD=0.50
+COMMIT_END_LOAD=0.42
+EXTEND_END_LOAD=0.62
+TOTAL=7 PASS

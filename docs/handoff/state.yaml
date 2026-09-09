@@ -22,6 +22,7 @@ verified:
   p1_b1_5_arm_embodiment: human_pass
   p1_b2_opponent_lower_body: human_pass
   p1_c0_hip_torso_rotation: deterministic_pass_uat_deferred
+  p1_c1_weight_transfer: deterministic_pass_uat_deferred
 frozen_constants:
   body_height_m: 1.8
   shoulder_height_m: 1.43
@@ -48,7 +49,6 @@ locked:
   career_progression_implementation: true
   player_legs_current_pov: true
 next_frontier:
-  - weight_transfer_baseline
   - whole_body_straight_coupling
   - whole_body_recovery
   - combat_log_biomechanics_inspector

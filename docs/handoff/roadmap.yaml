@@ -28,20 +28,19 @@ completed:
   - id: P1-C0
     name: hip_torso_rotation_baseline
     verdict: deterministic_pass_uat_deferred_to_final_integrated_candidate
+  - id: P1-C1
+    name: weight_transfer_baseline
+    verdict: deterministic_pass_uat_deferred_to_final_integrated_candidate
 next_sequence:
   - order: 1
-    id: P1-C1
-    name: weight_transfer_baseline
-    goal: define_small_testable_stance_weight_variable
-  - order: 2
     id: P1-C2
     name: whole_body_straight_coupling
     goal: test_one_effect_of_coordinated_body_state_beyond_A1
-  - order: 3
+  - order: 2
     id: P1-C3
     name: whole_body_recovery
     goal: recover_arm_torso_pelvis_stance_to_guard
-  - order: 4
+  - order: 3
     id: P1-OBS
     name: combat_log_biomechanics_inspector
     goal: inspect_body_state_geometry_and_outcome_reason
