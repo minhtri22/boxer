@@ -99,6 +99,10 @@ namespace BoxerP0
                 : 0f;
             CurrentPose = P1BodyRotationMath.Sample(_opponent.CurrentIntent, _opponent.CurrentPhase, phaseT);
             CurrentWeightTransfer = P1WeightTransferMath.Sample(_opponent.CurrentIntent, _opponent.CurrentPhase, phaseT);
+            float effectiveTorsoYaw = P1StraightBodyCouplingMath.EffectiveTorsoYawDegrees(
+                _opponent.CurrentIntent,
+                CurrentPose,
+                CurrentWeightTransfer);
 
             Quaternion pelvisRotation = Quaternion.Euler(0f, CurrentPose.PelvisYawDegrees, 0f);
             if (_shorts != null)
@@ -115,12 +119,12 @@ namespace BoxerP0
             if (_leftShoulderVisual != null)
             {
                 _leftShoulderVisual.localPosition = P1BodyRotationMath.RotateLocalYaw(
-                    new Vector3(-0.38f, 1.37f, CurrentWeightTransfer.VisualForwardOffsetMeters), CurrentPose.TorsoYawDegrees);
+                    new Vector3(-0.38f, 1.37f, CurrentWeightTransfer.VisualForwardOffsetMeters), effectiveTorsoYaw);
             }
             if (_rightShoulderVisual != null)
             {
                 _rightShoulderVisual.localPosition = P1BodyRotationMath.RotateLocalYaw(
-                    new Vector3(0.38f, 1.37f, CurrentWeightTransfer.VisualForwardOffsetMeters), CurrentPose.TorsoYawDegrees);
+                    new Vector3(0.38f, 1.37f, CurrentWeightTransfer.VisualForwardOffsetMeters), effectiveTorsoYaw);
             }
         }
 

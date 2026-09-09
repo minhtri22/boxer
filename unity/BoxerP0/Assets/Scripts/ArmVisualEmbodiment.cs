@@ -325,12 +325,16 @@ namespace BoxerP0
         {
             if (arm == null || arm.ShoulderJoint == null) return;
             float localX = arm.Left ? -_shoulderWidth : _shoulderWidth;
+            float effectiveTorsoYaw = P1StraightBodyCouplingMath.EffectiveTorsoYawDegrees(
+                _opponentIntent,
+                _opponentBodyRotation,
+                _opponentWeightTransfer);
             Vector3 neutralShoulder = new(
                 localX,
                 ShoulderHeight,
                 ShoulderForward + _opponentWeightTransfer.VisualForwardOffsetMeters);
             arm.ShoulderJoint.localPosition = P1BodyRotationMath.RotateLocalYaw(
-                neutralShoulder, _opponentBodyRotation.TorsoYawDegrees);
+                neutralShoulder, effectiveTorsoYaw);
         }
 
         private void PoseArm(VisualArm arm, Vector3 requestedWristLocal, PunchFamily family, ActionPhase phase, bool player)
