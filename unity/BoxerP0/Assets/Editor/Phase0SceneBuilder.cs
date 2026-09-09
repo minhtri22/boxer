@@ -131,6 +131,7 @@ namespace BoxerP0.Editor
                 $"p1_c1_extend_end_load={P1WeightTransferMath.ExtendEndLoad01:F2}\n" +
                 $"p1_c2_straight_coupling=presentation_only_extra_torso_drive\n" +
                 $"p1_c2_max_extra_torso_yaw_deg={P1StraightBodyCouplingMath.MaxExtraTorsoYawDegrees:F1}\n" +
+                $"p1_c3_recovery=whole_body_neutral_contract\n" +
                 $"p1_arm_topology=shoulder_upperarm_elbowjoint_forearm_glove\n" +
                 $"p1_body_height=1.8\n" +
                 $"p1_shoulder_height=1.43\n" +

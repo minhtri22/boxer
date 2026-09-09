@@ -79,6 +79,7 @@ namespace BoxerP0
 
         public P1BodyRotationPose CurrentPose { get; private set; }
         public P1WeightTransferPose CurrentWeightTransfer { get; private set; }
+        public P1WholeBodyRecoveryPose CurrentRecovery { get; private set; }
 
         public void Initialize(OpponentBoxer opponent)
         {
@@ -86,6 +87,7 @@ namespace BoxerP0
             _root = opponent != null ? opponent.transform : null;
             CurrentPose = new P1BodyRotationPose(0f, 0f, 0f);
             CurrentWeightTransfer = P1WeightTransferMath.FromLoad(P1WeightTransferMath.NeutralLoad01);
+            CurrentRecovery = P1WholeBodyRecoveryMath.Sample(PunchIntent.None, ActionPhase.Guard, 0f);
         }
 
         private void Update()
@@ -99,6 +101,7 @@ namespace BoxerP0
                 : 0f;
             CurrentPose = P1BodyRotationMath.Sample(_opponent.CurrentIntent, _opponent.CurrentPhase, phaseT);
             CurrentWeightTransfer = P1WeightTransferMath.Sample(_opponent.CurrentIntent, _opponent.CurrentPhase, phaseT);
+            CurrentRecovery = P1WholeBodyRecoveryMath.Sample(_opponent.CurrentIntent, _opponent.CurrentPhase, phaseT);
             float effectiveTorsoYaw = P1StraightBodyCouplingMath.EffectiveTorsoYawDegrees(
                 _opponent.CurrentIntent,
                 CurrentPose,
