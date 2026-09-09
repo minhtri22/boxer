@@ -17,6 +17,7 @@ Use deterministic tests to prove regression and isolated mechanics. Use real-dev
 | B2 opponent legs | PASS | PASS | PASS | HUMAN PASS |
 | C0 hip/torso rotation | PASS | deferred | deferred to final integrated UAT | DETERMINISTIC PASS |
 | C1 weight transfer | PASS | deferred | deferred to final integrated UAT | DETERMINISTIC PASS |
+| C2 straight body coupling | PASS | deferred | deferred to final integrated UAT | DETERMINISTIC PASS |
 
 ## Latest suite counts
 
@@ -30,7 +31,8 @@ Use deterministic tests to prove regression and isolated mechanics. Use real-dev
 - P1-B2: 7/7
 - P1-C0: 7/7
 - P1-C1: 7/7
-- Combined latest: 78/78
+- P1-C2: 7/7
+- Combined latest: 85/85
 
 ## Primary evidence locations
 

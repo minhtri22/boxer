@@ -1,0 +1,12 @@
+evidence=SYNTHETIC
+unity=6000.5.8f1
+utc=2026-09-09T10:58:25.9912381Z
+PASS P1-C2 non-straights receive zero extra yaw
+PASS P1-C2 neutral and preload receive zero extra yaw
+PASS P1-C2 straight drive reaches frozen extra yaw
+PASS P1-C2 lead rear straights are equal opposite
+PASS P1-C2 pelvis baseline remains unchanged
+PASS P1-C2 extra yaw is monotonic
+PASS P1-C2 extra yaw is finite and bounded
+MAX_EXTRA_TORSO_YAW_DEG=4.0
+TOTAL=7 PASS
