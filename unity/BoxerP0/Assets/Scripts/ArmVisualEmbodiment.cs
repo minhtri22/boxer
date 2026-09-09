@@ -296,7 +296,7 @@ namespace BoxerP0
             }
 
             Vector3 desired = PhaseTarget(activeGuard, commit, target, _playerPhase,
-                _playerBoxer.ActionNormalizedPhase(PhaseDuration(_playerPhase, true)));
+                _playerBoxer.ActionNormalizedPhase(_playerBoxer.CurrentActionPhaseDuration));
             PoseArm(active, desired, PunchLabels.Family(_playerIntent), _playerPhase, true);
             PoseArm(passive, passiveGuard, PunchFamily.None, ActionPhase.Guard, true);
         }
@@ -323,7 +323,7 @@ namespace BoxerP0
             PunchFamily family = PunchLabels.Family(_opponentIntent);
             Vector3 commit = OpponentCommitPose(activeGuard, family, activeLeft);
             Vector3 desired = PhaseTarget(activeGuard, commit, _opponentTargetLocal, _opponentPhase,
-                _opponentBoxer.ActionNormalizedPhase(PhaseDuration(_opponentPhase, false)));
+                _opponentBoxer.ActionNormalizedPhase(OpponentPhaseDuration(_opponentPhase)));
             PoseArm(active, desired, family, _opponentPhase, false);
             PoseArm(passive, passiveGuard, PunchFamily.None, ActionPhase.Guard, false);
         }
@@ -432,10 +432,8 @@ namespace BoxerP0
             };
         }
 
-        private static float PhaseDuration(ActionPhase phase, bool player)
+        private static float OpponentPhaseDuration(ActionPhase phase)
         {
-            if (player)
-                return phase == ActionPhase.Commit ? 0.09f : phase == ActionPhase.Extend ? 0.14f : 0.28f;
             return phase == ActionPhase.Commit ? 0.34f : phase == ActionPhase.Extend ? 0.17f : 0.48f;
         }
 

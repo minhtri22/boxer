@@ -9,7 +9,7 @@ namespace BoxerP0
     /// a small straight-punch reach coupling. P1-A2 adds punch family/hand semantics.
     /// P1-A3.1 activates hook effectiveness versus start-of-punch range.
     /// P1-A3.2 promotes punch-start step state into an uppercut base-readiness proxy that
-    /// changes only vertical drive. Overhand body coupling remains locked.
+    /// changes only vertical drive. P1-A3.3 makes forward-committed overhands recover longer.
     /// </summary>
     public readonly struct P1PunchSnapshot
     {
@@ -60,6 +60,9 @@ namespace BoxerP0
         public string A32Mode => P1PunchMechanics.A32Mode(Intent);
         public string A32BaseState => P1PunchMechanics.A32BaseState(Intent, StepState);
         public float A32UppercutDriveFactor => P1PunchMechanics.EffectiveA32UppercutDriveFactor(Intent, StepState);
+        public string A33Mode => P1PunchMechanics.A33Mode(Intent);
+        public string A33CommitState => P1PunchMechanics.A33CommitState(Intent, StepState);
+        public float A33RecoveryFactor => P1PunchMechanics.EffectiveA33RecoveryFactor(Intent, StepState);
 
         public string ToSemanticEvent(CombatOutcome outcome, bool counter)
         {
@@ -81,6 +84,9 @@ namespace BoxerP0
                 $"A32_MODE={A32Mode}",
                 $"A32_BASE={A32BaseState}",
                 $"A32_DRIVE={F(A32UppercutDriveFactor)}",
+                $"A33_MODE={A33Mode}",
+                $"A33_COMMIT={A33CommitState}",
+                $"A33_RECOVERY={F(A33RecoveryFactor)}",
                 $"COORD={F(CoordinationScore)}",
                 $"OUTCOME={outcome.ToString().ToUpperInvariant()}",
                 $"COUNTER={(counter ? 1 : 0)}");
@@ -111,6 +117,10 @@ namespace BoxerP0
         // or backward still allows the punch but reduces only commit->target vertical travel.
         public const float A32PlantedUppercutDrive = 1.00f;
         public const float A32MovingUppercutDrive = 0.85f;
+
+        // P1-A3.3: forward-committed overhands expose a longer return to guard.
+        // Only Recover duration changes; trajectory and combat geometry remain unchanged.
+        public const float A33ForwardCommittedRecoveryFactor = 1.20f;
 
         public static P1PunchSnapshot Capture(
             PunchIntent intent,
@@ -176,6 +186,11 @@ namespace BoxerP0
         public static bool IsUppercut(PunchIntent intent)
         {
             return PunchLabels.Family(intent) == PunchFamily.Uppercut;
+        }
+
+        public static bool IsOverhand(PunchIntent intent)
+        {
+            return PunchLabels.Family(intent) == PunchFamily.Overhand;
         }
 
         public static float EffectiveStraightReachFactor(PunchIntent intent, string stepState)
@@ -256,6 +271,32 @@ namespace BoxerP0
             float rise = targetPose.y - commitPose.y;
             targetPose.y = commitPose.y + rise * factor;
             return targetPose;
+        }
+
+        public static string A33Mode(PunchIntent intent)
+        {
+            return IsOverhand(intent) ? "OVERHAND_RECOVERY" : "NONE";
+        }
+
+        public static string A33CommitState(PunchIntent intent, string stepState)
+        {
+            if (!IsOverhand(intent)) return "NONE";
+            return stepState == "ADVANCING" ? "FORWARD_COMMITTED" : "UNCOMMITTED";
+        }
+
+        public static float EffectiveA33RecoveryFactor(PunchIntent intent, string stepState)
+        {
+            return IsOverhand(intent) && stepState == "ADVANCING"
+                ? A33ForwardCommittedRecoveryFactor
+                : 1f;
+        }
+
+        public static float EffectiveA33RecoverySeconds(
+            PunchIntent intent,
+            string stepState,
+            float baseRecoverySeconds)
+        {
+            return Mathf.Max(0f, baseRecoverySeconds) * EffectiveA33RecoveryFactor(intent, stepState);
         }
     }
 }

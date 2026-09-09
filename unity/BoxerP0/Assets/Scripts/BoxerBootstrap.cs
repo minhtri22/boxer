@@ -309,6 +309,7 @@ namespace BoxerP0
                 $"HEAD {_input.HeadAngleDegrees:F1}° → {_player.HeadOffset:F2}m  MOVE {_input.MovementIntent.x:F2},{_input.MovementIntent.y:F2}\n" +
                 $"PUNCH {_input.LastPunchLabel}  PLAYER {_player.ActionLabel}  GUARD {(_player.GuardActive ? "HIGH" : "OPEN")}\n" +
                 $"OPP {_opponent.ActionLabel}  COUNTER {(_opponent.CounterWindowOpen ? "OPEN" : "CLOSED")}\n" +
+                $"PLAYER RECOVER {_player.ActiveRecoverSeconds:F3}s\n" +
                 $"LAST {_telemetry.LastOutcome} / {_telemetry.LastEvent}  BOUT {GetBoutSecondsRemaining():F0}s\n" +
                 biomechanics.ToInspectorText() + "\n" +
                 "COMBAT LOG\n" + _telemetry.RecentCombatLog;

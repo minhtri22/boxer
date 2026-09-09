@@ -23,6 +23,7 @@ namespace BoxerP0
         private P1PunchSnapshot _p1PunchSnapshot;
         private bool _hasP1PunchSnapshot;
         private string _lastResolutionReason = "PENDING";
+        private float _activeRecoverSeconds = RecoverSeconds;
 
         private const float CommitSeconds = 0.09f;
         private const float ExtendSeconds = 0.14f;
@@ -48,6 +49,8 @@ namespace BoxerP0
         public bool HasP1PunchSnapshot => _hasP1PunchSnapshot;
         public P1PunchSnapshot P1PunchSnapshot => _p1PunchSnapshot;
         public string LastResolutionReason => _lastResolutionReason;
+        public float ActiveRecoverSeconds => _activeRecoverSeconds;
+        public float CurrentActionPhaseDuration => PhaseDuration(_action.Phase);
 
         public void Initialize(
             BoxerInput input,
@@ -95,6 +98,7 @@ namespace BoxerP0
                 _resolvedThisPunch = false;
                 _hasP1PunchSnapshot = false;
                 _lastResolutionReason = "PENDING";
+                _activeRecoverSeconds = RecoverSeconds;
             }
         }
 
@@ -150,6 +154,10 @@ namespace BoxerP0
                     _input.HeadAngleDegrees,
                     HeadOffset);
                 _hasP1PunchSnapshot = true;
+                _activeRecoverSeconds = P1PunchMechanics.EffectiveA33RecoverySeconds(
+                    intent,
+                    _p1PunchSnapshot.StepState,
+                    RecoverSeconds);
                 _telemetry?.RecordEvent($"PLAYER_PUNCH_{token}");
             }
             else
@@ -161,7 +169,7 @@ namespace BoxerP0
         private void UpdatePunch()
         {
             ActionPhase previousPhase = _action.Phase;
-            _action.Step(Time.deltaTime, CommitSeconds, ExtendSeconds, RecoverSeconds);
+            _action.Step(Time.deltaTime, CommitSeconds, ExtendSeconds, _activeRecoverSeconds);
             if (previousPhase != _action.Phase && _action.Phase == ActionPhase.Extend)
             {
                 _resolvedThisPunch = false;
@@ -172,6 +180,7 @@ namespace BoxerP0
 
             if (!_action.IsBusy)
             {
+                _activeRecoverSeconds = RecoverSeconds;
                 _leftGlove.localPosition = Vector3.Lerp(_leftGlove.localPosition, _leftGuardLocal, 18f * Time.deltaTime);
                 _rightGlove.localPosition = Vector3.Lerp(_rightGlove.localPosition, _rightGuardLocal, 18f * Time.deltaTime);
                 return;
@@ -221,7 +230,7 @@ namespace BoxerP0
                     }
                     break;
                 case ActionPhase.Recover:
-                    active.localPosition = Vector3.Lerp(targetPose, activeGuard, Smooth01(_action.NormalizedPhase(RecoverSeconds)));
+                    active.localPosition = Vector3.Lerp(targetPose, activeGuard, Smooth01(_action.NormalizedPhase(_activeRecoverSeconds)));
                     break;
             }
         }
@@ -331,13 +340,13 @@ namespace BoxerP0
             return planar.magnitude;
         }
 
-        private static float PhaseDuration(ActionPhase phase)
+        private float PhaseDuration(ActionPhase phase)
         {
             return phase switch
             {
                 ActionPhase.Commit => CommitSeconds,
                 ActionPhase.Extend => ExtendSeconds,
-                ActionPhase.Recover => RecoverSeconds,
+                ActionPhase.Recover => _activeRecoverSeconds,
                 _ => 1f
             };
         }
