@@ -178,6 +178,12 @@ namespace BoxerP0
             if (oppRightGlove != null) _opponentRightGuardLocal = oppRightGlove.localPosition;
         }
 
+        public void SetDeveloperDebugVisible(bool visible)
+        {
+            _enableDebugVisuals = visible;
+            _showCombatTraceDebug = visible;
+        }
+
         private VisualArm BuildArm(string prefix, Transform root, Transform originalGlove, bool left, bool player)
         {
             // Shoulder X is relative to the character's own left/right, regardless of root rotation

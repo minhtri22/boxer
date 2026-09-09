@@ -22,6 +22,7 @@ namespace BoxerP0
         private bool _resolvedThisPunch;
         private P1PunchSnapshot _p1PunchSnapshot;
         private bool _hasP1PunchSnapshot;
+        private string _lastResolutionReason = "PENDING";
 
         private const float CommitSeconds = 0.09f;
         private const float ExtendSeconds = 0.14f;
@@ -46,6 +47,7 @@ namespace BoxerP0
         public float ActionNormalizedPhase(float phaseDuration) => _action.NormalizedPhase(phaseDuration);
         public bool HasP1PunchSnapshot => _hasP1PunchSnapshot;
         public P1PunchSnapshot P1PunchSnapshot => _p1PunchSnapshot;
+        public string LastResolutionReason => _lastResolutionReason;
 
         public void Initialize(
             BoxerInput input,
@@ -92,6 +94,7 @@ namespace BoxerP0
                 _action.ResetToGuard();
                 _resolvedThisPunch = false;
                 _hasP1PunchSnapshot = false;
+                _lastResolutionReason = "PENDING";
             }
         }
 
@@ -138,6 +141,7 @@ namespace BoxerP0
             if (_action.TryStart(intent))
             {
                 _resolvedThisPunch = false;
+                _lastResolutionReason = "PENDING";
                 _p1PunchSnapshot = P1PunchMechanics.Capture(
                     intent,
                     transform.position,
@@ -220,12 +224,25 @@ namespace BoxerP0
             if (!CombatEnabled || _opponent == null) return;
             Vector3 start = transform.TransformPoint(localStart);
             Vector3 end = transform.TransformPoint(localEnd);
-            CombatOutcome outcome = _opponent.ResolveIncomingPunch(start, end, 0.09f);
+            CombatOutcome outcome = _opponent.ResolveIncomingPunch(start, end, 0.09f, out string reason);
+            _lastResolutionReason = reason;
             bool counter = outcome == CombatOutcome.Hit && _opponent.CounterWindowOpen;
-            _telemetry?.RecordOutcome("PLAYER", outcome, counter);
+            _telemetry?.RecordOutcome("PLAYER", outcome, counter, reason);
             if (_hasP1PunchSnapshot)
             {
                 _telemetry?.RecordEvent(_p1PunchSnapshot.ToSemanticEvent(outcome, counter));
+                P1BiomechanicsObservation observation = P1CombatObservability.Sample(
+                    _action.Intent,
+                    _action.Phase,
+                    _action.NormalizedPhase(ExtendSeconds),
+                    _p1PunchSnapshot.DistanceMeters,
+                    _p1PunchSnapshot.StepState,
+                    HeadOffset,
+                    Vector3.Distance(start, end),
+                    outcome,
+                    reason,
+                    counter);
+                _telemetry?.RecordBiomechanicsObservation("PLAYER", observation);
                 _hasP1PunchSnapshot = false;
             }
             BoxerFeedback.Emit(outcome);
@@ -233,7 +250,16 @@ namespace BoxerP0
 
         public CombatOutcome ResolveOpponentPunch(Vector3 start, Vector3 end, float punchRadius, bool bodyAttack)
         {
-            if (!CombatEnabled) return CombatOutcome.Miss;
+            return ResolveOpponentPunch(start, end, punchRadius, bodyAttack, out _);
+        }
+
+        public CombatOutcome ResolveOpponentPunch(Vector3 start, Vector3 end, float punchRadius, bool bodyAttack, out string reason)
+        {
+            if (!CombatEnabled)
+            {
+                reason = "COMBAT_DISABLED";
+                return CombatOutcome.Miss;
+            }
 
             float leftRadius = _leftGuardCollider.radius * MaxScale(_leftGuardCollider.transform);
             float rightRadius = _rightGuardCollider.radius * MaxScale(_rightGuardCollider.transform);
@@ -241,15 +267,72 @@ namespace BoxerP0
                 (CombatGeometry.SegmentSphereIntersects(start, end, _leftGlove.position, punchRadius + leftRadius) ||
                  CombatGeometry.SegmentSphereIntersects(start, end, _rightGlove.position, punchRadius + rightRadius)))
             {
+                reason = "PLAYER_GUARD_INTERSECTION";
                 return CombatOutcome.Block;
             }
 
             SphereCollider target = bodyAttack ? _bodyCollider : _headCollider;
             float targetRadius = target.radius * MaxScale(target.transform);
             Vector3 center = target.transform.TransformPoint(target.center);
-            return CombatGeometry.SegmentSphereIntersects(start, end, center, punchRadius + targetRadius)
-                ? CombatOutcome.Hit
-                : CombatOutcome.Miss;
+            if (CombatGeometry.SegmentSphereIntersects(start, end, center, punchRadius + targetRadius))
+            {
+                reason = bodyAttack ? "PLAYER_BODY_INTERSECTION" : "PLAYER_HEAD_INTERSECTION";
+                return CombatOutcome.Hit;
+            }
+
+            reason = "NO_PLAYER_TARGET_INTERSECTION";
+            return CombatOutcome.Miss;
+        }
+
+        public P1BiomechanicsObservation CurrentBiomechanicsObservation()
+        {
+            PunchIntent intent = CurrentIntent;
+            ActionPhase phase = _action.IsBusy ? _action.Phase : ActionPhase.Guard;
+            float phase01 = _action.IsBusy ? _action.NormalizedPhase(PhaseDuration(phase)) : 0f;
+
+            float distance = _hasP1PunchSnapshot
+                ? _p1PunchSnapshot.DistanceMeters
+                : CurrentOpponentDistance();
+            string step = _hasP1PunchSnapshot
+                ? _p1PunchSnapshot.StepState
+                : P1PunchMechanics.ResolveStepState(_input != null ? _input.MovementIntent.y : 0f);
+
+            Transform active = ActiveGlove(intent);
+            bool left = active == _leftGlove;
+            Vector3 guardLocal = left ? _leftGuardLocal : _rightGuardLocal;
+            Vector3 guardWorld = transform.TransformPoint(guardLocal);
+            float glovePath = active != null ? Vector3.Distance(guardWorld, active.position) : 0f;
+
+            return P1CombatObservability.Sample(
+                intent,
+                phase,
+                phase01,
+                distance,
+                step,
+                HeadOffset,
+                glovePath,
+                CombatOutcome.None,
+                _lastResolutionReason,
+                false);
+        }
+
+        private float CurrentOpponentDistance()
+        {
+            if (_opponent == null) return 0f;
+            Vector3 planar = _opponent.transform.position - transform.position;
+            planar.y = 0f;
+            return planar.magnitude;
+        }
+
+        private static float PhaseDuration(ActionPhase phase)
+        {
+            return phase switch
+            {
+                ActionPhase.Commit => CommitSeconds,
+                ActionPhase.Extend => ExtendSeconds,
+                ActionPhase.Recover => RecoverSeconds,
+                _ => 1f
+            };
         }
 
         private Transform ActiveGlove(PunchIntent intent)

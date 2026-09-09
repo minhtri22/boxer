@@ -9,10 +9,14 @@ namespace BoxerP0
     {
         private StreamWriter _writer;
         private float _nextSample;
+        private readonly P1CombatLogBuffer _combatLog = new(32);
 
         public string LastOutcome { get; private set; } = "NONE";
         public string LastEvent { get; private set; } = "BOOT";
         public string LogPath { get; private set; }
+        public string LastCombatEvent => _combatLog.Latest;
+        public int CombatLogCount => _combatLog.Count;
+        public string RecentCombatLog => _combatLog.RenderRecent(4);
 
         public int PlayerHits { get; private set; }
         public int PlayerCounterHits { get; private set; }
@@ -75,6 +79,7 @@ namespace BoxerP0
             OpponentBlocks = 0;
             BoutResult = "IN_PROGRESS";
             LastOutcome = "NONE";
+            _combatLog.Clear();
             RecordEvent("BOUT_START");
         }
 
@@ -91,10 +96,13 @@ namespace BoxerP0
             return BoutResult;
         }
 
-        public void RecordOutcome(string actor, CombatOutcome outcome, bool counter)
+        public void RecordOutcome(string actor, CombatOutcome outcome, bool counter, string reason = "UNSPECIFIED")
         {
             LastOutcome = outcome.ToString().ToUpperInvariant();
             LastEvent = counter ? $"{actor}_COUNTER_{LastOutcome}" : $"{actor}_{LastOutcome}";
+            _combatLog.Add(
+                $"RESOLUTION ACTOR={P1CombatObservability.NormalizeToken(actor)} OUTCOME={LastOutcome} " +
+                $"REASON={P1CombatObservability.NormalizeToken(reason)} COUNTER={(counter ? 1 : 0)}");
 
             if (actor == "PLAYER")
             {
@@ -124,6 +132,13 @@ namespace BoxerP0
 #if !(UNITY_WEBGL && !UNITY_EDITOR)
             WriteRow();
 #endif
+        }
+
+        public void RecordBiomechanicsObservation(string actor, P1BiomechanicsObservation observation)
+        {
+            string value = observation.ToSemanticEvent(actor);
+            _combatLog.Add(value);
+            RecordEvent(value);
         }
 
         public void RecordEvent(string value)

@@ -199,14 +199,23 @@ namespace BoxerP0
             if (!CombatEnabled) return;
             Vector3 start = transform.TransformPoint(localStart);
             Vector3 end = transform.TransformPoint(localEnd);
-            CombatOutcome outcome = _player.ResolveOpponentPunch(start, end, 0.075f, _bodyAttack);
-            _telemetry?.RecordOutcome("OPPONENT", outcome, false);
+            CombatOutcome outcome = _player.ResolveOpponentPunch(start, end, 0.075f, _bodyAttack, out string reason);
+            _telemetry?.RecordOutcome("OPPONENT", outcome, false, reason);
             BoxerFeedback.Emit(outcome);
         }
 
         public CombatOutcome ResolveIncomingPunch(Vector3 start, Vector3 end, float punchRadius)
         {
-            if (!CombatEnabled) return CombatOutcome.Miss;
+            return ResolveIncomingPunch(start, end, punchRadius, out _);
+        }
+
+        public CombatOutcome ResolveIncomingPunch(Vector3 start, Vector3 end, float punchRadius, out string reason)
+        {
+            if (!CombatEnabled)
+            {
+                reason = "COMBAT_DISABLED";
+                return CombatOutcome.Miss;
+            }
 
             float leftRadius = _leftGuardCollider.radius * MaxScale(_leftGuardCollider.transform);
             float rightRadius = _rightGuardCollider.radius * MaxScale(_rightGuardCollider.transform);
@@ -214,6 +223,7 @@ namespace BoxerP0
                 (CombatGeometry.SegmentSphereIntersects(start, end, _leftGlove.position, punchRadius + leftRadius) ||
                  CombatGeometry.SegmentSphereIntersects(start, end, _rightGlove.position, punchRadius + rightRadius)))
             {
+                reason = "OPPONENT_GUARD_INTERSECTION";
                 return CombatOutcome.Block;
             }
 
@@ -221,14 +231,20 @@ namespace BoxerP0
             float headRadius = _headCollider.radius * MaxScale(_headCollider.transform);
             if (CombatGeometry.SegmentSphereIntersects(start, end, headCenter, punchRadius + headRadius))
             {
+                reason = "OPPONENT_HEAD_INTERSECTION";
                 return CombatOutcome.Hit;
             }
 
             Vector3 bodyCenter = _bodyCollider.transform.TransformPoint(_bodyCollider.center);
             float bodyRadius = _bodyCollider.radius * MaxScale(_bodyCollider.transform);
-            return CombatGeometry.SegmentSphereIntersects(start, end, bodyCenter, punchRadius + bodyRadius)
-                ? CombatOutcome.Hit
-                : CombatOutcome.Miss;
+            if (CombatGeometry.SegmentSphereIntersects(start, end, bodyCenter, punchRadius + bodyRadius))
+            {
+                reason = "OPPONENT_BODY_INTERSECTION";
+                return CombatOutcome.Hit;
+            }
+
+            reason = "NO_OPPONENT_TARGET_INTERSECTION";
+            return CombatOutcome.Miss;
         }
 
         private Transform ActiveGlove(PunchIntent intent)

@@ -75,7 +75,10 @@ namespace BoxerP0
             SampleFrame();
 
             if (!Application.isMobilePlatform && Input.GetKeyDown(KeyCode.F3))
+            {
                 _showDeveloperDiagnostics = !_showDeveloperDiagnostics;
+                _armVisual?.SetDeveloperDebugVisible(_showDeveloperDiagnostics);
+            }
 
 #if UNITY_WEBGL && !UNITY_EDITOR
             if (_stage == OnboardingStage.WaitingForCalibration && _input != null && _input.BrowserCalibrated)
@@ -296,6 +299,7 @@ namespace BoxerP0
             }
 
             _trainingText = GetTrainingText();
+            P1BiomechanicsObservation biomechanics = _player.CurrentBiomechanicsObservation();
             _debugText =
                 $"BUILD {Application.version}  PERF {_perfState}\n" +
                 $"FPS {_fpsCurrent:F0} now / {_fpsAverage:F0} avg  FRAME p95 {_frameP95Ms:F1}ms max {_frameMaxMs:F1}ms\n" +
@@ -305,7 +309,9 @@ namespace BoxerP0
                 $"HEAD {_input.HeadAngleDegrees:F1}° → {_player.HeadOffset:F2}m  MOVE {_input.MovementIntent.x:F2},{_input.MovementIntent.y:F2}\n" +
                 $"PUNCH {_input.LastPunchLabel}  PLAYER {_player.ActionLabel}  GUARD {(_player.GuardActive ? "HIGH" : "OPEN")}\n" +
                 $"OPP {_opponent.ActionLabel}  COUNTER {(_opponent.CounterWindowOpen ? "OPEN" : "CLOSED")}\n" +
-                $"LAST {_telemetry.LastOutcome} / {_telemetry.LastEvent}  BOUT {GetBoutSecondsRemaining():F0}s";
+                $"LAST {_telemetry.LastOutcome} / {_telemetry.LastEvent}  BOUT {GetBoutSecondsRemaining():F0}s\n" +
+                biomechanics.ToInspectorText() + "\n" +
+                "COMBAT LOG\n" + _telemetry.RecentCombatLog;
         }
 
         private static string AgeText(float ageMs)
@@ -462,7 +468,7 @@ namespace BoxerP0
 
             if (_showDeveloperDiagnostics)
             {
-                GUI.Box(new Rect(20, Screen.height - 330, Mathf.Min(Screen.width - 40, 720), 310), _debugText);
+                GUI.Box(new Rect(20, Mathf.Max(20, Screen.height - 500), Mathf.Min(Screen.width - 40, 780), 480), _debugText);
             }
 
             if (_showDeveloperDiagnostics && !Application.isMobilePlatform)
