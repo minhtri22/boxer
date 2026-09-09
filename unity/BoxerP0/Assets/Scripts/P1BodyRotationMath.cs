@@ -73,14 +73,19 @@ namespace BoxerP0
         private Transform _waistband;
         private Transform _leftShoulderVisual;
         private Transform _rightShoulderVisual;
+        private Vector3 _shortsNeutralLocal;
+        private Vector3 _waistbandNeutralLocal;
+        private bool _capturedNeutralDecor;
 
         public P1BodyRotationPose CurrentPose { get; private set; }
+        public P1WeightTransferPose CurrentWeightTransfer { get; private set; }
 
         public void Initialize(OpponentBoxer opponent)
         {
             _opponent = opponent;
             _root = opponent != null ? opponent.transform : null;
             CurrentPose = new P1BodyRotationPose(0f, 0f, 0f);
+            CurrentWeightTransfer = P1WeightTransferMath.FromLoad(P1WeightTransferMath.NeutralLoad01);
         }
 
         private void Update()
@@ -93,20 +98,29 @@ namespace BoxerP0
                 ? _opponent.ActionNormalizedPhase(P1BodyRotationMath.OpponentPhaseDuration(_opponent.CurrentPhase))
                 : 0f;
             CurrentPose = P1BodyRotationMath.Sample(_opponent.CurrentIntent, _opponent.CurrentPhase, phaseT);
+            CurrentWeightTransfer = P1WeightTransferMath.Sample(_opponent.CurrentIntent, _opponent.CurrentPhase, phaseT);
 
             Quaternion pelvisRotation = Quaternion.Euler(0f, CurrentPose.PelvisYawDegrees, 0f);
-            if (_shorts != null) _shorts.localRotation = pelvisRotation;
-            if (_waistband != null) _waistband.localRotation = pelvisRotation;
+            if (_shorts != null)
+            {
+                _shorts.localRotation = pelvisRotation;
+                _shorts.localPosition = _shortsNeutralLocal + Vector3.forward * CurrentWeightTransfer.VisualForwardOffsetMeters;
+            }
+            if (_waistband != null)
+            {
+                _waistband.localRotation = pelvisRotation;
+                _waistband.localPosition = _waistbandNeutralLocal + Vector3.forward * CurrentWeightTransfer.VisualForwardOffsetMeters;
+            }
 
             if (_leftShoulderVisual != null)
             {
                 _leftShoulderVisual.localPosition = P1BodyRotationMath.RotateLocalYaw(
-                    new Vector3(-0.38f, 1.37f, 0f), CurrentPose.TorsoYawDegrees);
+                    new Vector3(-0.38f, 1.37f, CurrentWeightTransfer.VisualForwardOffsetMeters), CurrentPose.TorsoYawDegrees);
             }
             if (_rightShoulderVisual != null)
             {
                 _rightShoulderVisual.localPosition = P1BodyRotationMath.RotateLocalYaw(
-                    new Vector3(0.38f, 1.37f, 0f), CurrentPose.TorsoYawDegrees);
+                    new Vector3(0.38f, 1.37f, CurrentWeightTransfer.VisualForwardOffsetMeters), CurrentPose.TorsoYawDegrees);
             }
         }
 
@@ -114,6 +128,12 @@ namespace BoxerP0
         {
             if (_shorts == null) _shorts = _root.Find("Opponent Shorts Visual");
             if (_waistband == null) _waistband = _root.Find("Opponent Gold Waistband");
+            if (!_capturedNeutralDecor && _shorts != null && _waistband != null)
+            {
+                _shortsNeutralLocal = _shorts.localPosition;
+                _waistbandNeutralLocal = _waistband.localPosition;
+                _capturedNeutralDecor = true;
+            }
             if (_leftShoulderVisual != null && _rightShoulderVisual != null) return;
 
             Transform[] children = _root.GetComponentsInChildren<Transform>(true);

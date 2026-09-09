@@ -133,6 +133,7 @@ namespace BoxerP0
         private float _playerDistance = 1f;
         private Vector3 _opponentTargetLocal;
         private P1BodyRotationPose _opponentBodyRotation;
+        private P1WeightTransferPose _opponentWeightTransfer;
 
         // Anthropometric constants - frozen per P1-B1.5T
         private const float BodyHeight = 1.8f;
@@ -261,6 +262,7 @@ namespace BoxerP0
                 ? _opponentBoxer.ActionNormalizedPhase(P1BodyRotationMath.OpponentPhaseDuration(_opponentPhase))
                 : 0f;
             _opponentBodyRotation = P1BodyRotationMath.Sample(_opponentIntent, _opponentPhase, bodyPhaseT);
+            _opponentWeightTransfer = P1WeightTransferMath.Sample(_opponentIntent, _opponentPhase, bodyPhaseT);
         }
 
         private void UpdatePlayerArms()
@@ -323,7 +325,10 @@ namespace BoxerP0
         {
             if (arm == null || arm.ShoulderJoint == null) return;
             float localX = arm.Left ? -_shoulderWidth : _shoulderWidth;
-            Vector3 neutralShoulder = new(localX, ShoulderHeight, ShoulderForward);
+            Vector3 neutralShoulder = new(
+                localX,
+                ShoulderHeight,
+                ShoulderForward + _opponentWeightTransfer.VisualForwardOffsetMeters);
             arm.ShoulderJoint.localPosition = P1BodyRotationMath.RotateLocalYaw(
                 neutralShoulder, _opponentBodyRotation.TorsoYawDegrees);
         }

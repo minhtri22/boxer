@@ -125,6 +125,10 @@ namespace BoxerP0.Editor
                 $"p1_c0_hip_torso_rotation=presentation_only_family_independent\n" +
                 $"p1_c0_max_pelvis_yaw_deg={P1BodyRotationMath.MaxPelvisYawDegrees:F1}\n" +
                 $"p1_c0_max_torso_yaw_deg={P1BodyRotationMath.MaxTorsoYawDegrees:F1}\n" +
+                $"p1_c1_weight_transfer=diagnostic_presentation_forward_load_0_to_1\n" +
+                $"p1_c1_neutral_load={P1WeightTransferMath.NeutralLoad01:F2}\n" +
+                $"p1_c1_commit_end_load={P1WeightTransferMath.CommitEndLoad01:F2}\n" +
+                $"p1_c1_extend_end_load={P1WeightTransferMath.ExtendEndLoad01:F2}\n" +
                 $"p1_arm_topology=shoulder_upperarm_elbowjoint_forearm_glove\n" +
                 $"p1_body_height=1.8\n" +
                 $"p1_shoulder_height=1.43\n" +
