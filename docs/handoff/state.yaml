@@ -1,0 +1,61 @@
+project: Boxer
+snapshot_date: 2026-09-08
+repository: minhtri22/boxer
+active_branch: p1/whole-body-mechanics
+unity: 6000.5.8f1
+accepted_artifact_before_handoff_commit: 4a985574f44d458357f875a1b7a6d3d00c7f9386
+accepted_binary_source: 4939e2bd5f44513d9d2ad3732ae07ac02f2ea148
+accepted_build_marker: 4939e2b
+core_thesis:
+  player_is_boxer: true
+  phone_is_head: true
+  left_thumb_is_feet: true
+  right_thumb_is_punch_family_intent: true
+  idle_returns_to_guard: true
+verified:
+  p0_controls: pass
+  p1_e0_instrumentation: pass
+  p1_a1_step_straight_reach: pass
+  p1_a2_gesture_vocabulary: pass
+  p1_b1_finite_opponent_reach_no_homing: pass
+  p1_a3_1_hook_close_range: human_pass
+  p1_b1_5_arm_embodiment: human_pass
+  p1_b2_opponent_lower_body: human_pass
+frozen_constants:
+  body_height_m: 1.8
+  shoulder_height_m: 1.43
+  shoulder_width_m: 0.38
+  upper_arm_m: 0.34
+  forearm_m: 0.31
+  total_arm_m: 0.65
+  pelvis_height_m: 0.92
+  hip_width_m: 0.26
+  thigh_m: 0.46
+  shin_m: 0.44
+  foot_m: 0.22
+  a1_advancing_straight: 1.06
+  a1_neutral_straight: 1.0
+  a1_retreating_straight: 0.94
+  a3_hook_full_range_m: 1.05
+  a3_hook_falloff_end_m: 1.25
+  a3_hook_far_factor: 0.86
+locked:
+  a3_2_uppercut_biomechanics: true
+  a3_3_overhand_biomechanics: true
+  final_damage_model: true
+  replay_generator: true
+  career_progression_implementation: true
+  player_legs_current_pov: true
+next_frontier:
+  - hip_rotation_baseline
+  - weight_transfer_baseline
+  - whole_body_straight_coupling
+  - whole_body_recovery
+  - combat_log_biomechanics_inspector
+build_provenance_rule:
+  source_committed_before_build: true
+  tracked_tree_clean: true
+  marker_equals_source_short: true
+  product_version_equals_marker: true
+  metadata_build_commit_equals_marker: true
+  no_rebase_after_build: true

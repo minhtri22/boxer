@@ -1,0 +1,59 @@
+current_phase: P1
+method: prove_only_what_is_still_uncertain_decide_implement
+completed:
+  - id: P0
+    name: interaction_feasibility
+    verdict: pass
+  - id: P1-E0
+    name: punch_start_instrumentation
+    verdict: pass
+  - id: P1-A1
+    name: step_to_straight_reach
+    verdict: pass
+  - id: P1-A2
+    name: punch_gesture_vocabulary
+    verdict: pass
+  - id: P1-B1
+    name: opponent_finite_reach_no_homing
+    verdict: pass
+  - id: P1-A3.1
+    name: hook_close_range_coupling
+    verdict: human_pass
+  - id: P1-B1.5
+    name: arm_embodiment_readability
+    verdict: human_pass
+  - id: P1-B2
+    name: opponent_pelvis_leg_embodiment
+    verdict: human_pass
+next_sequence:
+  - order: 1
+    id: P1-C0
+    name: hip_torso_rotation_baseline
+    goal: expose_and_validate_readable_hip_torso_state_without_global_power_scalar
+  - order: 2
+    id: P1-C1
+    name: weight_transfer_baseline
+    goal: define_small_testable_stance_weight_variable
+  - order: 3
+    id: P1-C2
+    name: whole_body_straight_coupling
+    goal: test_one_effect_of_coordinated_body_state_beyond_A1
+  - order: 4
+    id: P1-C3
+    name: whole_body_recovery
+    goal: recover_arm_torso_pelvis_stance_to_guard
+  - order: 5
+    id: P1-OBS
+    name: combat_log_biomechanics_inspector
+    goal: inspect_body_state_geometry_and_outcome_reason
+locked_until_observability:
+  - P1-A3.2
+  - P1-A3.3
+later:
+  - counter_geometry
+  - opponent_attributes
+  - production_3d_rig_animation
+  - semantic_replay
+  - ko_highlight_generation
+  - career_progression
+  - advanced_damage_knockdown

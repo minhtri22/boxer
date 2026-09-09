@@ -1,0 +1,40 @@
+version: 1
+status: HUMAN_APPROVED
+authority: BINDING_UAT_VISUAL_AUTHORITY
+approved_on: 2026-09-09
+references:
+  character_customization: {file: docs/handoff/reference-ui/01-character-customization.jpg, status: approved_future_surface}
+  home_main_menu: {file: docs/handoff/reference-ui/02-home-main-menu.jpg, status: approved_future_surface}
+  pov_combat_hud: {file: docs/handoff/reference-ui/03-pov-combat-hud.jpg, status: approved_immediate_uat_target}
+  venues_career_selection: {file: docs/handoff/reference-ui/04-venues-career-selection.jpg, status: approved_future_surface}
+  training_coach: {file: docs/handoff/reference-ui/05-training-coach.jpg, status: approved_future_surface}
+  opponent_ramirez_turnaround: {file: docs/handoff/reference-ui/06-opponent-ramirez-turnaround.jpg, status: approved_production_character_authority}
+brand:
+  primary_palette: [black, warm_gold]
+  accents: [red, off_white]
+  mood: premium_cinematic_championship_boxing
+combat_uat_must_preserve:
+  - first_person_pov
+  - player_gloves_foreground
+  - opponent_centered_and_readable
+  - player_hud_top_left
+  - round_timer_top_center
+  - opponent_hud_top_right
+  - movement_control_bottom_left
+  - guard_control_bottom_center
+  - punch_control_zone_bottom_right
+  - hp_and_stamina_readability
+  - premium_black_gold_visual_language
+  - mobile_readability
+combat_uat_must_avoid:
+  - debug_first_presentation
+  - oversized_diagnostic_overlay
+  - projectile_like_punch_visual
+  - ui_that_redefines_verified_control_semantics
+  - placeholder_blocks_when_visual_shell_is_in_scope
+  - unreadable_training_or_status_text
+agent_rules:
+  reference_change_requires_human_approval: true
+  mechanics_remain_authoritative: true
+  never_change_hit_geometry_to_match_art: true
+  report_reference_match_on_each_uat_build: true
