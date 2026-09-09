@@ -1,0 +1,14 @@
+evidence=SYNTHETIC
+unity=6000.5.8f1
+utc=2026-09-09T11:55:15.7298509Z
+PASS P1-OBS family and hand are deterministic
+PASS P1-OBS body state reuses frozen math
+PASS P1-OBS guard state is neutral
+PASS P1-OBS numeric fields are finite
+PASS P1-OBS body fields remain bounded
+PASS P1-OBS semantic schema serialization is stable
+PASS P1-OBS reason tokens normalize deterministically
+PASS P1-OBS combat log is bounded FIFO
+SCHEMA=P1OBS_V1
+LOG_CAPACITY=32
+TOTAL=8 PASS

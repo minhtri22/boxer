@@ -37,14 +37,18 @@ completed:
   - id: P1-C3
     name: whole_body_recovery
     verdict: deterministic_pass_uat_deferred_to_final_integrated_candidate
+  - id: P1-OBS
+    name: combat_log_biomechanics_inspector
+    verdict: deterministic_pass_uat_deferred_to_final_integrated_candidate
 next_sequence:
   - order: 1
-    id: P1-OBS
-    name: combat_log_biomechanics_inspector
-    goal: inspect_body_state_geometry_and_outcome_reason
-locked_until_observability:
-  - P1-A3.2
-  - P1-A3.3
+    id: P1-A3.2
+    name: uppercut_biomechanics
+    goal: prove_one_causal_lower_body_load_or_vertical_drive_consequence
+  - order: 2
+    id: P1-A3.3
+    name: overhand_biomechanics
+    goal: prove_one_causal_commitment_or_recovery_consequence
 later:
   - counter_geometry
   - opponent_attributes

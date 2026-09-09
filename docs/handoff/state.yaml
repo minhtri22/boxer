@@ -25,6 +25,7 @@ verified:
   p1_c1_weight_transfer: deterministic_pass_uat_deferred
   p1_c2_straight_body_coupling: deterministic_pass_uat_deferred
   p1_c3_whole_body_recovery: deterministic_pass_uat_deferred
+  p1_obs_combat_biomechanics_inspector: deterministic_pass_uat_deferred
 frozen_constants:
   body_height_m: 1.8
   shoulder_height_m: 1.43
@@ -44,14 +45,15 @@ frozen_constants:
   a3_hook_falloff_end_m: 1.25
   a3_hook_far_factor: 0.86
 locked:
-  a3_2_uppercut_biomechanics: true
-  a3_3_overhand_biomechanics: true
+  a3_2_uppercut_biomechanics: false
+  a3_3_overhand_biomechanics: false
   final_damage_model: true
   replay_generator: true
   career_progression_implementation: true
   player_legs_current_pov: true
 next_frontier:
-  - combat_log_biomechanics_inspector
+  - a3_2_uppercut_biomechanics
+  - a3_3_overhand_biomechanics
 build_provenance_rule:
   source_committed_before_build: true
   tracked_tree_clean: true

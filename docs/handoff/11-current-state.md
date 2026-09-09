@@ -29,6 +29,7 @@
 | P1-C1 weight-transfer baseline | DETERMINISTIC PASS — UAT deferred |
 | P1-C2 straight body coupling | DETERMINISTIC PASS — UAT deferred |
 | P1-C3 whole-body recovery | DETERMINISTIC PASS — UAT deferred |
+| P1-OBS combat log / biomechanics inspector | DETERMINISTIC PASS — UAT deferred |
 
 Latest human assessment: the version is substantially improved; hands are very good, legs are acceptable, and the user explicitly passed this milestone.
 
@@ -49,7 +50,9 @@ Latest P1-B1.5V+B2 implementation report recorded:
 - P1-C1: 7/7 PASS
 - P1-C2: 7/7 PASS
 - P1-C3: 8/8 PASS
-- current combined: 93/93 PASS
+- P1-OBS: 8/8 PASS
+- current combined: 101/101 PASS
+- Unity P1-OBS regression execution: exit 0
 - WebGL build succeeded
 - data SHA256: `CEC7B56DB844F7B2D3C4CB7C8B7DF09B693CE0EB1B5113E91D0CD65E908CD381`
 - wasm SHA256: `008E9737919271CC23C250C1279F2E7DF59C220AD171A895B107B0A5F95EDC68`
@@ -77,13 +80,12 @@ Opponent lower body:
 
 ### Allowed next
 
-- combat log / biomechanics inspector;
-- new deterministic instrumentation/tests for those questions.
+- P1-A3.2 uppercut biomechanics experiment;
+- P1-A3.3 overhand biomechanics experiment after A3.2;
+- deterministic instrumentation/tests needed to isolate those mechanics.
 
 ### Still locked
 
-- A3.2 uppercut body coupling;
-- A3.3 overhand body coupling;
 - final damage model;
 - career/progression implementation;
 - replay/KO clip generator;
@@ -99,4 +101,4 @@ Opponent lower body:
 
 ## Next decision gate
 
-P1-C0 through P1-C3 are closed at deterministic level. Proceed to P1-OBS Combat Log + Biomechanics Inspector before unlocking deeper uppercut/overhand biomechanics. Per product-owner direction, intermediate real-device UAT is deferred; the next human gate is the single final integrated candidate after approved UI/UX visual convergence.
+P1-C0 through P1-C3 and P1-OBS are closed at deterministic level. Observability now exposes punch family/hand, phase, start distance/step, pelvis/torso state, forward load, head offset, glove path, outcome reason and counter state. Proceed to P1-A3.2 Uppercut biomechanics, then P1-A3.3 Overhand biomechanics. Per product-owner direction, intermediate real-device UAT is deferred; the next human gate is the single final integrated candidate after approved UI/UX visual convergence.

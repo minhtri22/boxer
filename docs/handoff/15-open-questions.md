@@ -4,45 +4,7 @@ Only unresolved questions belong here. If a question has been answered by accept
 
 ## Whole-body mechanics frontier
 
-### Q1 — Hip rotation baseline
-How much pelvis/torso rotation should occur for a neutral boxing action before any punch-family-specific power/reach effect is introduced?
-
-Need to prove:
-- a stable, observable hip/torso state;
-- readable difference from arm-only motion;
-- no regression to range/hit logic.
-
-### Q2 — Weight transfer representation
-What is the smallest useful state variable for weight transfer?
-
-Candidates include normalized lead/rear load, center-of-mass proxy, stance compression, or step phase. Do not choose by aesthetic preference alone.
-
-### Q3 — Whole-body straight coupling
-Beyond A1 step-direction reach, should a coordinated straight change reach, speed, recovery, power proxy, or only presentation? Which one variable should be promoted first?
-
-### Q4 — Recovery
-What does “return to guard” mean for the whole body?
-
-Need to define recovery across:
-- glove/arm;
-- shoulder/torso;
-- pelvis;
-- stance/feet.
-
-### Q5 — Biomechanics observability
-What minimum Combat Log + Biomechanics Inspector is required before deeper punch-family work?
-
-Candidate signals:
-- punch family/hand;
-- phase;
-- distance;
-- foot/step state;
-- pelvis angle/velocity proxy;
-- torso angle;
-- head offset;
-- elbow/glove geometry;
-- hit/block/miss reason;
-- counter window/state.
+Q1–Q5 are resolved by P1-C0, P1-C1, P1-C2, P1-C3 and P1-OBS and are recorded in the roadmap/research history.
 
 ### Q6 — A3.2 Uppercut
 What lower-body load/hip motion makes uppercut effectiveness causally distinct?
