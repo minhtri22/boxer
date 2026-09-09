@@ -2,7 +2,7 @@
 
 ## Snapshot date
 
-2026-09-08 handoff snapshot, based on accepted real-device UAT after artifact `4a985574f44d458357f875a1b7a6d3d00c7f9386`.
+2026-09-09 autonomous execution snapshot. The last human-accepted binary remains artifact `4a985574f44d458357f875a1b7a6d3d00c7f9386`; subsequent whole-body milestones may advance on deterministic evidence and are deferred to one final integrated UAT.
 
 ## Repository
 
@@ -25,6 +25,7 @@
 | P1-A3.1 hook close-range coupling | HUMAN PASS |
 | P1-B1.5 arm embodiment/topology/guard cleanup | HUMAN PASS for current milestone |
 | P1-B2 opponent pelvis/leg embodiment | HUMAN PASS for current milestone |
+| P1-C0 hip/torso rotation baseline | DETERMINISTIC PASS — UAT deferred |
 
 Latest human assessment: the version is substantially improved; hands are very good, legs are acceptable, and the user explicitly passed this milestone.
 
@@ -40,7 +41,9 @@ Latest P1-B1.5V+B2 implementation report recorded:
 - P1-B1.5U: 6/6 PASS
 - P1-B1.5V: 6/6 PASS
 - P1-B2: 7/7 PASS
-- combined: 64/64 PASS
+- prior combined: 64/64 PASS
+- P1-C0: 7/7 PASS
+- current combined: 71/71 PASS
 - WebGL build succeeded
 - data SHA256: `CEC7B56DB844F7B2D3C4CB7C8B7DF09B693CE0EB1B5113E91D0CD65E908CD381`
 - wasm SHA256: `008E9737919271CC23C250C1279F2E7DF59C220AD171A895B107B0A5F95EDC68`
@@ -68,8 +71,6 @@ Opponent lower body:
 
 ### Allowed next
 
-- hip rotation observability/controlled coupling;
-- torso rotation;
 - weight transfer;
 - whole-body recovery;
 - new deterministic instrumentation/tests for those questions.
@@ -93,4 +94,4 @@ Opponent lower body:
 
 ## Next decision gate
 
-Before implementing whole-body coupling, freeze one narrow hypothesis and one variable. Do not make hip rotation, weight transfer, power, reach and recovery all authoritative in the same patch.
+P1-C0 is closed at deterministic level. Proceed to P1-C1 weight-transfer baseline with one isolated state variable. Per product-owner direction, intermediate real-device UAT is deferred; the next human gate is the single final integrated candidate after approved UI/UX visual convergence.

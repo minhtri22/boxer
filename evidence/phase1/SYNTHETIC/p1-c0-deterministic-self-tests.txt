@@ -1,0 +1,14 @@
+evidence=SYNTHETIC
+unity=6000.5.8f1
+utc=2026-09-09T10:34:55.3600734Z
+PASS P1-C0 guard is neutral
+PASS P1-C0 lead rear yaw is equal opposite
+PASS P1-C0 torso exceeds pelvis yaw
+PASS P1-C0 commit extend amplitude is monotonic
+PASS P1-C0 recovery returns to neutral
+PASS P1-C0 rotation is family independent
+PASS P1-C0 anchor rotation is finite and radius preserving
+MAX_PELVIS_YAW_DEG=7.0
+MAX_TORSO_YAW_DEG=14.0
+COMMIT_END_AMPLITUDE=0.65
+TOTAL=7 PASS

@@ -54,6 +54,10 @@ A preferred patch looks like:
 - real-device UAT question limited to the hypothesis;
 - result doc with PASS/FAIL classification.
 
+## Integrated UAT policy — product-owner override
+
+As of 2026-09-09, standalone real-device UAT for intermediate whole-body milestones is deferred. Intermediate milestones may advance when their frozen deterministic/regression gates pass. Do not label them `HUMAN_PASS`. Build and presentation convergence may continue autonomously. The next required human gate is one final integrated UAT candidate containing the approved UI/UX and visual package.
+
 ## Source ownership
 
 When ChatGPT/GitHub connector implements source and local agent builds:

@@ -15,6 +15,7 @@ Use deterministic tests to prove regression and isolated mechanics. Use real-dev
 | A3.1 hook range | PASS | PASS | PASS | HUMAN PASS |
 | B1.5 arm topology/guard | PASS | PASS | PASS | HUMAN PASS |
 | B2 opponent legs | PASS | PASS | PASS | HUMAN PASS |
+| C0 hip/torso rotation | PASS | deferred | deferred to final integrated UAT | DETERMINISTIC PASS |
 
 ## Latest suite counts
 
@@ -26,7 +27,8 @@ Use deterministic tests to prove regression and isolated mechanics. Use real-dev
 - P1-B1.5U: 6/6
 - P1-B1.5V: 6/6
 - P1-B2: 7/7
-- Combined latest: 64/64
+- P1-C0: 7/7
+- Combined latest: 71/71
 
 ## Primary evidence locations
 
@@ -55,4 +57,4 @@ Web build evidence:
 
 ## Evidence rule
 
-Never write `HUMAN PASS` into a result document unless the user has actually performed and accepted real-device UAT for that candidate.
+Never write `HUMAN PASS` into a result document unless the user has actually performed and accepted real-device UAT for that candidate. On 2026-09-09 the product owner explicitly deferred standalone UAT for intermediate whole-body milestones. Only one final integrated UAT is required, after the approved UI/UX and visual package is present.
