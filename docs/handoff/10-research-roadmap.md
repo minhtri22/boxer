@@ -74,13 +74,18 @@ All seven whole-body frontier items are now deterministic PASS with intermediate
 
 ## Current frontier
 
-### Next: counter geometry
+### Counter geometry
 
 Prove that an evade caused by head movement or footwork creates a geometrically meaningful counter opportunity, using P1-OBS to distinguish the causal miss reason and timing window.
 
+Verdict: deterministic PASS. The opportunity requires a would-hit-at-commit path to miss the moved target at resolution and opens only during Recover.
+
+### Next: lightweight opponent attributes
+
+Prove reach, aggression and speed as small inspectable tactical variables without introducing RPG statistics, hidden damage modifiers or production character content.
+
 ## Later research
 
-- opponent attributes/tactical archetypes;
 - production 3D rig and animation;
 - semantic replay;
 - KO/highlight generation;

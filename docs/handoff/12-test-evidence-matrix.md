@@ -22,6 +22,7 @@ Use deterministic tests to prove regression and isolated mechanics. Use real-dev
 | OBS combat log / biomechanics inspector | PASS | PASS (Unity batch) | deferred to final integrated UAT | DETERMINISTIC PASS |
 | A3.2 uppercut base-drive coupling | PASS | PASS (Unity batch) | deferred to final integrated UAT | DETERMINISTIC PASS |
 | A3.3 overhand recovery coupling | PASS | PASS (Unity batch) | deferred to final integrated UAT | DETERMINISTIC PASS |
+| CG geometric counter opportunity | PASS | PASS (Unity batch) | deferred to final integrated UAT | DETERMINISTIC PASS |
 
 ## Latest suite counts
 
@@ -40,7 +41,8 @@ Use deterministic tests to prove regression and isolated mechanics. Use real-dev
 - P1-OBS: 8/8
 - P1-A3.2: 7/7
 - P1-A3.3: 7/7
-- Combined latest: 115/115
+- P1-CG: 8/8
+- Combined latest: 123/123
 
 ## Primary evidence locations
 
@@ -59,6 +61,7 @@ Research docs under `docs/research/`, including:
 - `p1-obs-combat-observability.md`
 - `p1-a3-2-uppercut-biomechanics.md`
 - `p1-a3-3-overhand-biomechanics.md`
+- `p1-counter-geometry.md`
 
 Synthetic evidence under:
 

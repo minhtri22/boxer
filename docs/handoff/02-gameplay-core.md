@@ -59,7 +59,7 @@ Family selection comes from gesture; hand is selected contextually.
 - Opponent attack reach is finite and target is locked at commitment; no active homing during punch.
 
 ### Counter
-Counter readability and windows exist in the current prototype and are regression-protected. Do not redesign them incidentally while working on body presentation or coupling.
+Counter opportunity requires a geometric evade: the locked opponent attack path must change from would-hit at commit to miss at resolve due at least `0.08m` of head or root displacement. The opportunity is active only during opponent Recover and is consumed by one successful player hit.
 
 ## Provisional systems
 

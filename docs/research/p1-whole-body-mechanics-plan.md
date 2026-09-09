@@ -79,7 +79,8 @@ A player can improve punch quality by coordinating position, footwork, head/body
    - real-device visual fairness remains under review because opponent hand/reach still needs closer inspection.
 
 6. **P1-C — Counter Geometry**
-   - Correct evade direction/timing should create a geometrically meaningful counter opportunity.
+   - Correct evade direction/timing now creates a geometrically meaningful counter opportunity under P1-CG.
+   - A would-hit-at-commit path must miss the moved target at resolve; only then does Recover expose the counter window.
 
 7. **P1-D — Lightweight Opponent Attributes**
    - Reach/aggression/speed only, enough to force tactical adaptation.

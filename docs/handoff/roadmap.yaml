@@ -46,13 +46,15 @@ completed:
   - id: P1-A3.3
     name: overhand_biomechanics
     verdict: deterministic_pass_uat_deferred_to_final_integrated_candidate
+  - id: P1-CG
+    name: counter_geometry
+    verdict: deterministic_pass_uat_deferred_to_final_integrated_candidate
 next_sequence:
   - order: 1
-    id: P1-CG
-    name: counter_geometry
-    goal: prove_that_evade_direction_and_timing_create_a_geometric_counter_opportunity
+    id: P1-D
+    name: lightweight_opponent_attributes
+    goal: prove_reach_aggression_and_speed_as_isolated_tactical_adaptation_variables
 later:
-  - opponent_attributes
   - production_3d_rig_animation
   - semantic_replay
   - ko_highlight_generation

@@ -60,18 +60,24 @@ Do not reintroduce homing by interpolation to the player's live position during 
 
 ## Counter model
 
-Counter behavior exists and is regression-protected. Treat it as an existing contract until a dedicated counter-geometry experiment is opened.
+P1-CG makes counter context causal:
+
+- the locked opponent path must intersect the target position captured at commit;
+- the same path must miss the target position at resolve;
+- target displacement must be at least `0.08m`;
+- head displacement creates `HEAD_EVADE`; root displacement creates `FOOTWORK_EVADE`;
+- the opportunity opens only during opponent Recover and is consumed by one successful counter.
+
+A generic opponent recovery phase without a qualifying evade is not a counter window.
 
 ## Diagnostic vs gameplay fields
 
 `RangeFactor` and `CoordinationScore` in the P1 snapshot remain diagnostic unless a later research task explicitly promotes them into authoritative gameplay.
 
-## Locked biomechanics
+## Family biomechanics
 
-- A3.2 Uppercut body coupling: LOCKED / NOT STARTED.
-- A3.3 Overhand body coupling: LOCKED / NOT STARTED.
-
-The next whole-body phase should first study hip rotation, weight transfer and recovery with isolated causal experiments rather than immediately adding family-specific multipliers.
+- A3.2 Uppercut: planted vertical drive `1.00`; moving vertical drive `0.85`.
+- A3.3 Overhand: advancing/forward-committed recovery multiplier `1.20`, producing `0.336s` from the `0.280s` base.
 
 ## Semantic event principle
 

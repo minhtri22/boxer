@@ -1,0 +1,13 @@
+evidence=SYNTHETIC
+unity=6000.5.8f1
+utc=2026-09-09T23:05:08.4904409Z
+PASS P1-CG pre-existing miss creates no opportunity
+PASS P1-CG remaining intersection creates no opportunity
+PASS P1-CG head movement creates head evade
+PASS P1-CG root movement creates footwork evade
+PASS P1-CG body attack cannot create head evade
+PASS P1-CG hit and block create no opportunity
+PASS P1-CG opportunity opens only in recover and consumes once
+PASS P1-CG semantic event is stable
+MIN_EVADE_DISPLACEMENT_M=0.08
+TOTAL=8 PASS

@@ -32,6 +32,7 @@
 | P1-OBS combat log / biomechanics inspector | DETERMINISTIC PASS — UAT deferred |
 | P1-A3.2 uppercut base-drive coupling | DETERMINISTIC PASS — UAT deferred |
 | P1-A3.3 overhand recovery coupling | DETERMINISTIC PASS — UAT deferred |
+| P1-CG geometric counter opportunity | DETERMINISTIC PASS — UAT deferred |
 
 Latest human assessment: the version is substantially improved; hands are very good, legs are acceptable, and the user explicitly passed this milestone.
 
@@ -55,8 +56,9 @@ Latest P1-B1.5V+B2 implementation report recorded:
 - P1-OBS: 8/8 PASS
 - P1-A3.2: 7/7 PASS
 - P1-A3.3: 7/7 PASS
-- current combined: 115/115 PASS
-- Unity P1-A3.3 regression execution: exit 0
+- P1-CG: 8/8 PASS
+- current combined: 123/123 PASS
+- Unity P1-CG regression execution: exit 0
 - WebGL build succeeded
 - data SHA256: `CEC7B56DB844F7B2D3C4CB7C8B7DF09B693CE0EB1B5113E91D0CD65E908CD381`
 - wasm SHA256: `008E9737919271CC23C250C1279F2E7DF59C220AD171A895B107B0A5F95EDC68`
@@ -84,8 +86,8 @@ Opponent lower body:
 
 ### Allowed next
 
-- counter geometry experiment;
-- deterministic instrumentation/tests needed to isolate counter creation and exploitation.
+- lightweight opponent attributes experiment;
+- deterministic tests that keep attribute effects isolated and inspectable.
 
 ### Still locked
 
@@ -104,4 +106,4 @@ Opponent lower body:
 
 ## Next decision gate
 
-P1-C0 through P1-C3, P1-OBS, P1-A3.2 and P1-A3.3 are closed at deterministic level. A3.3 makes an advancing overhand forward-committed and extends only its recovery from `0.280s` to `0.336s`. Proceed to counter geometry. Per product-owner direction, intermediate real-device UAT is deferred; the next human gate is the single final integrated candidate after approved UI/UX visual convergence.
+P1-C0 through P1-C3, P1-OBS, P1-A3.2, P1-A3.3 and P1-CG are closed at deterministic level. P1-CG requires a locked attack path to change from would-hit at commit to miss at resolve before the opponent Recover phase becomes a counter opportunity. Proceed to lightweight opponent attributes. Per product-owner direction, intermediate real-device UAT is deferred; the next human gate is the single final integrated candidate after approved UI/UX visual convergence.
