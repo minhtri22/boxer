@@ -132,6 +132,7 @@ namespace BoxerP0
         private string _playerStep = "NEUTRAL";
         private float _playerDistance = 1f;
         private Vector3 _opponentTargetLocal;
+        private P1BodyRotationPose _opponentBodyRotation;
 
         // Anthropometric constants - frozen per P1-B1.5T
         private const float BodyHeight = 1.8f;
@@ -256,6 +257,10 @@ namespace BoxerP0
             _opponentIntent = _opponentBoxer.CurrentIntent;
             _opponentPhase = _opponentBoxer.CurrentPhase;
             _opponentTargetLocal = _opponentBoxer.AttackTargetLocal;
+            float bodyPhaseT = _opponentBusy
+                ? _opponentBoxer.ActionNormalizedPhase(P1BodyRotationMath.OpponentPhaseDuration(_opponentPhase))
+                : 0f;
+            _opponentBodyRotation = P1BodyRotationMath.Sample(_opponentIntent, _opponentPhase, bodyPhaseT);
         }
 
         private void UpdatePlayerArms()
@@ -289,6 +294,9 @@ namespace BoxerP0
 
         private void UpdateOpponentArms()
         {
+            ApplyOpponentShoulderRotation(_opponentLeft);
+            ApplyOpponentShoulderRotation(_opponentRight);
+
             bool activeLeft = IsLeadHand(_opponentIntent);
             VisualArm active = activeLeft ? _opponentLeft : _opponentRight;
             VisualArm passive = activeLeft ? _opponentRight : _opponentLeft;
@@ -309,6 +317,15 @@ namespace BoxerP0
                 _opponentBoxer.ActionNormalizedPhase(PhaseDuration(_opponentPhase, false)));
             PoseArm(active, desired, family, _opponentPhase, false);
             PoseArm(passive, passiveGuard, PunchFamily.None, ActionPhase.Guard, false);
+        }
+
+        private void ApplyOpponentShoulderRotation(VisualArm arm)
+        {
+            if (arm == null || arm.ShoulderJoint == null) return;
+            float localX = arm.Left ? -_shoulderWidth : _shoulderWidth;
+            Vector3 neutralShoulder = new(localX, ShoulderHeight, ShoulderForward);
+            arm.ShoulderJoint.localPosition = P1BodyRotationMath.RotateLocalYaw(
+                neutralShoulder, _opponentBodyRotation.TorsoYawDegrees);
         }
 
         private void PoseArm(VisualArm arm, Vector3 requestedWristLocal, PunchFamily family, ActionPhase phase, bool player)

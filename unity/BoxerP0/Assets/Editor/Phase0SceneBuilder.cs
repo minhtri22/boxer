@@ -106,9 +106,9 @@ namespace BoxerP0.Editor
                 $"target_fps={WebTargetFps}\n" +
                 $"data_sha256={dataSha256}\n" +
                 $"wasm_sha256={wasmSha256}\n" +
-                $"diagnostic_overlay=true\n" +
+                $"diagnostic_overlay=off_by_default_f3_desktop_toggle\n" +
                 $"web_telemetry_mode=in_memory_counters_no_csv\n" +
-                $"visual_shell=procedural_p0_5\n" +
+                $"visual_shell=procedural_p0_6\n" +
                 $"training_ui=mobile_readability_overlay+p1_a2_punch_guide\n" +
                 $"hud_semantics=reactive_visual_only_no_combat_gating\n" +
                 $"p1_a1=step_to_straight_reach_1.06_1.00_0.94\n" +
@@ -122,6 +122,9 @@ namespace BoxerP0.Editor
                 $"p1_b1_5u_guard_pose_trace_final=true\n" +
                 $"p1_b1_5v_guard_cleanup_player_contact_cleanup=true\n" +
                 $"p1_b2_opponent_lower_body_embodiment=true\n" +
+                $"p1_c0_hip_torso_rotation=presentation_only_family_independent\n" +
+                $"p1_c0_max_pelvis_yaw_deg={P1BodyRotationMath.MaxPelvisYawDegrees:F1}\n" +
+                $"p1_c0_max_torso_yaw_deg={P1BodyRotationMath.MaxTorsoYawDegrees:F1}\n" +
                 $"p1_arm_topology=shoulder_upperarm_elbowjoint_forearm_glove\n" +
                 $"p1_body_height=1.8\n" +
                 $"p1_shoulder_height=1.43\n" +

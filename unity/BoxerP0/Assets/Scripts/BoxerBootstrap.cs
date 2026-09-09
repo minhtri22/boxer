@@ -12,6 +12,7 @@ namespace BoxerP0
         private BoxerFeedback _feedback;
         private ArmVisualEmbodiment _armVisual;
         private OpponentLegEmbodiment _opponentLegs;
+        private OpponentBodyRotationEmbodiment _opponentBodyRotation;
         private readonly OnboardingProgress _training = new();
 
         private float _boutEnd;
@@ -47,6 +48,7 @@ namespace BoxerP0
         private string _debugText = string.Empty;
         private string _trainingText = string.Empty;
         private string _resultText = string.Empty;
+        private bool _showDeveloperDiagnostics;
 
         private void Awake()
         {
@@ -71,6 +73,9 @@ namespace BoxerP0
         private void Update()
         {
             SampleFrame();
+
+            if (!Application.isMobilePlatform && Input.GetKeyDown(KeyCode.F3))
+                _showDeveloperDiagnostics = !_showDeveloperDiagnostics;
 
 #if UNITY_WEBGL && !UNITY_EDITOR
             if (_stage == OnboardingStage.WaitingForCalibration && _input != null && _input.BrowserCalibrated)
@@ -436,6 +441,10 @@ namespace BoxerP0
             // P1-B2: Initialize opponent lower-body (pelvis + legs) embodiment
             _opponentLegs = gameObject.AddComponent<OpponentLegEmbodiment>();
             _opponentLegs.Initialize(opponentRoot.transform);
+
+            // P1-C0: presentation-only pelvis/torso/shoulder rotation baseline.
+            _opponentBodyRotation = gameObject.AddComponent<OpponentBodyRotationEmbodiment>();
+            _opponentBodyRotation.Initialize(_opponent);
         }
 
         private void OnGUI()
@@ -451,9 +460,12 @@ namespace BoxerP0
                 GUI.Box(new Rect((Screen.width - width) * 0.5f, 20, width, 155), _trainingText);
             }
 
-            GUI.Box(new Rect(20, Screen.height - 330, Mathf.Min(Screen.width - 40, 720), 310), _debugText);
+            if (_showDeveloperDiagnostics)
+            {
+                GUI.Box(new Rect(20, Screen.height - 330, Mathf.Min(Screen.width - 40, 720), 310), _debugText);
+            }
 
-            if (!Application.isMobilePlatform)
+            if (_showDeveloperDiagnostics && !Application.isMobilePlatform)
             {
                 GUI.Box(new Rect(Screen.width - 295, 190, 275, 170),
                     "EDITOR SYNTHETIC\nWASD feet · Q/E head\nJ lead jab · K rear cross\nL lead hook · ; rear hook\nR recalibrate · M audio · H haptic");
