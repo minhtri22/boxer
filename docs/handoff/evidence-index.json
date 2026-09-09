@@ -1,8 +1,8 @@
 {
-  "snapshot_date": "2026-09-09",
+  "snapshot_date": "2026-09-10",
   "accepted_artifact": "4a985574f44d458357f875a1b7a6d3d00c7f9386",
   "accepted_source": "4939e2bd5f44513d9d2ad3732ae07ac02f2ea148",
-  "latest_combined_deterministic": "101/101 PASS",
+  "latest_combined_deterministic": "108/108 PASS",
   "research_docs": [
     "docs/research/p1-a1-step-reach-experiment.md",
     "docs/research/p1-a3-family-coupling-experiment.md",
@@ -18,7 +18,8 @@
     "docs/research/p1-c1-weight-transfer-baseline.md",
     "docs/research/p1-c2-whole-body-straight-coupling.md",
     "docs/research/p1-c3-whole-body-recovery.md",
-    "docs/research/p1-obs-combat-observability.md"
+    "docs/research/p1-obs-combat-observability.md",
+    "docs/research/p1-a3-2-uppercut-biomechanics.md"
   ],
   "evidence_roots": {
     "phase0_synthetic": "evidence/phase0/SYNTHETIC/",
@@ -36,13 +37,14 @@
     "p1_b1_5": "HUMAN_PASS",
     "p1_b2": "HUMAN_PASS"
   },
-  "latest_intermediate_source": "44524041653a70c29bfa93b942adbf31e40ff784",
+  "latest_intermediate_source": "4760ebd98672d96df7bea06212f08f8d15c8d3ec",
   "intermediate_verdicts": {
     "p1_c0": "DETERMINISTIC_PASS_UAT_DEFERRED",
     "p1_c1": "DETERMINISTIC_PASS_UAT_DEFERRED",
     "p1_c2": "DETERMINISTIC_PASS_UAT_DEFERRED",
     "p1_c3": "DETERMINISTIC_PASS_UAT_DEFERRED",
-    "p1_obs": "DETERMINISTIC_PASS_UAT_DEFERRED"
+    "p1_obs": "DETERMINISTIC_PASS_UAT_DEFERRED",
+    "p1_a3_2": "DETERMINISTIC_PASS_UAT_DEFERRED"
   },
   "final_uat_policy": {
     "single_integrated_uat": true,

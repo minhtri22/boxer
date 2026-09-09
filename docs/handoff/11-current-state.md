@@ -2,7 +2,7 @@
 
 ## Snapshot date
 
-2026-09-09 autonomous execution snapshot. The last human-accepted binary remains artifact `4a985574f44d458357f875a1b7a6d3d00c7f9386`; subsequent whole-body milestones may advance on deterministic evidence and are deferred to one final integrated UAT.
+2026-09-10 autonomous execution snapshot. The last human-accepted binary remains artifact `4a985574f44d458357f875a1b7a6d3d00c7f9386`; subsequent whole-body milestones may advance on deterministic evidence and are deferred to one final integrated UAT.
 
 ## Repository
 
@@ -30,6 +30,7 @@
 | P1-C2 straight body coupling | DETERMINISTIC PASS — UAT deferred |
 | P1-C3 whole-body recovery | DETERMINISTIC PASS — UAT deferred |
 | P1-OBS combat log / biomechanics inspector | DETERMINISTIC PASS — UAT deferred |
+| P1-A3.2 uppercut base-drive coupling | DETERMINISTIC PASS — UAT deferred |
 
 Latest human assessment: the version is substantially improved; hands are very good, legs are acceptable, and the user explicitly passed this milestone.
 
@@ -51,8 +52,9 @@ Latest P1-B1.5V+B2 implementation report recorded:
 - P1-C2: 7/7 PASS
 - P1-C3: 8/8 PASS
 - P1-OBS: 8/8 PASS
-- current combined: 101/101 PASS
-- Unity P1-OBS regression execution: exit 0
+- P1-A3.2: 7/7 PASS
+- current combined: 108/108 PASS
+- Unity P1-A3.2 regression execution: exit 0
 - WebGL build succeeded
 - data SHA256: `CEC7B56DB844F7B2D3C4CB7C8B7DF09B693CE0EB1B5113E91D0CD65E908CD381`
 - wasm SHA256: `008E9737919271CC23C250C1279F2E7DF59C220AD171A895B107B0A5F95EDC68`
@@ -80,8 +82,7 @@ Opponent lower body:
 
 ### Allowed next
 
-- P1-A3.2 uppercut biomechanics experiment;
-- P1-A3.3 overhand biomechanics experiment after A3.2;
+- P1-A3.3 overhand biomechanics experiment;
 - deterministic instrumentation/tests needed to isolate those mechanics.
 
 ### Still locked
@@ -101,4 +102,4 @@ Opponent lower body:
 
 ## Next decision gate
 
-P1-C0 through P1-C3 and P1-OBS are closed at deterministic level. Observability now exposes punch family/hand, phase, start distance/step, pelvis/torso state, forward load, head offset, glove path, outcome reason and counter state. Proceed to P1-A3.2 Uppercut biomechanics, then P1-A3.3 Overhand biomechanics. Per product-owner direction, intermediate real-device UAT is deferred; the next human gate is the single final integrated candidate after approved UI/UX visual convergence.
+P1-C0 through P1-C3, P1-OBS and P1-A3.2 are closed at deterministic level. A3.2 promotes the input-derived punch-start base state into uppercut vertical drive only: planted `1.00`, moving `0.85`. Proceed to P1-A3.3 Overhand biomechanics. Per product-owner direction, intermediate real-device UAT is deferred; the next human gate is the single final integrated candidate after approved UI/UX visual convergence.

@@ -6,15 +6,12 @@ Only unresolved questions belong here. If a question has been answered by accept
 
 Q1–Q5 are resolved by P1-C0, P1-C1, P1-C2, P1-C3 and P1-OBS and are recorded in the roadmap/research history.
 
-### Q6 — A3.2 Uppercut
-What lower-body load/hip motion makes uppercut effectiveness causally distinct?
-
-**LOCKED until inspector exists.**
+Q6 is resolved by P1-A3.2: punch-start `StepState` is the input-derived base-readiness proxy; planted uppercuts retain `1.00` vertical drive and moving uppercuts use `0.85`.
 
 ### Q7 — A3.3 Overhand
 What rear-leg/hip/torso sequence makes overhand effectiveness causally distinct?
 
-**LOCKED until inspector exists.**
+Observability now exists. Freeze one interpretable commitment or recovery consequence before implementation.
 
 ## Combat fidelity frontier
 
