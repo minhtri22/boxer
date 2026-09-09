@@ -1,0 +1,13 @@
+evidence=SYNTHETIC
+unity=6000.5.8f1
+utc=2026-09-09T22:59:02.3322456Z
+PASS P1-A3.3 non-overhands keep base recovery
+PASS P1-A3.3 neutral overhand keeps base recovery
+PASS P1-A3.3 retreating overhand keeps base recovery
+PASS P1-A3.3 advancing overhand extends recovery
+PASS P1-A3.3 committed recovery duration is exact
+PASS P1-A3.3 commit and extend timing remain unchanged
+PASS P1-A3.3 semantic event exposes frozen intervention
+BASE_RECOVERY_SECONDS=0.280
+FORWARD_COMMITTED_FACTOR=1.20
+TOTAL=7 PASS

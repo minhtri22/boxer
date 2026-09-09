@@ -8,10 +8,7 @@ Q1–Q5 are resolved by P1-C0, P1-C1, P1-C2, P1-C3 and P1-OBS and are recorded i
 
 Q6 is resolved by P1-A3.2: punch-start `StepState` is the input-derived base-readiness proxy; planted uppercuts retain `1.00` vertical drive and moving uppercuts use `0.85`.
 
-### Q7 — A3.3 Overhand
-What rear-leg/hip/torso sequence makes overhand effectiveness causally distinct?
-
-Observability now exists. Freeze one interpretable commitment or recovery consequence before implementation.
+Q7 is resolved by P1-A3.3: an overhand started while advancing is `FORWARD_COMMITTED` and uses a `1.20` recovery multiplier; endpoint and hit geometry remain unchanged.
 
 ## Combat fidelity frontier
 

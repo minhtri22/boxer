@@ -43,13 +43,15 @@ completed:
   - id: P1-A3.2
     name: uppercut_biomechanics
     verdict: deterministic_pass_uat_deferred_to_final_integrated_candidate
+  - id: P1-A3.3
+    name: overhand_biomechanics
+    verdict: deterministic_pass_uat_deferred_to_final_integrated_candidate
 next_sequence:
   - order: 1
-    id: P1-A3.3
-    name: overhand_biomechanics
-    goal: prove_one_causal_commitment_or_recovery_consequence
+    id: P1-CG
+    name: counter_geometry
+    goal: prove_that_evade_direction_and_timing_create_a_geometric_counter_opportunity
 later:
-  - counter_geometry
   - opponent_attributes
   - production_3d_rig_animation
   - semantic_replay

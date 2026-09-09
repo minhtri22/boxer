@@ -21,6 +21,7 @@ Use deterministic tests to prove regression and isolated mechanics. Use real-dev
 | C3 whole-body recovery | PASS | deferred | deferred to final integrated UAT | DETERMINISTIC PASS |
 | OBS combat log / biomechanics inspector | PASS | PASS (Unity batch) | deferred to final integrated UAT | DETERMINISTIC PASS |
 | A3.2 uppercut base-drive coupling | PASS | PASS (Unity batch) | deferred to final integrated UAT | DETERMINISTIC PASS |
+| A3.3 overhand recovery coupling | PASS | PASS (Unity batch) | deferred to final integrated UAT | DETERMINISTIC PASS |
 
 ## Latest suite counts
 
@@ -38,7 +39,8 @@ Use deterministic tests to prove regression and isolated mechanics. Use real-dev
 - P1-C3: 8/8
 - P1-OBS: 8/8
 - P1-A3.2: 7/7
-- Combined latest: 108/108
+- P1-A3.3: 7/7
+- Combined latest: 115/115
 
 ## Primary evidence locations
 
@@ -56,6 +58,7 @@ Research docs under `docs/research/`, including:
 - `p1-b1-5v-b2-upper-cleanup-opponent-legs-result.md`
 - `p1-obs-combat-observability.md`
 - `p1-a3-2-uppercut-biomechanics.md`
+- `p1-a3-3-overhand-biomechanics.md`
 
 Synthetic evidence under:
 

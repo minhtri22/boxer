@@ -50,9 +50,9 @@ A player can improve punch quality by coordinating position, footwork, head/body
    - A3.1 currently active only for HOOK close-range coupling.
    - Straight → step/reach coupling already proven under A1.
    - Hook → close-range coupling active under A3.1.
-   - Uppercut → close-range + load/vertical-drive coupling remains LOCKED.
-   - Overhand → forward commitment + downward arc / recovery coupling remains LOCKED.
-   - Do not activate A3.2/A3.3 until observability is sufficient to inspect biomechanics and hit reasons.
+   - Uppercut → punch-start base state changes vertical drive under A3.2: planted `1.00`, moving `0.85`.
+   - Overhand → advancing commitment extends recovery under A3.3: `0.280s` to `0.336s`.
+   - A3.2/A3.3 deterministic gates are closed; human judgment is deferred to the final integrated UAT candidate.
 
 4. **P1-O1 — Combat Observability & Biomechanics Inspector**
    - Add an in-memory fight log for WebGL/mobile UAT.
@@ -263,7 +263,7 @@ Each punch family should earn its own physically interpretable coupling and caus
 - uppercut requires close range / loaded position
 - overhand rewards commitment but exposes recovery
 
-Do not open A3.2/A3.3 until combat observability makes the physical reason for HIT/BLOCK/MISS auditable.
+P1-OBS now makes the physical reason for HIT/BLOCK/MISS and the A3.2/A3.3 intervention state auditable.
 
 ## Non-goals during current P1 slice
 

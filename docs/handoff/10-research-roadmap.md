@@ -56,9 +56,9 @@ Topology: pelvis → thigh → knee joint → shin → foot.
 
 Verdict: HUMAN PASS.
 
-## Current frontier
+## Completed whole-body frontier
 
-### Next: whole-body boxing mechanics
+### Whole-body boxing mechanics
 
 Open a new controlled sequence, recommended order:
 
@@ -70,9 +70,16 @@ Open a new controlled sequence, recommended order:
 6. **A3.2 Uppercut biomechanics** — only after inspector exists.
 7. **A3.3 Overhand biomechanics** — only after inspector exists.
 
+All seven whole-body frontier items are now deterministic PASS with intermediate human UAT deferred to the final integrated candidate.
+
+## Current frontier
+
+### Next: counter geometry
+
+Prove that an evade caused by head movement or footwork creates a geometrically meaningful counter opportunity, using P1-OBS to distinguish the causal miss reason and timing window.
+
 ## Later research
 
-- counter geometry;
 - opponent attributes/tactical archetypes;
 - production 3D rig and animation;
 - semantic replay;

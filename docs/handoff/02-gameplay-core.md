@@ -54,6 +54,8 @@ Family selection comes from gesture; hand is selected contextually.
 ### Range
 - P1-A1 verifies a small categorical step-direction effect on straight reach.
 - P1-A3.1 verifies hook close-range sensitivity.
+- P1-A3.2 makes moving uppercuts lose vertical drive while planted uppercuts retain it.
+- P1-A3.3 makes advancing overhands recover longer after forward commitment.
 - Opponent attack reach is finite and target is locked at commitment; no active homing during punch.
 
 ### Counter
@@ -82,9 +84,7 @@ Do not start unless explicitly opened:
 - equipment stats;
 - ranking ladder;
 - replay/KO clip generator;
-- player full-body legs for POV combat;
-- A3.2 uppercut biomechanics;
-- A3.3 overhand biomechanics.
+- player full-body legs for POV combat.
 
 ## Design principle
 
