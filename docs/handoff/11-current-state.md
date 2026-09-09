@@ -28,6 +28,7 @@
 | P1-C0 hip/torso rotation baseline | DETERMINISTIC PASS — UAT deferred |
 | P1-C1 weight-transfer baseline | DETERMINISTIC PASS — UAT deferred |
 | P1-C2 straight body coupling | DETERMINISTIC PASS — UAT deferred |
+| P1-C3 whole-body recovery | DETERMINISTIC PASS — UAT deferred |
 
 Latest human assessment: the version is substantially improved; hands are very good, legs are acceptable, and the user explicitly passed this milestone.
 
@@ -47,7 +48,8 @@ Latest P1-B1.5V+B2 implementation report recorded:
 - P1-C0: 7/7 PASS
 - P1-C1: 7/7 PASS
 - P1-C2: 7/7 PASS
-- current combined: 85/85 PASS
+- P1-C3: 8/8 PASS
+- current combined: 93/93 PASS
 - WebGL build succeeded
 - data SHA256: `CEC7B56DB844F7B2D3C4CB7C8B7DF09B693CE0EB1B5113E91D0CD65E908CD381`
 - wasm SHA256: `008E9737919271CC23C250C1279F2E7DF59C220AD171A895B107B0A5F95EDC68`
@@ -75,7 +77,7 @@ Opponent lower body:
 
 ### Allowed next
 
-- whole-body recovery;
+- combat log / biomechanics inspector;
 - new deterministic instrumentation/tests for those questions.
 
 ### Still locked
@@ -97,4 +99,4 @@ Opponent lower body:
 
 ## Next decision gate
 
-P1-C0 through P1-C2 are closed at deterministic level. Proceed to P1-C3 whole-body recovery and define one coherent return-to-guard contract across arm, torso, pelvis and stance state. Per product-owner direction, intermediate real-device UAT is deferred; the next human gate is the single final integrated candidate after approved UI/UX visual convergence.
+P1-C0 through P1-C3 are closed at deterministic level. Proceed to P1-OBS Combat Log + Biomechanics Inspector before unlocking deeper uppercut/overhand biomechanics. Per product-owner direction, intermediate real-device UAT is deferred; the next human gate is the single final integrated candidate after approved UI/UX visual convergence.

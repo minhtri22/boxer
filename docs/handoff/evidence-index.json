@@ -2,7 +2,7 @@
   "snapshot_date": "2026-09-09",
   "accepted_artifact": "4a985574f44d458357f875a1b7a6d3d00c7f9386",
   "accepted_source": "4939e2bd5f44513d9d2ad3732ae07ac02f2ea148",
-  "latest_combined_deterministic": "85/85 PASS",
+  "latest_combined_deterministic": "93/93 PASS",
   "research_docs": [
     "docs/research/p1-a1-step-reach-experiment.md",
     "docs/research/p1-a3-family-coupling-experiment.md",
@@ -16,7 +16,8 @@
     "docs/research/p1-b1-5v-b2-upper-cleanup-opponent-legs-result.md",
     "docs/research/p1-c0-hip-torso-rotation-baseline.md",
     "docs/research/p1-c1-weight-transfer-baseline.md",
-    "docs/research/p1-c2-whole-body-straight-coupling.md"
+    "docs/research/p1-c2-whole-body-straight-coupling.md",
+    "docs/research/p1-c3-whole-body-recovery.md"
   ],
   "evidence_roots": {
     "phase0_synthetic": "evidence/phase0/SYNTHETIC/",
@@ -34,11 +35,12 @@
     "p1_b1_5": "HUMAN_PASS",
     "p1_b2": "HUMAN_PASS"
   },
-  "latest_intermediate_source": "7a28fd954ae89857369ade6f576a2f6cdeb406bf",
+  "latest_intermediate_source": "8ff5072e3811c0d4b40516026c1f52217def21c2",
   "intermediate_verdicts": {
     "p1_c0": "DETERMINISTIC_PASS_UAT_DEFERRED",
     "p1_c1": "DETERMINISTIC_PASS_UAT_DEFERRED",
-    "p1_c2": "DETERMINISTIC_PASS_UAT_DEFERRED"
+    "p1_c2": "DETERMINISTIC_PASS_UAT_DEFERRED",
+    "p1_c3": "DETERMINISTIC_PASS_UAT_DEFERRED"
   },
   "final_uat_policy": {
     "single_integrated_uat": true,

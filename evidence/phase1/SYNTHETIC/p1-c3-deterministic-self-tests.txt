@@ -1,0 +1,14 @@
+evidence=SYNTHETIC
+unity=6000.5.8f1
+utc=2026-09-09T11:01:22.4029548Z
+PASS P1-C3 recover starts continuously from extend
+PASS P1-C3 guard-return progress is monotonic
+PASS P1-C3 recover end is exact neutral
+PASS P1-C3 guard is exact same neutral
+PASS P1-C3 straight extra yaw clears by neutral
+PASS P1-C3 weight stance returns neutral
+PASS P1-C3 composite state is finite
+PASS P1-C3 composite state is bounded
+RECOVERY_NEUTRAL_LOAD=0.50
+RECOVERY_NEUTRAL_YAW=0.0
+TOTAL=8 PASS
