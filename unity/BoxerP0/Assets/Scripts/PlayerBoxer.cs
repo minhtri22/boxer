@@ -193,11 +193,18 @@ namespace BoxerP0
                     _p1PunchSnapshot.StepState);
 
                 // P1-A3.1: only hooks gain a close-range/far-range forward-extension consequence.
-                // Uppercut and overhand body coupling remain intentionally locked.
                 targetPose = P1PunchMechanics.ApplyA3FamilyCoupling(
                     _action.Intent,
                     targetPose,
                     _p1PunchSnapshot.DistanceMeters);
+
+                // P1-A3.2: only uppercuts promote punch-start base translation state into
+                // vertical drive. X/Z, timing, radius and all other punch families stay unchanged.
+                targetPose = P1PunchMechanics.ApplyA32UppercutDrive(
+                    _action.Intent,
+                    commitPose,
+                    targetPose,
+                    _p1PunchSnapshot.StepState);
             }
 
             switch (_action.Phase)

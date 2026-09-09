@@ -292,6 +292,7 @@ namespace BoxerP0
             {
                 target = P1PunchMechanics.ApplyA1StraightReach(_playerIntent, target, _playerStep);
                 target = P1PunchMechanics.ApplyA3FamilyCoupling(_playerIntent, target, _playerDistance);
+                target = P1PunchMechanics.ApplyA32UppercutDrive(_playerIntent, commit, target, _playerStep);
             }
 
             Vector3 desired = PhaseTarget(activeGuard, commit, target, _playerPhase,

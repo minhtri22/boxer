@@ -1,0 +1,13 @@
+evidence=SYNTHETIC
+unity=6000.5.8f1
+utc=2026-09-09T15:19:22.7179935Z
+PASS P1-A3.2 non-uppercuts remain unchanged
+PASS P1-A3.2 neutral base preserves full drive
+PASS P1-A3.2 advancing base reduces drive
+PASS P1-A3.2 retreating base reduces drive equally
+PASS P1-A3.2 only vertical target displacement changes
+PASS P1-A3.2 lead rear uppercuts share base rule
+PASS P1-A3.2 semantic event exposes frozen intervention
+PLANTED_DRIVE=1.00
+MOVING_DRIVE=0.85
+TOTAL=7 PASS

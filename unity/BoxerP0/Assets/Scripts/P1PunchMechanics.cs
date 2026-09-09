@@ -7,8 +7,9 @@ namespace BoxerP0
     /// Snapshot of whole-body state at punch start.
     /// E0 fields remain diagnostic. P1-A1 promotes only categorical step direction into
     /// a small straight-punch reach coupling. P1-A2 adds punch family/hand semantics.
-    /// P1-A3.1 activates only one additional causal variable: hook effectiveness versus
-    /// start-of-punch range. Uppercut/overhand body coupling remains locked.
+    /// P1-A3.1 activates hook effectiveness versus start-of-punch range.
+    /// P1-A3.2 promotes punch-start step state into an uppercut base-readiness proxy that
+    /// changes only vertical drive. Overhand body coupling remains locked.
     /// </summary>
     public readonly struct P1PunchSnapshot
     {
@@ -56,6 +57,9 @@ namespace BoxerP0
         public float A1StraightReachFactor => P1PunchMechanics.EffectiveStraightReachFactor(Intent, StepState);
         public float A3FamilyReachFactor => P1PunchMechanics.EffectiveA3FamilyReachFactor(Intent, DistanceMeters);
         public string A3Mode => P1PunchMechanics.A3Mode(Intent);
+        public string A32Mode => P1PunchMechanics.A32Mode(Intent);
+        public string A32BaseState => P1PunchMechanics.A32BaseState(Intent, StepState);
+        public float A32UppercutDriveFactor => P1PunchMechanics.EffectiveA32UppercutDriveFactor(Intent, StepState);
 
         public string ToSemanticEvent(CombatOutcome outcome, bool counter)
         {
@@ -74,6 +78,9 @@ namespace BoxerP0
                 $"A1_REACH={F(A1StraightReachFactor)}",
                 $"A3_MODE={A3Mode}",
                 $"A3_FACTOR={F(A3FamilyReachFactor)}",
+                $"A32_MODE={A32Mode}",
+                $"A32_BASE={A32BaseState}",
+                $"A32_DRIVE={F(A32UppercutDriveFactor)}",
                 $"COORD={F(CoordinationScore)}",
                 $"OUTCOME={outcome.ToString().ToUpperInvariant()}",
                 $"COUNTER={(counter ? 1 : 0)}");
@@ -98,6 +105,12 @@ namespace BoxerP0
         public const float A3HookFullRangeMeters = 1.05f;
         public const float A3HookFalloffEndMeters = 1.25f;
         public const float A3HookFarReachFactor = 0.86f;
+
+        // P1-A3.2: uppercut base readiness from the already-frozen punch-start StepState.
+        // NEUTRAL is the smallest current input-derived planted-base proxy. Translating forward
+        // or backward still allows the punch but reduces only commit->target vertical travel.
+        public const float A32PlantedUppercutDrive = 1.00f;
+        public const float A32MovingUppercutDrive = 0.85f;
 
         public static P1PunchSnapshot Capture(
             PunchIntent intent,
@@ -160,6 +173,11 @@ namespace BoxerP0
             return PunchLabels.Family(intent) == PunchFamily.Hook;
         }
 
+        public static bool IsUppercut(PunchIntent intent)
+        {
+            return PunchLabels.Family(intent) == PunchFamily.Uppercut;
+        }
+
         public static float EffectiveStraightReachFactor(PunchIntent intent, string stepState)
         {
             if (!IsStraightPunch(intent)) return 1f;
@@ -206,6 +224,37 @@ namespace BoxerP0
             // A3.1 changes only hook forward extension. Lateral arc, height, timing, radius,
             // damage, guard logic, stamina and all uppercut/overhand behavior stay unchanged.
             targetPose.z *= factor;
+            return targetPose;
+        }
+
+        public static string A32Mode(PunchIntent intent)
+        {
+            return IsUppercut(intent) ? "UPPERCUT_BASE" : "NONE";
+        }
+
+        public static string A32BaseState(PunchIntent intent, string stepState)
+        {
+            if (!IsUppercut(intent)) return "NONE";
+            return stepState == "NEUTRAL" ? "PLANTED" : "MOVING";
+        }
+
+        public static float EffectiveA32UppercutDriveFactor(PunchIntent intent, string stepState)
+        {
+            if (!IsUppercut(intent)) return 1f;
+            return stepState == "NEUTRAL" ? A32PlantedUppercutDrive : A32MovingUppercutDrive;
+        }
+
+        public static Vector3 ApplyA32UppercutDrive(
+            PunchIntent intent,
+            Vector3 commitPose,
+            Vector3 targetPose,
+            string stepState)
+        {
+            float factor = EffectiveA32UppercutDriveFactor(intent, stepState);
+            if (!IsUppercut(intent) || Mathf.Approximately(factor, 1f)) return targetPose;
+
+            float rise = targetPose.y - commitPose.y;
+            targetPose.y = commitPose.y + rise * factor;
             return targetPose;
         }
     }
