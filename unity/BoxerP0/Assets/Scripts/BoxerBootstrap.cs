@@ -308,7 +308,7 @@ namespace BoxerP0
                 $"STAGE {_stage}  MOTION {_input.BrowserMotionPermission}  SRC {_input.HeadInputSource}\n" +
                 $"HEAD {_input.HeadAngleDegrees:F1}° → {_player.HeadOffset:F2}m  MOVE {_input.MovementIntent.x:F2},{_input.MovementIntent.y:F2}\n" +
                 $"PUNCH {_input.LastPunchLabel}  PLAYER {_player.ActionLabel}  GUARD {(_player.GuardActive ? "HIGH" : "OPEN")}\n" +
-                $"OPP {_opponent.ActionLabel}  COUNTER {(_opponent.CounterWindowOpen ? "OPEN" : "CLOSED")}\n" +
+                $"OPP {_opponent.ActionLabel}  COUNTER {_opponent.CounterOpportunityLabel}\n" +
                 $"PLAYER RECOVER {_player.ActiveRecoverSeconds:F3}s\n" +
                 $"LAST {_telemetry.LastOutcome} / {_telemetry.LastEvent}  BOUT {GetBoutSecondsRemaining():F0}s\n" +
                 biomechanics.ToInspectorText() + "\n" +
@@ -500,7 +500,7 @@ namespace BoxerP0
                 OnboardingStage.Guard =>
                     $"4/5 GUARD  {seconds:F0}s\nDỪNG vuốt tay phải = trở về HIGH GUARD. Đỡ 2 đòn.\nBLOCKS {Mathf.Max(0, _telemetry.PlayerBlocks - _guardBlockBaseline)}/2",
                 OnboardingStage.Counter =>
-                    $"5/5 COUNTER  {seconds:F0}s\nĐọc đòn → né/đỡ → phản công trong recovery. Làm 1 counter.\nCOUNTERS {Mathf.Max(0, _telemetry.PlayerCounterHits - _counterHitBaseline)}/1",
+                    $"5/5 COUNTER  {seconds:F0}s\nNé đòn bằng đầu/chân → phản công trong recovery. Làm 1 counter.\nCOUNTERS {Mathf.Max(0, _telemetry.PlayerCounterHits - _counterHitBaseline)}/1",
                 _ => string.Empty
             };
         }

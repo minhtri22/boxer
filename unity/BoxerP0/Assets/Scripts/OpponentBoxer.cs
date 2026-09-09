@@ -6,6 +6,7 @@ namespace BoxerP0
     public sealed class OpponentBoxer : MonoBehaviour
     {
         private readonly TimedActionState _action = new();
+        private readonly P1CounterOpportunityState _counterOpportunity = new();
 
         private PlayerBoxer _player;
         private Phase0Telemetry _telemetry;
@@ -23,6 +24,9 @@ namespace BoxerP0
         private float _nextAttackTime;
         private bool _bodyAttack;
         private bool _resolvedThisAttack;
+        private Vector3 _targetCenterAtCommit;
+        private Vector3 _playerRootAtCommit;
+        private float _playerHeadOffsetAtCommit;
         private uint _rng = 0xC0FFEEu;
 
         private const float CommitSeconds = 0.34f;
@@ -31,7 +35,8 @@ namespace BoxerP0
         private const float MaxHeadReachMeters = 1.02f;
         private const float MaxBodyReachMeters = 0.96f;
 
-        public bool CounterWindowOpen => _action.CounterWindowOpen;
+        public bool CounterWindowOpen => _counterOpportunity.IsOpen(_action.Phase);
+        public string CounterOpportunityLabel => _counterOpportunity.Label(_action.Phase);
         public bool CombatEnabled { get; private set; } = true;
         public string ActionLabel => _action.IsBusy ? $"{PunchLabels.Display(_action.Intent)}:{_action.Phase}" : "READING";
         public uint AttackEventCount { get; private set; }
@@ -92,6 +97,7 @@ namespace BoxerP0
             {
                 _action.ResetToGuard();
                 _resolvedThisAttack = false;
+                _counterOpportunity.Clear();
             }
             else
             {
@@ -125,6 +131,7 @@ namespace BoxerP0
             _bodyAttack = selection == 3;
             if (_action.TryStart(intent))
             {
+                _counterOpportunity.Clear();
                 LockAttackTarget(intent);
                 AttackEventCount++;
                 _resolvedThisAttack = false;
@@ -149,6 +156,9 @@ namespace BoxerP0
             Vector3 clampedWorld = OpponentReachMath.ClampEndpoint(startWorld, desiredWorld, _attackReachMeters);
             _attackWasClamped = (clampedWorld - desiredWorld).sqrMagnitude > 0.000001f;
             _attackTargetLocal = transform.InverseTransformPoint(clampedWorld);
+            _targetCenterAtCommit = CurrentPlayerTargetCenter();
+            _playerRootAtCommit = _player.transform.position;
+            _playerHeadOffsetAtCommit = _player.HeadOffset;
         }
 
         private void UpdateAttack()
@@ -157,6 +167,7 @@ namespace BoxerP0
             _action.Step(Time.deltaTime, CommitSeconds, ExtendSeconds, RecoverSeconds);
             if (prior != _action.Phase && _action.Phase == ActionPhase.Guard)
             {
+                _counterOpportunity.Clear();
                 _nextAttackTime = Time.time + NextFloat(0.65f, 1.2f);
             }
 
@@ -200,8 +211,28 @@ namespace BoxerP0
             Vector3 start = transform.TransformPoint(localStart);
             Vector3 end = transform.TransformPoint(localEnd);
             CombatOutcome outcome = _player.ResolveOpponentPunch(start, end, 0.075f, _bodyAttack, out string reason);
+            P1CounterOpportunity opportunity = P1CounterGeometry.Evaluate(
+                start,
+                end,
+                _targetCenterAtCommit,
+                CurrentPlayerTargetCenter(),
+                0.075f + CurrentPlayerTargetRadius(),
+                _bodyAttack,
+                _player.HeadOffset - _playerHeadOffsetAtCommit,
+                PlanarDistance(_playerRootAtCommit, _player.transform.position),
+                outcome);
+            _counterOpportunity.Arm(opportunity);
+            if (opportunity.Armed)
+            {
+                _telemetry?.RecordEvent(opportunity.ToSemanticEvent());
+            }
             _telemetry?.RecordOutcome("OPPONENT", outcome, false, reason);
             BoxerFeedback.Emit(outcome);
+        }
+
+        public bool ConsumeCounterOpportunity()
+        {
+            return _counterOpportunity.Consume(_action.Phase);
         }
 
         public CombatOutcome ResolveIncomingPunch(Vector3 start, Vector3 end, float punchRadius)
@@ -250,6 +281,25 @@ namespace BoxerP0
         private Transform ActiveGlove(PunchIntent intent)
         {
             return PunchLabels.IsRearHand(intent) ? _rightGlove : _leftGlove;
+        }
+
+        private Vector3 CurrentPlayerTargetCenter()
+        {
+            SphereCollider target = _bodyAttack ? _player.BodyCollider : _player.HeadCollider;
+            return target.transform.TransformPoint(target.center);
+        }
+
+        private float CurrentPlayerTargetRadius()
+        {
+            SphereCollider target = _bodyAttack ? _player.BodyCollider : _player.HeadCollider;
+            return target.radius * MaxScale(target.transform);
+        }
+
+        private static float PlanarDistance(Vector3 a, Vector3 b)
+        {
+            a.y = 0f;
+            b.y = 0f;
+            return Vector3.Distance(a, b);
         }
 
         private void ReturnToGuard()

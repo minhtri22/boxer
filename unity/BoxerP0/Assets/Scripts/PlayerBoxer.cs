@@ -243,6 +243,7 @@ namespace BoxerP0
             CombatOutcome outcome = _opponent.ResolveIncomingPunch(start, end, 0.09f, out string reason);
             _lastResolutionReason = reason;
             bool counter = outcome == CombatOutcome.Hit && _opponent.CounterWindowOpen;
+            if (counter) _opponent.ConsumeCounterOpportunity();
             _telemetry?.RecordOutcome("PLAYER", outcome, counter, reason);
             if (_hasP1PunchSnapshot)
             {
