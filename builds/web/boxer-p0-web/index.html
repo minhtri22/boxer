@@ -32,7 +32,7 @@
     let unityLoading = false;
 
     const buildUrl = 'Build';
-    const productVersion = "4939e2b";
+    const productVersion = "local-web";
     const assetVersion = encodeURIComponent(productVersion || 'unknown');
     const versioned = (url) => `${url}?v=${assetVersion}`;
     const loaderUrl = versioned(buildUrl + '/boxer-p0-web.loader.js');
