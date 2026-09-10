@@ -84,6 +84,8 @@ A player can improve punch quality by coordinating position, footwork, head/body
 
 7. **P1-D — Lightweight Opponent Attributes**
    - Reach/aggression/speed only, enough to force tactical adaptation.
+   - Deterministic PASS: P1-D 8/8; combined regression 131/131.
+   - Human judgment deferred to the single final integrated UAT candidate.
 
 Progression, ranking, shopping, social sharing, and KO clip generation are later layers. P1 only preserves the data needed to support them.
 

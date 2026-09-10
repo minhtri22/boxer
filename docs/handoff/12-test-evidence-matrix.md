@@ -23,6 +23,7 @@ Use deterministic tests to prove regression and isolated mechanics. Use real-dev
 | A3.2 uppercut base-drive coupling | PASS | PASS (Unity batch) | deferred to final integrated UAT | DETERMINISTIC PASS |
 | A3.3 overhand recovery coupling | PASS | PASS (Unity batch) | deferred to final integrated UAT | DETERMINISTIC PASS |
 | CG geometric counter opportunity | PASS | PASS (Unity batch) | deferred to final integrated UAT | DETERMINISTIC PASS |
+| D lightweight opponent attributes | PASS | PASS (Unity batch) | deferred to final integrated UAT | DETERMINISTIC PASS |
 
 ## Latest suite counts
 
@@ -42,7 +43,8 @@ Use deterministic tests to prove regression and isolated mechanics. Use real-dev
 - P1-A3.2: 7/7
 - P1-A3.3: 7/7
 - P1-CG: 8/8
-- Combined latest: 123/123
+- P1-D: 8/8
+- Combined latest: 131/131
 
 ## Primary evidence locations
 
@@ -62,6 +64,8 @@ Research docs under `docs/research/`, including:
 - `p1-a3-2-uppercut-biomechanics.md`
 - `p1-a3-3-overhand-biomechanics.md`
 - `p1-counter-geometry.md`
+- `p1-d-lightweight-opponent-attributes.md`
+- `p1-d-lightweight-opponent-attributes-result.md`
 
 Synthetic evidence under:
 

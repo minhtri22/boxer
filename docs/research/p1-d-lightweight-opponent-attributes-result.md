@@ -4,11 +4,11 @@ Date: 2026-09-10
 
 ## Current verdict
 
-- `IMPLEMENTATION_READY`
+- `DETERMINISTIC_PASS_UAT_DEFERRED`
 - `STATIC_COMPILE_PASS`
 - `PURE_LOGIC_PASS_8_OF_8`
-- `UNITY_BATCH_BLOCKED_BY_LOCAL_LICENSING`
-- `DETERMINISTIC_PASS_PENDING`
+- `UNITY_P1_D_PASS_8_OF_8`
+- `UNITY_COMBINED_PASS_131_OF_131`
 
 ## What is implemented
 
@@ -48,16 +48,27 @@ Result: `8/8 PASS`:
 7. parser;
 8. inspector schema.
 
-## Unity batch blocker
+## Unity combined regression
 
-The intended Unity command is:
+The combined suite executed under Unity 6000.5.8f1 through:
 
 `BoxerP0.Editor.P1DOpponentAttributesSelfTests.RunWithRegressions`
 
-The first batch attempt stopped before compilation because Unity Package Manager could not establish its local IPC connection. A second attempt using `-noUpm` progressed further but Unity Licensing repeatedly lost its local client channel and never reached the test method.
+Result:
 
-Therefore the repository must not record `131/131 PASS` yet. The 123 prior deterministic checks remain the latest executed Unity regression baseline until this batch suite can run in a normal local Unity environment.
+- P1-D: `8/8 PASS`
+- prior suites through P1-CG: `123/123 PASS`
+- combined: `131/131 PASS`
 
-## Required closure
+Evidence:
 
-Run the P1-D combined regression under a normal local Unity session. If it emits `COMBINED=131/131 PASS`, P1-D can be promoted to `DETERMINISTIC_PASS_UAT_DEFERRED` and the handoff/evidence index can advance to the next roadmap item.
+- `evidence/phase1/SYNTHETIC/p1-d-opponent-attributes-deterministic-self-tests.txt`
+- `evidence/phase1/SYNTHETIC/p1-d-opponent-attributes-combined-regression.txt`
+
+Earlier sandboxed attempts were blocked by local Package Manager/licensing IPC. The successful local Unity execution supersedes those incomplete attempts.
+
+## Closure
+
+Source commit: `96c47cadfe9d7f37ac02a29aa908ca130d76c8e7`.
+
+P1-D is closed at deterministic level. Per product-owner direction, no standalone intermediate UAT is required; opponent-profile readability and tactical feel will be judged once in the final integrated candidate after the approved visual/UI package is complete.

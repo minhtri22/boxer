@@ -1,0 +1,15 @@
+evidence=SYNTHETIC
+unity=6000.5.8f1
+utc=2026-09-10T09:45:48.0525110Z
+PASS P1-D balanced exactly preserves baseline
+PASS P1-D long reach changes reach only
+PASS P1-D pressure changes attack gap only
+PASS P1-D fast hands changes phase duration only
+PASS P1-D tactical variables are monotonic
+PASS P1-D factors remain bounded
+PASS P1-D profile parser is stable
+PASS P1-D inspector schema is stable
+LONG_REACH_FACTOR=1.08
+PRESSURE_GAP_FACTOR=0.80
+FAST_HANDS_DURATION_FACTOR=0.90
+TOTAL=8 PASS

@@ -33,6 +33,7 @@
 | P1-A3.2 uppercut base-drive coupling | DETERMINISTIC PASS — UAT deferred |
 | P1-A3.3 overhand recovery coupling | DETERMINISTIC PASS — UAT deferred |
 | P1-CG geometric counter opportunity | DETERMINISTIC PASS — UAT deferred |
+| P1-D lightweight opponent attributes | DETERMINISTIC PASS — UAT deferred |
 
 Latest human assessment: the version is substantially improved; hands are very good, legs are acceptable, and the user explicitly passed this milestone.
 
@@ -57,8 +58,10 @@ Latest P1-B1.5V+B2 implementation report recorded:
 - P1-A3.2: 7/7 PASS
 - P1-A3.3: 7/7 PASS
 - P1-CG: 8/8 PASS
-- current combined: 123/123 PASS
-- Unity P1-CG regression execution: exit 0
+- P1-D: 8/8 PASS
+- prior combined through P1-CG: 123/123 PASS
+- current combined: 131/131 PASS
+- Unity P1-D combined regression execution: PASS
 - WebGL build succeeded
 - data SHA256: `CEC7B56DB844F7B2D3C4CB7C8B7DF09B693CE0EB1B5113E91D0CD65E908CD381`
 - wasm SHA256: `008E9737919271CC23C250C1279F2E7DF59C220AD171A895B107B0A5F95EDC68`
@@ -86,8 +89,8 @@ Opponent lower body:
 
 ### Allowed next
 
-- lightweight opponent attributes experiment;
-- deterministic tests that keep attribute effects isolated and inspectable.
+- approved combat visual/UI convergence under the locked visual references;
+- production 3D rig, animation and HUD work that preserves the verified mechanics and inspectable P1-D profile effects.
 
 ### Still locked
 
@@ -106,4 +109,4 @@ Opponent lower body:
 
 ## Next decision gate
 
-P1-C0 through P1-C3, P1-OBS, P1-A3.2, P1-A3.3 and P1-CG are closed at deterministic level. P1-CG requires a locked attack path to change from would-hit at commit to miss at resolve before the opponent Recover phase becomes a counter opportunity. Proceed to lightweight opponent attributes. Per product-owner direction, intermediate real-device UAT is deferred; the next human gate is the single final integrated candidate after approved UI/UX visual convergence.
+P1-C0 through P1-C3, P1-OBS, P1-A3.2, P1-A3.3, P1-CG and P1-D are closed at deterministic level. P1-D preserves the BALANCED baseline and isolates LONG_REACH, PRESSURE and FAST_HANDS to reach, post-attack gap and phase duration respectively. Proceed to the approved combat visual/UI convergence package. Per product-owner direction, intermediate real-device UAT is deferred; the next human gate is the single final integrated candidate after the full approved UI/UX and visual package is present.

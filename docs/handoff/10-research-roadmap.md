@@ -80,13 +80,18 @@ Prove that an evade caused by head movement or footwork creates a geometrically 
 
 Verdict: deterministic PASS. The opportunity requires a would-hit-at-commit path to miss the moved target at resolution and opens only during Recover.
 
-### Next: lightweight opponent attributes
+### Lightweight opponent attributes
 
-Prove reach, aggression and speed as small inspectable tactical variables without introducing RPG statistics, hidden damage modifiers or production character content.
+Reach, aggression and speed are now isolated, inspectable tactical variables without RPG statistics or hidden damage modifiers. BALANCED preserves the baseline; LONG_REACH changes reach only, PRESSURE changes the post-attack gap only, and FAST_HANDS changes phase duration only.
+
+Verdict: deterministic PASS, 8/8 P1-D checks and 131/131 combined checks. Human judgment is deferred to the final integrated candidate.
+
+### Next: approved visual/UI convergence
+
+Replace the procedural prototype presentation with the locked combat visual package, production 3D rig/animation and complete combat HUD while preserving all verified mechanics and telemetry. This milestone prepares the single final integrated UAT candidate.
 
 ## Later research
 
-- production 3D rig and animation;
 - semantic replay;
 - KO/highlight generation;
 - career/progression;

@@ -49,13 +49,15 @@ completed:
   - id: P1-CG
     name: counter_geometry
     verdict: deterministic_pass_uat_deferred_to_final_integrated_candidate
+  - id: P1-D
+    name: lightweight_opponent_attributes
+    verdict: deterministic_pass_uat_deferred_to_final_integrated_candidate
 next_sequence:
   - order: 1
-    id: P1-D
-    name: lightweight_opponent_attributes
-    goal: prove_reach_aggression_and_speed_as_isolated_tactical_adaptation_variables
+    id: P1-V
+    name: approved_visual_ui_ux_convergence
+    goal: replace_procedural_prototype_presentation_with_the_locked_combat_visual_package_while_preserving_verified_mechanics
 later:
-  - production_3d_rig_animation
   - semantic_replay
   - ko_highlight_generation
   - career_progression
