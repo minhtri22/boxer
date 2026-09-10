@@ -28,12 +28,7 @@ namespace BoxerP0
         private Vector3 _playerRootAtCommit;
         private float _playerHeadOffsetAtCommit;
         private uint _rng = 0xC0FFEEu;
-
-        private const float CommitSeconds = 0.34f;
-        private const float ExtendSeconds = 0.17f;
-        private const float RecoverSeconds = 0.48f;
-        private const float MaxHeadReachMeters = 1.02f;
-        private const float MaxBodyReachMeters = 0.96f;
+        private P1OpponentAttributeSet _attributes = P1OpponentAttributes.Resolve(P1OpponentProfile.Balanced);
 
         public bool CounterWindowOpen => _counterOpportunity.IsOpen(_action.Phase);
         public string CounterOpportunityLabel => _counterOpportunity.Label(_action.Phase);
@@ -46,7 +41,10 @@ namespace BoxerP0
         public PunchIntent CurrentIntent => _action.IsBusy ? _action.Intent : PunchIntent.None;
         public ActionPhase CurrentPhase => _action.Phase;
         public float ActionNormalizedPhase(float phaseDuration) => _action.NormalizedPhase(phaseDuration);
+        public float CurrentActionPhaseDuration => PhaseDuration(_action.Phase);
         public Vector3 AttackTargetLocal => _attackTargetLocal;
+        public string AttributeProfileLabel => P1OpponentAttributes.ProfileToken(_attributes.Profile);
+        public string AttributeInspectorText => _attributes.ToInspectorText();
 
         public void Initialize(
             PlayerBoxer player,
@@ -69,6 +67,13 @@ namespace BoxerP0
             _leftGuardLocal = leftGlove.localPosition;
             _rightGuardLocal = rightGlove.localPosition;
             _nextAttackTime = Time.time + 1.2f;
+        }
+
+        public void ConfigureAttributes(P1OpponentProfile profile)
+        {
+            _attributes = P1OpponentAttributes.Resolve(profile);
+            _telemetry?.RecordEvent(
+                $"P1_D_PROFILE PROFILE={AttributeProfileLabel} REACH_X={F(_attributes.ReachFactor)} GAP_X={F(_attributes.AttackGapFactor)} DURATION_X={F(_attributes.PhaseDurationFactor)}");
         }
 
         private void Update()
@@ -152,7 +157,7 @@ namespace BoxerP0
                 ? _player.transform.TransformPoint(new Vector3(0f, 1.02f, 0.03f))
                 : _player.transform.TransformPoint(new Vector3(0f, 1.62f, 0.03f));
 
-            _attackReachMeters = _bodyAttack ? MaxBodyReachMeters : MaxHeadReachMeters;
+            _attackReachMeters = _bodyAttack ? _attributes.BodyReachMeters : _attributes.HeadReachMeters;
             Vector3 clampedWorld = OpponentReachMath.ClampEndpoint(startWorld, desiredWorld, _attackReachMeters);
             _attackWasClamped = (clampedWorld - desiredWorld).sqrMagnitude > 0.000001f;
             _attackTargetLocal = transform.InverseTransformPoint(clampedWorld);
@@ -164,11 +169,11 @@ namespace BoxerP0
         private void UpdateAttack()
         {
             ActionPhase prior = _action.Phase;
-            _action.Step(Time.deltaTime, CommitSeconds, ExtendSeconds, RecoverSeconds);
+            _action.Step(Time.deltaTime, _attributes.CommitSeconds, _attributes.ExtendSeconds, _attributes.RecoverSeconds);
             if (prior != _action.Phase && _action.Phase == ActionPhase.Guard)
             {
                 _counterOpportunity.Clear();
-                _nextAttackTime = Time.time + NextFloat(0.65f, 1.2f);
+                _nextAttackTime = Time.time + NextFloat(_attributes.AttackGapMinSeconds, _attributes.AttackGapMaxSeconds);
             }
 
             Transform active = ActiveGlove(_action.Intent);
@@ -189,18 +194,18 @@ namespace BoxerP0
             switch (_action.Phase)
             {
                 case ActionPhase.Commit:
-                    active.localPosition = Vector3.Lerp(activeGuard, commitPose, Smooth01(_action.NormalizedPhase(CommitSeconds)));
+                    active.localPosition = Vector3.Lerp(activeGuard, commitPose, Smooth01(_action.NormalizedPhase(_attributes.CommitSeconds)));
                     break;
                 case ActionPhase.Extend:
-                    active.localPosition = Vector3.Lerp(commitPose, targetLocal, Smooth01(_action.NormalizedPhase(ExtendSeconds)));
-                    if (!_resolvedThisAttack && _action.NormalizedPhase(ExtendSeconds) >= 0.78f)
+                    active.localPosition = Vector3.Lerp(commitPose, targetLocal, Smooth01(_action.NormalizedPhase(_attributes.ExtendSeconds)));
+                    if (!_resolvedThisAttack && _action.NormalizedPhase(_attributes.ExtendSeconds) >= 0.78f)
                     {
                         ResolveOpponentAttack(activeGuard, targetLocal);
                         _resolvedThisAttack = true;
                     }
                     break;
                 case ActionPhase.Recover:
-                    active.localPosition = Vector3.Lerp(targetLocal, activeGuard, Smooth01(_action.NormalizedPhase(RecoverSeconds)));
+                    active.localPosition = Vector3.Lerp(targetLocal, activeGuard, Smooth01(_action.NormalizedPhase(_attributes.RecoverSeconds)));
                     break;
             }
         }
@@ -324,6 +329,17 @@ namespace BoxerP0
 
         private static string F(float value) => value.ToString("F3", CultureInfo.InvariantCulture);
         private static float Smooth01(float t) => t * t * (3f - 2f * t);
+
+        private float PhaseDuration(ActionPhase phase)
+        {
+            return phase switch
+            {
+                ActionPhase.Commit => _attributes.CommitSeconds,
+                ActionPhase.Extend => _attributes.ExtendSeconds,
+                ActionPhase.Recover => _attributes.RecoverSeconds,
+                _ => 1f
+            };
+        }
 
         private static float MaxScale(Transform value)
         {

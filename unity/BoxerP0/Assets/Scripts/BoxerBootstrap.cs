@@ -49,6 +49,7 @@ namespace BoxerP0
         private string _trainingText = string.Empty;
         private string _resultText = string.Empty;
         private bool _showDeveloperDiagnostics;
+        private P1OpponentProfile _opponentProfile = P1OpponentProfile.Balanced;
 
         private void Awake()
         {
@@ -222,11 +223,21 @@ namespace BoxerP0
             foreach (string argument in Environment.GetCommandLineArgs())
             {
                 const string prefix = "-p0SmokeSeconds=";
-                if (!argument.StartsWith(prefix, StringComparison.OrdinalIgnoreCase)) continue;
-                if (float.TryParse(argument.Substring(prefix.Length), System.Globalization.NumberStyles.Float,
-                        System.Globalization.CultureInfo.InvariantCulture, out float seconds) && seconds > 0f)
+                if (argument.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
                 {
-                    _smokeQuitAt = Time.unscaledTime + seconds;
+                    if (float.TryParse(argument.Substring(prefix.Length), System.Globalization.NumberStyles.Float,
+                            System.Globalization.CultureInfo.InvariantCulture, out float seconds) && seconds > 0f)
+                    {
+                        _smokeQuitAt = Time.unscaledTime + seconds;
+                    }
+                    continue;
+                }
+
+                const string profilePrefix = "-opponentProfile=";
+                if (argument.StartsWith(profilePrefix, StringComparison.OrdinalIgnoreCase) &&
+                    P1OpponentAttributes.TryParse(argument.Substring(profilePrefix.Length), out P1OpponentProfile profile))
+                {
+                    _opponentProfile = profile;
                 }
             }
         }
@@ -309,6 +320,7 @@ namespace BoxerP0
                 $"HEAD {_input.HeadAngleDegrees:F1}° → {_player.HeadOffset:F2}m  MOVE {_input.MovementIntent.x:F2},{_input.MovementIntent.y:F2}\n" +
                 $"PUNCH {_input.LastPunchLabel}  PLAYER {_player.ActionLabel}  GUARD {(_player.GuardActive ? "HIGH" : "OPEN")}\n" +
                 $"OPP {_opponent.ActionLabel}  COUNTER {_opponent.CounterOpportunityLabel}\n" +
+                _opponent.AttributeInspectorText + "\n" +
                 $"PLAYER RECOVER {_player.ActiveRecoverSeconds:F3}s\n" +
                 $"LAST {_telemetry.LastOutcome} / {_telemetry.LastEvent}  BOUT {GetBoutSecondsRemaining():F0}s\n" +
                 biomechanics.ToInspectorText() + "\n" +
@@ -436,6 +448,7 @@ namespace BoxerP0
                 rightOpponentCollider,
                 opponentHeadCollider,
                 opponentBodyCollider);
+            _opponent.ConfigureAttributes(_opponentProfile);
 
             _telemetry.InputSource = _input;
             _telemetry.Player = _player;

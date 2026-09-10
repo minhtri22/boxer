@@ -265,7 +265,7 @@ namespace BoxerP0
             _opponentPhase = _opponentBoxer.CurrentPhase;
             _opponentTargetLocal = _opponentBoxer.AttackTargetLocal;
             float bodyPhaseT = _opponentBusy
-                ? _opponentBoxer.ActionNormalizedPhase(P1BodyRotationMath.OpponentPhaseDuration(_opponentPhase))
+                ? _opponentBoxer.ActionNormalizedPhase(_opponentBoxer.CurrentActionPhaseDuration)
                 : 0f;
             _opponentBodyRotation = P1BodyRotationMath.Sample(_opponentIntent, _opponentPhase, bodyPhaseT);
             _opponentWeightTransfer = P1WeightTransferMath.Sample(_opponentIntent, _opponentPhase, bodyPhaseT);
@@ -323,7 +323,7 @@ namespace BoxerP0
             PunchFamily family = PunchLabels.Family(_opponentIntent);
             Vector3 commit = OpponentCommitPose(activeGuard, family, activeLeft);
             Vector3 desired = PhaseTarget(activeGuard, commit, _opponentTargetLocal, _opponentPhase,
-                _opponentBoxer.ActionNormalizedPhase(OpponentPhaseDuration(_opponentPhase)));
+                _opponentBoxer.ActionNormalizedPhase(_opponentBoxer.CurrentActionPhaseDuration));
             PoseArm(active, desired, family, _opponentPhase, false);
             PoseArm(passive, passiveGuard, PunchFamily.None, ActionPhase.Guard, false);
         }
@@ -430,11 +430,6 @@ namespace BoxerP0
                 ActionPhase.Recover => Vector3.Lerp(target, guard, t),
                 _ => guard
             };
-        }
-
-        private static float OpponentPhaseDuration(ActionPhase phase)
-        {
-            return phase == ActionPhase.Commit ? 0.34f : phase == ActionPhase.Extend ? 0.17f : 0.48f;
         }
 
         private static Vector3 OpponentCommitPose(Vector3 guard, PunchFamily family, bool left)

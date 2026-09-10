@@ -97,7 +97,7 @@ namespace BoxerP0
             ResolvePresentationAnchors();
 
             float phaseT = _opponent.IsActionBusy
-                ? _opponent.ActionNormalizedPhase(P1BodyRotationMath.OpponentPhaseDuration(_opponent.CurrentPhase))
+                ? _opponent.ActionNormalizedPhase(_opponent.CurrentActionPhaseDuration)
                 : 0f;
             CurrentPose = P1BodyRotationMath.Sample(_opponent.CurrentIntent, _opponent.CurrentPhase, phaseT);
             CurrentWeightTransfer = P1WeightTransferMath.Sample(_opponent.CurrentIntent, _opponent.CurrentPhase, phaseT);
