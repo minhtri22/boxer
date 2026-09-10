@@ -31,6 +31,7 @@ namespace BoxerP0
         private GUIStyle _trainingStepStyle;
         private GUIStyle _trainingActionStyle;
         private GUIStyle _trainingHintStyle;
+        private P1VCombatPresentation _p1VPresentation;
 
         private const float TestBoutSeconds = 45f;
         private const float HpLossPerHit = 0.08f;
@@ -62,6 +63,9 @@ namespace BoxerP0
             RestyleExistingRing();
             RestylePlayerGloves();
             RestyleOpponent();
+
+            _p1VPresentation = GetComponent<P1VCombatPresentation>();
+            if (_p1VPresentation == null) _p1VPresentation = gameObject.AddComponent<P1VCombatPresentation>();
         }
 
         private void Update()
@@ -283,6 +287,7 @@ namespace BoxerP0
 
         private void OnGUI()
         {
+            if (_p1VPresentation != null && _p1VPresentation.IsReady) return;
             EnsureStyles();
             if (ShouldShowTrainingOverlay()) DrawTrainingOverlay();
             DrawGameHud();

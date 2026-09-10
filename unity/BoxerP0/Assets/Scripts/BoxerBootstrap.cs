@@ -51,6 +51,8 @@ namespace BoxerP0
         private bool _showDeveloperDiagnostics;
         private P1OpponentProfile _opponentProfile = P1OpponentProfile.Balanced;
 
+        public bool ShowDeveloperDiagnostics => _showDeveloperDiagnostics;
+
         private void Awake()
         {
             Application.targetFrameRate = 60;
