@@ -1,6 +1,6 @@
 evidence=SYNTHETIC
 unity=6000.5.8f1
-utc=2026-09-07T10:30:04.6873497Z
+utc=2026-09-10T17:35:49.5100671Z
 PASS P1-B1.5R arm length preservation
 PASS P1-B1.5R max reach clamp
 PASS P1-B1.5R straight near extension

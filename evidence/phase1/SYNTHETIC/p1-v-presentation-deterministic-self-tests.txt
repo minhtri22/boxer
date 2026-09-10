@@ -1,0 +1,12 @@
+evidence=SYNTHETIC
+unity=6000.5.8f1
+utc=2026-09-10T17:33:29.9468329Z
+PASS P1-V opponent scale is bounded
+PASS P1-V opponent scale is distance-monotonic
+PASS P1-V guard pose token is stable
+PASS P1-V straight pose mapping is stable
+PASS P1-V hook pose mapping is stable
+PASS P1-V lead/rear mirroring is stable
+PASS P1-V bottom controls preserve left-center-right hierarchy
+PASS P1-V production resources are present
+TOTAL=8 PASS

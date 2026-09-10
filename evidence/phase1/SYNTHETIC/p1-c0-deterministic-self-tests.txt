@@ -1,6 +1,6 @@
 evidence=SYNTHETIC
 unity=6000.5.8f1
-utc=2026-09-09T10:34:55.3600734Z
+utc=2026-09-10T17:35:49.5271544Z
 PASS P1-C0 guard is neutral
 PASS P1-C0 lead rear yaw is equal opposite
 PASS P1-C0 torso exceeds pelvis yaw

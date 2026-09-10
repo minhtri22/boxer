@@ -1,6 +1,6 @@
 evidence=SYNTHETIC
 unity=6000.5.8f1
-utc=2026-09-09T15:19:22.7179935Z
+utc=2026-09-10T17:35:49.5367284Z
 PASS P1-A3.2 non-uppercuts remain unchanged
 PASS P1-A3.2 neutral base preserves full drive
 PASS P1-A3.2 advancing base reduces drive

@@ -1,6 +1,6 @@
 evidence=SYNTHETIC
 unity=6000.5.8f1
-utc=2026-09-07T11:11:05.0370909Z
+utc=2026-09-10T17:35:49.5226320Z
 PASS P1-B1.5U opponent guard compactness
 PASS P1-B1.5U opponent guard asymmetry plausibility
 PASS P1-B1.5U recover returns to guard

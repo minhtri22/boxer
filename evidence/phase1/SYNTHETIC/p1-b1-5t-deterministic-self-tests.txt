@@ -1,6 +1,6 @@
 evidence=SYNTHETIC
 unity=6000.5.8f1
-utc=2026-09-07T10:52:43.6407849Z
+utc=2026-09-10T17:35:49.5206156Z
 PASS P1-B1.5T exactly two limb segments
 PASS P1-B1.5T upper arm spans shoulder to elbow
 PASS P1-B1.5T elbow is joint not segment

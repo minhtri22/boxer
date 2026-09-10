@@ -1,6 +1,6 @@
 evidence=SYNTHETIC
 unity=6000.5.8f1
-utc=2026-09-09T11:01:22.4029548Z
+utc=2026-09-10T17:35:49.5316819Z
 PASS P1-C3 recover starts continuously from extend
 PASS P1-C3 guard-return progress is monotonic
 PASS P1-C3 recover end is exact neutral

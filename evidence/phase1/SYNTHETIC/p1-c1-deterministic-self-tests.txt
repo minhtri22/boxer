@@ -1,6 +1,6 @@
 evidence=SYNTHETIC
 unity=6000.5.8f1
-utc=2026-09-09T10:53:34.2428917Z
+utc=2026-09-10T17:35:49.5286601Z
 PASS P1-C1 guard load is neutral
 PASS P1-C1 commit preloads rearward
 PASS P1-C1 extend drives forward continuously

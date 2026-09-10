@@ -1,6 +1,6 @@
 evidence=SYNTHETIC
 unity=6000.5.8f1
-utc=2026-09-09T23:05:08.4904409Z
+utc=2026-09-10T17:35:49.5392418Z
 PASS P1-CG pre-existing miss creates no opportunity
 PASS P1-CG remaining intersection creates no opportunity
 PASS P1-CG head movement creates head evade
