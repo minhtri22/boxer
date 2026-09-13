@@ -30,6 +30,12 @@ namespace BoxerP0
         private uint _rng = 0xC0FFEEu;
         private P1OpponentAttributeSet _attributes = P1OpponentAttributes.Resolve(P1OpponentProfile.Balanced);
 
+        public Transform LeftGlove => _leftGlove;
+        public Transform RightGlove => _rightGlove;
+        public SphereCollider HeadCollider => _headCollider;
+        public SphereCollider BodyCollider => _bodyCollider;
+        public bool BodyAttack => _bodyAttack;
+        public bool Round2Resolved => _resolvedThisAttack;
         public bool CounterWindowOpen => _counterOpportunity.IsOpen(_action.Phase);
         public string CounterOpportunityLabel => _counterOpportunity.Label(_action.Phase);
         public bool CombatEnabled { get; private set; } = true;
@@ -80,6 +86,7 @@ namespace BoxerP0
         {
             if (_player == null) return;
 
+            UpdateSpacing();
             FacePlayer();
             if (!CombatEnabled)
             {
@@ -87,7 +94,7 @@ namespace BoxerP0
                 return;
             }
 
-            if (!_action.IsBusy && Time.time >= _nextAttackTime)
+            if (!_action.IsBusy && Time.time >= _nextAttackTime && Vector3.Distance(transform.position, _player.transform.position) <= Round2Motion.BoxingBoundary)
             {
                 StartAttack();
             }
@@ -160,7 +167,10 @@ namespace BoxerP0
             _attackReachMeters = _bodyAttack ? _attributes.BodyReachMeters : _attributes.HeadReachMeters;
             Vector3 clampedWorld = OpponentReachMath.ClampEndpoint(startWorld, desiredWorld, _attackReachMeters);
             _attackWasClamped = (clampedWorld - desiredWorld).sqrMagnitude > 0.000001f;
-            _attackTargetLocal = transform.InverseTransformPoint(clampedWorld);
+            Vector3 aim = transform.InverseTransformPoint(desiredWorld);
+            Vector3 family = Round2Motion.Endpoint(intent, "NEUTRAL", Vector3.Distance(transform.position, _player.transform.position));
+            // Capture once. Neither orientation, root nor aim follows the target after commit.
+            _attackTargetLocal = new Vector3(Mathf.Clamp(aim.x, -0.15f, 0.15f), _bodyAttack ? 1.14f : family.y, Mathf.Min(aim.z, family.z));
             _targetCenterAtCommit = CurrentPlayerTargetCenter();
             _playerRootAtCommit = _player.transform.position;
             _playerHeadOffsetAtCommit = _player.HeadOffset;
@@ -176,52 +186,19 @@ namespace BoxerP0
                 _nextAttackTime = Time.time + NextFloat(_attributes.AttackGapMinSeconds, _attributes.AttackGapMaxSeconds);
             }
 
-            Transform active = ActiveGlove(_action.Intent);
-            Transform passive = active == _leftGlove ? _rightGlove : _leftGlove;
-            Vector3 activeGuard = active == _leftGlove ? _leftGuardLocal : _rightGuardLocal;
-            Vector3 passiveGuard = passive == _leftGlove ? _leftGuardLocal : _rightGuardLocal;
-            passive.localPosition = Vector3.Lerp(passive.localPosition, passiveGuard, 14f * Time.deltaTime);
-
-            if (!_action.IsBusy)
-            {
-                ReturnToGuard();
-                return;
-            }
-
-            Vector3 commitPose = activeGuard + new Vector3(active == _leftGlove ? -0.10f : 0.10f, 0.08f, 0.18f);
-            Vector3 targetLocal = _attackTargetLocal;
-
-            switch (_action.Phase)
-            {
-                case ActionPhase.Commit:
-                    active.localPosition = Vector3.Lerp(activeGuard, commitPose, Smooth01(_action.NormalizedPhase(_attributes.CommitSeconds)));
-                    break;
-                case ActionPhase.Extend:
-                    active.localPosition = Vector3.Lerp(commitPose, targetLocal, Smooth01(_action.NormalizedPhase(_attributes.ExtendSeconds)));
-                    if (!_resolvedThisAttack && _action.NormalizedPhase(_attributes.ExtendSeconds) >= 0.78f)
-                    {
-                        ResolveOpponentAttack(activeGuard, targetLocal);
-                        _resolvedThisAttack = true;
-                    }
-                    break;
-                case ActionPhase.Recover:
-                    active.localPosition = Vector3.Lerp(targetLocal, activeGuard, Smooth01(_action.NormalizedPhase(_attributes.RecoverSeconds)));
-                    break;
-            }
         }
 
-        private void ResolveOpponentAttack(Vector3 localStart, Vector3 localEnd)
+        public void CompleteRound2Attack(CombatOutcome outcome, string reason, Vector3 start, Vector3 end)
         {
             if (!CombatEnabled) return;
-            Vector3 start = transform.TransformPoint(localStart);
-            Vector3 end = transform.TransformPoint(localEnd);
-            CombatOutcome outcome = _player.ResolveOpponentPunch(start, end, 0.075f, _bodyAttack, out string reason);
+            if (_resolvedThisAttack) return;
+            _resolvedThisAttack = true;
             P1CounterOpportunity opportunity = P1CounterGeometry.Evaluate(
                 start,
                 end,
                 _targetCenterAtCommit,
                 CurrentPlayerTargetCenter(),
-                0.075f + CurrentPlayerTargetRadius(),
+                Round2Motion.GloveRadius + CurrentPlayerTargetRadius(),
                 _bodyAttack,
                 _player.HeadOffset - _playerHeadOffsetAtCommit,
                 PlanarDistance(_playerRootAtCommit, _player.transform.position),
@@ -309,8 +286,24 @@ namespace BoxerP0
 
         private void ReturnToGuard()
         {
-            _leftGlove.localPosition = Vector3.Lerp(_leftGlove.localPosition, _leftGuardLocal, 14f * Time.deltaTime);
-            _rightGlove.localPosition = Vector3.Lerp(_rightGlove.localPosition, _rightGuardLocal, 14f * Time.deltaTime);
+            // Round2CombatRig owns both guard glove transforms.
+        }
+
+        private void UpdateSpacing()
+        {
+            if (!CombatEnabled || _action.IsBusy) return;
+            Vector3 delta = _player.transform.position - transform.position;
+            delta.y = 0f;
+            float distance = delta.magnitude;
+            if (distance < 0.001f) return;
+            Vector3 direction = delta / distance;
+            float desired = Round2Motion.CloseBoundary + Round2Motion.HeadRadius;
+            float speed = distance > desired + 0.045f ? 0.36f : distance < desired - 0.045f ? -0.32f : 0f;
+            Vector3 lateral = Vector3.Cross(Vector3.up, direction) * (Mathf.Sin(Time.time * 0.8f) * 0.10f);
+            Vector3 next = transform.position + (direction * speed + lateral) * Time.deltaTime;
+            next.x = Mathf.Clamp(next.x, -2.0f, 2.0f);
+            next.z = Mathf.Clamp(next.z, -0.15f, 2.25f);
+            transform.position = next;
         }
 
         private int NextInt(int minInclusive, int maxExclusive)

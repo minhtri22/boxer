@@ -1,0 +1,7 @@
+ROUND2 CANDIDATE EXPERIMENT — identical anatomical pose; independent dense contact oracle
+fixtures=1860 families=5 bands=3 fps=15,30,60,120 lateral_offsets=31 dense_oracle=2049_samples
+B_POINT false_miss=1 false_contact=0
+C_SUBSAMPLED_SWEEP false_miss=0 false_contact=0
+max_midpoint_chord_deviation_m=0,000595322635 combined_experiment_ms=5090,84
+A_LEGACY_ENDPOINT rejected_before_AB: baseline arm excess 0.622574m jab; frozen bones cannot reach without shoulder detachment or disproportionate torso translation.
+Selection must also pass moving-target, runtime ownership, regression and visual gates; this experiment alone is not implementation PASS.

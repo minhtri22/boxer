@@ -82,25 +82,12 @@ namespace BoxerP0
             _bootstrap = FindFirstObjectByType<BoxerBootstrap>();
             _camera = Camera.main ?? FindFirstObjectByType<Camera>();
 
-            _arena = Resources.Load<Texture2D>("P1V/championship-arena");
-            _ramirezGuard = Resources.Load<Texture2D>("P1V/ramirez-guard-chroma");
-            _ramirezStraight = Resources.Load<Texture2D>("P1V/ramirez-straight-chroma");
-            _ramirezHook = Resources.Load<Texture2D>("P1V/ramirez-hook-chroma");
-            _playerGlove = Resources.Load<Texture2D>("P1V/player-glove-left-chroma");
             _font = Resources.Load<Font>("Fonts/Oswald");
-            Shader shader = Resources.Load<Shader>("BoxerP1VChromaKey");
-            if (shader != null)
-            {
-                _chromaMaterial = new Material(shader);
-                _chromaMaterial.SetFloat("_Threshold", 0.20f);
-                _chromaMaterial.SetFloat("_Softness", 0.22f);
-            }
 
             _circle = BuildCircleTexture(128);
             if (_input != null) _lastPlayerPunchCount = _input.PunchEventCount;
             if (_opponent != null) _lastOpponentAttackCount = _opponent.AttackEventCount;
-            IsReady = _arena != null && _ramirezGuard != null && _ramirezStraight != null &&
-                      _ramirezHook != null && _playerGlove != null && _chromaMaterial != null;
+            IsReady = _telemetry != null && _player != null && _opponent != null;
         }
 
         private void OnDestroy()
@@ -166,12 +153,8 @@ namespace BoxerP0
             EnsureStyles();
 
             int oldDepth = GUI.depth;
-            GUI.depth = 1000;
-            DrawArena();
-            GUI.depth = 900;
-            DrawOpponent();
-            GUI.depth = 800;
-            DrawPlayerGloves();
+            // Round 2 renders actual articulated fighters in the warehouse.
+            // P1-V owns HUD and controls only, never competing fighter images.
             GUI.depth = -50;
             DrawHud();
             DrawControls();

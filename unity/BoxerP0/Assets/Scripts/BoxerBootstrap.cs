@@ -378,7 +378,8 @@ namespace BoxerP0
             cameraObject.transform.SetParent(headObject.transform, false);
             cameraObject.transform.localPosition = new Vector3(0f, 0.02f, 0.01f);
             Camera camera = cameraObject.AddComponent<Camera>();
-            camera.fieldOfView = 72f;
+            camera.fieldOfView = 108f;
+            cameraObject.transform.localRotation = Quaternion.Euler(23f, 0f, 0f);
             camera.nearClipPlane = 0.04f;
             cameraObject.AddComponent<AudioListener>();
 
@@ -456,17 +457,11 @@ namespace BoxerP0
             _telemetry.Player = _player;
             _telemetry.Opponent = _opponent;
 
-            // P1-B1.5: Initialize arm visual embodiment
-            _armVisual = gameObject.AddComponent<ArmVisualEmbodiment>();
-            _armVisual.Initialize(_player, _opponent, _telemetry);
+            var round2Rig = gameObject.AddComponent<Round2CombatRig>();
+            round2Rig.Initialize(_player, _opponent);
+            var feet = gameObject.AddComponent<Round2Footwork>();
+            feet.Initialize(_opponent);
 
-            // P1-B2: Initialize opponent lower-body (pelvis + legs) embodiment
-            _opponentLegs = gameObject.AddComponent<OpponentLegEmbodiment>();
-            _opponentLegs.Initialize(opponentRoot.transform);
-
-            // P1-C0: presentation-only pelvis/torso/shoulder rotation baseline.
-            _opponentBodyRotation = gameObject.AddComponent<OpponentBodyRotationEmbodiment>();
-            _opponentBodyRotation.Initialize(_opponent);
         }
 
         private void OnGUI()

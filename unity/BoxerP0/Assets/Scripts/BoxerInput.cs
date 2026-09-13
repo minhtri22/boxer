@@ -7,6 +7,14 @@ namespace BoxerP0
     public sealed class BoxerInput : MonoBehaviour
     {
         public event Action<PunchIntent> PunchRequested;
+        public bool DesktopValidation { get; private set; }
+        public void BrowserStartDesktopValidation(string unused)
+        {
+            DesktopValidation = true;
+            BrowserMotionPermission = "DESKTOP_SYNTHETIC";
+            BrowserCalibrated = true;
+            HeadInputSource = "DESKTOP_SYNTHETIC";
+        }
 
         public Vector2 MovementIntent { get; private set; }
         public float HeadAngleDegrees { get; private set; }
@@ -128,15 +136,14 @@ namespace BoxerP0
         private void UpdateHeadInput()
         {
 #if UNITY_WEBGL && !UNITY_EDITOR
-            if (BrowserOrientationReceived && BrowserCalibrated)
+            if (!DesktopValidation)
             {
-                HeadAngleDegrees = Mathf.DeltaAngle(BrowserNeutralGamma, BrowserGamma);
+                if (BrowserOrientationReceived && BrowserCalibrated)
+                    HeadAngleDegrees = Mathf.DeltaAngle(BrowserNeutralGamma, BrowserGamma);
+                else
+                    HeadAngleDegrees = 0f;
+                return;
             }
-            else
-            {
-                HeadAngleDegrees = 0f;
-            }
-            return;
 #endif
             if (_gyroReady)
             {
@@ -233,7 +240,7 @@ namespace BoxerP0
         private void UpdateEditorFallback()
         {
 #if UNITY_WEBGL && !UNITY_EDITOR
-            return;
+            if (!DesktopValidation) return;
 #endif
             if (Application.isMobilePlatform)
             {

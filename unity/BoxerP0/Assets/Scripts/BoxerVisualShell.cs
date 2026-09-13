@@ -225,9 +225,9 @@ namespace BoxerP0
             GameObject cuff = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
             cuff.name = name + " Gold Cuff";
             cuff.transform.SetParent(glove.transform, false);
-            cuff.transform.localPosition = new Vector3(0f, -0.54f, 0f);
+            cuff.transform.localPosition = new Vector3(0f, -0.38f, -0.15f);
             cuff.transform.localRotation = Quaternion.Euler(90f, 0f, 0f);
-            cuff.transform.localScale = new Vector3(0.82f, 0.15f, 0.82f);
+            cuff.transform.localScale = new Vector3(0.62f, 0.04f, 0.62f);
             DisableCollider(cuff);
             ApplyColor(cuff.GetComponent<Renderer>(), Gold);
 
@@ -235,7 +235,7 @@ namespace BoxerP0
             panel.name = name + " Gold Panel";
             panel.transform.SetParent(glove.transform, false);
             panel.transform.localPosition = new Vector3(0f, 0.03f, 0.48f);
-            panel.transform.localScale = new Vector3(0.58f, 0.58f, 0.08f);
+            panel.transform.localScale = new Vector3(0.28f, 0.12f, 0.015f);
             DisableCollider(panel);
             ApplyColor(panel.GetComponent<Renderer>(), new Color(0.72f, 0.47f, 0.10f, 1f));
         }
@@ -248,8 +248,16 @@ namespace BoxerP0
             if (body != null) ApplyColor(body.GetComponent<Renderer>(), Skin);
             if (head != null) ApplyColor(head.GetComponent<Renderer>(), new Color(0.48f, 0.25f, 0.18f, 1f));
             if (root == null) return;
+            if (head != null)
+            {
+                // Facial details sit inside the head envelope, attached to its single transform.
+                FaceDetail(head.transform, "Left eye", new Vector3(-0.18f,0.08f,0.45f), new Vector3(0.11f,0.055f,0.025f), GloveBlack);
+                FaceDetail(head.transform, "Right eye", new Vector3(0.18f,0.08f,0.45f), new Vector3(0.11f,0.055f,0.025f), GloveBlack);
+                FaceDetail(head.transform, "Mouth", new Vector3(0f,-0.20f,0.45f), new Vector3(0.21f,0.035f,0.025f), Charcoal);
+                FaceDetail(head.transform, "Hair", new Vector3(0f,0.30f,-0.025f), new Vector3(0.78f,0.39f,0.78f), GloveBlack);
+            }
 
-            GameObject shorts = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            GameObject shorts = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             shorts.name = "Opponent Shorts Visual";
             shorts.transform.SetParent(root.transform, false);
             shorts.transform.localPosition = new Vector3(0f, 0.72f, 0f);
@@ -257,7 +265,7 @@ namespace BoxerP0
             DisableCollider(shorts);
             ApplyColor(shorts.GetComponent<Renderer>(), OpponentShorts);
 
-            GameObject waistband = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            GameObject waistband = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             waistband.name = "Opponent Gold Waistband";
             waistband.transform.SetParent(root.transform, false);
             waistband.transform.localPosition = new Vector3(0f, 0.91f, 0f);
@@ -265,13 +273,18 @@ namespace BoxerP0
             DisableCollider(waistband);
             ApplyColor(waistband.GetComponent<Renderer>(), Gold);
 
-            AddOpponentShoulder(root.transform, new Vector3(-0.38f, 1.37f, 0f));
-            AddOpponentShoulder(root.transform, new Vector3(0.38f, 1.37f, 0f));
+            // Shoulder volumes belong exclusively to Round2CombatRig.
 
             GameObject left = GameObject.Find("Opponent Left Glove");
             GameObject right = GameObject.Find("Opponent Right Glove");
             if (left != null) ApplyColor(left.GetComponent<Renderer>(), new Color(0.72f, 0.66f, 0.52f, 1f));
             if (right != null) ApplyColor(right.GetComponent<Renderer>(), new Color(0.72f, 0.66f, 0.52f, 1f));
+        }
+
+        private static void FaceDetail(Transform parent, string name, Vector3 position, Vector3 scale, Color color)
+        {
+            Transform part = Round2CombatRig.Primitive(name, parent, PrimitiveType.Sphere, color);
+            part.localPosition = position; part.localScale = scale;
         }
 
         private void AddOpponentShoulder(Transform root, Vector3 localPosition)
@@ -464,7 +477,7 @@ namespace BoxerP0
         private static void ApplyColor(Renderer renderer, Color color)
         {
             if (renderer == null) return;
-            Shader shader = Resources.Load<Shader>("BoxerP0UnlitColor");
+            Shader shader = Resources.Load<Shader>("BoxerRound2Surface");
             if (shader != null)
             {
                 Material material = new(shader);

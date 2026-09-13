@@ -30,6 +30,8 @@ namespace BoxerP0
         private const float RecoverSeconds = 0.28f;
 
         public float HeadOffset { get; private set; }
+        public bool Round2Resolved => _resolvedThisPunch;
+        public Vector3 Round2Endpoint => Round2Motion.Endpoint(CurrentIntent, _hasP1PunchSnapshot ? _p1PunchSnapshot.StepState : "NEUTRAL", _hasP1PunchSnapshot ? _p1PunchSnapshot.DistanceMeters : CurrentOpponentDistance());
         public bool GuardActive => !_action.IsBusy;
         public bool CombatEnabled { get; private set; } = true;
         public string ActionLabel => _action.IsBusy ? $"{PunchLabels.Display(_action.Intent)}:{_action.Phase}" : "GUARD";
@@ -110,6 +112,13 @@ namespace BoxerP0
             Vector3 p = transform.position;
             p.x = Mathf.Clamp(p.x, -2.25f, 2.25f);
             p.z = Mathf.Clamp(p.z, -1.3f, -0.05f);
+            if (_opponent != null)
+            {
+                Vector3 away = p - _opponent.transform.position; away.y = 0f;
+                const float minimumSeparation = 0.62f; // two 0.25m torso volumes + glove-radius clearance
+                if (away.sqrMagnitude < minimumSeparation * minimumSeparation && away.sqrMagnitude > 0.000001f)
+                    p = _opponent.transform.position + away.normalized * minimumSeparation;
+            }
             transform.position = p;
         }
 
@@ -128,9 +137,7 @@ namespace BoxerP0
         {
             float target = HeadMotionMath.ResolveOffset(_input.HeadAngleDegrees);
             HeadOffset = Mathf.SmoothDamp(HeadOffset, target, ref _headVelocity, 0.055f, 8f, Time.deltaTime);
-            Vector3 local = _head.localPosition;
-            local.x = HeadOffset;
-            _head.localPosition = local;
+
         }
 
         private void OnPunchRequested(PunchIntent intent)
@@ -175,72 +182,14 @@ namespace BoxerP0
                 _resolvedThisPunch = false;
             }
 
-            Transform active = ActiveGlove(_action.Intent);
-            Transform passive = active == _leftGlove ? _rightGlove : _leftGlove;
-
-            if (!_action.IsBusy)
-            {
-                _activeRecoverSeconds = RecoverSeconds;
-                _leftGlove.localPosition = Vector3.Lerp(_leftGlove.localPosition, _leftGuardLocal, 18f * Time.deltaTime);
-                _rightGlove.localPosition = Vector3.Lerp(_rightGlove.localPosition, _rightGuardLocal, 18f * Time.deltaTime);
-                return;
-            }
-
-            bool left = active == _leftGlove;
-            Vector3 activeGuard = left ? _leftGuardLocal : _rightGuardLocal;
-            Vector3 passiveGuard = passive == _leftGlove ? _leftGuardLocal : _rightGuardLocal;
-            passive.localPosition = Vector3.Lerp(passive.localPosition, passiveGuard, 18f * Time.deltaTime);
-
-            Vector3 commitPose = PunchCommitPose(_action.Intent, activeGuard, left);
-            Vector3 targetPose = PunchTargetLocal(_action.Intent, left);
-            if (_hasP1PunchSnapshot)
-            {
-                // P1-A1: only straight-punch forward reach is step-coupled.
-                targetPose = P1PunchMechanics.ApplyA1StraightReach(
-                    _action.Intent,
-                    targetPose,
-                    _p1PunchSnapshot.StepState);
-
-                // P1-A3.1: only hooks gain a close-range/far-range forward-extension consequence.
-                targetPose = P1PunchMechanics.ApplyA3FamilyCoupling(
-                    _action.Intent,
-                    targetPose,
-                    _p1PunchSnapshot.DistanceMeters);
-
-                // P1-A3.2: only uppercuts promote punch-start base translation state into
-                // vertical drive. X/Z, timing, radius and all other punch families stay unchanged.
-                targetPose = P1PunchMechanics.ApplyA32UppercutDrive(
-                    _action.Intent,
-                    commitPose,
-                    targetPose,
-                    _p1PunchSnapshot.StepState);
-            }
-
-            switch (_action.Phase)
-            {
-                case ActionPhase.Commit:
-                    active.localPosition = Vector3.Lerp(activeGuard, commitPose, _action.NormalizedPhase(CommitSeconds));
-                    break;
-                case ActionPhase.Extend:
-                    active.localPosition = Vector3.Lerp(commitPose, targetPose, Smooth01(_action.NormalizedPhase(ExtendSeconds)));
-                    if (!_resolvedThisPunch && _action.NormalizedPhase(ExtendSeconds) >= 0.72f)
-                    {
-                        ResolvePlayerPunch(activeGuard, targetPose);
-                        _resolvedThisPunch = true;
-                    }
-                    break;
-                case ActionPhase.Recover:
-                    active.localPosition = Vector3.Lerp(targetPose, activeGuard, Smooth01(_action.NormalizedPhase(_activeRecoverSeconds)));
-                    break;
-            }
+            if (!_action.IsBusy) _activeRecoverSeconds = RecoverSeconds;
         }
 
-        private void ResolvePlayerPunch(Vector3 localStart, Vector3 localEnd)
+        public void CompleteRound2Punch(CombatOutcome outcome, string reason, Vector3 start, Vector3 end)
         {
             if (!CombatEnabled || _opponent == null) return;
-            Vector3 start = transform.TransformPoint(localStart);
-            Vector3 end = transform.TransformPoint(localEnd);
-            CombatOutcome outcome = _opponent.ResolveIncomingPunch(start, end, 0.09f, out string reason);
+            if (_resolvedThisPunch) return;
+            _resolvedThisPunch = true;
             _lastResolutionReason = reason;
             bool counter = outcome == CombatOutcome.Hit && _opponent.CounterWindowOpen;
             if (counter) _opponent.ConsumeCounterOpportunity();
@@ -260,7 +209,6 @@ namespace BoxerP0
                     reason,
                     counter);
                 _telemetry?.RecordBiomechanicsObservation("PLAYER", observation);
-                _hasP1PunchSnapshot = false;
             }
             BoxerFeedback.Emit(outcome);
         }

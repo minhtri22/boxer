@@ -25,6 +25,11 @@
     const enableButton = document.getElementById('enable');
     const container = document.getElementById('unity-container');
     const canvas = document.getElementById('unity-canvas');
+    const desktopValidation = new URLSearchParams(location.search).get('desktop') === '1';
+    if (desktopValidation) {
+      enableButton.textContent = 'START DESKTOP VALIDATION';
+      statusEl.textContent = 'Synthetic desktop test: WASD feet, Q/E head, J/K straights, L/; hooks, U/I uppercuts, O overhand. This does not verify phone motion.';
+    }
     let unityInstance = null;
     let permissionStatus = 'PENDING';
     let orientationReceived = false;
@@ -99,7 +104,8 @@
       script.onload = () => {
         createUnityInstance(canvas, config).then(instance => {
           unityInstance = instance;
-          send('BrowserSetMotionStatus', permissionStatus);
+          if (desktopValidation) send('BrowserStartDesktopValidation', '');
+          else send('BrowserSetMotionStatus', permissionStatus);
           if (latestOrientationPayload) send('BrowserSetOrientation', latestOrientationPayload);
 
           setStatus(orientationReceived
@@ -108,6 +114,24 @@
 
           // P1 UAT startup rule: never keep the game behind a second orientation/calibration gate.
           enterGame();
+          if (desktopValidation) {
+            const report = document.createElement('output');
+            report.id = 'desktop-performance';
+            report.style = 'position:fixed;left:4px;bottom:2px;color:#e8c773;font:10px monospace;pointer-events:none;z-index:9999';
+            document.body.appendChild(report);
+            let previous = performance.now(), count = 0, samples = [];
+            function measure(now) {
+              const dt=now-previous; previous=now;
+              if (++count>120) samples.push(dt);
+              if (samples.length>=600) {
+                const sorted=[...samples].sort((a,b)=>a-b), mean=samples.reduce((a,b)=>a+b,0)/samples.length;
+                report.textContent=JSON.stringify({mode:'DESKTOP_SYNTHETIC',build:productVersion,n:samples.length,fps:1000/mean,p95_ms:sorted[Math.floor(sorted.length*.95)],max_ms:sorted[sorted.length-1]});
+                samples=[];
+              }
+              requestAnimationFrame(measure);
+            }
+            requestAnimationFrame(measure);
+          }
         }).catch(message => {
           setStatus(`UNITY LOAD FAILED — build ${productVersion} — ${message}`);
           gate.classList.remove('hidden');
@@ -124,9 +148,9 @@
 
     enableButton.addEventListener('click', async () => {
       enableButton.disabled = true;
-      permissionStatus = await requestMotionPermission();
+      permissionStatus = desktopValidation ? "DESKTOP_SYNTHETIC" : await requestMotionPermission();
       setStatus('MOTION ' + permissionStatus + ' — build ' + productVersion);
-      if (permissionStatus !== 'GRANTED') {
+      if (!desktopValidation && permissionStatus !== 'GRANTED') {
         enableButton.disabled = false;
         return;
       }
