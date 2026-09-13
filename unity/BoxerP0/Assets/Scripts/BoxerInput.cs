@@ -61,8 +61,11 @@ namespace BoxerP0
             }
 
 #if UNITY_WEBGL && !UNITY_EDITOR
-            HeadInputSource = "WEB_ORIENTATION_PENDING";
-            BrowserMotionPermission = "PENDING";
+            if (!BrowserCalibrated)
+            {
+                HeadInputSource = "WEB_ORIENTATION_PENDING";
+                BrowserMotionPermission = "PENDING";
+            }
             // P1 UAT startup fix: never freeze the global simulation while Safari motion is pending.
             // Head input may remain neutral until orientation arrives, while footwork/punch/training keep running.
             return;

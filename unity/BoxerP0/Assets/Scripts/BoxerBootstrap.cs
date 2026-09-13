@@ -471,7 +471,7 @@ namespace BoxerP0
 
             if (_input == null || _player == null || _opponent == null || _telemetry == null) return;
 
-            if (_stage != OnboardingStage.Bout && _stage != OnboardingStage.Complete)
+            if (_showDeveloperDiagnostics && _stage != OnboardingStage.Bout && _stage != OnboardingStage.Complete)
             {
                 float width = Mathf.Min(Screen.width - 40, 680);
                 GUI.Box(new Rect((Screen.width - width) * 0.5f, 20, width, 155), _trainingText);
@@ -488,7 +488,7 @@ namespace BoxerP0
                     "EDITOR SYNTHETIC\nWASD feet · Q/E head\nJ lead jab · K rear cross\nL lead hook · ; rear hook\nR recalibrate · M audio · H haptic");
             }
 
-            if (_boutCompleted)
+            if (_showDeveloperDiagnostics && _boutCompleted)
             {
                 float width = Mathf.Min(Screen.width - 40, 620);
                 GUI.Box(new Rect((Screen.width - width) * 0.5f, Screen.height * 0.5f - 150, width, 300), _resultText);
