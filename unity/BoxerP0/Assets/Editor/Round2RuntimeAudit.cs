@@ -15,6 +15,10 @@ namespace BoxerP0.Editor
         static float _maxRigMs,_sumRigMs,_maxPlant;
         static int _frames;
         static int _lastFrame=-1;
+        static bool _wasBusy;
+        static Vector3 _lockedRoot;
+        static Quaternion _lockedRotation;
+        static float _rootDrift,_rotationDrift;
         static long _alloc;
         static readonly StringBuilder Log=new StringBuilder();
         static readonly BindingFlags Flags=BindingFlags.Instance|BindingFlags.NonPublic;
@@ -47,6 +51,16 @@ namespace BoxerP0.Editor
                 Log.AppendLine("scenario=alternating player punches, target shifts for advance/retreat/lateral; current AI attack state machine; real Update/LateUpdate");
             }
             double elapsed=EditorApplication.timeSinceStartup-_started;
+            if(opponent.IsActionBusy)
+            {
+                if(!_wasBusy) { _lockedRoot=opponent.transform.position; _lockedRotation=opponent.transform.rotation; }
+                else
+                {
+                    _rootDrift=Mathf.Max(_rootDrift,Vector3.Distance(_lockedRoot,opponent.transform.position));
+                    _rotationDrift=Mathf.Max(_rotationDrift,Quaternion.Angle(_lockedRotation,opponent.transform.rotation));
+                }
+            }
+            _wasBusy=opponent.IsActionBusy;
             if(elapsed>_nextPunch && elapsed<18)
             {
                 PunchIntent[] intents={PunchIntent.Jab,PunchIntent.Cross,PunchIntent.LeadHook,PunchIntent.RearHook,PunchIntent.LeadUppercut,PunchIntent.RearUppercut,PunchIntent.LeadOverhand,PunchIntent.RearOverhand};
@@ -67,13 +81,16 @@ namespace BoxerP0.Editor
             }
             if(elapsed<22) return;
             Log.AppendLine($"frames={_frames} rig_mean_ms={_sumRigMs/_frames:F5} rig_max_ms={_maxRigMs:F5} max_planted_foot_error_m={_maxPlant:R} contacts={rig.Contacts} samples={rig.Samples}");
+            Log.AppendLine($"committed_root_drift_m={_rootDrift:R} committed_rotation_drift_degrees={_rotationDrift:R}");
+            bool passed=_rootDrift<0.00001f&&_rotationDrift<0.001f&&_maxPlant<0.001f&&rig.Contacts>0;
+            Log.AppendLine("RUNTIME_INVARIANTS="+(passed?"PASS":"FAIL"));
             Log.AppendLine("CPU values include Editor overhead. Not WebGL frame-time evidence.");
             Directory.CreateDirectory(DirectoryPath);
             File.WriteAllText(Path.Combine(DirectoryPath,"runtime.txt"),Log.ToString());
             SessionState.SetBool("r2Audit",false);
             EditorApplication.update-=Tick;
             EditorApplication.isPlaying=false;
-            EditorApplication.Exit(0);
+            EditorApplication.Exit(passed?0:1);
         }
         static string DirectoryPath => Path.GetFullPath(Path.Combine(Application.dataPath,"../../../evidence/uat-round2/optimization"));
         static void Capture(int index,PlayerBoxer player,OpponentBoxer opponent)
