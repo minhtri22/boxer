@@ -11,6 +11,8 @@ namespace BoxerP0
         public const float NumericEpsilon = 0.00001f;
         public static float Smooth(float t) { t = Mathf.Clamp01(t); return t*t*(3f-2f*t); }
         public static Vector3 Guard(bool left) => new Vector3(left ? -0.22f : 0.22f, left ? 1.49f : 1.46f, 0.28f);
+        public static float HookFactor(PunchIntent intent,float distance) => P1PunchMechanics.IsHook(intent)
+            ? Mathf.Lerp(1f,P1PunchMechanics.A3HookFarReachFactor,Mathf.InverseLerp(CloseBoundary,BoxingBoundary,distance)) : 1f;
         public static Vector3 Endpoint(PunchIntent intent, string step, float distance)
         {
             bool left = !PunchLabels.IsRearHand(intent);
@@ -24,9 +26,7 @@ namespace BoxerP0
             };
             p = P1PunchMechanics.ApplyA1StraightReach(intent, p, step);
             // Preserve hook close > far relationship on the new anatomical distance scale.
-            if (P1PunchMechanics.IsHook(intent))
-                p.z *= Mathf.Lerp(1f, P1PunchMechanics.A3HookFarReachFactor,
-                    Mathf.InverseLerp(CloseBoundary, BoxingBoundary, distance));
+            p.z *= HookFactor(intent,distance);
             if (P1PunchMechanics.IsUppercut(intent))
                 p.y = Mathf.Lerp(Commit(intent).y, p.y, P1PunchMechanics.EffectiveA32UppercutDriveFactor(intent, step));
             return p;

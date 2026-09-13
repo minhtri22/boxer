@@ -196,7 +196,9 @@ namespace BoxerP0
             _telemetry?.RecordOutcome("PLAYER", outcome, counter, reason);
             if (_hasP1PunchSnapshot)
             {
-                _telemetry?.RecordEvent(_p1PunchSnapshot.ToSemanticEvent(outcome, counter));
+                _telemetry?.RecordEvent(_p1PunchSnapshot.ToSemanticEvent(outcome, counter) +
+                    " R2_CONTACT=SOLVED_SWEEP R2_HOOK_FACTOR=" +
+                    Round2Motion.HookFactor(_action.Intent,_p1PunchSnapshot.DistanceMeters).ToString("F3",System.Globalization.CultureInfo.InvariantCulture));
                 P1BiomechanicsObservation observation = P1CombatObservability.Sample(
                     _action.Intent,
                     _action.Phase,
