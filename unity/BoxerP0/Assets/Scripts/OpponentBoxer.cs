@@ -169,6 +169,7 @@ namespace BoxerP0
             _attackWasClamped = (clampedWorld - desiredWorld).sqrMagnitude > 0.000001f;
             Vector3 aim = transform.InverseTransformPoint(desiredWorld);
             Vector3 family = Round2Motion.Endpoint(intent, "NEUTRAL", Vector3.Distance(transform.position, _player.transform.position));
+            family.z *= _attributes.ReachFactor;
             // Capture once. Neither orientation, root nor aim follows the target after commit.
             _attackTargetLocal = new Vector3(Mathf.Clamp(aim.x, -0.15f, 0.15f), _bodyAttack ? 1.14f : family.y, Mathf.Min(aim.z, family.z));
             _targetCenterAtCommit = CurrentPlayerTargetCenter();

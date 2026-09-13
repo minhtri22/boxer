@@ -28,7 +28,7 @@ namespace BoxerP0
             var l=new Leg { Thigh=Round2CombatRig.Primitive(n+" Thigh",_root,PrimitiveType.Capsule,skin),
                 Knee=Round2CombatRig.Sphere(n+" Knee",_root,0.06f,skin),
                 Shin=Round2CombatRig.Primitive(n+" Shin",_root,PrimitiveType.Capsule,skin),
-                Foot=Round2CombatRig.Primitive(n+" Shoe",_root,PrimitiveType.Cube,new Color(0.07f,0.06f,0.055f)) };
+                Foot=Round2CombatRig.Primitive(n+" Shoe",_root,PrimitiveType.Sphere,new Color(0.07f,0.06f,0.055f)) };
             l.Foot.localScale=new Vector3(0.13f,0.08f,0.25f);
             l.Plant=Desired(left); l.Rotation=_root.rotation;
             return l;

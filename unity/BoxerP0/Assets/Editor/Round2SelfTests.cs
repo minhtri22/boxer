@@ -61,6 +61,10 @@ namespace BoxerP0.Editor
             Check(Round2Motion.Sweep(Vector3.zero,Vector3.zero,Vector3.left,Vector3.right,0.2f,out impact)&&Mathf.Abs(impact-0.4f)<0.00001f,"moving target crossing is not missed");
             Check(!Round2Motion.Sweep(Vector3.zero,Vector3.right,Vector3.right*2f,Vector3.right*3f,0.2f,out _),"equal velocity separated volumes MISS");
             Check(Round2Motion.Band(1.5f)=="LONG"&&Round2Motion.Band(0.94f)=="BOXING"&&Round2Motion.Band(0.69f)=="CLOSE","geometry-derived distance ordering");
+            Vector3 baseline=Round2Motion.Endpoint(PunchIntent.Cross,"NEUTRAL",0.94f), longer=baseline;
+            longer.z*=P1OpponentAttributes.LongReachFactor;
+            Check(Round2Motion.Sample(false,PunchIntent.Cross,ActionPhase.Extend,1f,longer).Wrist.z>
+                Round2Motion.Sample(false,PunchIntent.Cross,ActionPhase.Extend,1f,baseline).Wrist.z,"P1-D long reach retains effect within frozen bone lengths");
             const int iterations=100000;
             Vector3 end=Round2Motion.Endpoint(PunchIntent.Jab,"NEUTRAL",0.94f);
             for(int i=0;i<100;i++) Round2Motion.Sample(true,PunchIntent.Jab,ActionPhase.Extend,i/100f,end);
