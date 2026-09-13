@@ -1,0 +1,192 @@
+{
+  "evidence": "STATIC_SOURCE_INSPECTION_NOT_UNITY_TEST",
+  "inspected_head": "72634fa83e9f903d093365de68eac1564bdc9c89",
+  "scope": "Neutral player full-extension endpoints; no A1/A3 modifiers; current fixed visual shoulder; reproduces ArmChainMath reach clamp only",
+  "upper_arm_m": 0.34,
+  "forearm_m": 0.31,
+  "solver_max_wrist_distance_m": 0.649,
+  "visual_glove_radius_m": 0.115,
+  "punches": [
+    {
+      "intent": "Jab",
+      "shoulder_local": [
+        -0.38,
+        1.43,
+        0.02
+      ],
+      "target_local": [
+        -0.1,
+        1.46,
+        1.26
+      ],
+      "shoulder_to_endpoint_m": 1.271574,
+      "visual_wrist_at_full_extension_local": [
+        -0.23709,
+        1.445312,
+        0.652885
+      ],
+      "endpoint_to_visual_wrist_gap_m": 0.622574
+    },
+    {
+      "intent": "Cross",
+      "shoulder_local": [
+        0.38,
+        1.43,
+        0.02
+      ],
+      "target_local": [
+        0.04,
+        1.44,
+        1.34
+      ],
+      "shoulder_to_endpoint_m": 1.363121,
+      "visual_wrist_at_full_extension_local": [
+        0.218122,
+        1.434761,
+        0.648469
+      ],
+      "endpoint_to_visual_wrist_gap_m": 0.714121
+    },
+    {
+      "intent": "LeadHook",
+      "shoulder_local": [
+        -0.38,
+        1.43,
+        0.02
+      ],
+      "target_local": [
+        0.11,
+        1.39,
+        1.05
+      ],
+      "shoulder_to_endpoint_m": 1.141315,
+      "visual_wrist_at_full_extension_local": [
+        -0.101365,
+        1.407254,
+        0.605702
+      ],
+      "endpoint_to_visual_wrist_gap_m": 0.492315
+    },
+    {
+      "intent": "RearHook",
+      "shoulder_local": [
+        0.38,
+        1.43,
+        0.02
+      ],
+      "target_local": [
+        -0.11,
+        1.39,
+        1.05
+      ],
+      "shoulder_to_endpoint_m": 1.141315,
+      "visual_wrist_at_full_extension_local": [
+        0.101365,
+        1.407254,
+        0.605702
+      ],
+      "endpoint_to_visual_wrist_gap_m": 0.492315
+    },
+    {
+      "intent": "LeadUppercut",
+      "shoulder_local": [
+        -0.38,
+        1.43,
+        0.02
+      ],
+      "target_local": [
+        -0.05,
+        1.5,
+        0.98
+      ],
+      "shoulder_to_endpoint_m": 1.017546,
+      "visual_wrist_at_full_extension_local": [
+        -0.169523,
+        1.474647,
+        0.632297
+      ],
+      "endpoint_to_visual_wrist_gap_m": 0.368546
+    },
+    {
+      "intent": "RearUppercut",
+      "shoulder_local": [
+        0.38,
+        1.43,
+        0.02
+      ],
+      "target_local": [
+        0.05,
+        1.51,
+        1.04
+      ],
+      "shoulder_to_endpoint_m": 1.075035,
+      "visual_wrist_at_full_extension_local": [
+        0.180779,
+        1.478296,
+        0.635775
+      ],
+      "endpoint_to_visual_wrist_gap_m": 0.426035
+    },
+    {
+      "intent": "LeadOverhand",
+      "shoulder_local": [
+        -0.38,
+        1.43,
+        0.02
+      ],
+      "target_local": [
+        -0.04,
+        1.48,
+        1.17
+      ],
+      "shoulder_to_endpoint_m": 1.20025,
+      "visual_wrist_at_full_extension_local": [
+        -0.196155,
+        1.457036,
+        0.641829
+      ],
+      "endpoint_to_visual_wrist_gap_m": 0.55125
+    },
+    {
+      "intent": "RearOverhand",
+      "shoulder_local": [
+        0.38,
+        1.43,
+        0.02
+      ],
+      "target_local": [
+        0.04,
+        1.5,
+        1.24
+      ],
+      "shoulder_to_endpoint_m": 1.268424,
+      "visual_wrist_at_full_extension_local": [
+        0.206036,
+        1.465816,
+        0.644223
+      ],
+      "endpoint_to_visual_wrist_gap_m": 0.619424
+    }
+  ],
+  "source_sha256": {
+    "OpponentBoxer.cs": "73d9b943a0dd5da24a37227ad6c5ac571ce5d825a4bbdb31dbeaeaaa85765706",
+    "OpponentLegEmbodiment.cs": "8f630b585edf2ad8f222c31c14a3124c88b4e6674437f9f4e48d652347d87fdb",
+    "PlayerBoxer.cs": "45071b4708289c6d93b88e376d08733f4873fa350400d5818a34e05e3bfac781",
+    "ArmVisualEmbodiment.cs": "9f055dab01782e5e5a02b13aa1b9e4ecf94e82cc95ce412d23f22aa1d74fcde6",
+    "P1BodyRotationMath.cs": "45040b3b08f5e413c8bc5b10939db6216cd7ab25a2b7362199a6c6528cd671ca",
+    "BoxerVisualShell.cs": "4ce8ae3490c53d9053a71fb9e429a592e4b8765f86f423ef05f55faf4c20abe1",
+    "P1VCombatPresentation.cs": "89a39f8bd4349159a354381fa789392523dda360e53104c634f2e23c0e04daff",
+    "BoxerBootstrap.cs": "ee16d6d4e67b3a72c4ab482a091b414e2033b28b52a5c4c775b962ac418031ec"
+  },
+  "existing_artifact_only": {
+    "product_version": "local-web",
+    "sha256": {
+      "index.html": "d018fe0be5c5d96193ec009156e98543965c297f76df2a82ffad3b37207ba10d",
+      "Build/boxer-p0-web.data": "820a40d3850cd72a0ed4c8abe7ed8e806164a10247cfcd3fdc942749c9306e3b",
+      "Build/boxer-p0-web.framework.js": "799a99c317831405e815dcfa114f1a3d11a0ce6cd2af13d2198693dd7555487d",
+      "Build/boxer-p0-web.loader.js": "0f17c69d4eb0043065716949134fa7bd4654e8dc7a366e8954d289c803e21d22",
+      "Build/boxer-p0-web.wasm": "7c92e90424aedfc234a486a1f9c45518af64e5d334ea7e7496439ea29da5f7ac"
+    },
+    "note": "These are pre-existing files, not a Round 2 build. Their original source provenance is not certified by this inspection."
+  }
+}

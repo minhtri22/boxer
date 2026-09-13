@@ -1,0 +1,27 @@
+[
+  {
+    "file": "index.html",
+    "status": 200,
+    "bytes": "5759"
+  },
+  {
+    "file": "Build/boxer-p0-web.loader.js",
+    "status": 200,
+    "bytes": "27222"
+  },
+  {
+    "file": "Build/boxer-p0-web.framework.js",
+    "status": 200,
+    "bytes": "323523"
+  },
+  {
+    "file": "Build/boxer-p0-web.data",
+    "status": 200,
+    "bytes": "8152296"
+  },
+  {
+    "file": "Build/boxer-p0-web.wasm",
+    "status": 200,
+    "bytes": "17246207"
+  }
+]

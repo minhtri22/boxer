@@ -1,0 +1,9 @@
+evidence=UNITY_EDITOR_DETERMINISTIC_CONTACT_AUDIT_NOT_VISUAL_UAT
+unity=6000.5.8f1
+utc=2026-09-13T05:03:30.5708930Z
+fixture=Bootstrap default relative root distance 1.4m; neutral jab; original collider sizes and guard positions
+authoritative_outcome=Block
+authoritative_reason=OPPONENT_GUARD_INTERSECTION
+minimum_visual_glove_surface_to_any_authoritative_target_surface_m=0.043358
+M05_CONTACT_COHERENCE=FAIL
+note=Positive gap means no visual-glove overlap at any sampled extension pose. This is negative baseline evidence, not a fix or a passing regression test.
