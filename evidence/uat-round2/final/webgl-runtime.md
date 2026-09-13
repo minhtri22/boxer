@@ -39,3 +39,8 @@ not treated as Unity FPS.
 No same-environment starting-artifact run exists: before/after performance delta
 is UNMEASURED. Physical iPhone sensor, haptic/audio perception, sustained mobile
 FPS and final visual acceptance remain for the single integrated human UAT.
+
+Deployment follow-up: the same artifact loaded and rendered the live training
+scene at `https://minhtri22.github.io/boxer/?desktop=1`; its source marker matched
+and the public-host JavaScript error query returned no entries. All seven hosted
+file hashes matched; see deployed-verification.json.
