@@ -9,6 +9,8 @@ builds/*
 builds/web/*
 !builds/web/boxer-p0-web/
 !builds/web/boxer-p0-web/**
+!builds/web/boxer-round2/
+!builds/web/boxer-round2/**
 [Ll]ogs/
 [Uu]ser[Ss]ettings/
 .vs/

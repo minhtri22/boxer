@@ -1,0 +1,37 @@
+{
+  "result": "PASS",
+  "source_sha": "725a21552b760c61ffffa67d91cc7ade9b29cb0d",
+  "productVersion": "r2-725a21552b760c61ffffa67d91cc7ade9b29cb0d",
+  "unity": "6000.5.8f1",
+  "manifest_sha256": "fcd0bda420bd3d7e66abcd71e05c5f3c6c90400ead95efafc78c2c28a86de57a",
+  "files": {
+    "Build/boxer-round2.data": {
+      "sha256": "1952ad4b27c1f72a3d7f52ca045ab754669ac6c5112cb04faeafc679a2c288e4",
+      "bytes": 8161841
+    },
+    "Build/boxer-round2.framework.js": {
+      "sha256": "799a99c317831405e815dcfa114f1a3d11a0ce6cd2af13d2198693dd7555487d",
+      "bytes": 323523
+    },
+    "Build/boxer-round2.loader.js": {
+      "sha256": "65ac832b6f248261e068b1cbd5b49848ad89b08941e939cea197caa5ad1fa4b7",
+      "bytes": 27222
+    },
+    "Build/boxer-round2.wasm": {
+      "sha256": "0ad6191028bd6796f6a7c7001e361daaab4c273f0d68e46d3ca2bd71ff45a0f0",
+      "bytes": 17289098
+    },
+    "index.html": {
+      "sha256": "02f688dd1fc9bc72a6f7774990a46fd40ee97de408b57fb0ac94051daeb42d46",
+      "bytes": 7337
+    },
+    "provenance.txt": {
+      "sha256": "c867a857ec31a32e032f629e0a1e787ec3f77b527ab0ef2249bd196e9791d6b2",
+      "bytes": 918
+    },
+    "TemplateData/style.css": {
+      "sha256": "227ec384516a47fbbf70a4d05e8e3804ea8f063009d42d8c570b72909f6c6b76",
+      "bytes": 1158
+    }
+  }
+}

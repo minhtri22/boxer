@@ -1,0 +1,45 @@
+PASS Jab frozen bone lengths across all phases
+PASS Jab continuous recovery to guard
+PASS Jab continuous commit to extension
+PASS Jab continuous extension to recovery
+PASS Jab A1 solved advance > neutral > retreat
+PASS Cross frozen bone lengths across all phases
+PASS Cross continuous recovery to guard
+PASS Cross continuous commit to extension
+PASS Cross continuous extension to recovery
+PASS Cross A1 solved advance > neutral > retreat
+PASS LeadHook frozen bone lengths across all phases
+PASS LeadHook continuous recovery to guard
+PASS LeadHook continuous commit to extension
+PASS LeadHook continuous extension to recovery
+PASS LeadHook A3.1 close extension > far extension
+PASS RearHook frozen bone lengths across all phases
+PASS RearHook continuous recovery to guard
+PASS RearHook continuous commit to extension
+PASS RearHook continuous extension to recovery
+PASS RearHook A3.1 close extension > far extension
+PASS LeadUppercut frozen bone lengths across all phases
+PASS LeadUppercut continuous recovery to guard
+PASS LeadUppercut continuous commit to extension
+PASS LeadUppercut continuous extension to recovery
+PASS RearUppercut frozen bone lengths across all phases
+PASS RearUppercut continuous recovery to guard
+PASS RearUppercut continuous commit to extension
+PASS RearUppercut continuous extension to recovery
+PASS LeadOverhand frozen bone lengths across all phases
+PASS LeadOverhand continuous recovery to guard
+PASS LeadOverhand continuous commit to extension
+PASS LeadOverhand continuous extension to recovery
+PASS RearOverhand frozen bone lengths across all phases
+PASS RearOverhand continuous recovery to guard
+PASS RearOverhand continuous commit to extension
+PASS RearOverhand continuous extension to recovery
+PASS outside path MISS
+PASS first surface contact, not endpoint prediction
+PASS moving target crossing is not missed
+PASS equal velocity separated volumes MISS
+PASS geometry-derived distance ordering
+PASS P1-D long reach retains effect within frozen bone lengths
+PASS pose plus sweep hot loop allocates zero managed bytes
+benchmark_iterations=100000 elapsed_ms=153,193 allocated_bytes=0 checksum=100000
+TOTAL=43 PASS=43 FAIL=0
