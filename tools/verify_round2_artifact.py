@@ -8,12 +8,13 @@ import urllib.request
 parser = argparse.ArgumentParser()
 parser.add_argument("artifact", type=Path)
 parser.add_argument("source_sha")
+parser.add_argument("--version-prefix", default="r2-", choices=["r2-", "ev-"])
 parser.add_argument("--public-url", help="Verify the deployed HTTPS copy against local bytes")
 args = parser.parse_args()
 root = args.artifact.resolve(strict=True)
 provenance = dict(line.split("=", 1) for line in (root / "provenance.txt").read_text().splitlines() if "=" in line)
 assert provenance["source_sha"] == args.source_sha
-version = "r2-" + args.source_sha
+version = args.version_prefix + args.source_sha
 assert provenance["productVersion"] == version
 assert 'const productVersion = "' + version + '";' in (root / "index.html").read_text(encoding="utf-8")
 files = {}
