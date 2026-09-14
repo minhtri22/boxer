@@ -119,7 +119,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &1391644718
+--- !u!1 &349101298
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,10 +127,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1391644722}
-  - component: {fileID: 1391644721}
-  - component: {fileID: 1391644720}
-  - component: {fileID: 1391644719}
+  - component: {fileID: 349101302}
+  - component: {fileID: 349101301}
+  - component: {fileID: 349101300}
+  - component: {fileID: 349101299}
   m_Layer: 0
   m_Name: Boxer P0 Bootstrap
   m_TagString: Untagged
@@ -138,49 +138,49 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1391644719
+--- !u!114 &349101299
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1391644718}
+  m_GameObject: {fileID: 349101298}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 011b4aa821e17ec41abe33e4bc392c94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BoxerP0.P1PunchGuide
---- !u!114 &1391644720
+--- !u!114 &349101300
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1391644718}
+  m_GameObject: {fileID: 349101298}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 686ecc92214704d44a3cfcda41cad419, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BoxerP0.BoxerVisualShell
---- !u!114 &1391644721
+--- !u!114 &349101301
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1391644718}
+  m_GameObject: {fileID: 349101298}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8c10d626e85c80749a5357ad3e0817ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BoxerP0.BoxerBootstrap
---- !u!4 &1391644722
+--- !u!4 &349101302
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1391644718}
+  m_GameObject: {fileID: 349101298}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -193,4 +193,4 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1391644722}
+  - {fileID: 349101302}

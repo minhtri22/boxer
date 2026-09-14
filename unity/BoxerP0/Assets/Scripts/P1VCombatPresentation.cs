@@ -27,8 +27,7 @@ namespace BoxerP0
     }
 
     /// <summary>
-    /// P1-V presentation-only combat surface. It renders approved art over the verified
-    /// simulation; combat geometry, input semantics and authoritative transforms remain unchanged.
+    /// P1-EV HUD over the articulated world. Contact and input semantics are independent.
     /// </summary>
     [DefaultExecutionOrder(200)]
     public sealed class P1VCombatPresentation : MonoBehaviour
@@ -84,7 +83,7 @@ namespace BoxerP0
 
             _font = Resources.Load<Font>("Fonts/Oswald");
 
-            _circle = BuildCircleTexture(128);
+            // P1-EV has no control-disc texture.
             if (_input != null) _lastPlayerPunchCount = _input.PunchEventCount;
             if (_opponent != null) _lastOpponentAttackCount = _opponent.AttackEventCount;
             IsReady = _telemetry != null && _player != null && _opponent != null;
@@ -157,7 +156,7 @@ namespace BoxerP0
             // P1-V owns HUD and controls only, never competing fighter images.
             GUI.depth = -50;
             DrawHud();
-            DrawControls();
+            // P1-EV: invisible touch regions retain their existing input semantics.
             if (_bootstrap != null && _bootstrap.ShowDeveloperDiagnostics) DrawDiagnostics();
             if (ShouldShowTraining()) DrawTrainingCard();
             if (IsBoutComplete()) DrawResultCard();
@@ -256,62 +255,36 @@ namespace BoxerP0
 
         private void DrawHud()
         {
-            float margin = Mathf.Max(10f, Screen.width * 0.016f);
-            float top = Mathf.Max(10f, Screen.height * 0.012f);
-            float panelWidth = Screen.width * 0.32f;
-            float panelHeight = Mathf.Clamp(Screen.height * 0.087f, 78f, 132f);
-            Rect playerRect = new(margin, top, panelWidth, panelHeight);
-            Rect opponentRect = new(Screen.width - margin - panelWidth, top, panelWidth, panelHeight);
-            DrawFighterPanel(playerRect, "LV 12  BOXER", Mathf.Clamp01(1f - (_telemetry?.OpponentHits ?? 0) * HpLossPerHit), _playerStamina, false);
-            DrawFighterPanel(opponentRect, "LV 15  RAMIREZ", Mathf.Clamp01(1f - (_telemetry?.PlayerHits ?? 0) * HpLossPerHit), _opponentStamina, true);
-
-            float timerWidth = Screen.width * 0.23f;
-            Rect timer = new((Screen.width - timerWidth) * 0.5f, top, timerWidth, panelHeight * 0.90f);
-            DrawPanel(timer, new Color(0.02f, 0.018f, 0.016f, 0.88f), Gold, 2f);
-            Label(new Rect(timer.x, timer.y + timer.height * 0.05f, timer.width, timer.height * 0.25f), "ROUND 1 / 10", Mathf.RoundToInt(Screen.height / 92f), TextAnchor.MiddleCenter, Gold, true);
-            Label(new Rect(timer.x, timer.y + timer.height * 0.25f, timer.width, timer.height * 0.58f), TimerText(), Mathf.RoundToInt(Screen.height / 36f), TextAnchor.MiddleCenter, WarmWhite, true);
-
-            if (_opponent != null && _opponent.CounterWindowOpen)
-            {
-                Rect badge = new(Screen.width * 0.76f, Screen.height * 0.31f, Screen.width * 0.20f, Screen.height * 0.065f);
-                DrawPanel(badge, new Color(0.03f, 0.025f, 0.02f, 0.84f), Gold, 2f);
-                Label(badge, "COUNTER READY", Mathf.RoundToInt(Screen.height / 67f), TextAnchor.MiddleCenter, Gold, true);
-            }
-
-            Label(new Rect(Screen.width * 0.34f, Screen.height * 0.125f, Screen.width * 0.32f, Screen.height * 0.055f),
-                "BOXER", Mathf.RoundToInt(Screen.height / 31f), TextAnchor.MiddleCenter, Gold, true);
-            Label(new Rect(Screen.width * 0.32f, Screen.height * 0.168f, Screen.width * 0.36f, Screen.height * 0.025f),
-                "FIGHT FROM YOUR OWN EYES", Mathf.RoundToInt(Screen.height / 115f), TextAnchor.MiddleCenter, WarmWhite, true);
+            float w=Screen.width,h=Screen.height,pad=w*.025f;
+            float ph=Mathf.Clamp(w*.145f,66f,106f),pw=w*.335f;
+            DrawFighterPanel(new Rect(pad,12,pw,ph),"LV 12  BOXER",Mathf.Clamp01(1f-_telemetry.OpponentHits*HpLossPerHit),_playerStamina,false);
+            DrawFighterPanel(new Rect(w-pad-pw,12,pw,ph),"LV 15  RAMIREZ",Mathf.Clamp01(1f-_telemetry.PlayerHits*HpLossPerHit),_opponentStamina,true);
+            Rect timer=new(w*.39f,12,w*.22f,ph);
+            DrawPanel(timer,new Color(.018f,.017f,.016f,.90f),Gold,1);
+            Label(new Rect(timer.x,17,timer.width,20),"ROUND 1 / 10",Mathf.RoundToInt(w/45),TextAnchor.MiddleCenter,Gold,true);
+            Label(new Rect(timer.x,36,timer.width,ph-24),TimerText(),Mathf.RoundToInt(w/22),TextAnchor.MiddleCenter,WarmWhite,true);
+            if(_opponent.CounterWindowOpen) { Rect badge=new(w*.76f,h*.28f,w*.22f,30);DrawPanel(badge,new Color(.02f,.018f,.016f,.8f),Gold,1);Label(badge,"COUNTER READY",Mathf.RoundToInt(w/45),TextAnchor.MiddleCenter,Gold,true); }
         }
 
         private void DrawFighterPanel(Rect rect, string title, float hp, float stamina, bool right)
         {
-            DrawPanel(rect, new Color(0.02f, 0.018f, 0.016f, 0.84f), Gold, 2f);
-            TextAnchor align = right ? TextAnchor.MiddleRight : TextAnchor.MiddleLeft;
-            float pad = rect.width * 0.05f;
-            Label(new Rect(rect.x + pad, rect.y, rect.width - pad * 2f, rect.height * 0.30f), title,
-                Mathf.RoundToInt(Screen.height / 65f), align, WarmWhite, true);
-            DrawMeter(new Rect(rect.x + pad, rect.y + rect.height * 0.36f, rect.width - pad * 2f, rect.height * 0.18f), "HP", hp, Red, right);
-            DrawMeter(new Rect(rect.x + pad, rect.y + rect.height * 0.65f, rect.width - pad * 2f, rect.height * 0.16f), "STAMINA", stamina, Amber, right);
-            if (right && _opponent != null)
-            {
-                Label(new Rect(rect.x + pad, rect.y + rect.height * 0.82f, rect.width - pad * 2f, rect.height * 0.14f),
-                    _opponent.AttributeProfileLabel, Mathf.RoundToInt(Screen.height / 105f), TextAnchor.MiddleRight, Gold, true);
-            }
+            DrawSolid(rect,new Color(.018f,.017f,.016f,.76f));
+            DrawSolid(new Rect(rect.x,rect.yMax-1,rect.width,1),Gold);
+            Label(new Rect(rect.x+5,rect.y,rect.width-10,rect.height*.32f),title,Mathf.RoundToInt(Screen.width/32),right?TextAnchor.MiddleRight:TextAnchor.MiddleLeft,WarmWhite,true);
+            DrawMeter(new Rect(rect.x+5,rect.y+rect.height*.38f,rect.width-10,rect.height*.21f),"HP",hp,Red,right);
+            DrawMeter(new Rect(rect.x+5,rect.y+rect.height*.69f,rect.width-10,rect.height*.18f),"STA",stamina,Amber,right);
         }
 
         private void DrawMeter(Rect rect, string name, float fill, Color color, bool right)
         {
-            float labelWidth = rect.width * 0.25f;
-            Rect labelRect = right ? new Rect(rect.x + rect.width - labelWidth, rect.y, labelWidth, rect.height) : new Rect(rect.x, rect.y, labelWidth, rect.height);
-            Rect bar = right ? new Rect(rect.x, rect.y, rect.width - labelWidth - 3f, rect.height) : new Rect(rect.x + labelWidth + 3f, rect.y, rect.width - labelWidth - 3f, rect.height);
-            Label(labelRect, name, Mathf.RoundToInt(Screen.height / 93f), right ? TextAnchor.MiddleRight : TextAnchor.MiddleLeft, WarmWhite, true);
-            DrawSolid(bar, new Color(0.06f, 0.055f, 0.05f, 0.95f));
-            Rect filled = bar;
-            filled.width *= Mathf.Clamp01(fill);
-            if (right) filled.x = bar.xMax - filled.width;
-            DrawSolid(filled, color);
-            DrawBorder(bar, new Color(Gold.r, Gold.g, Gold.b, 0.55f), 1f);
+            float lw=rect.width*.19f;
+            Label(new Rect(rect.x,rect.y,lw,rect.height),name,Mathf.RoundToInt(Screen.width/53),TextAnchor.MiddleLeft,WarmWhite,true);
+            Rect bar=new(rect.x+lw,rect.y,rect.width-lw,rect.height);
+            DrawSolid(bar,new Color(.035f,.032f,.030f,.96f));
+            Rect filled=bar;filled.width*=Mathf.Clamp01(fill);DrawSolid(filled,color);
+            DrawSolid(new Rect(filled.x,filled.y,filled.width,2),new Color(1,1,1,.2f));
+            DrawBorder(bar,new Color(.7f,.57f,.33f,.7f),1);
+            Label(bar,Mathf.RoundToInt(fill*100)+"%",Mathf.RoundToInt(Screen.width/52),TextAnchor.MiddleRight,WarmWhite,true);
         }
 
         private void DrawControls()
@@ -389,24 +362,24 @@ namespace BoxerP0
 
         private void DrawTrainingCard()
         {
-            GetTrainingCopy(out string step, out string action, out string hint);
-            Rect card = new(Screen.width * 0.12f, Screen.height * 0.16f, Screen.width * 0.76f, Screen.height * 0.16f);
-            DrawPanel(card, new Color(0.02f, 0.018f, 0.016f, 0.90f), Gold, 2f);
-            Label(new Rect(card.x, card.y + card.height * 0.05f, card.width, card.height * 0.23f), step, Mathf.RoundToInt(Screen.height / 70f), TextAnchor.MiddleCenter, Gold, true);
-            Label(new Rect(card.x + 8f, card.y + card.height * 0.28f, card.width - 16f, card.height * 0.34f), action, Mathf.RoundToInt(Screen.height / 42f), TextAnchor.MiddleCenter, WarmWhite, true);
-            Label(new Rect(card.x + 8f, card.y + card.height * 0.63f, card.width - 16f, card.height * 0.25f), hint, Mathf.RoundToInt(Screen.height / 79f), TextAnchor.MiddleCenter, WarmWhite, false);
+            GetTrainingCopy(out string step,out string action,out string hint);
+            float top=Mathf.Clamp(Screen.width*.145f,66f,106f)+22;
+            Rect card=new(Screen.width*.12f,top,Screen.width*.76f,48);
+            DrawSolid(card,new Color(.015f,.015f,.015f,.70f));
+            Label(new Rect(card.x,card.y,card.width,20),step,Mathf.RoundToInt(Screen.width/45),TextAnchor.MiddleCenter,Gold,true);
+            Label(new Rect(card.x+6,card.y+20,card.width-12,24),hint,Mathf.RoundToInt(Screen.width/43),TextAnchor.MiddleCenter,WarmWhite,false);
         }
 
         private void GetTrainingCopy(out string step, out string action, out string hint)
         {
             switch (_trainingStage)
             {
-                case "HEADCONTROL": step = "1 / 5   HEAD MOVEMENT"; action = "NGHIÊNG TRÁI  →  PHẢI"; hint = "PHONE = HEAD  ·  LOOK  ·  REACT  ·  STAY READY"; return;
-                case "FOOTWORK": step = "2 / 5   FOOTWORK"; action = "DI CHUYỂN ĐỦ 4 HƯỚNG"; hint = "LEFT THUMB = FEET  ·  MOVE  ·  ANGLE  ·  CONTROL"; return;
-                case "PUNCHES": step = "3 / 5   PUNCH MECHANICS"; action = "THỬ ĐỦ 4 GIA ĐÌNH ĐÒN"; hint = "TAP STRAIGHT  ·  SWIPE UP / SIDE / DOWN"; return;
-                case "GUARD": step = "4 / 5   GUARD"; action = "DỪNG ĐẤM = HIGH GUARD"; hint = "NO TOUCH = GUARD  ·  STAY CALM  ·  STAY PROTECTED"; return;
+                case "HEADCONTROL": step = "1 / 5   HEAD MOVEMENT"; action = "NGHIÊNG TRÁI  →  PHẢI"; hint = "TILT PHONE LEFT / RIGHT"; return;
+                case "FOOTWORK": step = "2 / 5   FOOTWORK"; action = "DI CHUYỂN ĐỦ 4 HƯỚNG"; hint = "LEFT THUMB: MOVE IN FOUR DIRECTIONS"; return;
+                case "PUNCHES": step = "3 / 5   PUNCH MECHANICS"; action = "THỬ ĐỦ 4 GIA ĐÌNH ĐÒN"; hint = "RIGHT THUMB: TAP / HOLD + SWIPE"; return;
+                case "GUARD": step = "4 / 5   GUARD"; action = "DỪNG ĐẤM = HIGH GUARD"; hint = "RELEASE PUNCH TO RETURN TO GUARD"; return;
                 case "COUNTER": step = "5 / 5   COUNTER"; action = "ĐỌC ĐÒN  →  NÉ / ĐỠ  →  PHẢN CÔNG"; hint = "COUNTER DURING OPPONENT RECOVERY"; return;
-                default: step = "CALIBRATE"; action = "GIỮ ĐIỆN THOẠI Ở TƯ THẾ THOẢI MÁI"; hint = "PHONE = HEAD  ·  CALIBRATE TO ENTER THE RING"; return;
+                default: step = "CALIBRATE"; action = "GIỮ ĐIỆN THOẠI Ở TƯ THẾ THOẢI MÁI"; hint = "HOLD PHONE IN A COMFORTABLE POSITION"; return;
             }
         }
 
@@ -428,7 +401,7 @@ namespace BoxerP0
 
         private string TimerText()
         {
-            if (_telemetry == null || _telemetry.BoutResult == "PENDING") return "TRAINING";
+            if (_telemetry == null || _telemetry.BoutResult == "PENDING") return "READY";
             if (_telemetry.BoutResult != "IN_PROGRESS") return "0:00";
             float remaining = Mathf.Max(0f, TestBoutSeconds - (Time.unscaledTime - _observedBoutStart));
             return $"0:{Mathf.CeilToInt(remaining):00}";
