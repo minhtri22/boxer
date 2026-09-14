@@ -4,189 +4,271 @@ using UnityEngine;
 namespace BoxerP0
 {
     /// <summary>
-    /// Presentation-only visual shell for P1-EV.
-    /// Reads accepted combat anchors/action state and never writes gameplay transforms.
+    /// Presentation-only segmented reference shell for P1-EV.
+    /// Every visible part follows an accepted anatomical transform and never writes gameplay transforms.
     /// </summary>
     [DefaultExecutionOrder(300)]
     public sealed class EVReferenceVisuals : MonoBehaviour
     {
+        public const int ExpectedVisualPartCount = 17;
+
+        sealed class RigPart
+        {
+            public Transform Visual;
+            public Transform Anchor;
+            public Transform Secondary;
+            public Vector3 Offset;
+            public float Width;
+            public float Height;
+            public float HeightFromLength;
+            public float CameraBias;
+            public bool FollowBone;
+        }
+
         readonly List<Mesh> _meshes = new List<Mesh>();
         readonly List<Material> _materials = new List<Material>();
+        readonly List<RigPart> _rigParts = new List<RigPart>();
 
         Camera _camera;
-        OpponentBoxer _opponentBoxer;
         Transform _opponent;
         Transform _player;
-        Transform _leftPlayerGlove;
-        Transform _rightPlayerGlove;
-
-        Transform _opponentVisual;
-        Transform _leftPlayerVisual;
-        Transform _rightPlayerVisual;
-
-        Material _hidden;
-        Material _opponentMaterial;
-        Material _playerGloveMaterial;
-        Texture2D _hiddenKey;
-        Texture2D _guard;
-        Texture2D _straight;
-        Texture2D _hook;
-        Texture2D _playerGlove;
-
         bool _ready;
 
         public bool Ready => _ready;
-        public int VisualPartCount => _ready ? 3 : 0;
+        public bool RigBound => _ready && _rigParts.TrueForAll(part => part.Visual != null && part.Anchor != null);
+        public int VisualPartCount => _rigParts.Count;
+
+        public bool HasAnchor(Transform anchor)
+        {
+            return anchor != null && _rigParts.Exists(part => part.Anchor == anchor || part.Secondary == anchor);
+        }
 
         public void Initialize(Transform opponent, Transform player, Transform contactTorso)
         {
             _opponent = opponent;
             _player = player;
             _camera = Camera.main ?? FindAnyObjectByType<Camera>();
-            _opponentBoxer = opponent != null ? opponent.GetComponent<OpponentBoxer>() : null;
 
-            if (_opponent == null || _player == null || _camera == null || _opponentBoxer == null) return;
+            if (_opponent == null || _player == null || contactTorso == null || _camera == null) return;
 
-            _leftPlayerGlove = _player.Find("Player Left Glove");
-            _rightPlayerGlove = _player.Find("Player Right Glove");
-            if (_leftPlayerGlove == null || _rightPlayerGlove == null) return;
+            Shader rigSprite = Resources.Load<Shader>("EVRigSprite");
+            if (rigSprite == null || !BuildRigVisuals(rigSprite)) return;
 
-            _guard = Resources.Load<Texture2D>("P1V/ramirez-guard-chroma");
-            _straight = Resources.Load<Texture2D>("P1V/ramirez-straight-chroma");
-            _hook = Resources.Load<Texture2D>("P1V/ramirez-hook-chroma");
-            _playerGlove = Resources.Load<Texture2D>("P1V/player-glove-left-chroma");
-            Shader chroma = Resources.Load<Shader>("BoxerP1VChromaKey");
-            if (_guard == null || _straight == null || _hook == null || _playerGlove == null || chroma == null) return;
+            // Ramirez is represented only by the segmented rig-bound reference shell.
+            DisableRenderers(_opponent);
 
-            CreateHiddenMaterial();
-            HideLegacyRenderers(_opponent);
-            HideLegacyRenderers(_player);
+            // The POV glove sprites replace only the glove/cuff presentation. The player
+            // arms remain visible and the authoritative glove transforms/colliders stay active.
+            DisableRenderers(_player.Find("Player Left Glove"));
+            DisableRenderers(_player.Find("Player Right Glove"));
 
-            _opponentMaterial = CreateChromaMaterial(chroma, _guard);
-            _playerGloveMaterial = CreateChromaMaterial(chroma, _playerGlove);
-
-            // The camera sees the generated quad from its back side in the current
-            // Round-2 camera convention. Compensate in UV space so branded details
-            // such as RAMIREZ read normally in the final camera capture.
-            _opponentVisual = CreateQuad("EV Ramirez Full Body", _opponentMaterial, 30, true);
-            _leftPlayerVisual = CreateQuad("EV Player Left Glove", _playerGloveMaterial, 90, false);
-            _rightPlayerVisual = CreateQuad("EV Player Right Glove", _playerGloveMaterial, 90, true);
-
-            _ready = _opponentVisual != null && _leftPlayerVisual != null && _rightPlayerVisual != null;
-            if (_ready) UpdateVisuals();
+            _ready = _rigParts.Count == ExpectedVisualPartCount;
+            if (_ready) UpdateRigVisuals();
         }
 
-        void CreateHiddenMaterial()
+        bool BuildRigVisuals(Shader shader)
         {
-            Shader shader = Resources.Load<Shader>("BoxerP1VChromaKey");
-            _hidden = new Material(shader);
-            _hiddenKey = new Texture2D(1, 1, TextureFormat.RGBA32, false);
-            _hiddenKey.SetPixel(0, 0, Color.green);
-            _hiddenKey.Apply(false, true);
-            _hidden.mainTexture = _hiddenKey;
-            _hidden.SetFloat("_Threshold", 0.01f);
-            _hidden.SetFloat("_Softness", 0.01f);
-            _materials.Add(_hidden);
+            Transform head = _opponent.Find("Opponent Head");
+            Transform abdomen = _opponent.Find("R2 Abdomen");
+            Transform chest = _opponent.Find("R2 Chest");
+            Transform shortsVisual = _opponent.Find("Opponent Shorts Visual");
+            Transform leftUpper = _opponent.Find("Left Upper Arm");
+            Transform rightUpper = _opponent.Find("Right Upper Arm");
+            Transform leftForearm = _opponent.Find("Left Forearm");
+            Transform rightForearm = _opponent.Find("Right Forearm");
+            Transform leftGlove = _opponent.Find("Opponent Left Glove");
+            Transform rightGlove = _opponent.Find("Opponent Right Glove");
+            Transform leftThigh = _opponent.Find("Left Thigh");
+            Transform rightThigh = _opponent.Find("Right Thigh");
+            Transform leftShin = _opponent.Find("Left Shin");
+            Transform rightShin = _opponent.Find("Right Shin");
+            Transform leftBoot = _opponent.Find("Left Shoe");
+            Transform rightBoot = _opponent.Find("Right Shoe");
+            Transform playerLeftGlove = _player.Find("Player Left Glove");
+            Transform playerRightGlove = _player.Find("Player Right Glove");
+
+            if (head == null || abdomen == null || chest == null || shortsVisual == null ||
+                leftUpper == null || rightUpper == null || leftForearm == null || rightForearm == null ||
+                leftGlove == null || rightGlove == null || leftThigh == null || rightThigh == null ||
+                leftShin == null || rightShin == null || leftBoot == null || rightBoot == null ||
+                playerLeftGlove == null || playerRightGlove == null)
+                return false;
+
+            Texture2D headTex = Segment("ramirez-head");
+            Texture2D torsoTex = Segment("ramirez-torso");
+            Texture2D shortsTex = Segment("ramirez-shorts");
+            Texture2D armTex = Segment("ramirez-arm");
+            Texture2D gloveTex = Segment("ramirez-glove");
+            Texture2D thighTex = Segment("ramirez-thigh");
+            Texture2D shinTex = Segment("ramirez-shin");
+            Texture2D bootTex = Segment("ramirez-boot");
+            Texture2D playerGloveTex = Segment("player-glove");
+
+            if (headTex == null || torsoTex == null || shortsTex == null || armTex == null ||
+                gloveTex == null || thighTex == null || shinTex == null || bootTex == null || playerGloveTex == null)
+                return false;
+
+            AddFixedRigPart(shader, "EV Rig Head", headTex, head, null,
+                .43f, .48f, Vector3.zero, .016f, false, false);
+            AddFixedRigPart(shader, "EV Rig Torso", torsoTex, abdomen, chest,
+                .72f, .78f, new Vector3(0f, .10f, 0f), .012f, false, false);
+            AddFixedRigPart(shader, "EV Rig Shorts", shortsTex, shortsVisual, null,
+                .76f, .52f, Vector3.zero, .014f, false, false);
+
+            AddBoneRigPart(shader, "EV Rig Left Upper Arm", armTex, leftUpper, .24f, 1.10f, .020f, true);
+            AddBoneRigPart(shader, "EV Rig Right Upper Arm", armTex, rightUpper, .24f, 1.10f, .021f, false);
+            AddBoneRigPart(shader, "EV Rig Left Forearm", armTex, leftForearm, .22f, 1.10f, .022f, true);
+            AddBoneRigPart(shader, "EV Rig Right Forearm", armTex, rightForearm, .22f, 1.10f, .023f, false);
+            AddFixedRigPart(shader, "EV Rig Left Glove", gloveTex, leftGlove, null,
+                .30f, .34f, Vector3.zero, .028f, true, true);
+            AddFixedRigPart(shader, "EV Rig Right Glove", gloveTex, rightGlove, null,
+                .30f, .34f, Vector3.zero, .029f, false, true);
+
+            AddBoneRigPart(shader, "EV Rig Left Thigh", thighTex, leftThigh, .31f, 1.15f, .013f, true);
+            AddBoneRigPart(shader, "EV Rig Right Thigh", thighTex, rightThigh, .31f, 1.15f, .014f, false);
+            AddBoneRigPart(shader, "EV Rig Left Shin", shinTex, leftShin, .25f, 1.15f, .015f, true);
+            AddBoneRigPart(shader, "EV Rig Right Shin", shinTex, rightShin, .25f, 1.15f, .016f, false);
+            AddFixedRigPart(shader, "EV Rig Left Boot", bootTex, leftBoot, null,
+                .28f, .36f, new Vector3(0f, -.04f, 0f), .021f, true, false);
+            AddFixedRigPart(shader, "EV Rig Right Boot", bootTex, rightBoot, null,
+                .28f, .36f, new Vector3(0f, -.04f, 0f), .022f, false, false);
+
+            // The reference asset is the approved left POV glove. Keep it unmirrored on
+            // the anatomical left anchor and mirror it only for the anatomical right anchor.
+            AddFixedRigPart(shader, "EV Rig Player Left Glove", playerGloveTex, playerLeftGlove, null,
+                .43f, .49f, Vector3.zero, .034f, false, true);
+            AddFixedRigPart(shader, "EV Rig Player Right Glove", playerGloveTex, playerRightGlove, null,
+                .43f, .49f, Vector3.zero, .035f, true, true);
+
+            return _rigParts.Count == ExpectedVisualPartCount;
         }
 
-        Material CreateChromaMaterial(Shader shader, Texture2D texture)
+        static Texture2D Segment(string name)
+        {
+            return Resources.Load<Texture2D>("EV/ReferenceSegments/" + name);
+        }
+
+        void AddFixedRigPart(Shader shader, string name, Texture2D texture, Transform anchor, Transform secondary,
+            float width, float height, Vector3 offset, float cameraBias, bool mirror, bool followBone)
+        {
+            Transform visual = CreateRigQuad(name, CreateRigMaterial(shader, texture), mirror);
+            _rigParts.Add(new RigPart
+            {
+                Visual = visual,
+                Anchor = anchor,
+                Secondary = secondary,
+                Offset = offset,
+                Width = width,
+                Height = height,
+                CameraBias = cameraBias,
+                FollowBone = followBone
+            });
+        }
+
+        void AddBoneRigPart(Shader shader, string name, Texture2D texture, Transform anchor,
+            float width, float heightFromLength, float cameraBias, bool mirror)
+        {
+            Transform visual = CreateRigQuad(name, CreateRigMaterial(shader, texture), mirror);
+            _rigParts.Add(new RigPart
+            {
+                Visual = visual,
+                Anchor = anchor,
+                Width = width,
+                HeightFromLength = heightFromLength,
+                CameraBias = cameraBias,
+                FollowBone = true
+            });
+        }
+
+        Material CreateRigMaterial(Shader shader, Texture2D texture)
         {
             var material = new Material(shader) { mainTexture = texture };
-            material.SetFloat("_Threshold", 0.18f);
-            material.SetFloat("_Softness", 0.20f);
             _materials.Add(material);
             return material;
         }
 
-        void HideLegacyRenderers(Transform root)
-        {
-            foreach (Renderer renderer in root.GetComponentsInChildren<Renderer>(true))
-                if (renderer.enabled) renderer.sharedMaterial = _hidden;
-        }
-
-        Transform CreateQuad(string name, Material material, int order, bool mirror)
+        Transform CreateRigQuad(string name, Material material, bool mirror)
         {
             var go = new GameObject(name);
-            Mesh mesh = Quad(name + " Mesh", mirror);
+            go.transform.SetParent(transform, false);
+            Mesh mesh = RigQuad(name + " Mesh", mirror);
             _meshes.Add(mesh);
             go.AddComponent<MeshFilter>().sharedMesh = mesh;
             var renderer = go.AddComponent<MeshRenderer>();
             renderer.sharedMaterial = material;
-            renderer.sortingOrder = order;
+            renderer.sortingOrder = 40;
             return go.transform;
         }
 
-        static Mesh Quad(string name, bool mirror)
+        static Mesh RigQuad(string name, bool mirror)
         {
+            float u0 = mirror ? 1f : 0f;
+            float u1 = mirror ? 0f : 1f;
             var mesh = new Mesh { name = name };
             mesh.vertices = new[]
             {
-                new Vector3(-.5f,-.5f,0), new Vector3(.5f,-.5f,0),
-                new Vector3(.5f,.5f,0), new Vector3(-.5f,.5f,0)
+                new Vector3(-.5f,-.5f,0f), new Vector3(.5f,-.5f,0f),
+                new Vector3(.5f,.5f,0f), new Vector3(-.5f,.5f,0f)
             };
-            mesh.uv = mirror
-                ? new[] { new Vector2(1,0), new Vector2(0,0), new Vector2(0,1), new Vector2(1,1) }
-                : new[] { new Vector2(0,0), new Vector2(1,0), new Vector2(1,1), new Vector2(0,1) };
+            mesh.uv = new[]
+            {
+                new Vector2(u0,0f), new Vector2(u1,0f),
+                new Vector2(u1,1f), new Vector2(u0,1f)
+            };
             mesh.triangles = new[] { 0, 1, 2, 0, 2, 3 };
             mesh.RecalculateNormals();
             mesh.RecalculateBounds();
             return mesh;
         }
 
+        static void DisableRenderers(Transform root)
+        {
+            if (root == null) return;
+            foreach (Renderer renderer in root.GetComponentsInChildren<Renderer>(true))
+                renderer.enabled = false;
+        }
+
         void LateUpdate()
         {
             if (!_ready || _camera == null) return;
-            UpdateVisuals();
+            UpdateRigVisuals();
         }
 
-        void UpdateVisuals()
+        void UpdateRigVisuals()
         {
-            UpdateOpponentVisual();
-            UpdatePlayerGlove(_leftPlayerVisual, _leftPlayerGlove, new Vector2(.20f, .16f));
-            UpdatePlayerGlove(_rightPlayerVisual, _rightPlayerGlove, new Vector2(.80f, .16f));
-        }
+            foreach (RigPart part in _rigParts)
+            {
+                Vector3 position = part.Secondary == null
+                    ? part.Anchor.position
+                    : Vector3.Lerp(part.Anchor.position, part.Secondary.position, .55f);
+                position += _opponent.rotation * part.Offset;
 
-        void UpdateOpponentVisual()
-        {
-            Texture2D pose = _guard;
-            if (_opponentBoxer.IsActionBusy)
-                pose = P1VPresentationMath.PoseToken(_opponentBoxer.CurrentIntent) == "HOOK" ? _hook : _straight;
-            if (_opponentMaterial.mainTexture != pose) _opponentMaterial.mainTexture = pose;
+                Vector3 normal = _camera.transform.position - position;
+                if (normal.sqrMagnitude < .0001f) normal = -_camera.transform.forward;
+                normal.Normalize();
+                position += normal * part.CameraBias;
 
-            // Presentation-only scale: the accepted mechanics root remains the
-            // authority, while the full-body reference art is framed closer to the
-            // supplied POV target. Keep the feet tied to the opponent root.
-            float height = 2.45f;
-            if (_opponentBoxer.IsActionBusy && _opponentBoxer.CurrentPhase == ActionPhase.Extend) height *= 1.025f;
-            Vector3 center = _opponent.position + Vector3.up * (height * 0.5f);
-            Vector3 towardCamera = (_camera.transform.position - center).normalized;
-            _opponentVisual.position = center;
-            _opponentVisual.rotation = Quaternion.LookRotation(towardCamera, _camera.transform.up);
-            _opponentVisual.localScale = new Vector3(height * (2f / 3f), height, 1f);
-        }
+                // Use the anatomical/world up vector instead of camera.up. Phone/head roll
+                // therefore cannot rotate the opponent like a single cardboard billboard.
+                Vector3 up = part.FollowBone ? part.Anchor.up : Vector3.up;
+                up = Vector3.ProjectOnPlane(up, normal);
+                if (up.sqrMagnitude < .001f) up = Vector3.ProjectOnPlane(Vector3.up, normal);
+                if (up.sqrMagnitude < .001f) up = part.Anchor.up;
+                up.Normalize();
 
-        void UpdatePlayerGlove(Transform visual, Transform anchor, Vector2 fallbackViewport)
-        {
-            Vector3 projected = _camera.WorldToViewportPoint(anchor.position);
-            Vector2 anchorViewport = projected.z > 0.01f
-                ? new Vector2(Mathf.Clamp(projected.x, .08f, .92f), Mathf.Clamp(projected.y, .06f, .30f))
-                : fallbackViewport;
-            Vector2 viewport = Vector2.Lerp(fallbackViewport, anchorViewport, .58f);
+                float height = part.Height;
+                if (part.HeightFromLength > 0f)
+                    height = Mathf.Max(part.Anchor.lossyScale.y * 2f, .12f) * part.HeightFromLength;
 
-            const float depth = .62f;
-            visual.position = _camera.ViewportToWorldPoint(new Vector3(viewport.x, viewport.y, depth));
-            visual.rotation = Quaternion.LookRotation((_camera.transform.position - visual.position).normalized, _camera.transform.up);
-
-            float worldHeight = 2f * depth * Mathf.Tan(_camera.fieldOfView * Mathf.Deg2Rad * .5f) * .285f;
-            float aspect = (float)_playerGlove.width / _playerGlove.height;
-            visual.localScale = new Vector3(worldHeight * aspect, worldHeight, 1f);
+                part.Visual.SetPositionAndRotation(position, Quaternion.LookRotation(normal, up));
+                part.Visual.localScale = new Vector3(part.Width, height, 1f);
+            }
         }
 
         void OnDestroy()
         {
             foreach (Mesh mesh in _meshes) if (mesh != null) Destroy(mesh);
             foreach (Material material in _materials) if (material != null) Destroy(material);
-            if (_hiddenKey != null) Destroy(_hiddenKey);
         }
     }
 }

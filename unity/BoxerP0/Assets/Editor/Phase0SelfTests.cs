@@ -17,6 +17,7 @@ namespace BoxerP0.Editor
             Run("P1-A2 held swipe up uppercut", TestGestureUppercut, results);
             Run("P1-A2 held swipe down overhand", TestGestureOverhand, results);
             Run("P1-A2 held swipe horizontal hook", TestGestureHook, results);
+            Run("P1-A2 horizontal hook direction selects hand", TestGestureHookDirection, results);
             Run("P1-A2 hand selector", TestPunchHandSelector, results);
             Run("punch labels and families", TestPunchLabels, results);
             Run("geometry hit and miss", TestGeometry, results);
@@ -88,6 +89,15 @@ namespace BoxerP0.Editor
 
             GestureMetrics tooFast = new(new Vector2(150f, 10f), 151f, 0.06f);
             AssertEqual(PunchFamily.None, PunchGestureClassifier.ClassifyFamily(tooFast));
+        }
+
+        private static void TestGestureHookDirection()
+        {
+            GestureMetrics swipeRight = new(new Vector2(150f, 8f), 153f, 0.25f);
+            GestureMetrics swipeLeft = new(new Vector2(-150f, 8f), 153f, 0.25f);
+
+            AssertEqual(PunchIntent.LeadHook, PunchGestureClassifier.Resolve(swipeRight, PunchIntent.Cross));
+            AssertEqual(PunchIntent.RearHook, PunchGestureClassifier.Resolve(swipeLeft, PunchIntent.Jab));
         }
 
         private static void TestPunchHandSelector()

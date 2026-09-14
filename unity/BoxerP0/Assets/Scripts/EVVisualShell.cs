@@ -33,8 +33,15 @@ namespace BoxerP0
             if(opponent==null||player==null) return;
             BuildOpponent(opponent.transform); BuildArms(player.transform,true);
             Arena();
+
+            // UAT 2026-09-14: the camera-facing full-body/glove quads introduced by
+            // EVReferenceVisuals hid the already-qualified articulated rig. That made
+            // planted/stepping legs appear static, flattened the opponent when the
+            // phone/head tilted, and decoupled the visible POV gloves from their true
+            // left/right punch anchors. P1-EV must remain a visual shell *on the rig*.
+            // Do not add a camera-facing fighter or glove billboard here.
             var referenceVisuals=gameObject.AddComponent<EVReferenceVisuals>();
-            referenceVisuals.Initialize(opponent.transform,player.transform,_body);
+            referenceVisuals.Initialize(opponent.transform,player.transform,opponent.BodyCollider.transform);
             Ready=referenceVisuals.Ready;
         }
         Material Material(Color c,float kind)

@@ -207,7 +207,26 @@ namespace BoxerP0
         // ClassifyFamily + PunchHandSelector so gesture never directly encodes the hand.
         public static PunchIntent Classify(GestureMetrics metrics, float pixelScale = 1f)
         {
-            return PunchHandSelector.Select(ClassifyFamily(metrics, pixelScale), PunchIntent.None);
+            return Resolve(metrics, PunchIntent.None, pixelScale);
+        }
+
+        /// <summary>
+        /// Resolve the frozen mobile gesture vocabulary to a concrete punch.
+        /// TAP/UP/DOWN retain contextual hand selection. Horizontal hook direction
+        /// is explicit in first-person space: swipe left = right/rear hook,
+        /// swipe right = left/lead hook.
+        /// </summary>
+        public static PunchIntent Resolve(GestureMetrics metrics, PunchIntent previousIntent, float pixelScale = 1f)
+        {
+            PunchFamily family = ClassifyFamily(metrics, pixelScale);
+            if (family == PunchFamily.Hook)
+            {
+                return metrics.Displacement.x < 0f
+                    ? PunchIntent.RearHook
+                    : PunchIntent.LeadHook;
+            }
+
+            return PunchHandSelector.Select(family, previousIntent);
         }
     }
 

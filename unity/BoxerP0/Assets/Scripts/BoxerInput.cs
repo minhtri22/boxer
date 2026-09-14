@@ -231,8 +231,7 @@ namespace BoxerP0
                         float duration = Mathf.Max(0.001f, Time.unscaledTime - _rightStartTime);
                         float scale = Mathf.Max(1f, Screen.dpi / 160f);
                         GestureMetrics metrics = new(touch.position - _rightStart, _rightPathLength, duration);
-                        PunchFamily family = PunchGestureClassifier.ClassifyFamily(metrics, scale);
-                        PunchIntent intent = PunchHandSelector.Select(family, LastPunchIntent);
+                        PunchIntent intent = PunchGestureClassifier.Resolve(metrics, LastPunchIntent, scale);
                         _rightFinger = -1;
                         RequestPunch(intent);
                     }

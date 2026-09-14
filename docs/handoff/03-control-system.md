@@ -29,29 +29,35 @@ Do not replace this with arbitrary continuous tuning without a new experiment.
 
 ## Right Thumb = Punch Intent
 
-The right thumb chooses punch family, not a literal right-hand attack.
+The right thumb chooses punch family. For horizontal hooks, swipe direction also
+chooses the striking hand as an explicit first-person control invariant.
 
 Gesture vocabulary:
 
 - `TAP → STRAIGHT`
 - `HOLD + SWIPE UP → UPPERCUT`
-- `HOLD + SWIPE HORIZONTAL → HOOK`
+- `HOLD + SWIPE RIGHT → LEFT/LEAD HOOK`
+- `HOLD + SWIPE LEFT → RIGHT/REAR HOOK`
 - `HOLD + SWIPE DOWN → OVERHAND`
 
 Current hold threshold is implementation-specific and regression-protected.
 
 ## Hand-selection principle
 
-Gesture selects family. The actual hand should be selected from stance/sequence/body context.
+Tap/up/down select the punch family and retain the contextual hand selector.
+Horizontal hook direction is an explicit first-person control invariant from UAT:
+
+- swipe right → left/lead hook;
+- swipe left → right/rear hook.
 
 Examples of intended semantics:
 
 - first straight often maps to lead jab;
 - next straight may map to rear cross;
-- hook/uppercut can alternate by prior hand/context;
+- uppercut can alternate by prior hand/context;
 - overhand is generally rear-hand biased.
 
-Do not change the gesture vocabulary into explicit left/right punch buttons unless the product thesis is intentionally revised.
+Do not replace this gesture vocabulary with explicit left/right punch buttons.
 
 ## Guard
 
