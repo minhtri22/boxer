@@ -32,7 +32,10 @@ namespace BoxerP0
             var player=FindFirstObjectByType<PlayerBoxer>();
             if(opponent==null||player==null) return;
             BuildOpponent(opponent.transform); BuildArms(player.transform,true);
-            Arena(); Ready=true;
+            Arena();
+            var referenceVisuals=gameObject.AddComponent<EVReferenceVisuals>();
+            referenceVisuals.Initialize(opponent.transform,player.transform,_body);
+            Ready=referenceVisuals.Ready;
         }
         Material Material(Color c,float kind)
         {

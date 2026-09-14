@@ -43,7 +43,7 @@ namespace BoxerP0.Editor
                 metadata.AppendLine("build_seconds="+report.summary.totalTime.TotalSeconds.ToString(System.Globalization.CultureInfo.InvariantCulture));
                 metadata.AppendLine("total_bytes="+report.summary.totalSize);
                 metadata.AppendLine("contact=shared_anatomical_pose_relative_sphere_sweep_240Hz");
-                metadata.AppendLine("presentation="+(ev?"P1_EV_articulated_mesh_shell_no_bottom_controls":"world_space_articulated_body_P1V_HUD_only"));
+                metadata.AppendLine("presentation="+(ev?"P1_EV_full_body_reference_sprite_over_authoritative_rig_no_bottom_controls":"world_space_articulated_body_P1V_HUD_only"));
                 metadata.AppendLine("desktop_validation=explicit_query_flag_synthetic_no_sensor_claim");
                 using var hash=SHA256.Create();
                 foreach(string file in Directory.GetFiles(output,"*",SearchOption.AllDirectories))
