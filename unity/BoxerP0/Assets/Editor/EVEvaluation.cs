@@ -18,23 +18,31 @@ namespace BoxerP0.Editor
             var opponent=UnityEngine.Object.FindFirstObjectByType<OpponentBoxer>();
             var player=UnityEngine.Object.FindFirstObjectByType<PlayerBoxer>();
             if(shell.Torso!=null) _anchorError=Mathf.Max(_anchorError,Vector3.Distance(shell.Torso.position,opponent.transform.Find("R2 Chest").position));
-            var rigVisuals=UnityEngine.Object.FindFirstObjectByType<EVReferenceVisuals>();
-            bool ok=rigVisuals!=null&&rigVisuals.RigBound&&rigVisuals.VisualPartCount==EVReferenceVisuals.ExpectedVisualPartCount;
+            bool ok=true;
             ok &= GameObject.Find("EV Ramirez Full Body")==null;
             ok &= GameObject.Find("EV Player Left Glove")==null&&GameObject.Find("EV Player Right Glove")==null;
+            ok &= GameObject.Find("EV Rig Head")==null&&GameObject.Find("EV Rig Torso")==null;
             foreach(var actor in new[]{player.transform,opponent.transform})foreach(string side in new[]{"Left","Right"}) {
-                string prefix=actor==player.transform?"Player ":"Opponent ";
+                bool isPlayer=actor==player.transform;
+                string prefix=isPlayer?"Player ":"Opponent ";
                 Transform glove=actor.Find(prefix+side+" Glove"),elbow=actor.Find(side+" Elbow"),cuff=glove.Find("EV "+side+" Glove Cuff");
-                ok &= rigVisuals.HasAnchor(glove) && cuff!=null && cuff.parent==glove;
-                foreach(Renderer renderer in glove.GetComponentsInChildren<Renderer>(true))ok &= !renderer.enabled;
-                if(cuff!=null)ok &= Vector3.Angle(cuff.up,glove.position-elbow.position)<.05f;
+                Transform gloveSurface=glove.Find("EV "+prefix+side+" Glove Surface");
+                Renderer anchorRenderer=glove.GetComponent<Renderer>(),surfaceRenderer=gloveSurface!=null?gloveSurface.GetComponent<Renderer>():null;
+                ok &= anchorRenderer!=null&&!anchorRenderer.enabled;
+                ok &= gloveSurface!=null&&gloveSurface.parent==glove&&surfaceRenderer!=null&&surfaceRenderer.enabled;
+                ok &= cuff!=null&&cuff.parent==glove;
+                if(cuff!=null) {
+                    ok &= cuff.GetComponent<Renderer>()!=null&&cuff.GetComponent<Renderer>().enabled;
+                    ok &= Vector3.Angle(cuff.up,glove.position-elbow.position)<.05f;
+                }
+                else ok=false;
                 int shoulders=0;foreach(Transform t in actor)if(t.name==side+" Shoulder"&&t.GetComponent<Renderer>().enabled)shoulders++;
-                ok &= shoulders==(actor==player.transform?1:0);
+                ok &= shoulders==1;
             }
             foreach(string side in new[]{"Left","Right"}) {
                 Transform thigh=opponent.transform.Find(side+" Thigh"),shin=opponent.transform.Find(side+" Shin"),shoe=opponent.transform.Find(side+" Shoe");
-                ok &= rigVisuals.HasAnchor(thigh)&&rigVisuals.HasAnchor(shin)&&rigVisuals.HasAnchor(shoe);
-                ok &= !shoe.GetComponent<Renderer>().enabled;
+                ok &= thigh.GetComponent<Renderer>().enabled&&shin.GetComponent<Renderer>().enabled&&shoe.GetComponent<Renderer>().enabled;
+                ok &= thigh.Find("EV "+side+" Trunk Leg")!=null&&shin.Find("EV "+side+" Boot Upper")!=null;
             }
             ok &= _anchorError<.00001f;
             if(!EVVisualShell.SegmentedExperiment)foreach(string n in new[]{"R2 Abdomen","R2 Chest","R2 Left Chest","R2 Right Chest","R2 Neck"})ok &= !opponent.transform.Find(n).GetComponent<Renderer>().enabled;
@@ -44,7 +52,7 @@ namespace BoxerP0.Editor
         {
             bool pass=_auditFrames>0&&_auditFailures==0;
             string path=Path.GetFullPath(Path.Combine(Application.dataPath,"../../../evidence/p1-ev"));Directory.CreateDirectory(path);
-            File.WriteAllText(Path.Combine(path,"ownership-runtime.txt"),$"frames={_auditFrames} failed_frames={_auditFailures} torso_anchor_error_m={_anchorError:R}\nchecks=torso_anchor,cuff_parent,cuff_forearm_alignment,single_shoulder,trunk_thigh_attachment,boot_shin_attachment,redundant_torso_renderers_off\nRESULT={(pass?"PASS":"FAIL")}\n");
+            File.WriteAllText(Path.Combine(path,"ownership-runtime.txt"),$"frames={_auditFrames} failed_frames={_auditFailures} torso_anchor_error_m={_anchorError:R}\nchecks=single_3d_visual_owner,torso_anchor,glove_surface_parent,cuff_parent,cuff_forearm_alignment,single_shoulder,visible_articulated_thigh_shin_shoe,trunk_thigh_attachment,boot_shin_attachment,redundant_torso_renderers_off\nRESULT={(pass?"PASS":"FAIL")}\n");
             return pass;
         }
         static EVEvaluation() { EVVisualShell.SegmentedExperiment=Environment.GetEnvironmentVariable("BOXER_EV_VARIANT")=="A"; }
@@ -74,9 +82,8 @@ namespace BoxerP0.Editor
             Check(maxInside<.001f,"torso triangle centers within original M05 1mm tolerance");
             Check(!EVVisualShell.BottomControlsVisible,"bottom control visuals disabled independently of input");
             Check(Resources.Load<Shader>("EVSurface")!=null,"WebGL shell shader resource present");
-            Check(Resources.Load<Shader>("EVRigSprite")!=null,"rig-bound reference shader resource present");
             foreach(string segment in new[]{"ramirez-head","ramirez-torso","ramirez-shorts","ramirez-arm","ramirez-glove","ramirez-thigh","ramirez-shin","ramirez-boot","player-glove"})
-                Check(Resources.Load<Texture2D>("EV/ReferenceSegments/"+segment)!=null,"reference segment packaged: "+segment);
+                Check(Resources.Load<Texture2D>("EV/ReferenceSegments/"+segment)!=null,"3D surface reference texture packaged: "+segment);
             log.AppendLine($"vertex_error_m={maxOutside:R} triangle_error_m={maxInside:R} torso_vertices={vertices.Length} triangles={triangles.Length/3}");
             log.AppendLine("TOTAL="+passed+" FAIL=0");
             UnityEngine.Object.DestroyImmediate(mesh);
