@@ -2,6 +2,11 @@ name: P0 Web iPhone Deploy
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - p1/whole-body-mechanics
+    paths:
+      - .github/workflows/p0-web-deploy.yml
 
 permissions:
   contents: read
