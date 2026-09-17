@@ -1,10 +1,10 @@
 {
   "height_m": 1.8011,
-  "shoulder_width_m": 0.7046,
-  "chest_width_m": 0.8397,
-  "waist_width_m": 0.3777,
-  "pelvis_width_m": 0.4101,
-  "shoulder_to_waist_ratio": 1.8655,
+  "shoulder_width_m": 0.714,
+  "chest_width_m": 0.8377,
+  "waist_width_m": 0.3781,
+  "pelvis_width_m": 0.4104,
+  "shoulder_to_waist_ratio": 1.8883,
   "vertices": 13380,
   "triangles": 26756,
   "method": "MPFB CC0 base.obj + CC0 target displacement + Blender authoring",
@@ -32,15 +32,15 @@
     },
     {
       "target": "torso/torso-vshape-incr.target.gz",
-      "weight": 0.24
+      "weight": 0.38
     },
     {
       "target": "torso/measure-shoulder-dist-incr.target.gz",
-      "weight": 0.1
+      "weight": 0.14
     },
     {
       "target": "torso/measure-bust-circ-incr.target.gz",
-      "weight": 0.12
+      "weight": 0.18
     },
     {
       "target": "torso/measure-napetowaist-dist-incr.target.gz",
@@ -48,15 +48,15 @@
     },
     {
       "target": "torso/torso-muscle-pectoral-incr.target.gz",
-      "weight": 0.75
+      "weight": 1.0
     },
     {
       "target": "torso/torso-muscle-dorsi-incr.target.gz",
-      "weight": 0.72
+      "weight": 0.96
     },
     {
       "target": "stomach/stomach-tone-incr.target.gz",
-      "weight": 0.9
+      "weight": 1.0
     },
     {
       "target": "neck/measure-neck-height-incr.target.gz",
@@ -163,32 +163,92 @@
       "weight": 0.16
     },
     {
-      "target": "chin/chin-width-incr.target.gz",
-      "weight": 0.22
+      "target": "head/head-age-incr.target.gz",
+      "weight": 0.3
     },
     {
-      "target": "chin/chin-prominent-incr.target.gz",
-      "weight": 0.16
+      "target": "head/head-rectangular.target.gz",
+      "weight": 0.44
     },
     {
-      "target": "chin/chin-bones-incr.target.gz",
+      "target": "head/head-fat-decr.target.gz",
       "weight": 0.18
     },
     {
-      "target": "cheek/l-cheek-bones-incr.target.gz",
-      "weight": 0.16
+      "target": "chin/chin-width-incr.target.gz",
+      "weight": 0.38
     },
     {
-      "target": "cheek/r-cheek-bones-incr.target.gz",
-      "weight": 0.16
+      "target": "chin/chin-prominent-incr.target.gz",
+      "weight": 0.28
     },
     {
-      "target": "eyebrows/eyebrows-angle-down.target.gz",
+      "target": "chin/chin-bones-incr.target.gz",
+      "weight": 0.34
+    },
+    {
+      "target": "chin/chin-height-incr.target.gz",
       "weight": 0.1
     },
     {
+      "target": "cheek/l-cheek-bones-incr.target.gz",
+      "weight": 0.3
+    },
+    {
+      "target": "cheek/r-cheek-bones-incr.target.gz",
+      "weight": 0.3
+    },
+    {
+      "target": "cheek/l-cheek-volume-decr.target.gz",
+      "weight": 0.1
+    },
+    {
+      "target": "cheek/r-cheek-volume-decr.target.gz",
+      "weight": 0.1
+    },
+    {
+      "target": "forehead/forehead-temple-decr.target.gz",
+      "weight": 0.1
+    },
+    {
+      "target": "eyebrows/eyebrows-angle-down.target.gz",
+      "weight": 0.22
+    },
+    {
+      "target": "eyebrows/eyebrows-trans-down.target.gz",
+      "weight": 0.08
+    },
+    {
+      "target": "eyes/l-eye-scale-decr.target.gz",
+      "weight": 0.06
+    },
+    {
+      "target": "eyes/r-eye-scale-decr.target.gz",
+      "weight": 0.06
+    },
+    {
       "target": "nose/nose-scale-depth-incr.target.gz",
-      "weight": 0.09
+      "weight": 0.18
+    },
+    {
+      "target": "nose/nose-width1-incr.target.gz",
+      "weight": 0.08
+    },
+    {
+      "target": "nose/nose-width2-incr.target.gz",
+      "weight": 0.06
+    },
+    {
+      "target": "nose/nose-hump-incr.target.gz",
+      "weight": 0.06
+    },
+    {
+      "target": "mouth/mouth-scale-horiz-incr.target.gz",
+      "weight": 0.08
+    },
+    {
+      "target": "mouth/mouth-angles-down.target.gz",
+      "weight": 0.06
     }
   ]
 }

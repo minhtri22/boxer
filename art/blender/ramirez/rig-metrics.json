@@ -1,0 +1,17 @@
+{
+  "rigged_blend": "D:\\WORK\\RESEARCH\\POVGame\\boxer-ramirez-art\\art\\blender\\ramirez\\source\\ramirez_master.blend",
+  "bone_count": 53,
+  "body_vertices": 13380,
+  "body_triangles": 26756,
+  "rendered_poses": [
+    "guard",
+    "jab",
+    "cross",
+    "hook",
+    "uppercut",
+    "slip_left",
+    "slip_right",
+    "step_forward",
+    "step_backward"
+  ]
+}
