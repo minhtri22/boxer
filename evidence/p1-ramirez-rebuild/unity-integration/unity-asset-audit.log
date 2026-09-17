@@ -1,0 +1,1750 @@
+[Licensing::Module] Trying to connect to existing licensing client channel...
+Built from '6000.5/staging' branch; Version is '6000.5.8f1 (5cb7df797b7d) revision 6076383'; Using compiler version '194234433'; Build Type 'Release'
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-minht" at "2026-09-17T08:22:34.0105398Z"
+OS: 'Windows 11  (10.0.26200) CoreSingleLanguage' Language: 'en' Physical Memory: 32345 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+Date: 2026-09-17T08:22:34Z
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.5.8f1\Editor\Unity.exe
+-batchmode
+-nographics
+-quit
+-projectPath
+D:\WORK\RESEARCH\POVGame\boxer\unity\BoxerP0
+-executeMethod
+BoxerP0.Editor.Blender3DAssetAudit.Run
+-logFile
+D:\WORK\RESEARCH\POVGame\boxer\evidence\p1-ramirez-rebuild\unity-integration\unity-asset-audit.log
+Successfully changed project path to: D:\WORK\RESEARCH\POVGame\boxer\unity\BoxerP0
+D:/WORK/RESEARCH/POVGame/boxer/unity/BoxerP0
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-main-allocator-mimalloc-enabled=0"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+Logging is directed to a specific file, skipping project log.Player connection [41232]  Target information:
+
+Player connection [41232]  * "[IP] 172.25.96.1 [Port] 55504 [Flags] 2 [Guid] 627304909 [EditorId] 627304909 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-4PSD0G2) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [41232]  * "[IP] 192.168.3.100 [Port] 55504 [Flags] 2 [Guid] 627304909 [EditorId] 627304909 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-4PSD0G2) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [41232] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [41232] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+[Package Manager] Connected to IPC stream "Upm-37716" after 0.3 seconds.
+[Licensing::Module] Licensing is not yet initialized.
+[Licensing::Client] Error: HandshakeResponse reported an error:
+	ResponseCode: 505
+	ResponseStatus: Unsupported protocol version '1.18.1'.
+[Licensing::Module] Error: Failed to handshake to channel: "LicenseClient-minht"
+[Licensing::IpcConnector] LicenseClient-minht channel disconnected successfully.
+[Licensing::IpcConnector] Channel LicenseClient-minht-6000.5.8 doesn't exist
+[Licensing::Module] Successfully launched the LicensingClient (PId: 25648)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-minht-6000.5.8" at "2026-09-17T08:22:42.1303086Z"
+[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 25648, path: "C:/Program Files/Unity/Hub/Editor/6000.5.8f1/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client.exe")
+[Licensing::Module] LicensingClient has failed validation; ignoring
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.18.1+9fbee8e
+  Session Id:              f65ef15656c54b0e8261e65505f77850
+  Correlation Id:          f91f5660f2d079edb5d57a422cd2f2ab
+  External correlation Id: 1513187456157128508
+  Machine Id:              gaoNjVOiA5/w7c0j7NjRnkSH0Fg=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-minht-6000.5.8" (connect: 4.40s, validation: 0.41s, handshake: 0.08s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-minht-6000.5.8-notifications" at "2026-09-17T08:22:42.6201865Z"
+[Licensing::Module] Connected to LicensingClient (PId: 25648, launch time: 0.13, total connection time: 4.89s)
+[Licensing::Module] Error: Access token is unavailable; failed to update
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: F4-84B2-AJYW-2F6S-HS3K-XXXX
+  Product: Unity Personal
+  Type: ULF
+  Expiration: 2026-10-26T06:59:35Z
+[Licensing::Module] License group:
+  Id: 18968483178885-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+[Licensing::Client] Successfully updated license, isAsync: True, time: 0.12
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: F4-84B2-AJYW-2F6S-HS3K-XXXX
+  Product: Unity Personal
+  Type: ULF
+  Expiration: 2026-10-26T06:59:35Z
+[Licensing::Module] License group:
+  Id: 18968483178885-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+[Licensing::Module] Licensing Background thread has ended after 8.98s
+[Licensing::Module] Licensing is initialized (took 5.95s).
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: F4-84B2-AJYW-2F6S-HS3K-XXXX
+  Product: Unity Personal
+  Type: ULF
+  Expiration: 2026-10-26T06:59:35Z
+[Licensing::Module] License group:
+  Id: 18968483178885-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+Library Redirect Path: Library/
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Initialize engine version: 6000.5.8f1 (5cb7df797b7d)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.5.8f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path D:/WORK/RESEARCH/POVGame/boxer/unity/BoxerP0/Assets
+Forcing GfxDevice: Null
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+NullGfxDevice:
+    Version:  NULL 1.0 [1.0]
+    Renderer: Null Device
+    Vendor:   Unity Technologies
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.5.8f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.5.8f1/Editor/Data/BCLExtensions/runtime/netstandard2.1'
+Mono path[2] = 'C:/Program Files/Unity/Hub/Editor/6000.5.8f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.5.8f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56716
+CodeReloadManager initialized
+ImportWorker Server TCP listen port: 0
+AcceleratorClientConnectionCallback - disconnected - :0
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.5.8f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.5.8f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.708751 seconds.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Package Manager log level set to [2]
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  2.729 seconds
+Domain Reload Profiling: 6842ms
+	BeginReloadAssembly (375ms)
+		CreateAndSetChildDomain (18ms)
+	RebuildCommonClasses (6ms)
+	RebuildNativeTypeToScriptingClass (285ms)
+	initialDomainReloadingComplete (998ms)
+	LoadAllAssembliesAndSetupDomain (2446ms)
+		LoadAssemblies (361ms)
+		AnalyzeDomain (2329ms)
+			TypeCache.Refresh (2328ms)
+				TypeCache.ScanAssembly (1779ms)
+	FinalizeReload (2731ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (6ms)
+			BeforeProcessingInitializeOnLoad (126ms)
+			ProcessInitializeOnLoadAttributes (147ms)
+			ProcessInitializeOnLoadMethodAttributes (2358ms)
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: F4-84B2-AJYW-2F6S-HS3K-XXXX
+  Product: Unity Personal
+  Type: ULF
+  Expiration: 2026-10-26T09:22:45Z
+[Licensing::Module] License group:
+  Id: 18968483178885-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+Application.AssetDatabase Initial Refresh Start
+[Package Manager] Restoring resolved packages state from cache
+[Licensing::Client] Successfully resolved entitlement details
+[Package Manager] Registered 37 packages:
+  Built-in packages:
+    com.unity.multiplayer.center@1.0.1 (location: D:\WORK\RESEARCH\POVGame\boxer\unity\BoxerP0\Library\PackageCache\com.unity.multiplayer.center@b860850997d0)
+    com.unity.modules.accessibility@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer\unity\BoxerP0\Library\PackageCache\com.unity.modules.accessibility)
+    com.unity.modules.adaptiveperformance@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer\unity\BoxerP0\Library\PackageCache\com.unity.modules.adaptiveperformance)
+    com.unity.modules.ai@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer\unity\BoxerP0\Library\PackageCache\com.unity.modules.ai)
+    com.unity.modules.androidjni@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer\unity\BoxerP0\Library\PackageCache\com.unity.modules.androidjni)
+    com.unity.modules.animation@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer\unity\BoxerP0\Library\PackageCache\com.unity.modules.animation)
+    com.unity.modules.assetbundle@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer\unity\BoxerP0\Library\PackageCache\com.unity.modules.assetbundle)
+    com.unity.modules.audio@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer\unity\BoxerP0\Library\PackageCache\com.unity.modules.audio)
+    com.unity.modules.cloth@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer\unity\BoxerP0\Library\PackageCache\com.unity.modules.cloth)
+    com.unity.modules.director@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer\unity\BoxerP0\Library\PackageCache\com.unity.modules.director)
+    com.unity.modules.imageconversion@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer\unity\BoxerP0\Library\PackageCache\com.unity.modules.imageconversion)
+    com.unity.modules.imgui@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer\unity\BoxerP0\Library\PackageCache\com.unity.modules.imgui)
+    com.unity.modules.jsonserialize@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer\unity\BoxerP0\Library\PackageCache\com.unity.modules.jsonserialize)
+    com.unity.modules.particlesystem@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer\unity\BoxerP0\Library\PackageCache\com.unity.modules.particlesystem)
+    com.unity.modules.physics@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer\unity\BoxerP0\Library\PackageCache\com.unity.modules.physics)
+    com.unity.modules.physics2d@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer\unity\BoxerP0\Library\PackageCache\com.unity.modules.physics2d)
+    com.unity.modules.physicscore2d@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer\unity\BoxerP0\Library\PackageCache\com.unity.modules.physicscore2d)
+    com.unity.modules.screencapture@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer\unity\BoxerP0\Library\PackageCache\com.unity.modules.screencapture)
+    com.unity.modules.terrain@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer\unity\BoxerP0\Library\PackageCache\com.unity.modules.terrain)
+    com.unity.modules.terrainphysics@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer\unity\BoxerP0\Library\PackageCache\com.unity.modules.terrainphysics)
+    com.unity.modules.tilemap@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer\unity\BoxerP0\Library\PackageCache\com.unity.modules.tilemap)
+    com.unity.modules.ui@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer\unity\BoxerP0\Library\PackageCache\com.unity.modules.ui)
+    com.unity.modules.uielements@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer\unity\BoxerP0\Library\PackageCache\com.unity.modules.uielements)
+    com.unity.modules.umbra@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer\unity\BoxerP0\Library\PackageCache\com.unity.modules.umbra)
+    com.unity.modules.unityanalytics@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer\unity\BoxerP0\Library\PackageCache\com.unity.modules.unityanalytics)
+    com.unity.modules.unitywebrequest@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer\unity\BoxerP0\Library\PackageCache\com.unity.modules.unitywebrequest)
+    com.unity.modules.unitywebrequestassetbundle@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer\unity\BoxerP0\Library\PackageCache\com.unity.modules.unitywebrequestassetbundle)
+    com.unity.modules.unitywebrequestaudio@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer\unity\BoxerP0\Library\PackageCache\com.unity.modules.unitywebrequestaudio)
+    com.unity.modules.unitywebrequesttexture@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer\unity\BoxerP0\Library\PackageCache\com.unity.modules.unitywebrequesttexture)
+    com.unity.modules.unitywebrequestwww@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer\unity\BoxerP0\Library\PackageCache\com.unity.modules.unitywebrequestwww)
+    com.unity.modules.vectorgraphics@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer\unity\BoxerP0\Library\PackageCache\com.unity.modules.vectorgraphics)
+    com.unity.modules.vehicles@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer\unity\BoxerP0\Library\PackageCache\com.unity.modules.vehicles)
+    com.unity.modules.video@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer\unity\BoxerP0\Library\PackageCache\com.unity.modules.video)
+    com.unity.modules.wind@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer\unity\BoxerP0\Library\PackageCache\com.unity.modules.wind)
+    com.unity.modules.xr@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer\unity\BoxerP0\Library\PackageCache\com.unity.modules.xr)
+    com.unity.modules.subsystems@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer\unity\BoxerP0\Library\PackageCache\com.unity.modules.subsystems)
+    com.unity.modules.hierarchycore@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer\unity\BoxerP0\Library\PackageCache\com.unity.modules.hierarchycore)
+[Subsystems] No new subsystems found in resolved package list.
+[Package Manager] Done registering packages in 0.02 seconds
+[ScriptCompilation] Requested script compilation because: AssetDatabase observed changes in script compilation related files
+Starting: C:\Program Files\Unity\Hub\Editor\6000.5.8f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/2000b0aE.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssemblies
+WorkingDir: D:/WORK/RESEARCH/POVGame/boxer/unity/BoxerP0
+DisplayProgressbar: Compiling Scripts
+Assets\Scripts\BoxerVisualShell.cs(56,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\BoxerVisualShell.cs(57,22): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\BoxerVisualShell.cs(58,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\Blender3DVisualFollower.cs(83,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\Blender3DVisualFollower.cs(84,23): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\EVVisualShell.cs(55,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\EVVisualShell.cs(56,24): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\BoxerVisualShell.cs(204,64): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Scripts\BoxerVisualShell.cs(204,34): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Scripts\BoxerBootstrap.cs(339,17): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\P1PunchGuide.cs(22,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\P1PunchGuide.cs(45,17): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\P1VCombatPresentation.cs(77,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\P1VCombatPresentation.cs(78,22): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\P1VCombatPresentation.cs(79,23): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\P1VCombatPresentation.cs(80,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\P1VCombatPresentation.cs(81,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\P1VCombatPresentation.cs(82,38): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\EVVisualShell.cs(419,65): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Scripts\EVVisualShell.cs(419,37): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Scripts\OpponentLegEmbodiment.cs(19,40): warning CS0414: The field 'OpponentLegEmbodiment._thighLength' is assigned but its value is never used
+Assets\Scripts\OpponentLegEmbodiment.cs(21,40): warning CS0414: The field 'OpponentLegEmbodiment._footLength' is assigned but its value is never used
+Assets\Scripts\ArmVisualEmbodiment.cs(86,40): warning CS0414: The field 'ArmVisualEmbodiment._forearmLength' is assigned but its value is never used
+Assets\Scripts\ArmVisualEmbodiment.cs(85,40): warning CS0414: The field 'ArmVisualEmbodiment._upperArmLength' is assigned but its value is never used
+Assets\Scripts\OpponentLegEmbodiment.cs(20,40): warning CS0414: The field 'OpponentLegEmbodiment._shinLength' is assigned but its value is never used
+Assets\Scripts\OpponentLegEmbodiment.cs(17,40): warning CS0414: The field 'OpponentLegEmbodiment._pelvisHeight' is assigned but its value is never used
+Assets\Editor\EVEvaluation.cs(17,23): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\EVEvaluation.cs(19,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\EVEvaluation.cs(20,24): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\P1B15USelfTests.cs(59,19): warning CS0219: The variable 'leftRightHeightDiff' is assigned but its value is never used
+Assets\Editor\P1B15USelfTests.cs(60,19): warning CS0219: The variable 'elbowInwardBiasGuard' is assigned but its value is never used
+Assets\Editor\P1B15USelfTests.cs(61,19): warning CS0219: The variable 'gloveLateralInset' is assigned but its value is never used
+Assets\Editor\P1B15USelfTests.cs(62,19): warning CS0219: The variable 'gloveForwardOffset' is assigned but its value is never used
+Assets\Editor\P1B15USelfTests.cs(63,19): warning CS0219: The variable 'gloveHeightOffset' is assigned but its value is never used
+Assets\Editor\P1B15TSelfTests.cs(83,19): warning CS0219: The variable 'upperArmRadius' is assigned but its value is never used
+Assets\Editor\P1B15TSelfTests.cs(84,19): warning CS0219: The variable 'forearmRadius' is assigned but its value is never used
+Assets\Editor\Round2RuntimeAudit.cs(41,21): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\Round2RuntimeAudit.cs(42,24): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\Round2RuntimeAudit.cs(43,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\Round2RuntimeAudit.cs(48,31): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\Round2RuntimeAudit.cs(75,22): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\Round2RuntimeAudit.cs(77,16): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\Round2RuntimeAudit.cs(87,16): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\Round2RuntimeAudit.cs(100,27): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+ExitCode: 0 Duration: 12s
+[181/187    4s] Csc Library/Bee/artifacts/2000b0aE.dag/Assembly-CSharp.dll (+2 others)
+Assets\Scripts\BoxerVisualShell.cs(56,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\BoxerVisualShell.cs(57,22): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\BoxerVisualShell.cs(58,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\Blender3DVisualFollower.cs(83,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\Blender3DVisualFollower.cs(84,23): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\EVVisualShell.cs(55,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\EVVisualShell.cs(56,24): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\BoxerVisualShell.cs(204,64): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Scripts\BoxerVisualShell.cs(204,34): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\Scripts\BoxerBootstrap.cs(339,17): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\P1PunchGuide.cs(22,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\P1PunchGuide.cs(45,17): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\P1VCombatPresentation.cs(77,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\P1VCombatPresentation.cs(78,22): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\P1VCombatPresentation.cs(79,23): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\P1VCombatPresentation.cs(80,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\P1VCombatPresentation.cs(81,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\P1VCombatPresentation.cs(82,38): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\EVVisualShell.cs(419,65): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Scripts\EVVisualShell.cs(419,37): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\Scripts\OpponentLegEmbodiment.cs(19,40): warning CS0414: The field 'OpponentLegEmbodiment._thighLength' is assigned but its value is never used
+
+Assets\Scripts\OpponentLegEmbodiment.cs(21,40): warning CS0414: The field 'OpponentLegEmbodiment._footLength' is assigned but its value is never used
+
+Assets\Scripts\ArmVisualEmbodiment.cs(86,40): warning CS0414: The field 'ArmVisualEmbodiment._forearmLength' is assigned but its value is never used
+
+Assets\Scripts\ArmVisualEmbodiment.cs(85,40): warning CS0414: The field 'ArmVisualEmbodiment._upperArmLength' is assigned but its value is never used
+
+Assets\Scripts\OpponentLegEmbodiment.cs(20,40): warning CS0414: The field 'OpponentLegEmbodiment._shinLength' is assigned but its value is never used
+
+Assets\Scripts\OpponentLegEmbodiment.cs(17,40): warning CS0414: The field 'OpponentLegEmbodiment._pelvisHeight' is assigned but its value is never used
+[182/187    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp.pdb
+[183/187    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp.dll
+[184/187    5s] Csc Library/Bee/artifacts/2000b0aE.dag/Assembly-CSharp-Editor.dll (+2 others)
+Assets\Editor\EVEvaluation.cs(17,23): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\EVEvaluation.cs(19,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\EVEvaluation.cs(20,24): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\P1B15USelfTests.cs(59,19): warning CS0219: The variable 'leftRightHeightDiff' is assigned but its value is never used
+
+Assets\Editor\P1B15USelfTests.cs(60,19): warning CS0219: The variable 'elbowInwardBiasGuard' is assigned but its value is never used
+
+Assets\Editor\P1B15USelfTests.cs(61,19): warning CS0219: The variable 'gloveLateralInset' is assigned but its value is never used
+
+Assets\Editor\P1B15USelfTests.cs(62,19): warning CS0219: The variable 'gloveForwardOffset' is assigned but its value is never used
+
+Assets\Editor\P1B15USelfTests.cs(63,19): warning CS0219: The variable 'gloveHeightOffset' is assigned but its value is never used
+
+Assets\Editor\P1B15TSelfTests.cs(83,19): warning CS0219: The variable 'upperArmRadius' is assigned but its value is never used
+
+Assets\Editor\P1B15TSelfTests.cs(84,19): warning CS0219: The variable 'forearmRadius' is assigned but its value is never used
+
+Assets\Editor\Round2RuntimeAudit.cs(41,21): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\Round2RuntimeAudit.cs(42,24): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\Round2RuntimeAudit.cs(43,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\Round2RuntimeAudit.cs(48,31): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\Round2RuntimeAudit.cs(75,22): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\Round2RuntimeAudit.cs(77,16): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\Round2RuntimeAudit.cs(87,16): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\Round2RuntimeAudit.cs(100,27): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+[185/187    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp-Editor.pdb
+[186/187    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp-Editor.dll
+*** Tundra build success (11.86 seconds), 6 items updated, 187 evaluated
+Total cache size 15393888
+Total cache size after purge 15393888, took 00:00:00.1151252
+AssetDatabase: script compilation time: 14.083855s
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.608 seconds
+Domain Reload Profiling: 1264ms
+	BeginReloadAssembly (312ms)
+		DisableScriptedObjects (31ms)
+		CreateAndSetChildDomain (66ms)
+	RebuildCommonClasses (8ms)
+	RebuildNativeTypeToScriptingClass (19ms)
+	initialDomainReloadingComplete (51ms)
+	LoadAllAssembliesAndSetupDomain (265ms)
+		LoadAssemblies (282ms)
+		AnalyzeDomain (21ms)
+			TypeCache.Refresh (11ms)
+				TypeCache.ScanAssembly (6ms)
+			BuildScriptInfoCaches (5ms)
+	FinalizeReload (610ms)
+		SetupLoadedEditorAssemblies (0ms)
+			BeforeProcessingInitializeOnLoad (111ms)
+			ProcessInitializeOnLoadAttributes (106ms)
+			ProcessInitializeOnLoadMethodAttributes (104ms)
+			AfterProcessingInitializeOnLoad (11ms)
+		AwakeInstancesAfterBackupRestoration (46ms)
+Importing 'GUID: d00c93fd34b0abe49a334af5f111422f - Path: Assets/Scenes/Phase0Boxer.unity' with importer (DefaultImporter)
+Imported 'GUID: d00c93fd34b0abe49a334af5f111422f' -> (Import Result ID: 'c7f9de529a8034ec347a790f0060c8f6') in 0.019 seconds [static dependencies only]. Details - ImportResultOutputID=c49193a4f5988da42816871b830c47ac DependenciesID=5954b3ba9cbd4f96edaf9b8bbaa8be54 StaticDependenciesID=ffddb033611be80e4a33395a721d7672 
+Importing 'GUID: 77948f57c36852b43bc4cb224d87622d - Path: Assets/Resources/Boxer3D/Ramirez_UAT3.fbx' with importer (FBXImporter)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.20 seconds
+Imported 'GUID: 77948f57c36852b43bc4cb224d87622d' -> (Import Result ID: '9511fa1b63dd1f37f164ba4b28b50c2e') in 1.111 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=0075233648a8d8ba90c0b11b8f8a29e3 DependenciesID=8b166e1ef98be329ef1ebf15e8ba4aaa StaticDependenciesID=0f5617fc51b898c9f518759a23597709 
+Starting new worker id: 0 with log in D:/WORK/RESEARCH/POVGame/boxer/unity/BoxerP0/Logs/AssetImportWorkerHW0.log
+
+Asset Pipeline Refresh (id=714ef52c2f34407489973b949425bbb7): Total: 18.298 seconds - Initiated by InitialRefreshV2(ForceSynchronousImport)
+	(Values over 0.05ms)
+	Summary:
+		Imports: total=2 (actual=2, local cache=0, cache server=0)
+		Asset DB Process Time: managed=13 ms, native=3350 ms
+		Asset DB Callback time: managed=85 ms, native=63 ms
+		Scripting: domain reloads=1, domain reload time=686 ms, compile time=14088 ms, other=11 ms
+		Project Asset Count: scripts=127, non-scripts=110
+		Asset File Changes: new=0, changed=4, moved=0, deleted=0
+		Scan Filter Count: 0
+	InvokePackagesCallback: 57.388ms
+	ApplyChangesToAssetFolders: 0.477ms
+	Scan: 109.286ms
+	Collect global state as custom dependencies: 16.242ms
+	OnSourceAssetsModified: 1.699ms
+	CategorizeScriptCompilationAssets: 0.413ms
+	ProcessAssetsWithTransientArtifactChanges: 4.270ms
+	CategorizeAssets: 4.445ms
+	CompileScripts: 14087.817ms
+	ImportOutOfDateAssets: 1767.733ms (612.018ms without children)
+		ImportManagerImport: 1131.531ms (1.527ms without children)
+		UnloadImportedAssets: 0.121ms
+		ImportSchedulerStart: 24.019ms
+	PostProcessAllAssets: 87.887ms
+		VCAutoAddAssetPostprocess 2.719ms
+		MonoPostProcessAllAssets: 83.633ms
+			StyleCatalogPostProcessor.OnPostprocessAllAssets 20.754ms
+			AssetPostprocessor.OnPostprocessAllAssets 19.478ms
+			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 14.162ms
+			BuilderAssetPostprocessor.OnPostprocessAllAssets 5.144ms
+			AssetChangedListener.OnPostprocessAllAssets 2.212ms
+			SyncVS.PostprocessSyncProject 1.947ms
+			RetainedModeAssetPostprocessor.OnPostprocessAllAssets 1.293ms
+			SpeedTreePostProcessor.OnPostprocessAllAssets 1.196ms
+			EditModeScopePostprocessor.OnPostprocessAllAssets 1.009ms
+			TextAssetPostProcessor.OnPostprocessAllAssets 0.789ms
+			SpeedTree9Postprocessor.OnPostprocessAllAssets 0.783ms
+			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.613ms
+			ArtifactBrowserPostProcessor.OnPostprocessAllAssets 0.597ms
+			ReferencedClipsPostProcessor.OnPostprocessAllAssets 0.425ms
+			AudioMixerPostprocessor.OnPostprocessAllAssets 0.311ms
+			AssetEvents.OnPostprocessAllAssets 0.275ms
+			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.214ms
+			ScenarioDriftAssetsTracker.OnPostprocessAllAssets 0.141ms
+			ConfigAssetsTracker.OnPostprocessAllAssets 0.135ms
+			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 0.100ms
+			AudioContainerPostProcessor.OnPostprocessAllAssets 0.078ms
+	PostAssetChangesProfiler: 3.491ms
+	UnloadStreamsBegin: 2.038ms
+	PersistCurrentRevisions: 0.374ms
+	GenerateScriptTypeHashes: 0.279ms
+	GenerateScriptTypeSerializationHashes: 0.587ms
+	Untracked: 2152.176ms
+
+Application.AssetDatabase Initial Refresh End
+Scanning for USB devices : 2.381ms
+Initializing Unity extensions:
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+[MODES] Loading mode Default (0) for mode-current-id-Boxer P0
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 130 unused Assets / (0.6 MB). Loaded Objects now: 923.
+Memory consumption went from 212.6 MB to 212.0 MB.
+Total: 5.404600 ms (FindLiveObjects: 0.072600 ms CreateObjectMapping: 0.028900 ms MarkObjects: 4.502200 ms  DeleteObjects: 0.429800 ms)
+
+RAMIREZ_TRANSFORMS=91 MESH_FILTERS=35 SKINNED=1 TRIANGLES=29386
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:29)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 29)
+
+RAMIREZ_NODE=Ramirez_UAT3 local=(0, 0, 0) rot=(0, 0, 0) scale=(1, 1, 1)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/Ramirez_CC0_Humanoid local=(0, 0, 0) rot=(270.019775, 0, 0) scale=(100, 100, 100)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig local=(0, 0, 0) rot=(270.019775, 0, 0) scale=(100, 100, 100)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root local=(0, 0, -2.274583E-06) rot=(-9.841042E-07, 0, 0) scale=(1, 1, 1)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis local=(0, -8.687289E-05, 0.009786693) rot=(68.04747, -6.856031E-08, -1.01554079E-07) scale=(1, 1, 1)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/RamirezShorts.FrontOverlap local=(4.319362E-12, -0.009042512, -0.00373836653) rot=(291.9525, -6.856039E-08, 1.01554157E-07) scale=(1, 0.99999994, 0.99999994)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/RamirezShorts.GoldSide.L local=(4.319362E-12, -0.009042512, -0.00373836653) rot=(291.9525, -6.856039E-08, 1.01554157E-07) scale=(1, 0.99999994, 0.99999994)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/RamirezShorts.GoldSide.R local=(4.319362E-12, -0.009042512, -0.00373836653) rot=(291.9525, -6.856039E-08, 1.01554157E-07) scale=(1, 0.99999994, 0.99999994)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/RamirezShorts.L local=(4.319362E-12, -0.009042512, -0.00373836653) rot=(291.9525, -6.856039E-08, 1.01554157E-07) scale=(1, 0.99999994, 0.99999994)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/RamirezShorts.R local=(4.319362E-12, -0.009042512, -0.00373836653) rot=(291.9525, -6.856039E-08, 1.01554157E-07) scale=(1, 0.99999994, 0.99999994)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/RamirezWaistband local=(-2.87465737E-14, -2.727069E-05, -0.000104656392) rot=(291.9525, -6.856039E-08, 1.01554157E-07) scale=(1, 0.99999994, 0.99999994)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01 local=(-3.46944675E-19, 0.0008784587, 2.42143861E-10) rot=(30.7472, 1.229249E-07, 1.37408392E-07) scale=(1, 1, 1)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02 local=(1.53523026E-18, 0.0006059513, -4.6566126E-11) rot=(342.3009, -4.664426E-08, -5.777299E-08) scale=(1, 1, 1)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03 local=(2.00591292E-25, 0.000595044, -1.86264511E-11) rot=(0.416564584, -6.29173659E-15, 9.541916E-15) scale=(1, 0.99999994, 0.99999994)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/clavicle_l local=(-0.000237285785, 0.00278320629, 0.000938776066) rot=(5.259008, 357.903, 98.1066742) scale=(1, 1, 0.99999994)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l local=(1.16415322E-09, 0.00200293516, 0) rot=(359.6411, 358.0593, 39.7231445) scale=(0.9999999, 0.9999999, 0.9999999)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l local=(-6.594928E-10, 0.00263749319, -9.31322554E-12) rot=(46.26103, 355.1942, 355.164032) scale=(0.99999994, 1.00000012, 1.00000012)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/Cylinder local=(2.98023217E-10, 0.00287330686, -1.04308129E-09) rot=(270, 234.0716, 0) scale=(0.9999999, 0.99999994, 0.99999994)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l local=(-6.8452205E-10, 0.00273330742, 1.49011609E-10) rot=(10.099227, 306.559174, 354.595978) scale=(0.99999994, 0.9999999, 1)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l/index_01_l local=(0.000144455174, 0.001195968, 0.000101738573) rot=(13.4920321, 310.6369, 354.094635) scale=(1, 1, 0.99999994)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l/index_01_l/index_02_l local=(-5.96046434E-10, 0.000294815371, 1.49011609E-10) rot=(11.6188469, 359.314728, 359.224823) scale=(1, 0.99999994, 1)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l/index_01_l/index_02_l/index_03_l local=(-2.98023217E-10, 0.000266117248, -4.47034826E-10) rot=(6.934972, 359.767426, 358.082916) scale=(0.9999998, 0.99999994, 1)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l/middle_01_l local=(-6.572727E-05, 0.00115789624, -0.000109483073) rot=(19.6578388, 320.885559, 11.7894564) scale=(0.99999994, 0.9999999, 0.9999999)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l/middle_01_l/middle_02_l local=(-4.47034826E-10, 0.0003875199, -1.04308129E-09) rot=(4.9301815, 359.615753, 355.702667) scale=(1, 1.00000012, 0.99999994)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l/middle_01_l/middle_02_l/middle_03_l local=(1.49011609E-10, 0.0003090175, 0) rot=(7.4301734, 359.87738, 0.711869538) scale=(1, 1, 1)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l/pinky_01_l local=(-0.000441301556, 0.000940459955, -0.0002888488) rot=(17.0181484, 336.195068, 32.680584) scale=(1, 0.99999994, 1)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l/pinky_01_l/pinky_02_l local=(1.49011609E-10, 0.000240677138, -2.23517413E-10) rot=(8.315506, 359.008057, 356.894043) scale=(1, 1, 1)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l/pinky_01_l/pinky_02_l/pinky_03_l local=(-1.49011609E-10, 0.000177693291, 2.23517413E-10) rot=(1.3035357, 3.316155, 1.653603) scale=(0.9999998, 1, 0.99999994)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l/ring_01_l local=(-0.000239471861, 0.00106709625, -0.000231459577) rot=(18.1471539, 325.769623, 23.2614136) scale=(0.99999994, 0.99999994, 1)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l/ring_01_l/ring_02_l local=(1.49011609E-10, 0.000340217783, -6.705522E-10) rot=(4.48920059, 356.9757, 354.5517) scale=(1, 1.00000012, 1)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l/ring_01_l/ring_02_l/ring_03_l local=(4.47034826E-10, 0.000281779765, -1.49011609E-10) rot=(8.06642, 2.290338, 3.21716022) scale=(1, 0.9999999, 0.99999994)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l/thumb_01_l local=(0.000183459721, 0.0004553315, 0.0001438085) rot=(341.704956, 267.112549, 297.625824) scale=(0.99999994, 0.9999998, 0.99999994)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l/thumb_01_l/thumb_02_l local=(2.98023217E-10, 0.000352303818, 1.04308129E-09) rot=(2.47136188, 7.278837, 22.7901325) scale=(0.99999994, 1.00000012, 0.99999994)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/hand_l/thumb_01_l/thumb_02_l/thumb_03_l local=(4.09781931E-10, 0.00041564, 6.705522E-10) rot=(18.85961, 351.4945, 4.11863) scale=(0.9999998, 1.00000012, 1.00000012)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/RamirezGlove.L local=(8.94069652E-10, 0.00363330613, -1.34110445E-09) rot=(28.7711754, 54.07161, 215.162079) scale=(0.99999994, 0.9999998, 0.99999994)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/Sphere local=(0.00029241413, 0.004108814, -0.000308524817) rot=(28.7711754, 54.07161, 215.162079) scale=(0.99999994, 0.9999998, 0.99999994)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/clavicle_l/upperarm_l/lowerarm_l/Sphere.001 local=(0.000119193195, 0.004382635, 0.000925581146) rot=(28.7711754, 54.07161, 215.162079) scale=(0.99999994, 0.9999998, 0.99999994)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/clavicle_r local=(0.000237285785, 0.002783204, 0.000938775542) rot=(5.259038, 2.09698319, 261.893372) scale=(0.99999994, 1, 0.99999994)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r local=(-1.2468081E-09, 0.00200293516, 9.31322554E-12) rot=(359.6411, 1.94067407, 320.276825) scale=(0.99999994, 1, 0.99999994)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r local=(3.608875E-10, 0.002637492, 4.6566126E-11) rot=(46.26103, 4.805775, 4.835985) scale=(0.99999994, 1, 1)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/Cylinder.001 local=(1.19209287E-09, 0.0028733057, 2.98023217E-10) rot=(270, 125.928406, 0) scale=(1, 1, 1)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r local=(1.28056854E-09, 0.00273330673, -1.49011609E-10) rot=(10.0991554, 53.4412079, 5.40424061) scale=(0.99999994, 1, 1.00000012)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/index_01_r local=(-0.000144452875, 0.00119596929, 0.000101737824) rot=(13.4920149, 49.3628578, 5.90542841) scale=(0.9999999, 0.9999999, 0.9999998)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/index_01_r/index_02_r local=(2.98023217E-10, 0.000294814032, -7.45058E-10) rot=(11.6191339, 0.685134947, 0.7749476) scale=(1, 1, 1.00000012)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/index_01_r/index_02_r/index_03_r local=(-2.98023217E-10, 0.0002661192, 2.98023217E-10) rot=(6.934834, 0.232545584, 1.91722047) scale=(1, 0.9999998, 1)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/middle_01_r local=(6.573149E-05, 0.00115789706, -0.000109482404) rot=(19.65799, 39.1138153, 348.210419) scale=(0.99999994, 0.99999994, 0.9999998)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/middle_01_r/middle_02_r local=(-5.96046434E-10, 0.0003875186, -7.45058043E-11) rot=(4.93001032, 0.38466537, 4.29725647) scale=(1.00000012, 1.00000012, 1)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/middle_01_r/middle_02_r/middle_03_r local=(2.98023217E-10, 0.000309016876, -1.49011609E-10) rot=(7.43017626, 0.122601949, 359.288147) scale=(0.99999994, 1, 1)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/pinky_01_r local=(0.000441306416, 0.0009404595, -0.000288846117) rot=(17.0182457, 23.8045349, 327.319336) scale=(0.9999999, 0.9999999, 0.9999998)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/pinky_01_r/pinky_02_r local=(0, 0.000240677517, 7.82310938E-10) rot=(8.315308, 0.992212951, 3.10585237) scale=(1, 0.99999994, 1)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/pinky_01_r/pinky_02_r/pinky_03_r local=(-4.47034826E-10, 0.000177692244, 1.49011609E-10) rot=(1.30386138, 356.683319, 358.346466) scale=(0.9999998, 0.9999999, 0.9999999)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/ring_01_r local=(0.000239476532, 0.0010670966, -0.000231457947) rot=(18.14726, 34.2299461, 336.738464) scale=(0.9999999, 0.9999999, 0.9999999)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/ring_01_r/ring_02_r local=(-2.98023217E-10, 0.00034021883, -2.23517413E-10) rot=(4.48914576, 3.02433848, 5.448345) scale=(0.99999994, 0.9999998, 0.9999999)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/ring_01_r/ring_02_r/ring_03_r local=(2.98023217E-10, 0.000281779474, 4.47034826E-10) rot=(8.06650448, 357.7096, 356.782745) scale=(0.99999994, 0.9999998, 0.9999999)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/thumb_01_r local=(-0.000183459037, 0.000455332833, 0.000143806639) rot=(341.705139, 92.88708, 62.37419) scale=(0.9999998, 0.9999997, 0.999999762)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/thumb_01_r/thumb_02_r local=(5.7742E-10, 0.000352304283, 0) rot=(2.47130966, 352.721069, 337.20993) scale=(0.99999994, 0.99999994, 1)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/hand_r/thumb_01_r/thumb_02_r/thumb_03_r local=(-5.02914155E-10, 0.000415640621, -7.45058043E-11) rot=(18.8596134, 8.505589, 355.881317) scale=(0.9999999, 1.00000024, 1)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/RamirezGlove.R local=(0, 0.003633306, -5.96046434E-10) rot=(28.7711754, 305.9284, 144.837936) scale=(0.9999999, 0.9999998, 1.00000012)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/Sphere.002 local=(-0.000292413519, 0.004108812, -0.000308523333) rot=(28.7711754, 305.9284, 144.837936) scale=(0.9999999, 0.9999998, 1.00000012)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/clavicle_r/upperarm_r/lowerarm_r/Sphere.003 local=(-0.000119191107, 0.0043826336, 0.000925581437) rot=(28.7711754, 305.9284, 144.837936) scale=(0.9999999, 0.9999998, 1.00000012)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/neck_01 local=(-6.36076051E-26, 0.003565085, 0.000931529445) rot=(25.9790134, 9.534225E-22, 2.18691085E-21) scale=(1, 0.9999998, 0.99999994)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/neck_01/head local=(-1.00190722E-31, 0.00109442254, 1.11758706E-10) rot=(342.187134, -2.21691323E-08, -1.44434766E-08) scale=(1, 0.9999999, 1)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/spine_01/spine_02/spine_03/neck_01/head/RamirezHair local=(5.896752E-12, -0.0164902676, -0.000575672952) rot=(270.3214, -3.75878631E-06, 3.779952E-06) scale=(1, 1, 1.00000024)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/thigh_l local=(-0.00111143163, -5.379103E-05, -0.000139385083) rot=(346.724274, 151.735153, 192.506683) scale=(1, 1, 1.00000024)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/thigh_l/calf_l local=(1.11758706E-10, 0.00441088434, 1.49011609E-10) rot=(6.035962, 330.450439, 1.91147649) scale=(0.99999994, 1, 0.99999994)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/thigh_l/calf_l/foot_l local=(9.95350954E-11, 0.00459399074, 2.32830638E-12) rot=(295.724945, 14.4795723, 346.6493) scale=(1, 1.00000012, 1.00000012)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/thigh_l/calf_l/foot_l/ball_l local=(1.22963681E-10, 0.00147155952, 9.546056E-11) rot=(337.126434, 39.3495979, 337.1908) scale=(1, 0.9999998, 0.9999999)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/thigh_l/calf_l/foot_l/RamirezBoot.L.Cuff local=(-1.504004E-05, -0.0003167647, -0.000633105752) rot=(26.5739155, 181.360855, 181.501831) scale=(0.99999994, 0.9999999, 0.9999998)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/thigh_l/calf_l/foot_l/RamirezBoot.L.GoldStripe local=(-0.0006840284, -0.000256357336, -0.0006474372) rot=(26.5739155, 181.360855, 181.501831) scale=(0.99999994, 0.9999999, 0.9999998)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/thigh_l/calf_l/foot_l/RamirezBoot.L.Lace.00 local=(8.35672E-06, 0.0006400329, -0.000553162536) rot=(26.5739155, 181.360855, 181.501831) scale=(0.99999994, 0.9999999, 0.9999998)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/thigh_l/calf_l/foot_l/RamirezBoot.L.Lace.01 local=(1.9846857E-06, 0.000505827134, -0.0008213943) rot=(26.5739155, 181.360855, 181.501831) scale=(0.99999994, 0.9999999, 0.9999998)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/thigh_l/calf_l/foot_l/RamirezBoot.L.Lace.02 local=(-4.387349E-06, 0.0003716213, -0.00108962588) rot=(26.5739155, 181.360855, 181.501831) scale=(0.99999994, 0.9999999, 0.9999998)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/thigh_l/calf_l/foot_l/RamirezBoot.L.Lace.03 local=(-1.07593833E-05, 0.0002374158, -0.00135785784) rot=(26.5739155, 181.360855, 181.501831) scale=(0.99999994, 0.9999999, 0.9999998)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/thigh_l/calf_l/foot_l/RamirezBoot.L.Lace.04 local=(-1.71314168E-05, 0.000103210208, -0.00162608933) rot=(26.5739155, 181.360855, 181.501831) scale=(0.99999994, 0.9999999, 0.9999998)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/thigh_l/calf_l/foot_l/RamirezBoot.L.Sole local=(5.878508E-06, 0.00179342425, -0.000138810792) rot=(26.5739155, 181.360855, 181.501831) scale=(0.99999994, 0.9999999, 0.9999998)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/thigh_l/calf_l/foot_l/RamirezBoot.L.Tongue local=(-4.72784041E-06, 0.0003135243, -0.00100462826) rot=(26.5739155, 181.360855, 181.501831) scale=(0.99999994, 0.9999999, 0.9999998)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/thigh_l/calf_l/foot_l/RamirezBoot.L.Upper local=(-7.928312E-06, 0.00141774653, -0.000554473663) rot=(26.5739155, 181.360855, 181.501831) scale=(0.99999994, 0.9999999, 0.9999998)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/thigh_r local=(0.00111143163, -5.37910237E-05, -0.0001393851) rot=(346.724274, 208.264847, 167.493317) scale=(1, 1, 1.00000024)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/thigh_r/calf_r local=(-1.11758706E-10, 0.00441088434, 1.49011609E-10) rot=(6.035962, 29.549551, 358.088531) scale=(0.99999994, 1, 0.99999994)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/thigh_r/calf_r/foot_r local=(-9.95350954E-11, 0.00459399074, 2.32830638E-12) rot=(295.724945, 345.520325, 13.3508158) scale=(1, 1.00000012, 1.00000012)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/thigh_r/calf_r/foot_r/ball_r local=(-3.69618641E-11, 0.00147155952, 4.42378217E-11) rot=(337.126617, 320.6499, 22.8093624) scale=(0.9999998, 0.9999999, 0.9999998)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/thigh_r/calf_r/foot_r/RamirezBoot.R.Cuff local=(1.50397418E-05, -0.000316764868, -0.000633105461) rot=(26.573904, 178.6392, 178.498184) scale=(0.9999998, 0.999999762, 0.999999762)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/thigh_r/calf_r/foot_r/RamirezBoot.R.GoldStripe local=(0.000684027968, -0.000256357627, -0.0006474379) rot=(26.573904, 178.6392, 178.498184) scale=(0.9999998, 0.999999762, 0.999999762)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/thigh_r/calf_r/foot_r/RamirezBoot.R.Lace.00 local=(-8.356571E-06, 0.0006400326, -0.0005531625) rot=(26.573904, 178.6392, 178.498184) scale=(0.9999998, 0.999999762, 0.999999762)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/thigh_r/calf_r/foot_r/RamirezBoot.R.Lace.01 local=(-1.98483463E-06, 0.000505826843, -0.000821394031) rot=(26.573904, 178.6392, 178.498184) scale=(0.9999998, 0.999999762, 0.999999762)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/thigh_r/calf_r/foot_r/RamirezBoot.R.Lace.02 local=(4.38675261E-06, 0.000371621165, -0.00108962576) rot=(26.573904, 178.6392, 178.498184) scale=(0.9999998, 0.999999762, 0.999999762)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/thigh_r/calf_r/foot_r/RamirezBoot.R.Lace.03 local=(1.07586384E-05, 0.0002374158, -0.00135785737) rot=(26.573904, 178.6392, 178.498184) scale=(0.9999998, 0.999999762, 0.999999762)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/thigh_r/calf_r/foot_r/RamirezBoot.R.Lace.04 local=(1.71303745E-05, 0.000103210208, -0.001626089) rot=(26.573904, 178.6392, 178.498184) scale=(0.9999998, 0.999999762, 0.999999762)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/thigh_r/calf_r/foot_r/RamirezBoot.R.Sole local=(-5.878061E-06, 0.001793424, -0.000138810792) rot=(26.573904, 178.6392, 178.498184) scale=(0.9999998, 0.999999762, 0.999999762)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/thigh_r/calf_r/foot_r/RamirezBoot.R.Tongue local=(4.72739339E-06, 0.000313524215, -0.00100462814) rot=(26.573904, 178.6392, 178.498184) scale=(0.9999998, 0.999999762, 0.999999762)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+RAMIREZ_NODE=Ramirez_UAT3/RamirezRig/Root/pelvis/thigh_r/calf_r/foot_r/RamirezBoot.R.Upper local=(7.928312E-06, 0.00141774642, -0.000554473547) rot=(26.573904, 178.6392, 178.498184) scale=(0.9999998, 0.999999762, 0.999999762)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:17)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+PLAYER_POV_TRANSFORMS=11 MESH_FILTERS=0 SKINNED=6 TRIANGLES=2680
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:29)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:18)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 29)
+
+PLAYER_POV_NODE=PlayerPOVGlove_UAT3 local=(0, 0, 0) rot=(0, 0, 0) scale=(1, 1, 1)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:18)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+PLAYER_POV_NODE=PlayerPOVGlove_UAT3/POVBadge local=(0, 0, 0) rot=(270.019775, 0, 0) scale=(100, 100, 100)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:18)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+PLAYER_POV_NODE=PlayerPOVGlove_UAT3/POVCuff local=(0, 0, 0) rot=(270.019775, 0, 0) scale=(100, 100, 100)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:18)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+PLAYER_POV_NODE=PlayerPOVGlove_UAT3/POVForearm local=(0, 0, 0) rot=(270.019775, 0, 0) scale=(100, 100, 100)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:18)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+PLAYER_POV_NODE=PlayerPOVGlove_UAT3/POVGloveKnuckles local=(0, 0, 0) rot=(270.019775, 0, 0) scale=(100, 100, 100)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:18)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+PLAYER_POV_NODE=PlayerPOVGlove_UAT3/POVGlovePalm local=(0, 0, 0) rot=(270.019775, 0, 0) scale=(100, 100, 100)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:18)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+PLAYER_POV_NODE=PlayerPOVGlove_UAT3/POVGloveRig local=(0, 0, 0) rot=(270.019775, 0, 0) scale=(100, 100, 100)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:18)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+PLAYER_POV_NODE=PlayerPOVGlove_UAT3/POVGloveRig/root local=(0, 0, -0.00349999988) rot=(89.98022, 0, 0) scale=(1, 1, 1)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:18)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+PLAYER_POV_NODE=PlayerPOVGlove_UAT3/POVGloveRig/root/forearm local=(0, 0.0003999999, 0) rot=(0, 0, 0) scale=(1, 1, 1)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:18)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+PLAYER_POV_NODE=PlayerPOVGlove_UAT3/POVGloveRig/root/forearm/hand local=(0, 0.0022, 0) rot=(0, 0, 0) scale=(1, 1, 1)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:18)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+PLAYER_POV_NODE=PlayerPOVGlove_UAT3/POVGoldBand local=(0, 0, 0) rot=(270.019775, 0, 0) scale=(100, 100, 100)
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Audit (string,UnityEngine.GameObject) (at Assets/Editor/Blender3DAssetAudit.cs:31)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:18)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 31)
+
+BLENDER_3D_ASSET_AUDIT=PASS
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Blender3DAssetAudit:Run () (at Assets/Editor/Blender3DAssetAudit.cs:19)
+
+(Filename: Assets/Editor/Blender3DAssetAudit.cs Line: 19)
+
+Batchmode quit successfully invoked - shutting down!
+[Physics::Module] Cleanup current backend.
+[Physics::Module] Id: 0xf2b8ea05
+Input System module state changed to: ShutdownInProgress.
+Input Polling Thread exited.
+Input System module state changed to: Shutdown.
+[Licensing::IpcConnector] LicenseClient-minht-6000.5.8-notifications channel disconnected successfully.
+[Licensing::IpcConnector] LicenseClient-minht-6000.5.8 channel disconnected successfully.
+AcceleratorClientConnectionCallback - disconnected - :0
+Cleanup mono
+CodeReloadManager destroyed
+Exiting batchmode successfully now!
+Exiting without the bug reporter. Application will terminate with return code 0

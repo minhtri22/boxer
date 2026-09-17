@@ -1,0 +1,424 @@
+{
+  "blend_file": "D:\\WORK\\RESEARCH\\POVGame\\boxer\\art\\blender\\source\\ramirez_mpfb_game_ready.blend",
+  "blender_version": "5.2.1 LTS",
+  "excluded_objects": [
+    "StudioFloor"
+  ],
+  "scene_object_count": 42,
+  "renderable_asset_mesh_count": 36,
+  "armature_object_count": 1,
+  "bone_count_total": 53,
+  "unique_material_count": 12,
+  "unique_materials": [
+    "BootGold",
+    "BootRed",
+    "BootSole",
+    "BootWhite",
+    "GloveGold",
+    "GloveRed",
+    "RamirezGold",
+    "RamirezHair",
+    "RamirezSkin",
+    "RamirezStubble",
+    "RamirezTrunks",
+    "WrapWhite"
+  ],
+  "image_texture_count": 0,
+  "image_textures": [],
+  "raw_triangles_total": 26426,
+  "evaluated_triangles_total": 29386,
+  "mesh_objects": [
+    {
+      "name": "Ramirez_CC0_Humanoid",
+      "raw_triangles": 17390,
+      "evaluated_triangles": 17390,
+      "evaluated_vertices": 8697,
+      "materials": [
+        "RamirezSkin",
+        "RamirezStubble"
+      ],
+      "modifiers": [
+        "RamirezGameEngineSkin:ARMATURE"
+      ]
+    },
+    {
+      "name": "RamirezGlove.L",
+      "raw_triangles": 1216,
+      "evaluated_triangles": 1216,
+      "evaluated_vertices": 610,
+      "materials": [
+        "GloveRed"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RamirezGlove.R",
+      "raw_triangles": 1216,
+      "evaluated_triangles": 1216,
+      "evaluated_vertices": 610,
+      "materials": [
+        "GloveRed"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RamirezHair",
+      "raw_triangles": 960,
+      "evaluated_triangles": 960,
+      "evaluated_vertices": 528,
+      "materials": [
+        "RamirezHair"
+      ],
+      "modifiers": [
+        "HairSurfaceSubdivision:SUBSURF",
+        "HairTexture:DISPLACE"
+      ]
+    },
+    {
+      "name": "RamirezWaistband",
+      "raw_triangles": 960,
+      "evaluated_triangles": 960,
+      "evaluated_vertices": 480,
+      "materials": [
+        "RamirezGold"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RamirezBoot.L.Sole",
+      "raw_triangles": 728,
+      "evaluated_triangles": 728,
+      "evaluated_vertices": 366,
+      "materials": [
+        "BootSole"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RamirezBoot.R.Sole",
+      "raw_triangles": 728,
+      "evaluated_triangles": 728,
+      "evaluated_vertices": 366,
+      "materials": [
+        "BootSole"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Sphere",
+      "raw_triangles": 720,
+      "evaluated_triangles": 720,
+      "evaluated_vertices": 362,
+      "materials": [
+        "GloveRed"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Sphere.002",
+      "raw_triangles": 720,
+      "evaluated_triangles": 720,
+      "evaluated_vertices": 362,
+      "materials": [
+        "GloveRed"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RamirezBoot.L.Cuff",
+      "raw_triangles": 124,
+      "evaluated_triangles": 508,
+      "evaluated_vertices": 256,
+      "materials": [
+        "BootWhite"
+      ],
+      "modifiers": [
+        "BootCuffSoftness:BEVEL"
+      ]
+    },
+    {
+      "name": "RamirezBoot.R.Cuff",
+      "raw_triangles": 124,
+      "evaluated_triangles": 508,
+      "evaluated_vertices": 256,
+      "materials": [
+        "BootWhite"
+      ],
+      "modifiers": [
+        "BootCuffSoftness:BEVEL"
+      ]
+    },
+    {
+      "name": "Sphere.001",
+      "raw_triangles": 440,
+      "evaluated_triangles": 440,
+      "evaluated_vertices": 222,
+      "materials": [
+        "GloveGold"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Sphere.003",
+      "raw_triangles": 440,
+      "evaluated_triangles": 440,
+      "evaluated_vertices": 222,
+      "materials": [
+        "GloveGold"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RamirezBoot.L.Upper",
+      "raw_triangles": 12,
+      "evaluated_triangles": 428,
+      "evaluated_vertices": 216,
+      "materials": [
+        "BootWhite"
+      ],
+      "modifiers": [
+        "BootUpperRound:BEVEL"
+      ]
+    },
+    {
+      "name": "RamirezBoot.R.Upper",
+      "raw_triangles": 12,
+      "evaluated_triangles": 428,
+      "evaluated_vertices": 216,
+      "materials": [
+        "BootWhite"
+      ],
+      "modifiers": [
+        "BootUpperRound:BEVEL"
+      ]
+    },
+    {
+      "name": "RamirezShorts.L",
+      "raw_triangles": 92,
+      "evaluated_triangles": 412,
+      "evaluated_vertices": 208,
+      "materials": [
+        "RamirezTrunks",
+        "RamirezGold"
+      ],
+      "modifiers": [
+        "ShortsClothSoftness:BEVEL",
+        "ShortsClothSubdivision:SUBSURF"
+      ]
+    },
+    {
+      "name": "RamirezShorts.R",
+      "raw_triangles": 92,
+      "evaluated_triangles": 412,
+      "evaluated_vertices": 208,
+      "materials": [
+        "RamirezTrunks",
+        "RamirezGold"
+      ],
+      "modifiers": [
+        "ShortsClothSoftness:BEVEL",
+        "ShortsClothSubdivision:SUBSURF"
+      ]
+    },
+    {
+      "name": "RamirezBoot.L.Tongue",
+      "raw_triangles": 12,
+      "evaluated_triangles": 188,
+      "evaluated_vertices": 96,
+      "materials": [
+        "BootRed"
+      ],
+      "modifiers": [
+        "BootTongueRound:BEVEL"
+      ]
+    },
+    {
+      "name": "RamirezBoot.R.Tongue",
+      "raw_triangles": 12,
+      "evaluated_triangles": 188,
+      "evaluated_vertices": 96,
+      "materials": [
+        "BootRed"
+      ],
+      "modifiers": [
+        "BootTongueRound:BEVEL"
+      ]
+    },
+    {
+      "name": "RamirezShorts.FrontOverlap",
+      "raw_triangles": 12,
+      "evaluated_triangles": 188,
+      "evaluated_vertices": 96,
+      "materials": [
+        "RamirezTrunks"
+      ],
+      "modifiers": [
+        "FrontOverlapSoftEdge:BEVEL"
+      ]
+    },
+    {
+      "name": "Cylinder",
+      "raw_triangles": 124,
+      "evaluated_triangles": 124,
+      "evaluated_vertices": 64,
+      "materials": [
+        "WrapWhite"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "Cylinder.001",
+      "raw_triangles": 124,
+      "evaluated_triangles": 124,
+      "evaluated_vertices": 64,
+      "materials": [
+        "WrapWhite"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RamirezShorts.GoldSide.L",
+      "raw_triangles": 12,
+      "evaluated_triangles": 108,
+      "evaluated_vertices": 56,
+      "materials": [
+        "RamirezGold"
+      ],
+      "modifiers": [
+        "ShortsSideTrimSoftness:BEVEL"
+      ]
+    },
+    {
+      "name": "RamirezShorts.GoldSide.R",
+      "raw_triangles": 12,
+      "evaluated_triangles": 108,
+      "evaluated_vertices": 56,
+      "materials": [
+        "RamirezGold"
+      ],
+      "modifiers": [
+        "ShortsSideTrimSoftness:BEVEL"
+      ]
+    },
+    {
+      "name": "RamirezBoot.L.GoldStripe",
+      "raw_triangles": 12,
+      "evaluated_triangles": 12,
+      "evaluated_vertices": 8,
+      "materials": [
+        "BootGold"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RamirezBoot.L.Lace.00",
+      "raw_triangles": 12,
+      "evaluated_triangles": 12,
+      "evaluated_vertices": 8,
+      "materials": [
+        "BootRed"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RamirezBoot.L.Lace.01",
+      "raw_triangles": 12,
+      "evaluated_triangles": 12,
+      "evaluated_vertices": 8,
+      "materials": [
+        "BootRed"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RamirezBoot.L.Lace.02",
+      "raw_triangles": 12,
+      "evaluated_triangles": 12,
+      "evaluated_vertices": 8,
+      "materials": [
+        "BootRed"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RamirezBoot.L.Lace.03",
+      "raw_triangles": 12,
+      "evaluated_triangles": 12,
+      "evaluated_vertices": 8,
+      "materials": [
+        "BootRed"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RamirezBoot.L.Lace.04",
+      "raw_triangles": 12,
+      "evaluated_triangles": 12,
+      "evaluated_vertices": 8,
+      "materials": [
+        "BootRed"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RamirezBoot.R.GoldStripe",
+      "raw_triangles": 12,
+      "evaluated_triangles": 12,
+      "evaluated_vertices": 8,
+      "materials": [
+        "BootGold"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RamirezBoot.R.Lace.00",
+      "raw_triangles": 12,
+      "evaluated_triangles": 12,
+      "evaluated_vertices": 8,
+      "materials": [
+        "BootRed"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RamirezBoot.R.Lace.01",
+      "raw_triangles": 12,
+      "evaluated_triangles": 12,
+      "evaluated_vertices": 8,
+      "materials": [
+        "BootRed"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RamirezBoot.R.Lace.02",
+      "raw_triangles": 12,
+      "evaluated_triangles": 12,
+      "evaluated_vertices": 8,
+      "materials": [
+        "BootRed"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RamirezBoot.R.Lace.03",
+      "raw_triangles": 12,
+      "evaluated_triangles": 12,
+      "evaluated_vertices": 8,
+      "materials": [
+        "BootRed"
+      ],
+      "modifiers": []
+    },
+    {
+      "name": "RamirezBoot.R.Lace.04",
+      "raw_triangles": 12,
+      "evaluated_triangles": 12,
+      "evaluated_vertices": 8,
+      "materials": [
+        "BootRed"
+      ],
+      "modifiers": []
+    }
+  ]
+}

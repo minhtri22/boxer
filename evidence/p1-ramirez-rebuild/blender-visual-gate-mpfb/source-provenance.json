@@ -1,0 +1,8 @@
+{
+  "upstream": "makehumancommunity/mpfb2",
+  "upstream_version": "v2.0.17",
+  "upstream_commit": "80919fa4682335c41847f761a4d79dcad4124732",
+  "base_asset": "D:\\WORK\\RESEARCH\\POVGame\\_vendor_mpfb2\\src\\mpfb\\data\\3dobjs\\base.obj",
+  "asset_license": "CC0 1.0",
+  "note": "Only CC0 mesh/target data is consumed. MPFB GPL addon implementation is not copied into Boxer."
+}

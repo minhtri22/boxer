@@ -1,0 +1,154 @@
+{
+  "height_m": 1.8,
+  "shoulder_width_m": 0.721,
+  "chest_width_m": 0.8332,
+  "waist_width_m": 0.3619,
+  "pelvis_width_m": 0.4081,
+  "shoulder_to_waist_ratio": 1.9922,
+  "vertices": 13380,
+  "triangles": 26756,
+  "method": "MPFB CC0 base.obj + CC0 target displacement + Blender authoring",
+  "source_base": "D:\\WORK\\RESEARCH\\POVGame\\_vendor_mpfb2\\src\\mpfb\\data\\3dobjs\\base.obj",
+  "target_weights": [
+    {
+      "target": "macrodetails/caucasian-male-young.target.gz",
+      "weight": 0.82
+    },
+    {
+      "target": "macrodetails/african-male-young.target.gz",
+      "weight": 0.18
+    },
+    {
+      "target": "macrodetails/universal-male-young-maxmuscle-minweight.target.gz",
+      "weight": 0.42
+    },
+    {
+      "target": "macrodetails/universal-male-young-maxmuscle-averageweight.target.gz",
+      "weight": 0.58
+    },
+    {
+      "target": "macrodetails/proportions/male-young-maxmuscle-averageweight-idealproportions.target.gz",
+      "weight": 0.72
+    },
+    {
+      "target": "torso/torso-vshape-incr.target.gz",
+      "weight": 0.26
+    },
+    {
+      "target": "torso/measure-shoulder-dist-incr.target.gz",
+      "weight": 0.24
+    },
+    {
+      "target": "torso/measure-bust-circ-incr.target.gz",
+      "weight": 0.22
+    },
+    {
+      "target": "torso/measure-waist-circ-incr.target.gz",
+      "weight": 0.16
+    },
+    {
+      "target": "torso/torso-muscle-pectoral-incr.target.gz",
+      "weight": 0.6
+    },
+    {
+      "target": "torso/torso-muscle-dorsi-incr.target.gz",
+      "weight": 0.55
+    },
+    {
+      "target": "stomach/stomach-tone-incr.target.gz",
+      "weight": 0.8
+    },
+    {
+      "target": "neck/measure-neck-height-incr.target.gz",
+      "weight": 0.16
+    },
+    {
+      "target": "neck/neck-scale-horiz-incr.target.gz",
+      "weight": 0.14
+    },
+    {
+      "target": "arms/l-upperarm-shoulder-muscle-incr.target.gz",
+      "weight": 0.74
+    },
+    {
+      "target": "arms/r-upperarm-shoulder-muscle-incr.target.gz",
+      "weight": 0.74
+    },
+    {
+      "target": "arms/l-upperarm-muscle-incr.target.gz",
+      "weight": 0.76
+    },
+    {
+      "target": "arms/r-upperarm-muscle-incr.target.gz",
+      "weight": 0.76
+    },
+    {
+      "target": "arms/measure-upperarm-circ-incr.target.gz",
+      "weight": 0.34
+    },
+    {
+      "target": "arms/l-lowerarm-muscle-incr.target.gz",
+      "weight": 0.52
+    },
+    {
+      "target": "arms/r-lowerarm-muscle-incr.target.gz",
+      "weight": 0.52
+    },
+    {
+      "target": "legs/l-upperleg-muscle-incr.target.gz",
+      "weight": 0.46
+    },
+    {
+      "target": "legs/r-upperleg-muscle-incr.target.gz",
+      "weight": 0.46
+    },
+    {
+      "target": "legs/measure-thigh-circ-incr.target.gz",
+      "weight": 0.18
+    },
+    {
+      "target": "legs/l-lowerleg-muscle-incr.target.gz",
+      "weight": 0.4
+    },
+    {
+      "target": "legs/r-lowerleg-muscle-incr.target.gz",
+      "weight": 0.4
+    },
+    {
+      "target": "legs/measure-calf-circ-incr.target.gz",
+      "weight": 0.14
+    },
+    {
+      "target": "buttocks/buttocks-volume-incr.target.gz",
+      "weight": 0.12
+    },
+    {
+      "target": "chin/chin-width-incr.target.gz",
+      "weight": 0.16
+    },
+    {
+      "target": "chin/chin-prominent-incr.target.gz",
+      "weight": 0.1
+    },
+    {
+      "target": "chin/chin-bones-incr.target.gz",
+      "weight": 0.12
+    },
+    {
+      "target": "cheek/l-cheek-bones-incr.target.gz",
+      "weight": 0.1
+    },
+    {
+      "target": "cheek/r-cheek-bones-incr.target.gz",
+      "weight": 0.1
+    },
+    {
+      "target": "eyebrows/eyebrows-angle-down.target.gz",
+      "weight": 0.06
+    },
+    {
+      "target": "nose/nose-scale-depth-incr.target.gz",
+      "weight": 0.06
+    }
+  ]
+}

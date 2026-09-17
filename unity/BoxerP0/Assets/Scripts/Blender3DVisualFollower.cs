@@ -61,7 +61,7 @@ namespace BoxerP0
         OpponentBoxer _opponent;
         PlayerBoxer _player;
         Transform _opponentModel;
-        Transform _modelRoot, _pelvis, _spine, _chest, _neck, _head;
+        Transform _modelRoot, _pelvis, _spine, _spineMid, _chest, _neck, _head;
         SegmentDriver _leftClavicle, _rightClavicle, _leftUpper, _rightUpper, _leftForearm, _rightForearm;
         SegmentDriver _leftHand, _rightHand, _leftThigh, _rightThigh, _leftShin, _rightShin;
         OrientationDriver _leftFoot, _rightFoot;
@@ -92,29 +92,30 @@ namespace BoxerP0
             _opponentModel.localScale = Vector3.one;
 
             Transform rig = FindDeep(_opponentModel, "RamirezRig");
-            _modelRoot = Require(rig, "root");
-            _pelvis = Require(rig, "pelvis");
-            _spine = Require(rig, "spine");
-            _chest = Require(rig, "chest");
-            _neck = Require(rig, "neck");
-            _head = Require(rig, "head");
-            _leftClavicle = new SegmentDriver(Require(rig, "clavicle.L"));
-            _rightClavicle = new SegmentDriver(Require(rig, "clavicle.R"));
-            _leftUpper = new SegmentDriver(Require(rig, "upper_arm.L"));
-            _rightUpper = new SegmentDriver(Require(rig, "upper_arm.R"));
-            _leftForearm = new SegmentDriver(Require(rig, "forearm.L"));
-            _rightForearm = new SegmentDriver(Require(rig, "forearm.R"));
-            _leftHand = new SegmentDriver(Require(rig, "hand.L"));
-            _rightHand = new SegmentDriver(Require(rig, "hand.R"));
-            _leftThigh = new SegmentDriver(Require(rig, "thigh.L"));
-            _rightThigh = new SegmentDriver(Require(rig, "thigh.R"));
-            _leftShin = new SegmentDriver(Require(rig, "shin.L"));
-            _rightShin = new SegmentDriver(Require(rig, "shin.R"));
+            _modelRoot = RequireAny(rig, "root", "Root");
+            _pelvis = RequireAny(rig, "pelvis");
+            _spine = RequireAny(rig, "spine", "spine_01");
+            _spineMid = FindDeep(rig, "spine_02");
+            _chest = RequireAny(rig, "chest", "spine_03");
+            _neck = RequireAny(rig, "neck", "neck_01");
+            _head = RequireAny(rig, "head");
+            _leftClavicle = new SegmentDriver(RequireAny(rig, "clavicle.L", "clavicle_l"));
+            _rightClavicle = new SegmentDriver(RequireAny(rig, "clavicle.R", "clavicle_r"));
+            _leftUpper = new SegmentDriver(RequireAny(rig, "upper_arm.L", "upperarm_l"));
+            _rightUpper = new SegmentDriver(RequireAny(rig, "upper_arm.R", "upperarm_r"));
+            _leftForearm = new SegmentDriver(RequireAny(rig, "forearm.L", "lowerarm_l"));
+            _rightForearm = new SegmentDriver(RequireAny(rig, "forearm.R", "lowerarm_r"));
+            _leftHand = new SegmentDriver(RequireAny(rig, "hand.L", "hand_l"));
+            _rightHand = new SegmentDriver(RequireAny(rig, "hand.R", "hand_r"));
+            _leftThigh = new SegmentDriver(RequireAny(rig, "thigh.L", "thigh_l"));
+            _rightThigh = new SegmentDriver(RequireAny(rig, "thigh.R", "thigh_r"));
+            _leftShin = new SegmentDriver(RequireAny(rig, "shin.L", "calf_l"));
+            _rightShin = new SegmentDriver(RequireAny(rig, "shin.R", "calf_r"));
 
             Transform leftShoe = Require(_opponent.transform, "Left Shoe");
             Transform rightShoe = Require(_opponent.transform, "Right Shoe");
-            _leftFoot = new OrientationDriver(Require(rig, "foot.L"), leftShoe.rotation);
-            _rightFoot = new OrientationDriver(Require(rig, "foot.R"), rightShoe.rotation);
+            _leftFoot = new OrientationDriver(RequireAny(rig, "foot.L", "foot_l"), leftShoe.rotation);
+            _rightFoot = new OrientationDriver(RequireAny(rig, "foot.R", "foot_r"), rightShoe.rotation);
 
             _playerLeft = CreatePlayerRig(glovePrefab, "Blender Player Left POV", true);
             _playerRight = CreatePlayerRig(glovePrefab, "Blender Player Right POV", false);
@@ -168,6 +169,8 @@ namespace BoxerP0
             Vector3 up = _opponent.transform.up;
             _pelvis.SetPositionAndRotation(r2Pelvis.position + up * .01f, shorts.rotation);
             _spine.SetPositionAndRotation(Vector3.Lerp(r2Pelvis.position, r2Chest.position, .43f), r2Chest.rotation);
+            if (_spineMid != null)
+                _spineMid.SetPositionAndRotation(Vector3.Lerp(r2Pelvis.position, r2Chest.position, .70f), r2Chest.rotation);
             _chest.SetPositionAndRotation(r2Chest.position - up * .12f, r2Chest.rotation);
             _neck.SetPositionAndRotation(r2Neck.position - up * .07f, r2Chest.rotation);
             _head.SetPositionAndRotation(headAnchor.position - up * .095f, _opponent.transform.rotation);
@@ -196,6 +199,7 @@ namespace BoxerP0
             forearm.Apply(elbow.position, glove.position);
             Vector3 dir = (glove.position - elbow.position).normalized;
             hand.Apply(glove.position, glove.position + dir * .11f);
+            hand.Bone.localScale = Vector3.one * .42f;
         }
 
         void DriveLeg(bool left, SegmentDriver thigh, SegmentDriver shin, OrientationDriver foot)
@@ -285,6 +289,16 @@ namespace BoxerP0
             Transform value = FindDeep(root, name);
             if (value == null) throw new InvalidOperationException("Missing Blender/Round2 visual anchor: " + name);
             return value;
+        }
+
+        static Transform RequireAny(Transform root, params string[] names)
+        {
+            foreach (string name in names)
+            {
+                Transform value = FindDeep(root, name);
+                if (value != null) return value;
+            }
+            throw new InvalidOperationException("Missing Blender/Round2 visual anchor: " + string.Join(" | ", names));
         }
 
         void OnDestroy()

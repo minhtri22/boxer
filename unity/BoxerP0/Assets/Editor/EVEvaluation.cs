@@ -112,9 +112,15 @@ namespace BoxerP0.Editor
             int playerTriangles=blenderPlayer==null?int.MaxValue:Triangles(blenderPlayer);
             Check(opponentTriangles<=30000,"Blender Ramirez WebGL triangle budget <= 30k");
             Check(playerTriangles<=5000,"Blender POV glove WebGL triangle budget <= 5k");
-            Check(blenderOpponent!=null&&HasBones(blenderOpponent,new[]{"root","pelvis","spine","chest","neck","head","upper_arm.L","forearm.L","hand.L","upper_arm.R","forearm.R","hand.R","thigh.L","shin.L","foot.L","thigh.R","shin.R","foot.R"}),"Blender Ramirez required rig bones present");
+            Check(blenderOpponent!=null&&HasBoneAliases(blenderOpponent,new[]{
+                new[]{"root","Root"}, new[]{"pelvis"}, new[]{"spine","spine_01"}, new[]{"chest","spine_03"},
+                new[]{"neck","neck_01"}, new[]{"head"}, new[]{"upper_arm.L","upperarm_l"}, new[]{"forearm.L","lowerarm_l"},
+                new[]{"hand.L","hand_l"}, new[]{"upper_arm.R","upperarm_r"}, new[]{"forearm.R","lowerarm_r"}, new[]{"hand.R","hand_r"},
+                new[]{"thigh.L","thigh_l"}, new[]{"shin.L","calf_l"}, new[]{"foot.L","foot_l"},
+                new[]{"thigh.R","thigh_r"}, new[]{"shin.R","calf_r"}, new[]{"foot.R","foot_r"}
+            }),"Blender Ramirez required rig bones present");
             string repoRoot=Path.GetFullPath(Path.Combine(Application.dataPath,"../../.."));
-            Check(File.Exists(Path.Combine(repoRoot,"art","blender","source","boxer_uat3_blender_assets.blend")),"Blender source file committed with asset pipeline");
+            Check(File.Exists(Path.Combine(repoRoot,"art","blender","source","ramirez_mpfb_game_ready.blend")),"Ramirez game-ready Blender source committed with asset pipeline");
             log.AppendLine($"blender_opponent_triangles={opponentTriangles} blender_player_triangles={playerTriangles}");
             log.AppendLine($"vertex_error_m={maxOutside:R} triangle_error_m={maxInside:R} torso_vertices={vertices.Length} triangles={triangles.Length/3}");
             log.AppendLine("TOTAL="+passed+" FAIL=0");
@@ -137,6 +143,22 @@ namespace BoxerP0.Editor
             {
                 bool found=false;
                 foreach(Transform t in prefab.GetComponentsInChildren<Transform>(true))if(t.name==name){found=true;break;}
+                if(!found)return false;
+            }
+            return true;
+        }
+
+        static bool HasBoneAliases(GameObject prefab,string[][] aliases)
+        {
+            foreach(string[] group in aliases)
+            {
+                bool found=false;
+                foreach(string name in group)
+                {
+                    foreach(Transform t in prefab.GetComponentsInChildren<Transform>(true))
+                        if(t.name==name){found=true;break;}
+                    if(found)break;
+                }
                 if(!found)return false;
             }
             return true;
