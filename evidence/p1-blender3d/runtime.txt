@@ -1,0 +1,16 @@
+EDITOR_PLAYMODE_SYNTHETIC_NOT_HUMAN_UAT unity=6000.5.8f1
+scenario=alternating player punches, target shifts for advance/retreat/lateral; current AI attack state machine; real Update/LateUpdate
+t=1,00 distance=1,1769 player=GUARD opponent=REAR CROSS:Commit contacts=0 gap=0 steps=5
+t=3,01 distance=0,9970 player=LEAD UPPERCUT:Commit opponent=REAR CROSS:Commit contacts=0 gap=0 steps=10
+t=5,01 distance=0,9970 player=GUARD opponent=REAR CROSS:Commit contacts=2 gap=1,49011612E-08 steps=10
+t=7,01 distance=1,0714 player=REAR CROSS:Recover opponent=REAR CROSS:Commit contacts=6 gap=0 steps=15
+t=9,01 distance=1,0936 player=LEAD UPPERCUT:Extend opponent=REAR CROSS:Extend contacts=8 gap=2,98023224E-08 steps=20
+t=11,02 distance=1,0917 player=GUARD opponent=REAR CROSS:Commit contacts=8 gap=2,98023224E-08 steps=22
+t=13,01 distance=0,7286 player=REAR CROSS:Recover opponent=REAR CROSS:Commit contacts=12 gap=1,49011612E-08 steps=28
+t=15,00 distance=0,9155 player=LEAD UPPERCUT:Extend opponent=REAR CROSS:Commit contacts=15 gap=0 steps=33
+t=17,00 distance=1,0011 player=GUARD opponent=REAR CROSS:Extend contacts=18 gap=1,49011612E-08 steps=35
+t=19,01 distance=0,9952 player=GUARD opponent=REAR CROSS:Extend contacts=21 gap=-2,23517418E-08 steps=38
+frames=1202 rig_mean_ms=0,05254 rig_max_ms=3,74560 max_planted_foot_error_m=2,22646491E-07 contacts=22 samples=7665
+committed_root_drift_m=0 committed_rotation_drift_degrees=0
+RUNTIME_INVARIANTS=PASS
+CPU values include Editor overhead. Not WebGL frame-time evidence.

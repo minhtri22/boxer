@@ -1,0 +1,4 @@
+frames=1202 failed_frames=0 visual_anchor_error_m=8,36591E-07
+visual_path=blender_fbx_follow_round2
+checks=blender_asset_owner,legacy_renderers_hidden,round2_authority_preserved,blender_hand_to_glove_anchor,player_pov_asset_owner
+RESULT=PASS

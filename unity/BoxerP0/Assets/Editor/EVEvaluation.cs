@@ -11,12 +11,29 @@ namespace BoxerP0.Editor
     {
         static int _auditFrames,_auditFailures;
         static float _anchorError;
+        static bool _blenderObserved;
         public static void AuditFrame()
         {
             var shell=UnityEngine.Object.FindFirstObjectByType<EVVisualShell>();
             if(shell==null||!shell.Ready)return;
             var opponent=UnityEngine.Object.FindFirstObjectByType<OpponentBoxer>();
             var player=UnityEngine.Object.FindFirstObjectByType<PlayerBoxer>();
+            if(shell.BlenderAssetActive)
+            {
+                _blenderObserved=true;
+                var follower=shell.BlenderFollower;
+                bool blenderOk=follower!=null&&follower.Ready;
+                blenderOk &= GameObject.Find("Blender Ramirez UAT3")!=null;
+                blenderOk &= GameObject.Find("Blender Player Left POV")!=null&&GameObject.Find("Blender Player Right POV")!=null;
+                blenderOk &= follower!=null&&follower.VisibleRendererCount>=20;
+                _anchorError=Mathf.Max(_anchorError,follower==null?999f:follower.MaxAnchorError);
+                blenderOk &= _anchorError<.00001f;
+                foreach(Renderer r in opponent.GetComponentsInChildren<Renderer>(true)) blenderOk &= !r.enabled;
+                foreach(Renderer r in player.GetComponentsInChildren<Renderer>(true)) blenderOk &= !r.enabled;
+                if(!blenderOk)_auditFailures++;
+                _auditFrames++;
+                return;
+            }
             if(shell.Torso!=null) _anchorError=Mathf.Max(_anchorError,Vector3.Distance(shell.Torso.position,opponent.transform.Find("R2 Chest").position));
             bool ok=true;
             ok &= GameObject.Find("EV Ramirez Full Body")==null;
@@ -52,7 +69,10 @@ namespace BoxerP0.Editor
         {
             bool pass=_auditFrames>0&&_auditFailures==0;
             string path=Path.GetFullPath(Path.Combine(Application.dataPath,"../../../evidence/p1-ev"));Directory.CreateDirectory(path);
-            File.WriteAllText(Path.Combine(path,"ownership-runtime.txt"),$"frames={_auditFrames} failed_frames={_auditFailures} torso_anchor_error_m={_anchorError:R}\nchecks=single_3d_visual_owner,torso_anchor,glove_surface_parent,cuff_parent,cuff_forearm_alignment,single_shoulder,visible_articulated_thigh_shin_shoe,trunk_thigh_attachment,boot_shin_attachment,redundant_torso_renderers_off\nRESULT={(pass?"PASS":"FAIL")}\n");
+            string checks=_blenderObserved
+                ? "blender_asset_owner,legacy_renderers_hidden,round2_authority_preserved,blender_hand_to_glove_anchor,player_pov_asset_owner"
+                : "single_3d_visual_owner,torso_anchor,glove_surface_parent,cuff_parent,cuff_forearm_alignment,single_shoulder,visible_articulated_thigh_shin_shoe,trunk_thigh_attachment,boot_shin_attachment,redundant_torso_renderers_off";
+            File.WriteAllText(Path.Combine(path,"ownership-runtime.txt"),$"frames={_auditFrames} failed_frames={_auditFailures} visual_anchor_error_m={_anchorError:R}\nvisual_path={(_blenderObserved?"blender_fbx_follow_round2":"ev_procedural_fallback")}\nchecks={checks}\nRESULT={(pass?"PASS":"FAIL")}\n");
             return pass;
         }
         static EVEvaluation() { EVVisualShell.SegmentedExperiment=Environment.GetEnvironmentVariable("BOXER_EV_VARIANT")=="A"; }
@@ -84,11 +104,42 @@ namespace BoxerP0.Editor
             Check(Resources.Load<Shader>("EVSurface")!=null,"WebGL shell shader resource present");
             foreach(string segment in new[]{"ramirez-head","ramirez-torso","ramirez-shorts","ramirez-arm","ramirez-glove","ramirez-thigh","ramirez-shin","ramirez-boot","player-glove"})
                 Check(Resources.Load<Texture2D>("EV/ReferenceSegments/"+segment)!=null,"3D surface reference texture packaged: "+segment);
+            GameObject blenderOpponent=Resources.Load<GameObject>("Boxer3D/Ramirez_UAT3");
+            GameObject blenderPlayer=Resources.Load<GameObject>("Boxer3D/PlayerPOVGlove_UAT3");
+            Check(blenderOpponent!=null,"Blender Ramirez FBX packaged as Unity resource");
+            Check(blenderPlayer!=null,"Blender POV glove FBX packaged as Unity resource");
+            int opponentTriangles=blenderOpponent==null?int.MaxValue:Triangles(blenderOpponent);
+            int playerTriangles=blenderPlayer==null?int.MaxValue:Triangles(blenderPlayer);
+            Check(opponentTriangles<=30000,"Blender Ramirez WebGL triangle budget <= 30k");
+            Check(playerTriangles<=5000,"Blender POV glove WebGL triangle budget <= 5k");
+            Check(blenderOpponent!=null&&HasBones(blenderOpponent,new[]{"root","pelvis","spine","chest","neck","head","upper_arm.L","forearm.L","hand.L","upper_arm.R","forearm.R","hand.R","thigh.L","shin.L","foot.L","thigh.R","shin.R","foot.R"}),"Blender Ramirez required rig bones present");
+            string repoRoot=Path.GetFullPath(Path.Combine(Application.dataPath,"../../.."));
+            Check(File.Exists(Path.Combine(repoRoot,"art","blender","source","boxer_uat3_blender_assets.blend")),"Blender source file committed with asset pipeline");
+            log.AppendLine($"blender_opponent_triangles={opponentTriangles} blender_player_triangles={playerTriangles}");
             log.AppendLine($"vertex_error_m={maxOutside:R} triangle_error_m={maxInside:R} torso_vertices={vertices.Length} triangles={triangles.Length/3}");
             log.AppendLine("TOTAL="+passed+" FAIL=0");
             UnityEngine.Object.DestroyImmediate(mesh);
             string path=Path.GetFullPath(Path.Combine(Application.dataPath,"../../../evidence/p1-ev"));Directory.CreateDirectory(path);File.WriteAllText(Path.Combine(path,"geometry-tests.txt"),log.ToString());
             Debug.Log(log);
+        }
+
+        static int Triangles(GameObject prefab)
+        {
+            int count=0;
+            foreach(MeshFilter f in prefab.GetComponentsInChildren<MeshFilter>(true))if(f.sharedMesh!=null)count+=f.sharedMesh.triangles.Length/3;
+            foreach(SkinnedMeshRenderer r in prefab.GetComponentsInChildren<SkinnedMeshRenderer>(true))if(r.sharedMesh!=null)count+=r.sharedMesh.triangles.Length/3;
+            return count;
+        }
+
+        static bool HasBones(GameObject prefab,string[] names)
+        {
+            foreach(string name in names)
+            {
+                bool found=false;
+                foreach(Transform t in prefab.GetComponentsInChildren<Transform>(true))if(t.name==name){found=true;break;}
+                if(!found)return false;
+            }
+            return true;
         }
     }
 }

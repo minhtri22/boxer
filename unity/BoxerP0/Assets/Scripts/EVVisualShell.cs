@@ -16,9 +16,12 @@ namespace BoxerP0
         readonly List<Material> _materials=new();
         readonly List<(Transform cuff,Transform surface,Transform elbow,Transform glove)> _cuffs=new();
         Transform _body,_chest;
+        Blender3DVisualFollower _blenderFollower;
         Material _skin,_red,_gold,_black,_white,_head;
         Material _oppTorso,_oppShorts,_oppArm,_oppGlove,_oppThigh,_oppShin,_oppBoot,_playerGlove;
         public Transform Torso => _body;
+        public bool BlenderAssetActive => _blenderFollower!=null&&_blenderFollower.Ready;
+        public Blender3DVisualFollower BlenderFollower => _blenderFollower;
         public static readonly Color Skin=new(.60f,.36f,.235f);
 
         void Start()
@@ -26,6 +29,16 @@ namespace BoxerP0
             _skin=Material(Skin,0); _red=Material(new Color(.48f,.025f,.035f),1);
             _gold=Material(new Color(.78f,.52f,.16f),1); _black=Material(new Color(.028f,.032f,.038f),1);
             _white=Material(new Color(.82f,.79f,.71f),2);
+            _blenderFollower=gameObject.AddComponent<Blender3DVisualFollower>();
+            if(_blenderFollower.Initialize())
+            {
+                _body=_blenderFollower.OpponentVisualRoot;
+                Arena();
+                Ready=true;
+                return;
+            }
+            Destroy(_blenderFollower);
+            _blenderFollower=null;
             var leather=Resources.Load<Texture2D>("EV/GloveLeather");
             _black.SetTexture("_MainTex",leather); _red.SetTexture("_MainTex",leather);
             _head=ReferenceMaterial(Skin,5,"ramirez-head",false,true);
@@ -182,6 +195,7 @@ namespace BoxerP0
         }
         void LateUpdate()
         {
+            if(BlenderAssetActive) return;
             if(_body!=null) _body.SetPositionAndRotation(_chest.position,_chest.rotation);
             foreach(var c in _cuffs)
             {

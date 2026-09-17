@@ -1,0 +1,48 @@
+{
+  "blender_version": "5.2.1 LTS",
+  "source": "art\\blender\\source\\boxer_uat3_blender_assets.blend",
+  "exports": [
+    "art\\blender\\exports\\Ramirez_UAT3.fbx",
+    "art\\blender\\exports\\PlayerPOVGlove_UAT3.fbx"
+  ],
+  "ramirez": {
+    "vertices": 10906,
+    "triangles": 20676,
+    "mesh_objects": 43
+  },
+  "player_pov": {
+    "vertices": 1352,
+    "triangles": 2680,
+    "mesh_objects": 6
+  },
+  "rig_bones": [
+    "root",
+    "pelvis",
+    "spine",
+    "chest",
+    "neck",
+    "head",
+    "clavicle.L",
+    "upper_arm.L",
+    "forearm.L",
+    "hand.L",
+    "clavicle.R",
+    "upper_arm.R",
+    "forearm.R",
+    "hand.R",
+    "thigh.L",
+    "shin.L",
+    "foot.L",
+    "toe.L",
+    "thigh.R",
+    "shin.R",
+    "foot.R",
+    "toe.R"
+  ],
+  "player_rig_bones": [
+    "root",
+    "forearm",
+    "hand"
+  ],
+  "reference_target": "docs/handoff/reference-ui/06-opponent-ramirez-turnaround.jpg and 03-pov-combat-hud.jpg"
+}
