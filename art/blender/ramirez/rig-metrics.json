@@ -3,15 +3,15 @@
   "bone_count": 53,
   "body_vertices": 13380,
   "body_triangles": 26756,
+  "static_review_pose": "static_stance",
   "rendered_poses": [
     "guard",
     "jab",
     "cross",
-    "hook",
-    "uppercut",
     "slip_left",
     "slip_right",
-    "step_forward",
-    "step_backward"
-  ]
+    "slip_counter",
+    "recover_guard"
+  ],
+  "review_root": "D:\\WORK\\RESEARCH\\POVGame\\boxer-ramirez-art\\art\\blender\\ramirez\\renders\\review3"
 }

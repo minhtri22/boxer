@@ -1,78 +1,102 @@
-# Ramirez Blender Visual Gate
+# Ramirez Blender Visual Gate — Review 3
 
-Authority: `docs/handoff/reference-ui/06-opponent-ramirez-turnaround.jpg`
+Primary visual authority: `docs/handoff/reference-ui/06-opponent-ramirez-turnaround.jpg`
 
 Combat context: `docs/handoff/reference-ui/03-pov-combat-hud.jpg`
 
-This report closes the Blender-only visual-authoring gate. It does not authorize
-Unity integration, FBX export, gameplay changes, or human UAT acceptance.
+Motion grounding is documented in `review3-reference-grounding.md`.
 
-## Evidence
+## Review history
 
-- Static clay: `renders/clay/01_front_neutral.png` through `08_back_silhouette.png`
-- Deformation clay: `renders/clay/09_boxing_guard.png` through `17_step_backward.png`
-- Material review: `renders/material/18_front_final.png` through `26_slip_final.png`
-- Reference comparisons: `renders/comparisons/*_reference_vs_blender.png`
-- Source: `source/ramirez_master.blend`
-- Asset audit: `asset-audit.json`
+### Human Review 1 — FAIL
 
-## Reference proportions
+The first Blender candidate was rejected by human review for rigid/block shorts, mannequin-like static stance, weak punch/slip mechanics, insufficient hip/shoulder rotation and weight transfer, and incorrect combat footwork.
 
-Reference-derived ratios are recorded in `reference-measurements.md`. The
-approved front figure gives approximately: head/height `0.178`, shoulder/height
-`0.300`, chest/height `0.256`, waist/height `0.183`, pelvis/height `0.217`, glove
-width/height `0.106`, and shoulder/waist `1.64`.
+### Agent preflight Review 2 — FAIL
 
-The Blender body is normalized to `1.8011 m`. The current static diagnostic
-reports `0.7140 m` shoulder-band width, `0.8377 m` chest-band width, `0.3781 m`
-waist width, and `0.4104 m` pelvis width. The shoulder/chest diagnostic bands
-intersect the abducted A-pose arms, so those two raw widths are intentionally
-not treated as direct equivalents of the posed reference pixel widths. The
-front/side/back silhouette comparisons are the visual authority for V01.
+Review 2 corrected the stance base, split-leg trunks and the requested seven combat poses, but the review renders still exposed hard visual defects before handoff:
 
-## Visual gates
+- hair read as separate beads/placeholder curls;
+- boot uppers still read as rounded rectangular proxy blocks;
+- glove gold badges could visibly detach from the glove in rotated views and the glove silhouette remained too capsule-like;
+- gold treatment on the trunks covered too much of the outer leg and read as a rigid panel;
+- cross and slip + counter needed a clearer retained lead-hand guard and stronger crouched boxing read.
 
-| Gate | Result | Observation |
-| --- | --- | --- |
-| V01_REFERENCE_PROPORTIONS | PASS | Height is normalized to the 1.80 m target; head, torso, pelvis and leg lengths read in the same adult middleweight band. Front silhouette preserves broad shoulder/chest mass over a compact waist and stable pelvis. |
-| V02_HEAD_NECK | PASS | Front, side and 3/4 views show visible neck clearance, jaw separation, sloped trapezius transition and shoulders starting below the neck. No head-to-torso insertion remains. |
-| V03_SHOULDER_ANATOMY | PASS | Deltoid volume is continuous with clavicle/chest and upper arm. Jab/cross renders retain shoulder mass without detached shoulder balls or collapse. |
-| V04_ARM_MUSCLE | PASS | Upper-arm and forearm taper is visible in neutral, guard and extension; elbows and wrists narrow relative to muscle bellies. Arms no longer read as constant-diameter tubes. |
-| V05_TORSO_V_TAPER | PASS | Pectoral shelf, lat width, abdomen and oblique taper remain visible in clay. Front silhouette reads shoulders/chest > waist and side view avoids the previous barrel torso. |
-| V06_PELVIS_LEGS | PASS | Pelvis transitions into substantial thighs, visible knee narrowing, calf bellies and narrow ankles. Step-forward/back renders retain lower-body volume without detached feet. |
-| V07_BOXING_GUARD | PASS | Guard has asymmetric lead/rear hands, chin behind the gloves, elbows covering the torso, staggered feet and flexed knees. The final guard render no longer reads as the earlier square mannequin pose. |
-| V08_DEFORMATION | PASS | Guard, jab, cross, hook, uppercut, slips and both step poses show no crushed neck, shoulder collapse, elbow candy-wrapper failure, torso tearing, severe shorts clipping or head penetration. Corrective smoothing preserves shoulder/elbow continuity. |
-| V09_FACE_IDENTITY | LIMITED | Head is now leaner and more rectangular with stronger jaw/chin, lowered brow, curly dark hair and facial-hair treatment, but it remains a stylized MakeHuman-derived likeness rather than a close facial reconstruction of the approved portrait. |
-| V10_GEAR | LIMITED | Red fused-shell gloves have believable boxing volume and wrist transition; maroon/gold trunks and high white/red/gold boots match the reference direction. Embroidery, glove crown detail, fabric folds and boot construction remain simplified. |
-| V11_MATERIAL_DIRECTION | PASS | Skin, dark curly hair, deep red gloves/trunks, gold trim and white/red/gold boots match the approved palette and remain suitable for eventual real-time optimization. |
-| V12_OVERALL_REFERENCE_FIDELITY | PASS | The candidate now preserves the approved fighter's key silhouette, muscular middleweight proportions, visible neck/trapezius chain, arm/leg mass, boxing guard and maroon/gold equipment language. Remaining differences are concentrated in facial likeness and fine gear detail rather than the rejected anatomical foundation. |
+Review 2 therefore remains `FAIL`; it is not a human-approved gate.
 
-## Asset audit
+## Review 3 corrections
 
-- Evaluated production geometry: `40,354` vertices / `78,772` triangles
-- Body mesh: `13,380` vertices / `26,756` triangles
-- Materials: `11`
+- Removed separate ico-sphere hair curls and retained a single displaced continuous short-curly hair surface.
+- Rebuilt boot uppers from rounded continuous shells; changed cuff/tongue treatment, reduced lace bulk and replaced block side trim with a curved gold stripe.
+- Attached each glove badge to its glove and rotated the glove shell/cuff with the forearm direction.
+- Narrowed the trunks and reduced the gold side/hem region to textile trim instead of a broad rigid-looking panel; increased low-frequency cloth waviness at the leg openings.
+- Pulled the lead hand back toward face guard for cross and slip + counter.
+- Deepened the common boxing crouch and chin tuck while preserving staggered stance, rear-foot pivot and hip/shoulder rotation.
+- Kept the source file saved in `static_stance`.
+
+## Review 3 evidence
+
+Static set — five required views:
+
+- `renders/review3/static/01_front.png`
+- `renders/review3/static/02_three_quarter_front.png`
+- `renders/review3/static/03_side.png`
+- `renders/review3/static/04_back.png`
+- `renders/review3/static/05_three_quarter_back.png`
+
+Material combat set — seven requested poses:
+
+- `renders/review3/combat/01_neutral_guard.png`
+- `renders/review3/combat/02_jab.png`
+- `renders/review3/combat/03_cross.png`
+- `renders/review3/combat/04_slip_left.png`
+- `renders/review3/combat/05_slip_right.png`
+- `renders/review3/combat/06_slip_counter.png`
+- `renders/review3/combat/07_recover_guard.png`
+
+Clay deformation set:
+
+- matching seven poses under `renders/review3/combat-clay/`.
+
+Contact sheets:
+
+- `renders/review3/contact-static.jpg`
+- `renders/review3/contact-combat.jpg`
+
+Source and audits:
+
+- `source/ramirez_master.blend`
+- `rig-metrics.json`
+- `asset-audit.json`
+
+## Audit state
+
+- Blender: `5.2.1 LTS`
 - Rig: `53` bones
-- Image textures: `0` (`texture_resolutions: {}`)
-- Procedural texture datablocks: `HairSurfaceNoise`
-- Excluded from production counts: approved-reference image objects, studio floor,
-  lights and camera
+- Body: `13,380` vertices / `26,756` triangles
+- Evaluated production geometry: `33,030` vertices / `64,556` triangles
+- Materials: `11`
+- Image textures: `0`
+- Static review pose: `static_stance`
 
-## Known differences from the approved reference
+## Current gate state
 
-- Facial likeness is still generalized; beard/brow treatment is simplified.
-- Hair uses a deterministic low-cost curl shell rather than strand grooming.
-- Gloves use a fused real-time-friendly shell and simplified gold badge instead
-  of the exact crown/stitched construction.
-- Trunks do not reproduce the reference satin wrinkles, embroidery and crown
-  decoration; boots are simplified but retain the high-support silhouette and
-  white/red/gold direction.
-- Muscle definition is intentionally lower-frequency than the painted/rendered
-  reference; the clay gate prioritizes coherent anatomy and deformation.
+| Gate | State | Evidence |
+| --- | --- | --- |
+| Static 5-view set | PENDING_HUMAN_REVIEW | `renders/review3/static/` |
+| Boxing trunks | PENDING_HUMAN_REVIEW | static + combat sets |
+| Neutral guard | PENDING_HUMAN_REVIEW | `combat/01_neutral_guard.png` |
+| Jab | PENDING_HUMAN_REVIEW | `combat/02_jab.png` |
+| Cross | PENDING_HUMAN_REVIEW | `combat/03_cross.png` |
+| Slip left | PENDING_HUMAN_REVIEW | `combat/04_slip_left.png` |
+| Slip right | PENDING_HUMAN_REVIEW | `combat/05_slip_right.png` |
+| Slip + counter | PENDING_HUMAN_REVIEW | `combat/06_slip_counter.png` |
+| Recover to guard | PENDING_HUMAN_REVIEW | `combat/07_recover_guard.png` |
+
+The asset remains stylized and simplified relative to the approved Ramirez reference, especially facial likeness and fine cloth/glove/boot construction. No agent-side result is recorded as a human PASS.
 
 ## Status
 
-`BLENDER_VISUAL_CANDIDATE_READY_FOR_HUMAN_REVIEW`
+`BLENDER_REVIEW3_READY_FOR_HUMAN_REVIEW`
 
-Absolute stop remains in force: do not integrate this asset into Unity until
-human visual approval is given.
+Absolute stop remains in force: do not export or integrate Ramirez into Unity until the Blender static and combat-pose gates receive human approval.
