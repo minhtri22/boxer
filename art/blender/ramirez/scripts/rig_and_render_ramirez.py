@@ -362,7 +362,7 @@ def parent_to_bone(obj, rig, bone_name):
     obj.matrix_world = world
 
 
-def bind_shorts_half_to_rig(obj, rig, side, row_count=5, samples=32):
+def bind_shorts_half_to_rig(obj, rig, side, row_count=None, samples=32):
     """Blend the trunk leg from pelvis to thigh instead of rigid pelvis parenting.
 
     This keeps the upper cloth anchored under the waistband while allowing the
@@ -371,11 +371,15 @@ def bind_shorts_half_to_rig(obj, rig, side, row_count=5, samples=32):
     pelvis_group = obj.vertex_groups.new(name="pelvis")
     thigh_name = "thigh_l" if side > 0 else "thigh_r"
     thigh_group = obj.vertex_groups.new(name=thigh_name)
-    # Top remains mostly with the pelvis; the hem follows the thigh strongly.
-    thigh_weights = (0.12, 0.28, 0.48, 0.70, 0.88)
+    # Infer the generated ring count so later silhouette edits cannot silently
+    # leave the final cloth row unweighted (the Review4 six-ring mesh exposed
+    # exactly that failure).  Top remains pelvis-led; the hem follows the thigh.
+    if row_count is None:
+        row_count = max(1, (len(obj.data.vertices) - 1) // samples)
     for row in range(row_count):
         ids = list(range(row * samples, (row + 1) * samples))
-        tw = thigh_weights[row]
+        t = row / max(1, row_count - 1)
+        tw = 0.10 + 0.78 * (t ** 1.10)
         pelvis_group.add(ids, 1.0 - tw, "REPLACE")
         thigh_group.add(ids, tw, "REPLACE")
     # Top-cap center is the final generated vertex.
@@ -532,16 +536,16 @@ def add_front_overlap(material):
 
 
 def add_boxing_shorts_half(name, side, material, accent_material):
-    # Loose boxing-trunk leg shell.  The old implementation was built from two
-    # flat front/back sheets and read as a rigid skirt.  Concentric elliptical
-    # rings give each leg a real opening, outward flare and soft cloth drape.
+    # Thin boxing-trunk leg shell.  Keep a true left/right opening, but shape
+    # the cloth closer to the hip/thigh instead of building a wide hard tube.
     rows = [
         # z, center_x, radius_x, radius_y
-        (0.972, 0.088, 0.124, 0.148),
-        (0.914, 0.094, 0.126, 0.154),
-        (0.852, 0.101, 0.127, 0.160),
-        (0.790, 0.110, 0.126, 0.166),
-        (0.728, 0.119, 0.123, 0.171),
+        (0.970, 0.110, 0.108, 0.140),
+        (0.930, 0.112, 0.110, 0.144),
+        (0.886, 0.114, 0.112, 0.148),
+        (0.840, 0.117, 0.113, 0.152),
+        (0.792, 0.120, 0.114, 0.156),
+        (0.744, 0.122, 0.115, 0.158),
     ]
     samples = 32
     verts = []
@@ -552,27 +556,35 @@ def add_boxing_shorts_half(name, side, material, accent_material):
             # Low-frequency cloth waviness keeps highlights from reading as a
             # hard geometric panel while preserving a clean game-ready shell.
             wrinkle = 1.0 + t_row * (
-                0.060 * math.sin(3.0 * a + side * 0.7)
-                + 0.028 * math.sin(5.0 * a - side * 0.35)
+                0.038 * math.sin(3.0 * a + side * 0.7)
+                + 0.018 * math.sin(5.0 * a - side * 0.35)
             )
             x = side * (center_x + math.cos(a) * rx * wrinkle)
-            y = math.sin(a) * ry * (1.0 + 0.025 * math.cos(2.0 * a))
+            y = math.sin(a) * ry * (1.0 + 0.018 * math.cos(2.0 * a))
             z_local = z
+            # The outer hem rises into a small side split.  This removes the
+            # rigid horizontal skirt edge while preserving a loose boxing hem.
+            outer_split = max(0.0, math.cos(a)) ** 8
+            back_drape = max(0.0, math.sin(a))
             if row_i == len(rows) - 1:
-                # Slightly longer on the outside/back like the approved trunks,
-                # with an actual open hem around each thigh.
-                outside = 0.5 + 0.5 * side * math.cos(a)
-                back = max(0.0, math.sin(a))
-                z_local -= 0.020 * outside + 0.010 * back
+                z_local += 0.034 * outer_split
+                z_local -= 0.008 * back_drape
+            elif row_i == len(rows) - 2:
+                z_local += 0.010 * outer_split
             verts.append((x, y, z_local))
 
     faces = []
+    face_materials = []
     for r in range(len(rows) - 1):
         base = r * samples
         next_base = (r + 1) * samples
         for i in range(samples):
             j = (i + 1) % samples
             faces.append((base + i, base + j, next_base + j, next_base + i))
+            # Narrow side seam only.  Review3's broad threshold still read as
+            # a hard gold panel from oblique views.
+            seam = i in (0, 1, samples - 1)
+            face_materials.append(1 if seam else 0)
 
     # Close the upper ring under the waistband.  The lower ring intentionally
     # remains open to preserve a true boxing-trunk leg opening.
@@ -590,25 +602,16 @@ def add_boxing_shorts_half(name, side, material, accent_material):
     bpy.context.collection.objects.link(obj)
     obj.data.materials.append(material)
     obj.data.materials.append(accent_material)
-    # Integrate the approved gold side/hem treatment into the deforming cloth
-    # itself.  This replaces the previous rigid gold rods that floated beside
-    # the shorts during stance and punch poses.
-    for poly in obj.data.polygons:
-        c = poly.center
-        # Narrow textile trim only.  A broad threshold turned the entire outer
-        # third of each leg into a rigid-looking gold slab in Review 2.
-        outer_side = side * c.x > 0.232
-        hem_band = c.z < 0.735
-        if outer_side or hem_band:
-            poly.material_index = 1
+    for poly, material_index in zip(obj.data.polygons[: len(face_materials)], face_materials):
+        poly.material_index = material_index
     bevel = obj.modifiers.new("ShortsClothSoftness", "BEVEL")
-    bevel.width = 0.004
-    bevel.segments = 3
+    bevel.width = 0.0014
+    bevel.segments = 2
     sub = obj.modifiers.new("ShortsClothSubdivision", "SUBSURF")
-    sub.levels = 1
-    sub.render_levels = 1
+    sub.levels = 2
+    sub.render_levels = 2
     solid = obj.modifiers.new("ShortsClothThickness", "SOLIDIFY")
-    solid.thickness = 0.0035
+    solid.thickness = 0.0015
     solid.offset = 0.0
     return obj
 
@@ -642,11 +645,10 @@ def add_boxing_waistband(material):
     name = "RamirezWaistband"
     samples = 64
     rings = [
-        (0.935, 0.218, 0.151),
-        (0.952, 0.224, 0.155),
-        (0.975, 0.225, 0.156),
-        (0.998, 0.222, 0.153),
-        (1.012, 0.216, 0.150),
+        (0.948, 0.201, 0.140),
+        (0.958, 0.204, 0.142),
+        (0.984, 0.204, 0.143),
+        (0.999, 0.200, 0.140),
     ]
     verts = []
     faces = []
@@ -670,10 +672,10 @@ def add_boxing_waistband(material):
     bpy.context.collection.objects.link(belt)
     belt.data.materials.append(material)
     bevel = belt.modifiers.new("WaistbandSoftEdge", "BEVEL")
-    bevel.width = 0.0035
-    bevel.segments = 3
+    bevel.width = 0.0018
+    bevel.segments = 2
     solid = belt.modifiers.new("WaistbandThickness", "SOLIDIFY")
-    solid.thickness = 0.004
+    solid.thickness = 0.0018
     solid.offset = 0.0
     return belt
 
@@ -750,7 +752,7 @@ def add_boxing_boot(name, ankle, foot, side, rig, bone_name):
 
 
 def add_trunks_and_hair(rig):
-    burgundy = make_material("RamirezTrunks", (0.050, 0.0025, 0.005, 1), metallic=0.0, roughness=0.52)
+    burgundy = make_material("RamirezTrunks", (0.050, 0.0025, 0.005, 1), metallic=0.0, roughness=0.58)
     gold = make_material("RamirezGold", (0.40, 0.20, 0.030, 1), metallic=0.58, roughness=0.30)
     if burgundy.use_nodes:
         nodes = burgundy.node_tree.nodes
@@ -776,7 +778,7 @@ def add_trunks_and_hair(rig):
     bpy.ops.mesh.primitive_cube_add(location=(0, -0.160, 0.965))
     plaque = bpy.context.object
     plaque.name = "RamirezWaistbandPlaque"
-    plaque.scale = (0.080, 0.010, 0.028)
+    plaque.scale = (0.070, 0.004, 0.018)
     bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)
     plaque.data.materials.append(plaque_black)
     bevel = plaque.modifiers.new("PlaqueSoftness", "BEVEL")
@@ -789,8 +791,8 @@ def add_trunks_and_hair(rig):
     label.data.body = "RAMIREZ"
     label.data.align_x = "CENTER"
     label.data.align_y = "CENTER"
-    label.data.size = 0.050
-    label.data.extrude = 0.0015
+    label.data.size = 0.040
+    label.data.extrude = 0.0008
     label.data.materials.append(gold)
     for obj in (belt, plaque, label):
         parent_to_bone(obj, rig, "pelvis")
@@ -919,20 +921,20 @@ def pose_targets(rig, gloves, name):
 
     poses = {
         "static_stance": {
-            "L": ((0.285, -0.205, 1.300), (0.135, -0.335, 1.445)),
-            "R": ((-0.275, -0.185, 1.305), (-0.115, -0.305, 1.485)),
+            "L": ((0.245, -0.175, 1.245), (0.125, -0.315, 1.470)),
+            "R": ((-0.235, -0.160, 1.250), (-0.105, -0.285, 1.470)),
         },
         "guard": {
-            "L": ((0.285, -0.215, 1.295), (0.135, -0.355, 1.440)),
-            "R": ((-0.270, -0.190, 1.305), (-0.105, -0.315, 1.485)),
+            "L": ((0.245, -0.180, 1.240), (0.125, -0.325, 1.470)),
+            "R": ((-0.235, -0.165, 1.245), (-0.100, -0.292, 1.465)),
         },
         "jab": {
-            "L": ((0.190, -0.400, 1.405), (0.100, -0.705, 1.415)),
-            "R": ((-0.275, -0.185, 1.305), (-0.110, -0.310, 1.480)),
+            "L": ((0.155, -0.420, 1.365), (0.080, -0.725, 1.395)),
+            "R": ((-0.235, -0.165, 1.245), (-0.105, -0.295, 1.462)),
         },
         "cross": {
-            "L": ((0.280, -0.185, 1.325), (0.145, -0.255, 1.495)),
-            "R": ((-0.175, -0.410, 1.400), (-0.070, -0.720, 1.410)),
+            "L": ((0.235, -0.165, 1.248), (0.105, -0.292, 1.458)),
+            "R": ((-0.160, -0.430, 1.365), (-0.050, -0.742, 1.395)),
         },
         "hook": {
             "L": ((0.42, -0.18, 1.38), (0.21, -0.37, 1.39)),
@@ -943,20 +945,20 @@ def pose_targets(rig, gloves, name):
             "R": ((-0.34, -0.18, 1.24), (-0.18, -0.34, 1.42)),
         },
         "slip_left": {
-            "L": ((0.275, -0.205, 1.285), (0.135, -0.335, 1.435)),
-            "R": ((-0.255, -0.190, 1.300), (-0.100, -0.310, 1.470)),
+            "L": ((0.240, -0.180, 1.235), (0.125, -0.318, 1.425)),
+            "R": ((-0.230, -0.165, 1.240), (-0.100, -0.290, 1.455)),
         },
         "slip_right": {
-            "L": ((0.255, -0.195, 1.300), (0.100, -0.315, 1.470)),
-            "R": ((-0.275, -0.205, 1.285), (-0.135, -0.335, 1.435)),
+            "L": ((0.230, -0.165, 1.240), (0.100, -0.290, 1.455)),
+            "R": ((-0.240, -0.180, 1.235), (-0.125, -0.318, 1.425)),
         },
         "slip_counter": {
-            "L": ((0.275, -0.185, 1.325), (0.140, -0.255, 1.490)),
-            "R": ((-0.170, -0.395, 1.390), (-0.055, -0.690, 1.405)),
+            "L": ((0.235, -0.165, 1.245), (0.105, -0.292, 1.455)),
+            "R": ((-0.165, -0.410, 1.355), (-0.052, -0.715, 1.390)),
         },
         "recover_guard": {
-            "L": ((0.280, -0.205, 1.300), (0.135, -0.345, 1.445)),
-            "R": ((-0.265, -0.185, 1.305), (-0.105, -0.305, 1.480)),
+            "L": ((0.245, -0.178, 1.240), (0.125, -0.320, 1.430)),
+            "R": ((-0.235, -0.162, 1.245), (-0.100, -0.290, 1.465)),
         },
         "step_forward": {
             "L": ((0.34, -0.20, 1.29), (0.18, -0.36, 1.45)),
@@ -972,48 +974,51 @@ def pose_targets(rig, gloves, name):
     # slight forward crouch, tucked chin and active shoulders.  Punch-specific
     # rotation is layered on top instead of leaving the torso upright.
     if name in {"static_stance", "guard", "jab", "cross", "slip_left", "slip_right", "slip_counter", "recover_guard"}:
-        translate_pose_bone_world(rig, "pelvis", (0.0, 0.0, -0.064))
-        rig.pose.bones["spine_03"].rotation_euler.x = math.radians(-7)
-        rig.pose.bones["neck_01"].rotation_euler.x = math.radians(9)
+        translate_pose_bone_world(rig, "pelvis", (0.0, 0.0, -0.088))
+        # Positive X pitches the upper body toward the opponent/camera.
+        rig.pose.bones["spine_03"].rotation_euler.x = math.radians(11)
+        rig.pose.bones["neck_01"].rotation_euler.x = math.radians(6)
 
     if name in {"static_stance", "guard", "recover_guard"}:
-        rig.pose.bones["pelvis"].rotation_euler.y = math.radians(-5)
-        rig.pose.bones["spine_03"].rotation_euler.y = math.radians(-7)
+        # MPFB spine local-Y is almost aligned with world-Z, so local-Y is the
+        # correct twist/yaw axis for orthodox blading.
+        rig.pose.bones["pelvis"].rotation_euler.y = math.radians(-8)
+        rig.pose.bones["spine_03"].rotation_euler.y = math.radians(-12)
     elif name == "jab":
         # Lead shoulder reaches without over-rotating the hips.
         translate_pose_bone_world(rig, "pelvis", (0.010, -0.010, -0.006))
-        rig.pose.bones["pelvis"].rotation_euler.y = math.radians(-7)
-        rig.pose.bones["spine_03"].rotation_euler.y = math.radians(-15)
-        rig.pose.bones["spine_03"].rotation_euler.x = math.radians(-8)
+        rig.pose.bones["pelvis"].rotation_euler.y = math.radians(-9)
+        rig.pose.bones["spine_03"].rotation_euler.y = math.radians(-18)
+        rig.pose.bones["spine_03"].rotation_euler.x = math.radians(12)
     elif name == "cross":
         # Rear hip and shoulder drive through together; the rear heel is lifted
         # and foot pivot is supplied by the leg target below.
         translate_pose_bone_world(rig, "pelvis", (0.016, -0.018, -0.008))
-        rig.pose.bones["pelvis"].rotation_euler.y = math.radians(17)
-        rig.pose.bones["spine_03"].rotation_euler.y = math.radians(28)
-        rig.pose.bones["spine_03"].rotation_euler.x = math.radians(-9)
+        rig.pose.bones["pelvis"].rotation_euler.y = math.radians(14)
+        rig.pose.bones["spine_03"].rotation_euler.y = math.radians(25)
+        rig.pose.bones["spine_03"].rotation_euler.x = math.radians(12)
     elif name == "slip_left":
-        translate_pose_bone_world(rig, "pelvis", (-0.024, 0.0, -0.012))
-        rig.pose.bones["pelvis"].rotation_euler.y = math.radians(-3)
-        rig.pose.bones["spine_03"].rotation_euler.y = math.radians(-4)
-        rig.pose.bones["spine_03"].rotation_euler.z = math.radians(-13)
-        rig.pose.bones["neck_01"].rotation_euler.z = math.radians(-6)
+        translate_pose_bone_world(rig, "pelvis", (0.028, -0.010, -0.018))
+        rig.pose.bones["pelvis"].rotation_euler.y = math.radians(-4)
+        rig.pose.bones["spine_03"].rotation_euler.y = math.radians(-7)
+        rig.pose.bones["spine_03"].rotation_euler.z = math.radians(-10)
+        rig.pose.bones["neck_01"].rotation_euler.z = math.radians(4)
     elif name == "slip_right":
-        translate_pose_bone_world(rig, "pelvis", (0.024, 0.0, -0.012))
-        rig.pose.bones["pelvis"].rotation_euler.y = math.radians(2)
-        rig.pose.bones["spine_03"].rotation_euler.y = math.radians(3)
-        rig.pose.bones["spine_03"].rotation_euler.z = math.radians(13)
-        rig.pose.bones["neck_01"].rotation_euler.z = math.radians(6)
+        translate_pose_bone_world(rig, "pelvis", (-0.028, -0.010, -0.018))
+        rig.pose.bones["pelvis"].rotation_euler.y = math.radians(-4)
+        rig.pose.bones["spine_03"].rotation_euler.y = math.radians(-6)
+        rig.pose.bones["spine_03"].rotation_euler.z = math.radians(10)
+        rig.pose.bones["neck_01"].rotation_euler.z = math.radians(-4)
     elif name == "slip_counter":
         # Counter keeps the head off the center line while the rear hip/shoulder
         # rotate into the straight.  This is intentionally distinct from a
         # static slip followed by an unrelated arm extension.
-        translate_pose_bone_world(rig, "pelvis", (-0.018, -0.015, -0.014))
-        rig.pose.bones["pelvis"].rotation_euler.y = math.radians(14)
-        rig.pose.bones["spine_03"].rotation_euler.y = math.radians(25)
-        rig.pose.bones["spine_03"].rotation_euler.z = math.radians(-9)
-        rig.pose.bones["spine_03"].rotation_euler.x = math.radians(-10)
-        rig.pose.bones["neck_01"].rotation_euler.z = math.radians(-4)
+        translate_pose_bone_world(rig, "pelvis", (0.018, -0.020, -0.022))
+        rig.pose.bones["pelvis"].rotation_euler.y = math.radians(12)
+        rig.pose.bones["spine_03"].rotation_euler.y = math.radians(22)
+        rig.pose.bones["spine_03"].rotation_euler.z = math.radians(-5)
+        rig.pose.bones["spine_03"].rotation_euler.x = math.radians(13)
+        rig.pose.bones["neck_01"].rotation_euler.z = math.radians(2)
     elif name in ("jab", "hook"):
         rig.pose.bones["spine_03"].rotation_euler.z = math.radians(-4)
     elif name == "cross":
@@ -1046,36 +1051,36 @@ def pose_targets(rig, gloves, name):
             "R": ((-0.152, 0.080, 0.455), (-0.198, 0.160, 0.078), -24.0),
         },
         "static_stance": {
-            "L": ((0.158, -0.112, 0.442), (0.198, -0.190, 0.074), 8.0),
-            "R": ((-0.152, 0.082, 0.452), (-0.198, 0.160, 0.078), -24.0),
+            "L": ((0.158, -0.128, 0.408), (0.202, -0.210, 0.074), 8.0),
+            "R": ((-0.154, 0.092, 0.422), (-0.202, 0.175, 0.078), -26.0),
         },
         "guard": {
-            "L": ((0.160, -0.116, 0.438), (0.200, -0.195, 0.074), 8.0),
-            "R": ((-0.154, 0.084, 0.450), (-0.200, 0.165, 0.078), -24.0),
+            "L": ((0.160, -0.132, 0.402), (0.204, -0.215, 0.074), 8.0),
+            "R": ((-0.156, 0.094, 0.418), (-0.204, 0.178, 0.078), -26.0),
         },
         "jab": {
-            "L": ((0.162, -0.130, 0.432), (0.208, -0.210, 0.074), 6.0),
-            "R": ((-0.152, 0.080, 0.455), (-0.198, 0.160, 0.078), -24.0),
+            "L": ((0.164, -0.145, 0.396), (0.212, -0.225, 0.074), 6.0),
+            "R": ((-0.154, 0.092, 0.422), (-0.202, 0.175, 0.078), -26.0),
         },
         "cross": {
-            "L": ((0.160, -0.116, 0.440), (0.200, -0.192, 0.074), 8.0),
-            "R": ((-0.126, 0.048, 0.422), (-0.172, 0.132, 0.142), -46.0),
+            "L": ((0.162, -0.132, 0.408), (0.206, -0.215, 0.074), 8.0),
+            "R": ((-0.126, 0.038, 0.392), (-0.172, 0.118, 0.220), -52.0),
         },
         "slip_left": {
-            "L": ((0.138, -0.120, 0.425), (0.192, -0.190, 0.074), 8.0),
-            "R": ((-0.170, 0.084, 0.448), (-0.208, 0.160, 0.078), -24.0),
+            "L": ((0.142, -0.136, 0.386), (0.198, -0.212, 0.074), 8.0),
+            "R": ((-0.174, 0.094, 0.410), (-0.210, 0.176, 0.078), -26.0),
         },
         "slip_right": {
-            "L": ((0.175, -0.114, 0.440), (0.208, -0.190, 0.074), 8.0),
-            "R": ((-0.134, 0.082, 0.432), (-0.192, 0.160, 0.082), -26.0),
+            "L": ((0.178, -0.130, 0.410), (0.210, -0.212, 0.074), 8.0),
+            "R": ((-0.138, 0.092, 0.392), (-0.196, 0.176, 0.082), -28.0),
         },
         "slip_counter": {
-            "L": ((0.142, -0.118, 0.430), (0.194, -0.190, 0.074), 8.0),
-            "R": ((-0.130, 0.048, 0.418), (-0.174, 0.130, 0.138), -44.0),
+            "L": ((0.146, -0.136, 0.390), (0.200, -0.212, 0.074), 8.0),
+            "R": ((-0.130, 0.038, 0.388), (-0.176, 0.116, 0.205), -50.0),
         },
         "recover_guard": {
-            "L": ((0.160, -0.114, 0.438), (0.200, -0.192, 0.074), 8.0),
-            "R": ((-0.154, 0.082, 0.450), (-0.200, 0.162, 0.078), -24.0),
+            "L": ((0.160, -0.130, 0.404), (0.204, -0.213, 0.074), 8.0),
+            "R": ((-0.156, 0.092, 0.420), (-0.204, 0.176, 0.078), -26.0),
         },
         "step_forward": {
             "L": ((0.155, -0.085, 0.510), (0.202, -0.125, 0.074), 8.0),
@@ -1128,7 +1133,7 @@ def main():
     args = parse_args()
     repo = Path(args.repo)
     mpfb = Path(args.mpfb)
-    review_root = repo / "art" / "blender" / "ramirez" / "renders" / "review3"
+    review_root = repo / "art" / "blender" / "ramirez" / "renders" / "review4"
     static_out = review_root / "static"
     combat_out = review_root / "combat"
     combat_clay_out = review_root / "combat-clay"
