@@ -1,0 +1,84 @@
+{
+  "round": "review18-glove-shape",
+  "scope": "GLOVE_SHAPE_ONLY",
+  "visual_gate_is_authoritative": true,
+  "scope_lock_non_glove_unchanged": true,
+  "scope_diffs": [],
+  "checks": {
+    "G01_front_tip_removed": {
+      "pass": true,
+      "evidence": [
+        "glove_front_closeup.png",
+        "glove_three_quarter_closeup.png",
+        "glove_side_closeup.png"
+      ],
+      "note": "The striking face remains broad and rounded; there is no forward terminal pole or tapered point."
+    },
+    "G02_reads_as_clenched_boxing_fist": {
+      "pass": true,
+      "evidence": [
+        "glove_front_closeup.png",
+        "glove_three_quarter_closeup.png",
+        "glove_guard_closeup.png"
+      ],
+      "note": "The main mass is a compact knuckle dome plus folded-finger mass rather than an axial shell."
+    },
+    "G03_knuckle_dome_round_and_full": {
+      "pass": true,
+      "evidence": [
+        "glove_front_closeup.png",
+        "glove_three_quarter_closeup.png",
+        "glove_side_closeup.png"
+      ],
+      "note": "The knuckle region stays full through the striking shoulder before the silhouette turns down."
+    },
+    "G04_front_rolls_downward_in_side_view": {
+      "pass": true,
+      "evidence": [
+        "glove_side_closeup.png",
+        "_qa_side_silhouette.png",
+        "_qa_side_ref_vs_r18_small.jpg"
+      ],
+      "note": "The front contour rolls down into the folded-finger mass and returns toward the palm."
+    },
+    "G05_thumb_bulge_visible": {
+      "pass": true,
+      "evidence": [
+        "glove_front_closeup.png",
+        "glove_three_quarter_closeup.png",
+        "glove_guard_closeup.png",
+        "glove_jab_closeup.png",
+        "glove_cross_closeup.png"
+      ]
+    },
+    "G06_white_wrist_cuff_visible": {
+      "pass": true,
+      "evidence": [
+        "glove_front_closeup.png",
+        "glove_three_quarter_closeup.png",
+        "glove_side_closeup.png",
+        "glove_guard_closeup.png",
+        "glove_jab_closeup.png",
+        "glove_cross_closeup.png"
+      ]
+    },
+    "G07_reference_side_by_side_no_paddle_structure": {
+      "pass": true,
+      "evidence": [
+        "qa-reference-vs-review18-static.jpg",
+        "qa-review18-final-contact.jpg"
+      ],
+      "note": "Front, three-quarter and side comparison no longer show the Review17 tapered paddle/boat-nose structure."
+    }
+  },
+  "numeric_sanity_artifact": "numeric-sanity-precheck.json",
+  "required_deliverables": [
+    "glove_front_closeup.png",
+    "glove_three_quarter_closeup.png",
+    "glove_side_closeup.png",
+    "glove_guard_closeup.png",
+    "glove_jab_closeup.png",
+    "glove_cross_closeup.png"
+  ],
+  "final_status": "GLOVE_SHAPE_PASS_PENDING_HUMAN_REVIEW"
+}

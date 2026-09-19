@@ -1,0 +1,63 @@
+{
+  "round": "review19-glove-proportion",
+  "scope": "GLOVE_PROPORTION_ONLY",
+  "approved_structure_retained": "curved_padded_fist_cage_v18",
+  "visual_gate_is_authoritative": true,
+  "scope_lock_non_glove_unchanged": true,
+  "scope_diffs": [],
+  "measurements": {
+    "review18_glove_width_m": 0.2420,
+    "head_width_m": 0.1814,
+    "review18_glove_to_head_ratio": 1.334,
+    "review19_mass_scale": 0.760,
+    "review19_glove_width_m": 0.1839,
+    "review19_glove_to_head_ratio": 1.014,
+    "target_band": [0.95, 1.08]
+  },
+  "checks": {
+    "P01_review18_structure_preserved": {
+      "pass": true,
+      "note": "Topology remains curved_padded_fist_cage_v18 / curved_sweep_two_mass; only padded glove mass scale changed."
+    },
+    "P02_glove_head_ratio_corrected": {
+      "pass": true,
+      "note": "Glove/head width ratio changed from 1.334 to 1.014."
+    },
+    "P03_front_three_quarter_side_proportion": {
+      "pass": true,
+      "evidence": [
+        "glove_front_closeup.png",
+        "glove_three_quarter_closeup.png",
+        "glove_side_closeup.png",
+        "qa-review18-vs-review19-proportion.jpg"
+      ]
+    },
+    "P04_guard_jab_cross_proportion": {
+      "pass": true,
+      "evidence": [
+        "glove_guard_closeup.png",
+        "glove_jab_closeup.png",
+        "glove_cross_closeup.png"
+      ],
+      "note": "The padded fist no longer visually dominates the unchanged head/shoulder mass in combat views."
+    },
+    "P05_thumb_and_white_cuff_remain_readable": {
+      "pass": true,
+      "evidence": [
+        "glove_front_closeup.png",
+        "glove_side_closeup.png",
+        "glove_guard_closeup.png"
+      ]
+    }
+  },
+  "numeric_sanity_artifact": "numeric-sanity-precheck.json",
+  "required_deliverables": [
+    "glove_front_closeup.png",
+    "glove_three_quarter_closeup.png",
+    "glove_side_closeup.png",
+    "glove_guard_closeup.png",
+    "glove_jab_closeup.png",
+    "glove_cross_closeup.png"
+  ],
+  "final_status": "GLOVE_PROPORTION_PASS_PENDING_HUMAN_REVIEW"
+}

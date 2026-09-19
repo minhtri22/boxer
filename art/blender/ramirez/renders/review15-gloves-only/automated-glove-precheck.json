@@ -1,0 +1,22 @@
+{
+  "scope": "GLOVES_ONLY",
+  "review_root": "D:\\WORK\\RESEARCH\\POVGame\\boxer-ramirez-art\\art\\blender\\ramirez\\renders\\review15-gloves-only",
+  "shape_profile": "hooked_boxing_loft_v15",
+  "fist_curl_drop_m": 0.072,
+  "knuckle_to_wrist_width_ratio": 1.862,
+  "glove_dimensions_m": [
+    0.216,
+    0.2049,
+    0.28
+  ],
+  "cuff_dimensions_m": [
+    0.1178,
+    0.1178,
+    0.105
+  ],
+  "automated_prechecks": {
+    "G01_non_round_structured_profile": true,
+    "G02_downward_fist_curl_geometry": true,
+    "G04_white_cuff_present_and_substantial": true
+  }
+}

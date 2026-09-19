@@ -1,0 +1,31 @@
+{
+  "round": "review20-leg-knee",
+  "scope": "LEG_KNEE_ONLY",
+  "phase": "static",
+  "knee_shape_profile": "anatomical_boxer_knee_v20",
+  "changed_vertices": 382,
+  "outside_scope_changed_vertices": 0,
+  "outside_scope_vertex_ids": [],
+  "max_displacement_m": 0.011195,
+  "scope_lock_pass": true,
+  "measurements": {
+    "patella_front_projection_gain_m": 0.011178,
+    "popliteal_back_inset_m": 0.006945,
+    "condyle_width_gain_m": 0.004469,
+    "outer_thigh_calf_slice_max_relative_width_change": 2.2e-05
+  },
+  "numeric_gates": {
+    "K01_patella_projects_forward": true,
+    "K02_popliteal_hollow_present": true,
+    "K03_condyles_gain_width": true,
+    "K04_outer_leg_proportion_preserved": true,
+    "K05_max_deformation_bounded": true
+  },
+  "anatomical_targets": {
+    "patella_anterior_projection": true,
+    "medial_lateral_condyle_transition": true,
+    "patellar_tendon_recess": true,
+    "tibial_tuberosity_transition": true,
+    "popliteal_hollow": true
+  }
+}

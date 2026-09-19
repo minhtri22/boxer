@@ -1,0 +1,1395 @@
+{
+  "source_head": "8c2d590484a8dfc67438c3359994f601b4ec08bd",
+  "classification": "BACKUP_EXPERIMENT_ONLY_NOT_APPROVED_ART",
+  "files": {
+    "art/blender/ramirez/BLENDER-HUMAN-UAT-PREFLIGHT.md": {
+      "sha256": "d45b09b7577c88bf58291654bed786dc45129110df4e027789d8ae2e50196ddf",
+      "bytes": 20383
+    },
+    "art/blender/ramirez/renders/review10-reference-rebuild/combat-clay/01_neutral_guard.png": {
+      "sha256": "437fa47deb1698f5b40dd2341419d87494bbfded7a7b859c7d514ef606cadb0c",
+      "bytes": 815871
+    },
+    "art/blender/ramirez/renders/review10-reference-rebuild/combat-clay/02_jab.png": {
+      "sha256": "69771aa15511cbb6559f9857a3b3056feba668ab744597684cc8f958b3f37e6b",
+      "bytes": 809057
+    },
+    "art/blender/ramirez/renders/review10-reference-rebuild/combat-clay/03_cross.png": {
+      "sha256": "6d9ecfc9abefba455f36fdf86f7c3fa8d4b5a1813c42ee0d6b0ab2b4a67c2bf8",
+      "bytes": 809778
+    },
+    "art/blender/ramirez/renders/review10-reference-rebuild/combat-clay/04_slip_left.png": {
+      "sha256": "c6f982229a695c502611d6573b28fb7e1fe5b19636dcf5d7b384fb97b158f21c",
+      "bytes": 816161
+    },
+    "art/blender/ramirez/renders/review10-reference-rebuild/combat-clay/05_slip_right.png": {
+      "sha256": "2e640750d1d80fdfa1b8c5c84e6c1ab669a154337079a62fdb962374e2115d4f",
+      "bytes": 821624
+    },
+    "art/blender/ramirez/renders/review10-reference-rebuild/combat-clay/06_slip_counter.png": {
+      "sha256": "eee038fe1b7b399518aeca4eb6c7d80d0c1f0eca73b41a7bae22c404dcedbf07",
+      "bytes": 810018
+    },
+    "art/blender/ramirez/renders/review10-reference-rebuild/combat-clay/07_recover_guard.png": {
+      "sha256": "7588a672b425ed0c1dbae0f70ccf8792c00e7c5dcc7741b8a3e43e53161b4e03",
+      "bytes": 815699
+    },
+    "art/blender/ramirez/renders/review10-reference-rebuild/combat/01_neutral_guard.png": {
+      "sha256": "8deadcb111f0d5b07a705ccc70439052a712adfd8f7aa6eaa7927a3e5cd7c3a7",
+      "bytes": 838038
+    },
+    "art/blender/ramirez/renders/review10-reference-rebuild/combat/02_jab.png": {
+      "sha256": "73029532ff4584ebf439fa6d6c9e2047d2fe807a20f9c72aece2aa607a16882d",
+      "bytes": 829685
+    },
+    "art/blender/ramirez/renders/review10-reference-rebuild/combat/03_cross.png": {
+      "sha256": "878561fdd32b4fc31386f7f099ba94c4f13c46a8582477c4f5063a917e4578e6",
+      "bytes": 839188
+    },
+    "art/blender/ramirez/renders/review10-reference-rebuild/combat/04_slip_left.png": {
+      "sha256": "f23b40a624de37c1e7c59f930f9d62dd79bd07e5f9ac9d4d6893b01e14167184",
+      "bytes": 837691
+    },
+    "art/blender/ramirez/renders/review10-reference-rebuild/combat/05_slip_right.png": {
+      "sha256": "273db180d8fe5b5969cfaa1ca3ccf9686db79c992ac723a6f8b49fc31056b6f9",
+      "bytes": 850519
+    },
+    "art/blender/ramirez/renders/review10-reference-rebuild/combat/06_slip_counter.png": {
+      "sha256": "ea63a43130b756ee9425828c177969515c89264ebdee9bc7a297a11c89abce9b",
+      "bytes": 838127
+    },
+    "art/blender/ramirez/renders/review10-reference-rebuild/combat/07_recover_guard.png": {
+      "sha256": "f992981e92dc2a72595919b294762fd149c49f8073942be40648466f21507946",
+      "bytes": 837906
+    },
+    "art/blender/ramirez/renders/review10-reference-rebuild/reference-review10-sheet.jpg": {
+      "sha256": "3bbf1f0976538ede9a3fa2a1359c5abe15e2dd599f9bc35b236414667f898aec",
+      "bytes": 441232
+    },
+    "art/blender/ramirez/renders/review10-reference-rebuild/static/01_front.png": {
+      "sha256": "71eeddda287e5c6438e3865327e62a52a07dfc5e89df13e294ab0509fa5420a3",
+      "bytes": 832080
+    },
+    "art/blender/ramirez/renders/review10-reference-rebuild/static/02_three_quarter_front.png": {
+      "sha256": "2c272f1328192768a7a58b538db4c7a4cac19bd29c5a88061bcd0e80d6503d94",
+      "bytes": 827362
+    },
+    "art/blender/ramirez/renders/review10-reference-rebuild/static/03_side.png": {
+      "sha256": "57c7c9b49d69587092a629a110af77492a010415c09a4c04d952e3cf7ab08883",
+      "bytes": 826263
+    },
+    "art/blender/ramirez/renders/review10-reference-rebuild/static/04_back.png": {
+      "sha256": "f4edb9fe72c4f6e27a2136d21e19b8491757acd160a4426a2e5a20601b23c25f",
+      "bytes": 814249
+    },
+    "art/blender/ramirez/renders/review10-reference-rebuild/static/05_three_quarter_back.png": {
+      "sha256": "375cf0c93719a08d8222892076e203d7db5f485efe0966c2617c2c6d02802e9a",
+      "bytes": 817354
+    },
+    "art/blender/ramirez/renders/review11-reference-rebuild/combat-clay/01_neutral_guard.png": {
+      "sha256": "a16c350fef18f3637d82f7006ef2c87cabae63cddb36af900410b149a3c11fcf",
+      "bytes": 814720
+    },
+    "art/blender/ramirez/renders/review11-reference-rebuild/combat-clay/02_jab.png": {
+      "sha256": "ec90f8e9c51745341ee026362aa938e052ce94b0fdb94020844fc75386a5bd51",
+      "bytes": 807371
+    },
+    "art/blender/ramirez/renders/review11-reference-rebuild/combat-clay/03_cross.png": {
+      "sha256": "5b64b56651faf682cf384c60d1a17c9cbfcd7efb995f934c92c3f04112573612",
+      "bytes": 807150
+    },
+    "art/blender/ramirez/renders/review11-reference-rebuild/combat-clay/04_slip_left.png": {
+      "sha256": "bd774532e1214afc6601eee820fa24ecbce844f4357f87790241a728da5a9d24",
+      "bytes": 816136
+    },
+    "art/blender/ramirez/renders/review11-reference-rebuild/combat-clay/05_slip_right.png": {
+      "sha256": "b7b03f49c49e92bbc8916a7efb40cfe360131fd9f389e80080dbcc112ca70eb3",
+      "bytes": 821799
+    },
+    "art/blender/ramirez/renders/review11-reference-rebuild/combat-clay/06_slip_counter.png": {
+      "sha256": "cda62ee27804ea08abf5e85ba66bf7389eb3661bcc03d3762b1e49cce608f624",
+      "bytes": 808617
+    },
+    "art/blender/ramirez/renders/review11-reference-rebuild/combat-clay/07_recover_guard.png": {
+      "sha256": "8a70a7ac2683b0199056d5b1cc1d05186bf35a4fbd830940dfce9b887cbca42e",
+      "bytes": 814563
+    },
+    "art/blender/ramirez/renders/review11-reference-rebuild/combat/01_neutral_guard.png": {
+      "sha256": "6ce4f59a47780a159d3f8484af5c4cdaa170032a40725e88c8ceb8e826fa6199",
+      "bytes": 836029
+    },
+    "art/blender/ramirez/renders/review11-reference-rebuild/combat/02_jab.png": {
+      "sha256": "fce1ba4d7415f4c22adbbd95b7cee6a4dbe37ec76272adfddb99fffff39bf6c5",
+      "bytes": 827835
+    },
+    "art/blender/ramirez/renders/review11-reference-rebuild/combat/03_cross.png": {
+      "sha256": "f4867934a6d913a3499e278f923839c87e609aaf7709395c763ecc55971f7816",
+      "bytes": 835046
+    },
+    "art/blender/ramirez/renders/review11-reference-rebuild/combat/04_slip_left.png": {
+      "sha256": "bbcf0bc7b36db774d6d55bc9482b465d1c49572df32bec401e152a10cf0d8842",
+      "bytes": 836246
+    },
+    "art/blender/ramirez/renders/review11-reference-rebuild/combat/05_slip_right.png": {
+      "sha256": "c2b21637b978b388190acd2572ca4a6de6e8f749114894e5c1cd4b924810306a",
+      "bytes": 850169
+    },
+    "art/blender/ramirez/renders/review11-reference-rebuild/combat/06_slip_counter.png": {
+      "sha256": "549a415058c8f57e0585fd43bc3d1abc110282a66de9df8b85325c3c22f52d87",
+      "bytes": 836049
+    },
+    "art/blender/ramirez/renders/review11-reference-rebuild/combat/07_recover_guard.png": {
+      "sha256": "b568e1eb5e6adb43a9a63669271acd6b36a1b4fe59252733c13f526fe923333b",
+      "bytes": 836035
+    },
+    "art/blender/ramirez/renders/review11-reference-rebuild/static/01_front.png": {
+      "sha256": "eb89af227100af117b528893cb219d5311d80d322c472d41e1524545ae65bb8e",
+      "bytes": 830316
+    },
+    "art/blender/ramirez/renders/review11-reference-rebuild/static/02_three_quarter_front.png": {
+      "sha256": "4ad0fe741153322dbe4cf32185e83148fdf0a57987a09ce557996e4e5a16d705",
+      "bytes": 825350
+    },
+    "art/blender/ramirez/renders/review11-reference-rebuild/static/03_side.png": {
+      "sha256": "78c9d792a2f3f230d53730f080efb52bd153d5bd07ad5188a4f0b77949fbd6f2",
+      "bytes": 826176
+    },
+    "art/blender/ramirez/renders/review11-reference-rebuild/static/04_back.png": {
+      "sha256": "f24b7c656b59fef33c6b11ca8b9daf7b445f57cbca74eb36a8f6140135f12fe2",
+      "bytes": 815526
+    },
+    "art/blender/ramirez/renders/review11-reference-rebuild/static/05_three_quarter_back.png": {
+      "sha256": "547faefe93ee4ed87b8cc5aa2910709a5ea5bdf06646e752cdd7d61a607d95df",
+      "bytes": 818808
+    },
+    "art/blender/ramirez/renders/review12-reference-rebuild/combat-clay/01_neutral_guard.png": {
+      "sha256": "6185d496f69c30742dd998dd2a33b4c8e048bd41cfa1f0930622215b04e05407",
+      "bytes": 815003
+    },
+    "art/blender/ramirez/renders/review12-reference-rebuild/combat-clay/02_jab.png": {
+      "sha256": "389907b705c19a698de3758c85100ad83287b5373d50f98648be6739b530b841",
+      "bytes": 803729
+    },
+    "art/blender/ramirez/renders/review12-reference-rebuild/combat-clay/03_cross.png": {
+      "sha256": "170a4fd3c608d4b1341a99b61b6573c28f67aebf5a8a210edb22c825be0dce2a",
+      "bytes": 805318
+    },
+    "art/blender/ramirez/renders/review12-reference-rebuild/combat-clay/04_slip_left.png": {
+      "sha256": "8b35ee0f631a5d019257ab0d5e405649985d4de727446463a0911e5fc19319ae",
+      "bytes": 816414
+    },
+    "art/blender/ramirez/renders/review12-reference-rebuild/combat-clay/05_slip_right.png": {
+      "sha256": "82c6cb9f8661f720f6ca7db88b0470c529b900ae1536d906ebeb008bf1189491",
+      "bytes": 820220
+    },
+    "art/blender/ramirez/renders/review12-reference-rebuild/combat-clay/06_slip_counter.png": {
+      "sha256": "2bbc03c35379bc2c75c54e5302a8ea4bcdc6e6216220d4ec6056cefbc7defd6a",
+      "bytes": 807006
+    },
+    "art/blender/ramirez/renders/review12-reference-rebuild/combat-clay/07_recover_guard.png": {
+      "sha256": "143c29c30eb8650b537fcfa879f8b73dd5035b515d8b6b23742a99d539b53d0d",
+      "bytes": 814979
+    },
+    "art/blender/ramirez/renders/review12-reference-rebuild/combat/01_neutral_guard.png": {
+      "sha256": "d2ef6e2d67ffcfc5e1643b7e2e00a43fce2fd6632d7108919c4b333b1f9ff559",
+      "bytes": 840927
+    },
+    "art/blender/ramirez/renders/review12-reference-rebuild/combat/02_jab.png": {
+      "sha256": "025758cf36410206e238f052fade44e1e6b75279f468f0366d05803c7529fec8",
+      "bytes": 831705
+    },
+    "art/blender/ramirez/renders/review12-reference-rebuild/combat/03_cross.png": {
+      "sha256": "c261991feaa08a18c4586453e9ce31405131e11677b9de382c95d966bd6dbca9",
+      "bytes": 839306
+    },
+    "art/blender/ramirez/renders/review12-reference-rebuild/combat/04_slip_left.png": {
+      "sha256": "fc5b2c714a41d2bed4c4b9076182ac11101ad116edef0a5ab9f25562b6e5e0ad",
+      "bytes": 840719
+    },
+    "art/blender/ramirez/renders/review12-reference-rebuild/combat/05_slip_right.png": {
+      "sha256": "f48b720e9c928bff562a951c8eaaba345b82465d53735c79cf6fbe28f6dfb5b3",
+      "bytes": 854282
+    },
+    "art/blender/ramirez/renders/review12-reference-rebuild/combat/06_slip_counter.png": {
+      "sha256": "7faf184996f70614ef1ef42a55484cc95d2910f3078324a786428e4af782f663",
+      "bytes": 840108
+    },
+    "art/blender/ramirez/renders/review12-reference-rebuild/combat/07_recover_guard.png": {
+      "sha256": "45af686caf74051c9e5cd18aa05f5b823aac2f4f4292964e07da0e19f0cc9c34",
+      "bytes": 839943
+    },
+    "art/blender/ramirez/renders/review12-reference-rebuild/qa-body-reference-vs-review12.jpg": {
+      "sha256": "c1ddf133361f21774928b45d63d724411f9f2781d103afedbf576768eb5f3b65",
+      "bytes": 104827
+    },
+    "art/blender/ramirez/renders/review12-reference-rebuild/qa-gloves-reference-vs-review12.jpg": {
+      "sha256": "8e04132942e397a872b33692f63794da7c5aa39fa766d6bda993c93ebd0c9dc7",
+      "bytes": 73522
+    },
+    "art/blender/ramirez/renders/review12-reference-rebuild/qa-trunks-reference-vs-review12.jpg": {
+      "sha256": "3ad858744055a640a89032dda39f8dc499b16d3bd1465569ac64f068fee6fefa",
+      "bytes": 72952
+    },
+    "art/blender/ramirez/renders/review12-reference-rebuild/static/01_front.png": {
+      "sha256": "4fb88043934ccad5697f65738b3fbafaddc02efb162a22bb53aad575ded879d0",
+      "bytes": 834032
+    },
+    "art/blender/ramirez/renders/review12-reference-rebuild/static/02_three_quarter_front.png": {
+      "sha256": "f20fdd7e76daf454367c887ef0542cf9b1c24af67b0f1f1de82daa6d199fcf50",
+      "bytes": 829117
+    },
+    "art/blender/ramirez/renders/review12-reference-rebuild/static/03_side.png": {
+      "sha256": "a9a0437a53fba151ebfe865fab5c455079ec3248b1fd44cd73f4e4fbc3923ae2",
+      "bytes": 830959
+    },
+    "art/blender/ramirez/renders/review12-reference-rebuild/static/04_back.png": {
+      "sha256": "76d5861838c95991ec8d6ab7f3da5d7c00b9063046987b86075c8e5fe61135ee",
+      "bytes": 829312
+    },
+    "art/blender/ramirez/renders/review12-reference-rebuild/static/05_three_quarter_back.png": {
+      "sha256": "8e8e4ecf50be986a0668af50c02ef09f29a6dae37eded24a11ddb4c80144bb2f",
+      "bytes": 829459
+    },
+    "art/blender/ramirez/renders/review13-guard-leg-correction/combat-clay/01_neutral_guard.png": {
+      "sha256": "a70ebb870b8407069f7d243b543f67ec0794f39a7c07f7f4532687855f466133",
+      "bytes": 816311
+    },
+    "art/blender/ramirez/renders/review13-guard-leg-correction/combat-clay/02_jab.png": {
+      "sha256": "4e0934ea20e4000f7ee09dc507453bcc4a88531a6ae384e3ad9ede018e71c00f",
+      "bytes": 803729
+    },
+    "art/blender/ramirez/renders/review13-guard-leg-correction/combat-clay/03_cross.png": {
+      "sha256": "9c469e791d55572b900cddb26302650939d867172919d32c09d44ae72be41140",
+      "bytes": 805318
+    },
+    "art/blender/ramirez/renders/review13-guard-leg-correction/combat-clay/04_slip_left.png": {
+      "sha256": "c376d9790f2a1ef116a89407bc3d9f28ea11c4692d9040c4893381dd3e1c059a",
+      "bytes": 816414
+    },
+    "art/blender/ramirez/renders/review13-guard-leg-correction/combat-clay/05_slip_right.png": {
+      "sha256": "39d7c9ba23545b543712fc98d0693e502c863ec9345e0974b494f82a468c49ac",
+      "bytes": 820220
+    },
+    "art/blender/ramirez/renders/review13-guard-leg-correction/combat-clay/06_slip_counter.png": {
+      "sha256": "f1908d7a99bc1ad21748771d3bc94fd611d26befbd77f6f9c86bc974236e490b",
+      "bytes": 807004
+    },
+    "art/blender/ramirez/renders/review13-guard-leg-correction/combat-clay/07_recover_guard.png": {
+      "sha256": "608ad2181844f6858033923c177f3232b988fae0f0f4863402c38324b9b5fc75",
+      "bytes": 816632
+    },
+    "art/blender/ramirez/renders/review13-guard-leg-correction/combat/01_neutral_guard.png": {
+      "sha256": "a3eea5902e63f24576475b417d127984efce572c8cd57425b9023bcb531649ee",
+      "bytes": 841365
+    },
+    "art/blender/ramirez/renders/review13-guard-leg-correction/combat/02_jab.png": {
+      "sha256": "f583f6f3f526c38a5166a35735ce59149aff0857507595d6381bc17a74df02c1",
+      "bytes": 831705
+    },
+    "art/blender/ramirez/renders/review13-guard-leg-correction/combat/03_cross.png": {
+      "sha256": "983c015013cb99bb456b5222043d6f02bac2f8c3196ae929fab1751e4edeced4",
+      "bytes": 839306
+    },
+    "art/blender/ramirez/renders/review13-guard-leg-correction/combat/04_slip_left.png": {
+      "sha256": "1980ab6f5464488d181f2e5f6654077cfc2fc27062e6976fb840a33371596dd8",
+      "bytes": 840719
+    },
+    "art/blender/ramirez/renders/review13-guard-leg-correction/combat/05_slip_right.png": {
+      "sha256": "58b7c3ec7eb93c3352704853d6a3030c84d554bd2e6fee46dfa4ee6d97d653a6",
+      "bytes": 854282
+    },
+    "art/blender/ramirez/renders/review13-guard-leg-correction/combat/06_slip_counter.png": {
+      "sha256": "e713434a9bda531b3bbccf156a737a2517cbaac0c50b69d5c8fa4c814a08becd",
+      "bytes": 840113
+    },
+    "art/blender/ramirez/renders/review13-guard-leg-correction/combat/07_recover_guard.png": {
+      "sha256": "4680f1278a61253f5a47eaf5556368f0b8050eb2e872357b159ae1d98bc5bf6e",
+      "bytes": 841078
+    },
+    "art/blender/ramirez/renders/review13-guard-leg-correction/qa-body-reference-vs-review13.jpg": {
+      "sha256": "20d7df901104d2a36e03620dc0cc8e154e2426e59ff2ce3670f99a94b3dc5c83",
+      "bytes": 127222
+    },
+    "art/blender/ramirez/renders/review13-guard-leg-correction/qa-gloves-reference-vs-review13.jpg": {
+      "sha256": "87354e5ea20d843de4680b9ebc66b71e24be25074ffb61447ed983ab57041a05",
+      "bytes": 106570
+    },
+    "art/blender/ramirez/renders/review13-guard-leg-correction/qa-guard-review12-vs-review13.jpg": {
+      "sha256": "2e8d4c9f8a1fbe1125fe16813a9a1aefc9248bb2df2e6eee285ab3eac8f562d9",
+      "bytes": 114385
+    },
+    "art/blender/ramirez/renders/review13-guard-leg-correction/static/01_front.png": {
+      "sha256": "1e7f06a8316e81c0f7563e1962e7fa300bc4883069b6ab5c3a5d23dcb5639f44",
+      "bytes": 838254
+    },
+    "art/blender/ramirez/renders/review13-guard-leg-correction/static/02_three_quarter_front.png": {
+      "sha256": "aefc5a7036dbdaa09147ccf71152df0bef922c7f93c68057c0d01d0c8e0db065",
+      "bytes": 831407
+    },
+    "art/blender/ramirez/renders/review13-guard-leg-correction/static/03_side.png": {
+      "sha256": "ed75cfd761c7ffe62b280e1617726c14cb9cb4374a4f5954b9e3061a045018eb",
+      "bytes": 835181
+    },
+    "art/blender/ramirez/renders/review13-guard-leg-correction/static/04_back.png": {
+      "sha256": "3c077ec17a558d3c48bfa40e5f6e047ebd80fc3c52331f40d40e9729f532923d",
+      "bytes": 822537
+    },
+    "art/blender/ramirez/renders/review13-guard-leg-correction/static/05_three_quarter_back.png": {
+      "sha256": "69de8eddefea2b2ab0f3de37396393107a931c8b45a9b8a67f7f97ee59323619",
+      "bytes": 829443
+    },
+    "art/blender/ramirez/renders/review14-glove-reference-correction/combat-clay/01_neutral_guard.png": {
+      "sha256": "b04133dfc46ca593652554f367e89df337de61b15e8a45fd5147651e7bcfb913",
+      "bytes": 819449
+    },
+    "art/blender/ramirez/renders/review14-glove-reference-correction/combat-clay/02_jab.png": {
+      "sha256": "90cc2bffc428cf766230da330d02b034a3900b96ff009d9dc1590a2eea927898",
+      "bytes": 805174
+    },
+    "art/blender/ramirez/renders/review14-glove-reference-correction/combat-clay/03_cross.png": {
+      "sha256": "c3f496c88f0ee7faaf720835356e35e47ec91bb062472ba2955c53aba35f9c15",
+      "bytes": 806764
+    },
+    "art/blender/ramirez/renders/review14-glove-reference-correction/combat-clay/04_slip_left.png": {
+      "sha256": "bdd2087de146bbc623f4bb49b2cdf5edbf2bf204ff015d8bbfe4809eaae4b438",
+      "bytes": 816537
+    },
+    "art/blender/ramirez/renders/review14-glove-reference-correction/combat-clay/05_slip_right.png": {
+      "sha256": "9e8e36e3e611148da720aacbbf4f6a91b9a96af390c231b36d540ca510132f9c",
+      "bytes": 821534
+    },
+    "art/blender/ramirez/renders/review14-glove-reference-correction/combat-clay/06_slip_counter.png": {
+      "sha256": "a90174e824bbc893d8853780e851c5e4cb9cdada7e1ad59dcd3ff5920d266170",
+      "bytes": 807811
+    },
+    "art/blender/ramirez/renders/review14-glove-reference-correction/combat-clay/07_recover_guard.png": {
+      "sha256": "ea54f87dd594365ee597592c62e1ad24815b17aecd211235692921115e799ca0",
+      "bytes": 819741
+    },
+    "art/blender/ramirez/renders/review14-glove-reference-correction/combat/01_neutral_guard.png": {
+      "sha256": "ca982256ce4d73749227f85ffb262af9f1b0b52ecda0cee176bd28ff96e1a63b",
+      "bytes": 843372
+    },
+    "art/blender/ramirez/renders/review14-glove-reference-correction/combat/02_jab.png": {
+      "sha256": "9c502968a2c6869481363d29036c49eb95ed582d1c07f4cdcff4f6dc7010faf1",
+      "bytes": 832330
+    },
+    "art/blender/ramirez/renders/review14-glove-reference-correction/combat/03_cross.png": {
+      "sha256": "059b116617d411067329ac5a2a7954c817b23f4737aacd42788c03f40c48cd57",
+      "bytes": 841029
+    },
+    "art/blender/ramirez/renders/review14-glove-reference-correction/combat/04_slip_left.png": {
+      "sha256": "55e8b327380871a6b08943c89f5a5496f5aad48d6f77f59fb85367d10b99350a",
+      "bytes": 842942
+    },
+    "art/blender/ramirez/renders/review14-glove-reference-correction/combat/05_slip_right.png": {
+      "sha256": "47bc7fd6ed8c90a2356d37c0ceac7d16cde15c00d2cdefeb88372b2a24fcfb78",
+      "bytes": 855327
+    },
+    "art/blender/ramirez/renders/review14-glove-reference-correction/combat/06_slip_counter.png": {
+      "sha256": "9dbf46bb1655fbf3f589b01df004e048b5dfe6ed4e390c89f3431d419356d944",
+      "bytes": 841251
+    },
+    "art/blender/ramirez/renders/review14-glove-reference-correction/combat/07_recover_guard.png": {
+      "sha256": "39bd66fbffe757824e8bdcdb539f32c1740738ded125347ec7b1be3b6e0d1af2",
+      "bytes": 843058
+    },
+    "art/blender/ramirez/renders/review14-glove-reference-correction/qa-gloves-reference-vs-review13-vs-review14.jpg": {
+      "sha256": "e7998c85fc452deecfb94cb9f3dbe876d3e776e22ee63e0a43e76fc49cb90985",
+      "bytes": 168241
+    },
+    "art/blender/ramirez/renders/review14-glove-reference-correction/static/01_front.png": {
+      "sha256": "14cea3d5f99a05b3711f48fd078907d5588feb722082f3249d773b2bb2e267f0",
+      "bytes": 839387
+    },
+    "art/blender/ramirez/renders/review14-glove-reference-correction/static/02_three_quarter_front.png": {
+      "sha256": "4290e7ec011345fa245ae50e158e3e9c53bda26f64e647a252e3b00a1a809143",
+      "bytes": 834110
+    },
+    "art/blender/ramirez/renders/review14-glove-reference-correction/static/03_side.png": {
+      "sha256": "d66f579790cff25a4d7f5fa452756ec954f219b21b4798b424d1d4117006806f",
+      "bytes": 836364
+    },
+    "art/blender/ramirez/renders/review14-glove-reference-correction/static/04_back.png": {
+      "sha256": "1473859e8708f46deeb42113fd58fbf22279ade757045222dbea863cb179b159",
+      "bytes": 822734
+    },
+    "art/blender/ramirez/renders/review14-glove-reference-correction/static/05_three_quarter_back.png": {
+      "sha256": "0572848b28e0f29afd9a97729ab193297d5639f8b836d4115c3f138b9911b350",
+      "bytes": 829151
+    },
+    "art/blender/ramirez/renders/review15-gloves-only/automated-glove-precheck.json": {
+      "sha256": "fabfa0bed69dd70e4e343cb86b19a9c58b7ae94f2d128e1dce8162dc329e02df",
+      "bytes": 565
+    },
+    "art/blender/ramirez/renders/review15-gloves-only/combat-closeup/01_neutral_guard_closeup.png": {
+      "sha256": "27a53e5b2293d20793aa792a2ae28fe544c11d588a89dc217454b544e4254437",
+      "bytes": 820262
+    },
+    "art/blender/ramirez/renders/review15-gloves-only/combat-closeup/02_jab_closeup.png": {
+      "sha256": "5e8cb3fb537fcc0ff66f2e6a26fe11fa932b17a453a7384aad4ba45a8d9327f0",
+      "bytes": 814622
+    },
+    "art/blender/ramirez/renders/review15-gloves-only/combat-closeup/03_cross_closeup.png": {
+      "sha256": "3157d069b754ce4a634826d19507f8f68578ef05b34a7bd2fe687720a0d2dd3d",
+      "bytes": 816067
+    },
+    "art/blender/ramirez/renders/review15-gloves-only/qa-front-mini.jpg": {
+      "sha256": "c10c5886f10de3d7d8af8c9097bd93c49d5bc1531661328851d616caa9491fc5",
+      "bytes": 3643
+    },
+    "art/blender/ramirez/renders/review15-gloves-only/qa-guard-mini.jpg": {
+      "sha256": "7a69fc2881b80b67e5f913840ae2f83f5b2631a631a6155f3aaddb5a24c34974",
+      "bytes": 3681
+    },
+    "art/blender/ramirez/renders/review15-gloves-only/qa-reference-vs-review14-vs-review15.jpg": {
+      "sha256": "7eb36e37f65459cea93e8a5947d7e646682084b210dedc2196cb17fe74548fc7",
+      "bytes": 110100
+    },
+    "art/blender/ramirez/renders/review15-gloves-only/qa-review15-gloves.json": {
+      "sha256": "bf87153829999e11cb4fe18c9371734be4d9c5e1a218ba4dfb229e4703c6091e",
+      "bytes": 1527
+    },
+    "art/blender/ramirez/renders/review15-gloves-only/qa-review15-required-evidence.jpg": {
+      "sha256": "32818eb34687fde8f2db76c2e796d28a8e64ae43ed2e99284c5a201baf49c258",
+      "bytes": 57774
+    },
+    "art/blender/ramirez/renders/review15-gloves-only/qa-side-mini.jpg": {
+      "sha256": "d208018420e3c7c03c9725fa33a7a00dc87c2885b78a088642b12fcb90743ae2",
+      "bytes": 3642
+    },
+    "art/blender/ramirez/renders/review15-gloves-only/static-closeup/01_front_closeup.png": {
+      "sha256": "dcc9f4af8750b65ac2085d78ee161ad33b070066937d34a7a4ee5ce4dd798c3d",
+      "bytes": 821440
+    },
+    "art/blender/ramirez/renders/review15-gloves-only/static-closeup/02_three_quarter_front_closeup.png": {
+      "sha256": "0347b3e631a43e4c9c03006880456383deaa8db4d84547f1f2332fab6346579d",
+      "bytes": 813246
+    },
+    "art/blender/ramirez/renders/review15-gloves-only/static-closeup/03_side_closeup.png": {
+      "sha256": "76eca91f5a017e62dc3efae5464ea52ee174f7e38f0243c70e2988f38dfc8b4e",
+      "bytes": 821169
+    },
+    "art/blender/ramirez/renders/review16-glove-fix/automated-glove-precheck.json": {
+      "sha256": "a0502ff46b48ab2e4a8f99296b89137ada6aefbd52d4b99479f32f324e64788f",
+      "bytes": 608
+    },
+    "art/blender/ramirez/renders/review16-glove-fix/cross_closeup.png": {
+      "sha256": "803bfc9ec680e828af6ef741ffd6dd4416c76b5b820c7bd65213cd216b55ff68",
+      "bytes": 1161091
+    },
+    "art/blender/ramirez/renders/review16-glove-fix/glove_front_closeup.png": {
+      "sha256": "2eb6a9fadc1f768c2a2e0a2def60a7567baa8f6895bca4c3d5b7c25a8abfb4e6",
+      "bytes": 1248337
+    },
+    "art/blender/ramirez/renders/review16-glove-fix/glove_side_closeup.png": {
+      "sha256": "5d3a2f544981db29f640713f5cf1383e83fce0527a6759f63a1d8a319e8d6d53",
+      "bytes": 1150150
+    },
+    "art/blender/ramirez/renders/review16-glove-fix/glove_three_quarter_closeup.png": {
+      "sha256": "136b04000102a75016468220a116db2f99593dcb73ca799b66b6abc856a86aca",
+      "bytes": 1195401
+    },
+    "art/blender/ramirez/renders/review16-glove-fix/jab_closeup.png": {
+      "sha256": "f8b7c0f4ad8e016010a14eb7f5728dcab3e60599cfd1554843b8d06b163aa3e7",
+      "bytes": 1149599
+    },
+    "art/blender/ramirez/renders/review16-glove-fix/neutral_guard_closeup.png": {
+      "sha256": "c64eef0653791d76b502b38719fb9f616a7b84edd1229946262264a7fcbb2955",
+      "bytes": 1194846
+    },
+    "art/blender/ramirez/renders/review16-glove-fix/qa-comparison-small.jpg": {
+      "sha256": "c858954e7cc0d319161c9fdd78440a362f9506346d812f8dad44d8ebb34761e3",
+      "bytes": 2950
+    },
+    "art/blender/ramirez/renders/review16-glove-fix/qa-evidence-small.jpg": {
+      "sha256": "edf0bc73791578e642aea093600bf7337727e1fed47710a44818c3d5c41d9baa",
+      "bytes": 4243
+    },
+    "art/blender/ramirez/renders/review16-glove-fix/qa-reference-vs-review15-vs-review16-tiny.jpg": {
+      "sha256": "a2336cf53b7b038689fd93ab3ae2c2dfac426c6ad9151448d58de517a8853ff2",
+      "bytes": 17317
+    },
+    "art/blender/ramirez/renders/review16-glove-fix/qa-reference-vs-review15-vs-review16.jpg": {
+      "sha256": "20aed33f951c02e64846f470c8546de2266d2be4ae9d9819d81f57104fe85686",
+      "bytes": 83397
+    },
+    "art/blender/ramirez/renders/review16-glove-fix/qa-review16-glove-fix.json": {
+      "sha256": "37ff36ac9f5445f2aa90f4e387070548b88e9d8ece593d9286fc26fd04e6b694",
+      "bytes": 2501
+    },
+    "art/blender/ramirez/renders/review16-glove-fix/qa-review16-required-evidence.jpg": {
+      "sha256": "eb5af400308c0a3921ecd0779c234ddde64bd02109da49c88583277d91c30206",
+      "bytes": 94187
+    },
+    "art/blender/ramirez/renders/review16-glove-fix/qa-side-latest-small.jpg": {
+      "sha256": "b6f0f18664d179ac61fa630d19885b51441a03e5738eb1f804898aa54b14a471",
+      "bytes": 3026
+    },
+    "art/blender/ramirez/renders/review16-glove-fix/qa_front_420.jpg": {
+      "sha256": "0152aec68c29a9efc8e57322abea8eb23ec36cae32319a621a6fba24112a6860",
+      "bytes": 8205
+    },
+    "art/blender/ramirez/renders/review16-glove-fix/qa_glove_fix_contact.jpg": {
+      "sha256": "46d16d6142e685d12b1e73996326e8796b0b493df0398f096c446f8b1a5d358e",
+      "bytes": 12249
+    },
+    "art/blender/ramirez/renders/review16-glove-fix/qa_glove_fix_contact_latest.jpg": {
+      "sha256": "2f46a7895824289becca0e717c3caa2074090f3f741e6ef76ed62f8a34d7b6a8",
+      "bytes": 43318
+    },
+    "art/blender/ramirez/renders/review16-glove-fix/qa_glove_fix_contact_latest_small.jpg": {
+      "sha256": "ccb74d904a6289037bd361d94128f5f5dcd11ff63755c15fe88cba6c9345b434",
+      "bytes": 7730
+    },
+    "art/blender/ramirez/renders/review16-glove-fix/qa_glove_fix_contact_small.jpg": {
+      "sha256": "a65374fff23562764dc59af613432caacc5006da0d44c4e0a83e7df3d3585955",
+      "bytes": 4015
+    },
+    "art/blender/ramirez/renders/review16-glove-fix/qa_glove_fix_contact_tiny.jpg": {
+      "sha256": "94270345afa955070b9967f9196290c661dcfc4d4c473479bab35bf9c274fc35",
+      "bytes": 3515
+    },
+    "art/blender/ramirez/renders/review16-glove-fix/qa_side_420.jpg": {
+      "sha256": "9bb9269fcd0a08ba3e03f0baae79cc7c4d571cb481c4be47be19341812be132c",
+      "bytes": 6760
+    },
+    "art/blender/ramirez/renders/review16-glove-fix/qa_side_tiny.jpg": {
+      "sha256": "de0bc2f924d3a28fd078a6ed89499d4ef001522654f8ba406bbba920d958394b",
+      "bytes": 2177
+    },
+    "art/blender/ramirez/renders/review16-glove-fix/qa_three_quarter_420.jpg": {
+      "sha256": "436966d33e7cfc8ee3892b9d6d4ab0b9e100573de2a5cf7a3443e19397e4d9e5",
+      "bytes": 7402
+    },
+    "art/blender/ramirez/renders/review17-glove-shape/automated-glove-shape-precheck.json": {
+      "sha256": "e5cc3e1b764f18a46f093ad13044fee04d893c9ecf83715114445c7fc5f97985",
+      "bytes": 716
+    },
+    "art/blender/ramirez/renders/review17-glove-shape/glove_cross_closeup.png": {
+      "sha256": "90940bac364f70de1cda715520e7c73241a2c891a6a015b55ac40c21a46d9767",
+      "bytes": 1173352
+    },
+    "art/blender/ramirez/renders/review17-glove-shape/glove_front_closeup.png": {
+      "sha256": "4642fd8c2ecf2da97a49ed972a99727523f6fe8fbadda3882cd919d75bad2c47",
+      "bytes": 1250008
+    },
+    "art/blender/ramirez/renders/review17-glove-shape/glove_guard_closeup.png": {
+      "sha256": "044e43dfb180a7379e1824149d0e2e5b34eb08afb951f2e16f5ee2dc0338a476",
+      "bytes": 1194668
+    },
+    "art/blender/ramirez/renders/review17-glove-shape/glove_jab_closeup.png": {
+      "sha256": "ab32372806605273b996df3239c99c3b0baff0d60968886ae7a59f9940ff0fe7",
+      "bytes": 1153417
+    },
+    "art/blender/ramirez/renders/review17-glove-shape/glove_side_closeup.png": {
+      "sha256": "117672fa2801dedd2826c8fac64509297e6bcd58106618da6665e979ca14ca12",
+      "bytes": 1156897
+    },
+    "art/blender/ramirez/renders/review17-glove-shape/glove_three_quarter_closeup.png": {
+      "sha256": "b7971eb10fad6d4b4fc6da477558434cf6919a8ae3f0e02921ddcabf8e649eb3",
+      "bytes": 1196521
+    },
+    "art/blender/ramirez/renders/review18-glove-shape/_qa_side_glove_crop.png": {
+      "sha256": "34aa3b32c1b88dc0a545a42c3b580f2b99613fb5d2d5f57dff0f4c20f03fedcb",
+      "bytes": 374802
+    },
+    "art/blender/ramirez/renders/review18-glove-shape/_qa_side_ref_vs_r18_small.jpg": {
+      "sha256": "3507ebbe4e1b83606209c286e8d3bded113e25cbd24304d1751c130dacce04d1",
+      "bytes": 19009
+    },
+    "art/blender/ramirez/renders/review18-glove-shape/_qa_side_silhouette.png": {
+      "sha256": "b9d59ef51eadccc534dda32d6e9da88f8a2bfa37b6f2cb3c6aa25e82cfc0df9b",
+      "bytes": 20980
+    },
+    "art/blender/ramirez/renders/review18-glove-shape/glove_cross_closeup.png": {
+      "sha256": "ac97fba2242fea2c12f6a8e52ff8098203a06d748eedf066efa02c87e0e31d67",
+      "bytes": 1167125
+    },
+    "art/blender/ramirez/renders/review18-glove-shape/glove_front_closeup.png": {
+      "sha256": "b1c86c36e991b972287b5bbb3141245ff8a2514ac787246fa8afafece325760f",
+      "bytes": 1221502
+    },
+    "art/blender/ramirez/renders/review18-glove-shape/glove_guard_closeup.png": {
+      "sha256": "62f292757d6d6e1f956f1d241cf288e1ea53032a8a1d5a05f4e674ad1cbc8617",
+      "bytes": 1179847
+    },
+    "art/blender/ramirez/renders/review18-glove-shape/glove_jab_closeup.png": {
+      "sha256": "a874075fc278ecf59b04613330acd10c846cc05ee6ab51f4ee4eb7973dd1fbfd",
+      "bytes": 1145665
+    },
+    "art/blender/ramirez/renders/review18-glove-shape/glove_side_closeup.png": {
+      "sha256": "8a9e9162d6f276a77758531fb0287839e44ad4f2618e44b5a8ebc86fdaee6c22",
+      "bytes": 1170305
+    },
+    "art/blender/ramirez/renders/review18-glove-shape/glove_three_quarter_closeup.png": {
+      "sha256": "6453c8caa34d0b194ddd18b1cb0824593b24da2e3611f43eaa44f9bece426e62",
+      "bytes": 1199724
+    },
+    "art/blender/ramirez/renders/review18-glove-shape/numeric-sanity-precheck.json": {
+      "sha256": "058f2d6883a50143c21565b9fe151532c49feea25e6d7e0fc7943f3e665d69bb",
+      "bytes": 913
+    },
+    "art/blender/ramirez/renders/review18-glove-shape/qa-reference-vs-review18-static.jpg": {
+      "sha256": "971655defee51c2fda41ebf0a8d3a3a4d79904e733ef7a14f4c11184582bf4ec",
+      "bytes": 168730
+    },
+    "art/blender/ramirez/renders/review18-glove-shape/qa-review18-final-contact.jpg": {
+      "sha256": "814c6a30d69a49c6b592a76081b8862c8c1468a52a86193b3f7b37f0bb7805ea",
+      "bytes": 34823
+    },
+    "art/blender/ramirez/renders/review18-glove-shape/qa-review18-glove-shape.json": {
+      "sha256": "fc93010c4839af64bbe3cf75be4f28b51d68df11b2a2edcaeab70f38e05ff45b",
+      "bytes": 2691
+    },
+    "art/blender/ramirez/renders/review19-glove-proportion/glove_cross_closeup.png": {
+      "sha256": "cff5e9433249d0f77ec0b213d26444d709165a503fd3a4a63b98c4ec149b1f1c",
+      "bytes": 1161687
+    },
+    "art/blender/ramirez/renders/review19-glove-proportion/glove_front_closeup.png": {
+      "sha256": "4b4d28f57ce3119ffc7259df18031f4301ea7a606de96d4783822a8a396076c1",
+      "bytes": 1238602
+    },
+    "art/blender/ramirez/renders/review19-glove-proportion/glove_guard_closeup.png": {
+      "sha256": "c535ba6dac94d11c629b8c80ed44dcd5da6be0b36e30d38e675c0e4a24989066",
+      "bytes": 1188884
+    },
+    "art/blender/ramirez/renders/review19-glove-proportion/glove_jab_closeup.png": {
+      "sha256": "b16029fad57c76e6369d7baaf5434dc01e8697d4dcc188147ea7a8d8fb3e821f",
+      "bytes": 1146759
+    },
+    "art/blender/ramirez/renders/review19-glove-proportion/glove_side_closeup.png": {
+      "sha256": "78ebdf128476e13c6e279a74c48356df9e7267f612848b94e3030e307360edd4",
+      "bytes": 1141475
+    },
+    "art/blender/ramirez/renders/review19-glove-proportion/glove_three_quarter_closeup.png": {
+      "sha256": "892ce5996c63b02821dad0d85ca9975a9ae1a2724459ef82cd85e0097d35853b",
+      "bytes": 1196124
+    },
+    "art/blender/ramirez/renders/review19-glove-proportion/numeric-sanity-precheck.json": {
+      "sha256": "0569d9cd41ed40ca293cb521740c897f99209dfac754ad5905a855c320194251",
+      "bytes": 1146
+    },
+    "art/blender/ramirez/renders/review19-glove-proportion/qa-review18-vs-review19-proportion.jpg": {
+      "sha256": "55a0e8e01dddbfcde547f0687eed16c23a9804e533a5115bfb738128a3fde5ab",
+      "bytes": 99688
+    },
+    "art/blender/ramirez/renders/review19-glove-proportion/qa-review19-glove-proportion.json": {
+      "sha256": "0aa4d238bae2dc21140955e8ea6f2312997c2b2d7d934ae524189bd0b68f4b87",
+      "bytes": 2004
+    },
+    "art/blender/ramirez/renders/review2/combat-clay/01_neutral_guard.png": {
+      "sha256": "2f4125389585080cea5f96d537f22561860650e620083ff449578850ba9b3092",
+      "bytes": 804781
+    },
+    "art/blender/ramirez/renders/review2/combat-clay/02_jab.png": {
+      "sha256": "5518bc47b2314916a099b915a7682bff44d3f416f12e5697d212e710e16ed453",
+      "bytes": 797510
+    },
+    "art/blender/ramirez/renders/review2/combat-clay/03_cross.png": {
+      "sha256": "8c53f8baa446f983a4415c3a5b604dff3e0543a50d527a644fbcbd795017c9f8",
+      "bytes": 790492
+    },
+    "art/blender/ramirez/renders/review2/combat-clay/04_slip_left.png": {
+      "sha256": "52a73258999c6af2f10cb925b3a5009290927c4b50e0f3a3094f5248906ab18a",
+      "bytes": 805711
+    },
+    "art/blender/ramirez/renders/review2/combat-clay/05_slip_right.png": {
+      "sha256": "564ffea64c17a55c745e24c49d71b348ff321a85745aa91855f54fcb69ff8df2",
+      "bytes": 798941
+    },
+    "art/blender/ramirez/renders/review2/combat-clay/06_slip_counter.png": {
+      "sha256": "f78fa0c069e7f0289e3ad240eee8ebc3630b62c46679c469f2e27467ec080184",
+      "bytes": 788840
+    },
+    "art/blender/ramirez/renders/review2/combat-clay/07_recover_guard.png": {
+      "sha256": "18091f223ad5731f29deff478b042db9d7d10f60145e2566f2e8c50d73f8ae5c",
+      "bytes": 804470
+    },
+    "art/blender/ramirez/renders/review2/combat/01_neutral_guard.png": {
+      "sha256": "2a8a5d48764081e55eac0b568332f4349343df1010393e049942168c967d9064",
+      "bytes": 855691
+    },
+    "art/blender/ramirez/renders/review2/combat/02_jab.png": {
+      "sha256": "5a134299798725b036a7112ae0a3fe8a5a2b0f6b2a07cadd3445096d919429c8",
+      "bytes": 848440
+    },
+    "art/blender/ramirez/renders/review2/combat/03_cross.png": {
+      "sha256": "d2fbd983def764f2f9c89d36943a29bfa75d48aef38062fd542ee000eaaa46c5",
+      "bytes": 847341
+    },
+    "art/blender/ramirez/renders/review2/combat/04_slip_left.png": {
+      "sha256": "c5e9715d8fc676f1c96d362b6c0ba0d460a1db53c185935c19413aa3f016dc88",
+      "bytes": 856231
+    },
+    "art/blender/ramirez/renders/review2/combat/05_slip_right.png": {
+      "sha256": "ee12c6f36cc05b11c3a8361fe78b02a7aac9ac1c5a030f5cdcd6b1c0b4952907",
+      "bytes": 860515
+    },
+    "art/blender/ramirez/renders/review2/combat/06_slip_counter.png": {
+      "sha256": "3187052461a5647d90ea1a6b54cd9931913788c7f84c90206458fb75435c2df7",
+      "bytes": 846262
+    },
+    "art/blender/ramirez/renders/review2/combat/07_recover_guard.png": {
+      "sha256": "27379860864ace5894533395e1af4890fa5fa345cbfc35290bcc84a5b1652c0d",
+      "bytes": 855141
+    },
+    "art/blender/ramirez/renders/review2/static/01_front.png": {
+      "sha256": "ebf9c91d922183d5d9b6153395eb073a7661191dbd299ce86a39cb679e8ecb48",
+      "bytes": 850991
+    },
+    "art/blender/ramirez/renders/review2/static/02_three_quarter_front.png": {
+      "sha256": "2eb414dc0e097d4aef1b4d1d09566ab0ad626fd3cb1df05727921b2af83aeb68",
+      "bytes": 851326
+    },
+    "art/blender/ramirez/renders/review2/static/03_side.png": {
+      "sha256": "6125595c0aab4975ab3750f68b2f33d0ebef4a4a560fb7aad8a7e58aca8a351e",
+      "bytes": 842031
+    },
+    "art/blender/ramirez/renders/review2/static/04_back.png": {
+      "sha256": "4b1b69613823ffc6cb4e777cc754601ee484aa470a1411e589be5dac6d72f20e",
+      "bytes": 837502
+    },
+    "art/blender/ramirez/renders/review2/static/05_three_quarter_back.png": {
+      "sha256": "2af12bea77922550b29b8f9bec5d60c79e693b3a5b8fbbed1fb9443bce62d8b8",
+      "bytes": 846534
+    },
+    "art/blender/ramirez/renders/review20-leg-knee/baseline_knee_front.png": {
+      "sha256": "b2b7b11eea4fec70c0d9a7658e85268258c9762bf2ac72b4bc77f665e6a9b379",
+      "bytes": 1135251
+    },
+    "art/blender/ramirez/renders/review20-leg-knee/baseline_knee_side.png": {
+      "sha256": "df6aa22d0e8e623b7f73c7bb2b31cd7e83c2b9dbb357aee6004f91b99d1c8533",
+      "bytes": 1150707
+    },
+    "art/blender/ramirez/renders/review20-leg-knee/knee_front_closeup.png": {
+      "sha256": "16a0201758d491edd944e45dd7c43da260aa09690991da0241ef7a69bcf6c3ff",
+      "bytes": 1136280
+    },
+    "art/blender/ramirez/renders/review20-leg-knee/knee_side_closeup.png": {
+      "sha256": "bd77ff6574bcebecbf5778d7d3d07a7dbe6b35354a5bccfe95da023d8d7ff963",
+      "bytes": 1150787
+    },
+    "art/blender/ramirez/renders/review20-leg-knee/knee_three_quarter_closeup.png": {
+      "sha256": "f6769de12508de099619e4da06d47b8bfa33833288b027953f707eba788fd0a6",
+      "bytes": 1125156
+    },
+    "art/blender/ramirez/renders/review20-leg-knee/numeric-knee-precheck.json": {
+      "sha256": "b0499335ec0f0f2079bea6c028bf8d9e27a34fa278acd0ab5cd412294327a648",
+      "bytes": 1006
+    },
+    "art/blender/ramirez/renders/review5/combat-clay/01_neutral_guard.png": {
+      "sha256": "196f18b0cf2f63e840717beb2d304abe35bc4e335313797bbe3bf05b4716304d",
+      "bytes": 813682
+    },
+    "art/blender/ramirez/renders/review5/combat-clay/02_jab.png": {
+      "sha256": "cf9411abae7ce345f6d157462e6be7bb8201e681a5a8adf7e490bcb5b59f8291",
+      "bytes": 803855
+    },
+    "art/blender/ramirez/renders/review5/combat-clay/03_cross.png": {
+      "sha256": "1f0475c0d49567281d8cced389fbf95de9b363dd640a4a09d702c475f0a56d57",
+      "bytes": 805487
+    },
+    "art/blender/ramirez/renders/review5/combat-clay/04_slip_left.png": {
+      "sha256": "f2a31b616715f085f2527ca9ac6a8fbd294eb2b7a1cf54842a168962ba94fb71",
+      "bytes": 815198
+    },
+    "art/blender/ramirez/renders/review5/combat-clay/05_slip_right.png": {
+      "sha256": "f677bb74f4324004e6f96336837eb74b77eed8a59ec0c6eb17d753fdf47c91f8",
+      "bytes": 818759
+    },
+    "art/blender/ramirez/renders/review5/combat-clay/06_slip_counter.png": {
+      "sha256": "87f222a4c76fb00d65cb7730074a1dea3dfa9dd8f5250ffcc5926fa948e21176",
+      "bytes": 807456
+    },
+    "art/blender/ramirez/renders/review5/combat-clay/07_recover_guard.png": {
+      "sha256": "d40f621de2c40d730de3f6fe36ecebbd69f48c6561c96aeecc84c395a764fbf7",
+      "bytes": 814070
+    },
+    "art/blender/ramirez/renders/review5/combat/01_neutral_guard.png": {
+      "sha256": "7851c44ed793742b331c3a1e2822d72e4209fe6eced9b291b8ff431af8d01b90",
+      "bytes": 834588
+    },
+    "art/blender/ramirez/renders/review5/combat/02_jab.png": {
+      "sha256": "3898d64c550f0daf43278564e5fef2b979ed8020ed0e8afc0f0d2cfa8b1266b8",
+      "bytes": 824755
+    },
+    "art/blender/ramirez/renders/review5/combat/03_cross.png": {
+      "sha256": "a5529ec2804098b32087152f05f449cd38ae8466a5a31bc28b9056784f1571ec",
+      "bytes": 832458
+    },
+    "art/blender/ramirez/renders/review5/combat/04_slip_left.png": {
+      "sha256": "308da5e4f1e08305445d1d0259f8956828218e01742f085d6bd404b327edab1f",
+      "bytes": 835846
+    },
+    "art/blender/ramirez/renders/review5/combat/05_slip_right.png": {
+      "sha256": "d3fa7e3aed84f01fef7d369db2023d26c56ecea99c156c368700f8387133c25f",
+      "bytes": 848235
+    },
+    "art/blender/ramirez/renders/review5/combat/06_slip_counter.png": {
+      "sha256": "eb78fb3e643723abfc2b64f9a4d78e8f036bb7a2dba0f185abfb47ec34d6703a",
+      "bytes": 834062
+    },
+    "art/blender/ramirez/renders/review5/combat/07_recover_guard.png": {
+      "sha256": "1bb679e4248684f8a7944789840243eb171dc43c5054eb88f3374a22180a289e",
+      "bytes": 834188
+    },
+    "art/blender/ramirez/renders/review5/pose-set-contact.jpg": {
+      "sha256": "a72c8f0fcd4cd47a8669d3e13d2a7d7cf74514d06aca78d8358a6130a398e15e",
+      "bytes": 78509
+    },
+    "art/blender/ramirez/renders/review5/qa-pose-small.jpg": {
+      "sha256": "e6333406fc4cb656281d9bebfb7a53be26be6e689a3e0c8555f27dacea294306",
+      "bytes": 70235
+    },
+    "art/blender/ramirez/renders/review5/static/01_front.png": {
+      "sha256": "aaaa167034126afc41fbb8881ddf92d5251799cc3180a440ce6daf97dc616284",
+      "bytes": 828480
+    },
+    "art/blender/ramirez/renders/review5/static/02_three_quarter_front.png": {
+      "sha256": "566760a66c1d9c9cfe2c66fa5906b5dfe3e82781cb0ddc824f26ab5738d2570c",
+      "bytes": 823431
+    },
+    "art/blender/ramirez/renders/review5/static/03_side.png": {
+      "sha256": "43923be1ba65d4b5c2ee0fa6ba417c06988dfb0ca8875e7e298f7eaab0c70417",
+      "bytes": 823724
+    },
+    "art/blender/ramirez/renders/review5/static/04_back.png": {
+      "sha256": "6464735b7720d1be484342716e510eaeb7096663ae44b4ba4151afcb13a65638",
+      "bytes": 813611
+    },
+    "art/blender/ramirez/renders/review5/static/05_three_quarter_back.png": {
+      "sha256": "bd1054744c9db4d09b2d4f1f518d222b6ece01457905f8c5b0078ce2ce18e9f7",
+      "bytes": 814529
+    },
+    "art/blender/ramirez/renders/review5/trunks-comparison/back_reference_vs_blender.jpg": {
+      "sha256": "92e818e13e088e4768fd0c6bc5ac3ba33b92aed94df2ea750a7ef1feeef3f584",
+      "bytes": 75273
+    },
+    "art/blender/ramirez/renders/review5/trunks-comparison/front_reference_vs_blender.jpg": {
+      "sha256": "7d1d644958ce59db41ecc8d5b2b375f25c70d826043145be68d9a88b54e0e314",
+      "bytes": 80808
+    },
+    "art/blender/ramirez/renders/review5/trunks-comparison/side_reference_vs_blender.jpg": {
+      "sha256": "95186a8066c73a04d020dc7ec900787d27b0ed07f24ad431e30dc262126084dc",
+      "bytes": 76209
+    },
+    "art/blender/ramirez/renders/review5/trunks-comparison/three_quarter_front_reference_vs_blender.jpg": {
+      "sha256": "78c8b36acfc89e09a3ce919ffe4f8a869e9c614dd2fbef4ad9e077aa48fe7a21",
+      "bytes": 78340
+    },
+    "art/blender/ramirez/renders/review6-reference-first/combat-clay/01_neutral_guard.png": {
+      "sha256": "abac257d95b16a5e36e8d0afb0aac5dcd5cc0d3eeafa9254ee9ee66ec9c326da",
+      "bytes": 813926
+    },
+    "art/blender/ramirez/renders/review6-reference-first/combat-clay/02_jab.png": {
+      "sha256": "774dffc1ed58ba4b853cbe995e9918e0d4ae429d54e3ad11f4428d7ab1285570",
+      "bytes": 803941
+    },
+    "art/blender/ramirez/renders/review6-reference-first/combat-clay/03_cross.png": {
+      "sha256": "3b9ff104168a2608ce8444b5992d9a10952111b9ad0c968f5e4c5f641bed91fc",
+      "bytes": 805496
+    },
+    "art/blender/ramirez/renders/review6-reference-first/combat-clay/04_slip_left.png": {
+      "sha256": "3e37d49a68d92c517e6ef250ea4acbb77f958cf8c5fd6c4dc392007f98ca01a6",
+      "bytes": 815359
+    },
+    "art/blender/ramirez/renders/review6-reference-first/combat-clay/05_slip_right.png": {
+      "sha256": "8421978702ff86b12f9970582aadeb829dc94a1c21352f3d7b30269e3011ceea",
+      "bytes": 819403
+    },
+    "art/blender/ramirez/renders/review6-reference-first/combat-clay/06_slip_counter.png": {
+      "sha256": "9d1499c61c1016b4b89ff8743e4d1cc6fbe87a084a95aae057167a84095a7d77",
+      "bytes": 807841
+    },
+    "art/blender/ramirez/renders/review6-reference-first/combat-clay/07_recover_guard.png": {
+      "sha256": "df482a171efd158362bea9a166ccc503c0b467e0729e70f0ccc2a797d8f28cc0",
+      "bytes": 813911
+    },
+    "art/blender/ramirez/renders/review6-reference-first/combat/01_neutral_guard.png": {
+      "sha256": "85068f8f1ca40e9b8f36e15bc6cddccb148efd46aea8142946deb1cc27e1dc16",
+      "bytes": 834719
+    },
+    "art/blender/ramirez/renders/review6-reference-first/combat/02_jab.png": {
+      "sha256": "e9bc8089079ee56ac153f3e5a83a83813649ceaeecf6c7de1ff4e484c733ba7c",
+      "bytes": 825149
+    },
+    "art/blender/ramirez/renders/review6-reference-first/combat/03_cross.png": {
+      "sha256": "9711a9aa8bba4e3381b9562faab42bc2125069caed5a6232a75828795be4e878",
+      "bytes": 832514
+    },
+    "art/blender/ramirez/renders/review6-reference-first/combat/04_slip_left.png": {
+      "sha256": "89f6d6ccc04fd4c073f5308b56427fc8a6ab5621b429716dd4363a94b46f5cca",
+      "bytes": 835548
+    },
+    "art/blender/ramirez/renders/review6-reference-first/combat/05_slip_right.png": {
+      "sha256": "afc2e40248a16c5f8c26b668346b17626c11acc0eb854b74c48455e4bdff324c",
+      "bytes": 848114
+    },
+    "art/blender/ramirez/renders/review6-reference-first/combat/06_slip_counter.png": {
+      "sha256": "485fcda98e95f2c1c22c40687b091e08a638aff9d6c49fd1f244012b3de85e94",
+      "bytes": 833491
+    },
+    "art/blender/ramirez/renders/review6-reference-first/combat/07_recover_guard.png": {
+      "sha256": "ab74c61f27fd9c2757bd560d47600dcb0ff0a10f53ad0d4d2c1addf8f61350db",
+      "bytes": 834173
+    },
+    "art/blender/ramirez/renders/review6-reference-first/static/01_front.png": {
+      "sha256": "4f1f061c4a93e3e5e7aa63616d05b212954de0bfc7835ec2ecb271eafbcfd43f",
+      "bytes": 828647
+    },
+    "art/blender/ramirez/renders/review6-reference-first/static/02_three_quarter_front.png": {
+      "sha256": "d51db7a4d9965e2f0c3480f3a35412a638bbd8e022af6f2a8f88d7a6aa00ddad",
+      "bytes": 823381
+    },
+    "art/blender/ramirez/renders/review6-reference-first/static/03_side.png": {
+      "sha256": "9609abfcf8edaa7f77b657e9d93415a9bd8e7f0740a611e2f6d494b8f18c9334",
+      "bytes": 823903
+    },
+    "art/blender/ramirez/renders/review6-reference-first/static/04_back.png": {
+      "sha256": "3854aca5f598ac404e080ff10f956f59df2f5e32d877bb60182ecfbaa9c00303",
+      "bytes": 813928
+    },
+    "art/blender/ramirez/renders/review6-reference-first/static/05_three_quarter_back.png": {
+      "sha256": "c0d22bb03b27df29c6ebedb94eedf2ae4b0234f8f9fcb11b23a72264d08fc77f",
+      "bytes": 814237
+    },
+    "art/blender/ramirez/renders/review7-hard-gate/combat-clay/01_neutral_guard.png": {
+      "sha256": "38cd34dcdebbaf2177aefadb509e99c782ae888992fa7df59b5f77b5db92f87e",
+      "bytes": 809861
+    },
+    "art/blender/ramirez/renders/review7-hard-gate/combat-clay/02_jab.png": {
+      "sha256": "6c5e7af6ae9dabccfaecfddc1b4172e1b86c08203cf288ec72fd5c8fe6f20648",
+      "bytes": 800022
+    },
+    "art/blender/ramirez/renders/review7-hard-gate/combat-clay/03_cross.png": {
+      "sha256": "834d0357ffdbb41cbed1c4c069a208aa0d44d9950f5513633779c2e5c1c11a16",
+      "bytes": 800210
+    },
+    "art/blender/ramirez/renders/review7-hard-gate/combat-clay/04_slip_left.png": {
+      "sha256": "0991a3c6aac94a68d4c4693f2177731d1ca486ceb7f48ffb429b3d6c5977b457",
+      "bytes": 810867
+    },
+    "art/blender/ramirez/renders/review7-hard-gate/combat-clay/05_slip_right.png": {
+      "sha256": "766a053e3eddd73c09e44d664bb6a7e6a1c9acee3037b2e9cb308165bb6217c7",
+      "bytes": 814885
+    },
+    "art/blender/ramirez/renders/review7-hard-gate/combat-clay/06_slip_counter.png": {
+      "sha256": "22c94a21c7bba8da7331ea2fd5f8c450510d31ef181792b056e52dc7efd139b7",
+      "bytes": 802274
+    },
+    "art/blender/ramirez/renders/review7-hard-gate/combat-clay/07_recover_guard.png": {
+      "sha256": "dcff2545f74d2d6a236d35444e77d00fdffe452770b45c2a1805734e0d21a6f2",
+      "bytes": 809191
+    },
+    "art/blender/ramirez/renders/review7-hard-gate/combat/01_neutral_guard.png": {
+      "sha256": "8dfe05e4888d57cf15117fdac5a147d4fd4cb5eae0ce98ba586624ba683a9044",
+      "bytes": 832528
+    },
+    "art/blender/ramirez/renders/review7-hard-gate/combat/02_jab.png": {
+      "sha256": "57fdfeeb242b3d4f634c3b220f99907ef6d53e4cbdf6f9d3645b7f2a76626d50",
+      "bytes": 822728
+    },
+    "art/blender/ramirez/renders/review7-hard-gate/combat/03_cross.png": {
+      "sha256": "e09131fb9cc47434c002e4cf5cf5297e7868a06026e6361a002bf27159ca179d",
+      "bytes": 829262
+    },
+    "art/blender/ramirez/renders/review7-hard-gate/combat/04_slip_left.png": {
+      "sha256": "30d3685b40f523bd96cffeebe85d29224bbb8d4015ff7fdc24c47acd9fb66c0f",
+      "bytes": 833855
+    },
+    "art/blender/ramirez/renders/review7-hard-gate/combat/05_slip_right.png": {
+      "sha256": "d47fb85fae3559dbd4fcfb511912b53e86579bd1d795d08accde95a6a628c8b6",
+      "bytes": 845554
+    },
+    "art/blender/ramirez/renders/review7-hard-gate/combat/06_slip_counter.png": {
+      "sha256": "4a4563fc5d9211284e738ec560dd31eddc4b1c10ec3f19efd1bfef92e4b09e18",
+      "bytes": 829655
+    },
+    "art/blender/ramirez/renders/review7-hard-gate/combat/07_recover_guard.png": {
+      "sha256": "ad0a7e9f936d5621251e0888d521b7796a44c3b5a95b3f4546e69cecc7b0eb9e",
+      "bytes": 831961
+    },
+    "art/blender/ramirez/renders/review7-hard-gate/qa-hard-gate.jpg": {
+      "sha256": "899f6749e3879a7876f9a7b3ca141e6b945cfe1843203b9b29a252fa1c58469d",
+      "bytes": 133207
+    },
+    "art/blender/ramirez/renders/review7-hard-gate/static/01_front.png": {
+      "sha256": "c8e6918c099e8cdb8c18952ad56323ea58c8cdaca1fbf3030fab929a79fa359e",
+      "bytes": 825872
+    },
+    "art/blender/ramirez/renders/review7-hard-gate/static/02_three_quarter_front.png": {
+      "sha256": "9e05eeaffe92a1c643baf0067c4d472d16a90150fd9a65b5e82fd5654e698b29",
+      "bytes": 822035
+    },
+    "art/blender/ramirez/renders/review7-hard-gate/static/03_side.png": {
+      "sha256": "0ef3271ea687f44ac559636a6bbc833d0e3ae0fe41db5474b0881b9700e7f898",
+      "bytes": 822969
+    },
+    "art/blender/ramirez/renders/review7-hard-gate/static/04_back.png": {
+      "sha256": "1a9ff793b64714889dd7f3a503b42f1dfcfa302ccc2a4b313ffd992629bb44d1",
+      "bytes": 813335
+    },
+    "art/blender/ramirez/renders/review7-hard-gate/static/05_three_quarter_back.png": {
+      "sha256": "b9fb45cbee2ffdb51520cff7b10ac7264d93dde9a297dcc18e6eacf9a3bf7683",
+      "bytes": 815465
+    },
+    "art/blender/ramirez/renders/review8-hard-gate/approved-reference-vs-final.jpg": {
+      "sha256": "c625bf77b71777f9cbd76cbac58d527c2ea1357d4194ebd0ac3d103317250253",
+      "bytes": 258783
+    },
+    "art/blender/ramirez/renders/review8-hard-gate/combat-clay/01_neutral_guard.png": {
+      "sha256": "3652b76a72084226062aabc366ac89227bab059d80c203b3a980fc6d5aa1ed29",
+      "bytes": 812057
+    },
+    "art/blender/ramirez/renders/review8-hard-gate/combat-clay/02_jab.png": {
+      "sha256": "da77ab98f3421d233e5f22b46e57d6a2ec97823a8af206bd49538534dc264c16",
+      "bytes": 802922
+    },
+    "art/blender/ramirez/renders/review8-hard-gate/combat-clay/03_cross.png": {
+      "sha256": "85bf620b69da63701f8d1eab8ee1753e2454953480db8d34e1cbb6c004379906",
+      "bytes": 803170
+    },
+    "art/blender/ramirez/renders/review8-hard-gate/combat-clay/04_slip_left.png": {
+      "sha256": "b2e8604be7fc31819078b116dfbfcb2b65a429106c6a5d802dd5efdddbe2da5a",
+      "bytes": 814544
+    },
+    "art/blender/ramirez/renders/review8-hard-gate/combat-clay/05_slip_right.png": {
+      "sha256": "77b4520dbdc7538283b73d72a9f12036d8ad7bb7fcb07263c12a2bac2ec8b9f3",
+      "bytes": 816504
+    },
+    "art/blender/ramirez/renders/review8-hard-gate/combat-clay/06_slip_counter.png": {
+      "sha256": "e5d1e8fa05954efb80bab0605d5a536da496dfd3e269980df6bea78ad1475e14",
+      "bytes": 804624
+    },
+    "art/blender/ramirez/renders/review8-hard-gate/combat-clay/07_recover_guard.png": {
+      "sha256": "2cd504baa3d719c997a1746cb9e1c544b6ca76d5a10c8f7b515d788cfc292d9e",
+      "bytes": 812211
+    },
+    "art/blender/ramirez/renders/review8-hard-gate/combat/01_neutral_guard.png": {
+      "sha256": "06cbf10553bb60bf0828994cc080d3dd184f12b58c971347eedd73a1677e2934",
+      "bytes": 835119
+    },
+    "art/blender/ramirez/renders/review8-hard-gate/combat/02_jab.png": {
+      "sha256": "8fc4a48c59b7d818fdb635094b54980fafb735d4a1fec28df31f774d7b184ea6",
+      "bytes": 824961
+    },
+    "art/blender/ramirez/renders/review8-hard-gate/combat/03_cross.png": {
+      "sha256": "bee4d552e28b1c21953f8b819fc6cc0cefbd40b4591adad500dde9cbc87b99b6",
+      "bytes": 831398
+    },
+    "art/blender/ramirez/renders/review8-hard-gate/combat/04_slip_left.png": {
+      "sha256": "cdbc0093b14549be8e6b0445559a6d9d63fd5d584ca2ad82b347c35b5d22dcbc",
+      "bytes": 836254
+    },
+    "art/blender/ramirez/renders/review8-hard-gate/combat/05_slip_right.png": {
+      "sha256": "1762831297550e35e904873c96d71fd0c575ef6330ef851585c9d0059ceb9ccc",
+      "bytes": 846838
+    },
+    "art/blender/ramirez/renders/review8-hard-gate/combat/06_slip_counter.png": {
+      "sha256": "91a5e451de8fba1424936289fe5ed983ed7e966d75878946e7d45dcc3c8a41a2",
+      "bytes": 832404
+    },
+    "art/blender/ramirez/renders/review8-hard-gate/combat/07_recover_guard.png": {
+      "sha256": "c19977b0018e52b51f08ec5c75327ff586b7894bf5c477c3550f83cc798c0772",
+      "bytes": 834414
+    },
+    "art/blender/ramirez/renders/review8-hard-gate/qa-arms-allposes.jpg": {
+      "sha256": "44f844c21781c4f1b55dd84f743e4ee7f55c004dea1d705f3236140cc10e0d0f",
+      "bytes": 225883
+    },
+    "art/blender/ramirez/renders/review8-hard-gate/qa-final-arms.jpg": {
+      "sha256": "15f6cb77ee606a9267dbccf0fe4ec982647c3ec866af695d526c0e178e493b3a",
+      "bytes": 216366
+    },
+    "art/blender/ramirez/renders/review8-hard-gate/qa-final-hips.jpg": {
+      "sha256": "c598884d34ed73047ae2f19f52edcdd2701195e698cfe95c9aea8f2a6d6a8da4",
+      "bytes": 198943
+    },
+    "art/blender/ramirez/renders/review8-hard-gate/qa-hips-allposes.jpg": {
+      "sha256": "d021780636b962d5806c266879de403de30d9d77ab374299c6f5795276079c3c",
+      "bytes": 216167
+    },
+    "art/blender/ramirez/renders/review8-hard-gate/qa-review8-allposes-focused.jpg": {
+      "sha256": "ce1fc3257fcc3470a6381926749a8890d83e1a2e45da322fa605febe0317e5fc",
+      "bytes": 168093
+    },
+    "art/blender/ramirez/renders/review8-hard-gate/reference-vs-review8.jpg": {
+      "sha256": "7dbdf68ceee48c4d7ee8e86c3dd9666b3689ab956e0413feba359769be27c59d",
+      "bytes": 160223
+    },
+    "art/blender/ramirez/renders/review8-hard-gate/static/01_front.png": {
+      "sha256": "1ec58ab6fcf65733f6d001f4a114fa40f177d31abb9dfca738b8f634f62b02c5",
+      "bytes": 827607
+    },
+    "art/blender/ramirez/renders/review8-hard-gate/static/02_three_quarter_front.png": {
+      "sha256": "a073aff9086d11aecb789ad4ff5e67b15bcadc95fa8928753c00ba4d9e962929",
+      "bytes": 825313
+    },
+    "art/blender/ramirez/renders/review8-hard-gate/static/03_side.png": {
+      "sha256": "77cf2e8ec9e38296733bf27756deb51b82d809417497c950015e8dbc76c05d6f",
+      "bytes": 823375
+    },
+    "art/blender/ramirez/renders/review8-hard-gate/static/04_back.png": {
+      "sha256": "a98cf6eb49204caff53df79904f7ad097744538708e92c320c292ea87e533862",
+      "bytes": 816576
+    },
+    "art/blender/ramirez/renders/review8-hard-gate/static/05_three_quarter_back.png": {
+      "sha256": "bc24cf92d35a63edca5d9f111ae8923b5f1f35ccaffb94fcf9100eb6c9ce884c",
+      "bytes": 817565
+    },
+    "art/blender/ramirez/renders/review9-component-gates/combat-clay/01_neutral_guard.png": {
+      "sha256": "8ff95a0bb0edcd0fa7d368f0ebe6df9afeb917f83726a3edad104d689e6504a3",
+      "bytes": 810997
+    },
+    "art/blender/ramirez/renders/review9-component-gates/combat-clay/02_jab.png": {
+      "sha256": "493af372fbc71acd243fd4ef54a16a91d8ef5a56ff6fb8d1165a55ab6d2a7107",
+      "bytes": 801975
+    },
+    "art/blender/ramirez/renders/review9-component-gates/combat-clay/03_cross.png": {
+      "sha256": "18a4c7313f331762dc8553f77a1f86595e83ce9af0f82501e6781b3ad009f9f2",
+      "bytes": 802143
+    },
+    "art/blender/ramirez/renders/review9-component-gates/combat-clay/04_slip_left.png": {
+      "sha256": "6f1c05b55be1643792dd75c620b76c5aee5426d947dc067067e6ab49dc3f820b",
+      "bytes": 812708
+    },
+    "art/blender/ramirez/renders/review9-component-gates/combat-clay/05_slip_right.png": {
+      "sha256": "eb9f045fe303e13d7ce33f7499973f5fb3e0ff9aa815ea5ce992696971ff5dd4",
+      "bytes": 815802
+    },
+    "art/blender/ramirez/renders/review9-component-gates/combat-clay/06_slip_counter.png": {
+      "sha256": "e2bc8ea3302e2102660f532eeacfcf3275e57a0ad6e127deec0bacceb5167d68",
+      "bytes": 804443
+    },
+    "art/blender/ramirez/renders/review9-component-gates/combat-clay/07_recover_guard.png": {
+      "sha256": "f045dada6030493489659c20f29cfecfd54ef9bb7992807d3b0194c1d51bc083",
+      "bytes": 810187
+    },
+    "art/blender/ramirez/renders/review9-component-gates/combat/01_neutral_guard.png": {
+      "sha256": "5746a7f3db39307fdd64153b1c41e3bf955e7b6bd1b18c26ab7b90b4d9471760",
+      "bytes": 832621
+    },
+    "art/blender/ramirez/renders/review9-component-gates/combat/02_jab.png": {
+      "sha256": "d6b62ec9b59eaa97cda1e54002515197d8582f2710d94916cf66534588b45fec",
+      "bytes": 821763
+    },
+    "art/blender/ramirez/renders/review9-component-gates/combat/03_cross.png": {
+      "sha256": "7f879c49a1f2ff0a296959753d89c7455a7119578b630445eab6c5a3ee17b6c5",
+      "bytes": 828052
+    },
+    "art/blender/ramirez/renders/review9-component-gates/combat/04_slip_left.png": {
+      "sha256": "945e9fd1942a56a1b06a3752f4c1fc1a97f0743f6f756e0e9550a59ae2b35c20",
+      "bytes": 832607
+    },
+    "art/blender/ramirez/renders/review9-component-gates/combat/05_slip_right.png": {
+      "sha256": "ccdfb4ad5c5ab0191796ca35613f5ff4470ecb85c73834c13647cfb9be6fdaeb",
+      "bytes": 844442
+    },
+    "art/blender/ramirez/renders/review9-component-gates/combat/06_slip_counter.png": {
+      "sha256": "d18d0c2aba1353598a3278d9b393fd509e7229191091762dda0ebf1e0b786485",
+      "bytes": 829946
+    },
+    "art/blender/ramirez/renders/review9-component-gates/combat/07_recover_guard.png": {
+      "sha256": "3f973134cb3843b6be13f75f1c21e042e8b0cb2ede11f4699e783a65a1fb09bc",
+      "bytes": 832350
+    },
+    "art/blender/ramirez/renders/review9-component-gates/qa-component-gloves.jpg": {
+      "sha256": "f6465bf75ea77a4a50a5a4afdffca682a5d58e8bcd0244499e24e281c2a995c2",
+      "bytes": 204327
+    },
+    "art/blender/ramirez/renders/review9-component-gates/qa-component-trunks.jpg": {
+      "sha256": "0b4d5a6cd5a7852564f0596bc5cf11679d8f6ba4a12c8594e5c845d9b2bcefd7",
+      "bytes": 224338
+    },
+    "art/blender/ramirez/renders/review9-component-gates/reference-vs-review9.jpg": {
+      "sha256": "3c2754a900503ac0312c7b21e5a4f3acda08f011174d7d18aea665e6baf3b369",
+      "bytes": 293418
+    },
+    "art/blender/ramirez/renders/review9-component-gates/static/01_front.png": {
+      "sha256": "edd5b3a32b34f6494fb25e81e4300360f5546a090e8c7ec93e037e9cbeb4b39b",
+      "bytes": 825620
+    },
+    "art/blender/ramirez/renders/review9-component-gates/static/02_three_quarter_front.png": {
+      "sha256": "21ae5eea79395d6dee29a60b0dc1ba63c1878cb36be747109c065a2d205c6cb8",
+      "bytes": 823180
+    },
+    "art/blender/ramirez/renders/review9-component-gates/static/03_side.png": {
+      "sha256": "b78af106104968a9cc4a5e26d67bd2724c71186f579e7cc41716217ecab1a891",
+      "bytes": 819556
+    },
+    "art/blender/ramirez/renders/review9-component-gates/static/04_back.png": {
+      "sha256": "0f61dfd36a3d916fcce5726aaaf680573c73196f3294f9fbd3950d4d269dcd41",
+      "bytes": 814540
+    },
+    "art/blender/ramirez/renders/review9-component-gates/static/05_three_quarter_back.png": {
+      "sha256": "219a859f4b101e48658d8718cf1a103b28a6c0171b12eec274e92eff02cb63f0",
+      "bytes": 815863
+    },
+    "art/blender/ramirez/review5-checklist-results.md": {
+      "sha256": "69e6050acd83942282375d3a0e1329aafb5856a2a027b039fd3d7e4498c2bc55",
+      "bytes": 4623
+    },
+    "art/blender/ramirez/review5-checklist.md": {
+      "sha256": "09be293f9724df81acb9eb5ab057347d670c361f09c5ac185ad97909773646d3",
+      "bytes": 3878
+    },
+    "art/blender/ramirez/review5-visual-gate.json": {
+      "sha256": "26a210d3ccdc862f63b818e81722efdb009511f2275e40242cf16d92ee818ca0",
+      "bytes": 1105
+    },
+    "art/blender/ramirez/review5-worklist.md": {
+      "sha256": "bd8730b2fc30f94a4da08e7c86046bf8792c0eed411a033c7651b9215b8d3a44",
+      "bytes": 1948
+    },
+    "art/blender/ramirez/rig-metrics.json": {
+      "sha256": "a19b7cdaab14611cdd64dccb1046b15d08680a6a83c855d0f820b811e08fcdc0",
+      "bytes": 512
+    },
+    "art/blender/ramirez/scripts/build_review13_comparisons.py": {
+      "sha256": "2a9804f150a80caecbf9c38222c12b06200e391eb73f3c8e0a745a6f89e3b7fd",
+      "bytes": 3461
+    },
+    "art/blender/ramirez/scripts/build_review14_glove_comparison.py": {
+      "sha256": "405caa3fb4ec312a137672e4b690550e740ed299d3cba1c8d6b406ce9ca14a95",
+      "bytes": 2367
+    },
+    "art/blender/ramirez/scripts/build_review15_glove_evidence.py": {
+      "sha256": "f90887c307cc616579b79a3b1728d01f21b59ff502b9930f70cfac49134ddbb7",
+      "bytes": 3001
+    },
+    "art/blender/ramirez/scripts/build_review16_glove_evidence.py": {
+      "sha256": "6b32095475e01fcaf844c881fa6cc53a174d79621e03a059440c3ba9a409cb56",
+      "bytes": 3580
+    },
+    "art/blender/ramirez/scripts/build_trunks_pose_evidence.py": {
+      "sha256": "3cadf5810bc7af336ebbe0c82682107e617b77365efbcf541495901386f978f6",
+      "bytes": 2558
+    },
+    "art/blender/ramirez/scripts/qa_glove_ascii_probe.py": {
+      "sha256": "9040979d4612fb6b50acd9ee3e4d4395e4d979fcca90e04165cd7c11300870d1",
+      "bytes": 1567
+    },
+    "art/blender/ramirez/scripts/qa_reference_lock_gate.py": {
+      "sha256": "0bb11fb42312ad95d819935653e78807ab5b177ce22fad480bcac2988189be11",
+      "bytes": 7953
+    },
+    "art/blender/ramirez/scripts/qa_render_visual_probe.py": {
+      "sha256": "a0e73cec2456d5a83ab20b2c6b3874ced6bcf3fd0a59249c0b5b0b74de499bec",
+      "bytes": 1402
+    },
+    "art/blender/ramirez/scripts/qa_trunks_pose_gate.py": {
+      "sha256": "60f674a7b04ead20487f200f19166c325170dbf10c43cb97bfdb35dc560595b4",
+      "bytes": 13090
+    },
+    "art/blender/ramirez/scripts/review15_gloves_only.py": {
+      "sha256": "adc0a686cf14eb13786223df5164d83d41cbc96333ef97167201f2b031badac2",
+      "bytes": 6203
+    },
+    "art/blender/ramirez/scripts/review16_glove_fix.py": {
+      "sha256": "10e2b307b09c74706d4d19c8fb56dd5c1a45f4e07ecda597be1305f56d60a2cf",
+      "bytes": 11461
+    },
+    "art/blender/ramirez/scripts/review17_glove_shape.py": {
+      "sha256": "c4e158976d2ef2fc2c4a8f2909e1aacbf3da35be14f371f4333555bd21534608",
+      "bytes": 12116
+    },
+    "art/blender/ramirez/scripts/review18_glove_shape.py": {
+      "sha256": "1ddf9ba0d8a4703f1ad04240cc29594bf21459bb6ad46e3b0492d9cad71640ff",
+      "bytes": 12924
+    },
+    "art/blender/ramirez/scripts/review19_glove_proportion.py": {
+      "sha256": "5b683848eb38a530b5a8dad8238cb45a0d89c787291429b0b65676bb89b80ccb",
+      "bytes": 13793
+    },
+    "art/blender/ramirez/scripts/review20_leg_knee.py": {
+      "sha256": "2fa01bf6ff72c26c9fb06d8fd89d16adf2d04369082c6a00f402748ec093af87",
+      "bytes": 9132
+    },
+    "art/blender/ramirez/scripts/rig_and_render_ramirez.py": {
+      "sha256": "f314de1de2185925b6a899d478082c40bfd4ac4291c45fc138537574b9f380b1",
+      "bytes": 78213
+    },
+    "art/blender/ramirez/source/ramirez_master.blend": {
+      "sha256": "e1f7dc3b662449dbdb747ca9dbaa3b35176ec93ddc8661eac68621e630093021",
+      "bytes": 897195
+    },
+    "art/blender/ramirez/source/ramirez_master.blend1": {
+      "sha256": "ece05859584d442be74a80c8dd243802e5c30bb06ffa693334a5d9fc319bfaf3",
+      "bytes": 883764
+    },
+    "art/blender/ramirez/source/ramirez_master_static.blend1": {
+      "sha256": "62620cc9adeb6606a2cb5d93a2352c78b061912d800beef396c7ed0ceeb1205d",
+      "bytes": 548213
+    }
+  },
+  "shared_checkout_untracked_archive": {
+    "sha256": "7cdb2aaf0f45d049cf530e224018818432bf4d121687cc4979d7174364b98470",
+    "files": {
+      "art/blender/source/ramirez_mpfb_game_ready.blend1": {
+        "sha256": "39a36403a33d0b2780c8c66acb0a69bfaadb2e6750de1c526973d35437131b2d",
+        "bytes": 767727
+      },
+      "art/blender/source/ramirez_mpfb_rigged.blend1": {
+        "sha256": "2914daabdb6611abe46b24f5b792163ca391ba89d160c5041bd652973c483a87",
+        "bytes": 779682
+      },
+      "art/blender/source/ramirez_mpfb_visual_gate.blend1": {
+        "sha256": "8782305cdd9247523544930942f702224eb669e093be21808cde3324d0f4d84f",
+        "bytes": 545908
+      },
+      "art/blender/source/ramirez_v2_visual_gate.blend": {
+        "sha256": "462a32bfb33d62cac239fa916282d7603db2a9727143d0d80ac96af64d758ce9",
+        "bytes": 1710712
+      },
+      "art/blender/source/ramirez_v2_visual_gate.blend1": {
+        "sha256": "e52fd8e1c26be6b8b8393f97dae5e26d21614ffa662f8fc740e37301638a9ef4",
+        "bytes": 1548126
+      },
+      "evidence/uat-round2/optimization/motion-00.png": {
+        "sha256": "f725aed2514b752fb0293902ec18bf264ff0fe3321c04259791a144fe79b7d7b",
+        "bytes": 1287200
+      },
+      "evidence/uat-round2/optimization/motion-01.png": {
+        "sha256": "f110b67d4d7ba2c2e2349fc9a6e4ea1b3aa7700a3624ed2574e5dee77e9e9cd1",
+        "bytes": 1293911
+      },
+      "evidence/uat-round2/optimization/motion-02.png": {
+        "sha256": "d413b8b508b6e2d8df5ecce9fb7940bc8999fbf6f3022b88de5bd311e7ed62d1",
+        "bytes": 1292428
+      },
+      "evidence/uat-round2/optimization/motion-03.png": {
+        "sha256": "82cfaac78f4ecbed5acbd4f8d322d73cbb86e4bc5012e32891b5244925ccec81",
+        "bytes": 1274426
+      },
+      "evidence/uat-round2/optimization/motion-04.png": {
+        "sha256": "62ccc188fba068c00341495d33215d8ef8c7b65fd4f77bd4032a0def66597065",
+        "bytes": 1281744
+      },
+      "evidence/uat-round2/optimization/motion-05.png": {
+        "sha256": "f132cb6df296a4b0ce7270b62e45faba547e5cc9c90682860db9a6c953442527",
+        "bytes": 1293391
+      },
+      "evidence/uat-round2/optimization/motion-06.png": {
+        "sha256": "cf9fe07cbfe4662adac63ccd4dcfdab33c1b8fb89383a95965c97989467077c4",
+        "bytes": 1246925
+      },
+      "evidence/uat-round2/optimization/motion-07.png": {
+        "sha256": "5c0b6fe0a60e0215009a91551089ed123ac8ecb459bb66f5b506e1475c818ec3",
+        "bytes": 1271386
+      },
+      "evidence/uat-round2/optimization/motion-08.png": {
+        "sha256": "4f741a12729a18d2781aed2e1df14c1202e20b9b8272fdcb11ac9b69fbb65c5c",
+        "bytes": 1156746
+      },
+      "evidence/uat-round2/optimization/motion-09.png": {
+        "sha256": "e861c73296d7661f446c90cabebb1861951ee713125f237f20101ac7025518da",
+        "bytes": 1122139
+      },
+      "tools/blender/__pycache__/rig_ramirez_mpfb_visual_gate.cpython-313.pyc": {
+        "sha256": "a2eb1733ca93c9c910b9e54e7d27ddd407034b5b7d55f3b0a763cfcdba9990dd",
+        "bytes": 55397
+      }
+    }
+  }
+}

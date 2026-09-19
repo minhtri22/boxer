@@ -1,0 +1,23 @@
+{
+  "scope": "GLOVE_ONLY",
+  "scope_lock_non_glove_unchanged": true,
+  "scope_diffs": [],
+  "shape_profile": "rounded_curled_fist_v17",
+  "max_forward_ring_z_m": 0.181,
+  "striking_face_half_width_m": 0.078,
+  "underside_pole_recess_m": 0.031,
+  "distal_terminal": "underside_pole_behind_round_striking_face",
+  "fist_curl_drop_m": 0.162,
+  "knuckle_to_wrist_width_ratio": 1.948,
+  "terminal_ring_half_width_m": 0.036,
+  "cuff_length_m": 0.105,
+  "cuff_width_m": 0.1178,
+  "neck_width_m": 0.1209,
+  "automated_geometry_checks": {
+    "G01_front_tip_removed": true,
+    "G02_clenched_fist_mass": true,
+    "G03_front_curls_downward": true,
+    "G04_thumb_bulge_visible": true,
+    "G05_white_cuff_visible": true
+  }
+}

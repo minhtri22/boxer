@@ -1,0 +1,28 @@
+{
+  "scope": "GLOVE_ONLY",
+  "phase": "all",
+  "scope_lock_non_glove_unchanged": true,
+  "scope_diffs": [],
+  "shape_profile": "curved_padded_fist_cage_v18",
+  "topology_family": "curved_sweep_two_mass",
+  "max_forward_z_m": 0.126,
+  "striking_face_half_width_m": 0.11,
+  "forward_projection_m": 0.131,
+  "knuckle_to_fold_drop_m": 0.092,
+  "front_roll_backtrack_m": 0.008,
+  "undercut_return_m": 0.074,
+  "terminal_recess_from_face_m": 0.166,
+  "distal_terminal": "under_palm_terminal_behind_striking_face",
+  "knuckle_to_wrist_width_ratio": 2.161,
+  "terminal_ring_half_width_m": 0.056,
+  "cuff_length_m": 0.105,
+  "cuff_width_m": 0.1178,
+  "neck_width_m": 0.1209,
+  "numeric_sanity_checks": {
+    "S01_no_forward_terminal": true,
+    "S02_broad_knuckle_and_striking_mass": true,
+    "S03_curve_turns_down_and_back": true,
+    "S04_thumb_geometry_present": true,
+    "S05_white_cuff_geometry_present": true
+  }
+}

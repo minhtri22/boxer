@@ -6,7 +6,7 @@ from PIL import Image, ImageDraw
 REPO = Path(__file__).resolve().parents[4]
 ROOT = REPO / "art" / "blender" / "ramirez"
 REFS = ROOT / "references"
-REVIEW = ROOT / "renders" / "review4"
+REVIEW = ROOT / "renders" / "review5"
 
 
 def fit(image, box):
@@ -31,7 +31,7 @@ def build_trunks_comparisons():
         draw = ImageDraw.Draw(canvas)
         draw.text((30, 20), f"RAMIREZ TRUNKS - {name.replace('_', ' ').upper()}", fill="white")
         draw.text((170, 55), "APPROVED REFERENCE", fill=(220, 190, 120))
-        draw.text((930, 55), "BLENDER REVIEW4", fill=(220, 190, 120))
+        draw.text((930, 55), "BLENDER REVIEW5", fill=(220, 190, 120))
         left = fit(ref, (620, 950))
         right = fit(render, (620, 950))
         canvas.paste(left, (40 + (620 - left.width) // 2, 90 + (950 - left.height) // 2))
@@ -59,7 +59,7 @@ def build_pose_contact():
 def main():
     build_trunks_comparisons()
     build_pose_contact()
-    print("review4 trunks + pose evidence ready")
+    print("review5 trunks + pose evidence ready")
 
 
 if __name__ == "__main__":

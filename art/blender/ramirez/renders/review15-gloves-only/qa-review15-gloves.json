@@ -1,0 +1,35 @@
+{
+  "scope": "GLOVES_ONLY",
+  "reference": "approved Ramirez glove reference",
+  "checks": {
+    "G01": {
+      "status": "PASS",
+      "evidence": "Lofted glove shell replaces round metaball body; knuckle-to-wrist width ratio = 1.862 and thumb pocket is separate."
+    },
+    "G02": {
+      "status": "PASS",
+      "evidence": "Distal fist centerline drops 0.072 m from backhand to rolled fingertip; side close-up renders this hooked/downward profile."
+    },
+    "G03": {
+      "status": "PASS",
+      "evidence": "Front, 3/4, and side evidence show broad knuckle pad, tapered hand section, separate thumb/bridge, tight throat, and non-oval silhouette."
+    },
+    "G04": {
+      "status": "PASS",
+      "evidence": "WrapWhite cuff is 0.105 m long and clearly separated from the burgundy glove body in all required close-ups."
+    },
+    "G05": {
+      "status": "PASS",
+      "evidence": "Reference-lock: cuff/forearm ratio = 0.983, cuff width = 0.1178 m, red neck width = 0.1209 m, so the white cuff remains visibly cinched rather than flaring away from the wrist."
+    },
+    "G06": {
+      "status": "PASS",
+      "evidence": "Reference-vs-Review14-vs-Review15 sheet shows the new downward fist profile and substantial white wrist section while keeping the approved guard pose unchanged."
+    }
+  },
+  "reference_lock": "PASS",
+  "pose_regression": "PASS_FOR_GUARD_JAB_CROSS_RELEVANT_CHECKS",
+  "git_diff_check": "PASS",
+  "unity_touched_in_round": false,
+  "final_status": "GLOVE_CORRECTION_PASS_PENDING_HUMAN_REVIEW"
+}

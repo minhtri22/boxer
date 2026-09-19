@@ -1,0 +1,81 @@
+{
+  "round": "review16-glove-fix",
+  "scope": "GLOVE_ONLY",
+  "scope_lock_non_glove_unchanged": true,
+  "checks": {
+    "G01_front_is_not_flat_cut": {
+      "pass": true,
+      "evidence": [
+        "glove_front_closeup.png",
+        "glove_three_quarter_closeup.png",
+        "glove_side_closeup.png",
+        "automated-glove-precheck.json: distal_terminal=single_rounded_pole_no_planar_cap"
+      ]
+    },
+    "G02_reads_as_clenched_boxing_fist": {
+      "pass": true,
+      "evidence": [
+        "glove_front_closeup.png",
+        "glove_three_quarter_closeup.png",
+        "neutral_guard_closeup.png",
+        "shape_profile=rounded_curled_fist_v16",
+        "separate padded thumb + thumb bridge + leather crease cues"
+      ]
+    },
+    "G03_silhouette_bends_downward": {
+      "pass": true,
+      "evidence": [
+        "glove_side_closeup.png",
+        "fist_curl_drop_m=0.145"
+      ]
+    },
+    "G04_white_wrist_wrap_clearly_visible": {
+      "pass": true,
+      "evidence": [
+        "glove_front_closeup.png",
+        "glove_three_quarter_closeup.png",
+        "glove_side_closeup.png",
+        "cuff_length_m=0.105"
+      ]
+    },
+    "G05_white_wrap_reads_as_tight_binding": {
+      "pass": true,
+      "evidence": [
+        "neutral_guard_closeup.png",
+        "jab_closeup.png",
+        "cross_closeup.png",
+        "cuff_width_m=0.1178 < neck_width_m=0.1209",
+        "reference-lock cuff_to_forearm ratio=0.983"
+      ]
+    },
+    "G06_closer_to_approved_reference_than_review15": {
+      "pass": true,
+      "evidence": [
+        "qa-reference-vs-review15-vs-review16.jpg",
+        "qa-review16-required-evidence.jpg",
+        "review16 replaces review15 flat/capped distal construction with rounded curled fist profile and restores readable white cuff"
+      ]
+    }
+  },
+  "reference_lock_gate": {
+    "pass": true,
+    "blender": "5.2.1 LTS",
+    "glove_to_forearm_ratio_left": 1.836,
+    "glove_to_forearm_ratio_right": 1.836,
+    "cuff_to_forearm_ratio_left": 0.983,
+    "cuff_to_forearm_ratio_right": 0.983
+  },
+  "deliverables": [
+    "glove_front_closeup.png",
+    "glove_three_quarter_closeup.png",
+    "glove_side_closeup.png",
+    "neutral_guard_closeup.png",
+    "jab_closeup.png",
+    "cross_closeup.png"
+  ],
+  "comparison_evidence": [
+    "qa-review16-required-evidence.jpg",
+    "qa-reference-vs-review15-vs-review16.jpg"
+  ],
+  "final_status": "GLOVE_FIX_PASS_PENDING_HUMAN_REVIEW"
+}
