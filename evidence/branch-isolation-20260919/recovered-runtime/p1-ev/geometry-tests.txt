@@ -1,0 +1,8 @@
+PASS Ramirez UV texture packaged as material asset
+PASS glove/head shell preserves exact sphere contact radius
+PASS torso vertices on original contact union within 1mm
+PASS torso triangle centers within original M05 1mm tolerance
+PASS bottom control visuals disabled independently of input
+PASS WebGL shell shader resource present
+vertex_error_m=0.0002811849 triangle_error_m=0.000199913979 torso_vertices=15818 triangles=30380
+TOTAL=6 FAIL=0

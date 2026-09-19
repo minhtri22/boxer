@@ -131,12 +131,13 @@ namespace BoxerP0
                 Vector3 b=sample.World(sample.Arm(left).Wrist);
                 Round2Frame tb=Round2Frame.Between(targetOld,target,alpha);
                 int hit=SweepTargets(a,b,ta,tb,!player||!_opponent.CounterWindowOpen,
-                    player?0:_opponent.BodyAttack?2:1,out float earliest);
+                    player?0:_opponent.BodyAttack?2:1,out float earliest,player&&EVContactSurface.Ready);
                 Samples+=7;
                 if(hit>=0)
                 {
                     Contacts++; LastContactFraction=earliest;
                     LastContactGap=Vector3.Distance(Vector3.Lerp(a,b,earliest),Vector3.Lerp(ta.Target(hit),tb.Target(hit),earliest))-Round2Motion.GloveRadius-TargetRadius(hit);
+                    if(player&&EVContactSurface.Ready&&hit>=2)LastContactGap=EVContactSurface.LastGap;
                     CombatOutcome outcome=hit<2?CombatOutcome.Block:CombatOutcome.Hit;
                     string reason=(player?"OPPONENT_":"PLAYER_")+(hit<2?"GUARD":hit==2?"HEAD":"BODY")+"_SWEPT_CONTACT";
                     if(player) _player.CompleteRound2Punch(outcome,reason,a,b);
@@ -154,13 +155,16 @@ namespace BoxerP0
                 else _opponent.CompleteRound2Attack(CombatOutcome.Miss,"NO_SWEPT_TARGET_CONTACT",origin,finish);
             }
         }
-        public static int SweepTargets(Vector3 a,Vector3 b,Round2Frame ta,Round2Frame tb,bool guardAllowed,int targetMode,out float earliest)
+        public static int SweepTargets(Vector3 a,Vector3 b,Round2Frame ta,Round2Frame tb,bool guardAllowed,int targetMode,out float earliest,bool anatomical=false)
         {
             earliest=2f; int hit=-1;
             for(int k=0;k<7;k++)
             {
                 if(k<2&&!guardAllowed || targetMode==2&&k<3 || targetMode==1&&k>=3) continue;
-                if(Round2Motion.Sweep(a,b,ta.Target(k),tb.Target(k),Round2Motion.GloveRadius+TargetRadius(k),out float fraction)&&fraction<earliest)
+                if(anatomical&&k>=4)continue;
+                float fraction;
+                bool contact=anatomical&&k>=2?EVContactSurface.Sweep(a,b,ta,tb,k==2,out fraction):Round2Motion.Sweep(a,b,ta.Target(k),tb.Target(k),Round2Motion.GloveRadius+TargetRadius(k),out fraction);
+                if(contact&&fraction<earliest)
                 { earliest=fraction; hit=k; }
             }
             return hit;

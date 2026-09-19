@@ -1,0 +1,3 @@
+frames=835 failed_frames=0 torso_anchor_error_m=0 skin_follow_mean_ms=0.008163 skin_follow_allocated_bytes=0
+checks=torso_anchor,cuff_parent,cuff_forearm_alignment,single_shoulder,trunk_thigh_attachment,boot_shin_attachment,redundant_torso_renderers_off
+RESULT=PASS

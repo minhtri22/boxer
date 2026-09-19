@@ -15,7 +15,8 @@ namespace BoxerP0.Editor
             string sha=Environment.GetEnvironmentVariable("BOXER_BUILD_MARKER");
             if(string.IsNullOrEmpty(sha)||sha.Length!=40) throw new Exception("Full committed source SHA required");
             Phase0SceneBuilder.Build();
-            PlayerSettings.bundleVersion="r2-"+sha;
+            bool ev=Environment.GetEnvironmentVariable("BOXER_VISUAL_STAGE")=="P1-EV";
+            PlayerSettings.bundleVersion=(ev?"ev-":"r2-")+sha;
             PlayerSettings.WebGL.compressionFormat=WebGLCompressionFormat.Disabled;
             PlayerSettings.WebGL.template="PROJECT:BoxerP0Mobile";
             AssetDatabase.SaveAssets();
@@ -32,8 +33,8 @@ namespace BoxerP0.Editor
             metadata.AppendLine("result="+report.summary.result);
             metadata.AppendLine("build_seconds="+report.summary.totalTime.TotalSeconds.ToString(System.Globalization.CultureInfo.InvariantCulture));
             metadata.AppendLine("total_bytes="+report.summary.totalSize);
-            metadata.AppendLine("contact=shared_anatomical_pose_relative_sphere_sweep_240Hz");
-            metadata.AppendLine("presentation=world_space_articulated_body_P1V_HUD_only");
+            metadata.AppendLine("contact="+(ev?"shared_pose_relative_glove_sweep_240Hz_visible_surface_BVH":"shared_anatomical_pose_relative_sphere_sweep_240Hz"));
+            metadata.AppendLine("presentation="+(ev?"P1_EV_articulated_mesh_shell_no_bottom_controls":"world_space_articulated_body_P1V_HUD_only"));
             metadata.AppendLine("desktop_validation=explicit_query_flag_synthetic_no_sensor_claim");
             using var hash=SHA256.Create();
             foreach(string file in Directory.GetFiles(output,"*",SearchOption.AllDirectories))

@@ -42,6 +42,7 @@ namespace BoxerP0
 
         private void OnGUI()
         {
+            if (FindFirstObjectByType<P1VCombatPresentation>()?.IsReady == true) return;
             if (_stage != "PUNCHES") return;
             EnsureStyles();
             GUI.depth = -1000;

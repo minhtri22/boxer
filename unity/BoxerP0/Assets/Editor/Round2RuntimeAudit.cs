@@ -74,6 +74,7 @@ namespace BoxerP0.Editor
             _maxRigMs=Mathf.Max(_maxRigMs,rig.LastUpdateMs); _sumRigMs+=rig.LastUpdateMs; _frames++;
             var feet=UnityEngine.Object.FindFirstObjectByType<Round2Footwork>();
             _maxPlant=Mathf.Max(_maxPlant,feet.PlantedDrift);
+            if(UnityEngine.Object.FindFirstObjectByType<EVVisualShell>()!=null) EVEvaluation.AuditFrame();
             if(elapsed>1+_shot*2 && _shot<10)
             {
                 Capture(_shot++,player,opponent);
@@ -83,6 +84,7 @@ namespace BoxerP0.Editor
             Log.AppendLine($"frames={_frames} rig_mean_ms={_sumRigMs/_frames:F5} rig_max_ms={_maxRigMs:F5} max_planted_foot_error_m={_maxPlant:R} contacts={rig.Contacts} samples={rig.Samples}");
             Log.AppendLine($"committed_root_drift_m={_rootDrift:R} committed_rotation_drift_degrees={_rotationDrift:R}");
             bool passed=_rootDrift<0.00001f&&_rotationDrift<0.001f&&_maxPlant<0.001f&&rig.Contacts>0;
+            if(UnityEngine.Object.FindFirstObjectByType<EVVisualShell>()!=null) passed &= EVEvaluation.AuditFinal();
             Log.AppendLine("RUNTIME_INVARIANTS="+(passed?"PASS":"FAIL"));
             Log.AppendLine("CPU values include Editor overhead. Not WebGL frame-time evidence.");
             Directory.CreateDirectory(DirectoryPath);

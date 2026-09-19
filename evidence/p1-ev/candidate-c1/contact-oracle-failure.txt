@@ -1,0 +1,100 @@
+DISAGREE head=False x=-3 y=3 surface=True physics=False t=0,650318146 physicsDistance=0
+DISAGREE head=False x=-3 y=4 surface=True physics=False t=0,6576419 physicsDistance=0
+DISAGREE head=False x=-3 y=5 surface=True physics=False t=0,6896516 physicsDistance=0
+DISAGREE head=False x=-2 y=3 surface=True physics=False t=0,622069 physicsDistance=0
+DISAGREE head=False x=-2 y=4 surface=True physics=False t=0,6274503 physicsDistance=0
+DISAGREE head=False x=-2 y=5 surface=True physics=False t=0,6475278 physicsDistance=0
+DISAGREE head=False x=-2 y=6 surface=True physics=False t=0,703622937 physicsDistance=0
+DISAGREE head=False x=-1 y=3 surface=True physics=False t=0,612607539 physicsDistance=0
+DISAGREE head=False x=-1 y=4 surface=True physics=False t=0,617731154 physicsDistance=0
+DISAGREE head=False x=-1 y=5 surface=True physics=False t=0,6362093 physicsDistance=0
+DISAGREE head=False x=-1 y=6 surface=True physics=False t=0,6800348 physicsDistance=0
+DISAGREE head=False x=0 y=3 surface=True physics=False t=0,6078071 physicsDistance=0
+DISAGREE head=False x=0 y=4 surface=True physics=False t=0,613075256 physicsDistance=0
+DISAGREE head=False x=0 y=5 surface=True physics=False t=0,6316729 physicsDistance=0
+DISAGREE head=False x=0 y=6 surface=True physics=False t=0,676254869 physicsDistance=0
+DISAGREE head=False x=1 y=3 surface=True physics=False t=0,612607539 physicsDistance=0
+DISAGREE head=False x=1 y=4 surface=True physics=False t=0,617731154 physicsDistance=0
+DISAGREE head=False x=1 y=5 surface=True physics=False t=0,6362093 physicsDistance=0
+DISAGREE head=False x=1 y=6 surface=True physics=False t=0,6800348 physicsDistance=0
+DISAGREE head=False x=2 y=3 surface=True physics=False t=0,622069 physicsDistance=0
+DISAGREE head=False x=2 y=4 surface=True physics=False t=0,6274503 physicsDistance=0
+DISAGREE head=False x=2 y=5 surface=True physics=False t=0,6475278 physicsDistance=0
+DISAGREE head=False x=2 y=6 surface=True physics=False t=0,703622937 physicsDistance=0
+DISAGREE head=False x=3 y=3 surface=True physics=False t=0,650318146 physicsDistance=0
+DISAGREE head=False x=3 y=4 surface=True physics=False t=0,6576419 physicsDistance=0
+DISAGREE head=False x=3 y=5 surface=True physics=False t=0,6896516 physicsDistance=0
+MATRIX Jab distance=1,350 step=ADVANCING outcome=MISS
+MATRIX Jab distance=1,350 step=NEUTRAL outcome=MISS
+MATRIX Jab distance=1,350 step=RETREATING outcome=MISS
+MATRIX Jab distance=0,955 step=ADVANCING outcome=BLOCK
+MATRIX Jab distance=0,955 step=NEUTRAL outcome=BLOCK
+MATRIX Jab distance=0,955 step=RETREATING outcome=BLOCK
+MATRIX Jab distance=0,650 step=ADVANCING outcome=BLOCK
+MATRIX Jab distance=0,650 step=NEUTRAL outcome=BLOCK
+MATRIX Jab distance=0,650 step=RETREATING outcome=BLOCK
+MATRIX Cross distance=1,350 step=ADVANCING outcome=MISS
+MATRIX Cross distance=1,350 step=NEUTRAL outcome=MISS
+MATRIX Cross distance=1,350 step=RETREATING outcome=MISS
+MATRIX Cross distance=0,955 step=ADVANCING outcome=BLOCK
+MATRIX Cross distance=0,955 step=NEUTRAL outcome=BLOCK
+MATRIX Cross distance=0,955 step=RETREATING outcome=BLOCK
+MATRIX Cross distance=0,650 step=ADVANCING outcome=BLOCK
+MATRIX Cross distance=0,650 step=NEUTRAL outcome=BLOCK
+MATRIX Cross distance=0,650 step=RETREATING outcome=BLOCK
+MATRIX LeadHook distance=1,350 step=ADVANCING outcome=MISS
+MATRIX LeadHook distance=1,350 step=NEUTRAL outcome=MISS
+MATRIX LeadHook distance=1,350 step=RETREATING outcome=MISS
+MATRIX LeadHook distance=0,955 step=ADVANCING outcome=BLOCK
+MATRIX LeadHook distance=0,955 step=NEUTRAL outcome=BLOCK
+MATRIX LeadHook distance=0,955 step=RETREATING outcome=BLOCK
+MATRIX LeadHook distance=0,650 step=ADVANCING outcome=BLOCK
+MATRIX LeadHook distance=0,650 step=NEUTRAL outcome=BLOCK
+MATRIX LeadHook distance=0,650 step=RETREATING outcome=BLOCK
+MATRIX RearHook distance=1,350 step=ADVANCING outcome=MISS
+MATRIX RearHook distance=1,350 step=NEUTRAL outcome=MISS
+MATRIX RearHook distance=1,350 step=RETREATING outcome=MISS
+MATRIX RearHook distance=0,955 step=ADVANCING outcome=BLOCK
+MATRIX RearHook distance=0,955 step=NEUTRAL outcome=BLOCK
+MATRIX RearHook distance=0,955 step=RETREATING outcome=BLOCK
+MATRIX RearHook distance=0,650 step=ADVANCING outcome=BLOCK
+MATRIX RearHook distance=0,650 step=NEUTRAL outcome=BLOCK
+MATRIX RearHook distance=0,650 step=RETREATING outcome=BLOCK
+MATRIX LeadUppercut distance=1,350 step=ADVANCING outcome=MISS
+MATRIX LeadUppercut distance=1,350 step=NEUTRAL outcome=MISS
+MATRIX LeadUppercut distance=1,350 step=RETREATING outcome=MISS
+MATRIX LeadUppercut distance=0,955 step=ADVANCING outcome=BLOCK
+MATRIX LeadUppercut distance=0,955 step=NEUTRAL outcome=MISS
+MATRIX LeadUppercut distance=0,955 step=RETREATING outcome=BLOCK
+MATRIX LeadUppercut distance=0,650 step=ADVANCING outcome=BLOCK
+MATRIX LeadUppercut distance=0,650 step=NEUTRAL outcome=BLOCK
+MATRIX LeadUppercut distance=0,650 step=RETREATING outcome=BLOCK
+MATRIX RearUppercut distance=1,350 step=ADVANCING outcome=MISS
+MATRIX RearUppercut distance=1,350 step=NEUTRAL outcome=MISS
+MATRIX RearUppercut distance=1,350 step=RETREATING outcome=MISS
+MATRIX RearUppercut distance=0,955 step=ADVANCING outcome=BLOCK
+MATRIX RearUppercut distance=0,955 step=NEUTRAL outcome=MISS
+MATRIX RearUppercut distance=0,955 step=RETREATING outcome=BLOCK
+MATRIX RearUppercut distance=0,650 step=ADVANCING outcome=BLOCK
+MATRIX RearUppercut distance=0,650 step=NEUTRAL outcome=BLOCK
+MATRIX RearUppercut distance=0,650 step=RETREATING outcome=BLOCK
+MATRIX LeadOverhand distance=1,350 step=ADVANCING outcome=MISS
+MATRIX LeadOverhand distance=1,350 step=NEUTRAL outcome=MISS
+MATRIX LeadOverhand distance=1,350 step=RETREATING outcome=MISS
+MATRIX LeadOverhand distance=0,955 step=ADVANCING outcome=BLOCK
+MATRIX LeadOverhand distance=0,955 step=NEUTRAL outcome=BLOCK
+MATRIX LeadOverhand distance=0,955 step=RETREATING outcome=BLOCK
+MATRIX LeadOverhand distance=0,650 step=ADVANCING outcome=HIT
+MATRIX LeadOverhand distance=0,650 step=NEUTRAL outcome=HIT
+MATRIX LeadOverhand distance=0,650 step=RETREATING outcome=HIT
+MATRIX RearOverhand distance=1,350 step=ADVANCING outcome=MISS
+MATRIX RearOverhand distance=1,350 step=NEUTRAL outcome=MISS
+MATRIX RearOverhand distance=1,350 step=RETREATING outcome=MISS
+MATRIX RearOverhand distance=0,955 step=ADVANCING outcome=BLOCK
+MATRIX RearOverhand distance=0,955 step=NEUTRAL outcome=BLOCK
+MATRIX RearOverhand distance=0,955 step=RETREATING outcome=BLOCK
+MATRIX RearOverhand distance=0,650 step=ADVANCING outcome=BLOCK
+MATRIX RearOverhand distance=0,650 step=NEUTRAL outcome=BLOCK
+MATRIX RearOverhand distance=0,650 step=RETREATING outcome=BLOCK
+oracle_samples=578 disagreement=26 max_contact_surface_gap_m=9,857118E-06 old_sphere_early_contact_cases=199 matrix=72 contacts=46 misses=26 head_triangles=8018 body_triangles=916 warmed_sweep_us=12,749 allocated_bytes=0
+RESULT=FAIL

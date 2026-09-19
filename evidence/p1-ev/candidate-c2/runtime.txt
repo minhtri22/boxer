@@ -1,0 +1,16 @@
+EDITOR_PLAYMODE_SYNTHETIC_NOT_HUMAN_UAT unity=6000.5.8f1
+scenario=alternating player punches, target shifts for advance/retreat/lateral; current AI attack state machine; real Update/LateUpdate
+t=1,00 distance=1,1750 player=LEAD JAB:Recover opponent=REAR CROSS:Commit contacts=0 gap=0 steps=4
+t=3,00 distance=1,0312 player=GUARD opponent=READING contacts=1 gap=0 steps=6
+t=5,01 distance=0,9791 player=LEAD OVERHAND:Extend opponent=READING contacts=2 gap=7,450581E-09 steps=8
+t=7,01 distance=1,2464 player=REAR CROSS:Commit opponent=READING contacts=5 gap=-5,96046448E-08 steps=9
+t=9,00 distance=1,0643 player=REAR HOOK:Extend opponent=READING contacts=5 gap=-5,96046448E-08 steps=14
+t=11,01 distance=1,0579 player=LEAD OVERHAND:Commit opponent=READING contacts=7 gap=2,98023224E-08 steps=14
+t=13,01 distance=0,6253 player=GUARD opponent=READING contacts=10 gap=6,571412E-06 steps=19
+t=15,00 distance=0,9140 player=REAR HOOK:Extend opponent=REAR CROSS:Recover contacts=13 gap=0 steps=24
+t=17,00 distance=1,0020 player=LEAD OVERHAND:Commit opponent=REAR CROSS:Recover contacts=14 gap=7,450581E-09 steps=26
+t=19,01 distance=0,9964 player=GUARD opponent=READING contacts=16 gap=-1,49011612E-08 steps=28
+frames=882 rig_mean_ms=0,08069 rig_max_ms=5,83110 max_planted_foot_error_m=2,01165676E-07 contacts=17 samples=5502
+committed_root_drift_m=0 committed_rotation_drift_degrees=0
+RUNTIME_INVARIANTS=PASS
+CPU values include Editor overhead. Not WebGL frame-time evidence.

@@ -63,6 +63,7 @@ namespace BoxerP0
             RestyleExistingRing();
             RestylePlayerGloves();
             RestyleOpponent();
+            gameObject.AddComponent<EVVisualShell>();
 
             _p1VPresentation = GetComponent<P1VCombatPresentation>();
             if (_p1VPresentation == null) _p1VPresentation = gameObject.AddComponent<P1VCombatPresentation>();

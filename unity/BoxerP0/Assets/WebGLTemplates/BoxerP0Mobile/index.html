@@ -114,7 +114,7 @@
 
           // P1 UAT startup rule: never keep the game behind a second orientation/calibration gate.
           enterGame();
-          if (desktopValidation) {
+          if (desktopValidation && new URLSearchParams(location.search).get('metrics') === '1') {
             const report = document.createElement('output');
             report.id = 'desktop-performance';
             report.style = 'position:fixed;left:4px;bottom:2px;color:#e8c773;font:10px monospace;pointer-events:none;z-index:9999';

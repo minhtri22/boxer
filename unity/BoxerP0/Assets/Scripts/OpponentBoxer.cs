@@ -299,6 +299,7 @@ namespace BoxerP0
             if (distance < 0.001f) return;
             Vector3 direction = delta / distance;
             float desired = Round2Motion.CloseBoundary + Round2Motion.HeadRadius;
+            if(EVContactSurface.Ready)desired=EVContactSurface.PreferredDistance;
             float speed = distance > desired + 0.045f ? 0.36f : distance < desired - 0.045f ? -0.32f : 0f;
             Vector3 lateral = Vector3.Cross(Vector3.up, direction) * (Mathf.Sin(Time.time * 0.8f) * 0.10f);
             Vector3 next = transform.position + (direction * speed + lateral) * Time.deltaTime;
