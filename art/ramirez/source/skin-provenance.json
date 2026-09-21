@@ -1,0 +1,47 @@
+{
+  "download_url": "https://files.makehumancommunity.org/asset_packs/skins02/skins02_cc0.zip",
+  "catalog_license_url": "https://static.makehumancommunity.org/assets/assetpacks/skins02.html",
+  "archive_sha256": "1613f1ef3afca53094511d26620ed7cf1d2dedc29ed3d384d60bdebe250698ae",
+  "files": [
+    {
+      "archive_path": "skins/mindfront_aksel_skin/mindfront_aksel_skin.mhmat",
+      "file": "skin\\mindfront_aksel_skin.mhmat",
+      "sha256": "ed79cb17edbb5929dd83474a46f045df7d5f31d0b9c1156c87f563bd2bbbfab6"
+    },
+    {
+      "archive_path": "skins/mindfront_aksel_skin/Aksel_Skin_diffuse.png",
+      "file": "skin\\Aksel_Skin_diffuse.png",
+      "sha256": "268ee6d1ea9665f8050d040c7b47971884428628021418ae52f68912859f5e60"
+    },
+    {
+      "archive_path": "skins/mindfront_aksel_skin/Aksel_Skin_NRM.png",
+      "file": "skin\\Aksel_Skin_NRM.png",
+      "sha256": "2bf3632a4bfb1631d9ae15568c7de5c7254c780e5168f1546827f32d50f5212d"
+    },
+    {
+      "archive_path": "skins/mindfront_aksel_skin/Aksel_Skin_SPEC.png",
+      "file": "skin\\Aksel_Skin_SPEC.png",
+      "sha256": "d34638826d48d6fdb632f3a18296999630edf2879e7301356dfa60e6d61808f7"
+    },
+    {
+      "archive_path": "skins/mindfront_aksel_skin/mindfront_aksel_skin.thumb",
+      "file": "skin\\mindfront_aksel_skin.thumb",
+      "sha256": "52c48a768ecef782641285b8ef2e59828f09d441d42ed8593dceb350204b3b5d"
+    },
+    {
+      "archive_path": "skins/toigo_light_skin_male_bronze/toigo_light_skin_male_bronze.thumb",
+      "file": "skin\\toigo_light_skin_male_bronze.thumb",
+      "sha256": "0e106150237194cda718eef1df20d26080137476da198eddc570a46806ffe16b"
+    },
+    {
+      "archive_path": "skins/toigo_light_skin_male_bronze/young_lightskinned_male_diffuse_Bronze.png",
+      "file": "skin\\young_lightskinned_male_diffuse_Bronze.png",
+      "sha256": "5a53213f061bfa97ee0afd6b40650ffbc089a479c144e63f3c39acceca5853c0"
+    },
+    {
+      "archive_path": "skins/toigo_light_skin_male_bronze/toigo_light_skin_male_bronze.mhmat",
+      "file": "skin\\toigo_light_skin_male_bronze.mhmat",
+      "sha256": "4dbc8cd5a4c37b415556e76b6b7c5802e4d1432fffa3b0669646c5a92fb584b7"
+    }
+  ]
+}

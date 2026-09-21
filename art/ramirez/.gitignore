@@ -1,0 +1,7 @@
+__pycache__/
+*.blend1
+*.blend2
+source/*.zip
+source/blender-base/
+source/blender-base-1.4.1/
+reviews/*/*.blend

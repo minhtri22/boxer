@@ -1,0 +1,14 @@
+{
+  "candidate": "B_STUDIO_SCULPT",
+  "source_object": "GEO-body_male_realistic",
+  "uniform_scale": 1.0650396641810442,
+  "cage_vertices": 10582,
+  "multires_render_level": 2,
+  "status": "UNASSESSED_NOT_APPROVED",
+  "modifiers": [
+    [
+      "Multires",
+      "MULTIRES"
+    ]
+  ]
+}

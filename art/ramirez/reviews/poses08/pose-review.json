@@ -1,0 +1,181 @@
+{
+  "status": "POSE_STUDY_NOT_HUMAN_UAT",
+  "blender": "5.2.1 LTS",
+  "records": [
+    {
+      "pose": "guard",
+      "frame": 1,
+      "finite_skin_coordinates": true,
+      "bone_length_max_error_m": 1.5780965678668935e-07,
+      "outsole_bounds": {
+        "L": {
+          "min_z_m": 0.007048275787383318,
+          "max_z_m": 0.030932694673538208
+        },
+        "R": {
+          "min_z_m": 0.0070382533594965935,
+          "max_z_m": 0.030955681577324867
+        }
+      },
+      "render_seconds": 36.46739179996075
+    },
+    {
+      "pose": "jab",
+      "frame": 25,
+      "finite_skin_coordinates": true,
+      "bone_length_max_error_m": 1.5780965678668935e-07,
+      "outsole_bounds": {
+        "L": {
+          "min_z_m": 0.007048275787383318,
+          "max_z_m": 0.030932694673538208
+        },
+        "R": {
+          "min_z_m": 0.0070382533594965935,
+          "max_z_m": 0.030955681577324867
+        }
+      },
+      "render_seconds": 57.60250079998514
+    },
+    {
+      "pose": "cross",
+      "frame": 49,
+      "finite_skin_coordinates": true,
+      "bone_length_max_error_m": 1.282680404113279e-07,
+      "outsole_bounds": {
+        "L": {
+          "min_z_m": 0.007049450185149908,
+          "max_z_m": 0.03093002550303936
+        },
+        "R": {
+          "min_z_m": 0.007036456372588873,
+          "max_z_m": 0.03095943108201027
+        }
+      },
+      "render_seconds": 44.41299829998752
+    },
+    {
+      "pose": "hook",
+      "frame": 73,
+      "finite_skin_coordinates": true,
+      "bone_length_max_error_m": 1.219181426925786e-07,
+      "outsole_bounds": {
+        "L": {
+          "min_z_m": 0.007045808248221874,
+          "max_z_m": 0.030938558280467987
+        },
+        "R": {
+          "min_z_m": 0.007038398180156946,
+          "max_z_m": 0.03095494769513607
+        }
+      },
+      "render_seconds": 57.186487399972975
+    },
+    {
+      "pose": "uppercut",
+      "frame": 97,
+      "finite_skin_coordinates": true,
+      "bone_length_max_error_m": 1.710613659056115e-07,
+      "outsole_bounds": {
+        "L": {
+          "min_z_m": 0.007048673927783966,
+          "max_z_m": 0.030931875109672546
+        },
+        "R": {
+          "min_z_m": 0.007040153257548809,
+          "max_z_m": 0.030950991436839104
+        }
+      },
+      "render_seconds": 107.18798420001986
+    },
+    {
+      "pose": "overhand",
+      "frame": 121,
+      "finite_skin_coordinates": true,
+      "bone_length_max_error_m": 1.3550799904393784e-07,
+      "outsole_bounds": {
+        "L": {
+          "min_z_m": 0.007048401981592178,
+          "max_z_m": 0.030932720750570297
+        },
+        "R": {
+          "min_z_m": 0.007036725524812937,
+          "max_z_m": 0.030959073454141617
+        }
+      },
+      "render_seconds": 65.11031479999656
+    },
+    {
+      "pose": "slip",
+      "frame": 145,
+      "finite_skin_coordinates": true,
+      "bone_length_max_error_m": 2.1282040768566546e-07,
+      "outsole_bounds": {
+        "L": {
+          "min_z_m": 0.007048978004604578,
+          "max_z_m": 0.030930954962968826
+        },
+        "R": {
+          "min_z_m": 0.0070378463715314865,
+          "max_z_m": 0.03095715306699276
+        }
+      },
+      "render_seconds": 85.30115080001997
+    },
+    {
+      "pose": "roll",
+      "frame": 169,
+      "finite_skin_coordinates": true,
+      "bone_length_max_error_m": 1.0901265867779841e-07,
+      "outsole_bounds": {
+        "L": {
+          "min_z_m": 0.007043688558042049,
+          "max_z_m": 0.03094412200152874
+        },
+        "R": {
+          "min_z_m": 0.007033958099782467,
+          "max_z_m": 0.030965417623519897
+        }
+      },
+      "render_seconds": 53.107470499991905
+    },
+    {
+      "pose": "advance",
+      "frame": 193,
+      "finite_skin_coordinates": true,
+      "bone_length_max_error_m": 2.1770732400172577e-07,
+      "outsole_bounds": {
+        "L": {
+          "min_z_m": 0.022051049396395683,
+          "max_z_m": 0.045927710831165314
+        },
+        "R": {
+          "min_z_m": 0.007036187220364809,
+          "max_z_m": 0.0309602040797472
+        }
+      },
+      "render_seconds": 35.2345172999776
+    },
+    {
+      "pose": "retreat",
+      "frame": 217,
+      "finite_skin_coordinates": true,
+      "bone_length_max_error_m": 1.501071006382304e-07,
+      "outsole_bounds": {
+        "L": {
+          "min_z_m": 0.007055533118546009,
+          "max_z_m": 0.030915716663002968
+        },
+        "R": {
+          "min_z_m": 0.022035541012883186,
+          "max_z_m": 0.04596176743507385
+        }
+      },
+      "render_seconds": 32.92314469994744
+    }
+  ],
+  "limitations": [
+    "Pose samples and automated bounds are not a reference-fidelity pass.",
+    "Interpolation between pose studies is not a production boxing animation.",
+    "Art rig dimensions are not yet reconciled with frozen gameplay rig dimensions."
+  ]
+}

@@ -1,0 +1,13 @@
+D:\WORK\RESEARCH\POVGame\boxer-ramirez-realistic\art\ramirez\scripts\rig_studio_candidate.py:63: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m=bpy.data.materials.new(name);m.diffuse_color=(*col,1);m.use_nodes=True;p=m.node_tree.nodes.get('Principled BSDF');p.inputs['Base Color'].default_value=(*col,1);p.inputs['Roughness'].default_value=rough;return m
+00:15.859  cycles           | WARNING CUEW initialization failed: Error opening the library
+00:15.859  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library
+00:17.765  reports          | WARNING Path 'C:\Program Files\Blender Foundation\Blender 5.2\5.2\datafiles\assets\brushes\essentials_brushes-gp_draw.blend' cannot be made relative for Material 'Dots Stroke'
+Blender 5.2.1 LTS (hash 9e2066aef7ef built 2026-08-25 02:38:20)
+00:17.765  reports          | WARNING Path 'C:\Program Files\Blender Foundation\Blender 5.2\5.2\datafiles\assets\brushes\essentials_brushes-gp_draw.blend' cannot be made relative for Material 'Material'
+00:30.781  render           | Saved: 'D:\WORK\RESEARCH\POVGame\boxer-ramirez-realistic\art\ramirez\reviews\studio16-continuity\guard.png'
+00:51.859  render           | Saved: 'D:\WORK\RESEARCH\POVGame\boxer-ramirez-realistic\art\ramirez\reviews\studio16-continuity\jab.png'
+Info: Saved as "studio-ramirez-rig.blend"
+STUDIO_RIG_REVIEW_COMPLETE
+
+Blender quit
