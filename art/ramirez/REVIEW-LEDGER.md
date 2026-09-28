@@ -1,4 +1,4 @@
-# Blender review ledger — 2026-09-20 / 2026-09-21
+# Blender review ledger — 2026-09-20 through 2026-09-27
 
 Acceptance authority: realistic human anatomy and faithful reference appearance.
 The observations below are internal review, not human approval.
@@ -21,6 +21,13 @@ The observations below are internal review, not human approval.
 | studio15-joints | Measured wrist/ankle centres improve alignment but gaps persist; translating boot Z raises soles. | Reject this equipment fit. |
 | studio16-continuity | Restricting the shorts mask to pelvis/thigh X bounds restores forearms. Calf-fitted shaft and independent sole height remove obvious boot float. Open fingers are now exposed. | Confirm global-Z masking as wrist root cause. Distal hand skin must not compete with visible boxing glove. |
 | studio17-equipment | Distal skin omitted only beyond fitted wrist inside the cuff. Glove is the single visible hand. Rebuilding gold tape from evaluated cloth boundary removes the large sawtooth hem. | Guard render improves continuity; likeness/materials and dynamic deformation remain unapproved. |
+| studio18-native-lookdev | Native procedural pigment avoids broken UV interpolation, but skin is waxy, hair/brows generic and wraps intersect forearms. | Reject as finished appearance. |
+| studio19-pose-audit | Explicit dependency-graph invalidation and frame advancement produce a distinct rendered jab. Evaluated left glove centre changes from approximately (0.115,-0.344,1.402) to (0.100,-0.672,1.404) metres and remains there after rendering. | Retain render-state fix. Earlier nearly identical pose stills cannot prove motion coverage. |
+| studio20-wrap-follow | Forearm attachment corrects cuff orientation, but material close-up reveals intersection/end-cap teeth. | Correct radius from measured skin sections and remove redundant cloth end caps. |
+| studio21-reference-forms | New user front/side/back references packed in Blender. Local sculpt changes max 14.8 mm; bone lengths unchanged; shorter boot shafts/shorts and chin tuck. | Useful editable form checkpoint. Face, musculature, glove silhouette and clothing are still visibly short of reference quality. |
+| studio22-sampled-skin | Resolving donor colours before interpolation removes some UV contour artifacts, but anatomical correspondence still gives wrong red eye/nose patches. 169,362 colour vertices add cost without adequate visual benefit. | Reject cross-character nearest-surface colour transfer. Do not keep increasing sample density. |
+| studio23-wrap-surface | Skin-section fitting and open cloth sleeve remove prominent cuff end-cap teeth. | Retain geometric fix. Reprojected glove decals need outward-normal validation. |
+| studio24-cloth-drape | Offline 36-frame simulation takes 91.25 s for 7,551 garment vertices, max displacement 102 mm. Rendered shorts tighten/rise and trim becomes jagged. | Reject simulated shape; retain pre-drape garment. No runtime cloth introduced. |
 
 ## Serious candidates
 
@@ -51,3 +58,14 @@ benefit. Rejected. Original sculpt and A evidence remain intact.
 
 The 7 mm sole clearance in the candidate-A pose report is an authoring offset,
 not proof of correct planted contact. It must be removed in a final stance.
+
+## New reference authority and remaining work
+
+The user supplied ten viewport screenshots on 2026-09-27; exact copies and a
+reading are in `reference/20260927/`. The user confirmed these were captured from
+Tripo and that no downloadable source model is available. No asset was retrieved
+from Tripo. The screenshots augment the approved Ramirez identity reference;
+they do not lower the realistic-human acceptance gate.
+
+The work remains in Blender. No Unity code, UAT build, deployment or final gate
+approval follows from these experiments. Current appearance is NOT_APPROVED.

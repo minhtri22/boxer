@@ -1,0 +1,10 @@
+00:18.766  blend            | Read blend: "D:\WORK\RESEARCH\POVGame\boxer-ramirez-realistic\art\ramirez\reviews\studio21-reference-forms\ramirez-reference-workbench.blend"
+D:\WORK\RESEARCH\POVGame\boxer-ramirez-realistic\art\ramirez\scripts\export_head_uv_template.py:32: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  mat=bpy.data.materials.new('UV guide emission');mat.use_nodes=True;nodes=mat.node_tree.nodes;links=mat.node_tree.links
+D:\WORK\RESEARCH\POVGame\boxer-ramirez-realistic\art\ramirez\scripts\export_head_uv_template.py:36: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
+  world=bpy.data.worlds.new('UV background');world.use_nodes=True;world.node_tree.nodes.get('Background').inputs[0].default_value=(.30,.15,.085,1);scene.world=world
+00:24.453  render           | Saved: 'D:\WORK\RESEARCH\POVGame\boxer-ramirez-realistic\art\ramirez\textures\head-study\native-head-template.png'
+HEAD_UV_TEMPLATE_COMPLETE
+Blender 5.2.1 LTS (hash 9e2066aef7ef built 2026-08-25 02:38:20)
+
+Blender quit

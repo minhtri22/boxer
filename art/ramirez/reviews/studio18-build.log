@@ -1,0 +1,12 @@
+00:01.671  blend            | Read blend: "D:\WORK\RESEARCH\POVGame\boxer-ramirez-realistic\art\ramirez\reviews\studio17-equipment\studio-ramirez-rig.blend"
+D:\WORK\RESEARCH\POVGame\boxer-ramirez-realistic\art\ramirez\scripts\studio_native_lookdev.py:37: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m=bpy.data.materials.new(name);m.diffuse_color=(*color,1);m.use_nodes=True
+00:04.859  cycles           | WARNING CUEW initialization failed: Error opening the library
+00:04.859  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library
+00:37.578  render           | Saved: 'D:\WORK\RESEARCH\POVGame\boxer-ramirez-realistic\art\ramirez\reviews\studio18-native-lookdev\threequarter.png'
+01:04.656  render           | Saved: 'D:\WORK\RESEARCH\POVGame\boxer-ramirez-realistic\art\ramirez\reviews\studio18-native-lookdev\portrait.png'
+Info: Saved as "studio-native-lookdev.blend"
+STUDIO_NATIVE_LOOKDEV_COMPLETE
+Blender 5.2.1 LTS (hash 9e2066aef7ef built 2026-08-25 02:38:20)
+
+Blender quit

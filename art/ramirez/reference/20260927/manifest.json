@@ -1,0 +1,57 @@
+{
+  "supplied_by": "User, 2026-09-27",
+  "source_directory": "D:\\WORK\\RESEARCH\\POVGame\\boxer\\art\\reference",
+  "purpose": "Unmodified visual references; viewport images are not calibrated orthographic measurements",
+  "files": [
+    {
+      "file": "11.png",
+      "sha256": "8493D488380C306D59B801E01B5DB4F117123C06BBAD1D22C74F7D8EAFE1D642",
+      "bytes": 250311
+    },
+    {
+      "file": "12.png",
+      "sha256": "69DC10664D04EAD706E579B726312DC6E55AC061B7EB9C2D0AA99A07872D022B",
+      "bytes": 296536
+    },
+    {
+      "file": "13.png",
+      "sha256": "9939F7C4524D7170A6AD1603734CDF459A30F61CE301AC2C56D35292C58A933B",
+      "bytes": 281751
+    },
+    {
+      "file": "14.png",
+      "sha256": "9114C7530BED22BFD53513B0D9942497A9A2A791F94520F11E73930F36EE001F",
+      "bytes": 238714
+    },
+    {
+      "file": "15.png",
+      "sha256": "B32FB62FDD47DE668B89D598A61E8F4C8394DB236290F68AB444FD009BC0502B",
+      "bytes": 247469
+    },
+    {
+      "file": "21.png",
+      "sha256": "F34BB9C88FF1CD153E6EA3C34C53DA88202C60DFB766C44EF598C7164DD1207B",
+      "bytes": 538347
+    },
+    {
+      "file": "22.png",
+      "sha256": "396444D648B8B336423A0ADC0370E9A18FD79210004C80F6558605E09C3E0A41",
+      "bytes": 367823
+    },
+    {
+      "file": "23.png",
+      "sha256": "17D6FB5BA66166924D22FB7FAAA713962392FCE93732FC3F24A1273CD39C6133",
+      "bytes": 467840
+    },
+    {
+      "file": "24.png",
+      "sha256": "5CB1AB27AAF32997A0BFFCB8313443CF19BC8C5A6845B40B1D31ADD2664ED57A",
+      "bytes": 341583
+    },
+    {
+      "file": "25.png",
+      "sha256": "5435EA8704F41B48764FFD188FB6741F911AB11C20076B8547F76E1F194F1926",
+      "bytes": 547485
+    }
+  ]
+}

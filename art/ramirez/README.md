@@ -33,6 +33,12 @@ Use Blender 5.2.1 LTS, `--background --python <script> -- <arguments>`.
 `reviews/` records successive unapproved studies, including negative results.
 Do not treat a newer directory as an automatic PASS. See `REVIEW-LEDGER.md`.
 
+The 2026-09-27 user reference set is preserved under `reference/20260927/` with
+byte-verified hashes. `reviews/studio21-reference-forms/ramirez-reference-workbench.blend`
+is the editable form checkpoint with packed reference boards, not a finished
+character. Later failed colour-transfer and cloth studies must not be promoted
+merely because their directory numbers are higher.
+
 Do not scale individual anatomical axes or stretch the model to legacy Unity
 anchors. The art rig and the frozen gameplay arm dimensions have not yet been
 reconciled. That is a later integration gate, not permission to change gameplay.

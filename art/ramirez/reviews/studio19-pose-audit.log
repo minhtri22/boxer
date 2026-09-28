@@ -1,0 +1,8 @@
+00:03.812  blend            | Read blend: "D:\WORK\RESEARCH\POVGame\boxer-ramirez-realistic\art\ramirez\reviews\studio17-equipment\studio-ramirez-rig.blend"
+00:12.625  cycles           | WARNING CUEW initialization failed: Error opening the library
+00:12.640  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library
+00:26.812  render           | Saved: 'D:\WORK\RESEARCH\POVGame\boxer-ramirez-realistic\art\ramirez\reviews\studio19-pose-audit\jab.png'
+[{"pose": "guard", "wrist": [0.11499994993209839, -0.2900000214576721, 1.3400003910064697], "evaluated_glove_center": [0.1150001510977745, -0.34404492378234863, 1.40224027633667]}, {"pose": "jab", "wrist": [0.10000000894069672, -0.5900000333786011, 1.3999998569488525], "evaluated_glove_center": [0.10000031441450119, -0.6723376512527466, 1.4038786888122559]}, {"pose": "jab_after_render", "wrist": [0.10000000894069672, -0.5900000333786011, 1.3999998569488525], "evaluated_glove_center": [0.10000031441450119, -0.6723376512527466, 1.4038786888122559]}]
+Blender 5.2.1 LTS (hash 9e2066aef7ef built 2026-08-25 02:38:20)
+
+Blender quit

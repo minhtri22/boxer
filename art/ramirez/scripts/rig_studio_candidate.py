@@ -4,6 +4,8 @@ import numpy as np
 from pathlib import Path
 from mathutils import Vector,Matrix
 from mathutils.kdtree import KDTree
+from mathutils.bvhtree import BVHTree
+import bmesh
 
 parser=argparse.ArgumentParser()
 parser.add_argument('--out',default='studio17-equipment')
@@ -95,7 +97,33 @@ for ob in c.objects:
     if ob.name.startswith(('Glove ','Hand wrap','Wrap overlaps')):
         side='L' if ob.name.endswith('.L') else 'R';rigid='hand.'+side
         transform=rigdata.bones[rigid].matrix_local @ oldrig.data.bones[rigid].matrix_local.inverted()
-        for p in ob.data.vertices:p.co=transform @ p.co
+        if ob.name.startswith(('Hand wrap','Wrap overlaps')):
+            # A wrist wrap follows the forearm, not the flexing glove/hand.
+            # The previous rigid-hand binding tilted its shaft through skin.
+            rigid='forearm.'+side
+            frame=rigdata.bones[rigid].matrix_local.copy();frame.translation=rigdata.bones[rigid].tail_local
+            oldframe=oldrig.data.bones['hand.'+side].matrix_local.inverted()
+            local_skin=np.array([tuple(frame.inverted() @ Vector(p)) for p in rest_points if p[0]*(1 if side=='L' else -1)>.27])
+            sections=[]
+            for h in np.linspace(-.09,.012,12):
+                ring=local_skin[abs(local_skin[:,1]-min(h,0))<.013][:,[0,2]]
+                lo,hi=ring.min(axis=0),ring.max(axis=0);center=(lo+hi)*.5;radii=(hi-lo)*.5+.004
+                enclosure=max(1,float(np.sqrt(np.sum(((ring-center)/radii)**2,axis=1)).max()))
+                sections.append([h,*center,*(radii*enclosure)])
+            sections=np.array(sections)
+            for p in ob.data.vertices:
+                local=oldframe @ p.co
+                cx,cz,rx,rz=[float(np.interp(local.y,sections[:,0],sections[:,j])) for j in range(1,5)]
+                local.x=cx+local.x/.034*rx;local.z=cz+local.z/.029*rz
+                p.co=frame @ local
+            if ob.name.startswith('Hand wrap'):
+                # Wraps are open cloth sleeves; inherited ngon end caps cut
+                # through skin and produced white triangular teeth at the rim.
+                bm=bmesh.new();bm.from_mesh(ob.data)
+                bmesh.ops.delete(bm,geom=[f for f in bm.faces if len(f.verts)>8],context='FACES')
+                bmesh.ops.recalc_face_normals(bm,faces=list(bm.faces));bm.to_mesh(ob.data);bm.free()
+        else:
+            for p in ob.data.vertices:p.co=transform @ p.co
     elif ob.name.startswith(('White leather','Red rubber','Boot cotton','Boot lace')):
         side='L' if ob.name.endswith('.L') else 'R'
         delta=rigdata.bones['foot.'+side].head_local-oldrig.data.bones['foot.'+side].head_local
@@ -112,6 +140,9 @@ for ob in c.objects:
             translated=Vector((x+delta.x,y+delta.y,z))
             p.co=translated.lerp(fitted,blend);p.co.z-=.007
     ob.modifiers.remove(oldarm);ob.vertex_groups.clear()
+    if ob.name.startswith(('Glove padded','Glove attached')):
+        bm=bmesh.new();bm.from_mesh(ob.data)
+        bmesh.ops.recalc_face_normals(bm,faces=list(bm.faces));bm.to_mesh(ob.data);bm.free()
     groups={n:ob.vertex_groups.new(name=n) for n in rigdata.bones.keys()}
     for p in ob.data.vertices:
         if rigid:groups[rigid].add([p.index],1,'REPLACE');continue
@@ -167,6 +198,19 @@ m=hem.modifiers.new('Woven tape thickness','SOLIDIFY');m.thickness=.0008
 evaluated.to_mesh_clear()
 for m in shorts.modifiers:m.show_viewport=True
 
+bpy.context.view_layer.update()
+for side in ['L','R']:
+    shell=bpy.data.objects['Glove padded shell.'+side]
+    surface=BVHTree.FromObject(shell,bpy.context.evaluated_depsgraph_get())
+    for prefix,offset in [('Glove panel seam.',.0005),('Glove gold crown.',.0008)]:
+        ob=bpy.data.objects.get(prefix+side)
+        if ob:
+            for p in ob.data.vertices:
+                hit,n,_,_=surface.find_nearest(p.co)
+                center=sum((v.co for v in shell.data.vertices),Vector())/len(shell.data.vertices)
+                if n.dot(hit-center)<0:n=-n
+                p.co=hit+n*offset
+
 for side,sign in [('L',1),('R',-1)]:
     bpy.ops.mesh.primitive_uv_sphere_add(segments=32,ring_count=16,radius=.013,location=(sign*.035,-.135,1.683))
     eye=bpy.context.object;eye.name='Sculpt eye.'+side
@@ -186,6 +230,7 @@ apply_pose(rig,'guard')
 bpy.ops.wm.save_as_mainfile(filepath=str(out/'studio-ramirez-rig.blend'),compress=True)
 report={'candidate':'B_INTACT_SCULPT_RIG','unweighted_base_vertices':unweighted,'bones':specs,'uniform_scale':factor,'mask':mask_report,'boot_sections_m':{k:v.tolist() for k,v in boot_sections.items()},'status':'NOT_APPROVED'}
 (out/'rig-report.json').write_text(json.dumps(report,indent=2))
-for pose in args.poses.split(','):
+for frame,pose in enumerate(args.poses.split(','),1):
+    scene.frame_set(frame)
     apply_pose(rig,pose);scene.render.filepath=str(out/(pose+'.png'));bpy.ops.render.render(write_still=True)
 print('STUDIO_RIG_REVIEW_COMPLETE',flush=True)

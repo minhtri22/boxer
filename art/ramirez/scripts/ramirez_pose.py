@@ -48,6 +48,11 @@ def apply_pose(rig, name='guard'):
     if name=='slip':spine.rotation_euler.z=math.radians(-12)
     if name=='roll':spine.rotation_euler.x=math.radians(13)
     bpy.context.view_layer.update()
+    tuck=float(rig.get('reference_chin_tuck_degrees',0))
+    if tuck:
+        pivot=neck.head.copy()
+        neck.matrix=Matrix.Translation(pivot) @ Matrix.Rotation(math.radians(tuck),4,'X') @ Matrix.Translation(-pivot) @ neck.matrix
+        bpy.context.view_layer.update()
     for side,sign in [('L',1),('R',-1)]:
         ankle=rig.data.bones['foot.'+side].head_local.copy();ankle.x=sign*.23;ankle.y+=-.16 if side=='L' else .13
         if name=='advance' and side=='L':ankle.y-=.18;ankle.z+=.015
@@ -64,4 +69,7 @@ def apply_pose(rig, name='guard'):
         if name=='overhand' and side=='R':wrist=Vector((-.025,-.50,1.48));pole=(-.40,-.23,1.65);hand_dir=(.05,-1,-.3)
         wrist=limb(rig,'upperarm.'+side,'forearm.'+side,wrist,pole)
         hand(rig,side,wrist,hand_dir)
+    # Render evaluation uses a separate dependency graph. Explicitly invalidate
+    # it after matrix authoring so repeated stills cannot reuse a previous pose.
+    rig.update_tag(refresh={'OBJECT'})
     bpy.context.view_layer.update()

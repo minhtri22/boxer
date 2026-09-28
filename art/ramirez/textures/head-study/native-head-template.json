@@ -1,0 +1,33 @@
+{
+  "tile": [
+    0,
+    0
+  ],
+  "mirrored_partner_tile": [
+    0,
+    2
+  ],
+  "landmarks_uv": {
+    "eye": [
+      0.6475744247436523,
+      0.5760788321495056
+    ],
+    "lip": [
+      0.7076458930969238,
+      0.4503213167190552
+    ],
+    "nose": [
+      0.7492970824241638,
+      0.5347008109092712
+    ],
+    "brow": [
+      0.8319821357727051,
+      0.24571509659290314
+    ],
+    "chin": [
+      0.6244163513183594,
+      0.35783663392066956
+    ]
+  },
+  "note": "UV guide only; includes one half of face/scalp/neck. Opposite half uses the mirrored native tile. Ear is a separate island."
+}
