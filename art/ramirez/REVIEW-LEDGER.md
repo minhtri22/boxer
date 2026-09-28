@@ -69,3 +69,18 @@ they do not lower the realistic-human acceptance gate.
 
 The work remains in Blender. No Unity code, UAT build, deployment or final gate
 approval follows from these experiments. Current appearance is NOT_APPROVED.
+
+## 29 September continuation
+
+The native skin UVs use multiple UDIM tiles. Head tile (0,0), with its mirrored
+partner (0,2), was rendered as an exact texture-authoring guide. The built-in
+imagegen tool was called with that guide and user references 21/25; it failed
+with HTTP 404. No generated texture exists, and no paid API fallback was used.
+This failed attempt is not a material-quality result.
+
+`working/ramirez-reference-workbench.blend` is the single editable continuation
+asset: reference-fitted sculpt, packed reference boards, fitted open wraps,
+preserved garment shape from before the failed cloth drape, and corrected outward
+glove surface projection. Numerical pose validation does not change the open
+reference-fidelity gate. See `working/workbench-report.json` for the actual check
+results and file hash. The skin/face/hair and clothing appearance remain unfinished.

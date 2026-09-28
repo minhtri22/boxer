@@ -39,6 +39,11 @@ is the editable form checkpoint with packed reference boards, not a finished
 character. Later failed colour-transfer and cloth studies must not be promoted
 merely because their directory numbers are higher.
 
+`working/ramirez-reference-workbench.blend` consolidates that sculpt with fitted
+open forearm wraps and outward-projected glove seams/decals. Its report records
+ten numerical pose checks and two actual rendered poses. It remains a neutral
+clay workbench with reference fidelity explicitly unresolved, not a UAT build.
+
 Do not scale individual anatomical axes or stretch the model to legacy Unity
 anchors. The art rig and the frozen gameplay arm dimensions have not yet been
 reconciled. That is a later integration gate, not permission to change gameplay.
