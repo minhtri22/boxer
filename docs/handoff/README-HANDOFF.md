@@ -2,6 +2,15 @@
 
 > Read this file first. Then read `11-current-state.md`, `14-agent-working-protocol.md`, and the approved visual authority under `reference-ui/`. Do not implement anything until you can restate the verified state, frozen invariants, unresolved question, acceptance gate, and UAT visual target.
 
+## 2026-09-30 Unity continuation override
+
+The product owner accepted the current Ramirez Blender workbench for Unity
+integration. The next agent must read
+`25-ramirez-unity-integration-handoff.md` first and use its exact source hashes,
+isolated integration branch, and final UAT contract. It supersedes only the old
+rule requiring more Blender fidelity work before Unity; all combat, provenance,
+scope and Human UAT boundaries remain active.
+
 ## Project identity
 
 **Boxer** is a POV boxing career simulator/research game built around one product thesis:
@@ -92,13 +101,14 @@ For UAT-facing builds, safely converge the visual shell toward the approved comb
 ## Reading order
 
 1. `README-HANDOFF.md`
-2. `11-current-state.md`
-3. `14-agent-working-protocol.md`
-4. `08-visual-ux-direction.md`
-5. `reference-ui/README-VISUAL-REFERENCE.md`
-6. `reference-ui/visual-lock.yaml`
-7. inspect task-relevant approved images
-8. task-relevant domain docs/source/evidence
+2. `25-ramirez-unity-integration-handoff.md`
+3. `11-current-state.md`
+4. `14-agent-working-protocol.md`
+5. `08-visual-ux-direction.md`
+6. `reference-ui/README-VISUAL-REFERENCE.md`
+7. `reference-ui/visual-lock.yaml`
+8. inspect task-relevant approved images
+9. task-relevant domain docs/source/evidence
 
 Autonomous execution prompt: `16-astra-autonomous-execution-prompt.md`.
 

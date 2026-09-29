@@ -3,12 +3,14 @@
 Branch: `art/ramirez-realistic-blender`.
 Owner worktree: `D:/WORK/RESEARCH/POVGame/boxer-ramirez-realistic`.
 
-**Status: IN_PROGRESS / NOT_APPROVED. No Blender visual PASS, Human UAT PASS,
-Unity integration, or new WebGL delivery is asserted by these studies.**
+**Current status: USER_ACCEPTED_FOR_UNITY_INTEGRATION on 2026-09-30.** The
+product owner accepted `working/ramirez-reference-workbench.blend` as the art
+input for the Unity continuation. Historical review verdicts remain intact.
+This does not assert Human UAT PASS, Unity integration, or a new WebGL delivery.
 
-The user's current instruction is to finish a realistic human character in
-Blender, faithful to `docs/handoff/reference-ui/06-opponent-ramirez-turnaround.jpg`,
-before further game implementation. Existing gameplay work is preserved separately.
+The current instruction is to stop further general Blender refinement and hand
+the accepted character to an isolated Unity integration branch. See
+`docs/handoff/25-ramirez-unity-integration-handoff.md`.
 
 ## Reproducible studies
 
