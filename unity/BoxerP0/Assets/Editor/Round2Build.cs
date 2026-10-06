@@ -37,15 +37,19 @@ namespace BoxerP0.Editor
                 if(report.summary.result!=BuildResult.Succeeded) throw new Exception("Round2 WebGL failed: "+report.summary.result);
                 var metadata=new StringBuilder();
                 metadata.AppendLine("source_sha="+sha);
+                metadata.AppendLine("art_source_sha=3e4e13c4b4451cb542e068652508ec12e248225f");
+                metadata.AppendLine("blend_sha256=419466859d7f119f98d7e69dc2673f0b378dbf5a892f0e2a6d7254cbc974af12");
                 metadata.AppendLine("productVersion="+PlayerSettings.bundleVersion);
                 metadata.AppendLine("unity="+Application.unityVersion);
                 metadata.AppendLine("result="+report.summary.result);
                 metadata.AppendLine("build_seconds="+report.summary.totalTime.TotalSeconds.ToString(System.Globalization.CultureInfo.InvariantCulture));
                 metadata.AppendLine("total_bytes="+report.summary.totalSize);
                 metadata.AppendLine("contact=shared_anatomical_pose_relative_sphere_sweep_240Hz");
-                metadata.AppendLine("presentation="+(ev?"P1_EV_reference_textured_articulated_3d_rig_no_bottom_controls":"world_space_articulated_body_P1V_HUD_only"));
+                metadata.AppendLine("presentation=accepted_ramirez_native_rig_readonly_mapping_no_bottom_controls");
                 metadata.AppendLine("desktop_validation=explicit_query_flag_synthetic_no_sensor_claim");
                 using var hash=SHA256.Create();
+                using(var stream=File.OpenRead(Path.Combine(Application.dataPath,"Resources/Boxer3D/Ramirez_UAT3.fbx")))
+                    metadata.AppendLine("fbx_sha256="+BitConverter.ToString(hash.ComputeHash(stream)).Replace("-","").ToLowerInvariant());
                 foreach(string file in Directory.GetFiles(output,"*",SearchOption.AllDirectories))
                 {
                     using var stream=File.OpenRead(file);

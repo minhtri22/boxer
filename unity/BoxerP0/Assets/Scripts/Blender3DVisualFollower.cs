@@ -66,6 +66,8 @@ namespace BoxerP0
         SegmentDriver _leftHand, _rightHand, _leftThigh, _rightThigh, _leftShin, _rightShin;
         OrientationDriver _leftFoot, _rightFoot;
         PlayerRig _playerLeft, _playerRight;
+        public RamirezAcceptedRig AcceptedRig { get; private set; }
+        Transform _playerLeftElbow, _playerRightElbow, _playerLeftGlove, _playerRightGlove;
         readonly List<GameObject> _instances = new();
         readonly List<Renderer> _hiddenRenderers = new();
 
@@ -91,6 +93,13 @@ namespace BoxerP0
             _opponentModel.SetPositionAndRotation(_opponent.transform.position, _opponent.transform.rotation);
             _opponentModel.localScale = Vector3.one;
 
+            Transform accepted = FindDeep(_opponentModel, "RAMIREZ_RIG");
+            if (accepted != null)
+            {
+                AcceptedRig = new RamirezAcceptedRig(_opponentModel, _opponent.transform);
+                FinishInitialize(opponentInstance, glovePrefab);
+                return true;
+            }
             Transform rig = FindDeep(_opponentModel, "RamirezRig");
             _modelRoot = RequireAny(rig, "root", "Root");
             _pelvis = RequireAny(rig, "pelvis");
@@ -117,6 +126,16 @@ namespace BoxerP0
             _leftFoot = new OrientationDriver(RequireAny(rig, "foot.L", "foot_l"), leftShoe.rotation);
             _rightFoot = new OrientationDriver(RequireAny(rig, "foot.R", "foot_r"), rightShoe.rotation);
 
+            FinishInitialize(opponentInstance, glovePrefab);
+            return true;
+        }
+
+        void FinishInitialize(GameObject opponentInstance, GameObject glovePrefab)
+        {
+            _playerLeftElbow=Require(_player.transform,"Left Elbow");
+            _playerRightElbow=Require(_player.transform,"Right Elbow");
+            _playerLeftGlove=Require(_player.transform,"Player Left Glove");
+            _playerRightGlove=Require(_player.transform,"Player Right Glove");
             _playerLeft = CreatePlayerRig(glovePrefab, "Blender Player Left POV", true);
             _playerRight = CreatePlayerRig(glovePrefab, "Blender Player Right POV", false);
 
@@ -127,8 +146,7 @@ namespace BoxerP0
             ApplyPlayerMaterials(_playerRight.Instance);
 
             Ready = true;
-            LateUpdate();
-            return true;
+            if (AcceptedRig == null) LateUpdate();
         }
 
         PlayerRig CreatePlayerRig(GameObject prefab, string name, bool left)
@@ -156,6 +174,13 @@ namespace BoxerP0
         void LateUpdate()
         {
             if (!Ready) return;
+            if (AcceptedRig != null)
+            {
+                AcceptedRig.Apply();
+                DrivePlayer(true,_playerLeft); DrivePlayer(false,_playerRight);
+                MaxAnchorError=AcceptedRig.MaxGloveError;
+                return;
+            }
 
             _opponentModel.SetPositionAndRotation(_opponent.transform.position, _opponent.transform.rotation);
             _modelRoot.SetPositionAndRotation(_opponent.transform.position, _opponent.transform.rotation);
@@ -217,8 +242,8 @@ namespace BoxerP0
         void DrivePlayer(bool left, PlayerRig rig)
         {
             string side = left ? "Left" : "Right";
-            Transform elbow = Require(_player.transform, side + " Elbow");
-            Transform glove = Require(_player.transform, "Player " + side + " Glove");
+            Transform elbow = left ? _playerLeftElbow : _playerRightElbow;
+            Transform glove = left ? _playerLeftGlove : _playerRightGlove;
             Vector3 direction = (glove.position - elbow.position).normalized;
             Quaternion aim = Quaternion.LookRotation(direction, _player.transform.up);
             Vector3 handHead = glove.position - direction * .12f;
@@ -303,6 +328,7 @@ namespace BoxerP0
 
         void OnDestroy()
         {
+            AcceptedRig?.Dispose();
             foreach (Renderer renderer in _hiddenRenderers)
                 if (renderer != null) renderer.enabled = true;
             foreach (GameObject instance in _instances)
