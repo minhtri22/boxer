@@ -1,0 +1,14 @@
+{
+  "status": "UNAPPROVED_OFFLINE_CLOTH_STUDY",
+  "simulation_frames": 36,
+  "simulation_seconds": 91.25014969997574,
+  "vertex_count": 7551,
+  "initial_clearance_vertices": 2384,
+  "max_rest_displacement_m": 0.10235450994677661,
+  "finite": true,
+  "runtime_cloth_added": false,
+  "limitations": [
+    "Satin appearance and intersections need rendered review.",
+    "Existing rig weights preserved; moving poses remain to be evaluated."
+  ]
+}

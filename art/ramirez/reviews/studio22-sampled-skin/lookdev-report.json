@@ -1,0 +1,15 @@
+{
+  "status": "UNAPPROVED_NATIVE_MATERIAL_STUDY",
+  "foreign_uv_transfer": false,
+  "sampled_diffuse_colours": true,
+  "colour_sampling_vertices": 169362,
+  "native_uv_layers": [
+    "UVMap"
+  ],
+  "script_sha256": "9486b54c2a8a03a7df0d268948e70784a4fc685bd96acda7bc683a14d6f738bc",
+  "limitations": [
+    "Dense colour-sampled mesh is a Blender study; source multires is preserved in the preceding checkpoint.",
+    "Hair and garment realism require rendered reference comparison.",
+    "Blender shader complexity has not been evaluated for WebGL."
+  ]
+}

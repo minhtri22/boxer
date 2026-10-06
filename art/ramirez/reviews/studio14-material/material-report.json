@@ -1,0 +1,10 @@
+{
+  "status": "UNAPPROVED_UV_TRANSFER_EXPERIMENT",
+  "uv_layer": "TransferredSkinUV",
+  "original_uv_preserved": true,
+  "max_nearest_surface_distance_m": 0.2671576142311096,
+  "limitations": [
+    "UV transfer requires face/nipple/neck seam review.",
+    "Hair placement is projected and needs silhouette review."
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "source_bundle_sha256": "3c121505651140ceb4d69fd1d8923f7788ffadd81672f5be14845a5f2c75c137",
+  "extracted_sha256": "1fadd71254f0d12cadab8c60ffd3903a0a8cfc76b46f538405431f78e4ba6531",
+  "object": "GEO-body_male_realistic",
+  "changes": "None. Source mesh, multires and object transform preserved.",
+  "license": "CC0 per bundled README"
+}

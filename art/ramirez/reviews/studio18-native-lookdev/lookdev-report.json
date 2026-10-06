@@ -1,0 +1,13 @@
+{
+  "status": "UNAPPROVED_NATIVE_MATERIAL_STUDY",
+  "foreign_uv_transfer": false,
+  "native_uv_layers": [
+    "UVMap"
+  ],
+  "script_sha256": "e7114afb8f29ecc0469e730c6e84601991b90971d0d5609804584434e0a490d4",
+  "limitations": [
+    "Procedural skin is not a scanned or painted skin texture.",
+    "Hair and garment realism require rendered reference comparison.",
+    "Blender shader complexity has not been evaluated for WebGL."
+  ]
+}

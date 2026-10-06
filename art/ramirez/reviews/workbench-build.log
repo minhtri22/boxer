@@ -1,0 +1,20 @@
+00:02.063  blend            | Read blend: "D:\WORK\RESEARCH\POVGame\boxer-ramirez-realistic\art\ramirez\reviews\studio21-reference-forms\ramirez-reference-workbench.blend"
+WORKBENCH_POSE guard
+WORKBENCH_POSE jab
+WORKBENCH_POSE cross
+WORKBENCH_POSE hook
+WORKBENCH_POSE uppercut
+WORKBENCH_POSE overhand
+WORKBENCH_POSE slip
+WORKBENCH_POSE roll
+WORKBENCH_POSE advance
+WORKBENCH_POSE retreat
+02:13.875  cycles           | WARNING CUEW initialization failed: Error opening the library
+02:13.891  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library
+03:09.203  render           | Saved: 'D:\WORK\RESEARCH\POVGame\boxer-ramirez-realistic\art\ramirez\working\guard.png'
+03:45.656  render           | Saved: 'D:\WORK\RESEARCH\POVGame\boxer-ramirez-realistic\art\ramirez\working\jab.png'
+Info: Saved as "ramirez-reference-workbench.blend"
+WORKBENCH_COMPLETE_NOT_APPROVED
+Blender 5.2.1 LTS (hash 9e2066aef7ef built 2026-08-25 02:38:20)
+
+Blender quit

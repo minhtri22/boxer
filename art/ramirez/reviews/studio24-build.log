@@ -1,0 +1,16 @@
+00:06.219  blend            | Read blend: "D:\WORK\RESEARCH\POVGame\boxer-ramirez-realistic\art\ramirez\reviews\studio21-reference-forms\ramirez-reference-workbench.blend"
+DRAPE_FRAME 6 seconds 12.85
+DRAPE_FRAME 12 seconds 26.83
+DRAPE_FRAME 18 seconds 41.53
+DRAPE_FRAME 24 seconds 53.94
+DRAPE_FRAME 30 seconds 74.85
+DRAPE_FRAME 36 seconds 91.21
+01:50.672  cycles           | WARNING CUEW initialization failed: Error opening the library
+01:50.703  cycles           | WARNING HIPEW initialization failed: Error opening HIP dynamic library
+02:46.984  render           | Saved: 'D:\WORK\RESEARCH\POVGame\boxer-ramirez-realistic\art\ramirez\reviews\studio24-cloth-drape\front.png'
+03:17.375  render           | Saved: 'D:\WORK\RESEARCH\POVGame\boxer-ramirez-realistic\art\ramirez\reviews\studio24-cloth-drape\side.png'
+Info: Saved as "ramirez-cloth-study.blend"
+OFFLINE_DRAPE_COMPLETE
+Blender 5.2.1 LTS (hash 9e2066aef7ef built 2026-08-25 02:38:20)
+
+Blender quit

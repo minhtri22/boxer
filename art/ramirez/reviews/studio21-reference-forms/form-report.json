@@ -1,0 +1,23 @@
+{
+  "status": "UNAPPROVED_REFERENCE_FORM_STUDY",
+  "reference": "art/ramirez/reference/20260927/manifest.json",
+  "changed_cage_vertices": 5443,
+  "max_local_displacement_m": 0.01481138051065139,
+  "armature_lengths_unchanged": true,
+  "uniform_body_scale": [
+    1.0650396347045898,
+    1.0650396347045898,
+    1.0650396347045898
+  ],
+  "changes": [
+    "Local shoulder, chest, back, biceps and brow/jaw volume; no body-axis stretch.",
+    "Shorter shorts and boot shafts.",
+    "Broader knuckle dome, less spherical glove palm.",
+    "Additional nine-degree world-space chin tuck."
+  ],
+  "limitations": [
+    "Viewport screenshots are not calibrated orthographic cameras.",
+    "Reference face, hair, surface material and cloth detail remain unfinished.",
+    "Clothing overlap and rig deformation require re-evaluation after local sculpt."
+  ]
+}
