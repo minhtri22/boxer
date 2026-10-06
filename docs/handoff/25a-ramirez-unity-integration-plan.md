@@ -33,6 +33,12 @@ and a presentation-only pelvis crouch computed from planted feet when native
 leg lengths require it. Every limb retains its original bind length. The old
 adapter's nonuniform hand scale is bypassed for RAMIREZ_RIG. Anchors and contact
 volumes remain byte-identical to STARTING_SHA.
+Native boot orientation reads the foot anchor's planted rotation, including its
+cached bind correction; root-facing rotation does not override a planted foot.
+The first source-66f7a41 build is retained as a diagnostic artifact at
+D:/WORK/RESEARCH/POVGame/_ramirez-unity-source-66f7a41. Final source is committed
+again after this rotation correction, with a new clean provenance build. No
+commit is rebased.
 
 The established Round2Build.Web API requires a full 40-character marker and
 generates r2-<full SHA>, so all final marker/metadata checks use that full SHA.

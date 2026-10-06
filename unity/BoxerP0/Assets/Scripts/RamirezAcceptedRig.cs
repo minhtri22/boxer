@@ -126,7 +126,7 @@ namespace BoxerP0
         static float LengthError(Limb limb) => Mathf.Max(Mathf.Abs(Vector3.Distance(limb.Upper.position,limb.Lower.position)-limb.UpperLength),Mathf.Abs(Vector3.Distance(limb.Lower.position,limb.End.position)-limb.LowerLength));
         float RequiredCrouch(Limb limb)
         {
-            Quaternion orientation=_actor.rotation*limb.EndRotation;
+            Quaternion orientation=limb.Target.rotation*limb.EndRotation;
             Vector3 goal=limb.Target.position-orientation*Vector3.Scale(limb.EndOffset,limb.End.lossyScale);
             Vector3 difference=limb.Upper.position-goal;
             float reach=limb.UpperLength+limb.LowerLength-.003f;
@@ -141,7 +141,7 @@ namespace BoxerP0
         void Drive(Limb l,bool arm)
         {
             Vector3 direction=arm?(l.Target.position-l.Pole.position).normalized:_actor.up;
-            Quaternion orientation=arm?Quaternion.FromToRotation(_actor.rotation*l.EndDirection,direction)*_actor.rotation*l.EndRotation:_actor.rotation*l.EndRotation;
+            Quaternion orientation=arm?Quaternion.FromToRotation(_actor.rotation*l.EndDirection,direction)*_actor.rotation*l.EndRotation:l.Target.rotation*l.EndRotation;
             Vector3 offset=orientation*Vector3.Scale(l.EndOffset,l.End.lossyScale);
             if(arm)
             {
