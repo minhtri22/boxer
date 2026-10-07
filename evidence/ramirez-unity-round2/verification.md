@@ -51,8 +51,11 @@ web-active-smoke.cjs is evidence-only: local HTTP, focused headless Edge, existi
 desktop keys, unchanged onboarding timeout path. No application or built-byte
 mutation. Browser rAF cadence is not Unity simulation FPS; F3 diagnostic images
 show the existing Unity frame telemetry separately. See the final JSON/report.
-The original unfocused smoke stopped during teardown and left only READY images;
-those are partial evidence, not the final active-combat result.
+The original unfocused smoke stalled during teardown; its JSON eventually
+persisted as web-smoke.json. READY images, pageerror-only PASS and 1138 unsupported
+GC engine errors make it invalid final startup/performance evidence. Its +4.80%
+rAF delta is not the final comparison. Raw output retained; only the corrected
+final web-active-smoke.json is the accepted local smoke result.
 
 No deployment, Pages workflow, sensor/device validation or Human UAT.
 
