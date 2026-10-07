@@ -39,6 +39,11 @@ The first source-66f7a41 build is retained as a diagnostic artifact at
 D:/WORK/RESEARCH/POVGame/_ramirez-unity-source-66f7a41. Final source is committed
 again after this rotation correction, with a new clean provenance build. No
 commit is rebased.
+Focused WebGL smoke then proved GC.GetAllocatedBytesForCurrentThread is not
+implemented by this WebGL IL2CPP runtime. Allocation instrumentation is now
+Editor-only; the player reports -1 (unavailable), not a fabricated zero. The
+source-e81ab436 diagnostic artifact/logs are retained before the final rebuild.
+This correction does not change any pose, anchor, skinning or combat calculation.
 
 The established Round2Build.Web API requires a full 40-character marker and
 generates r2-<full SHA>, so all final marker/metadata checks use that full SHA.

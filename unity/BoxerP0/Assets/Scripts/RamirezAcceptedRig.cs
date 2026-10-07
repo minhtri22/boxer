@@ -104,7 +104,10 @@ namespace BoxerP0
         static Vector3 Center(Limb l) => l.End.TransformPoint(l.EndOffset);
         public void Apply()
         {
-            long before=GC.GetAllocatedBytesForCurrentThread(); double start=Time.realtimeSinceStartupAsDouble;
+#if UNITY_EDITOR
+            long before=GC.GetAllocatedBytesForCurrentThread();
+#endif
+            double start=Time.realtimeSinceStartupAsDouble;
             _model.SetPositionAndRotation(_actor.position,_actor.rotation);
             foreach(var bone in _bones) bone.Reset();
             _root.SetPositionAndRotation(_pelvis.position+_actor.rotation*_rootOffset,_actor.rotation*_rootRest);
@@ -121,7 +124,11 @@ namespace BoxerP0
             MaxFootError=Mathf.Max(MaxFootError,LastFootError);
             MaxNativeLengthError=Mathf.Max(MaxNativeLengthError,Mathf.Max(Mathf.Max(LengthError(_leftArm),LengthError(_rightArm)),Mathf.Max(LengthError(_leftLeg),LengthError(_rightLeg))));
             LastUpdateMs=(float)((Time.realtimeSinceStartupAsDouble-start)*1000);
+#if UNITY_EDITOR
             LastAllocatedBytes=GC.GetAllocatedBytesForCurrentThread()-before;
+#else
+            LastAllocatedBytes=-1; // Allocation API is not implemented by WebGL IL2CPP.
+#endif
         }
         static float LengthError(Limb limb) => Mathf.Max(Mathf.Abs(Vector3.Distance(limb.Upper.position,limb.Lower.position)-limb.UpperLength),Mathf.Abs(Vector3.Distance(limb.Lower.position,limb.End.position)-limb.LowerLength));
         float RequiredCrouch(Limb limb)
