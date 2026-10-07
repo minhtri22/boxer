@@ -7,6 +7,7 @@ namespace BoxerP0
 {
     public sealed class Phase0Telemetry : MonoBehaviour
     {
+        public CombatBout Bout { get; } = new();
         private StreamWriter _writer;
         private float _nextSample;
         private readonly P1CombatLogBuffer _combatLog = new(32);
@@ -71,6 +72,7 @@ namespace BoxerP0
 
         public void RecordBoutStart()
         {
+            Bout.Start();
             PlayerHits = 0;
             PlayerCounterHits = 0;
             PlayerBlocks = 0;
@@ -85,15 +87,43 @@ namespace BoxerP0
 
         public string CompleteBout()
         {
-            BoutResult = PlayerHits > OpponentHits
-                ? "PLAYER_WIN"
-                : PlayerHits < OpponentHits
-                    ? "OPPONENT_WIN"
-                    : "DRAW";
+            Bout.FinishTimeout();
+            BoutResult = Bout.Result;
 
             RecordEvent($"BOUT_END PLAYER_HITS={PlayerHits} OPPONENT_HITS={OpponentHits}");
             RecordEvent($"RESULT_{BoutResult}");
             return BoutResult;
+        }
+
+        public void ResetSessionCounters()
+        {
+            Bout.Reset(); BoutResult = "PENDING";
+            PlayerHits = PlayerCounterHits = PlayerBlocks = 0;
+            OpponentHits = OpponentCounterHits = OpponentBlocks = 0;
+            LastOutcome = "NONE"; _combatLog.Clear(); RecordEvent("SESSION_RESET");
+        }
+
+        public AttackReceipt AcceptVitalAttack(bool player, PunchIntent intent)
+        {
+            var receipt = Bout.Accept(player, intent);
+            if (receipt.Id != 0) LogVitals("ACCEPT", player, receipt.Id);
+            return receipt;
+        }
+        public bool ResolveVitalAttack(bool player, AttackReceipt receipt, CombatOutcome outcome, bool body)
+        {
+            if (receipt.Id == 0) return !Bout.Active && !Bout.Ended; // unscored tutorial
+            bool applied = Bout.Resolve(player, receipt, outcome, body);
+            if (applied) LogVitals(outcome.ToString().ToUpperInvariant(), player, receipt.Id);
+            return applied;
+        }
+        private void LogVitals(string action, bool player, long id)
+        {
+            var v = player ? Bout.Player : Bout.Opponent;
+            string entry = string.Format(CultureInfo.InvariantCulture,
+                "VITALS ACTION={0} ACTOR={1} RECEIPT={2} HP={3:F4} STAMINA={4:F4} CAPACITY={5:F4} PLAYER_HP={6:F4} OPPONENT_HP={7:F4}",
+                action, player ? "PLAYER" : "OPPONENT", id, v.HP, v.Stamina, v.Capacity, Bout.Player.HP, Bout.Opponent.HP);
+            _combatLog.Add(entry);
+            // Do not overwrite LastEvent: onboarding and existing observers consume it.
         }
 
         public void RecordOutcome(string actor, CombatOutcome outcome, bool counter, string reason = "UNSPECIFIED")

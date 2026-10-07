@@ -13,7 +13,7 @@ namespace BoxerP0
         private ArmVisualEmbodiment _armVisual;
         private OpponentLegEmbodiment _opponentLegs;
         private OpponentBodyRotationEmbodiment _opponentBodyRotation;
-        private readonly OnboardingProgress _training = new();
+        private OnboardingProgress _training = new();
 
         private float _boutEnd;
         private float _stageEnd;
@@ -52,6 +52,9 @@ namespace BoxerP0
         private P1OpponentProfile _opponentProfile = P1OpponentProfile.Balanced;
 
         public bool ShowDeveloperDiagnostics => _showDeveloperDiagnostics;
+        public ProductFlow Flow { get; } = new();
+        public string TrainingToken => Flow.Screen == ProductScreen.Onboarding ? _stage.ToString().ToUpperInvariant() : string.Empty;
+        private Vector3 _lastPlayerPosition, _lastOpponentPosition;
 
         private void Awake()
         {
@@ -62,14 +65,14 @@ namespace BoxerP0
             _lastPerfRefreshRealtime = Time.realtimeSinceStartup;
             _nextUiRefresh = _lastPerfRefreshRealtime;
 
-#if UNITY_WEBGL && !UNITY_EDITOR
             _stage = OnboardingStage.WaitingForCalibration;
             _boutEnd = float.PositiveInfinity;
             _player?.SetCombatEnabled(false);
             _opponent?.SetCombatEnabled(false);
-#else
-            BeginOnboarding();
-#endif
+            _input.SetGameplayInput(false);
+            gameObject.AddComponent<ProductScreens>();
+            gameObject.AddComponent<Wave1WebAudit>();
+            RememberPositions();
             RefreshCachedUi();
         }
 
@@ -83,15 +86,17 @@ namespace BoxerP0
                 _armVisual?.SetDeveloperDebugVisible(_showDeveloperDiagnostics);
             }
 
-#if UNITY_WEBGL && !UNITY_EDITOR
-            if (_stage == OnboardingStage.WaitingForCalibration && _input != null && _input.BrowserCalibrated)
+            if (_telemetry.Bout.Active)
             {
-                BeginOnboarding();
+                float dt = Time.deltaTime;
+                double pm = PlanarSpeed(_player.transform.position, _lastPlayerPosition, dt) / 1.5;
+                double om = PlanarSpeed(_opponent.transform.position, _lastOpponentPosition, dt) / 0.36;
+                _telemetry.Bout.Tick(dt, _player.CurrentPhase, _opponent.CurrentPhase, pm, om);
             }
-#endif
+            RememberPositions();
             UpdateOnboarding();
 
-            if (_boutStarted && !_boutCompleted && Time.unscaledTime >= _boutEnd)
+            if (_boutStarted && !_boutCompleted && _telemetry.Bout.Ended)
             {
                 CompleteBout();
             }
@@ -113,8 +118,45 @@ namespace BoxerP0
             EnterStage(OnboardingStage.HeadControl);
         }
 
+        private static double PlanarSpeed(Vector3 a, Vector3 b, float dt)
+        { a.y = b.y = 0; return dt > 0 ? Vector3.Distance(a, b) / dt : 0; }
+        private void RememberPositions()
+        { _lastPlayerPosition = _player.transform.position; _lastOpponentPosition = _opponent.transform.position; }
+        private void ResetActors()
+        {
+            _input.SetGameplayInput(false);
+            _player.ResetForBout(); _opponent.ResetForBout();
+            _telemetry.ResetSessionCounters();
+            _player.transform.SetPositionAndRotation(new Vector3(0, 0, -0.7f), Quaternion.identity);
+            _opponent.transform.SetPositionAndRotation(new Vector3(0, 0, 0.70f), Quaternion.Euler(0, 180, 0));
+            _boutStarted = _boutCompleted = false;
+            _stage = OnboardingStage.WaitingForCalibration;
+            _training = new OnboardingProgress();
+            RememberPositions();
+        }
+        public void ShowPreview()
+        {
+            if (!Flow.Preview()) return;
+            ResetActors();
+        }
+        public void BeginProductBout(bool tutorial = false)
+        {
+#if UNITY_WEBGL && !UNITY_EDITOR
+            if (!_input.BrowserCalibrated) return;
+#endif
+            if (!Flow.Begin(tutorial)) return;
+            ResetActors();
+            _input.SetGameplayInput(true);
+            if (Flow.Screen == ProductScreen.Onboarding) BeginOnboarding(); else StartBout();
+        }
+        public void ReturnHome()
+        {
+            Flow.Home(); ResetActors();
+        }
+
         private void UpdateOnboarding()
         {
+            if (Flow.Screen != ProductScreen.Onboarding) return;
             if (_input == null || _player == null || _opponent == null || _telemetry == null) return;
 
             switch (_stage)
@@ -199,6 +241,7 @@ namespace BoxerP0
 
         private void StartBout()
         {
+            Flow.TutorialFinished();
             _telemetry?.RecordEvent("TRAINING_COMPLETE");
             _stage = OnboardingStage.Bout;
             _boutStarted = true;
@@ -206,11 +249,19 @@ namespace BoxerP0
             _boutEnd = Time.unscaledTime + BoutSeconds;
             _player?.SetCombatEnabled(true);
             _opponent?.SetCombatEnabled(true);
+            // Tutorial contacts are not scored; reset into a fresh bout without recreating actors.
+            _player.ResetForBout(); _opponent.ResetForBout();
+            _player.transform.SetPositionAndRotation(new Vector3(0, 0, -0.7f), Quaternion.identity);
+            _opponent.transform.SetPositionAndRotation(new Vector3(0, 0, 0.70f), Quaternion.Euler(0, 180, 0));
             _telemetry?.RecordBoutStart();
+            _player.SetCombatEnabled(true); _opponent.SetCombatEnabled(true);
+            _input.SetGameplayInput(true); RememberPositions();
         }
 
         private void CompleteBout()
         {
+            Flow.Finish();
+            _input.SetGameplayInput(false);
             _boutCompleted = true;
             _stage = OnboardingStage.Complete;
             _player?.SetCombatEnabled(false);

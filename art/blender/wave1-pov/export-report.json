@@ -1,0 +1,18 @@
+{
+  "scope": "PLAYER_PRESENTATION_ONLY_NO_COLLIDER_CHANGE",
+  "blender": "5.2.1 LTS",
+  "exports": [
+    {
+      "file": "unity\\BoxerP0\\Assets\\Resources\\Boxer3D\\PlayerPOVGlove_Left_W1.fbx",
+      "sha256": "889cc297646300870f9d105a90fee0a33b2320eed9994a132202c2d987e55d5d",
+      "vertices": 8475,
+      "triangles": 16717
+    },
+    {
+      "file": "unity\\BoxerP0\\Assets\\Resources\\Boxer3D\\PlayerPOVGlove_Right_W1.fbx",
+      "sha256": "862d383ad9c75e0453f2f31d7bc2962a2665447b632c1c60a33a4cb73eed6d91",
+      "vertices": 8475,
+      "triangles": 16717
+    }
+  ]
+}

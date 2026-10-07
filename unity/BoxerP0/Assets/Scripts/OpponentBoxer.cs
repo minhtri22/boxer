@@ -29,6 +29,9 @@ namespace BoxerP0
         private float _playerHeadOffsetAtCommit;
         private uint _rng = 0xC0FFEEu;
         private P1OpponentAttributeSet _attributes = P1OpponentAttributes.Resolve(P1OpponentProfile.Balanced);
+        private AttackReceipt _vitalAttack;
+        private float _activeRecoverSeconds;
+        private bool _combatEnabled = true;
 
         public Transform LeftGlove => _leftGlove;
         public Transform RightGlove => _rightGlove;
@@ -38,7 +41,7 @@ namespace BoxerP0
         public bool Round2Resolved => _resolvedThisAttack;
         public bool CounterWindowOpen => _counterOpportunity.IsOpen(_action.Phase);
         public string CounterOpportunityLabel => _counterOpportunity.Label(_action.Phase);
-        public bool CombatEnabled { get; private set; } = true;
+        public bool CombatEnabled => _combatEnabled && !(_telemetry?.Bout.Ended ?? false);
         public string ActionLabel => _action.IsBusy ? $"{PunchLabels.Display(_action.Intent)}:{_action.Phase}" : "READING";
         public uint AttackEventCount { get; private set; }
 
@@ -73,11 +76,13 @@ namespace BoxerP0
             _leftGuardLocal = leftGlove.localPosition;
             _rightGuardLocal = rightGlove.localPosition;
             _nextAttackTime = Time.time + 1.2f;
+            _activeRecoverSeconds = _attributes.RecoverSeconds;
         }
 
         public void ConfigureAttributes(P1OpponentProfile profile)
         {
             _attributes = P1OpponentAttributes.Resolve(profile);
+            _activeRecoverSeconds = _attributes.RecoverSeconds;
             _telemetry?.RecordEvent(
                 $"P1_D_PROFILE PROFILE={AttributeProfileLabel} REACH_X={F(_attributes.ReachFactor)} GAP_X={F(_attributes.AttackGapFactor)} DURATION_X={F(_attributes.PhaseDurationFactor)}");
         }
@@ -104,7 +109,7 @@ namespace BoxerP0
 
         public void SetCombatEnabled(bool enabled)
         {
-            CombatEnabled = enabled;
+            _combatEnabled = enabled;
             if (!enabled)
             {
                 _action.ResetToGuard();
@@ -143,6 +148,8 @@ namespace BoxerP0
             _bodyAttack = selection == 3;
             if (_action.TryStart(intent))
             {
+                _vitalAttack = _telemetry?.AcceptVitalAttack(false, intent) ?? AttackReceipt.Unscored(intent);
+                _activeRecoverSeconds = _attributes.RecoverSeconds * (float)_vitalAttack.RecoveryFactor;
                 _counterOpportunity.Clear();
                 LockAttackTarget(intent);
                 AttackEventCount++;
@@ -180,7 +187,7 @@ namespace BoxerP0
         private void UpdateAttack()
         {
             ActionPhase prior = _action.Phase;
-            _action.Step(Time.deltaTime, _attributes.CommitSeconds, _attributes.ExtendSeconds, _attributes.RecoverSeconds);
+            _action.Step(Time.deltaTime, _attributes.CommitSeconds, _attributes.ExtendSeconds, _activeRecoverSeconds);
             if (prior != _action.Phase && _action.Phase == ActionPhase.Guard)
             {
                 _counterOpportunity.Clear();
@@ -193,6 +200,8 @@ namespace BoxerP0
         {
             if (!CombatEnabled) return;
             if (_resolvedThisAttack) return;
+            if (!_action.IsBusy || _vitalAttack.Intent != _action.Intent) return;
+            if (_telemetry != null && !_telemetry.ResolveVitalAttack(false, _vitalAttack, outcome, _bodyAttack)) return;
             _resolvedThisAttack = true;
             P1CounterOpportunity opportunity = P1CounterGeometry.Evaluate(
                 start,
@@ -211,6 +220,14 @@ namespace BoxerP0
             }
             _telemetry?.RecordOutcome("OPPONENT", outcome, false, reason);
             BoxerFeedback.Emit(outcome);
+        }
+
+        public void ResetForBout()
+        {
+            SetCombatEnabled(false);
+            _rng = 0xC0FFEEu; AttackEventCount = 0;
+            _vitalAttack = default;
+            _activeRecoverSeconds = _attributes.RecoverSeconds;
         }
 
         public bool ConsumeCounterOpportunity()
@@ -330,7 +347,7 @@ namespace BoxerP0
             {
                 ActionPhase.Commit => _attributes.CommitSeconds,
                 ActionPhase.Extend => _attributes.ExtendSeconds,
-                ActionPhase.Recover => _attributes.RecoverSeconds,
+                ActionPhase.Recover => _activeRecoverSeconds,
                 _ => 1f
             };
         }

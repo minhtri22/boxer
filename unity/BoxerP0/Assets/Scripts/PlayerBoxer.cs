@@ -24,6 +24,8 @@ namespace BoxerP0
         private bool _hasP1PunchSnapshot;
         private string _lastResolutionReason = "PENDING";
         private float _activeRecoverSeconds = RecoverSeconds;
+        private AttackReceipt _vitalAttack;
+        private bool _combatEnabled = true;
 
         private const float CommitSeconds = 0.09f;
         private const float ExtendSeconds = 0.14f;
@@ -33,7 +35,7 @@ namespace BoxerP0
         public bool Round2Resolved => _resolvedThisPunch;
         public Vector3 Round2Endpoint => Round2Motion.Endpoint(CurrentIntent, _hasP1PunchSnapshot ? _p1PunchSnapshot.StepState : "NEUTRAL", _hasP1PunchSnapshot ? _p1PunchSnapshot.DistanceMeters : CurrentOpponentDistance());
         public bool GuardActive => !_action.IsBusy;
-        public bool CombatEnabled { get; private set; } = true;
+        public bool CombatEnabled => _combatEnabled && !(_telemetry?.Bout.Ended ?? false);
         public string ActionLabel => _action.IsBusy ? $"{PunchLabels.Display(_action.Intent)}:{_action.Phase}" : "GUARD";
         public Transform Head => _head;
         public Transform LeftGlove => _leftGlove;
@@ -93,7 +95,7 @@ namespace BoxerP0
 
         public void SetCombatEnabled(bool enabled)
         {
-            CombatEnabled = enabled;
+            _combatEnabled = enabled;
             if (!enabled)
             {
                 _action.ResetToGuard();
@@ -151,6 +153,7 @@ namespace BoxerP0
 
             if (_action.TryStart(intent))
             {
+                _vitalAttack = _telemetry?.AcceptVitalAttack(true, intent) ?? AttackReceipt.Unscored(intent);
                 _resolvedThisPunch = false;
                 _lastResolutionReason = "PENDING";
                 _p1PunchSnapshot = P1PunchMechanics.Capture(
@@ -164,7 +167,7 @@ namespace BoxerP0
                 _activeRecoverSeconds = P1PunchMechanics.EffectiveA33RecoverySeconds(
                     intent,
                     _p1PunchSnapshot.StepState,
-                    RecoverSeconds);
+                    RecoverSeconds) * (float)_vitalAttack.RecoveryFactor;
                 _telemetry?.RecordEvent($"PLAYER_PUNCH_{token}");
             }
             else
@@ -189,6 +192,8 @@ namespace BoxerP0
         {
             if (!CombatEnabled || _opponent == null) return;
             if (_resolvedThisPunch) return;
+            if (!_action.IsBusy || _vitalAttack.Intent != _action.Intent) return;
+            if (_telemetry != null && !_telemetry.ResolveVitalAttack(true, _vitalAttack, outcome, reason.Contains("BODY"))) return;
             _resolvedThisPunch = true;
             _lastResolutionReason = reason;
             bool counter = outcome == CombatOutcome.Hit && _opponent.CounterWindowOpen;
@@ -213,6 +218,13 @@ namespace BoxerP0
                 _telemetry?.RecordBiomechanicsObservation("PLAYER", observation);
             }
             BoxerFeedback.Emit(outcome);
+        }
+
+        public void ResetForBout()
+        {
+            SetCombatEnabled(false);
+            HeadOffset = _headVelocity = 0;
+            _vitalAttack = default;
         }
 
         public CombatOutcome ResolveOpponentPunch(Vector3 start, Vector3 end, float punchRadius, bool bodyAttack)

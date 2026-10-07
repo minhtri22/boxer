@@ -5,7 +5,7 @@ namespace BoxerP0
 {
     /// <summary>
     /// Lightweight P0.5 visual shell for the Web surrogate.
-    /// Presentation only: reactive HP/stamina are non-authoritative HUD feedback and never gate combat.
+    /// Presentation only: HUD reads the authoritative CombatBout model; never owns vitals.
     /// </summary>
     [DefaultExecutionOrder(100)]
     public sealed class BoxerVisualShell : MonoBehaviour
@@ -114,34 +114,11 @@ namespace BoxerP0
 
         private void UpdateReactiveHudState()
         {
-            _playerHp = Mathf.Clamp01(1f - _telemetry.OpponentHits * HpLossPerHit);
-            _opponentHp = Mathf.Clamp01(1f - _telemetry.PlayerHits * HpLossPerHit);
+            _playerHp = (float)(_telemetry.Bout.Player.HP / 100);
+            _opponentHp = (float)(_telemetry.Bout.Opponent.HP / 100);
 
-            if (_input != null)
-            {
-                uint count = _input.PunchEventCount;
-                uint delta = count - _lastPlayerPunchCount;
-                if (delta > 0)
-                {
-                    _playerStamina = Mathf.Clamp01(_playerStamina - delta * PlayerStaminaCostPerPunch);
-                    _lastPlayerPunchCount = count;
-                }
-            }
-
-            if (_opponent != null)
-            {
-                uint count = _opponent.AttackEventCount;
-                uint delta = count - _lastOpponentAttackCount;
-                if (delta > 0)
-                {
-                    _opponentStamina = Mathf.Clamp01(_opponentStamina - delta * OpponentStaminaCostPerPunch);
-                    _lastOpponentAttackCount = count;
-                }
-            }
-
-            float dt = Time.unscaledDeltaTime;
-            _playerStamina = Mathf.MoveTowards(_playerStamina, 1f, PlayerStaminaRecoveryPerSecond * dt);
-            _opponentStamina = Mathf.MoveTowards(_opponentStamina, 1f, OpponentStaminaRecoveryPerSecond * dt);
+            _playerStamina = (float)(_telemetry.Bout.Player.Stamina / 100);
+            _opponentStamina = (float)(_telemetry.Bout.Opponent.Stamina / 100);
         }
 
         private void BuildWarehouseShell()
@@ -301,6 +278,7 @@ namespace BoxerP0
 
         private void OnGUI()
         {
+            if (GetComponent<BoxerBootstrap>()?.Flow.Gameplay != true) return;
             if (_p1VPresentation != null && _p1VPresentation.IsReady) return;
             EnsureStyles();
             if (ShouldShowTrainingOverlay()) DrawTrainingOverlay();

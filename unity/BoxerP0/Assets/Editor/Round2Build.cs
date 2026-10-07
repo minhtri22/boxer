@@ -25,7 +25,7 @@ namespace BoxerP0.Editor
             {
                 Phase0SceneBuilder.Build();
                 bool ev=Environment.GetEnvironmentVariable("BOXER_VISUAL_STAGE")=="P1-EV";
-                PlayerSettings.bundleVersion=(ev?"ev-":"r2-")+sha;
+                PlayerSettings.bundleVersion=(ev?"ev-":"w1-")+sha;
                 PlayerSettings.WebGL.compressionFormat=WebGLCompressionFormat.Disabled;
                 PlayerSettings.WebGL.template="PROJECT:BoxerP0Mobile";
                 AssetDatabase.SaveAssets();
@@ -46,6 +46,14 @@ namespace BoxerP0.Editor
                 metadata.AppendLine("total_bytes="+report.summary.totalSize);
                 metadata.AppendLine("contact=shared_anatomical_pose_relative_sphere_sweep_240Hz");
                 metadata.AppendLine("presentation=accepted_ramirez_native_rig_readonly_mapping_no_bottom_controls");
+                metadata.AppendLine("vitals=wave1_authoritative_hp_stamina_capacity_quality_recovery_ko");
+                metadata.AppendLine("product_loop=home_preview_tutorial_fight_result_rematch");
+                foreach(string side in new[]{"Left","Right"})
+                {
+                    using var gloveHash=SHA256.Create();
+                    using var gloveStream=File.OpenRead(Path.Combine(Application.dataPath,"Resources/Boxer3D/PlayerPOVGlove_"+side+"_W1.fbx"));
+                    metadata.AppendLine("player_glove_"+side.ToLowerInvariant()+"_sha256="+BitConverter.ToString(gloveHash.ComputeHash(gloveStream)).Replace("-","").ToLowerInvariant());
+                }
                 metadata.AppendLine("desktop_validation=explicit_query_flag_synthetic_no_sensor_claim");
                 using var hash=SHA256.Create();
                 using(var stream=File.OpenRead(Path.Combine(Application.dataPath,"Resources/Boxer3D/Ramirez_UAT3.fbx")))

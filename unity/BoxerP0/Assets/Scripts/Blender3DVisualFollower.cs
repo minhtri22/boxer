@@ -151,6 +151,7 @@ namespace BoxerP0
 
         PlayerRig CreatePlayerRig(GameObject prefab, string name, bool left)
         {
+            prefab = Resources.Load<GameObject>(left ? "Boxer3D/PlayerPOVGlove_Left_W1" : "Boxer3D/PlayerPOVGlove_Right_W1") ?? prefab;
             GameObject instance = Instantiate(prefab);
             instance.name = name;
             _instances.Add(instance);
@@ -279,7 +280,12 @@ namespace BoxerP0
             foreach (Renderer renderer in instance.GetComponentsInChildren<Renderer>(true))
             {
                 if (renderer.name.Contains("POVGlove") || renderer.name.Equals("POVCuff", StringComparison.OrdinalIgnoreCase))
-                    ApplyTexture(renderer, glove);
+                {
+                    Shader leatherShader=Resources.Load<Shader>("Wave1Leather");
+                    if(leatherShader==null) throw new InvalidOperationException("Missing wave1 leather shader");
+                    var leather=new Material(leatherShader) { color=new Color(.065f,.055f,.045f),mainTexture=glove };
+                    renderer.material=leather;
+                }
             }
             VisibleRendererCount += CountVisible(instance);
         }

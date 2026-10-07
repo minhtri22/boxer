@@ -33,9 +33,6 @@ namespace BoxerP0
     public sealed class P1VCombatPresentation : MonoBehaviour
     {
         private const float TestBoutSeconds = 45f;
-        private const float HpLossPerHit = 0.08f;
-        private const float PlayerStaminaCost = 0.12f;
-        private const float OpponentStaminaCost = 0.10f;
 
         private static readonly Color Gold = new(0.93f, 0.67f, 0.24f, 1f);
         private static readonly Color WarmWhite = new(0.95f, 0.91f, 0.82f, 1f);
@@ -105,6 +102,7 @@ namespace BoxerP0
 
         private void TrackTrainingStage()
         {
+            if (_bootstrap != null) { _trainingStage = _bootstrap.TrainingToken; return; }
             string value = _telemetry.LastEvent ?? string.Empty;
             if (value == _lastTelemetryEvent) return;
             _lastTelemetryEvent = value;
@@ -128,27 +126,14 @@ namespace BoxerP0
 
         private void UpdateStamina()
         {
-            if (_input != null)
-            {
-                uint count = _input.PunchEventCount;
-                uint delta = count - _lastPlayerPunchCount;
-                if (delta > 0) _playerStamina = Mathf.Clamp01(_playerStamina - delta * PlayerStaminaCost);
-                _lastPlayerPunchCount = count;
-            }
-            if (_opponent != null)
-            {
-                uint count = _opponent.AttackEventCount;
-                uint delta = count - _lastOpponentAttackCount;
-                if (delta > 0) _opponentStamina = Mathf.Clamp01(_opponentStamina - delta * OpponentStaminaCost);
-                _lastOpponentAttackCount = count;
-            }
-            _playerStamina = Mathf.MoveTowards(_playerStamina, 1f, 0.22f * Time.unscaledDeltaTime);
-            _opponentStamina = Mathf.MoveTowards(_opponentStamina, 1f, 0.18f * Time.unscaledDeltaTime);
+            _playerStamina = (float)(_telemetry.Bout.Player.Stamina / 100);
+            _opponentStamina = (float)(_telemetry.Bout.Opponent.Stamina / 100);
         }
 
         private void OnGUI()
         {
             if (!IsReady) return;
+            if (_bootstrap != null && !_bootstrap.Flow.Gameplay) return;
             EnsureStyles();
 
             int oldDepth = GUI.depth;
@@ -159,7 +144,7 @@ namespace BoxerP0
             // P1-EV: invisible touch regions retain their existing input semantics.
             if (_bootstrap != null && _bootstrap.ShowDeveloperDiagnostics) DrawDiagnostics();
             if (ShouldShowTraining()) DrawTrainingCard();
-            if (IsBoutComplete()) DrawResultCard();
+            // ProductScreens owns result navigation; this component owns combat HUD only.
             GUI.depth = oldDepth;
         }
 
@@ -257,12 +242,13 @@ namespace BoxerP0
         {
             float w=Screen.width,h=Screen.height,pad=w*.025f;
             float ph=Mathf.Clamp(w*.145f,66f,106f),pw=w*.335f;
-            DrawFighterPanel(new Rect(pad,12,pw,ph),"LV 12  BOXER",Mathf.Clamp01(1f-_telemetry.OpponentHits*HpLossPerHit),_playerStamina,false);
-            DrawFighterPanel(new Rect(w-pad-pw,12,pw,ph),"LV 15  RAMIREZ",Mathf.Clamp01(1f-_telemetry.PlayerHits*HpLossPerHit),_opponentStamina,true);
-            Rect timer=new(w*.39f,12,w*.22f,ph);
+            float top = Screen.height - Screen.safeArea.yMax + 12;
+            DrawFighterPanel(new Rect(pad,top,pw,ph),"BOXER",(float)(_telemetry.Bout.Player.HP/100),_playerStamina,false);
+            DrawFighterPanel(new Rect(w-pad-pw,top,pw,ph),"RAMIREZ",(float)(_telemetry.Bout.Opponent.HP/100),_opponentStamina,true);
+            Rect timer=new(w*.39f,top,w*.22f,ph);
             DrawPanel(timer,new Color(.018f,.017f,.016f,.90f),Gold,1);
-            Label(new Rect(timer.x,17,timer.width,20),"ROUND 1 / 10",Mathf.RoundToInt(w/45),TextAnchor.MiddleCenter,Gold,true);
-            Label(new Rect(timer.x,36,timer.width,ph-24),TimerText(),Mathf.RoundToInt(w/22),TextAnchor.MiddleCenter,WarmWhite,true);
+            Label(new Rect(timer.x,top+5,timer.width,20),"ROUND 1 / 1",Mathf.RoundToInt(w/45),TextAnchor.MiddleCenter,Gold,true);
+            Label(new Rect(timer.x,top+24,timer.width,ph-24),TimerText(),Mathf.RoundToInt(w/22),TextAnchor.MiddleCenter,WarmWhite,true);
             if(_opponent.CounterWindowOpen) { Rect badge=new(w*.76f,h*.28f,w*.22f,30);DrawPanel(badge,new Color(.02f,.018f,.016f,.8f),Gold,1);Label(badge,"COUNTER READY",Mathf.RoundToInt(w/45),TextAnchor.MiddleCenter,Gold,true); }
         }
 
@@ -273,6 +259,8 @@ namespace BoxerP0
             Label(new Rect(rect.x+5,rect.y,rect.width-10,rect.height*.32f),title,Mathf.RoundToInt(Screen.width/32),right?TextAnchor.MiddleRight:TextAnchor.MiddleLeft,WarmWhite,true);
             DrawMeter(new Rect(rect.x+5,rect.y+rect.height*.38f,rect.width-10,rect.height*.21f),"HP",hp,Red,right);
             DrawMeter(new Rect(rect.x+5,rect.y+rect.height*.69f,rect.width-10,rect.height*.18f),"STA",stamina,Amber,right);
+            float capacity = (float)((right ? _telemetry.Bout.Opponent : _telemetry.Bout.Player).Capacity / 100);
+            DrawSolid(new Rect(rect.x+5,rect.yMax-5,(rect.width-10)*capacity,3), Gold);
         }
 
         private void DrawMeter(Rect rect, string name, float fill, Color color, bool right)
@@ -403,7 +391,7 @@ namespace BoxerP0
         {
             if (_telemetry == null || _telemetry.BoutResult == "PENDING") return "READY";
             if (_telemetry.BoutResult != "IN_PROGRESS") return "0:00";
-            float remaining = Mathf.Max(0f, TestBoutSeconds - (Time.unscaledTime - _observedBoutStart));
+            float remaining = Mathf.Max(0f, TestBoutSeconds - (float)_telemetry.Bout.Seconds);
             return $"0:{Mathf.CeilToInt(remaining):00}";
         }
 

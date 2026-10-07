@@ -7,6 +7,16 @@ namespace BoxerP0
     public sealed class BoxerInput : MonoBehaviour
     {
         public event Action<PunchIntent> PunchRequested;
+        public bool GameplayInput { get; private set; } = true;
+        private bool _awaitRelease;
+        public void SetGameplayInput(bool value)
+        {
+            GameplayInput = value;
+            _awaitRelease = value;
+            _leftFinger = _rightFinger = -1;
+            MovementIntent = Vector2.zero; LastPunchIntent = PunchIntent.None;
+            _rightPathLength = 0;
+        }
         public bool DesktopValidation { get; private set; }
         public void BrowserStartDesktopValidation(string unused)
         {
@@ -82,6 +92,12 @@ namespace BoxerP0
 
         private void Update()
         {
+            if (!GameplayInput) return;
+            if (_awaitRelease)
+            {
+                if (Input.touchCount != 0 || Input.GetMouseButton(0)) return;
+                _awaitRelease = false;
+            }
             if (_syntheticDemo)
             {
                 UpdateSyntheticDemo();
