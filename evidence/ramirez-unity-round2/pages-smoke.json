@@ -1,0 +1,269 @@
+{
+  "scope": "DEPLOYED_HTTPS_HEADLESS_EDGE_DESKTOP_SYNTHETIC_NOT_HUMAN_UAT",
+  "source_sha": "4940f8061eaf1ed58bcf5356a1bce4817de6eab0",
+  "files": [
+    {
+      "file": "provenance.txt",
+      "status": 200,
+      "bytes": 1154,
+      "sha256": "ab12d86c2ac44cdb92701f47e53513afba2cb80a1ebad421a5eee469a63eb6b4",
+      "expected": "ab12d86c2ac44cdb92701f47e53513afba2cb80a1ebad421a5eee469a63eb6b4",
+      "match": true
+    },
+    {
+      "file": "index.html",
+      "status": 200,
+      "bytes": 7400,
+      "sha256": "7d9e9add62ec3282f35b7df6146786c7c952bda03724b96961ab6d9e6a7cd99e",
+      "expected": "7d9e9add62ec3282f35b7df6146786c7c952bda03724b96961ab6d9e6a7cd99e",
+      "match": true
+    },
+    {
+      "file": "Build/boxer-round2.data",
+      "status": 200,
+      "bytes": 40670506,
+      "sha256": "32a9a9015f59fa4b823d48ee11d3bd0348d91b7fd443db077998f3e90afe4173",
+      "expected": "32a9a9015f59fa4b823d48ee11d3bd0348d91b7fd443db077998f3e90afe4173",
+      "match": true
+    },
+    {
+      "file": "Build/boxer-round2.framework.js",
+      "status": 200,
+      "bytes": 323523,
+      "sha256": "799a99c317831405e815dcfa114f1a3d11a0ce6cd2af13d2198693dd7555487d",
+      "expected": "799a99c317831405e815dcfa114f1a3d11a0ce6cd2af13d2198693dd7555487d",
+      "match": true
+    },
+    {
+      "file": "Build/boxer-round2.loader.js",
+      "status": 200,
+      "bytes": 27222,
+      "sha256": "9961e0e69a1003c375e52549f05dff6a6851a4def9b47d3a5f4edab1e6d5aef7",
+      "expected": "9961e0e69a1003c375e52549f05dff6a6851a4def9b47d3a5f4edab1e6d5aef7",
+      "match": true
+    },
+    {
+      "file": "Build/boxer-round2.wasm",
+      "status": 200,
+      "bytes": 17664933,
+      "sha256": "41cf50e390180906bfc4893f93aef492bfcf8d8aaff1539af84d3eb8c9ef643c",
+      "expected": "41cf50e390180906bfc4893f93aef492bfcf8d8aaff1539af84d3eb8c9ef643c",
+      "match": true
+    },
+    {
+      "file": "TemplateData/style.css",
+      "status": 200,
+      "bytes": 1158,
+      "sha256": "227ec384516a47fbbf70a4d05e8e3804ea8f063009d42d8c570b72909f6c6b76",
+      "expected": "227ec384516a47fbbf70a4d05e8e3804ea8f063009d42d8c570b72909f6c6b76",
+      "match": true
+    }
+  ],
+  "errors": [],
+  "console": [
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 ()"
+    },
+    {
+      "type": "log",
+      "text": "[UnityMemory] Configuration Parameters - Can be set up in boot.config\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-bucket-allocator-granularity=16\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-bucket-allocator-bucket-count=8\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-bucket-allocator-block-size=4194304\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-bucket-allocator-block-count=1\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-main-allocator-block-size=16777216\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-thread-allocator-block-size=16777216\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-main-allocator-mimalloc-enabled=0\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-gfx-main-allocator-block-size=16777216\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-gfx-thread-allocator-block-size=16777216\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-cache-allocator-block-size=4194304\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-typetree-allocator-block-size=2097152\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-profiler-bucket-allocator-granularity=16\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-profiler-bucket-allocator-bucket-count=8\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-profiler-bucket-allocator-block-size=4194304\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-profiler-bucket-allocator-block-count=1\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-profiler-allocator-block-size=16777216\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-profiler-editor-allocator-block-size=1048576\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-temp-allocator-size-main=4194304\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-job-temp-allocator-block-size=2097152\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-job-temp-allocator-block-size-background=1048576\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-job-temp-allocator-reduction-small-platforms=262144\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-temp-allocator-size-background-worker=32768\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-allocator-temp-initial-block-size-main=262144\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-allocator-temp-initial-block-size-worker=262144\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-temp-allocator-size-audio-worker=65536\"\n"
+    },
+    {
+      "type": "log",
+      "text": "CodeReloadManager initialized\n"
+    },
+    {
+      "type": "log",
+      "text": "[Physics::Module] Initialized fallback backend.\n"
+    },
+    {
+      "type": "log",
+      "text": "[Physics::Module] Id: 0xdecafbad\n"
+    },
+    {
+      "type": "log",
+      "text": "Loading player data from data.unity3d\n"
+    },
+    {
+      "type": "log",
+      "text": "Initialize engine version: 6000.5.8f1 (5cb7df797b7d)\n"
+    },
+    {
+      "type": "log",
+      "text": "Creating WebGL 2.0 context."
+    },
+    {
+      "type": "log",
+      "text": "Renderer: WebKit WebGL\n"
+    },
+    {
+      "type": "log",
+      "text": "Vendor:   WebKit\n"
+    },
+    {
+      "type": "log",
+      "text": "Version:  OpenGL ES 3.0 (WebGL 2.0 (OpenGL ES 3.0 Chromium))\n"
+    },
+    {
+      "type": "log",
+      "text": "GLES:     3\n"
+    },
+    {
+      "type": "log",
+      "text": " EXT_clip_control EXT_color_buffer_float EXT_color_buffer_half_float EXT_conservative_depth EXT_depth_clamp EXT_disjoint_timer_query_webgl2 EXT_float_blend EXT_polygon_offset_clamp EXT_texture_compression_bptc EXT_texture_compression_rgtc EXT_texture_filter_anisotropic EXT_texture_norm16 KHR_parallel_shader_compile NV_shader_noperspective_interpolation OES_texture_float_linear WEBGL_blend_func_extended WEBGL_clip_cull_distance WEBGL_compressed_texture_s3tc WEBGL_compressed_texture_s3tc_srgb WEBGL_debug_renderer_info WEBGL_debug_shaders WEBGL_lose_context WEBGL_multi_draw WEBGL_polygon_mode GL_EXT_clip_control GL_EXT_color_buffer_float GL_EXT_color_buffer_half_float GL_EXT_conservative_depth GL_EXT_depth_clamp GL_EXT_disjoint_timer_query_webgl2 GL_EXT_float_blend GL_EXT_polygon_offset_clamp GL_EXT_texture_compression_bptc GL_EXT_texture_compression_rgtc GL_EXT_texture_filter_anisotropic GL_EXT_texture_norm16 GL_KHR_parallel_shader_compile GL_NV_shader_noperspective_interpolation GL_OES_texture_float_linear GL\n"
+    },
+    {
+      "type": "log",
+      "text": "_WEBGL_blend_func_extended GL_WEBGL_clip_cull_distance GL_WEBGL_compressed_texture_s3tc GL_WEBGL_compressed_texture_s3tc_srgb GL_WEBGL_debug_renderer_info GL_WEBGL_debug_shaders GL_WEBGL_lose_context GL_WEBGL_multi_draw GL_WEBGL_polygon_mode\n"
+    },
+    {
+      "type": "log",
+      "text": "OPENGL LOG: Creating OpenGL ES 3.0 graphics device ; Context level  <OpenGL ES 3.0> ; Context handle 1\n"
+    },
+    {
+      "type": "log",
+      "text": "[Physics::Module] Selected backend.\n"
+    },
+    {
+      "type": "log",
+      "text": "[Physics::Module] Name: PhysX\n"
+    },
+    {
+      "type": "log",
+      "text": "[Physics::Module] Id: 0xf2b8ea05\n"
+    },
+    {
+      "type": "log",
+      "text": "[Physics::Module] SDK Version: 4.1.2\n"
+    },
+    {
+      "type": "log",
+      "text": "[Physics::Module] Integration Version: 1.0.0\n"
+    },
+    {
+      "type": "log",
+      "text": "[Physics::Module] Threading Mode: Single-Threaded\n"
+    },
+    {
+      "type": "log",
+      "text": "Input Manager initialize...\n"
+    },
+    {
+      "type": "log",
+      "text": "UnloadTime: 1.000000 ms\n"
+    },
+    {
+      "type": "log",
+      "text": "Audio context resumed after 0.107 seconds."
+    },
+    {
+      "type": "log",
+      "text": "[UnityCache] 'https://minhtri22.github.io/boxer/Build/boxer-round2.data?v=r2-4940f8061eaf1ed58bcf5356a1bce4817de6eab0' successfully downloaded and stored in the browser cache"
+    }
+  ],
+  "requestsFailed": [],
+  "byte_verification": "PASS",
+  "engineErrors": [],
+  "startup": "PASS"
+}
