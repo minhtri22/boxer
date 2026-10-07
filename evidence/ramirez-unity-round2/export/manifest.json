@@ -1,0 +1,1492 @@
+{
+  "source_sha256": "419466859d7f119f98d7e69dc2673f0b378dbf5a892f0e2a6d7254cbc974af12",
+  "art_source_sha": "3e4e13c4b4451cb542e068652508ec12e248225f",
+  "blender": "5.2.1 LTS",
+  "blender_build": "9e2066aef7ef",
+  "fbx_sha256": "c2958f4085cb83cdbd0c05a13beec79b2b21d253fe5bc5521bc5ae7fc18188b6",
+  "settings": {
+    "use_selection": true,
+    "object_types": [
+      "ARMATURE",
+      "MESH"
+    ],
+    "add_leaf_bones": false,
+    "bake_anim": false,
+    "axis_forward": "-Z",
+    "axis_up": "Y",
+    "apply_unit_scale": true,
+    "apply_scale_options": "FBX_SCALE_UNITS",
+    "global_scale": 1.0,
+    "use_space_transform": true,
+    "use_mesh_modifiers": true,
+    "mesh_smooth_type": "FACE",
+    "path_mode": "STRIP",
+    "embed_textures": false
+  },
+  "deterministic_metadata": {
+    "timestamp": "2026-09-30T00:00:00",
+    "uuid": "sha256 semantic key"
+  },
+  "bones": [
+    {
+      "name": "root",
+      "parent": null,
+      "head_blender_m": [
+        0.0,
+        0.0,
+        0.8700000047683716
+      ],
+      "tail_blender_m": [
+        0.0,
+        0.0,
+        1.0099999904632568
+      ],
+      "length_m": 0.13999998569488525
+    },
+    {
+      "name": "spine05",
+      "parent": "root",
+      "head_blender_m": [
+        0.0,
+        0.0,
+        0.9399999976158142
+      ],
+      "tail_blender_m": [
+        0.0,
+        0.0,
+        1.0299999713897705
+      ],
+      "length_m": 0.0899999737739563
+    },
+    {
+      "name": "spine04",
+      "parent": "spine05",
+      "head_blender_m": [
+        0.0,
+        0.0,
+        1.0299999713897705
+      ],
+      "tail_blender_m": [
+        0.0,
+        0.0,
+        1.1200000047683716
+      ],
+      "length_m": 0.09000003337860107
+    },
+    {
+      "name": "spine03",
+      "parent": "spine04",
+      "head_blender_m": [
+        0.0,
+        0.0,
+        1.1200000047683716
+      ],
+      "tail_blender_m": [
+        0.0,
+        0.0,
+        1.190000057220459
+      ],
+      "length_m": 0.0700000524520874
+    },
+    {
+      "name": "spine02",
+      "parent": "spine03",
+      "head_blender_m": [
+        0.0,
+        0.0,
+        1.190000057220459
+      ],
+      "tail_blender_m": [
+        0.0,
+        0.0,
+        1.309999942779541
+      ],
+      "length_m": 0.11999988555908203
+    },
+    {
+      "name": "spine01",
+      "parent": "spine02",
+      "head_blender_m": [
+        0.0,
+        0.0,
+        1.309999942779541
+      ],
+      "tail_blender_m": [
+        0.0,
+        -0.02500000037252903,
+        1.4900000095367432
+      ],
+      "length_m": 0.18172788619995117
+    },
+    {
+      "name": "neck01",
+      "parent": "spine01",
+      "head_blender_m": [
+        0.0,
+        -0.02500000037252903,
+        1.4900000095367432
+      ],
+      "tail_blender_m": [
+        0.0,
+        -0.02500000037252903,
+        1.534999966621399
+      ],
+      "length_m": 0.04499996080994606
+    },
+    {
+      "name": "neck02",
+      "parent": "neck01",
+      "head_blender_m": [
+        0.0,
+        -0.02500000037252903,
+        1.534999966621399
+      ],
+      "tail_blender_m": [
+        0.0,
+        -0.02500000037252903,
+        1.5720000267028809
+      ],
+      "length_m": 0.037000060081481934
+    },
+    {
+      "name": "neck03",
+      "parent": "neck02",
+      "head_blender_m": [
+        0.0,
+        -0.02500000037252903,
+        1.5720000267028809
+      ],
+      "tail_blender_m": [
+        0.0,
+        -0.02500000037252903,
+        1.6150000095367432
+      ],
+      "length_m": 0.042999982833862305
+    },
+    {
+      "name": "head",
+      "parent": "neck03",
+      "head_blender_m": [
+        0.0,
+        -0.02500000037252903,
+        1.6150000095367432
+      ],
+      "tail_blender_m": [
+        0.0,
+        -0.02500000037252903,
+        1.7799999713897705
+      ],
+      "length_m": 0.16499996185302734
+    },
+    {
+      "name": "clavicle.L",
+      "parent": "spine01",
+      "head_blender_m": [
+        0.03500000014901161,
+        0.0,
+        1.4850000143051147
+      ],
+      "tail_blender_m": [
+        0.20000000298023224,
+        0.0,
+        1.4700000286102295
+      ],
+      "length_m": 0.1656804233789444
+    },
+    {
+      "name": "upperarm.L",
+      "parent": "clavicle.L",
+      "head_blender_m": [
+        0.20000000298023224,
+        0.0,
+        1.4700000286102295
+      ],
+      "tail_blender_m": [
+        0.3100000023841858,
+        -0.006000000052154064,
+        1.1950000524520874
+      ],
+      "length_m": 0.2962448298931122
+    },
+    {
+      "name": "forearm.L",
+      "parent": "upperarm.L",
+      "head_blender_m": [
+        0.3100000023841858,
+        -0.006000000052154064,
+        1.1950000524520874
+      ],
+      "tail_blender_m": [
+        0.3889999985694885,
+        -0.05400000140070915,
+        0.9739999771118164
+      ],
+      "length_m": 0.23955383896827698
+    },
+    {
+      "name": "hand.L",
+      "parent": "forearm.L",
+      "head_blender_m": [
+        0.3889999985694885,
+        -0.05400000140070915,
+        0.9739999771118164
+      ],
+      "tail_blender_m": [
+        0.41499999165534973,
+        -0.10499999672174454,
+        0.8700000047683716
+      ],
+      "length_m": 0.11871391534805298
+    },
+    {
+      "name": "clavicle.R",
+      "parent": "spine01",
+      "head_blender_m": [
+        -0.03500000014901161,
+        0.0,
+        1.4850000143051147
+      ],
+      "tail_blender_m": [
+        -0.20000000298023224,
+        0.0,
+        1.4700000286102295
+      ],
+      "length_m": 0.1656804233789444
+    },
+    {
+      "name": "upperarm.R",
+      "parent": "clavicle.R",
+      "head_blender_m": [
+        -0.20000000298023224,
+        0.0,
+        1.4700000286102295
+      ],
+      "tail_blender_m": [
+        -0.3100000023841858,
+        -0.006000000052154064,
+        1.1950000524520874
+      ],
+      "length_m": 0.2962448298931122
+    },
+    {
+      "name": "forearm.R",
+      "parent": "upperarm.R",
+      "head_blender_m": [
+        -0.3100000023841858,
+        -0.006000000052154064,
+        1.1950000524520874
+      ],
+      "tail_blender_m": [
+        -0.3889999985694885,
+        -0.05400000140070915,
+        0.9739999771118164
+      ],
+      "length_m": 0.23955383896827698
+    },
+    {
+      "name": "hand.R",
+      "parent": "forearm.R",
+      "head_blender_m": [
+        -0.3889999985694885,
+        -0.05400000140070915,
+        0.9739999771118164
+      ],
+      "tail_blender_m": [
+        -0.41499999165534973,
+        -0.10499999672174454,
+        0.8700000047683716
+      ],
+      "length_m": 0.11871391534805298
+    },
+    {
+      "name": "thigh.L",
+      "parent": "root",
+      "head_blender_m": [
+        0.10499999672174454,
+        0.0,
+        0.9150000214576721
+      ],
+      "tail_blender_m": [
+        0.14399999380111694,
+        0.014999999664723873,
+        0.4970000088214874
+      ],
+      "length_m": 0.4200833737850189
+    },
+    {
+      "name": "shin.L",
+      "parent": "thigh.L",
+      "head_blender_m": [
+        0.14399999380111694,
+        0.014999999664723873,
+        0.4970000088214874
+      ],
+      "tail_blender_m": [
+        0.18400000035762787,
+        0.052000001072883606,
+        0.10000000149011612
+      ],
+      "length_m": 0.40072187781333923
+    },
+    {
+      "name": "foot.L",
+      "parent": "shin.L",
+      "head_blender_m": [
+        0.18400000035762787,
+        0.052000001072883606,
+        0.10000000149011612
+      ],
+      "tail_blender_m": [
+        0.18400000035762787,
+        -0.10999999940395355,
+        0.03999999910593033
+      ],
+      "length_m": 0.1727537363767624
+    },
+    {
+      "name": "thigh.R",
+      "parent": "root",
+      "head_blender_m": [
+        -0.10499999672174454,
+        0.0,
+        0.9150000214576721
+      ],
+      "tail_blender_m": [
+        -0.14399999380111694,
+        0.014999999664723873,
+        0.4970000088214874
+      ],
+      "length_m": 0.4200833737850189
+    },
+    {
+      "name": "shin.R",
+      "parent": "thigh.R",
+      "head_blender_m": [
+        -0.14399999380111694,
+        0.014999999664723873,
+        0.4970000088214874
+      ],
+      "tail_blender_m": [
+        -0.18400000035762787,
+        0.052000001072883606,
+        0.10000000149011612
+      ],
+      "length_m": 0.40072187781333923
+    },
+    {
+      "name": "foot.R",
+      "parent": "shin.R",
+      "head_blender_m": [
+        -0.18400000035762787,
+        0.052000001072883606,
+        0.10000000149011612
+      ],
+      "tail_blender_m": [
+        -0.18400000035762787,
+        -0.10999999940395355,
+        0.03999999910593033
+      ],
+      "length_m": 0.1727537363767624
+    }
+  ],
+  "rig_matrix_world": [
+    [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "objects": [
+    {
+      "name": "Boot cotton laces.L",
+      "vertices": 416,
+      "triangles": 416,
+      "unweighted": 0,
+      "center_blender_m": [
+        0.17852215468883514,
+        -0.008892953395843506,
+        0.1566004455089569
+      ],
+      "bounds_blender_m": [
+        [
+          0.14410588145256042,
+          -0.10179785639047623,
+          0.07626134902238846
+        ],
+        [
+          0.2056233286857605,
+          0.016324950382113457,
+          0.22448748350143433
+        ]
+      ],
+      "material_slots": [
+        "Ramirez Unity White"
+      ],
+      "modifiers": [
+        {
+          "type": "ARMATURE",
+          "name": "Sculpt aligned deformation"
+        }
+      ]
+    },
+    {
+      "name": "Boot cotton laces.R",
+      "vertices": 416,
+      "triangles": 416,
+      "unweighted": 0,
+      "center_blender_m": [
+        -0.17853358387947083,
+        -0.009015591815114021,
+        0.1566004455089569
+      ],
+      "bounds_blender_m": [
+        [
+          -0.20562390983104706,
+          -0.10179784893989563,
+          0.07626135647296906
+        ],
+        [
+          -0.1441904604434967,
+          0.016111938282847404,
+          0.22448748350143433
+        ]
+      ],
+      "material_slots": [
+        "Ramirez Unity White"
+      ],
+      "modifiers": [
+        {
+          "type": "ARMATURE",
+          "name": "Sculpt aligned deformation"
+        }
+      ]
+    },
+    {
+      "name": "Boot lace panel piping.L",
+      "vertices": 512,
+      "triangles": 992,
+      "unweighted": 0,
+      "center_blender_m": [
+        0.17868134379386902,
+        -0.004038571380078793,
+        0.1541738361120224
+      ],
+      "bounds_blender_m": [
+        [
+          0.1335964947938919,
+          -0.0990777537226677,
+          0.07074423879384995
+        ],
+        [
+          0.21276167035102844,
+          0.019527066498994827,
+          0.2226799726486206
+        ]
+      ],
+      "material_slots": [
+        "Ramirez Unity Red"
+      ],
+      "modifiers": [
+        {
+          "type": "ARMATURE",
+          "name": "Sculpt aligned deformation"
+        }
+      ]
+    },
+    {
+      "name": "Boot lace panel piping.R",
+      "vertices": 512,
+      "triangles": 992,
+      "unweighted": 0,
+      "center_blender_m": [
+        -0.1786925345659256,
+        -0.0041512069292366505,
+        0.1541738361120224
+      ],
+      "bounds_blender_m": [
+        [
+          -0.2127741426229477,
+          -0.0990777462720871,
+          0.07074424624443054
+        ],
+        [
+          -0.13372525572776794,
+          0.019320176914334297,
+          0.2226799726486206
+        ]
+      ],
+      "material_slots": [
+        "Ramirez Unity Red"
+      ],
+      "modifiers": [
+        {
+          "type": "ARMATURE",
+          "name": "Sculpt aligned deformation"
+        }
+      ]
+    },
+    {
+      "name": "Continuous woven gold hems",
+      "vertices": 1280,
+      "triangles": 2560,
+      "unweighted": 0,
+      "center_blender_m": [
+        3.003515436361681e-09,
+        -0.04734567552804947,
+        0.6689930558204651
+      ],
+      "bounds_blender_m": [
+        [
+          -0.2399701476097107,
+          -0.16278184950351715,
+          0.660000205039978
+        ],
+        [
+          0.23996654152870178,
+          0.05873547121882439,
+          0.6779941320419312
+        ]
+      ],
+      "material_slots": [
+        "Ramirez Unity Gold"
+      ],
+      "modifiers": [
+        {
+          "type": "ARMATURE",
+          "name": "Sculpt aligned deformation"
+        },
+        {
+          "type": "SOLIDIFY",
+          "name": "Woven tape thickness"
+        }
+      ]
+    },
+    {
+      "name": "Glove attached thumb.L",
+      "vertices": 2306,
+      "triangles": 4608,
+      "unweighted": 0,
+      "center_blender_m": [
+        0.44641557335853577,
+        -0.07251808792352676,
+        0.9042982459068298
+      ],
+      "bounds_blender_m": [
+        [
+          0.41483819484710693,
+          -0.10275160521268845,
+          0.8621990084648132
+        ],
+        [
+          0.47297054529190063,
+          -0.038534488528966904,
+          0.9555157423019409
+        ]
+      ],
+      "material_slots": [
+        "Ramirez Unity Red"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Surface subdivision - editable cage retained"
+        },
+        {
+          "type": "ARMATURE",
+          "name": "Sculpt aligned deformation"
+        }
+      ]
+    },
+    {
+      "name": "Glove attached thumb.R",
+      "vertices": 2306,
+      "triangles": 4608,
+      "unweighted": 0,
+      "center_blender_m": [
+        -0.44641557335853577,
+        -0.07251811027526855,
+        0.9042982459068298
+      ],
+      "bounds_blender_m": [
+        [
+          -0.472970575094223,
+          -0.10275162756443024,
+          0.8621990084648132
+        ],
+        [
+          -0.41483819484710693,
+          -0.03853451833128929,
+          0.9555156826972961
+        ]
+      ],
+      "material_slots": [
+        "Ramirez Unity Red"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Surface subdivision - editable cage retained"
+        },
+        {
+          "type": "ARMATURE",
+          "name": "Sculpt aligned deformation"
+        }
+      ]
+    },
+    {
+      "name": "Glove gold crown.L",
+      "vertices": 7,
+      "triangles": 5,
+      "unweighted": 0,
+      "center_blender_m": [
+        0.4037075340747833,
+        -0.13552580773830414,
+        0.9151737093925476
+      ],
+      "bounds_blender_m": [
+        [
+          0.379788875579834,
+          -0.14592669904232025,
+          0.9004511833190918
+        ],
+        [
+          0.43053561449050903,
+          -0.12729616463184357,
+          0.9324147701263428
+        ]
+      ],
+      "material_slots": [
+        "Ramirez Unity Gold"
+      ],
+      "modifiers": [
+        {
+          "type": "ARMATURE",
+          "name": "Sculpt aligned deformation"
+        }
+      ]
+    },
+    {
+      "name": "Glove gold crown.R",
+      "vertices": 7,
+      "triangles": 5,
+      "unweighted": 0,
+      "center_blender_m": [
+        -0.4037061035633087,
+        -0.13552579283714294,
+        0.9151732325553894
+      ],
+      "bounds_blender_m": [
+        [
+          -0.43053483963012695,
+          -0.14592671394348145,
+          0.9004467129707336
+        ],
+        [
+          -0.3797929584980011,
+          -0.12729623913764954,
+          0.9324153661727905
+        ]
+      ],
+      "material_slots": [
+        "Ramirez Unity Gold"
+      ],
+      "modifiers": [
+        {
+          "type": "ARMATURE",
+          "name": "Sculpt aligned deformation"
+        }
+      ]
+    },
+    {
+      "name": "Glove padded shell.L",
+      "vertices": 4994,
+      "triangles": 9984,
+      "unweighted": 0,
+      "center_blender_m": [
+        0.40661969780921936,
+        -0.09306923300027847,
+        0.903522789478302
+      ],
+      "bounds_blender_m": [
+        [
+          0.34537965059280396,
+          -0.14971710741519928,
+          0.8353350758552551
+        ],
+        [
+          0.4746059775352478,
+          -0.03476043418049812,
+          0.9809909462928772
+        ]
+      ],
+      "material_slots": [
+        "Ramirez Unity Red"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Surface subdivision - editable cage retained"
+        },
+        {
+          "type": "ARMATURE",
+          "name": "Sculpt aligned deformation"
+        }
+      ]
+    },
+    {
+      "name": "Glove padded shell.R",
+      "vertices": 4994,
+      "triangles": 9984,
+      "unweighted": 0,
+      "center_blender_m": [
+        -0.40661972761154175,
+        -0.09306927770376205,
+        0.9035227298736572
+      ],
+      "bounds_blender_m": [
+        [
+          -0.4746060073375702,
+          -0.14971716701984406,
+          0.8353350758552551
+        ],
+        [
+          -0.34537962079048157,
+          -0.03476046770811081,
+          0.9809908866882324
+        ]
+      ],
+      "material_slots": [
+        "Ramirez Unity Red"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Surface subdivision - editable cage retained"
+        },
+        {
+          "type": "ARMATURE",
+          "name": "Sculpt aligned deformation"
+        }
+      ]
+    },
+    {
+      "name": "Glove panel seam.L",
+      "vertices": 40,
+      "triangles": 64,
+      "unweighted": 0,
+      "center_blender_m": [
+        0.4574253559112549,
+        -0.08315011113882065,
+        0.9104730486869812
+      ],
+      "bounds_blender_m": [
+        [
+          0.4326240122318268,
+          -0.11303923279047012,
+          0.8586400747299194
+        ],
+        [
+          0.47321951389312744,
+          -0.052793778479099274,
+          0.9670422077178955
+        ]
+      ],
+      "material_slots": [
+        "Ramirez Unity Red"
+      ],
+      "modifiers": [
+        {
+          "type": "ARMATURE",
+          "name": "Sculpt aligned deformation"
+        }
+      ]
+    },
+    {
+      "name": "Glove panel seam.R",
+      "vertices": 40,
+      "triangles": 64,
+      "unweighted": 0,
+      "center_blender_m": [
+        -0.3585207760334015,
+        -0.08314818888902664,
+        0.8857461214065552
+      ],
+      "bounds_blender_m": [
+        [
+          -0.3786068260669708,
+          -0.1130417138338089,
+          0.837714433670044
+        ],
+        [
+          -0.3494129180908203,
+          -0.052794188261032104,
+          0.9472303986549377
+        ]
+      ],
+      "material_slots": [
+        "Ramirez Unity Red"
+      ],
+      "modifiers": [
+        {
+          "type": "ARMATURE",
+          "name": "Sculpt aligned deformation"
+        }
+      ]
+    },
+    {
+      "name": "Gold elastic waistband",
+      "vertices": 1344,
+      "triangles": 2304,
+      "unweighted": 0,
+      "center_blender_m": [
+        3.215280264257103e-10,
+        -0.040145110338926315,
+        1.0557414293289185
+      ],
+      "bounds_blender_m": [
+        [
+          -0.17553777992725372,
+          -0.175251767039299,
+          1.0260001420974731
+        ],
+        [
+          0.17553777992725372,
+          0.09496155381202698,
+          1.0860000848770142
+        ]
+      ],
+      "material_slots": [
+        "Ramirez Unity Gold"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Surface subdivision - editable cage retained"
+        },
+        {
+          "type": "ARMATURE",
+          "name": "Sculpt aligned deformation"
+        }
+      ]
+    },
+    {
+      "name": "Hand wrap.L",
+      "vertices": 864,
+      "triangles": 1536,
+      "unweighted": 0,
+      "center_blender_m": [
+        0.3755002021789551,
+        -0.040706802159547806,
+        1.0004312992095947
+      ],
+      "bounds_blender_m": [
+        [
+          0.3134816288948059,
+          -0.09212625026702881,
+          0.9398479461669922
+        ],
+        [
+          0.42542946338653564,
+          0.020515713840723038,
+          1.0637425184249878
+        ]
+      ],
+      "material_slots": [
+        "Ramirez Unity White"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Surface subdivision - editable cage retained"
+        },
+        {
+          "type": "ARMATURE",
+          "name": "Sculpt aligned deformation"
+        }
+      ]
+    },
+    {
+      "name": "Hand wrap.R",
+      "vertices": 864,
+      "triangles": 1536,
+      "unweighted": 0,
+      "center_blender_m": [
+        -0.3754821717739105,
+        -0.04066595435142517,
+        1.0004149675369263
+      ],
+      "bounds_blender_m": [
+        [
+          -0.42567452788352966,
+          -0.09204930067062378,
+          0.9398095607757568
+        ],
+        [
+          -0.31326186656951904,
+          0.02067122608423233,
+          1.0637379884719849
+        ]
+      ],
+      "material_slots": [
+        "Ramirez Unity White"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Surface subdivision - editable cage retained"
+        },
+        {
+          "type": "ARMATURE",
+          "name": "Sculpt aligned deformation"
+        }
+      ]
+    },
+    {
+      "name": "RAMIREZ name embroidery",
+      "vertices": 952,
+      "triangles": 936,
+      "unweighted": 0,
+      "center_blender_m": [
+        -0.008985860273241997,
+        -0.18066135048866272,
+        1.0574227571487427
+      ],
+      "bounds_blender_m": [
+        [
+          -0.05067400261759758,
+          -0.1808607578277588,
+          1.048200011253357
+        ],
+        [
+          0.05228600651025772,
+          -0.18046075105667114,
+          1.0660359859466553
+        ]
+      ],
+      "material_slots": [
+        "Ramirez Unity Gold"
+      ],
+      "modifiers": [
+        {
+          "type": "ARMATURE",
+          "name": "Sculpt aligned deformation"
+        }
+      ]
+    },
+    {
+      "name": "Ramirez shorts - two leg pattern",
+      "vertices": 59774,
+      "triangles": 119552,
+      "unweighted": 0,
+      "center_blender_m": [
+        -0.000891513773240149,
+        -0.03840458765625954,
+        0.8608893156051636
+      ],
+      "bounds_blender_m": [
+        [
+          -0.23893523216247559,
+          -0.185560941696167,
+          0.659503161907196
+        ],
+        [
+          0.24240455031394958,
+          0.11458119004964828,
+          1.035443902015686
+        ]
+      ],
+      "material_slots": [
+        "Ramirez Unity Red",
+        "Ramirez Unity Red"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Surface subdivision - editable cage retained"
+        },
+        {
+          "type": "SOLIDIFY",
+          "name": "Cloth edge thickness"
+        },
+        {
+          "type": "ARMATURE",
+          "name": "Sculpt aligned deformation"
+        }
+      ]
+    },
+    {
+      "name": "Ramirez waistband label",
+      "vertices": 4,
+      "triangles": 2,
+      "unweighted": 0,
+      "center_blender_m": [
+        0.0,
+        -0.17666074633598328,
+        1.056999921798706
+      ],
+      "bounds_blender_m": [
+        [
+          -0.06199999898672104,
+          -0.17866075038909912,
+          1.034999966621399
+        ],
+        [
+          0.06199999898672104,
+          -0.17466075718402863,
+          1.0789999961853027
+        ]
+      ],
+      "material_slots": [
+        "Ramirez Unity Gold"
+      ],
+      "modifiers": [
+        {
+          "type": "ARMATURE",
+          "name": "Sculpt aligned deformation"
+        }
+      ]
+    },
+    {
+      "name": "Red rubber outsole.L",
+      "vertices": 674,
+      "triangles": 1344,
+      "unweighted": 0,
+      "center_blender_m": [
+        0.18399998545646667,
+        -0.002999999327585101,
+        0.01141792256385088
+      ],
+      "bounds_blender_m": [
+        [
+          0.13424646854400635,
+          -0.13144518435001373,
+          5.450929165817797e-05
+        ],
+        [
+          0.23375356197357178,
+          0.1254451870918274,
+          0.02391824685037136
+        ]
+      ],
+      "material_slots": [
+        "Ramirez Unity Red"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Surface subdivision - editable cage retained"
+        },
+        {
+          "type": "ARMATURE",
+          "name": "Sculpt aligned deformation"
+        }
+      ]
+    },
+    {
+      "name": "Red rubber outsole.R",
+      "vertices": 674,
+      "triangles": 1344,
+      "unweighted": 0,
+      "center_blender_m": [
+        -0.18399997055530548,
+        -0.002999991877004504,
+        0.011417923495173454
+      ],
+      "bounds_blender_m": [
+        [
+          -0.23375356197357178,
+          -0.13144516944885254,
+          5.451860488392413e-05
+        ],
+        [
+          -0.13424646854400635,
+          0.1254451870918274,
+          0.023918256163597107
+        ]
+      ],
+      "material_slots": [
+        "Ramirez Unity Red"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Surface subdivision - editable cage retained"
+        },
+        {
+          "type": "ARMATURE",
+          "name": "Sculpt aligned deformation"
+        }
+      ]
+    },
+    {
+      "name": "Sculpt eye.L",
+      "vertices": 482,
+      "triangles": 960,
+      "unweighted": 0,
+      "center_blender_m": [
+        0.034999996423721313,
+        -0.13500002026557922,
+        1.6830003261566162
+      ],
+      "bounds_blender_m": [
+        [
+          0.02200000360608101,
+          -0.14800000190734863,
+          1.6699999570846558
+        ],
+        [
+          0.04800000041723251,
+          -0.12200000882148743,
+          1.6959999799728394
+        ]
+      ],
+      "material_slots": [
+        "Ramirez Unity Eye"
+      ],
+      "modifiers": [
+        {
+          "type": "ARMATURE",
+          "name": "Head deformation"
+        }
+      ]
+    },
+    {
+      "name": "Sculpt eye.R",
+      "vertices": 482,
+      "triangles": 960,
+      "unweighted": 0,
+      "center_blender_m": [
+        -0.035000015050172806,
+        -0.13500002026557922,
+        1.6830003261566162
+      ],
+      "bounds_blender_m": [
+        [
+          -0.047999996691942215,
+          -0.14800000190734863,
+          1.6699999570846558
+        ],
+        [
+          -0.02199999988079071,
+          -0.12200000882148743,
+          1.6959999799728394
+        ]
+      ],
+      "material_slots": [
+        "Ramirez Unity Eye"
+      ],
+      "modifiers": [
+        {
+          "type": "ARMATURE",
+          "name": "Head deformation"
+        }
+      ]
+    },
+    {
+      "name": "Sewn gold side panel.-1",
+      "vertices": 3300,
+      "triangles": 6336,
+      "unweighted": 0,
+      "center_blender_m": [
+        -0.2001756876707077,
+        0.0013919509947299957,
+        0.8554450273513794
+      ],
+      "bounds_blender_m": [
+        [
+          -0.24402248859405518,
+          -0.046895336359739304,
+          0.6766822338104248
+        ],
+        [
+          -0.143119215965271,
+          0.04899798706173897,
+          1.0339025259017944
+        ]
+      ],
+      "material_slots": [
+        "Ramirez Unity Gold"
+      ],
+      "modifiers": [
+        {
+          "type": "ARMATURE",
+          "name": "Sculpt aligned deformation"
+        }
+      ]
+    },
+    {
+      "name": "Sewn gold side panel.1",
+      "vertices": 3300,
+      "triangles": 6336,
+      "unweighted": 0,
+      "center_blender_m": [
+        0.19971536099910736,
+        0.001401136047206819,
+        0.8554448485374451
+      ],
+      "bounds_blender_m": [
+        [
+          0.14325882494449615,
+          -0.04591011628508568,
+          0.676888644695282
+        ],
+        [
+          0.24181073904037476,
+          0.048998285084962845,
+          1.0340744256973267
+        ]
+      ],
+      "material_slots": [
+        "Ramirez Unity Gold"
+      ],
+      "modifiers": [
+        {
+          "type": "ARMATURE",
+          "name": "Sculpt aligned deformation"
+        }
+      ]
+    },
+    {
+      "name": "Studio Ramirez continuous sculpt",
+      "vertices": 105533,
+      "triangles": 210340,
+      "unweighted": 0,
+      "center_blender_m": [
+        -2.997299816343002e-06,
+        -0.05367979779839516,
+        1.3211009502410889
+      ],
+      "bounds_blender_m": [
+        [
+          -0.4152293801307678,
+          -0.1748596429824829,
+          0.06622521579265594
+        ],
+        [
+          0.41554391384124756,
+          0.12069059908390045,
+          1.793998122215271
+        ]
+      ],
+      "material_slots": [
+        "Ramirez Unity Skin"
+      ],
+      "modifiers": [
+        {
+          "type": "MULTIRES",
+          "name": "Multires"
+        },
+        {
+          "type": "ARMATURE",
+          "name": "Armature"
+        },
+        {
+          "type": "MASK",
+          "name": "Skin covered by equipment"
+        }
+      ]
+    },
+    {
+      "name": "Waistband stitched elastic rows",
+      "vertices": 10320,
+      "triangles": 20480,
+      "unweighted": 0,
+      "center_blender_m": [
+        0.001334674539975822,
+        -0.040145035833120346,
+        1.0564846992492676
+      ],
+      "bounds_blender_m": [
+        [
+          -0.1782684177160263,
+          -0.17790167033672333,
+          1.03125
+        ],
+        [
+          0.17826803028583527,
+          0.0976114496588707,
+          1.0817499160766602
+        ]
+      ],
+      "material_slots": [
+        "Ramirez Unity Red"
+      ],
+      "modifiers": [
+        {
+          "type": "ARMATURE",
+          "name": "Sculpt aligned deformation"
+        }
+      ]
+    },
+    {
+      "name": "White leather boxing boot.L",
+      "vertices": 6530,
+      "triangles": 13056,
+      "unweighted": 0,
+      "center_blender_m": [
+        0.18078283965587616,
+        0.02817489393055439,
+        0.10257848352193832
+      ],
+      "bounds_blender_m": [
+        [
+          0.11644282191991806,
+          -0.12764301896095276,
+          0.011109044775366783
+        ],
+        [
+          0.23339000344276428,
+          0.12217508256435394,
+          0.22584566473960876
+        ]
+      ],
+      "material_slots": [
+        "Ramirez Unity White"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Surface subdivision - editable cage retained"
+        },
+        {
+          "type": "ARMATURE",
+          "name": "Sculpt aligned deformation"
+        }
+      ]
+    },
+    {
+      "name": "White leather boxing boot.R",
+      "vertices": 6530,
+      "triangles": 13056,
+      "unweighted": 0,
+      "center_blender_m": [
+        -0.1808030754327774,
+        0.028151458129286766,
+        0.10257848352193832
+      ],
+      "bounds_blender_m": [
+        [
+          -0.23339000344276428,
+          -0.12764301896095276,
+          0.01110905408859253
+        ],
+        [
+          -0.11656966805458069,
+          0.12217509001493454,
+          0.22584566473960876
+        ]
+      ],
+      "material_slots": [
+        "Ramirez Unity White"
+      ],
+      "modifiers": [
+        {
+          "type": "SUBSURF",
+          "name": "Surface subdivision - editable cage retained"
+        },
+        {
+          "type": "ARMATURE",
+          "name": "Sculpt aligned deformation"
+        }
+      ]
+    },
+    {
+      "name": "Wrap overlaps.L",
+      "vertices": 6240,
+      "triangles": 12288,
+      "unweighted": 0,
+      "center_blender_m": [
+        0.3750530183315277,
+        -0.04054664820432663,
+        1.00132155418396
+      ],
+      "bounds_blender_m": [
+        [
+          0.31202033162117004,
+          -0.09453186392784119,
+          0.9472808837890625
+        ],
+        [
+          0.42430076003074646,
+          0.024738401174545288,
+          1.0605720281600952
+        ]
+      ],
+      "material_slots": [
+        "Ramirez Unity White"
+      ],
+      "modifiers": [
+        {
+          "type": "ARMATURE",
+          "name": "Sculpt aligned deformation"
+        }
+      ]
+    },
+    {
+      "name": "Wrap overlaps.R",
+      "vertices": 6240,
+      "triangles": 12288,
+      "unweighted": 0,
+      "center_blender_m": [
+        -0.3761931359767914,
+        -0.040496550500392914,
+        1.0017203092575073
+      ],
+      "bounds_blender_m": [
+        [
+          -0.42457664012908936,
+          -0.09446015954017639,
+          0.9472375512123108
+        ],
+        [
+          -0.31173864006996155,
+          0.024900605902075768,
+          1.0605332851409912
+        ]
+      ],
+      "material_slots": [
+        "Ramirez Unity White"
+      ],
+      "modifiers": [
+        {
+          "type": "ARMATURE",
+          "name": "Sculpt aligned deformation"
+        }
+      ]
+    }
+  ],
+  "vertices": 231937,
+  "triangles": 459352,
+  "excluded": [
+    "Key",
+    "Fill",
+    "Rim",
+    "Camera",
+    "Plane",
+    "REFERENCE Front textured",
+    "REFERENCE Side textured",
+    "REFERENCE Back textured",
+    "REFERENCE Front wire",
+    "REFERENCE Side wire",
+    "REFERENCE Top textured"
+  ]
+}

@@ -1,0 +1,100 @@
+SYNTHETIC_EDITOR_PLAYMODE_NOT_HUMAN_UAT unity=6000.5.8f1
+scenario=all opponent punch families through real controller phase progression; external player advance/retreat/lateral; no authority changes
+observed=None:Guard t=0,000
+observed=Jab:Commit t=0,209
+observed=Jab:Extend t=0,568
+observed=Jab:Recover t=0,756
+surface_target=2 ray_hit=True front_contact_mesh_gap_m=0,07834816
+surface_target=3 ray_hit=True front_contact_mesh_gap_m=0,09861076
+surface_target=4 ray_hit=True front_contact_mesh_gap_m=0,07669455
+surface_target=5 ray_hit=True front_contact_mesh_gap_m=0,0336489677
+surface_target=6 ray_hit=True front_contact_mesh_gap_m=0,0285012126
+t=1,01 distance=1,4 state=Jab:Recover contacts=0 steps=0 glove_error_m=7,675183E-07 foot_error_m=1,15366174E-06
+observed=Cross:Commit t=1,256
+observed=Cross:Extend t=1,583
+observed=Cross:Recover t=1,763
+observed=LeadHook:Commit t=2,271
+observed=LeadHook:Extend t=2,597
+observed=LeadHook:Recover t=2,779
+observed=RearHook:Commit t=3,291
+observed=RearHook:Extend t=3,626
+observed=RearHook:Recover t=3,804
+surface_target=2 ray_hit=True front_contact_mesh_gap_m=0,07913768
+surface_target=3 ray_hit=True front_contact_mesh_gap_m=0,09825009
+surface_target=4 ray_hit=True front_contact_mesh_gap_m=0,0258399248
+surface_target=5 ray_hit=True front_contact_mesh_gap_m=0,0312190056
+surface_target=6 ray_hit=True front_contact_mesh_gap_m=0,129481971
+t=4,00 distance=1,4 state=RearHook:Recover contacts=0 steps=0 glove_error_m=7,709821E-07 foot_error_m=1,35477694E-06
+observed=LeadUppercut:Commit t=4,302
+observed=LeadUppercut:Extend t=4,636
+observed=LeadUppercut:Recover t=4,807
+observed=RearUppercut:Commit t=5,309
+observed=RearUppercut:Extend t=5,632
+observed=RearUppercut:Recover t=5,806
+observed=LeadOverhand:Commit t=6,310
+observed=LeadOverhand:Extend t=6,649
+observed=LeadOverhand:Recover t=6,822
+surface_target=2 ray_hit=True front_contact_mesh_gap_m=0,0793367
+surface_target=3 ray_hit=True front_contact_mesh_gap_m=0,0981937051
+surface_target=4 ray_hit=True front_contact_mesh_gap_m=0,09336305
+surface_target=5 ray_hit=True front_contact_mesh_gap_m=0,03245598
+surface_target=6 ray_hit=True front_contact_mesh_gap_m=0,0214167237
+t=7,01 distance=1,4 state=LeadOverhand:Recover contacts=0 steps=0 glove_error_m=8,156259E-07 foot_error_m=1,35477694E-06
+observed=RearOverhand:Commit t=7,325
+observed=RearOverhand:Extend t=7,660
+observed=RearOverhand:Recover t=7,840
+surface_target=2 ray_hit=True front_contact_mesh_gap_m=0,0777736157
+surface_target=3 ray_hit=True front_contact_mesh_gap_m=0,09940827
+surface_target=4 ray_hit=True front_contact_mesh_gap_m=0,04633336
+surface_target=5 ray_hit=True front_contact_mesh_gap_m=0,0351025052
+surface_target=6 ray_hit=True front_contact_mesh_gap_m=0,0422228165
+t=10,01 distance=1,14199758 state=Cross:Recover contacts=0 steps=5 glove_error_m=8,156259E-07 foot_error_m=2,14912779E-06
+surface_target=2 ray_hit=True front_contact_mesh_gap_m=0,07948166
+surface_target=3 ray_hit=True front_contact_mesh_gap_m=0,0998527855
+surface_target=4 ray_hit=True front_contact_mesh_gap_m=0,04942726
+surface_target=5 ray_hit=True front_contact_mesh_gap_m=0,0355943739
+surface_target=6 ray_hit=True front_contact_mesh_gap_m=0,0428378545
+t=13,01 distance=1,01210725 state=None:Guard contacts=1 steps=12 glove_error_m=8,156259E-07 foot_error_m=2,14912779E-06
+surface_target=2 ray_hit=True front_contact_mesh_gap_m=0,04378645
+surface_target=3 ray_hit=True front_contact_mesh_gap_m=0,09839764
+surface_target=4 ray_hit=True front_contact_mesh_gap_m=0,03947069
+surface_target=5 ray_hit=True front_contact_mesh_gap_m=0,03458433
+surface_target=6 ray_hit=True front_contact_mesh_gap_m=0,04084125
+t=16,01 distance=1,15061128 state=Cross:Recover contacts=1 steps=17 glove_error_m=8,156259E-07 foot_error_m=2,29535931E-06
+surface_target=2 ray_hit=True front_contact_mesh_gap_m=0,07726782
+surface_target=3 ray_hit=True front_contact_mesh_gap_m=0,09859595
+surface_target=4 ray_hit=True front_contact_mesh_gap_m=0,0343977138
+surface_target=5 ray_hit=True front_contact_mesh_gap_m=0,0330488123
+surface_target=6 ray_hit=True front_contact_mesh_gap_m=0,05222818
+t=19,00 distance=0,858948767 state=Cross:Commit contacts=1 steps=19 glove_error_m=8,156259E-07 foot_error_m=2,29535931E-06
+surface_target=2 ray_hit=True front_contact_mesh_gap_m=0,0161885526
+surface_target=3 ray_hit=True front_contact_mesh_gap_m=0,0970835462
+surface_target=4 ray_hit=True front_contact_mesh_gap_m=0,03813576
+surface_target=5 ray_hit=True front_contact_mesh_gap_m=0,03806534
+surface_target=6 ray_hit=True front_contact_mesh_gap_m=0,03713626
+t=22,01 distance=0,7107144 state=None:Guard contacts=3 steps=26 glove_error_m=8,156259E-07 foot_error_m=2,29535931E-06
+surface_target=2 ray_hit=True front_contact_mesh_gap_m=0,0387826934
+surface_target=3 ray_hit=True front_contact_mesh_gap_m=0,09855214
+surface_target=4 ray_hit=True front_contact_mesh_gap_m=0,042748116
+surface_target=5 ray_hit=True front_contact_mesh_gap_m=0,03541762
+surface_target=6 ray_hit=True front_contact_mesh_gap_m=0,0392888375
+t=25,01 distance=0,9387413 state=None:Guard contacts=4 steps=32 glove_error_m=8,156259E-07 foot_error_m=2,29535931E-06
+surface_target=2 ray_hit=True front_contact_mesh_gap_m=0,07785498
+surface_target=3 ray_hit=True front_contact_mesh_gap_m=0,0991081148
+surface_target=4 ray_hit=True front_contact_mesh_gap_m=0,0410493
+surface_target=5 ray_hit=True front_contact_mesh_gap_m=0,0341770947
+surface_target=6 ray_hit=True front_contact_mesh_gap_m=0,0446071066
+t=28,02 distance=0,9994315 state=Cross:Recover contacts=5 steps=38 glove_error_m=8,156259E-07 foot_error_m=2,29535931E-06
+surface_target=2 ray_hit=True front_contact_mesh_gap_m=0,0792390257
+surface_target=3 ray_hit=True front_contact_mesh_gap_m=0,0997807458
+surface_target=4 ray_hit=True front_contact_mesh_gap_m=0,0488726981
+surface_target=5 ray_hit=True front_contact_mesh_gap_m=0,0354826935
+surface_target=6 ray_hit=True front_contact_mesh_gap_m=0,0425973721
+t=31,00 distance=0,999510944 state=None:Guard contacts=6 steps=42 glove_error_m=8,156259E-07 foot_error_m=2,29535931E-06
+frames=1815 adapter_mean_ms=0,0466144681 adapter_max_ms=12,9793 adapter_allocated_bytes=0 glove_center_max_error_m=8,156259E-07 foot_max_error_m=2,29535931E-06
+root_commit_drift_m=0 rotation_commit_drift_deg=0 contacts=7 steps=43 planted_error_m=2,16066837E-07
+single_visual_ownership=True
+native_arm_lengths_m=0,2962449,0,239553675
+native_bone_length_max_error_m=1,25169754E-06
+glove_contact_coherence_1mm=PASS
+performance_scope=Editor only; paired baseline and WebGL frame behavior not established here

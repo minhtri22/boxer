@@ -1,0 +1,412 @@
+[Licensing::Module] Trying to connect to existing licensing client channel...
+Built from '6000.5/staging' branch; Version is '6000.5.8f1 (5cb7df797b7d) revision 6076383'; Using compiler version '194234433'; Build Type 'Release'
+[Licensing::IpcConnector] Channel LicenseClient-minht doesn't exist
+OS: 'Windows 11  (10.0.26200) CoreSingleLanguage' Language: 'en' Physical Memory: 32345 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+Date: 2026-10-06T21:30:50Z
+[Licensing::Module] Successfully launched the LicensingClient (PId: 7864)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-minht" at "2026-10-06T21:30:50.3068493Z"
+[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 7864, path: "C:/Program Files/Unity/Hub/Editor/6000.5.8f1/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client.exe")
+[Licensing::Module] LicensingClient has failed validation; ignoring
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.5.8f1\Editor\Unity.exe
+-batchmode
+-noUpm
+-projectPath
+D:\WORK\RESEARCH\POVGame\boxer-ramirez-unity\unity\BoxerP0
+-executeMethod
+BoxerP0.Editor.RamirezIntegrationAudit.Runtime
+-logFile
+D:\WORK\RESEARCH\POVGame\boxer-ramirez-unity\evidence\ramirez-unity-round2\runtime-unity.log
+Successfully changed project path to: D:\WORK\RESEARCH\POVGame\boxer-ramirez-unity\unity\BoxerP0
+D:/WORK/RESEARCH/POVGame/boxer-ramirez-unity/unity/BoxerP0
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-main-allocator-mimalloc-enabled=0"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+Logging is directed to a specific file, skipping project log.Player connection [46000]  Target information:
+
+Player connection [46000]  * "[IP] 172.25.96.1 [Port] 55504 [Flags] 2 [Guid] 4045009533 [EditorId] 4045009533 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-4PSD0G2) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [46000]  * "[IP] 192.168.1.18 [Port] 55504 [Flags] 2 [Guid] 4045009533 [EditorId] 4045009533 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-4PSD0G2) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [46000] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [46000] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+Library Redirect Path: Library/
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.18.1+9fbee8e
+  Session Id:              f6b38152267040e3b93e875bd0772038
+  Correlation Id:          2f60bcbf2a15885ee01da08ced6d98fb
+  External correlation Id: 1245422804648406782
+  Machine Id:              gaoNjVOiA5/w7c0j7NjRnkSH0Fg=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-minht" (connect: 0.25s, validation: 0.41s, handshake: 0.09s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-minht-notifications" at "2026-10-06T21:30:50.8047798Z"
+[Licensing::Module] Connected to LicensingClient (PId: 7864, launch time: 0.01, total connection time: 0.75s)
+[Licensing::Module] Error: Access token is unavailable; failed to update
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: F4-84B2-AJYW-2F6S-HS3K-XXXX
+  Product: Unity Personal
+  Type: ULF
+  Expiration: 2026-11-12T22:29:55Z
+[Licensing::Module] License group:
+  Id: 18968483178885-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+[Licensing::Client] Successfully updated license, isAsync: True, time: 0.02
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: F4-84B2-AJYW-2F6S-HS3K-XXXX
+  Product: Unity Personal
+  Type: ULF
+  Expiration: 2026-11-12T22:29:55Z
+[Licensing::Module] License group:
+  Id: 18968483178885-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+[Licensing::Module] Licensing Background thread has ended after 0.82s
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Initialize engine version: 6000.5.8f1 (5cb7df797b7d)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.5.8f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path D:/WORK/RESEARCH/POVGame/boxer-ramirez-unity/unity/BoxerP0/Assets
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+d3d12: failed to query info queue interface (0x80004002).
+Direct3D:
+    Version:         Direct3D 12 [level 12.2]
+    Renderer:        Intel(R) Arc(TM) 140V GPU (16GB) (ID=0x64a0)
+    Vendor:          Intel
+    VRAM:            18436 MB
+    App VRAM Budget: 17668 MB
+    Driver:          32.0.101.8860
+    Unified Memory Architecture
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.5.8f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.5.8f1/Editor/Data/BCLExtensions/runtime/netstandard2.1'
+Mono path[2] = 'C:/Program Files/Unity/Hub/Editor/6000.5.8f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.5.8f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56820
+CodeReloadManager initialized
+ImportWorker Server TCP listen port: 0
+AcceleratorClientConnectionCallback - disconnected - :0
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.5.8f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.5.8f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.002106 seconds.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Package Manager log level set to [2]
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:False
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.175 seconds
+Domain Reload Profiling: 1786ms
+	BeginReloadAssembly (153ms)
+	RebuildCommonClasses (11ms)
+	RebuildNativeTypeToScriptingClass (20ms)
+	initialDomainReloadingComplete (85ms)
+	LoadAllAssembliesAndSetupDomain (340ms)
+		LoadAssemblies (147ms)
+		AnalyzeDomain (249ms)
+			TypeCache.Refresh (247ms)
+				TypeCache.ScanAssembly (226ms)
+	FinalizeReload (1178ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (3ms)
+			BeforeProcessingInitializeOnLoad (232ms)
+			ProcessInitializeOnLoadAttributes (299ms)
+			ProcessInitializeOnLoadMethodAttributes (553ms)
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: F4-84B2-AJYW-2F6S-HS3K-XXXX
+  Product: Unity Personal
+  Type: ULF
+  Expiration: 2026-11-12T22:30:52Z
+[Licensing::Module] License group:
+  Id: 18968483178885-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+Application.AssetDatabase Initial Refresh Start
+Starting: C:\Program Files\Unity\Hub\Editor\6000.5.8f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/1900b0aE.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssemblies
+WorkingDir: D:/WORK/RESEARCH/POVGame/boxer-ramirez-unity/unity/BoxerP0
+DisplayProgressbar: Compiling Scripts
+ExitCode: 0 Duration: 0s168ms
+*** Tundra build success (0.09 seconds), 0 items updated, 168 evaluated
+AssetDatabase: script compilation time: 1.125791s
+Total cache size 15393888
+Begin MonoManager ReloadAssembly
+Total cache size after purge 15393888, took 00:00:00.0826307
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.800 seconds
+Domain Reload Profiling: 1536ms
+	BeginReloadAssembly (446ms)
+		DisableScriptedObjects (45ms)
+		CreateAndSetChildDomain (62ms)
+	RebuildCommonClasses (18ms)
+	RebuildNativeTypeToScriptingClass (39ms)
+	initialDomainReloadingComplete (76ms)
+	LoadAllAssembliesAndSetupDomain (152ms)
+		LoadAssemblies (261ms)
+		AnalyzeDomain (15ms)
+			TypeCache.Refresh (8ms)
+			BuildScriptInfoCaches (4ms)
+	FinalizeReload (805ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (4ms)
+			BeforeProcessingInitializeOnLoad (139ms)
+			ProcessInitializeOnLoadAttributes (119ms)
+			ProcessInitializeOnLoadMethodAttributes (121ms)
+			AfterProcessingInitializeOnLoad (13ms)
+		AwakeInstancesAfterBackupRestoration (41ms)
+Starting new worker id: 0 with log in D:/WORK/RESEARCH/POVGame/boxer-ramirez-unity/unity/BoxerP0/Logs/AssetImportWorkerHW0.log
+
+Asset Pipeline Refresh (id=efe76d333be3c5245aac217b2f2b61ca): Total: 2.992 seconds - Initiated by InitialRefreshV2(ForceSynchronousImport)
+	(Values over 0.05ms)
+	Summary:
+		Imports: total=0 (actual=0, local cache=0, cache server=0)
+		Asset DB Process Time: managed=0 ms, native=1030 ms
+		Asset DB Callback time: managed=25 ms, native=0 ms
+		Scripting: domain reloads=1, domain reload time=788 ms, compile time=1130 ms, other=17 ms
+		Project Asset Count: scripts=36, non-scripts=30
+		Asset File Changes: new=0, changed=0, moved=0, deleted=0
+		Scan Filter Count: 0
+	ApplyChangesToAssetFolders: 0.194ms
+	Scan: 60.037ms
+	Collect global state as custom dependencies: 21.947ms
+	CategorizeScriptCompilationAssets: 0.209ms
+	ProcessAssetsWithTransientArtifactChanges: 1.946ms
+	CategorizeAssets: 0.536ms
+	CompileScripts: 1129.935ms
+	ImportOutOfDateAssets: 891.708ms (828.314ms without children)
+		UnloadImportedAssets: 0.167ms
+		ImportSchedulerStart: 63.206ms
+	PostProcessAllAssets: 25.629ms
+		MonoPostProcessAllAssets: 25.570ms
+			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 10.101ms
+			EditModeScopePostprocessor.OnPostprocessAllAssets 1.717ms
+			SyncVS.PostprocessSyncProject 1.717ms
+			SpeedTree9Postprocessor.OnPostprocessAllAssets 0.983ms
+			ReferencedClipsPostProcessor.OnPostprocessAllAssets 0.350ms
+			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.292ms
+			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.262ms
+			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 0.102ms
+	UnloadStreamsBegin: 2.457ms
+	Untracked: 854.028ms
+
+Application.AssetDatabase Initial Refresh End
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
+Scanning for USB devices : 2.695ms
+Initializing Unity extensions:
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+[MODES] Loading mode Default (0) for mode-current-id-Boxer P0
+Unloading 9 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 74 unused Assets / (0.7 MB). Loaded Objects now: 854.
+Memory consumption went from 198.5 MB to 197.8 MB.
+Total: 6.411900 ms (FindLiveObjects: 0.058600 ms CreateObjectMapping: 0.016700 ms MarkObjects: 5.942300 ms  DeleteObjects: 0.390200 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 0 unused Assets / (2.2 KB). Loaded Objects now: 856.
+Memory consumption went from 191.8 MB to 191.8 MB.
+Total: 5.020300 ms (FindLiveObjects: 0.115200 ms CreateObjectMapping: 0.068100 ms MarkObjects: 4.828500 ms  DeleteObjects: 0.006700 ms)
+
+Importing 'GUID: d00c93fd34b0abe49a334af5f111422f - Path: Assets/Scenes/Phase0Boxer.unity' with importer (DefaultImporter)
+Imported 'GUID: d00c93fd34b0abe49a334af5f111422f' -> (Import Result ID: '66ff6e7ff9e2ddb61a8f5026ebd6241e') in 0.006 seconds [static dependencies only]. Details - ImportResultOutputID=c49193a4f5988da42816871b830c47ac DependenciesID=3e990c4ead8d35e47d0274a8d1663739 StaticDependenciesID=6d94ff4f048353728087b31ae4390d7f 
+Asset Pipeline Refresh (id=f770e97948957864d96baff80568a3e5): Total: 0.101 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+P0_SCENE_BUILT=Assets/Scenes/Phase0Boxer.unity
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Phase0SceneBuilder:Build () (at Assets/Editor/Phase0SceneBuilder.cs:32)
+BoxerP0.Editor.RamirezIntegrationAudit:Runtime () (at Assets/Editor/RamirezIntegrationAudit.cs:94)
+
+(Filename: Assets/Editor/Phase0SceneBuilder.cs Line: 32)
+
+[Project] Loading completed in 8.025 seconds
+	Project init time: 				7.035 seconds
+		Template init time: 		0.000 seconds
+		Package Manager init time: 		0.000 seconds
+		Asset Database init time: 		0.826 seconds
+		Global illumination init time: 	0.003 seconds
+		Assemblies load time: 			1.838 seconds
+		Unity extensions init time: 	0.001 seconds
+		Asset Database refresh time: 	2.993 seconds
+	Scene opening time: 			0.373 seconds
+##utp:{"type":"ProjectInfo","version":2,"phase":"Immediate","time":1791322258059,"processId":12820,"projectLoad":8.0245798,"projectInit":7.0351185,"templateInit":0.0,"packageManagerInit":0.0,"assetDatabaseInit":0.8262981,"globalIlluminationInit":0.0029838,"assembliesLoad":1.8380587,"unityExtensionsInit":0.0007331,"assetDatabaseRefresh":2.9926903,"sceneOpening":0.3731685}
+##utp:{"type":"EditorInfo","version":2,"phase":"Immediate","time":1791322258060,"processId":12820,"editorVersion":"6000.5.8f1 (5cb7df797b7d)","branch":"6000.5/staging","buildType":"Release","platform":"Windows"}
+Reloading assemblies for play mode.
+Reloading assemblies after forced synchronous recompile.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.636 seconds
+Domain Reload Profiling: 1169ms
+	BeginReloadAssembly (255ms)
+		DisableScriptedObjects (38ms)
+		CreateAndSetChildDomain (45ms)
+	RebuildCommonClasses (9ms)
+	RebuildNativeTypeToScriptingClass (18ms)
+	initialDomainReloadingComplete (56ms)
+	LoadAllAssembliesAndSetupDomain (192ms)
+		LoadAssemblies (137ms)
+		AnalyzeDomain (7ms)
+			TypeCache.Refresh (5ms)
+	FinalizeReload (639ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (8ms)
+			BeforeProcessingInitializeOnLoad (117ms)
+			ProcessInitializeOnLoadAttributes (92ms)
+			ProcessInitializeOnLoadMethodAttributes (87ms)
+			AfterProcessingInitializeOnLoad (10ms)
+		AwakeInstancesAfterBackupRestoration (33ms)
+
+Asset Pipeline Refresh (id=912363ffe47fa3942ad9386efbbad240): Total: 1.345 seconds - Initiated by StopAssetImportingV2(ForceSynchronousImport | ForceDomainReload)
+	(Values over 0.05ms)
+	Summary:
+		Imports: total=0 (actual=0, local cache=0, cache server=0)
+		Asset DB Process Time: managed=0 ms, native=698 ms
+		Asset DB Callback time: managed=62 ms, native=3 ms
+		Scripting: domain reloads=1, domain reload time=577 ms, compile time=3 ms, other=0 ms
+		Project Asset Count: scripts=36, non-scripts=30
+		Asset File Changes: new=0, changed=0, moved=0, deleted=0
+		Scan Filter Count: 0
+	Collect global state as custom dependencies: 0.713ms
+	ProcessAssetsWithTransientArtifactChanges: 2.142ms
+	CategorizeAssets: 0.345ms
+	CompileScripts: 2.551ms
+	ImportOutOfDateAssets: 649.858ms (645.457ms without children)
+		UnloadImportedAssets: 0.169ms
+		ImportSchedulerStart: 4.212ms
+	PostProcessAllAssets: 63.856ms
+		PostProcessCallbackCreateDeferredMaterials 0.291ms
+		ShaderAssetModifiedCallback 0.154ms
+		ComputeShaderImportPostprocess 0.062ms
+		RaytracingShaderImportPostprocess 0.062ms
+		MonoPostProcessAllAssets: 62.103ms
+			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 11.556ms
+			StyleCatalogPostProcessor.OnPostprocessAllAssets 11.253ms
+			AssetPostprocessor.OnPostprocessAllAssets 7.868ms
+			BuilderAssetPostprocessor.OnPostprocessAllAssets 5.174ms
+			EditModeScopePostprocessor.OnPostprocessAllAssets 3.115ms
+			AssetChangedListener.OnPostprocessAllAssets 2.138ms
+			RetainedModeAssetPostprocessor.OnPostprocessAllAssets 1.554ms
+			SyncVS.PostprocessSyncProject 1.360ms
+			SpeedTree9Postprocessor.OnPostprocessAllAssets 0.917ms
+			TextAssetPostProcessor.OnPostprocessAllAssets 0.828ms
+			ArtifactBrowserPostProcessor.OnPostprocessAllAssets 0.621ms
+			AudioMixerPostprocessor.OnPostprocessAllAssets 0.425ms
+			ReferencedClipsPostProcessor.OnPostprocessAllAssets 0.303ms
+			AssetEvents.OnPostprocessAllAssets 0.253ms
+			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.186ms
+			SpeedTreePostProcessor.OnPostprocessAllAssets 0.157ms
+			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.157ms
+			ScenarioDriftAssetsTracker.OnPostprocessAllAssets 0.124ms
+			ConfigAssetsTracker.OnPostprocessAllAssets 0.121ms
+			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 0.084ms
+			AudioContainerPostProcessor.OnPostprocessAllAssets 0.078ms
+	PostAssetChangesProfiler: 1.987ms
+	UnloadStreamsBegin: 0.054ms
+	Untracked: 620.348ms
+
+Loaded scene 'Temp/__Backupscenes/0.backup'
+	Deserialize:            2.826 ms
+	Integration:            109.331 ms
+	Integration of assets:  0.004 ms
+	Thread Wait Time:       0.139 ms
+	Total Operation Time:   112.300 ms
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+Curl error 7: Failed to connect to config.uca.cloud.unity3d.com port 443 after 2376 ms: Could not connect to server
+Start Indexing on Editor startup
+ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+  at System.Collections.Generic.List`1[T].get_Item (System.Int32 index) [0x00009] in <816f70bc2a9c4332b0bd119906a8d40e>:0 
+  at UnityEditor.Search.SearchDatabase+<EnumerateAll>d__76.MoveNext () [0x00089] in <dd17d9b243f3485ab399f5c24f024906>:0 
+  at System.Linq.Enumerable.TryGetFirst[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Boolean& found) [0x00045] in <fe644d7ad1cf499ebe4e7ad937bc03bf>:0 
+  at System.Linq.Enumerable.First[TSource] (System.Collections.Generic.IEnumerable`1[T] source) [0x00000] in <fe644d7ad1cf499ebe4e7ad937bc03bf>:0 
+  at UnityEditor.Search.SearchDatabase.GetDefaultSearchDatabase () [0x00005] in <dd17d9b243f3485ab399f5c24f024906>:0 
+  at UnityEditor.Search.SearchInit.IndexationOnStartup () [0x0000a] in <dd17d9b243f3485ab399f5c24f024906>:0 
+  at UnityEditor.EditorApplication.Internal_CallDelayFunctions () [0x00029] in <da871bb30d6448e2981f366171b14bb9>:0 
+
+Created GICache directory at C:/Users/minht/AppData/LocalLow/Unity/Caches/GiCache. Took: 0.114s, timestamps: [9.773 - 9.887]
+Curl error 7: Failed to connect to cdp.cloud.unity3d.com port 443 after 2236 ms: Could not connect to server
+Curl error 7: Failed to connect to cdp.cloud.unity3d.com port 443 after 2221 ms: Could not connect to server
+Curl error 7: Failed to connect to cdp.cloud.unity3d.com port 443 after 2235 ms: Could not connect to server
+TrimDiskCacheJob: Current cache size 0mb
+MonoPathRemapper: Attempts to remap: 1818; Successful remaps: 0
+Serialized file version minimum: 23, current 23
+[Physics::Module] Cleanup current backend.
+[Physics::Module] Id: 0xf2b8ea05
+Input System module state changed to: ShutdownInProgress.
+Input Polling Thread exited.
+Input System module state changed to: Shutdown.
+[Licensing::IpcConnector] LicenseClient-minht-notifications channel disconnected successfully.
+[Licensing::IpcConnector] LicenseClient-minht channel disconnected successfully.
+AcceleratorClientConnectionCallback - disconnected - :0
+Cleanup mono
+CodeReloadManager destroyed
+Checking for leaked weakptr:
+  Found no leaked weakptrs.
+##utp:{"type":"MemoryLeaks","version":2,"phase":"Immediate","time":1791322296182,"processId":12820,"allocatedMemory":11343849,"memoryLabels":[{"Default":193073},{"Permanent":15516},{"NewDelete":66779},{"Thread":4205176},{"Manager":31173},{"VertexData":8},{"Geometry":816},{"Texture":24},{"Shader":830932},{"Material":24},{"GfxDevice":58328},{"Animation":952},{"FreeType":8},{"FontEngine":736},{"Physics":2146},{"Physics2D":16},{"Serialization":1016},{"Input":42840},{"JobScheduler":256},{"TextLib":280},{"Mono":48},{"ScriptingNativeRuntime":674964},{"BaseObject":1623424},{"Resource":1208},{"Renderer":3080},{"Transform":4685},{"File":1032},{"WebCam":616},{"Culling":32},{"Terrain":11442},{"Wind":24},{"STL":40},{"String":25610},{"StaticString":3808},{"Utility":2672694},{"Curl":2579},{"PoolAlloc":2168},{"AI":80},{"TypeTree":8869},{"CodeReload":448},{"RuntimeInitializeOnLoadManager":64},{"Sprites":102},{"SpriteAtlas":120},{"GI":7816},{"Director":8296},{"CloudService":9368},{"WebRequest":552},{"VR":47114},{"SceneManager":608},{"Video":208},{"LazyScriptCache":32},{"Camera":17},{"Secure":2377},{"SerializationCache":1576},{"APIUpdating":10320},{"Subsystems":336},{"VirtualTexturing":57888},{"StaticSafetyDebugInfo":278528},{"Analytics":600},{"Hierarchy":1176},{"UIElements":72},{"CoreStats":13688},{"Identifiers":6768},{"Gui":128},{"EditorUtility":100539},{"VersionControl":8},{"Undo":931},{"AssetDatabase":251965},{"AssetImporter":40},{"EditorGi":328},{"UnityConnect":38929},{"Upm":1344},{"UpmDiagnostics":8},{"AssetCompliance":64},{"DrivenProperties":72},{"LocalIPC":211},{"ProfilerEditor":9746},{"CoreBusinessMetrics":3480},{"Windowing":456},{"Licensing":1360},{"AssetReference":32},{"IPCStream":32}]}

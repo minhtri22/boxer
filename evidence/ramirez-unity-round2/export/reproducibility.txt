@@ -1,0 +1,15 @@
+SOURCE_BLEND_SHA256=419466859d7f119f98d7e69dc2673f0b378dbf5a892f0e2a6d7254cbc974af12
+BLENDER=5.2.1 LTS
+BLENDER_BUILD=9e2066aef7ef
+PROCEDURE=two fresh Blender processes opening the same immutable workbench and running art/ramirez/scripts/export_unity.py
+RUN_1_FBX_SHA256=c2958f4085cb83cdbd0c05a13beec79b2b21d253fe5bc5521bc5ae7fc18188b6
+RUN_2_FBX_SHA256=c2958f4085cb83cdbd0c05a13beec79b2b21d253fe5bc5521bc5ae7fc18188b6
+FBX_BYTE_REPRODUCIBILITY=PASS
+MESHES=31
+TRIANGLES=459352
+ALL_EXPORTED_VERTICES_WEIGHTED=PASS
+AUTHORING_AIDS_EXCLUDED=PASS
+TIMESTAMP=2026-09-30T00:00:00 (locked metadata, not execution date)
+UUID=SHA256 semantic keys instead of salted Python hash
+UNITY_BIND_IMPORT_SCALE=unit in metres; left upper=0.2962449m forearm=0.23955366m
+NOTE=These results prove deterministic export and native scale, not combat/contact or performance acceptance.

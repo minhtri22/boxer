@@ -1,0 +1,11 @@
+PASS Round2SelfTests.RunAll
+PASS Blender3DAssetAudit.Run
+FAIL Historical EVEvaluation.ShellTests System.Exception: Blender Ramirez WebGL triangle budget <= 30k
+  at BoxerP0.Editor.EVEvaluation.<ShellTests>g__Check|9_0 (System.Boolean value, System.String name, BoxerP0.Editor.EVEvaluation+<>c__DisplayClass9_0& ) [0x0003b] in D:\WORK\RESEARCH\POVGame\boxer-ramirez-unity\unity\BoxerP0\Assets\Editor\EVEvaluation.cs:88 
+  at BoxerP0.Editor.EVEvaluation.ShellTests () [0x0037e] in D:\WORK\RESEARCH\POVGame\boxer-ramirez-unity\unity\BoxerP0\Assets\Editor\EVEvaluation.cs:113 
+  at BoxerP0.Editor.RamirezIntegrationAudit+<>c__DisplayClass25_0.<Tests>g__Run|3 (System.String name, System.Action test) [0x00000] in D:\WORK\RESEARCH\POVGame\boxer-ramirez-unity\unity\BoxerP0\Assets\Editor\RamirezIntegrationAudit.cs:42 
+meshes=31 triangles=459352
+side=L upper_m=0,2962449 forearm_m=0,23955366 root_scale=(1, 0.9999999, 0.9999999)
+side=R upper_m=0,296245 forearm_m=0,239553645 root_scale=(1, 0.9999999, 0.9999999)
+PASS Accepted native rig import
+FAILED_SUITES=1
