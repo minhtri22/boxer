@@ -98,6 +98,16 @@ namespace BoxerP0.Editor
             Check(progress.FootworkReady&&!progress.PunchesReady,"movement practice requires four directions");
             foreach(var gesture in new[]{new GestureMetrics(Vector2.zero,0,.1f),new GestureMetrics(new Vector2(0,100),100,.25f),new GestureMetrics(new Vector2(0,-100),100,.25f),new GestureMetrics(new Vector2(100,0),100,.25f)})progress.ObservePunch(PunchGestureClassifier.Resolve(gesture,PunchIntent.None));
             Check(progress.PunchesReady,"tap up down horizontal map to all four families");
+            string[] guideStages={"HEADCONTROL","HEADCONTROL","FOOTWORK","FOOTWORK","FOOTWORK","FOOTWORK","PUNCHES","PUNCHES","PUNCHES","PUNCHES","PUNCHES"};
+            int[] guideSteps={0,1,0,1,2,3,0,1,2,3,4};
+            string[] guideCues={"HEAD_LEFT","HEAD_RIGHT","MOVE_UP","MOVE_DOWN","MOVE_LEFT","MOVE_RIGHT","PUNCH_DOWN","PUNCH_UP","PUNCH_RIGHT","PUNCH_LEFT","TAP_REPEAT"};
+            Vector2[] directions={Vector2.left,Vector2.right,Vector2.down,Vector2.up,Vector2.left,Vector2.right,Vector2.up,Vector2.down,Vector2.right,Vector2.left,Vector2.zero};
+            for(int i=0;i<guideCues.Length;i++)
+                Check(TrainingGestureGuide.Cue(guideStages[i],guideSteps[i]*2.4f+.1f)==guideCues[i]&&TrainingGestureGuide.Direction(guideCues[i])==directions[i],"light guide mapping "+guideCues[i]);
+            Check(TrainingGestureGuide.Cue("PUNCHES",12.1f)=="PUNCH_DOWN","light guide loops all punch examples");
+            Check(TrainingGestureGuide.Cue("",2)==string.Empty&&TrainingGestureGuide.Cue("Fight",2)==string.Empty,"light guide absent outside training");
+            var illustrative=new OnboardingProgress();TrainingGestureGuide.Cue("PUNCHES",10);
+            Check(!illustrative.HeadReady&&!illustrative.FootworkReady&&!illustrative.PunchesReady,"illustrative guide does not grant practice progress");
             Log.AppendLine($"TOTAL={_passed+_failed} PASS={_passed} FAIL={_failed}");
             string dir=Path.GetFullPath(Path.Combine(Application.dataPath,"../../../evidence/wave1/onboarding-v2"));Directory.CreateDirectory(dir);
             File.WriteAllText(Path.Combine(dir,"vitals-tests.txt"),Log.ToString()); Debug.Log(Log);

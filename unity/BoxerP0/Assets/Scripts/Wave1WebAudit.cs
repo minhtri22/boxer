@@ -16,7 +16,7 @@ namespace BoxerP0
         private Phase0Telemetry _telemetry;
         [Serializable] private sealed class Snapshot
         {
-            public string scope="SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",screen,result,reason,trainingStage;
+            public string scope="SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",screen,result,reason,trainingStage,trainingGuide;
             public bool trainingReady,tutorialSeen;
             public double seconds,playerHP,opponentHP,playerStamina,opponentStamina,playerCapacity,opponentCapacity;
             public bool playerEnabled,opponentEnabled,gameplayInput;
@@ -35,6 +35,7 @@ namespace BoxerP0
             _snapshot.playerEnabled=_telemetry.Player.CombatEnabled;_snapshot.opponentEnabled=_telemetry.Opponent.CombatEnabled;
             _snapshot.gameplayInput=_telemetry.InputSource.GameplayInput;
             _snapshot.trainingStage=_bootstrap.TrainingToken;_snapshot.trainingReady=_bootstrap.TrainingReady;
+            _snapshot.trainingGuide=TrainingGestureGuide.Cue(_bootstrap.TrainingToken,Time.unscaledTime);
             _snapshot.tutorialSeen=_bootstrap.Flow.TutorialSeen;
             _snapshot.players=FindObjectsByType<PlayerBoxer>(FindObjectsSortMode.None).Length;
             _snapshot.opponents=FindObjectsByType<OpponentBoxer>(FindObjectsSortMode.None).Length;

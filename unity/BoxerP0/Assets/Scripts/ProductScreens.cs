@@ -86,17 +86,21 @@ namespace BoxerP0
         }
         private void Training()
         {
+            bool head=_bootstrap.TrainingToken=="HEADCONTROL";
+            float offset=head?140:0;
             GUI.color=new Color(.012f,.012f,.012f,.94f);
-            GUI.DrawTexture(new Rect(20,20,500,425),Texture2D.whiteTexture); GUI.color=Color.white;
-            GUI.Label(new Rect(35,25,470,45),"TẬP ĐIỀU KHIỂN — KHÔNG TÍNH ĐIỂM",_small);
-            GUI.Label(new Rect(35,72,470,245),_bootstrap.TrainingInstructions,_small);
+            GUI.DrawTexture(new Rect(20,20+offset,500,425),Texture2D.whiteTexture); GUI.color=Color.white;
+            GUI.Label(new Rect(35,25+offset,470,45),"TẬP ĐIỀU KHIỂN — KHÔNG TÍNH ĐIỂM",_small);
+            GUI.Label(new Rect(35,72+offset,470,245),_bootstrap.TrainingInstructions,_small);
             bool enabled=GUI.enabled; GUI.enabled=_bootstrap.TrainingReady;
-            if (Button(320,_bootstrap.TrainingToken=="PUNCHES" ? "HOÀN THÀNH TẬP" : "BÀI TIẾP THEO",true)) _bootstrap.AdvanceTraining();
+            if (Button(320+offset,_bootstrap.TrainingToken=="PUNCHES" ? "HOÀN THÀNH TẬP" : "BÀI TIẾP THEO",true)) _bootstrap.AdvanceTraining();
             GUI.enabled=enabled;
-            if (Button(395,"THOÁT TẬP / HOME")) _bootstrap.ReturnHome();
-            if (_bootstrap.TrainingToken=="HEADCONTROL")
+            if (Button(395+offset,"THOÁT TẬP / HOME")) _bootstrap.ReturnHome();
+            if (head)
             {
-                if (Button(490,"ĐẶT LẠI TƯ THẾ ĐẦU")) _bootstrap.RecenterTrainingHead();
+                GUI.color=new Color(.012f,.012f,.012f,.94f);
+                GUI.DrawTexture(new Rect(20,16,500,122),Texture2D.whiteTexture);GUI.color=Color.white;
+                if (Button(630,"ĐẶT LẠI TƯ THẾ ĐẦU")) _bootstrap.RecenterTrainingHead();
             }
             if (_bootstrap.TrainingToken=="FOOTWORK" || _bootstrap.TrainingToken=="PUNCHES")
             {
@@ -104,9 +108,10 @@ namespace BoxerP0
                 float x=feet?20:285;
                 GUI.color=new Color(Gold.r,Gold.g,Gold.b,.14f);
                 GUI.DrawTexture(new Rect(x,610,235,285),Texture2D.whiteTexture);GUI.color=Color.white;
-                GUI.Label(new Rect(x+8,630,219,70),feet?"VÙNG DI CHUYỂN\nGIỮ + VUỐT 4 HƯỚNG":"VÙNG ĐẤM\nCHẠM / GIỮ NHẸ + VUỐT",_small);
-                GUI.Label(new Rect(x+8,810,219,60),feet?"TRÁI · PHẢI\nTIẾN · LÙI":"LÊN · XUỐNG\nTRÁI · PHẢI · CHẠM",_small);
+                GUI.Label(new Rect(x+8,617,219,55),feet?"VÙNG DI CHUYỂN\nGIỮ + VUỐT 4 HƯỚNG":"VÙNG ĐẤM\nCHẠM / GIỮ NHẸ + VUỐT",_small);
             }
+            // Drawn only in training, using the same safe-area/portrait coordinate space.
+            TrainingGestureGuide.Draw(_bootstrap.TrainingToken,Time.unscaledTime,_small);
         }
         private void Preview()
         {

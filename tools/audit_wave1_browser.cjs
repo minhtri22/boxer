@@ -11,6 +11,10 @@ function check(ok, name) { report.checks.push({name, pass: !!ok}); if (!ok) thro
     args:['--use-angle=d3d11','--disable-background-timer-throttling','--disable-renderer-backgrounding']});
   try {
     const page = await browser.newPage({viewport:{width:540,height:960},hasTouch:true});
+    const pendingAssets=new Set();
+    page.on('request',r=>{if(r.url().includes('/Build/'))pendingAssets.add(r);});
+    page.on('requestfinished',r=>pendingAssets.delete(r));
+    page.on('requestfailed',r=>pendingAssets.delete(r));
     const touch = await page.context().newCDPSession(page);
     async function gesture(x,y,dx=0,dy=0) {
       await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x,y}]});
@@ -74,19 +78,34 @@ function check(ok, name) { report.checks.push({name, pass: !!ok}); if (!ok) thro
     check(practice.seconds===0&&practice.playerHP===100&&!practice.opponentEnabled&&!practice.tutorialSeen,'first-user training is separate unscored AI-disabled');
     await page.waitForTimeout(11000);
     check((await snap()).trainingStage==='HEADCONTROL'&&!(await snap()).trainingReady,'idle training does not advance by old timer');
-    await page.mouse.click(270,354);await page.waitForTimeout(350);
+    await page.mouse.click(270,494);await page.waitForTimeout(350);
     check((await snap()).trainingStage==='HEADCONTROL','next requires actual practice');
+    const firstGuide=(await snap()).trainingGuide;
+    await page.waitForFunction(cue=>window.boxerWave1Snapshot?.trainingGuide!==cue,firstGuide,{timeout:5000});
+    check(['HEAD_LEFT','HEAD_RIGHT'].includes(firstGuide)&&['HEAD_LEFT','HEAD_RIGHT'].includes((await snap()).trainingGuide),'head light guide alternates left and right without granting progress');
+    await page.screenshot({path:path.join(evidence,'practice-head-light.png')});
     for(const key of ['q','e']){await page.keyboard.down(key);await page.waitForTimeout(600);await page.keyboard.up(key);await page.waitForTimeout(250);}
     check((await snap()).trainingReady,'synthetic head movement completes both directions');
     await state('practice-head-ready','Onboarding');
-    await page.mouse.click(270,354);await page.waitForTimeout(400);
+    await page.mouse.click(270,494);await page.waitForTimeout(400);
     check((await snap()).trainingStage==='FOOTWORK','explicit Next opens movement lesson');
+    for(const cue of ['MOVE_UP','MOVE_DOWN','MOVE_LEFT','MOVE_RIGHT']) {
+      await page.waitForFunction(c=>window.boxerWave1Snapshot?.trainingGuide===c,cue,{timeout:12000});
+      await page.screenshot({path:path.join(evidence,'guide-'+cue.toLowerCase()+'.png')});
+    }
+    check(!(await snap()).trainingReady,'all four movement light examples remain illustrative');
     // Real browser touch events, not hidden gameplay method calls; still not phone sensor UAT.
     for(const [dx,dy] of [[-100,0],[100,0],[0,-100],[0,100]])await gesture(135,750,dx,dy);
     check((await snap()).trainingReady,'lower-left touch swipes register all four movement directions');
     await state('practice-feet-ready','Onboarding');
     await page.mouse.click(270,354);await page.waitForTimeout(400);
     check((await snap()).trainingStage==='PUNCHES','explicit Next opens punch lesson');
+    for(const cue of ['PUNCH_DOWN','PUNCH_UP','PUNCH_RIGHT','PUNCH_LEFT','TAP_REPEAT']) {
+      await page.waitForFunction(c=>window.boxerWave1Snapshot?.trainingGuide===c,cue,{timeout:15000});
+      await page.screenshot({path:path.join(evidence,'guide-'+cue.toLowerCase()+'.png')});
+      if(cue==='TAP_REPEAT') { await page.waitForTimeout(180);await page.screenshot({path:path.join(evidence,'guide-tap-pulse.png')}); }
+    }
+    check(!(await snap()).trainingReady,'four directional punch guides and repeating tap do not complete practice');
     for(const [dx,dy] of [[0,-100],[0,100],[-100,0],[100,0],[0,0],[0,0]])await gesture(420,750,dx,dy);
     check((await snap()).trainingReady,'lower-right touch up down left right and repeated taps complete punch lesson');
     const practiced=await state('practice-punches-ready','Onboarding');
@@ -95,11 +114,16 @@ function check(ok, name) { report.checks.push({name, pass: !!ok}); if (!ok) thro
     const trained=await state('practice-complete-home','Home');
     check(trained.tutorialSeen&&!trained.gameplayInput,'completed training returns Home and records completion');
     await page.mouse.click(270,759);await state('practice-repeat','Onboarding');
-    await page.mouse.click(270,429);const exited=await state('practice-exit-home','Home');
+    await page.mouse.click(270,569);const exited=await state('practice-exit-home','Home');
     check(exited.tutorialSeen&&!exited.gameplayInput&&exited.seconds===0,'practice exit does not auto-start a match');
+    // Do not cancel a still-running payload/cache transfer with our own navigation.
+    const assetsDeadline=Date.now()+45000;
+    while(pendingAssets.size&&Date.now()<assetsDeadline)await page.waitForTimeout(500);
+    check(pendingAssets.size===0,'payload transfers finish before deliberate reload');
     await page.waitForTimeout(2500);await page.reload();await page.locator('#enable').click();
     const restored=await state('reload-home','Home');
     check(restored.tutorialSeen&&!restored.gameplayInput,'completed onboarding persists across reload');
+    check(!restored.trainingGuide&&!initialFight.trainingGuide,'light guides hidden outside training');
     check(report.errors.length===0,'browser has no JS/load errors');
     report.status='PASS';
   } catch(e) {report.status='FAIL';report.failure=String(e);process.exitCode=1;}
