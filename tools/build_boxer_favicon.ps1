@@ -1,5 +1,7 @@
 param(
-    [Parameter(Mandatory=$true)][string]$Source
+    [Parameter(Mandatory=$true)][string]$Source,
+    [ValidateSet('boxer-favicon-source.png','boxer-favicon-clean.png')]
+    [string]$SourceAssetName='boxer-favicon-source.png'
 )
 $ErrorActionPreference='Stop'
 Add-Type -AssemblyName System.Drawing
@@ -7,7 +9,7 @@ $iconRoot=Split-Path -Parent $PSScriptRoot
 $iconOutput=Join-Path $iconRoot 'unity/BoxerP0/Assets/WebGLTemplates/BoxerP0Mobile/TemplateData/favicon.ico'
 $iconBranding=Join-Path $iconRoot 'art/branding'
 New-Item -ItemType Directory -Path $iconBranding -Force | Out-Null
-$iconSourceCopy=Join-Path $iconBranding 'boxer-favicon-source.png'
+$iconSourceCopy=Join-Path $iconBranding $SourceAssetName
 if(Test-Path -LiteralPath $iconSourceCopy){throw 'Preserved source already exists; refusing overwrite'}
 if(Test-Path -LiteralPath $iconOutput){throw 'Icon already exists; refusing overwrite'}
 Copy-Item -LiteralPath $Source -Destination $iconSourceCopy
@@ -44,7 +46,8 @@ try {
         }
         foreach($iconFrame in $iconFrames){$iconWriter.Write([byte[]]$iconFrame.Bytes)}
     } finally {$iconWriter.Dispose();$iconStream.Dispose()}
-    $iconPreview=Join-Path $iconRoot 'evidence/wave1/favicon-preview.png'
+    $iconPreviewName=if($SourceAssetName -eq 'boxer-favicon-clean.png'){'favicon-clean-preview.png'}else{'favicon-preview.png'}
+    $iconPreview=Join-Path $iconRoot ('evidence/wave1/'+$iconPreviewName)
     [IO.File]::WriteAllBytes($iconPreview,[byte[]]$iconFrames[-1].Bytes)
     Write-Output "ICO_SIZES=$($iconSizes -join ',') SOURCE_CONTENT_UNCHANGED"
     Get-FileHash -LiteralPath $iconSourceCopy,$iconOutput -Algorithm SHA256 | Format-Table Path,Hash
