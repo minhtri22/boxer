@@ -14,14 +14,14 @@ namespace BoxerP0
         private OpponentLegEmbodiment _opponentLegs;
         private OpponentBodyRotationEmbodiment _opponentBodyRotation;
         private OnboardingProgress _training = new();
+        private int _trainingTaps;
+        private bool _trainingLeadHook, _trainingRearHook;
+        private const string TrainingPreference = "BOXER_CONTROL_TRAINING_V2_COMPLETE";
 
         private float _boutEnd;
-        private float _stageEnd;
         private float _smokeQuitAt = -1f;
         private bool _boutStarted;
         private bool _boutCompleted;
-        private int _guardBlockBaseline;
-        private int _counterHitBaseline;
         private OnboardingStage _stage = OnboardingStage.WaitingForCalibration;
 
         private const float BoutSeconds = 45f;
@@ -54,6 +54,14 @@ namespace BoxerP0
         public bool ShowDeveloperDiagnostics => _showDeveloperDiagnostics;
         public ProductFlow Flow { get; } = new();
         public string TrainingToken => Flow.Screen == ProductScreen.Onboarding ? _stage.ToString().ToUpperInvariant() : string.Empty;
+        public string TrainingInstructions => GetTrainingText();
+        public bool TrainingReady => _stage switch
+        {
+            OnboardingStage.HeadControl => _training.HeadReady,
+            OnboardingStage.Footwork => _training.FootworkReady,
+            OnboardingStage.Punches => _training.PunchesReady && _trainingTaps >= 2 && _trainingLeadHook && _trainingRearHook,
+            _ => false
+        };
         private Vector3 _lastPlayerPosition, _lastOpponentPosition;
 
         private void Awake()
@@ -62,6 +70,8 @@ namespace BoxerP0
             ConfigureSmokeQuit();
             BuildLightingAndRing();
             BuildActors();
+            Flow.RestoreTutorialSeen(PlayerPrefs.GetInt(TrainingPreference, 0) == 1);
+            _player.PunchAccepted += ObserveTrainingPunch;
             _lastPerfRefreshRealtime = Time.realtimeSinceStartup;
             _nextUiRefresh = _lastPerfRefreshRealtime;
 
@@ -117,6 +127,7 @@ namespace BoxerP0
         {
             EnterStage(OnboardingStage.HeadControl);
         }
+        private void OnDestroy() { if (_player != null) _player.PunchAccepted -= ObserveTrainingPunch; }
 
         private static double PlanarSpeed(Vector3 a, Vector3 b, float dt)
         { a.y = b.y = 0; return dt > 0 ? Vector3.Distance(a, b) / dt : 0; }
@@ -132,6 +143,7 @@ namespace BoxerP0
             _boutStarted = _boutCompleted = false;
             _stage = OnboardingStage.WaitingForCalibration;
             _training = new OnboardingProgress();
+            _trainingTaps = 0; _trainingLeadHook = _trainingRearHook = false;
             RememberPositions();
         }
         public void ShowPreview()
@@ -149,6 +161,29 @@ namespace BoxerP0
             _input.SetGameplayInput(true);
             if (Flow.Screen == ProductScreen.Onboarding) BeginOnboarding(); else StartBout();
         }
+        public void BeginTraining() => BeginProductBout(true);
+        public void RecenterTrainingHead() { if (Flow.Screen == ProductScreen.Onboarding) _input.RecalibrateHead(); }
+        public void AdvanceTraining()
+        {
+            if (Flow.Screen != ProductScreen.Onboarding || !TrainingReady) return;
+            if (_stage == OnboardingStage.HeadControl) EnterStage(OnboardingStage.Footwork);
+            else if (_stage == OnboardingStage.Footwork) EnterStage(OnboardingStage.Punches);
+            else if (_stage == OnboardingStage.Punches)
+            {
+                Flow.TutorialFinished();
+                PlayerPrefs.SetInt(TrainingPreference, 1); PlayerPrefs.Save();
+                _telemetry.RecordEvent("CONTROL_TRAINING_COMPLETE");
+                ResetActors();
+            }
+        }
+        private void ObserveTrainingPunch(PunchIntent intent)
+        {
+            if (Flow.Screen != ProductScreen.Onboarding || _stage != OnboardingStage.Punches) return;
+            _training.ObservePunch(intent);
+            if (PunchLabels.Family(intent) == PunchFamily.Straight) _trainingTaps++;
+            if (intent == PunchIntent.LeadHook) _trainingLeadHook = true;
+            if (intent == PunchIntent.RearHook) _trainingRearHook = true;
+        }
         public void ReturnHome()
         {
             Flow.Home(); ResetActors();
@@ -163,38 +198,12 @@ namespace BoxerP0
             {
                 case OnboardingStage.HeadControl:
                     _training.ObserveHead(_player.HeadOffset);
-                    if (_training.HeadReady || StageTimedOut()) EnterStage(OnboardingStage.Footwork);
                     break;
 
                 case OnboardingStage.Footwork:
                     _training.ObserveMovement(_input.MovementIntent);
-                    if (_training.FootworkReady || StageTimedOut()) EnterStage(OnboardingStage.Punches);
-                    break;
-
-                case OnboardingStage.Punches:
-                    _training.ObservePunch(_input.LastPunchIntent);
-                    if (_training.PunchesReady || StageTimedOut()) EnterStage(OnboardingStage.Guard);
-                    break;
-
-                case OnboardingStage.Guard:
-                    if (_telemetry.PlayerBlocks - _guardBlockBaseline >= 2 || StageTimedOut())
-                    {
-                        EnterStage(OnboardingStage.Counter);
-                    }
-                    break;
-
-                case OnboardingStage.Counter:
-                    if (_telemetry.PlayerCounterHits - _counterHitBaseline >= 1 || StageTimedOut())
-                    {
-                        StartBout();
-                    }
                     break;
             }
-        }
-
-        private bool StageTimedOut()
-        {
-            return Time.unscaledTime >= _stageEnd;
         }
 
         private void EnterStage(OnboardingStage stage)
@@ -207,42 +216,28 @@ namespace BoxerP0
             _stage = stage;
             _telemetry?.RecordEvent($"TRAINING_STAGE_START_{stage.ToString().ToUpperInvariant()}");
 
+            _input.SetGameplayInput(true); // consume navigation release; do not score the menu tap.
+            _opponent.SetCombatEnabled(false); // practice never enables an attacking AI.
             switch (stage)
             {
                 case OnboardingStage.HeadControl:
-                    _stageEnd = Time.unscaledTime + 10f;
                     _player?.SetCombatEnabled(false);
                     _opponent?.SetCombatEnabled(false);
                     break;
                 case OnboardingStage.Footwork:
-                    _stageEnd = Time.unscaledTime + 12f;
                     _player?.SetCombatEnabled(false);
                     _opponent?.SetCombatEnabled(false);
                     break;
                 case OnboardingStage.Punches:
-                    _stageEnd = Time.unscaledTime + 18f;
                     _player?.SetCombatEnabled(true);
                     _opponent?.SetCombatEnabled(false);
-                    break;
-                case OnboardingStage.Guard:
-                    _stageEnd = Time.unscaledTime + 12f;
-                    _guardBlockBaseline = _telemetry?.PlayerBlocks ?? 0;
-                    _player?.SetCombatEnabled(true);
-                    _opponent?.SetCombatEnabled(true);
-                    break;
-                case OnboardingStage.Counter:
-                    _stageEnd = Time.unscaledTime + 18f;
-                    _counterHitBaseline = _telemetry?.PlayerCounterHits ?? 0;
-                    _player?.SetCombatEnabled(true);
-                    _opponent?.SetCombatEnabled(true);
                     break;
             }
         }
 
         private void StartBout()
         {
-            Flow.TutorialFinished();
-            _telemetry?.RecordEvent("TRAINING_COMPLETE");
+            // Only explicit Preview/Result navigation starts scored combat; training returns Home.
             _stage = OnboardingStage.Bout;
             _boutStarted = true;
             _boutCompleted = false;
@@ -548,20 +543,15 @@ namespace BoxerP0
 
         private string GetTrainingText()
         {
-            float seconds = Mathf.Max(0f, _stageEnd - Time.unscaledTime);
             return _stage switch
             {
                 OnboardingStage.WaitingForCalibration => "ONBOARDING — CALIBRATE PHONE FIRST",
                 OnboardingStage.HeadControl =>
-                    $"1/5 HEAD CONTROL  {seconds:F0}s\nPhone = head. Nghiêng đầu/máy sang TRÁI rồi PHẢI.\nLEFT {Mark(_training.HeadLeft)}   RIGHT {Mark(_training.HeadRight)}",
+                    $"1 / 3 — NÉ ĐẦU\nNghiêng/lắc điện thoại sang trái rồi phải.\nTRÁI {Mark(_training.HeadLeft)}   PHẢI {Mark(_training.HeadRight)}\nKhông nhận chuyển động? Kiểm tra quyền Motion hoặc trở về Home.",
                 OnboardingStage.Footwork =>
-                    $"2/5 FOOTWORK  {seconds:F0}s\nLeft thumb = feet. Thử đủ 4 hướng.\nLEFT {Mark(_training.MoveLeft)}  RIGHT {Mark(_training.MoveRight)}  FORWARD {Mark(_training.MoveForward)}  BACK {Mark(_training.MoveBack)}",
+                    $"2 / 3 — DI CHUYỂN\nGiữ và vuốt vùng DƯỚI BÊN TRÁI theo 4 hướng.\nTRÁI {Mark(_training.MoveLeft)}  PHẢI {Mark(_training.MoveRight)}\nTIẾN {Mark(_training.MoveForward)}  LÙI {Mark(_training.MoveBack)}",
                 OnboardingStage.Punches =>
-                    $"3/5 PUNCHES  {seconds:F0}s\nRight thumb = punch controller. Làm đủ 4 đòn.\nSTRAIGHT {Mark(_training.Straight)}  UPPERCUT {Mark(_training.Uppercut)}  HOOK {Mark(_training.Hook)}  OVERHAND {Mark(_training.Overhand)}",
-                OnboardingStage.Guard =>
-                    $"4/5 GUARD  {seconds:F0}s\nDỪNG vuốt tay phải = trở về HIGH GUARD. Đỡ 2 đòn.\nBLOCKS {Mathf.Max(0, _telemetry.PlayerBlocks - _guardBlockBaseline)}/2",
-                OnboardingStage.Counter =>
-                    $"5/5 COUNTER  {seconds:F0}s\nNé đòn bằng đầu/chân → phản công trong recovery. Làm 1 counter.\nCOUNTERS {Mathf.Max(0, _telemetry.PlayerCounterHits - _counterHitBaseline)}/1",
+                    $"3 / 3 — BỐN NHÓM ĐÒN\nVùng DƯỚI BÊN PHẢI: giữ nhẹ rồi vuốt, thả tay để đấm.\nLÊN: móc từ dưới {Mark(_training.Uppercut)}\nXUỐNG: từ trên xuống {Mark(_training.Overhand)}\nNGANG trái/phải: móc ngang {Mark(_trainingLeadHook && _trainingRearHook)}\nCHẠM nhiều lần: jab/cross {Mathf.Min(2,_trainingTaps)}/2\nChờ găng trở lại giữa các đòn; không cần đấm thật nhanh.",
                 _ => string.Empty
             };
         }

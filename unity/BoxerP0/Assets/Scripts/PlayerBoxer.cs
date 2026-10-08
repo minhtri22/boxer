@@ -4,6 +4,7 @@ namespace BoxerP0
 {
     public sealed class PlayerBoxer : MonoBehaviour
     {
+        public event System.Action<PunchIntent> PunchAccepted;
         private readonly TimedActionState _action = new();
 
         private BoxerInput _input;
@@ -169,6 +170,7 @@ namespace BoxerP0
                     _p1PunchSnapshot.StepState,
                     RecoverSeconds) * (float)_vitalAttack.RecoveryFactor;
                 _telemetry?.RecordEvent($"PLAYER_PUNCH_{token}");
+                PunchAccepted?.Invoke(intent);
             }
             else
             {

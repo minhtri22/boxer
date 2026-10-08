@@ -13,26 +13,34 @@ namespace BoxerP0
         { _bootstrap = GetComponent<BoxerBootstrap>(); _telemetry = FindFirstObjectByType<Phase0Telemetry>(); _brand=Resources.Load<Texture2D>("Product/HomeBrand"); }
         private void OnGUI()
         {
-            if (_bootstrap == null || _telemetry == null || _bootstrap.Flow.Gameplay) return;
+            if (_bootstrap == null || _telemetry == null || _bootstrap.Flow.Screen == ProductScreen.Fight) return;
             Styles();
             Matrix4x4 prior = GUI.matrix; Color color = GUI.color; int depth = GUI.depth;
             GUI.depth = -200;
             try
             {
-                GUI.color = new Color(.01f,.012f,.014f,.82f);
-                GUI.DrawTexture(new Rect(0,0,Screen.width,Screen.height), Texture2D.whiteTexture);
+                bool practice = _bootstrap.Flow.Screen == ProductScreen.Onboarding;
+                if (!practice)
+                {
+                    GUI.color = new Color(.01f,.012f,.014f,.82f);
+                    GUI.DrawTexture(new Rect(0,0,Screen.width,Screen.height), Texture2D.whiteTexture);
+                }
                 GUI.color = Color.white;
                 Rect safe = Screen.safeArea;
                 float scale = Mathf.Min(safe.width / 540, safe.height / 960);
                 GUI.matrix = Matrix4x4.TRS(new Vector3(safe.x + (safe.width-540*scale)/2,
                     Screen.height-safe.yMax+(safe.height-960*scale)/2,0),Quaternion.identity,new Vector3(scale,scale,1));
-                if (_brand!=null) GUI.DrawTextureWithTexCoords(new Rect(38,35,464,156),_brand,new Rect(.05f,.68f,.90f,.17f));
-                else { GUI.Label(new Rect(30,45,480,90), "BOXER", _title); GUI.Label(new Rect(30,135,480,35), "FIGHT FROM YOUR OWN EYES", _small); }
+                if (!practice)
+                {
+                    if (_brand!=null) GUI.DrawTextureWithTexCoords(new Rect(38,35,464,156),_brand,new Rect(.05f,.68f,.90f,.17f));
+                    else { GUI.Label(new Rect(30,45,480,90), "BOXER", _title); GUI.Label(new Rect(30,135,480,35), "FIGHT FROM YOUR OWN EYES", _small); }
+                }
                 switch (_bootstrap.Flow.Screen)
                 {
                     case ProductScreen.Home: Home(); break;
                     case ProductScreen.Preview: Preview(); break;
                     case ProductScreen.Result: Result(); break;
+                    case ProductScreen.Onboarding: Training(); break;
                 }
             }
             finally { GUI.matrix = prior; GUI.color = color; GUI.depth = depth; }
@@ -73,8 +81,32 @@ namespace BoxerP0
             ControlCard(42,420,"RIGHT THUMB = PUNCH\n\nTap, or hold + swipe\nfor punch families.");
             ControlCard(278,420,"NO TOUCH = GUARD\n\nRecover, then choose\nyour next attack.");
             if (Button(640,"START",true)) _bootstrap.ShowPreview();
-            if (Button(725,"PRACTICE CONTROLS")) _bootstrap.BeginProductBout(true);
-            GUI.Label(new Rect(42,815,456,65),"CAREER / FULL GYM — NOT AVAILABLE IN WAVE 1",_small);
+            if (Button(725,_bootstrap.Flow.TutorialSeen ? "PRACTICE CONTROLS" : "NEW? LEARN CONTROLS")) _bootstrap.BeginTraining();
+            GUI.Label(new Rect(42,815,456,65),"START = FIGHT NOW\nTraining is separate, optional and unscored.",_small);
+        }
+        private void Training()
+        {
+            GUI.color=new Color(.012f,.012f,.012f,.94f);
+            GUI.DrawTexture(new Rect(20,20,500,425),Texture2D.whiteTexture); GUI.color=Color.white;
+            GUI.Label(new Rect(35,25,470,45),"TẬP ĐIỀU KHIỂN — KHÔNG TÍNH ĐIỂM",_small);
+            GUI.Label(new Rect(35,72,470,245),_bootstrap.TrainingInstructions,_small);
+            bool enabled=GUI.enabled; GUI.enabled=_bootstrap.TrainingReady;
+            if (Button(320,_bootstrap.TrainingToken=="PUNCHES" ? "HOÀN THÀNH TẬP" : "BÀI TIẾP THEO",true)) _bootstrap.AdvanceTraining();
+            GUI.enabled=enabled;
+            if (Button(395,"THOÁT TẬP / HOME")) _bootstrap.ReturnHome();
+            if (_bootstrap.TrainingToken=="HEADCONTROL")
+            {
+                if (Button(490,"ĐẶT LẠI TƯ THẾ ĐẦU")) _bootstrap.RecenterTrainingHead();
+            }
+            if (_bootstrap.TrainingToken=="FOOTWORK" || _bootstrap.TrainingToken=="PUNCHES")
+            {
+                bool feet=_bootstrap.TrainingToken=="FOOTWORK";
+                float x=feet?20:285;
+                GUI.color=new Color(Gold.r,Gold.g,Gold.b,.14f);
+                GUI.DrawTexture(new Rect(x,610,235,285),Texture2D.whiteTexture);GUI.color=Color.white;
+                GUI.Label(new Rect(x+8,630,219,70),feet?"VÙNG DI CHUYỂN\nGIỮ + VUỐT 4 HƯỚNG":"VÙNG ĐẤM\nCHẠM / GIỮ NHẸ + VUỐT",_small);
+                GUI.Label(new Rect(x+8,810,219,60),feet?"TRÁI · PHẢI\nTIẾN · LÙI":"LÊN · XUỐNG\nTRÁI · PHẢI · CHẠM",_small);
+            }
         }
         private void Preview()
         {

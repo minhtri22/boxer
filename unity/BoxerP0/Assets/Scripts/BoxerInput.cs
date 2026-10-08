@@ -265,8 +265,11 @@ namespace BoxerP0
                 return;
             }
 
-            MovementIntent = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-            MovementIntent = Vector2.ClampMagnitude(MovementIntent, 1f);
+            if (_leftFinger < 0)
+            {
+                MovementIntent = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+                MovementIntent = Vector2.ClampMagnitude(MovementIntent, 1f);
+            }
 
             if (Input.GetKeyDown(KeyCode.J)) RequestPunch(PunchIntent.Jab);
             if (Input.GetKeyDown(KeyCode.K)) RequestPunch(PunchIntent.Cross);

@@ -125,9 +125,10 @@ namespace BoxerP0
         public bool Begin(bool tutorial = false)
         {
             if (Screen != ProductScreen.Preview && Screen != ProductScreen.Result && !(tutorial && Screen == ProductScreen.Home)) return false;
-            Screen = tutorial || !TutorialSeen ? ProductScreen.Onboarding : ProductScreen.Fight; return true;
+            Screen = tutorial ? ProductScreen.Onboarding : ProductScreen.Fight; return true;
         }
-        public void TutorialFinished() { TutorialSeen = true; Screen = ProductScreen.Fight; }
+        public void RestoreTutorialSeen(bool seen) { TutorialSeen = seen; }
+        public void TutorialFinished() { if (Screen != ProductScreen.Onboarding) return; TutorialSeen = true; Screen = ProductScreen.Home; }
         public void Finish() { if (Screen == ProductScreen.Fight) Screen = ProductScreen.Result; }
         public void Home() { Screen = ProductScreen.Home; }
         public bool Gameplay => Screen == ProductScreen.Onboarding || Screen == ProductScreen.Fight;

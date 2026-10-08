@@ -2,7 +2,7 @@
 const { chromium } = require('playwright');
 const fs = require('fs');
 const path = require('path');
-const evidence = path.resolve(__dirname, '../evidence/wave1/browser');
+const evidence = path.resolve(__dirname, '../evidence/wave1/onboarding-v2/browser');
 fs.mkdirSync(evidence, { recursive: true });
 const report = { scope: 'SYNTHETIC_DESKTOP_REAL_UI_NOT_DEVICE_UAT', checks: [], states: {}, errors: [] };
 function check(ok, name) { report.checks.push({name, pass: !!ok}); if (!ok) throw new Error(name); }
@@ -10,7 +10,16 @@ function check(ok, name) { report.checks.push({name, pass: !!ok}); if (!ok) thro
   const browser = await chromium.launch({executablePath:'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe', headless:true,
     args:['--use-angle=d3d11','--disable-background-timer-throttling','--disable-renderer-backgrounding']});
   try {
-    const page = await browser.newPage({viewport:{width:540,height:960}});
+    const page = await browser.newPage({viewport:{width:540,height:960},hasTouch:true});
+    const touch = await page.context().newCDPSession(page);
+    async function gesture(x,y,dx=0,dy=0) {
+      await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x,y}]});
+      await page.waitForTimeout(100);
+      if(dx||dy)await touch.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:x+dx,y:y+dy}]});
+      await page.waitForTimeout(200);
+      await touch.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+      await page.waitForTimeout(850);
+    }
     page.on('pageerror', e=>report.errors.push(String(e)));
     page.on('console', m=>{if(m.type()==='error')report.errors.push(m.text());});
     page.on('requestfailed', r=>report.errors.push(r.url()+' '+r.failure()?.errorText));
@@ -39,10 +48,9 @@ function check(ok, name) { report.checks.push({name, pass: !!ok}); if (!ok) thro
     const preview=await state('preview','Preview');
     check(!preview.gameplayInput,'preview locks gameplay');
     await page.mouse.click(270,779);
-    const training=await state('tutorial','Onboarding');
-    check(training.playerHP===100&&training.seconds===0,'tutorial unscored');
-    // Let the existing tutorial timers advance; no hidden StartBout injection.
-    await state('fight-start','Fight');
+    const fightStarted=Date.now();
+    const initialFight=await state('fight-start','Fight');
+    check(Date.now()-fightStarted<5000&&initialFight.result==='IN_PROGRESS'&&!initialFight.trainingStage,'first bout starts without tutorial wait');
     const before=await snap();
     await page.keyboard.down('k'); await page.waitForTimeout(120); await page.keyboard.up('k');
     await page.waitForTimeout(250);
@@ -61,6 +69,37 @@ function check(ok, name) { report.checks.push({name, pass: !!ok}); if (!ok) thro
     check(rematch.playerHP===100&&rematch.opponentHP===100&&rematch.playerCapacity===100&&rematch.players===1&&rematch.opponents===1,'rematch resets without actor duplication');
     await state('result-rematch','Result');
     await page.mouse.click(270,869); await state('home-return','Home');
+    await page.mouse.click(270,759);
+    const practice=await state('practice-head','Onboarding');
+    check(practice.seconds===0&&practice.playerHP===100&&!practice.opponentEnabled&&!practice.tutorialSeen,'first-user training is separate unscored AI-disabled');
+    await page.waitForTimeout(11000);
+    check((await snap()).trainingStage==='HEADCONTROL'&&!(await snap()).trainingReady,'idle training does not advance by old timer');
+    await page.mouse.click(270,354);await page.waitForTimeout(350);
+    check((await snap()).trainingStage==='HEADCONTROL','next requires actual practice');
+    for(const key of ['q','e']){await page.keyboard.down(key);await page.waitForTimeout(600);await page.keyboard.up(key);await page.waitForTimeout(250);}
+    check((await snap()).trainingReady,'synthetic head movement completes both directions');
+    await state('practice-head-ready','Onboarding');
+    await page.mouse.click(270,354);await page.waitForTimeout(400);
+    check((await snap()).trainingStage==='FOOTWORK','explicit Next opens movement lesson');
+    // Real browser touch events, not hidden gameplay method calls; still not phone sensor UAT.
+    for(const [dx,dy] of [[-100,0],[100,0],[0,-100],[0,100]])await gesture(135,750,dx,dy);
+    check((await snap()).trainingReady,'lower-left touch swipes register all four movement directions');
+    await state('practice-feet-ready','Onboarding');
+    await page.mouse.click(270,354);await page.waitForTimeout(400);
+    check((await snap()).trainingStage==='PUNCHES','explicit Next opens punch lesson');
+    for(const [dx,dy] of [[0,-100],[0,100],[-100,0],[100,0],[0,0],[0,0]])await gesture(420,750,dx,dy);
+    check((await snap()).trainingReady,'lower-right touch up down left right and repeated taps complete punch lesson');
+    const practiced=await state('practice-punches-ready','Onboarding');
+    check(practiced.playerHP===100&&practiced.opponentHP===100&&practiced.playerStamina===100&&practiced.seconds===0&&!practiced.opponentEnabled,'practice never changes scored HP stamina or timer');
+    await page.mouse.click(270,354);
+    const trained=await state('practice-complete-home','Home');
+    check(trained.tutorialSeen&&!trained.gameplayInput,'completed training returns Home and records completion');
+    await page.mouse.click(270,759);await state('practice-repeat','Onboarding');
+    await page.mouse.click(270,429);const exited=await state('practice-exit-home','Home');
+    check(exited.tutorialSeen&&!exited.gameplayInput&&exited.seconds===0,'practice exit does not auto-start a match');
+    await page.waitForTimeout(2500);await page.reload();await page.locator('#enable').click();
+    const restored=await state('reload-home','Home');
+    check(restored.tutorialSeen&&!restored.gameplayInput,'completed onboarding persists across reload');
     check(report.errors.length===0,'browser has no JS/load errors');
     report.status='PASS';
   } catch(e) {report.status='FAIL';report.failure=String(e);process.exitCode=1;}

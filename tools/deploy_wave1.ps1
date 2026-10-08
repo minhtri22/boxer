@@ -1,10 +1,14 @@
 param(
     [Parameter(Mandatory=$true)][ValidateSet('Deploy','Status')][string]$Mode,
-    [Parameter(Mandatory=$true)][ValidatePattern('^[a-f0-9]{40}$')][string]$ExpectedCommit
+    [Parameter(Mandatory=$true)][ValidatePattern('^[a-f0-9]{40}$')][string]$ExpectedCommit,
+    [ValidatePattern('^wave1(/[a-z0-9-]+)?$')][string]$EvidenceSubdirectory='wave1',
+    [ValidateRange(1,10000)][int]$ExpectedVitalsChecks=84,
+    [ValidateRange(1,10000)][int]$ExpectedControllerChecks=56
 )
 $ErrorActionPreference='Stop'
 $waveRoot=Split-Path -Parent $PSScriptRoot
 $waveBranch='feature/boxer-product-loop-wave1'
+$waveGateDirectory=Join-Path $waveRoot ('evidence/'+$EvidenceSubdirectory)
 $waveApi='https://api.github.com/repos/minhtri22/boxer'
 # Credential remains in process memory; never emit credential helper output or headers.
 $waveLines="protocol=https`nhost=github.com`n`n" | git credential fill
@@ -20,9 +24,9 @@ function WaveApi([string]$Url,[string]$Method='Get',$Body=$null){
 $waveRemote=WaveApi "$waveApi/git/ref/heads/$waveBranch"
 if($waveRemote.object.sha -ne $ExpectedCommit){throw 'Remote branch SHA mismatch'}
 if($Mode -eq 'Deploy'){
-    if((Get-Content (Join-Path $waveRoot 'evidence/wave1/browser/report.json') -Raw | ConvertFrom-Json).status -ne 'PASS'){throw 'Browser gate not PASS'}
-    if(-not ((Get-Content (Join-Path $waveRoot 'evidence/wave1/vitals-tests.txt') -Tail 1) -eq 'TOTAL=84 PASS=84 FAIL=0')){throw 'Vitals gate not PASS'}
-    if(-not ((Get-Content (Join-Path $waveRoot 'evidence/wave1/controller-runtime.txt') -Tail 1) -eq 'CHECKS=56 EXIT=0')){throw 'Controller gate not PASS'}
+    if((Get-Content (Join-Path $waveGateDirectory 'browser/report.json') -Raw | ConvertFrom-Json).status -ne 'PASS'){throw 'Browser gate not PASS'}
+    if(-not ((Get-Content (Join-Path $waveGateDirectory 'vitals-tests.txt') -Tail 1) -eq "TOTAL=$ExpectedVitalsChecks PASS=$ExpectedVitalsChecks FAIL=0")){throw 'Vitals gate not PASS'}
+    if(-not ((Get-Content (Join-Path $waveGateDirectory 'controller-runtime.txt') -Tail 1) -eq "CHECKS=$ExpectedControllerChecks EXIT=0")){throw 'Controller gate not PASS'}
     $wavePolicies=WaveApi "$waveApi/environments/github-pages/deployment-branch-policies"
     $waveBefore=@($wavePolicies.branch_policies | ForEach-Object { $_.name+'|'+$_.type })
     if(-not ($wavePolicies.branch_policies | Where-Object {$_.name -eq $waveBranch -and $_.type -eq 'branch'})){

@@ -133,7 +133,7 @@ namespace BoxerP0
         private void OnGUI()
         {
             if (!IsReady) return;
-            if (_bootstrap != null && !_bootstrap.Flow.Gameplay) return;
+            if (_bootstrap != null && _bootstrap.Flow.Screen != ProductScreen.Fight) return;
             EnsureStyles();
 
             int oldDepth = GUI.depth;

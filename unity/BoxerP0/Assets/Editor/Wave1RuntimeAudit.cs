@@ -15,7 +15,7 @@ namespace BoxerP0.Editor
         private static readonly StringBuilder Log=new();
         private static int _stage, _frame=-1, _rematches, _checks;
         private static double _start;
-        private static string Dir=>Path.GetFullPath(Path.Combine(Application.dataPath,"../../../evidence/wave1"));
+        private static string Dir=>Path.GetFullPath(Path.Combine(Application.dataPath,"../../../evidence/wave1/onboarding-v2"));
         static Wave1RuntimeAudit() { if(SessionState.GetBool("wave1Audit",false))EditorApplication.update+=Tick; }
         public static void Run()
         {
@@ -58,11 +58,12 @@ namespace BoxerP0.Editor
                         Log.AppendLine(side+" glove triangles="+smrs.Sum(s=>s.sharedMesh.triangles.Length/3));
                     }
                     Check(f.AcceptedRig!=null,"accepted Ramirez still owns opponent presentation");
+                    b.BeginTraining();
+                    Check(b.Flow.Screen==ProductScreen.Onboarding&&!t.Bout.Active&&!o.CombatEnabled&&input.GameplayInput,"standalone training has no AI or scored bout");
+                    b.AdvanceTraining();Check(b.TrainingToken=="HEADCONTROL"&&!b.TrainingReady,"unperformed practice cannot advance by timer or button");
+                    b.ReturnHome();Check(!input.GameplayInput&&!t.Bout.Active,"training exit returns Home without starting fight");
                     b.ShowPreview();Check(b.Flow.Screen==ProductScreen.Preview&&!input.GameplayInput,"preview consumes menu input");
-                    b.BeginProductBout();Check(b.Flow.Screen==ProductScreen.Onboarding&&!t.Bout.Active,"first bout unscored onboarding");
-                    // Explicit test injection: bypass waiting through tutorial; not a browser or Human UAT bypass.
-                    typeof(BoxerBootstrap).GetMethod("StartBout",Flags).Invoke(b,null);
-                    Check(b.Flow.Screen==ProductScreen.Fight&&t.Bout.Active,"fresh scored bout starts");
+                    b.BeginProductBout();Check(b.Flow.Screen==ProductScreen.Fight&&t.Bout.Active&&t.Bout.Seconds==0,"first scored bout starts directly without tutorial bypass");
                     Punch(p,PunchIntent.Cross); double capacity=t.Bout.Player.Capacity;
                     Check(capacity==84&&Math.Abs(t.Bout.Player.Stamina-96.8)<1e-7,"real player accepted action spends once");
                     Punch(p,PunchIntent.Jab);Check(t.Bout.Player.Capacity==capacity,"real busy rejection costs zero");
