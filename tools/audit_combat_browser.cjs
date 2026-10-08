@@ -4,6 +4,7 @@ const fs=require('fs'),path=require('path');
 const evidence=path.resolve(__dirname,'../evidence/wave1/combat-v3/combat-browser');
 fs.mkdirSync(evidence,{recursive:true});
 const report={scope:'REAL_WEBGL_INPUT_AND_SOLVED_CONTACT_SYNTHETIC_DESKTOP_NOT_PHONE_UAT',checks:[],errors:[],scenarios:{}};
+const activePages=[];
 function check(ok,name){report.checks.push({name,pass:!!ok});if(!ok)throw Error(name);}
 (async()=>{
   const browser=await chromium.launch({executablePath:'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',headless:true,
@@ -12,6 +13,7 @@ function check(ok,name){report.checks.push({name,pass:!!ok});if(!ok)throw Error(
     async function match(name){
       const context=await browser.newContext({viewport:{width:540,height:960},hasTouch:true});
       const page=await context.newPage(),touch=await context.newCDPSession(page);
+      activePages.push({name,page});
       const scenario=report.scenarios[name]={trace:[],choices:[]};
       page.on('pageerror',e=>report.errors.push(String(e)));
       page.on('console',m=>{if(m.type()==='error')report.errors.push(m.text());});
@@ -23,6 +25,8 @@ function check(ok,name){report.checks.push({name,pass:!!ok});if(!ok)throw Error(
       await page.waitForFunction(()=>window.boxerWave1Snapshot?.screen==='Home',null,{timeout:150000});
       await page.mouse.click(270,674);await page.waitForFunction(()=>window.boxerWave1Snapshot?.screen==='Preview');
       await page.mouse.click(270,779);await page.waitForFunction(()=>window.boxerWave1Snapshot?.screen==='Fight');
+      // The normal menu-release barrier must see a released frame before a held swipe.
+      await page.waitForTimeout(350);
       const snap=()=>page.evaluate(()=>window.boxerWave1Snapshot);
       let leftTouch=null;
       const points=right=>[...(leftTouch?[leftTouch]:[]),...(right?[right]:[])];
@@ -57,7 +61,14 @@ function check(ok,name){report.checks.push({name,pass:!!ok});if(!ok)throw Error(
     console.log('IDLE_GUARD',JSON.stringify(guard.scenario.final));
     await guard.context.close();
     const bodyGuard=await match('body-guard');await bodyGuard.advanceHeld(true);
-    await bodyGuard.page.waitForFunction(()=>{const s=window.boxerWave1Snapshot;return s?.screen==='Fight'&&s.opponentPhase==='Commit'&&s.opponentBody&&s.distance<.7;},null,{timeout:20000});
+    const bodyDeadline=Date.now()+20000;
+    while(Date.now()<bodyDeadline){
+      const s=await bodyGuard.record();
+      if(s.screen==='Fight'&&s.opponentPhase==='Commit'&&s.opponentBody&&s.distance<.7)break;
+      await bodyGuard.pause(80);
+    }
+    const bodyReady=await bodyGuard.snap();
+    check(bodyReady.opponentPhase==='Commit'&&bodyReady.opponentBody&&bodyReady.distance<.7,'close body guard contact precondition reached with real touch input');
     const bodyBefore=await bodyGuard.snap();await bodyGuard.pause(650);const bodyAfter=await bodyGuard.record();
     bodyGuard.scenario.contact={before:bodyBefore,after:bodyAfter};await bodyGuard.picture('contact');
     check(bodyAfter.playerBlocks>bodyBefore.playerBlocks&&bodyAfter.playerHP===bodyBefore.playerHP,'actual body attack intersecting close high guard BLOCKS without HP loss');
@@ -65,6 +76,8 @@ function check(ok,name){report.checks.push({name,pass:!!ok});if(!ok)throw Error(
     await bodyGuard.advanceHeld(false);
     await bodyGuard.context.close();
     const fight=await match('touch-attack');
+    // Move away using ordinary input so the first shot tests genuine long-range MISS.
+    await fight.page.keyboard.down('s');await fight.pause(350);await fight.page.keyboard.up('s');await fight.pause(100);
     let before=await fight.snap();
     await fight.gesture(420,750);await fight.pause(700);
     let after=await fight.record();fight.scenario.longRange={before,after};await fight.picture('long-miss');
@@ -95,7 +108,12 @@ function check(ok,name){report.checks.push({name,pass:!!ok});if(!ok)throw Error(
     check(final.playerStamina>=0&&final.playerStamina<=100&&final.playerCapacity>=0&&final.playerCapacity<=100,'physical combat keeps stamina/capacity within exact model bounds');
     console.log('TOUCH_ATTACK',JSON.stringify(final));
     check(report.errors.length===0,'physical WebGL combat has zero JS/load/HTTP errors');report.status='PASS';
-  }catch(e){report.status='FAIL';report.failure=String(e);process.exitCode=1;}
+  }catch(e){report.status='FAIL';report.failure=String(e);process.exitCode=1;
+    for(const {name,page} of activePages)if(!page.isClosed()){
+      try{report.scenarios[name].failureState=await page.evaluate(()=>window.boxerWave1Snapshot);
+        await page.screenshot({path:path.join(evidence,name+'-failure.png')});}catch{}
+    }
+  }
   finally{
     // Persist evidence before shutdown; closing Edge must not hide a completed/failing audit.
     fs.writeFileSync(path.join(evidence,'report.json'),JSON.stringify(report,null,2));
