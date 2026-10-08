@@ -114,7 +114,9 @@ namespace BoxerP0
             transform.position += delta;
             Vector3 p = transform.position;
             p.x = Mathf.Clamp(p.x, -2.25f, 2.25f);
-            p.z = Mathf.Clamp(p.z, -1.3f, -0.05f);
+            // The player's old invisible center-line wall prevented closing on a retreating
+            // opponent. Allow the same forward ring extent; torso separation still applies.
+            p.z = Mathf.Clamp(p.z, -1.3f, 2.25f);
             if (_opponent != null)
             {
                 Vector3 away = p - _opponent.transform.position; away.y = 0f;

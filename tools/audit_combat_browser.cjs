@@ -24,6 +24,8 @@ function check(ok,name){report.checks.push({name,pass:!!ok});if(!ok)throw Error(
       await page.mouse.click(270,674);await page.waitForFunction(()=>window.boxerWave1Snapshot?.screen==='Preview');
       await page.mouse.click(270,779);await page.waitForFunction(()=>window.boxerWave1Snapshot?.screen==='Fight');
       const snap=()=>page.evaluate(()=>window.boxerWave1Snapshot);
+      let leftTouch=null;
+      const points=right=>[...(leftTouch?[leftTouch]:[]),...(right?[right]:[])];
       let lastAttack=0;
       async function record(){const s=await snap();scenario.trace.push(s);
         if(s.opponentAttacks>lastAttack&&s.opponentIntent!=='None') {lastAttack=s.opponentAttacks;scenario.choices.push(s.opponentBody?'CrossBody':s.opponentIntent);}
@@ -31,12 +33,17 @@ function check(ok,name){report.checks.push({name,pass:!!ok});if(!ok)throw Error(
       }
       async function pause(ms){const end=Date.now()+ms;while(Date.now()<end){await page.waitForTimeout(80);await record();}}
       async function gesture(x,y,dx=0,dy=0,hold=100){
-        await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x,y}]});await pause(100);
-        if(dx||dy)await touch.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:x+dx,y:y+dy}]});
-        await pause(hold);await touch.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+        await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:points({id:2,x,y})});await pause(100);
+        if(dx||dy)await touch.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:points({id:2,x:x+dx,y:y+dy})});
+        await pause(hold);await touch.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:points(null)});
+      }
+      async function advanceHeld(active){
+        if(active){leftTouch={id:1,x:135,y:750};await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:points(null)});await pause(100);
+          leftTouch={id:1,x:135,y:650};await touch.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:points(null)});}
+        else{leftTouch=null;await touch.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});}
       }
       async function picture(label){await page.screenshot({path:path.join(evidence,name+'-'+label+'.png')});}
-      return {page,context,snap,record,pause,gesture,picture,scenario};
+      return {page,context,snap,record,pause,gesture,advanceHeld,picture,scenario};
     }
     const guard=await match('idle-guard');
     const guardStart=Date.now();
@@ -48,6 +55,13 @@ function check(ok,name){report.checks.push({name,pass:!!ok});if(!ok)throw Error(
     check(guard.scenario.final.playerHP>0,'idle high guard survives default bout; exposed body may take damage');
     check(['Jab','Cross','LeadHook','CrossBody'].every(c=>guard.scenario.choices.includes(c)),'real AI uses all four choices including head/body instead of old Cross loop');
     console.log('IDLE_GUARD',JSON.stringify(guard.scenario.final));
+    const bodyGuard=await match('body-guard');await bodyGuard.advanceHeld(true);
+    await bodyGuard.page.waitForFunction(()=>{const s=window.boxerWave1Snapshot;return s?.screen==='Fight'&&s.opponentPhase==='Commit'&&s.opponentBody&&s.distance<.7;},null,{timeout:20000});
+    const bodyBefore=await bodyGuard.snap();await bodyGuard.pause(650);const bodyAfter=await bodyGuard.record();
+    bodyGuard.scenario.contact={before:bodyBefore,after:bodyAfter};await bodyGuard.picture('contact');
+    check(bodyAfter.playerBlocks>bodyBefore.playerBlocks&&bodyAfter.playerHP===bodyBefore.playerHP,'actual body attack intersecting close high guard BLOCKS without HP loss');
+    check(bodyAfter.distance<.7,'lower-left forward touch can follow retreating AI into real close range');
+    await bodyGuard.advanceHeld(false);
     const fight=await match('touch-attack');
     let before=await fight.snap();
     await fight.gesture(420,750);await fight.pause(700);
@@ -59,6 +73,7 @@ function check(ok,name){report.checks.push({name,pass:!!ok});if(!ok)throw Error(
     before=await fight.snap();await fight.gesture(420,750);await fight.pause(650);after=await fight.record();
     fight.scenario.closedGuard={before,after};await fight.picture('closed-guard');
     check(after.opponentBlocks>before.opponentBlocks&&after.opponentHP===before.opponentHP,'real touch straight is BLOCKED by opponent glove, zero HP');
+    await fight.advanceHeld(true);
     const attackStart=Date.now();
     let attempts=0;
     while((await fight.snap()).screen==='Fight'&&Date.now()-attackStart<60000){
@@ -70,6 +85,7 @@ function check(ok,name){report.checks.push({name,pass:!!ok});if(!ok)throw Error(
       }else await fight.pause(100);
     }
     fight.scenario.final=await fight.record();fight.scenario.swipeAttempts=attempts;await fight.picture('result');
+    await fight.advanceHeld(false);
     const final=fight.scenario.final;
     check(final.screen==='Result'&&final.opponentHP<100&&final.playerHits>0,'real directional touch punches geometrically HIT and reduce opponent HP');
     check(final.result==='PLAYER_WIN','patient real touch attack can win default Ramirez bout');
