@@ -1,0 +1,239 @@
+{
+  "scope": "SYNTHETIC_DESKTOP_REAL_UI_NOT_DEVICE_UAT",
+  "checks": [
+    {
+      "name": "boxer favicon loads as six-frame ICO",
+      "pass": true
+    },
+    {
+      "name": "home locks gameplay",
+      "pass": true
+    },
+    {
+      "name": "menu keyboard cannot spend capacity",
+      "pass": true
+    },
+    {
+      "name": "preview locks gameplay",
+      "pass": true
+    },
+    {
+      "name": "tutorial unscored",
+      "pass": true
+    },
+    {
+      "name": "real accepted keyboard punch spends resources",
+      "pass": true
+    },
+    {
+      "name": "result locks both controllers and input",
+      "pass": true
+    },
+    {
+      "name": "result has actual verdict and reason",
+      "pass": true
+    },
+    {
+      "name": "resources freeze after result",
+      "pass": true
+    },
+    {
+      "name": "rematch resets without actor duplication",
+      "pass": true
+    },
+    {
+      "name": "browser has no JS/load errors",
+      "pass": true
+    }
+  ],
+  "states": {
+    "home": {
+      "scope": "SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",
+      "screen": "Home",
+      "result": "PENDING",
+      "reason": "NONE",
+      "seconds": 0,
+      "playerHP": 100,
+      "opponentHP": 100,
+      "playerStamina": 100,
+      "opponentStamina": 100,
+      "playerCapacity": 100,
+      "opponentCapacity": 100,
+      "playerEnabled": false,
+      "opponentEnabled": false,
+      "gameplayInput": false,
+      "players": 1,
+      "opponents": 1
+    },
+    "preview": {
+      "scope": "SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",
+      "screen": "Preview",
+      "result": "PENDING",
+      "reason": "NONE",
+      "seconds": 0,
+      "playerHP": 100,
+      "opponentHP": 100,
+      "playerStamina": 100,
+      "opponentStamina": 100,
+      "playerCapacity": 100,
+      "opponentCapacity": 100,
+      "playerEnabled": false,
+      "opponentEnabled": false,
+      "gameplayInput": false,
+      "players": 1,
+      "opponents": 1
+    },
+    "tutorial": {
+      "scope": "SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",
+      "screen": "Onboarding",
+      "result": "PENDING",
+      "reason": "NONE",
+      "seconds": 0,
+      "playerHP": 100,
+      "opponentHP": 100,
+      "playerStamina": 100,
+      "opponentStamina": 100,
+      "playerCapacity": 100,
+      "opponentCapacity": 100,
+      "playerEnabled": false,
+      "opponentEnabled": false,
+      "gameplayInput": true,
+      "players": 1,
+      "opponents": 1
+    },
+    "fight-start": {
+      "scope": "SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",
+      "screen": "Fight",
+      "result": "IN_PROGRESS",
+      "reason": "NONE",
+      "seconds": 0.22500000055879354,
+      "playerHP": 100,
+      "opponentHP": 100,
+      "playerStamina": 100,
+      "opponentStamina": 100,
+      "playerCapacity": 100,
+      "opponentCapacity": 100,
+      "playerEnabled": true,
+      "opponentEnabled": true,
+      "gameplayInput": true,
+      "players": 1,
+      "opponents": 1
+    },
+    "accepted-cross": {
+      "scope": "SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",
+      "screen": "Fight",
+      "result": "IN_PROGRESS",
+      "reason": "NONE",
+      "seconds": 0.7389999991282821,
+      "playerHP": 100,
+      "opponentHP": 100,
+      "playerStamina": 96.8,
+      "opponentStamina": 96.77718679090378,
+      "playerCapacity": 84,
+      "opponentCapacity": 84,
+      "playerEnabled": true,
+      "opponentEnabled": true,
+      "gameplayInput": true,
+      "players": 1,
+      "opponents": 1
+    },
+    "fight-mid": {
+      "scope": "SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",
+      "screen": "Fight",
+      "result": "IN_PROGRESS",
+      "reason": "NONE",
+      "seconds": 10.221000025980175,
+      "playerHP": 82.39353039223589,
+      "opponentHP": 100,
+      "playerStamina": 70.78773568198599,
+      "opponentStamina": 100,
+      "playerCapacity": 1.914000017568469,
+      "opponentCapacity": 75.30200022179633,
+      "playerEnabled": true,
+      "opponentEnabled": true,
+      "gameplayInput": true,
+      "players": 1,
+      "opponents": 1
+    },
+    "result": {
+      "scope": "SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",
+      "screen": "Result",
+      "result": "OPPONENT_WIN",
+      "reason": "POINTS",
+      "seconds": 45,
+      "playerHP": 3.3787760448991975,
+      "opponentHP": 100,
+      "playerStamina": 100,
+      "opponentStamina": 99.88636543121598,
+      "playerCapacity": 100,
+      "opponentCapacity": 100,
+      "playerEnabled": false,
+      "opponentEnabled": false,
+      "gameplayInput": false,
+      "players": 1,
+      "opponents": 1
+    },
+    "rematch": {
+      "scope": "SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",
+      "screen": "Fight",
+      "result": "IN_PROGRESS",
+      "reason": "NONE",
+      "seconds": 0.054999999701976776,
+      "playerHP": 100,
+      "opponentHP": 100,
+      "playerStamina": 100,
+      "opponentStamina": 100,
+      "playerCapacity": 100,
+      "opponentCapacity": 100,
+      "playerEnabled": true,
+      "opponentEnabled": true,
+      "gameplayInput": true,
+      "players": 1,
+      "opponents": 1
+    },
+    "result-rematch": {
+      "scope": "SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",
+      "screen": "Result",
+      "result": "OPPONENT_WIN",
+      "reason": "POINTS",
+      "seconds": 45,
+      "playerHP": 55.00917846765721,
+      "opponentHP": 100,
+      "playerStamina": 100,
+      "opponentStamina": 96.7938987040188,
+      "playerCapacity": 100,
+      "opponentCapacity": 84,
+      "playerEnabled": false,
+      "opponentEnabled": false,
+      "gameplayInput": false,
+      "players": 1,
+      "opponents": 1
+    },
+    "home-return": {
+      "scope": "SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",
+      "screen": "Home",
+      "result": "PENDING",
+      "reason": "NONE",
+      "seconds": 0,
+      "playerHP": 100,
+      "opponentHP": 100,
+      "playerStamina": 100,
+      "opponentStamina": 100,
+      "playerCapacity": 100,
+      "opponentCapacity": 100,
+      "playerEnabled": false,
+      "opponentEnabled": false,
+      "gameplayInput": false,
+      "players": 1,
+      "opponents": 1
+    }
+  },
+  "errors": [],
+  "productVersion": "w1-e6d40488052a643cc22121661c40a1c72e69ae14",
+  "favicon": {
+    "url": "TemplateData/favicon.ico?v=w1-e6d40488052a643cc22121661c40a1c72e69ae14",
+    "bytes": 147493,
+    "sha256": "4dcbf263f83d1ac3b33812c51a6145f12809ec52ee6056c739dd16e2248201b2"
+  },
+  "status": "PASS"
+}

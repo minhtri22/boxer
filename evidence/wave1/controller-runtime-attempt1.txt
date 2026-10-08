@@ -1,0 +1,28 @@
+SCOPE=SYNTHETIC_EDITOR_CONTROLLER_AND_INJECTED_CONSEQUENCE_TEST_NOT_PHYSICS_OR_HUMAN_UAT
+PASS home input and combat locked
+PASS menu request rejected without cost
+PASS Left glove imported
+PASS Left glove valid skinned bind
+PASS Left no imported combat collider
+Left glove triangles=16712
+PASS Right glove imported
+PASS Right glove valid skinned bind
+PASS Right no imported combat collider
+Right glove triangles=16712
+PASS accepted Ramirez still owns opponent presentation
+PASS preview consumes menu input
+PASS first bout unscored onboarding
+PASS fresh scored bout starts
+PASS real player accepted action spends once
+PASS real busy rejection costs zero
+PASS controller resolution applies exact committed damage
+PASS controller resolution cannot double count
+PASS real player fatigue slows recovery
+PASS real player fatigue reduces impact
+PASS real opponent fatigue slows recovery
+PASS HUD stamina reads combat state exactly
+PASS next bout resets vitals/counters/AI count
+FAIL EXCEPTION System.NullReferenceException: Object reference not set to an instance of an object
+  at BoxerP0.Editor.Wave1RuntimeAudit.Capture (System.String filename) [0x00017] in D:\WORK\RESEARCH\POVGame\boxer-wave1\unity\BoxerP0\Assets\Editor\Wave1RuntimeAudit.cs:122
+  at BoxerP0.Editor.Wave1RuntimeAudit.Tick () [0x006f4] in D:\WORK\RESEARCH\POVGame\boxer-wave1\unity\BoxerP0\Assets\Editor\Wave1RuntimeAudit.cs:95
+CHECKS=21 EXIT=1
