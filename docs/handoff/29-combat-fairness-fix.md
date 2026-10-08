@@ -1,6 +1,6 @@
 # Combat fairness/contact fix — 2026-10-08
 
-Current status: AUTOMATED_PASS_PENDING_DEPLOY_AND_HUMAN_UAT.
+Current status: IMPLEMENTATION_PASS_PENDING_HUMAN_UAT. Build and deployment PASS.
 
 Owner explicitly requested combat fixes, actual input/contact tests, WebGL build
 and Pages deployment. Existing branch `feature/boxer-product-loop-wave1`;
@@ -70,7 +70,14 @@ player HP 100, opponent HP 0; player blocks 18, opponent blocks 4, player MISS 1
 Both actors and gameplay input lock. Read-only frame/contact trace, trusted
 multi-touch receipts, first HIT and result renders are retained. This is a
 repeatable synthetic input tactic, NOT a promise that every casual gesture wins.
-Deployment: NOT_RUN_YET.
+Deployment: SUCCESS, workflow 37803747650, artifact commit
+`8a9cea2dfd8acfa0cb1bbc13b0f045d23dfc2b36`. Public provenance and all seven
+payload SHA-256 values match the local tested build (2026-10-08T15:53:37.1413966Z).
+Live: https://minhtri22.github.io/boxer/
+Workflow: https://github.com/minhtri22/boxer/actions/runs/37803747650
+Public provenance SHA-256:
+`24b3264d9a27970a92c285a41a632cbc29ec81ca6984b5f9a4f689c5bc9444e3`.
+Any later documentation-only commit does not replace this deployed artifact.
 Attempt 4 on the revised build PASSed close body guard interception (.62m,
 HP 100 unchanged) and real long-range MISS / closed-guard straight BLOCK.
 Its attack macro FAILed because the driver supplied the remaining LEFT point to
