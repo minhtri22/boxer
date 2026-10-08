@@ -73,6 +73,16 @@ over HTTP with its expected hash. At portrait 540x960, inspected head/boot/glove
 icons, captions, directional arrows/trails and pulse frames are readable and
 do not overlap controls. This is not phone sensor or reference-fidelity Human
 approval. Candidate is ready for the owner's authorized Pages deployment.
+Deployment completed: workflow
+[`37751346819`](https://github.com/minhtri22/boxer/actions/runs/37751346819)
+reports **success** at artifact commit
+`55ad0fd2f4c16f865bec99b5705b8f078df8ee65`. All five existing Pages policies
+were preserved, with no new policy required. Public provenance matches the
+local compiled source byte-for-byte; all seven public payloads return HTTP 200
+and match their recorded SHA-256. See `onboarding-v2/deployment.txt`. Owner can
+test at https://minhtri22.github.io/boxer/ via Home's dedicated practice button.
+Automated build/browser/deployment PASS is not Human UAT PASS; inherited
+visual/contact/performance gates remain unresolved.
 New evidence goes to `evidence/wave1/onboarding-v2`; previous Wave1 evidence
 remains unchanged. Browser audit uses real UI and synthetic CDP touches, not
 hidden StartBout injection; desktop head keys are not phone-sensor Human UAT.
