@@ -55,6 +55,7 @@ function check(ok,name){report.checks.push({name,pass:!!ok});if(!ok)throw Error(
     check(guard.scenario.final.playerHP>0,'idle high guard survives default bout; exposed body may take damage');
     check(['Jab','Cross','LeadHook','CrossBody'].every(c=>guard.scenario.choices.includes(c)),'real AI uses all four choices including head/body instead of old Cross loop');
     console.log('IDLE_GUARD',JSON.stringify(guard.scenario.final));
+    await guard.context.close();
     const bodyGuard=await match('body-guard');await bodyGuard.advanceHeld(true);
     await bodyGuard.page.waitForFunction(()=>{const s=window.boxerWave1Snapshot;return s?.screen==='Fight'&&s.opponentPhase==='Commit'&&s.opponentBody&&s.distance<.7;},null,{timeout:20000});
     const bodyBefore=await bodyGuard.snap();await bodyGuard.pause(650);const bodyAfter=await bodyGuard.record();
@@ -62,6 +63,7 @@ function check(ok,name){report.checks.push({name,pass:!!ok});if(!ok)throw Error(
     check(bodyAfter.playerBlocks>bodyBefore.playerBlocks&&bodyAfter.playerHP===bodyBefore.playerHP,'actual body attack intersecting close high guard BLOCKS without HP loss');
     check(bodyAfter.distance<.7,'lower-left forward touch can follow retreating AI into real close range');
     await bodyGuard.advanceHeld(false);
+    await bodyGuard.context.close();
     const fight=await match('touch-attack');
     let before=await fight.snap();
     await fight.gesture(420,750);await fight.pause(700);
