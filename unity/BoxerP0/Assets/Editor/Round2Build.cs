@@ -47,7 +47,8 @@ namespace BoxerP0.Editor
                 metadata.AppendLine("contact=shared_anatomical_pose_relative_sphere_sweep_240Hz");
                 metadata.AppendLine("presentation=accepted_ramirez_native_rig_readonly_mapping_no_bottom_controls");
                 metadata.AppendLine("vitals=wave1_authoritative_hp_stamina_capacity_quality_recovery_ko");
-                metadata.AppendLine("product_loop=home_preview_tutorial_fight_result_rematch");
+                metadata.AppendLine("product_loop=home_preview_immediate_fight_result_rematch");
+                metadata.AppendLine("training=separate_optional_head_footwork_four_punch_families_no_ai_no_score_persist_completion");
                 foreach(string side in new[]{"Left","Right"})
                 {
                     using var gloveHash=SHA256.Create();

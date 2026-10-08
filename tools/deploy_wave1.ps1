@@ -24,7 +24,11 @@ function WaveApi([string]$Url,[string]$Method='Get',$Body=$null){
 $waveRemote=WaveApi "$waveApi/git/ref/heads/$waveBranch"
 if($waveRemote.object.sha -ne $ExpectedCommit){throw 'Remote branch SHA mismatch'}
 if($Mode -eq 'Deploy'){
-    if((Get-Content (Join-Path $waveGateDirectory 'browser/report.json') -Raw | ConvertFrom-Json).status -ne 'PASS'){throw 'Browser gate not PASS'}
+    $waveBrowserGate=Get-Content (Join-Path $waveGateDirectory 'browser/report.json') -Raw | ConvertFrom-Json
+    if($waveBrowserGate.status -ne 'PASS' -or $waveBrowserGate.errors.Count -ne 0){throw 'Browser gate not PASS'}
+    $waveLocalProof=Get-Content (Join-Path $waveRoot 'builds/web/boxer-round2/provenance.txt')
+    $waveProductVersion=($waveLocalProof | Where-Object {$_ -like 'productVersion=*'}) -replace '^productVersion=',''
+    if($waveProductVersion -ne $waveBrowserGate.productVersion){throw 'Stale browser report: compiled product version differs'}
     if(-not ((Get-Content (Join-Path $waveGateDirectory 'vitals-tests.txt') -Tail 1) -eq "TOTAL=$ExpectedVitalsChecks PASS=$ExpectedVitalsChecks FAIL=0")){throw 'Vitals gate not PASS'}
     if(-not ((Get-Content (Join-Path $waveGateDirectory 'controller-runtime.txt') -Tail 1) -eq "CHECKS=$ExpectedControllerChecks EXIT=0")){throw 'Controller gate not PASS'}
     $wavePolicies=WaveApi "$waveApi/environments/github-pages/deployment-branch-policies"
