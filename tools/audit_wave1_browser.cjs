@@ -24,6 +24,12 @@ function check(ok, name) { report.checks.push({name, pass: !!ok}); if (!ok) thro
       return report.states[name];
     }
     await page.goto(process.argv[2] || 'http://127.0.0.1:8000/?desktop=1&metrics=1');
+    report.productVersion=await page.evaluate(()=>productVersion);
+    const iconUrl=await page.locator('link[rel="icon"]').getAttribute('href');
+    const iconResponse=await page.request.get(new URL(iconUrl,page.url()).href);
+    const iconBytes=await iconResponse.body();
+    check(iconResponse.status()===200&&iconBytes.readUInt16LE(0)===0&&iconBytes.readUInt16LE(2)===1&&iconBytes.readUInt16LE(4)===6,'boxer favicon loads as six-frame ICO');
+    report.favicon={url:iconUrl,bytes:iconBytes.length,sha256:require('crypto').createHash('sha256').update(iconBytes).digest('hex')};
     await page.locator('#enable').click();
     const home=await state('home','Home');
     check(home.playerHP===100&&!home.gameplayInput&&!home.playerEnabled&&!home.opponentEnabled,'home locks gameplay');
