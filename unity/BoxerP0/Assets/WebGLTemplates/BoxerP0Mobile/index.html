@@ -44,6 +44,9 @@
     const loaderUrl = versioned(buildUrl + '/{{{ LOADER_FILENAME }}}');
     const config = {
       dataUrl: versioned(buildUrl + '/{{{ DATA_FILENAME }}}'),
+      // Full committed-source version in the URL: this payload never mutates.
+      // Reload can use Unity's stored response without a conditional 304 fetch.
+      cacheControl: (url) => new URL(url, document.baseURI).searchParams.get('v') === productVersion ? 'immutable' : 'no-store',
       frameworkUrl: versioned(buildUrl + '/{{{ FRAMEWORK_FILENAME }}}'),
 #if USE_WASM
       codeUrl: versioned(buildUrl + '/{{{ CODE_FILENAME }}}'),
