@@ -32,6 +32,7 @@ if($Mode -eq 'Deploy'){
     if($EvidenceSubdirectory -eq 'wave1/combat-v3'){
         $waveContactGate=Get-Content (Join-Path $waveGateDirectory 'combat-browser/report.json') -Raw | ConvertFrom-Json
         if($waveContactGate.status -ne 'PASS' -or $waveContactGate.errors.Count -ne 0 -or $waveContactGate.productVersion -ne $waveProductVersion){throw 'Physical input/contact browser gate not PASS or stale'}
+        if($waveContactGate.checks.Count -ne 17 -or @($waveContactGate.checks | Where-Object {-not $_.pass}).Count -ne 0){throw 'Full 17-check contact suite required; tactical probe is not a release gate'}
         $waveCombatTail=Get-Content (Join-Path $waveGateDirectory 'combat-tests.txt') -Tail 1
         if($waveCombatTail -notmatch '^TOTAL=(\d+) PASS=(\d+) FAIL=0$' -or $Matches[1] -ne $Matches[2]){throw 'Combat geometry invariant gate not PASS'}
     }
