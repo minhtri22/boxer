@@ -130,8 +130,9 @@ namespace BoxerP0
                 sample.Phase=ActionPhase.Extend; sample.T=Mathf.Lerp(begin,end,alpha);
                 Vector3 b=sample.World(sample.Arm(left).Wrist);
                 Round2Frame tb=Round2Frame.Between(targetOld,target,alpha);
-                int hit=SweepTargets(a,b,ta,tb,!player||!_opponent.CounterWindowOpen,
-                    player?0:_opponent.BodyAttack?2:1,out float earliest);
+                // Aim selects the path, never which intersecting defenses count. Both actors
+                // use all actual volumes; counter eligibility is a label, not guard phasing.
+                int hit=SweepTargets(a,b,ta,tb,true,0,out float earliest);
                 Samples+=7;
                 if(hit>=0)
                 {
@@ -159,7 +160,7 @@ namespace BoxerP0
             earliest=2f; int hit=-1;
             for(int k=0;k<7;k++)
             {
-                if(k<2&&!guardAllowed || targetMode==2&&k<3 || targetMode==1&&k>=3) continue;
+                if(k<2&&!guardAllowed || targetMode==2&&k==2 || targetMode==1&&k>=3) continue;
                 if(Round2Motion.Sweep(a,b,ta.Target(k),tb.Target(k),Round2Motion.GloveRadius+TargetRadius(k),out float fraction)&&fraction<earliest)
                 { earliest=fraction; hit=k; }
             }

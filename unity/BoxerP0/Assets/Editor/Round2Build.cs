@@ -50,6 +50,7 @@ namespace BoxerP0.Editor
                 metadata.AppendLine("product_loop=home_preview_immediate_fight_result_rematch");
                 metadata.AppendLine("training=separate_optional_head_footwork_four_punch_families_no_ai_no_score_persist_completion");
                 metadata.AppendLine("training_guides=native_boot_head_glove_icons_directional_light_trails_repeat_tap_training_only");
+                metadata.AppendLine("combat_fairness=multiply_high_ai_choice_shared_all_volume_contact_neutral_straight_engagement_range");
                 foreach(string side in new[]{"Left","Right"})
                 {
                     using var gloveHash=SHA256.Create();

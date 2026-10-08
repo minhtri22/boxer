@@ -21,13 +21,17 @@ namespace BoxerP0
             public double seconds,playerHP,opponentHP,playerStamina,opponentStamina,playerCapacity,opponentCapacity;
             public bool playerEnabled,opponentEnabled,gameplayInput;
             public int players,opponents;
+            public int playerHits,opponentHits,playerBlocks,opponentBlocks,playerMisses,opponentMisses;
+            public string playerPhase,opponentPhase,opponentIntent,playerIntent,playerReason,combatLog;
+            public double playerQuality,opponentQuality,distance;
+            public uint opponentAttacks;
         }
         private readonly Snapshot _snapshot=new();
         private void Start()
         { _enabled=Wave1AuditEnabled()==1;_bootstrap=GetComponent<BoxerBootstrap>();_telemetry=FindAnyObjectByType<Phase0Telemetry>(); }
         private void LateUpdate()
         {
-            if(!_enabled||Time.unscaledTime<_next)return;_next=Time.unscaledTime+.25f;
+            if(!_enabled||Time.unscaledTime<_next)return;_next=Time.unscaledTime+.05f;
             var b=_telemetry.Bout;_snapshot.screen=_bootstrap.Flow.Screen.ToString();_snapshot.result=b.Result;_snapshot.reason=b.EndReason;
             _snapshot.seconds=b.Seconds;_snapshot.playerHP=b.Player.HP;_snapshot.opponentHP=b.Opponent.HP;
             _snapshot.playerStamina=b.Player.Stamina;_snapshot.opponentStamina=b.Opponent.Stamina;
@@ -39,6 +43,15 @@ namespace BoxerP0
             _snapshot.tutorialSeen=_bootstrap.Flow.TutorialSeen;
             _snapshot.players=FindObjectsByType<PlayerBoxer>(FindObjectsSortMode.None).Length;
             _snapshot.opponents=FindObjectsByType<OpponentBoxer>(FindObjectsSortMode.None).Length;
+            _snapshot.playerHits=_telemetry.PlayerHits;_snapshot.opponentHits=_telemetry.OpponentHits;
+            _snapshot.playerBlocks=_telemetry.PlayerBlocks;_snapshot.opponentBlocks=_telemetry.OpponentBlocks;
+            _snapshot.playerMisses=_telemetry.PlayerMisses;_snapshot.opponentMisses=_telemetry.OpponentMisses;
+            _snapshot.playerPhase=_telemetry.Player.CurrentPhase.ToString();_snapshot.opponentPhase=_telemetry.Opponent.CurrentPhase.ToString();
+            _snapshot.playerIntent=_telemetry.Player.CurrentIntent.ToString();_snapshot.opponentIntent=_telemetry.Opponent.CurrentIntent.ToString();
+            _snapshot.playerReason=_telemetry.Player.LastResolutionReason;_snapshot.combatLog=_telemetry.RecentCombatLog;
+            _snapshot.playerQuality=b.Player.Quality;_snapshot.opponentQuality=b.Opponent.Quality;
+            _snapshot.distance=Vector3.Distance(_telemetry.Player.transform.position,_telemetry.Opponent.transform.position);
+            _snapshot.opponentAttacks=_telemetry.Opponent.AttackEventCount;
             PublishWave1Snapshot(JsonUtility.ToJson(_snapshot));
         }
 #endif

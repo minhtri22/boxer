@@ -25,6 +25,8 @@ namespace BoxerP0
         public int OpponentHits { get; private set; }
         public int OpponentCounterHits { get; private set; }
         public int OpponentBlocks { get; private set; }
+        public int PlayerMisses { get; private set; }
+        public int OpponentMisses { get; private set; }
         public string BoutResult { get; private set; } = "PENDING";
 
         public BoxerInput InputSource { get; set; }
@@ -79,6 +81,7 @@ namespace BoxerP0
             OpponentHits = 0;
             OpponentCounterHits = 0;
             OpponentBlocks = 0;
+            PlayerMisses = OpponentMisses = 0;
             BoutResult = "IN_PROGRESS";
             LastOutcome = "NONE";
             _combatLog.Clear();
@@ -100,6 +103,7 @@ namespace BoxerP0
             Bout.Reset(); BoutResult = "PENDING";
             PlayerHits = PlayerCounterHits = PlayerBlocks = 0;
             OpponentHits = OpponentCounterHits = OpponentBlocks = 0;
+            PlayerMisses = OpponentMisses = 0;
             LastOutcome = "NONE"; _combatLog.Clear(); RecordEvent("SESSION_RESET");
         }
 
@@ -145,6 +149,7 @@ namespace BoxerP0
                 {
                     OpponentBlocks++;
                 }
+                else if (outcome == CombatOutcome.Miss) PlayerMisses++;
             }
             else if (actor == "OPPONENT")
             {
@@ -157,6 +162,7 @@ namespace BoxerP0
                 {
                     PlayerBlocks++;
                 }
+                else if (outcome == CombatOutcome.Miss) OpponentMisses++;
             }
 
 #if !(UNITY_WEBGL && !UNITY_EDITOR)

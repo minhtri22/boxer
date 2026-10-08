@@ -2,7 +2,8 @@
 const { chromium } = require('playwright');
 const fs = require('fs');
 const path = require('path');
-const evidence = path.resolve(__dirname, '../evidence/wave1/onboarding-v2/browser');
+const suite=process.env.BOXER_WAVE_EVIDENCE==='combat-v3'?'combat-v3':'onboarding-v2';
+const evidence = path.resolve(__dirname, '../evidence/wave1/'+suite+'/browser');
 fs.mkdirSync(evidence, { recursive: true });
 const report = { scope: 'SYNTHETIC_DESKTOP_REAL_UI_NOT_DEVICE_UAT', checks: [], states: {}, errors: [] };
 function check(ok, name) { report.checks.push({name, pass: !!ok}); if (!ok) throw new Error(name); }

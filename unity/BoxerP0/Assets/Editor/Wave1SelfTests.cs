@@ -109,7 +109,8 @@ namespace BoxerP0.Editor
             var illustrative=new OnboardingProgress();TrainingGestureGuide.Cue("PUNCHES",10);
             Check(!illustrative.HeadReady&&!illustrative.FootworkReady&&!illustrative.PunchesReady,"illustrative guide does not grant practice progress");
             Log.AppendLine($"TOTAL={_passed+_failed} PASS={_passed} FAIL={_failed}");
-            string dir=Path.GetFullPath(Path.Combine(Application.dataPath,"../../../evidence/wave1/onboarding-v2"));Directory.CreateDirectory(dir);
+            string suite=Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="combat-v3"?"combat-v3":"onboarding-v2";
+            string dir=Path.GetFullPath(Path.Combine(Application.dataPath,"../../../evidence/wave1/"+suite));Directory.CreateDirectory(dir);
             File.WriteAllText(Path.Combine(dir,"vitals-tests.txt"),Log.ToString()); Debug.Log(Log);
             if(_failed!=0)throw new Exception("Wave1 vitals/flow invariant failure");
             string root=Path.GetFullPath(Path.Combine(Application.dataPath,"../../.."));

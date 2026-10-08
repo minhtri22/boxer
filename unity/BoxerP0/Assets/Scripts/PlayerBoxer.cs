@@ -244,9 +244,8 @@ namespace BoxerP0
 
             float leftRadius = _leftGuardCollider.radius * MaxScale(_leftGuardCollider.transform);
             float rightRadius = _rightGuardCollider.radius * MaxScale(_rightGuardCollider.transform);
-            if (!bodyAttack &&
-                (CombatGeometry.SegmentSphereIntersects(start, end, _leftGlove.position, punchRadius + leftRadius) ||
-                 CombatGeometry.SegmentSphereIntersects(start, end, _rightGlove.position, punchRadius + rightRadius)))
+            if (CombatGeometry.SegmentSphereIntersects(start, end, _leftGlove.position, punchRadius + leftRadius) ||
+                CombatGeometry.SegmentSphereIntersects(start, end, _rightGlove.position, punchRadius + rightRadius))
             {
                 reason = "PLAYER_GUARD_INTERSECTION";
                 return CombatOutcome.Block;

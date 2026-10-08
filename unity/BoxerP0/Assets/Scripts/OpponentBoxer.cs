@@ -201,7 +201,7 @@ namespace BoxerP0
             if (!CombatEnabled) return;
             if (_resolvedThisAttack) return;
             if (!_action.IsBusy || _vitalAttack.Intent != _action.Intent) return;
-            if (_telemetry != null && !_telemetry.ResolveVitalAttack(false, _vitalAttack, outcome, _bodyAttack)) return;
+            if (_telemetry != null && !_telemetry.ResolveVitalAttack(false, _vitalAttack, outcome, reason.Contains("BODY"))) return;
             _resolvedThisAttack = true;
             P1CounterOpportunity opportunity = P1CounterGeometry.Evaluate(
                 start,
@@ -315,8 +315,8 @@ namespace BoxerP0
             float distance = delta.magnitude;
             if (distance < 0.001f) return;
             Vector3 direction = delta / distance;
-            float desired = Round2Motion.CloseBoundary + Round2Motion.HeadRadius;
-            float speed = distance > desired + 0.045f ? 0.36f : distance < desired - 0.045f ? -0.32f : 0f;
+            float desired = Round2Motion.EngagementDistance;
+            float speed = distance > desired + 0.03f ? 0.36f : distance < desired - 0.03f ? -0.32f : 0f;
             Vector3 lateral = Vector3.Cross(Vector3.up, direction) * (Mathf.Sin(Time.time * 0.8f) * 0.10f);
             Vector3 next = transform.position + (direction * speed + lateral) * Time.deltaTime;
             next.x = Mathf.Clamp(next.x, -2.0f, 2.0f);
@@ -326,9 +326,7 @@ namespace BoxerP0
 
         private int NextInt(int minInclusive, int maxExclusive)
         {
-            _rng = 1664525u * _rng + 1013904223u;
-            uint range = (uint)(maxExclusive - minInclusive);
-            return minInclusive + (int)(_rng % range);
+            return minInclusive + OpponentAttackRandom.NextIndex(ref _rng, maxExclusive-minInclusive);
         }
 
         private float NextFloat(float min, float max)
@@ -356,6 +354,17 @@ namespace BoxerP0
         {
             Vector3 scale = value.lossyScale;
             return Mathf.Max(Mathf.Abs(scale.x), Mathf.Abs(scale.y), Mathf.Abs(scale.z));
+        }
+    }
+
+    public static class OpponentAttackRandom
+    {
+        // Multiply-high selection uses the full state, not the LCG's periodic low bits.
+        public static int NextIndex(ref uint state, int count)
+        {
+            if(count<=0)throw new System.ArgumentOutOfRangeException(nameof(count));
+            state=unchecked(1664525u*state+1013904223u);
+            return (int)(((ulong)state*(uint)count)>>32);
         }
     }
 }

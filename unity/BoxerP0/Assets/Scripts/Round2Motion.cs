@@ -83,6 +83,8 @@ namespace BoxerP0
         // Pocket = hook forward extent + head/glove surfaces. Outer range includes guard extension.
         public const float CloseBoundary = 0.48f + HeadRadius + GloveRadius;
         public const float BoxingBoundary = 0.67f + 0.28f + 2f * GloveRadius;
+        // Neutral straights can reach an exposed head here; hooks still require closing in.
+        public const float EngagementDistance = CloseBoundary + 0.045f;
         public static string Band(float distance) => distance > BoxingBoundary ? "LONG" : distance < CloseBoundary ? "CLOSE" : "BOXING";
 
         // Relative sweep handles moving defender volumes; returns earliest surface contact.
