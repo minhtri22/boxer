@@ -71,6 +71,7 @@ function check(ok,name){report.checks.push({name,pass:!!ok});if(!ok)throw Error(
     check(bodyReady.opponentPhase==='Commit'&&bodyReady.opponentBody&&bodyReady.distance<.7,'close body guard contact precondition reached with real touch input');
     const bodyBefore=await bodyGuard.snap();await bodyGuard.pause(650);const bodyAfter=await bodyGuard.record();
     bodyGuard.scenario.contact={before:bodyBefore,after:bodyAfter};await bodyGuard.picture('contact');
+    console.log('BODY_GUARD',JSON.stringify(bodyGuard.scenario.contact));
     check(bodyAfter.playerBlocks>bodyBefore.playerBlocks&&bodyAfter.playerHP===bodyBefore.playerHP,'actual body attack intersecting close high guard BLOCKS without HP loss');
     check(bodyAfter.distance<.7,'lower-left forward touch can follow retreating AI into real close range');
     await bodyGuard.advanceHeld(false);
@@ -81,12 +82,14 @@ function check(ok,name){report.checks.push({name,pass:!!ok});if(!ok)throw Error(
     let before=await fight.snap();
     await fight.gesture(420,750);await fight.pause(700);
     let after=await fight.record();fight.scenario.longRange={before,after};await fight.picture('long-miss');
+    console.log('LONG_RANGE',JSON.stringify(fight.scenario.longRange));
     check(after.playerMisses>before.playerMisses&&after.opponentHP===before.opponentHP,'real long-range touch punch resolves MISS and zero HP');
     check(after.playerCapacity<before.playerCapacity,'accepted MISS still spends real resources');
     await fight.gesture(135,750,0,-110,450);await fight.pause(250);
     await fight.page.waitForFunction(()=>{const s=window.boxerWave1Snapshot;return s?.screen==='Fight'&&s.distance<.9&&s.opponentPhase==='Guard'&&s.playerPhase==='Guard';},null,{timeout:15000});
     before=await fight.snap();await fight.gesture(420,750);await fight.pause(650);after=await fight.record();
     fight.scenario.closedGuard={before,after};await fight.picture('closed-guard');
+    console.log('CLOSED_GUARD',JSON.stringify(fight.scenario.closedGuard));
     check(after.opponentBlocks>before.opponentBlocks&&after.opponentHP===before.opponentHP,'real touch straight is BLOCKED by opponent glove, zero HP');
     await fight.advanceHeld(true);
     const attackStart=Date.now();
@@ -97,6 +100,7 @@ function check(ok,name){report.checks.push({name,pass:!!ok});if(!ok)throw Error(
         // Patient down-swipe overhands approach above a high guard; no hidden aim or outcome setter.
         await fight.gesture(420,700,0,105,170);attempts++;
         await fight.pause(1150);
+        if(attempts%4===0)console.log('ATTACK_PROGRESS',JSON.stringify(await fight.snap()));
       }else await fight.pause(100);
     }
     fight.scenario.final=await fight.record();fight.scenario.swipeAttempts=attempts;await fight.picture('result');
