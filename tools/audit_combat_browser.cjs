@@ -1,0 +1,86 @@
+// Real browser keyboard/touch input and shared rendered sweep. No score/outcome injection.
+const {chromium}=require('playwright');
+const fs=require('fs'),path=require('path');
+const evidence=path.resolve(__dirname,'../evidence/wave1/combat-v3/combat-browser');
+fs.mkdirSync(evidence,{recursive:true});
+const report={scope:'REAL_WEBGL_INPUT_AND_SOLVED_CONTACT_SYNTHETIC_DESKTOP_NOT_PHONE_UAT',checks:[],errors:[],scenarios:{}};
+function check(ok,name){report.checks.push({name,pass:!!ok});if(!ok)throw Error(name);}
+(async()=>{
+  const browser=await chromium.launch({executablePath:'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',headless:true,
+    args:['--use-angle=d3d11','--disable-background-timer-throttling','--disable-renderer-backgrounding']});
+  try{
+    async function match(name){
+      const context=await browser.newContext({viewport:{width:540,height:960},hasTouch:true});
+      const page=await context.newPage(),touch=await context.newCDPSession(page);
+      const scenario=report.scenarios[name]={trace:[],choices:[]};
+      page.on('pageerror',e=>report.errors.push(String(e)));
+      page.on('console',m=>{if(m.type()==='error')report.errors.push(m.text());});
+      page.on('requestfailed',r=>report.errors.push(r.url()+' '+r.failure()?.errorText));
+      page.on('response',r=>{if(r.status()>=400)report.errors.push('HTTP '+r.status()+' '+r.url());});
+      await page.goto(process.argv[2]||'http://127.0.0.1:8000/?desktop=1&metrics=1');
+      report.productVersion=await page.evaluate(()=>productVersion);
+      await page.locator('#enable').click();
+      await page.waitForFunction(()=>window.boxerWave1Snapshot?.screen==='Home',null,{timeout:150000});
+      await page.mouse.click(270,674);await page.waitForFunction(()=>window.boxerWave1Snapshot?.screen==='Preview');
+      await page.mouse.click(270,779);await page.waitForFunction(()=>window.boxerWave1Snapshot?.screen==='Fight');
+      const snap=()=>page.evaluate(()=>window.boxerWave1Snapshot);
+      let lastAttack=0;
+      async function record(){const s=await snap();scenario.trace.push(s);
+        if(s.opponentAttacks>lastAttack&&s.opponentIntent!=='None') {lastAttack=s.opponentAttacks;scenario.choices.push(s.opponentBody?'CrossBody':s.opponentIntent);}
+        return s;
+      }
+      async function pause(ms){const end=Date.now()+ms;while(Date.now()<end){await page.waitForTimeout(80);await record();}}
+      async function gesture(x,y,dx=0,dy=0,hold=100){
+        await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x,y}]});await pause(100);
+        if(dx||dy)await touch.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:x+dx,y:y+dy}]});
+        await pause(hold);await touch.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+      }
+      async function picture(label){await page.screenshot({path:path.join(evidence,name+'-'+label+'.png')});}
+      return {page,context,snap,record,pause,gesture,picture,scenario};
+    }
+    const guard=await match('idle-guard');
+    const guardStart=Date.now();
+    while((await guard.snap()).screen==='Fight'&&Date.now()-guardStart<65000)await guard.pause(100);
+    guard.scenario.final=await guard.record();await guard.picture('result');
+    check(guard.scenario.final.screen==='Result','idle guard reaches actual result without forced finish');
+    check(guard.scenario.final.playerBlocks>0,'actual enemy punches intersect idle player guard');
+    check(guard.scenario.final.opponentHP===100,'idle player cannot deal unearned damage');
+    check(guard.scenario.final.playerHP>0,'idle high guard survives default bout; exposed body may take damage');
+    check(['Jab','Cross','LeadHook','CrossBody'].every(c=>guard.scenario.choices.includes(c)),'real AI uses all four choices including head/body instead of old Cross loop');
+    console.log('IDLE_GUARD',JSON.stringify(guard.scenario.final));
+    const fight=await match('touch-attack');
+    let before=await fight.snap();
+    await fight.gesture(420,750);await fight.pause(700);
+    let after=await fight.record();fight.scenario.longRange={before,after};await fight.picture('long-miss');
+    check(after.playerMisses>before.playerMisses&&after.opponentHP===before.opponentHP,'real long-range touch punch resolves MISS and zero HP');
+    check(after.playerCapacity<before.playerCapacity,'accepted MISS still spends real resources');
+    await fight.gesture(135,750,0,-110,450);await fight.pause(250);
+    await fight.page.waitForFunction(()=>{const s=window.boxerWave1Snapshot;return s?.screen==='Fight'&&s.distance<.9&&s.opponentPhase==='Guard'&&s.playerPhase==='Guard';},null,{timeout:15000});
+    before=await fight.snap();await fight.gesture(420,750);await fight.pause(650);after=await fight.record();
+    fight.scenario.closedGuard={before,after};await fight.picture('closed-guard');
+    check(after.opponentBlocks>before.opponentBlocks&&after.opponentHP===before.opponentHP,'real touch straight is BLOCKED by opponent glove, zero HP');
+    const attackStart=Date.now();
+    let attempts=0;
+    while((await fight.snap()).screen==='Fight'&&Date.now()-attackStart<60000){
+      const current=await fight.snap();
+      if(current.playerPhase==='Guard'){
+        // Patient down-swipe overhands approach above a high guard; no hidden aim or outcome setter.
+        await fight.gesture(420,700,0,105,170);attempts++;
+        await fight.pause(1150);
+      }else await fight.pause(100);
+    }
+    fight.scenario.final=await fight.record();fight.scenario.swipeAttempts=attempts;await fight.picture('result');
+    const final=fight.scenario.final;
+    check(final.screen==='Result'&&final.opponentHP<100&&final.playerHits>0,'real directional touch punches geometrically HIT and reduce opponent HP');
+    check(final.result==='PLAYER_WIN','patient real touch attack can win default Ramirez bout');
+    check(final.reason==='KO'&&final.opponentHP===0&&!final.playerEnabled&&!final.opponentEnabled,'physical punch HP zero produces KO and locks both actors');
+    check(final.playerStamina>=0&&final.playerStamina<=100&&final.playerCapacity>=0&&final.playerCapacity<=100,'physical combat keeps stamina/capacity within exact model bounds');
+    console.log('TOUCH_ATTACK',JSON.stringify(final));
+    check(report.errors.length===0,'physical WebGL combat has zero JS/load/HTTP errors');report.status='PASS';
+  }catch(e){report.status='FAIL';report.failure=String(e);process.exitCode=1;}
+  finally{
+    // Persist evidence before shutdown; closing Edge must not hide a completed/failing audit.
+    fs.writeFileSync(path.join(evidence,'report.json'),JSON.stringify(report,null,2));
+    console.log(report.status,report.failure||'');await browser.close();
+  }
+})();

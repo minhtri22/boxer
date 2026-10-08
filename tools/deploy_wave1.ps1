@@ -29,6 +29,12 @@ if($Mode -eq 'Deploy'){
     $waveLocalProof=Get-Content (Join-Path $waveRoot 'builds/web/boxer-round2/provenance.txt')
     $waveProductVersion=($waveLocalProof | Where-Object {$_ -like 'productVersion=*'}) -replace '^productVersion=',''
     if($waveProductVersion -ne $waveBrowserGate.productVersion){throw 'Stale browser report: compiled product version differs'}
+    if($EvidenceSubdirectory -eq 'wave1/combat-v3'){
+        $waveContactGate=Get-Content (Join-Path $waveGateDirectory 'combat-browser/report.json') -Raw | ConvertFrom-Json
+        if($waveContactGate.status -ne 'PASS' -or $waveContactGate.errors.Count -ne 0 -or $waveContactGate.productVersion -ne $waveProductVersion){throw 'Physical input/contact browser gate not PASS or stale'}
+        $waveCombatTail=Get-Content (Join-Path $waveGateDirectory 'combat-tests.txt') -Tail 1
+        if($waveCombatTail -notmatch '^TOTAL=(\d+) PASS=(\d+) FAIL=0$' -or $Matches[1] -ne $Matches[2]){throw 'Combat geometry invariant gate not PASS'}
+    }
     if(-not ((Get-Content (Join-Path $waveGateDirectory 'vitals-tests.txt') -Tail 1) -eq "TOTAL=$ExpectedVitalsChecks PASS=$ExpectedVitalsChecks FAIL=0")){throw 'Vitals gate not PASS'}
     if(-not ((Get-Content (Join-Path $waveGateDirectory 'controller-runtime.txt') -Tail 1) -eq "CHECKS=$ExpectedControllerChecks EXIT=0")){throw 'Controller gate not PASS'}
     $wavePolicies=WaveApi "$waveApi/environments/github-pages/deployment-branch-policies"
