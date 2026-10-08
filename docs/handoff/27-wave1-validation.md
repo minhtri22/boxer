@@ -59,7 +59,11 @@ Correct numerical consequences of contact events do not certify visible hits.
 
 WebGL compilation and payload verification are **PASSED on attempt 6**;
 final browser validation is **PASS (11/11 checks, zero JS/load/HTTP errors)**.
-Deployment has not been performed at the time this pre-deployment report is saved.
+Deployment is **VERIFIED**: release artifact commit
+`6b81d684c13697d8fba3d8d03ffbcddd417887c6`, compiled source above;
+[Pages workflow 37722815248](https://github.com/minhtri22/boxer/actions/runs/37722815248)
+completed successfully. Online provenance is byte-identical to the local release;
+all seven deployed payload SHA256s match, including the cleaned boxer ICO.
 First build failed with clang/system-resource
 errors. The second attempt used session-only `BEE_BUILD_THREADS=1` but failed
 again; its supervisor also reported `Out of memory`. Source/settings remained
@@ -112,9 +116,13 @@ Owner explicitly approved adding ONLY `feature/boxer-product-loop-wave1` to the
 Pages allowlist, preserving every existing policy, and deploying when WebGL
 tests pass. This is conditional authorization, not deployment evidence.
 Do not dispatch until local browser UI/input tests and provenance verification
-pass. No allowlist mutation or workflow dispatch has been performed for Wave 1.
+pass. Those gates passed; the exact additive Wave1 branch policy was created,
+all four original branch policies were confirmed preserved, and the workflow
+above was dispatched against the exact pushed release artifact commit.
 Synthetic desktop tests are not iPhone sensor/performance/Human UAT.
 
 Overall release remains **IMPLEMENTATION_BLOCKED / HUMAN_UAT_PENDING** while
 inherited visual/contact/performance gates are unresolved. Numerical
 model/controller PASS must not be relabeled as overall gameplay or Human PASS.
+This deployed candidate is available for owner testing, not certified Human UAT.
+See `evidence/wave1/deployment.txt` for exact deployment/hash evidence.
