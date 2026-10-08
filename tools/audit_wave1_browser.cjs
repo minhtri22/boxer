@@ -14,6 +14,7 @@ function check(ok, name) { report.checks.push({name, pass: !!ok}); if (!ok) thro
     page.on('pageerror', e=>report.errors.push(String(e)));
     page.on('console', m=>{if(m.type()==='error')report.errors.push(m.text());});
     page.on('requestfailed', r=>report.errors.push(r.url()+' '+r.failure()?.errorText));
+    page.on('response', r=>{if(r.status()>=400)report.errors.push('HTTP '+r.status()+' '+r.url());});
     const snap = () => page.evaluate(()=>window.boxerWave1Snapshot);
     async function state(name, screen) {
       await page.waitForFunction(s=>window.boxerWave1Snapshot?.screen===s,screen,{timeout:150000});
