@@ -1,0 +1,501 @@
+{
+  "scope": "SYNTHETIC_DESKTOP_REAL_UI_NOT_DEVICE_UAT",
+  "checks": [
+    {
+      "name": "boxer favicon loads as six-frame ICO",
+      "pass": true
+    },
+    {
+      "name": "home locks gameplay",
+      "pass": true
+    },
+    {
+      "name": "menu keyboard cannot spend capacity",
+      "pass": true
+    },
+    {
+      "name": "preview locks gameplay",
+      "pass": true
+    },
+    {
+      "name": "first bout starts without tutorial wait",
+      "pass": true
+    },
+    {
+      "name": "real accepted keyboard punch spends resources",
+      "pass": true
+    },
+    {
+      "name": "result locks both controllers and input",
+      "pass": true
+    },
+    {
+      "name": "result has actual verdict and reason",
+      "pass": true
+    },
+    {
+      "name": "resources freeze after result",
+      "pass": true
+    },
+    {
+      "name": "rematch resets without actor duplication",
+      "pass": true
+    },
+    {
+      "name": "first-user training is separate unscored AI-disabled",
+      "pass": true
+    },
+    {
+      "name": "idle training does not advance by old timer",
+      "pass": true
+    },
+    {
+      "name": "next requires actual practice",
+      "pass": true
+    },
+    {
+      "name": "head light guide alternates left and right without granting progress",
+      "pass": true
+    },
+    {
+      "name": "synthetic head movement completes both directions",
+      "pass": true
+    },
+    {
+      "name": "explicit Next opens movement lesson",
+      "pass": true
+    },
+    {
+      "name": "all four movement light examples remain illustrative",
+      "pass": true
+    },
+    {
+      "name": "lower-left touch swipes register all four movement directions",
+      "pass": true
+    },
+    {
+      "name": "explicit Next opens punch lesson",
+      "pass": true
+    },
+    {
+      "name": "four directional punch guides and repeating tap do not complete practice",
+      "pass": true
+    },
+    {
+      "name": "lower-right touch up down left right and repeated taps complete punch lesson",
+      "pass": true
+    },
+    {
+      "name": "practice never changes scored HP stamina or timer",
+      "pass": true
+    },
+    {
+      "name": "completed training returns Home and records completion",
+      "pass": true
+    },
+    {
+      "name": "practice exit does not auto-start a match",
+      "pass": true
+    },
+    {
+      "name": "payload transfers finish before deliberate reload",
+      "pass": true
+    },
+    {
+      "name": "completed onboarding persists across reload",
+      "pass": true
+    },
+    {
+      "name": "light guides hidden outside training",
+      "pass": true
+    },
+    {
+      "name": "browser has no JS/load errors",
+      "pass": true
+    }
+  ],
+  "states": {
+    "home": {
+      "scope": "SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",
+      "screen": "Home",
+      "result": "PENDING",
+      "reason": "NONE",
+      "trainingStage": "",
+      "trainingGuide": "",
+      "trainingReady": false,
+      "tutorialSeen": false,
+      "seconds": 0,
+      "playerHP": 100,
+      "opponentHP": 100,
+      "playerStamina": 100,
+      "opponentStamina": 100,
+      "playerCapacity": 100,
+      "opponentCapacity": 100,
+      "playerEnabled": false,
+      "opponentEnabled": false,
+      "gameplayInput": false,
+      "players": 1,
+      "opponents": 1
+    },
+    "preview": {
+      "scope": "SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",
+      "screen": "Preview",
+      "result": "PENDING",
+      "reason": "NONE",
+      "trainingStage": "",
+      "trainingGuide": "",
+      "trainingReady": false,
+      "tutorialSeen": false,
+      "seconds": 0,
+      "playerHP": 100,
+      "opponentHP": 100,
+      "playerStamina": 100,
+      "opponentStamina": 100,
+      "playerCapacity": 100,
+      "opponentCapacity": 100,
+      "playerEnabled": false,
+      "opponentEnabled": false,
+      "gameplayInput": false,
+      "players": 1,
+      "opponents": 1
+    },
+    "fight-start": {
+      "scope": "SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",
+      "screen": "Fight",
+      "result": "IN_PROGRESS",
+      "reason": "NONE",
+      "trainingStage": "",
+      "trainingGuide": "",
+      "trainingReady": false,
+      "tutorialSeen": false,
+      "seconds": 0.13299999944865704,
+      "playerHP": 100,
+      "opponentHP": 100,
+      "playerStamina": 100,
+      "opponentStamina": 100,
+      "playerCapacity": 100,
+      "opponentCapacity": 100,
+      "playerEnabled": true,
+      "opponentEnabled": true,
+      "gameplayInput": true,
+      "players": 1,
+      "opponents": 1
+    },
+    "accepted-cross": {
+      "scope": "SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",
+      "screen": "Fight",
+      "result": "IN_PROGRESS",
+      "reason": "NONE",
+      "trainingStage": "",
+      "trainingGuide": "",
+      "trainingReady": false,
+      "tutorialSeen": false,
+      "seconds": 0.6449999967589974,
+      "playerHP": 100,
+      "opponentHP": 100,
+      "playerStamina": 96.90099999979138,
+      "opponentStamina": 96.7780000001192,
+      "playerCapacity": 84.6059999987483,
+      "opponentCapacity": 84,
+      "playerEnabled": true,
+      "opponentEnabled": true,
+      "gameplayInput": true,
+      "players": 1,
+      "opponents": 1
+    },
+    "fight-mid": {
+      "scope": "SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",
+      "screen": "Fight",
+      "result": "IN_PROGRESS",
+      "reason": "NONE",
+      "trainingStage": "",
+      "trainingGuide": "",
+      "trainingReady": false,
+      "tutorialSeen": false,
+      "seconds": 9.33299995586276,
+      "playerHP": 82.6026400129631,
+      "opponentHP": 100,
+      "playerStamina": 68.18292396884131,
+      "opponentStamina": 97.37948843085772,
+      "playerCapacity": 1.7339999936521053,
+      "opponentCapacity": 58.91599966771901,
+      "playerEnabled": true,
+      "opponentEnabled": true,
+      "gameplayInput": true,
+      "players": 1,
+      "opponents": 1
+    },
+    "result": {
+      "scope": "SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",
+      "screen": "Result",
+      "result": "OPPONENT_WIN",
+      "reason": "POINTS",
+      "trainingStage": "",
+      "trainingGuide": "",
+      "trainingReady": false,
+      "tutorialSeen": false,
+      "seconds": 45,
+      "playerHP": 3.549204604766423,
+      "opponentHP": 100,
+      "playerStamina": 100,
+      "opponentStamina": 99.99766536083254,
+      "playerCapacity": 100,
+      "opponentCapacity": 100,
+      "playerEnabled": false,
+      "opponentEnabled": false,
+      "gameplayInput": false,
+      "players": 1,
+      "opponents": 1
+    },
+    "rematch": {
+      "scope": "SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",
+      "screen": "Fight",
+      "result": "IN_PROGRESS",
+      "reason": "NONE",
+      "trainingStage": "",
+      "trainingGuide": "",
+      "trainingReady": false,
+      "tutorialSeen": false,
+      "seconds": 0.1439999919384718,
+      "playerHP": 100,
+      "opponentHP": 100,
+      "playerStamina": 100,
+      "opponentStamina": 100,
+      "playerCapacity": 100,
+      "opponentCapacity": 100,
+      "playerEnabled": true,
+      "opponentEnabled": true,
+      "gameplayInput": true,
+      "players": 1,
+      "opponents": 1
+    },
+    "result-rematch": {
+      "scope": "SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",
+      "screen": "Result",
+      "result": "OPPONENT_WIN",
+      "reason": "POINTS",
+      "trainingStage": "",
+      "trainingGuide": "",
+      "trainingReady": false,
+      "tutorialSeen": false,
+      "seconds": 45,
+      "playerHP": 1.0092322927535307,
+      "opponentHP": 100,
+      "playerStamina": 100,
+      "opponentStamina": 96.79437376694284,
+      "playerCapacity": 100,
+      "opponentCapacity": 84,
+      "playerEnabled": false,
+      "opponentEnabled": false,
+      "gameplayInput": false,
+      "players": 1,
+      "opponents": 1
+    },
+    "home-return": {
+      "scope": "SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",
+      "screen": "Home",
+      "result": "PENDING",
+      "reason": "NONE",
+      "trainingStage": "",
+      "trainingGuide": "",
+      "trainingReady": false,
+      "tutorialSeen": false,
+      "seconds": 0,
+      "playerHP": 100,
+      "opponentHP": 100,
+      "playerStamina": 100,
+      "opponentStamina": 100,
+      "playerCapacity": 100,
+      "opponentCapacity": 100,
+      "playerEnabled": false,
+      "opponentEnabled": false,
+      "gameplayInput": false,
+      "players": 1,
+      "opponents": 1
+    },
+    "practice-head": {
+      "scope": "SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",
+      "screen": "Onboarding",
+      "result": "PENDING",
+      "reason": "NONE",
+      "trainingStage": "HEADCONTROL",
+      "trainingGuide": "HEAD_RIGHT",
+      "trainingReady": false,
+      "tutorialSeen": false,
+      "seconds": 0,
+      "playerHP": 100,
+      "opponentHP": 100,
+      "playerStamina": 100,
+      "opponentStamina": 100,
+      "playerCapacity": 100,
+      "opponentCapacity": 100,
+      "playerEnabled": false,
+      "opponentEnabled": false,
+      "gameplayInput": true,
+      "players": 1,
+      "opponents": 1
+    },
+    "practice-head-ready": {
+      "scope": "SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",
+      "screen": "Onboarding",
+      "result": "PENDING",
+      "reason": "NONE",
+      "trainingStage": "HEADCONTROL",
+      "trainingGuide": "HEAD_RIGHT",
+      "trainingReady": true,
+      "tutorialSeen": false,
+      "seconds": 0,
+      "playerHP": 100,
+      "opponentHP": 100,
+      "playerStamina": 100,
+      "opponentStamina": 100,
+      "playerCapacity": 100,
+      "opponentCapacity": 100,
+      "playerEnabled": false,
+      "opponentEnabled": false,
+      "gameplayInput": true,
+      "players": 1,
+      "opponents": 1
+    },
+    "practice-feet-ready": {
+      "scope": "SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",
+      "screen": "Onboarding",
+      "result": "PENDING",
+      "reason": "NONE",
+      "trainingStage": "FOOTWORK",
+      "trainingGuide": "MOVE_DOWN",
+      "trainingReady": true,
+      "tutorialSeen": false,
+      "seconds": 0,
+      "playerHP": 100,
+      "opponentHP": 100,
+      "playerStamina": 100,
+      "opponentStamina": 100,
+      "playerCapacity": 100,
+      "opponentCapacity": 100,
+      "playerEnabled": false,
+      "opponentEnabled": false,
+      "gameplayInput": true,
+      "players": 1,
+      "opponents": 1
+    },
+    "practice-punches-ready": {
+      "scope": "SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",
+      "screen": "Onboarding",
+      "result": "PENDING",
+      "reason": "NONE",
+      "trainingStage": "PUNCHES",
+      "trainingGuide": "PUNCH_RIGHT",
+      "trainingReady": true,
+      "tutorialSeen": false,
+      "seconds": 0,
+      "playerHP": 100,
+      "opponentHP": 100,
+      "playerStamina": 100,
+      "opponentStamina": 100,
+      "playerCapacity": 100,
+      "opponentCapacity": 100,
+      "playerEnabled": true,
+      "opponentEnabled": false,
+      "gameplayInput": true,
+      "players": 1,
+      "opponents": 1
+    },
+    "practice-complete-home": {
+      "scope": "SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",
+      "screen": "Home",
+      "result": "PENDING",
+      "reason": "NONE",
+      "trainingStage": "",
+      "trainingGuide": "",
+      "trainingReady": false,
+      "tutorialSeen": true,
+      "seconds": 0,
+      "playerHP": 100,
+      "opponentHP": 100,
+      "playerStamina": 100,
+      "opponentStamina": 100,
+      "playerCapacity": 100,
+      "opponentCapacity": 100,
+      "playerEnabled": false,
+      "opponentEnabled": false,
+      "gameplayInput": false,
+      "players": 1,
+      "opponents": 1
+    },
+    "practice-repeat": {
+      "scope": "SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",
+      "screen": "Onboarding",
+      "result": "PENDING",
+      "reason": "NONE",
+      "trainingStage": "HEADCONTROL",
+      "trainingGuide": "HEAD_LEFT",
+      "trainingReady": false,
+      "tutorialSeen": true,
+      "seconds": 0,
+      "playerHP": 100,
+      "opponentHP": 100,
+      "playerStamina": 100,
+      "opponentStamina": 100,
+      "playerCapacity": 100,
+      "opponentCapacity": 100,
+      "playerEnabled": false,
+      "opponentEnabled": false,
+      "gameplayInput": true,
+      "players": 1,
+      "opponents": 1
+    },
+    "practice-exit-home": {
+      "scope": "SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",
+      "screen": "Home",
+      "result": "PENDING",
+      "reason": "NONE",
+      "trainingStage": "",
+      "trainingGuide": "",
+      "trainingReady": false,
+      "tutorialSeen": true,
+      "seconds": 0,
+      "playerHP": 100,
+      "opponentHP": 100,
+      "playerStamina": 100,
+      "opponentStamina": 100,
+      "playerCapacity": 100,
+      "opponentCapacity": 100,
+      "playerEnabled": false,
+      "opponentEnabled": false,
+      "gameplayInput": false,
+      "players": 1,
+      "opponents": 1
+    },
+    "reload-home": {
+      "scope": "SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",
+      "screen": "Home",
+      "result": "PENDING",
+      "reason": "NONE",
+      "trainingStage": "",
+      "trainingGuide": "",
+      "trainingReady": false,
+      "tutorialSeen": true,
+      "seconds": 0,
+      "playerHP": 100,
+      "opponentHP": 100,
+      "playerStamina": 100,
+      "opponentStamina": 100,
+      "playerCapacity": 100,
+      "opponentCapacity": 100,
+      "playerEnabled": false,
+      "opponentEnabled": false,
+      "gameplayInput": false,
+      "players": 1,
+      "opponents": 1
+    }
+  },
+  "errors": [],
+  "productVersion": "w1-3a861a13872dcdb39d83adcb3f712d41f5b4f79c",
+  "favicon": {
+    "url": "TemplateData/favicon.ico?v=w1-3a861a13872dcdb39d83adcb3f712d41f5b4f79c",
+    "bytes": 147493,
+    "sha256": "4dcbf263f83d1ac3b33812c51a6145f12809ec52ee6056c739dd16e2248201b2"
+  },
+  "status": "PASS"
+}

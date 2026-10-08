@@ -1,0 +1,92 @@
+PASS inactive initial state full resources
+PASS menu/tutorial no spend or regeneration
+PASS Jab accepted cost exact
+PASS Jab quality captured before cost
+PASS Jab hit damage exact
+PASS Jab duplicate resolution ignored
+PASS Jab player/opponent symmetric
+PASS Cross accepted cost exact
+PASS Cross quality captured before cost
+PASS Cross hit damage exact
+PASS Cross duplicate resolution ignored
+PASS Cross player/opponent symmetric
+PASS LeadHook accepted cost exact
+PASS LeadHook quality captured before cost
+PASS LeadHook hit damage exact
+PASS LeadHook duplicate resolution ignored
+PASS LeadHook player/opponent symmetric
+PASS RearHook accepted cost exact
+PASS RearHook quality captured before cost
+PASS RearHook hit damage exact
+PASS RearHook duplicate resolution ignored
+PASS RearHook player/opponent symmetric
+PASS LeadUppercut accepted cost exact
+PASS LeadUppercut quality captured before cost
+PASS LeadUppercut hit damage exact
+PASS LeadUppercut duplicate resolution ignored
+PASS LeadUppercut player/opponent symmetric
+PASS RearUppercut accepted cost exact
+PASS RearUppercut quality captured before cost
+PASS RearUppercut hit damage exact
+PASS RearUppercut duplicate resolution ignored
+PASS RearUppercut player/opponent symmetric
+PASS LeadOverhand accepted cost exact
+PASS LeadOverhand quality captured before cost
+PASS LeadOverhand hit damage exact
+PASS LeadOverhand duplicate resolution ignored
+PASS LeadOverhand player/opponent symmetric
+PASS RearOverhand accepted cost exact
+PASS RearOverhand quality captured before cost
+PASS RearOverhand hit damage exact
+PASS RearOverhand duplicate resolution ignored
+PASS RearOverhand player/opponent symmetric
+PASS MISS no HP change
+PASS MISS still pays accepted action cost
+PASS BLOCK zero HP and bounded guard cost
+PASS BODY hit stamina consequence exact
+PASS caller cannot forge receipt quality or intent
+PASS previous-bout receipt invalid after reset
+PASS receipt cannot switch actor
+PASS invalid outcome cannot consume receipt
+PASS valid resolution after invalid attempt
+PASS invalid or no-action request costs zero
+PASS fatigue monotonic bounded snapshot 0
+PASS fatigue monotonic bounded snapshot 1
+PASS fatigue monotonic bounded snapshot 2
+PASS fatigue monotonic bounded snapshot 3
+PASS fatigue monotonic bounded snapshot 4
+PASS fatigue monotonic bounded snapshot 5
+PASS fatigue monotonic bounded snapshot 6
+PASS fatigue monotonic bounded snapshot 7
+PASS fatigue monotonic bounded snapshot 8
+PASS fatigue monotonic bounded snapshot 9
+PASS fatigue monotonic bounded snapshot 10
+PASS fatigue monotonic bounded snapshot 11
+PASS exhaustion clamp no negative resource
+PASS guard capacity18 stamina4 per simulation second
+PASS recovery capacity6 stamina1 per second
+PASS active phase no regen actual locomotion cost
+PASS HP never regenerates and regen caps
+PASS dt partition accounting tolerance
+PASS timeout clamp and draw
+PASS timeout winner by remaining HP
+PASS HP zero ends bout exactly
+PASS no writes after KO
+PASS full rematch reset
+PASS invalid dt rejected
+PASS home blocks gameplay
+PASS first bout starts immediately without tutorial
+PASS illegal mid-bout navigation rejected
+PASS combat cannot falsely complete training
+PASS result blocks gameplay
+PASS rematch skips already-shown tutorial
+PASS home preview next bout route
+PASS explicit practice replays tutorial
+PASS training cannot silently start combat
+PASS training completion returns Home not Fight
+PASS completed training preference restores without auto training
+PASS trained player still starts fight immediately
+PASS head practice isolated from other skills
+PASS movement practice requires four directions
+PASS tap up down horizontal map to all four families
+TOTAL=91 PASS=91 FAIL=0
