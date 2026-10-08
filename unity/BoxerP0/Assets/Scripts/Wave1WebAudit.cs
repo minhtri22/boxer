@@ -26,6 +26,7 @@ namespace BoxerP0
             public double playerQuality,opponentQuality,distance;
             public uint opponentAttacks;
             public bool opponentBody;
+            public float playerX,playerZ,opponentX,opponentZ,moveX,moveY;
         }
         private readonly Snapshot _snapshot=new();
         private void Start()
@@ -54,6 +55,9 @@ namespace BoxerP0
             _snapshot.distance=Vector3.Distance(_telemetry.Player.transform.position,_telemetry.Opponent.transform.position);
             _snapshot.opponentAttacks=_telemetry.Opponent.AttackEventCount;
             _snapshot.opponentBody=_telemetry.Opponent.BodyAttack;
+            _snapshot.playerX=_telemetry.Player.transform.position.x;_snapshot.playerZ=_telemetry.Player.transform.position.z;
+            _snapshot.opponentX=_telemetry.Opponent.transform.position.x;_snapshot.opponentZ=_telemetry.Opponent.transform.position.z;
+            _snapshot.moveX=_telemetry.InputSource.MovementIntent.x;_snapshot.moveY=_telemetry.InputSource.MovementIntent.y;
             PublishWave1Snapshot(JsonUtility.ToJson(_snapshot));
         }
 #endif

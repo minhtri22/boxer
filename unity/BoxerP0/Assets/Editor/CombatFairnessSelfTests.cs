@@ -53,6 +53,17 @@ namespace BoxerP0.Editor
             }
             foreach(var intent in new[]{PunchIntent.LeadHook,PunchIntent.RearHook,PunchIntent.LeadUppercut,PunchIntent.RearUppercut,PunchIntent.LeadOverhand,PunchIntent.RearOverhand})
                 Check(SampleHead(intent,.69f),intent+" physically reaches exposed head at close range");
+            foreach(float yaw in new[]{0f,90f,180f,270f})
+            {
+                Quaternion facing=Quaternion.Euler(0,yaw,0);
+                foreach(Vector2 intent in new[]{Vector2.up,Vector2.down,Vector2.left,Vector2.right})
+                {
+                    Vector3 actual=PlayerBoxer.ResolveFootworkDelta(intent,facing,.2f);
+                    Vector3 expected=facing*new Vector3(intent.x,0,intent.y)*.3f;
+                    Check(Vector3.Distance(actual,expected)<.00001f&&Mathf.Abs(actual.y)<.00001f,
+                        "POV footwork tracks facing yaw="+yaw+" direction="+intent);
+                }
+            }
             Log.AppendLine($"TOTAL={_pass+_fail} PASS={_pass} FAIL={_fail}");
             string dir=Path.GetFullPath(Path.Combine(Application.dataPath,"../../../evidence/wave1/combat-v3"));Directory.CreateDirectory(dir);
             File.WriteAllText(Path.Combine(dir,"combat-tests.txt"),Log.ToString());Debug.Log(Log);

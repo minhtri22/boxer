@@ -110,7 +110,7 @@ namespace BoxerP0
         private void UpdateFootwork()
         {
             Vector2 intent = _input.MovementIntent;
-            Vector3 delta = new Vector3(intent.x, 0f, intent.y) * (1.5f * Time.deltaTime);
+            Vector3 delta = ResolveFootworkDelta(intent, transform.rotation, Time.deltaTime);
             transform.position += delta;
             Vector3 p = transform.position;
             p.x = Mathf.Clamp(p.x, -2.25f, 2.25f);
@@ -125,6 +125,15 @@ namespace BoxerP0
                     p = _opponent.transform.position + away.normalized * minimumSeparation;
             }
             transform.position = p;
+        }
+
+        // POV controls follow the facing direction, not fixed world axes. Otherwise
+        // holding forward stops chasing as soon as the opponent circles sideways.
+        public static Vector3 ResolveFootworkDelta(Vector2 intent, Quaternion facing, float seconds)
+        {
+            Vector3 delta = facing * new Vector3(intent.x, 0f, intent.y);
+            delta.y = 0f;
+            return delta * (1.5f * seconds);
         }
 
         private void FaceOpponent()
