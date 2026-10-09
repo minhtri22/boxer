@@ -36,3 +36,14 @@ Final compiled browser gates: UI 33/33, real decoded media 20/20, physical input
 A full contact run while another browser audit was active ended on points with two player HITs and failed the win/KO checks. This genuine negative outcome is retained in `combat-browser-concurrent-failure`. The identical compiled game and unchanged contact tactic were then run separately: nine HITs, PLAYER_WIN / KO at 25.943999893 seconds, player HP 100, opponent HP 0. The failed trace frequently overshot the intended pocket before releasing; the successful run establishes that the strict suite can pass, not that timing-dependent input is universally reliable. No combat parameters, seeds, thresholds, scores or outcomes were changed between runs.
 
 Status: **IMPLEMENTATION_PASS_PENDING_HUMAN_UAT**. Deployment receipt will record public verification separately. Device motion, perceived arm anatomy, panel readability, performance and touch ergonomics remain **PENDING_HUMAN_UAT**; numeric tests do not replace visual/device acceptance.
+
+## Public release
+
+- Artifact commit: `6fd86ede12e914b8ba4788237d6b618d061244b9` (compiled source remains `ef89d8cc0933fc455425af030f956b893e5e5bb1`).
+- Workflow [37881747761](https://github.com/minhtri22/boxer/actions/runs/37881747761): completed / success.
+- [Try the release](https://minhtri22.github.io/boxer/?release=ef89d8c).
+- Public decoded media suite: 20/20, zero recorded JS/load/HTTP errors, correct compiled version.
+- All 12 public payloads: HTTP 200, SHA256 matches local provenance; receipt verified at `2026-10-09T04:02:16.0577947+00:00`.
+- Provenance SHA256: `eb2f9bf457c8da7dc33fd3cd7cc1551c475ecddfddfc2b6fc10347ffcca6468f`.
+- All five existing deployment branch policies preserved. No merge to main, no changes to accepted Ramirez art, no changes to combat parameters.
+- `evidence/wave1/training-pov/deployment.txt` and `media-browser-public/report.json` contain the public evidence. Public/build PASS is not phone or Human UAT PASS.
