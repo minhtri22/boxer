@@ -1,0 +1,769 @@
+{
+  "scope": "REAL_WEBGL_UI_MEDIA_SYNTHETIC_DESKTOP_NOT_PHONE_OR_LISTENING_UAT",
+  "checks": [
+    {
+      "name": "Home does not play ring media/crowd",
+      "pass": true
+    },
+    {
+      "name": "Intro locks both actors, input, HP/stamina/capacity and scored clock",
+      "pass": true
+    },
+    {
+      "name": "owner video decodes and advances, without duplicate embedded audio",
+      "pass": true
+    },
+    {
+      "name": "ordinary punch/footwork keys cannot spend or enable AI in Intro",
+      "pass": true
+    },
+    {
+      "name": "Back cancels media; old ended event cannot start hidden combat",
+      "pass": true
+    },
+    {
+      "name": "cancel evidence retains original token",
+      "pass": true
+    },
+    {
+      "name": "new intro is fresh, frozen and epoch separated",
+      "pass": false
+    }
+  ],
+  "errors": [],
+  "states": {
+    "home": {
+      "native": {
+        "scope": "SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",
+        "screen": "Home",
+        "result": "PENDING",
+        "reason": "NONE",
+        "trainingStage": "",
+        "trainingGuide": "",
+        "trainingReady": false,
+        "tutorialSeen": false,
+        "seconds": 0,
+        "playerHP": 100,
+        "opponentHP": 100,
+        "playerStamina": 100,
+        "opponentStamina": 100,
+        "playerCapacity": 100,
+        "opponentCapacity": 100,
+        "playerEnabled": false,
+        "opponentEnabled": false,
+        "gameplayInput": false,
+        "players": 1,
+        "opponents": 1,
+        "playerHits": 0,
+        "opponentHits": 0,
+        "playerBlocks": 0,
+        "opponentBlocks": 0,
+        "playerMisses": 0,
+        "opponentMisses": 0,
+        "playerPhase": "Guard",
+        "opponentPhase": "Guard",
+        "opponentIntent": "None",
+        "playerIntent": "None",
+        "playerReason": "PENDING",
+        "combatLog": "NONE",
+        "playerQuality": 1,
+        "opponentQuality": 1,
+        "distance": 1.399999976158142,
+        "opponentAttacks": 0,
+        "opponentBody": false,
+        "playerX": 0,
+        "playerZ": -0.699999988079071,
+        "opponentX": 0,
+        "opponentZ": 0.699999988079071,
+        "moveX": 0,
+        "moveY": 0,
+        "povArms": 2,
+        "trainingBlurWidth": 0,
+        "trainingBlurHeight": 0,
+        "trainingGlass": false,
+        "leftElbowViewport": {
+          "x": 0.11064600944519043,
+          "y": 0.13743028044700623,
+          "z": 0.3410418629646301
+        },
+        "rightElbowViewport": {
+          "x": 0.9259961843490601,
+          "y": 0.09090462327003479,
+          "z": 0.32857629656791687
+        }
+      },
+      "media": {
+        "phase": "Idle",
+        "token": 0,
+        "sound": true,
+        "events": [],
+        "error": null,
+        "audioState": "running",
+        "masterGain": 1,
+        "crowdActive": false,
+        "buffers": {
+          "intro": 5.166666666666667,
+          "bell": 0.8857291666666667,
+          "crowd": 4.6
+        }
+      },
+      "video": {
+        "time": 0,
+        "width": 480,
+        "muted": true
+      }
+    },
+    "preview": {
+      "native": {
+        "scope": "SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",
+        "screen": "Preview",
+        "result": "PENDING",
+        "reason": "NONE",
+        "trainingStage": "",
+        "trainingGuide": "",
+        "trainingReady": false,
+        "tutorialSeen": false,
+        "seconds": 0,
+        "playerHP": 100,
+        "opponentHP": 100,
+        "playerStamina": 100,
+        "opponentStamina": 100,
+        "playerCapacity": 100,
+        "opponentCapacity": 100,
+        "playerEnabled": false,
+        "opponentEnabled": false,
+        "gameplayInput": false,
+        "players": 1,
+        "opponents": 1,
+        "playerHits": 0,
+        "opponentHits": 0,
+        "playerBlocks": 0,
+        "opponentBlocks": 0,
+        "playerMisses": 0,
+        "opponentMisses": 0,
+        "playerPhase": "Guard",
+        "opponentPhase": "Guard",
+        "opponentIntent": "None",
+        "playerIntent": "None",
+        "playerReason": "PENDING",
+        "combatLog": "NONE",
+        "playerQuality": 1,
+        "opponentQuality": 1,
+        "distance": 1.399999976158142,
+        "opponentAttacks": 0,
+        "opponentBody": false,
+        "playerX": 0,
+        "playerZ": -0.699999988079071,
+        "opponentX": 0,
+        "opponentZ": 0.699999988079071,
+        "moveX": 0,
+        "moveY": 0,
+        "povArms": 2,
+        "trainingBlurWidth": 0,
+        "trainingBlurHeight": 0,
+        "trainingGlass": false,
+        "leftElbowViewport": {
+          "x": 0.11064600944519043,
+          "y": 0.13743028044700623,
+          "z": 0.3410418629646301
+        },
+        "rightElbowViewport": {
+          "x": 0.9259961843490601,
+          "y": 0.09090462327003479,
+          "z": 0.32857629656791687
+        }
+      },
+      "media": {
+        "phase": "Idle",
+        "token": 0,
+        "sound": true,
+        "events": [],
+        "error": null,
+        "audioState": "running",
+        "masterGain": 1,
+        "crowdActive": false,
+        "buffers": {
+          "intro": 5.166666666666667,
+          "bell": 0.8857291666666667,
+          "crowd": 4.6
+        }
+      },
+      "video": {
+        "time": 0,
+        "width": 480,
+        "muted": true
+      }
+    },
+    "cancel-intro": {
+      "native": {
+        "scope": "SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",
+        "screen": "Intro",
+        "result": "PENDING",
+        "reason": "NONE",
+        "trainingStage": "",
+        "trainingGuide": "",
+        "trainingReady": false,
+        "tutorialSeen": false,
+        "seconds": 0,
+        "playerHP": 100,
+        "opponentHP": 100,
+        "playerStamina": 100,
+        "opponentStamina": 100,
+        "playerCapacity": 100,
+        "opponentCapacity": 100,
+        "playerEnabled": false,
+        "opponentEnabled": false,
+        "gameplayInput": false,
+        "players": 1,
+        "opponents": 1,
+        "playerHits": 0,
+        "opponentHits": 0,
+        "playerBlocks": 0,
+        "opponentBlocks": 0,
+        "playerMisses": 0,
+        "opponentMisses": 0,
+        "playerPhase": "Guard",
+        "opponentPhase": "Guard",
+        "opponentIntent": "None",
+        "playerIntent": "None",
+        "playerReason": "PENDING",
+        "combatLog": "NONE",
+        "playerQuality": 1,
+        "opponentQuality": 1,
+        "distance": 1.399999976158142,
+        "opponentAttacks": 0,
+        "opponentBody": false,
+        "playerX": 0,
+        "playerZ": -0.699999988079071,
+        "opponentX": 0,
+        "opponentZ": 0.699999988079071,
+        "moveX": 0,
+        "moveY": 0,
+        "povArms": 2,
+        "trainingBlurWidth": 0,
+        "trainingBlurHeight": 0,
+        "trainingGlass": false,
+        "leftElbowViewport": {
+          "x": 0.11064600944519043,
+          "y": 0.13743028044700623,
+          "z": 0.3410418629646301
+        },
+        "rightElbowViewport": {
+          "x": 0.9259961843490601,
+          "y": 0.09090462327003479,
+          "z": 0.32857629656791687
+        }
+      },
+      "media": {
+        "phase": "Intro",
+        "token": 1,
+        "sound": true,
+        "events": [
+          {
+            "name": "stop",
+            "token": 0,
+            "at": 20710.599999904633,
+            "videoTime": 0
+          },
+          {
+            "name": "intro-request",
+            "token": 1,
+            "at": 20711.099999904633,
+            "videoTime": 0
+          }
+        ],
+        "error": null,
+        "audioState": "running",
+        "masterGain": 1,
+        "crowdActive": false,
+        "buffers": {
+          "intro": 5.166666666666667,
+          "bell": 0.8857291666666667,
+          "crowd": 4.6
+        }
+      },
+      "video": {
+        "time": 0,
+        "width": 480,
+        "muted": true
+      }
+    },
+    "cancel-home": {
+      "native": {
+        "scope": "SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",
+        "screen": "Home",
+        "result": "PENDING",
+        "reason": "NONE",
+        "trainingStage": "",
+        "trainingGuide": "",
+        "trainingReady": false,
+        "tutorialSeen": false,
+        "seconds": 0,
+        "playerHP": 100,
+        "opponentHP": 100,
+        "playerStamina": 100,
+        "opponentStamina": 100,
+        "playerCapacity": 100,
+        "opponentCapacity": 100,
+        "playerEnabled": false,
+        "opponentEnabled": false,
+        "gameplayInput": false,
+        "players": 1,
+        "opponents": 1,
+        "playerHits": 0,
+        "opponentHits": 0,
+        "playerBlocks": 0,
+        "opponentBlocks": 0,
+        "playerMisses": 0,
+        "opponentMisses": 0,
+        "playerPhase": "Guard",
+        "opponentPhase": "Guard",
+        "opponentIntent": "None",
+        "playerIntent": "None",
+        "playerReason": "PENDING",
+        "combatLog": "NONE",
+        "playerQuality": 1,
+        "opponentQuality": 1,
+        "distance": 1.399999976158142,
+        "opponentAttacks": 0,
+        "opponentBody": false,
+        "playerX": 0,
+        "playerZ": -0.699999988079071,
+        "opponentX": 0,
+        "opponentZ": 0.699999988079071,
+        "moveX": 0,
+        "moveY": 0,
+        "povArms": 2,
+        "trainingBlurWidth": 0,
+        "trainingBlurHeight": 0,
+        "trainingGlass": false,
+        "leftElbowViewport": {
+          "x": 0.11064600944519043,
+          "y": 0.13743028044700623,
+          "z": 0.3410418629646301
+        },
+        "rightElbowViewport": {
+          "x": 0.9259961843490601,
+          "y": 0.09090462327003479,
+          "z": 0.32857629656791687
+        }
+      },
+      "media": {
+        "phase": "Idle",
+        "token": 1,
+        "sound": true,
+        "events": [
+          {
+            "name": "stop",
+            "token": 0,
+            "at": 20710.599999904633,
+            "videoTime": 0
+          },
+          {
+            "name": "intro-request",
+            "token": 1,
+            "at": 20711.099999904633,
+            "videoTime": 0
+          },
+          {
+            "name": "intro-playing",
+            "token": 1,
+            "at": 21451.199999809265,
+            "videoTime": 0.132756
+          },
+          {
+            "name": "stop",
+            "token": 1,
+            "at": 26107.39999985695,
+            "videoTime": 0.98009
+          },
+          {
+            "name": "stop",
+            "token": 1,
+            "at": 26108.299999952316,
+            "videoTime": 0.98009
+          }
+        ],
+        "error": null,
+        "audioState": "running",
+        "masterGain": 1,
+        "crowdActive": false,
+        "buffers": {
+          "intro": 5.166666666666667,
+          "bell": 0.8857291666666667,
+          "crowd": 4.6
+        }
+      },
+      "video": {
+        "time": 0.98009,
+        "width": 480,
+        "muted": true
+      }
+    },
+    "preview-again": {
+      "native": {
+        "scope": "SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",
+        "screen": "Preview",
+        "result": "PENDING",
+        "reason": "NONE",
+        "trainingStage": "",
+        "trainingGuide": "",
+        "trainingReady": false,
+        "tutorialSeen": false,
+        "seconds": 0,
+        "playerHP": 100,
+        "opponentHP": 100,
+        "playerStamina": 100,
+        "opponentStamina": 100,
+        "playerCapacity": 100,
+        "opponentCapacity": 100,
+        "playerEnabled": false,
+        "opponentEnabled": false,
+        "gameplayInput": false,
+        "players": 1,
+        "opponents": 1,
+        "playerHits": 0,
+        "opponentHits": 0,
+        "playerBlocks": 0,
+        "opponentBlocks": 0,
+        "playerMisses": 0,
+        "opponentMisses": 0,
+        "playerPhase": "Guard",
+        "opponentPhase": "Guard",
+        "opponentIntent": "None",
+        "playerIntent": "None",
+        "playerReason": "PENDING",
+        "combatLog": "NONE",
+        "playerQuality": 1,
+        "opponentQuality": 1,
+        "distance": 1.399999976158142,
+        "opponentAttacks": 0,
+        "opponentBody": false,
+        "playerX": 0,
+        "playerZ": -0.699999988079071,
+        "opponentX": 0,
+        "opponentZ": 0.699999988079071,
+        "moveX": 0,
+        "moveY": 0,
+        "povArms": 2,
+        "trainingBlurWidth": 0,
+        "trainingBlurHeight": 0,
+        "trainingGlass": false,
+        "leftElbowViewport": {
+          "x": 0.11064600944519043,
+          "y": 0.13743028044700623,
+          "z": 0.3410418629646301
+        },
+        "rightElbowViewport": {
+          "x": 0.9259961843490601,
+          "y": 0.09090462327003479,
+          "z": 0.32857629656791687
+        }
+      },
+      "media": {
+        "phase": "Idle",
+        "token": 1,
+        "sound": true,
+        "events": [
+          {
+            "name": "stop",
+            "token": 0,
+            "at": 20710.599999904633,
+            "videoTime": 0
+          },
+          {
+            "name": "intro-request",
+            "token": 1,
+            "at": 20711.099999904633,
+            "videoTime": 0
+          },
+          {
+            "name": "intro-playing",
+            "token": 1,
+            "at": 21451.199999809265,
+            "videoTime": 0.132756
+          },
+          {
+            "name": "stop",
+            "token": 1,
+            "at": 26107.39999985695,
+            "videoTime": 0.98009
+          },
+          {
+            "name": "stop",
+            "token": 1,
+            "at": 26108.299999952316,
+            "videoTime": 0.98009
+          }
+        ],
+        "error": null,
+        "audioState": "running",
+        "masterGain": 1,
+        "crowdActive": false,
+        "buffers": {
+          "intro": 5.166666666666667,
+          "bell": 0.8857291666666667,
+          "crowd": 4.6
+        }
+      },
+      "video": {
+        "time": 0.98009,
+        "width": 480,
+        "muted": true
+      }
+    },
+    "intro-again": {
+      "native": {
+        "scope": "SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",
+        "screen": "Intro",
+        "result": "PENDING",
+        "reason": "NONE",
+        "trainingStage": "",
+        "trainingGuide": "",
+        "trainingReady": false,
+        "tutorialSeen": false,
+        "seconds": 0,
+        "playerHP": 100,
+        "opponentHP": 100,
+        "playerStamina": 100,
+        "opponentStamina": 100,
+        "playerCapacity": 100,
+        "opponentCapacity": 100,
+        "playerEnabled": false,
+        "opponentEnabled": false,
+        "gameplayInput": false,
+        "players": 1,
+        "opponents": 1,
+        "playerHits": 0,
+        "opponentHits": 0,
+        "playerBlocks": 0,
+        "opponentBlocks": 0,
+        "playerMisses": 0,
+        "opponentMisses": 0,
+        "playerPhase": "Guard",
+        "opponentPhase": "Guard",
+        "opponentIntent": "None",
+        "playerIntent": "None",
+        "playerReason": "PENDING",
+        "combatLog": "NONE",
+        "playerQuality": 1,
+        "opponentQuality": 1,
+        "distance": 1.399999976158142,
+        "opponentAttacks": 0,
+        "opponentBody": false,
+        "playerX": 0,
+        "playerZ": -0.699999988079071,
+        "opponentX": 0,
+        "opponentZ": 0.699999988079071,
+        "moveX": 0,
+        "moveY": 0,
+        "povArms": 2,
+        "trainingBlurWidth": 0,
+        "trainingBlurHeight": 0,
+        "trainingGlass": false,
+        "leftElbowViewport": {
+          "x": 0.11064600944519043,
+          "y": 0.13743028044700623,
+          "z": 0.3410418629646301
+        },
+        "rightElbowViewport": {
+          "x": 0.9259961843490601,
+          "y": 0.09090462327003479,
+          "z": 0.32857629656791687
+        }
+      },
+      "media": {
+        "phase": "Intro",
+        "token": 3,
+        "sound": true,
+        "events": [
+          {
+            "name": "stop",
+            "token": 0,
+            "at": 20710.599999904633,
+            "videoTime": 0
+          },
+          {
+            "name": "intro-request",
+            "token": 1,
+            "at": 20711.099999904633,
+            "videoTime": 0
+          },
+          {
+            "name": "intro-playing",
+            "token": 1,
+            "at": 21451.199999809265,
+            "videoTime": 0.132756
+          },
+          {
+            "name": "stop",
+            "token": 1,
+            "at": 26107.39999985695,
+            "videoTime": 0.98009
+          },
+          {
+            "name": "stop",
+            "token": 1,
+            "at": 26108.299999952316,
+            "videoTime": 0.98009
+          },
+          {
+            "name": "stop",
+            "token": 1,
+            "at": 33921.5,
+            "videoTime": 0.98009
+          },
+          {
+            "name": "intro-request",
+            "token": 3,
+            "at": 33922,
+            "videoTime": 0
+          }
+        ],
+        "error": null,
+        "audioState": "running",
+        "masterGain": 1,
+        "crowdActive": false,
+        "buffers": {
+          "intro": 5.166666666666667,
+          "bell": 0.8857291666666667,
+          "crowd": 4.6
+        }
+      },
+      "video": {
+        "time": 0,
+        "width": 480,
+        "muted": true
+      }
+    }
+  },
+  "url": "http://127.0.0.1:8000/?desktop=1&metrics=1",
+  "productVersion": "w1-af62e84bb753b2dc9967967f9c8188e878cc5b38",
+  "status": "FAIL",
+  "failure": "Error: new intro is fresh, frozen and epoch separated",
+  "failureState": {
+    "native": {
+      "scope": "SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",
+      "screen": "Intro",
+      "result": "PENDING",
+      "reason": "NONE",
+      "trainingStage": "",
+      "trainingGuide": "",
+      "trainingReady": false,
+      "tutorialSeen": false,
+      "seconds": 0,
+      "playerHP": 100,
+      "opponentHP": 100,
+      "playerStamina": 100,
+      "opponentStamina": 100,
+      "playerCapacity": 100,
+      "opponentCapacity": 100,
+      "playerEnabled": false,
+      "opponentEnabled": false,
+      "gameplayInput": false,
+      "players": 1,
+      "opponents": 1,
+      "playerHits": 0,
+      "opponentHits": 0,
+      "playerBlocks": 0,
+      "opponentBlocks": 0,
+      "playerMisses": 0,
+      "opponentMisses": 0,
+      "playerPhase": "Guard",
+      "opponentPhase": "Guard",
+      "opponentIntent": "None",
+      "playerIntent": "None",
+      "playerReason": "PENDING",
+      "combatLog": "NONE",
+      "playerQuality": 1,
+      "opponentQuality": 1,
+      "distance": 1.399999976158142,
+      "opponentAttacks": 0,
+      "opponentBody": false,
+      "playerX": 0,
+      "playerZ": -0.699999988079071,
+      "opponentX": 0,
+      "opponentZ": 0.699999988079071,
+      "moveX": 0,
+      "moveY": 0,
+      "povArms": 2,
+      "trainingBlurWidth": 0,
+      "trainingBlurHeight": 0,
+      "trainingGlass": false,
+      "leftElbowViewport": {
+        "x": 0.11064600944519043,
+        "y": 0.13743028044700623,
+        "z": 0.3410418629646301
+      },
+      "rightElbowViewport": {
+        "x": 0.9259961843490601,
+        "y": 0.09090462327003479,
+        "z": 0.32857629656791687
+      }
+    },
+    "media": {
+      "phase": "Intro",
+      "token": 3,
+      "sound": true,
+      "events": [
+        {
+          "name": "stop",
+          "token": 0,
+          "at": 20710.599999904633,
+          "videoTime": 0
+        },
+        {
+          "name": "intro-request",
+          "token": 1,
+          "at": 20711.099999904633,
+          "videoTime": 0
+        },
+        {
+          "name": "intro-playing",
+          "token": 1,
+          "at": 21451.199999809265,
+          "videoTime": 0.132756
+        },
+        {
+          "name": "stop",
+          "token": 1,
+          "at": 26107.39999985695,
+          "videoTime": 0.98009
+        },
+        {
+          "name": "stop",
+          "token": 1,
+          "at": 26108.299999952316,
+          "videoTime": 0.98009
+        },
+        {
+          "name": "stop",
+          "token": 1,
+          "at": 33921.5,
+          "videoTime": 0.98009
+        },
+        {
+          "name": "intro-request",
+          "token": 3,
+          "at": 33922,
+          "videoTime": 0
+        },
+        {
+          "name": "intro-playing",
+          "token": 3,
+          "at": 34366.09999990463,
+          "videoTime": 0.086743
+        }
+      ],
+      "error": null,
+      "audioState": "running",
+      "masterGain": 1,
+      "crowdActive": false,
+      "buffers": {
+        "intro": 5.166666666666667,
+        "bell": 0.8857291666666667,
+        "crowd": 4.6
+      }
+    }
+  }
+}
