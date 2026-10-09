@@ -1,3 +1,4 @@
+PASS media callback routes to bootstrap, not input systems
 PASS intro does not call native start before ended
 PASS premature under-five-second ended is rejected
 PASS completed media sends exact current token
@@ -12,4 +13,4 @@ PASS locked AudioContext never bypasses intro
 PASS real retry handler resumes context and replays intro
 PASS media failure keeps combat locked
 PASS failed asset load can retry successfully
-TOTAL=14 PASS=14 FAIL=0
+TOTAL=15 PASS=15 FAIL=0

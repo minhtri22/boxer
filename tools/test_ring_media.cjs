@@ -18,6 +18,8 @@ function harness(){
   return {media,sent,els,nodes,emit,flush,setError(v){fetchError=v;}};
 }
 (async()=>{
+  const template=fs.readFileSync('unity/BoxerP0/Assets/WebGLTemplates/BoxerP0Mobile/index.html','utf8');
+  check(template.includes("unityInstance.SendMessage('Boxer P0 Bootstrap', method")&&template.includes('createBoxerRingMedia({send:sendRing'),'media callback routes to bootstrap, not input systems');
   const h=harness();await h.media.unlock();h.media.start(10);await h.flush();
   check(h.media.state.phase==='Intro'&&h.sent.length===0,'intro does not call native start before ended');
   await h.emit('ring-video','playing');h.els['ring-video'].currentTime=4.9;await h.emit('ring-video','ended');

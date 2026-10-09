@@ -76,7 +76,10 @@
     function send(method, payload) {
       if (unityInstance) unityInstance.SendMessage('P0 Systems', method, payload || '');
     }
-    window.boxerRingMedia=createBoxerRingMedia({send,version:productVersion});
+    function sendRing(method, payload) {
+      if (unityInstance) unityInstance.SendMessage('Boxer P0 Bootstrap', method, payload || '');
+    }
+    window.boxerRingMedia=createBoxerRingMedia({send:sendRing,version:productVersion});
 
     function enterGame() {
       gate.classList.add('hidden');
