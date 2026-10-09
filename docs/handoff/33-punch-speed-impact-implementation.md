@@ -1,7 +1,7 @@
 # Punch speed / impact implementation
 
 Date: 2026-10-09. Approved plan: `32-punch-speed-impact-plan.md`.
-Status: native implementation and compiled interaction/contact/UI/media gates verified; public release checks pending. Device acceptance remains `IMPLEMENTATION_PASS_PENDING_HUMAN_UAT`.
+Status: implementation, WebGL build and public deployment verified. Device acceptance remains `IMPLEMENTATION_PASS_PENDING_HUMAN_UAT`.
 
 ## Implemented
 
@@ -40,4 +40,21 @@ Status: native implementation and compiled interaction/contact/UI/media gates ve
 
 - Compiled source: `3035003caa96a96f8a1d3c347b43eb56c55a4b44`; Unity 6000.5.8f1 WebGL build succeeded in 265.1438414 seconds, 62,103,878 bytes. Generated scene / project settings restored byte-identical after build.
 - Damage, Quality and stamina/HP formulas are unchanged. Faster cadence and phase-accurate time integration can still alter bout balance; phone testing must check sustained combinations, fatigue, guard/body exposure and KO, not assume balance is unchanged because formulas match.
-- Local media lifecycle and sampled rendered comparison completed. Pending: public twelve-payload/provenance verification and public media lifecycle. The exact feature branch alone is authorized for deployment; retain other Pages policies. Device UAT remains separate; no HUMAN_PASS claim from native or desktop checks.
+- Local media lifecycle and sampled rendered comparison completed. Public twelve-payload/provenance verification and public media lifecycle also passed. Deployment used only the authorized feature branch and retained other Pages policies. Device UAT remains separate; no HUMAN_PASS claim from native or desktop checks.
+
+## Deployment receipt
+
+- Artifact commit: `257ebefcb34056a4d74d518215bfc75ebadaac11` on `feature/boxer-product-loop-wave1`, compiled source `3035003caa96a96f8a1d3c347b43eb56c55a4b44`.
+- [GitHub Pages workflow 37998928189](https://github.com/minhtri22/boxer/actions/runs/37998928189): completed / success, exact artifact SHA. All five existing Pages branch policies preserved, no added policy.
+- Public URL: [Boxer - current release](https://minhtri22.github.io/boxer/?release=3035003). Verified 2026-10-10 (Asia/Saigon); receipt timestamp `2026-10-09T22:25:57.2221620+00:00`.
+- `evidence/wave1/punch-feel/deployment.txt`: public provenance matches local, all 12 payloads HTTP 200 / SHA256 match. Public media browser 20/20, zero JavaScript/load/HTTP errors, same compiled product version. Audio/video MIME and real decoding verified; speaker listening / phone feel not verified.
+- This receipt update changes only documentation/evidence, not the deployed artifact or compiled gameplay. Workflow dispatch remains explicit; pushing a receipt does not rebuild/redeploy.
+
+## Device Human UAT still required
+
+1. Training: decisive short vertical/horizontal swipes and repeated taps launch the intended family; elbows/forearms remain continuous through extend and recovery. Air practice has whoosh but no fake hit thud, HP loss or opponent AI.
+2. Fight: approach into range, land head/body contact, strike guard, then intentionally miss from distance. Compare launch speed and fast pull-back with the old baseline; distinguish HIT/BLOCK/MISS feedback without relying on the debug counters alone.
+3. Sustained combinations: verify diminishing stamina/capacity changes punch effectiveness and recovery, neutral guard replenishes resources, and low-energy input cannot bypass committed Quality. Check balance over multiple bouts rather than the single desktop KO.
+4. Both knockout directions: HP reaching zero ends the bout once, end bell/result occur once, rematch starts fresh. Check phone speaker volume and motion permissions separately.
+
+Record phone/browser, observations and defects before declaring HUMAN_PASS. No device result has been inferred from desktop video, screenshots, synthetic input or native tests.
