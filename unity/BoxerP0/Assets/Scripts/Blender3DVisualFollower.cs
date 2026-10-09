@@ -56,6 +56,8 @@ namespace BoxerP0
             public GameObject Instance;
             public Transform RootBone, ForearmBone, HandBone;
             public Quaternion RootCorrection, ForearmCorrection, HandCorrection;
+            public PlayerPOVArmVisual Arm;
+            public Transform Shoulder;
         }
 
         OpponentBoxer _opponent;
@@ -165,6 +167,13 @@ namespace BoxerP0
             };
             Transform elbow = Require(_player.transform, left ? "Left Elbow" : "Right Elbow");
             Transform glove = Require(_player.transform, (left ? "Player Left" : "Player Right") + " Glove");
+            result.Shoulder = Require(_player.transform, left ? "Left Shoulder" : "Right Shoulder");
+            foreach (Renderer renderer in instance.GetComponentsInChildren<Renderer>())
+                if (renderer.name == "POVForearm") renderer.enabled = false;
+            var armObject = new GameObject(name + " Anatomical Arm");
+            armObject.transform.SetParent(instance.transform, false);
+            result.Arm = armObject.AddComponent<PlayerPOVArmVisual>();
+            result.Arm.Initialize();
             Vector3 direction = (glove.position - elbow.position).normalized;
             result.RootCorrection = Quaternion.Inverse(Quaternion.LookRotation(direction, _player.transform.up)) * result.RootBone.rotation;
             result.ForearmCorrection = Quaternion.Inverse(Quaternion.LookRotation(direction, _player.transform.up)) * result.ForearmBone.rotation;
@@ -245,7 +254,8 @@ namespace BoxerP0
             string side = left ? "Left" : "Right";
             Transform elbow = left ? _playerLeftElbow : _playerRightElbow;
             Transform glove = left ? _playerLeftGlove : _playerRightGlove;
-            Vector3 direction = (glove.position - elbow.position).normalized;
+            rig.Arm.Apply(rig.Shoulder.position, glove.position, _player.transform, left);
+            Vector3 direction = (glove.position - rig.Arm.Elbow).normalized;
             Quaternion aim = Quaternion.LookRotation(direction, _player.transform.up);
             Vector3 handHead = glove.position - direction * .12f;
             rig.RootBone.SetPositionAndRotation(elbow.position - direction * .05f, aim * rig.RootCorrection);

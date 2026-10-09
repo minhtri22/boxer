@@ -8,9 +8,19 @@ namespace BoxerP0
         private Phase0Telemetry _telemetry;
         private GUIStyle _title, _copy, _small, _button;
         private Texture2D _brand;
+        private TrainingGlassBackground _glass;
         private static readonly Color Gold = new(.93f, .67f, .24f);
         private void Start()
         { _bootstrap = GetComponent<BoxerBootstrap>(); _telemetry = FindFirstObjectByType<Phase0Telemetry>(); _brand=Resources.Load<Texture2D>("Product/HomeBrand"); }
+        private void Update()
+        {
+            if (_glass == null)
+            {
+                var camera = FindFirstObjectByType<Camera>();
+                if (camera != null) _glass = camera.gameObject.AddComponent<TrainingGlassBackground>();
+            }
+            if (_glass != null) _glass.enabled = _bootstrap != null && _bootstrap.Flow.Screen == ProductScreen.Onboarding;
+        }
         private void OnGUI()
         {
             if (_bootstrap == null || _telemetry == null || _bootstrap.Flow.Screen == ProductScreen.Fight) return;
@@ -89,8 +99,8 @@ namespace BoxerP0
         {
             bool head=_bootstrap.TrainingToken=="HEADCONTROL";
             float offset=head?140:0;
-            GUI.color=new Color(.012f,.012f,.012f,.94f);
-            GUI.DrawTexture(new Rect(20,20+offset,500,425),Texture2D.whiteTexture); GUI.color=Color.white;
+            if (_glass != null) _glass.Draw(new Rect(20,20+offset,500,425));
+            GUI.color=Color.white;
             GUI.Label(new Rect(35,25+offset,470,45),"TẬP ĐIỀU KHIỂN — KHÔNG TÍNH ĐIỂM",_small);
             GUI.Label(new Rect(35,72+offset,470,245),_bootstrap.TrainingInstructions,_small);
             bool enabled=GUI.enabled; GUI.enabled=_bootstrap.TrainingReady;
@@ -99,8 +109,8 @@ namespace BoxerP0
             if (Button(395+offset,"THOÁT TẬP / HOME")) _bootstrap.ReturnHome();
             if (head)
             {
-                GUI.color=new Color(.012f,.012f,.012f,.94f);
-                GUI.DrawTexture(new Rect(20,16,500,122),Texture2D.whiteTexture);GUI.color=Color.white;
+                if (_glass != null) _glass.Draw(new Rect(20,16,500,122));
+                GUI.color=Color.white;
                 if (Button(630,"ĐẶT LẠI TƯ THẾ ĐẦU")) _bootstrap.RecenterTrainingHead();
             }
             if (_bootstrap.TrainingToken=="FOOTWORK" || _bootstrap.TrainingToken=="PUNCHES")

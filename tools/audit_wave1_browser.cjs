@@ -2,7 +2,7 @@
 const { chromium } = require('playwright');
 const fs = require('fs');
 const path = require('path');
-const suite=process.env.BOXER_WAVE_EVIDENCE==='ring-intro'?'ring-intro':process.env.BOXER_WAVE_EVIDENCE==='combat-v3'?'combat-v3':'onboarding-v2';
+const suite=process.env.BOXER_WAVE_EVIDENCE==='training-pov'?'training-pov':process.env.BOXER_WAVE_EVIDENCE==='ring-intro'?'ring-intro':process.env.BOXER_WAVE_EVIDENCE==='combat-v3'?'combat-v3':'onboarding-v2';
 const evidence = path.resolve(__dirname, '../evidence/wave1/'+suite+'/browser');
 fs.mkdirSync(evidence, { recursive: true });
 const report = { scope: 'SYNTHETIC_DESKTOP_REAL_UI_NOT_DEVICE_UAT', checks: [], states: {}, errors: [] };
@@ -55,6 +55,14 @@ function check(ok, name) { report.checks.push({name, pass: !!ok}); if (!ok) thro
     await page.mouse.click(270,779);
     const fightStarted=Date.now();
     const initialFight=await state('fight-start','Fight');
+    if(suite==='training-pov') {
+      const inView=p=>p.z>0&&p.x>.02&&p.x<.98&&p.y>.02&&p.y<.98;
+      check(initialFight.povArms===2&&inView(initialFight.leftElbowViewport)&&inView(initialFight.rightElbowViewport),'both continuous POV arms and tucked guard elbows visible in portrait');
+      check(!initialFight.trainingGlass&&initialFight.trainingBlurWidth===0,'fight has no training blur or live blur buffers');
+      await page.setViewportSize({width:960,height:540});await page.waitForTimeout(500);
+      await page.screenshot({path:path.join(evidence,'fight-landscape-guard.png')});
+      await page.setViewportSize({width:540,height:960});await page.waitForTimeout(500);
+    }
     check(Date.now()-fightStarted>=5000&&Date.now()-fightStarted<20000&&initialFight.result==='IN_PROGRESS'&&!initialFight.trainingStage,'first bout starts after ring intro, without control training');
     const before=await snap();
     await page.keyboard.down('k'); await page.waitForTimeout(120); await page.keyboard.up('k');
@@ -76,6 +84,12 @@ function check(ok, name) { report.checks.push({name, pass: !!ok}); if (!ok) thro
     await page.mouse.click(270,869); await state('home-return','Home');
     await page.mouse.click(270,759);
     const practice=await state('practice-head','Onboarding');
+    if(suite==='training-pov') {
+      await page.waitForFunction(()=>window.boxerWave1Snapshot?.trainingBlurWidth>0);
+      const glass=await snap();
+      check(glass.trainingGlass&&glass.trainingBlurWidth<=256&&glass.trainingBlurHeight>0&&glass.trainingBlurHeight<=512,'training has live bounded reduced-resolution glass blur');
+      await page.screenshot({path:path.join(evidence,'practice-head-glass.png')});
+    }
     check(practice.seconds===0&&practice.playerHP===100&&!practice.opponentEnabled&&!practice.tutorialSeen,'first-user training is separate unscored AI-disabled');
     await page.waitForTimeout(11000);
     check((await snap()).trainingStage==='HEADCONTROL'&&!(await snap()).trainingReady,'idle training does not advance by old timer');
@@ -110,9 +124,17 @@ function check(ok, name) { report.checks.push({name, pass: !!ok}); if (!ok) thro
     for(const [dx,dy] of [[0,-100],[0,100],[-100,0],[100,0],[0,0],[0,0]])await gesture(420,750,dx,dy);
     check((await snap()).trainingReady,'lower-right touch up down left right and repeated taps complete punch lesson');
     const practiced=await state('practice-punches-ready','Onboarding');
+    if(suite==='training-pov') {
+      await page.setViewportSize({width:960,height:540});await page.waitForTimeout(600);
+      await page.screenshot({path:path.join(evidence,'practice-landscape-glass.png')});
+      const rotated=await snap();
+      check(rotated.trainingGlass&&rotated.trainingBlurWidth>0&&rotated.trainingBlurWidth<=256&&rotated.trainingBlurHeight<=512,'training glass reallocates on landscape resize');
+      await page.setViewportSize({width:540,height:960});await page.waitForTimeout(600);
+    }
     check(practiced.playerHP===100&&practiced.opponentHP===100&&practiced.playerStamina===100&&practiced.seconds===0&&!practiced.opponentEnabled,'practice never changes scored HP stamina or timer');
     await page.mouse.click(270,354);
     const trained=await state('practice-complete-home','Home');
+    if(suite==='training-pov')check(!trained.trainingGlass&&trained.trainingBlurWidth===0&&trained.povArms===2,'leaving training releases blur buffers without duplicating arms');
     check(trained.tutorialSeen&&!trained.gameplayInput,'completed training returns Home and records completion');
     await page.mouse.click(270,759);await state('practice-repeat','Onboarding');
     await page.mouse.click(270,569);const exited=await state('practice-exit-home','Home');

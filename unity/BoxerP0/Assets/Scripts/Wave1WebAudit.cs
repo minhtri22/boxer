@@ -27,6 +27,9 @@ namespace BoxerP0
             public uint opponentAttacks;
             public bool opponentBody;
             public float playerX,playerZ,opponentX,opponentZ,moveX,moveY;
+            public int povArms,trainingBlurWidth,trainingBlurHeight;
+            public bool trainingGlass;
+            public Vector3 leftElbowViewport,rightElbowViewport;
         }
         private readonly Snapshot _snapshot=new();
         private void Start()
@@ -58,6 +61,16 @@ namespace BoxerP0
             _snapshot.playerX=_telemetry.Player.transform.position.x;_snapshot.playerZ=_telemetry.Player.transform.position.z;
             _snapshot.opponentX=_telemetry.Opponent.transform.position.x;_snapshot.opponentZ=_telemetry.Opponent.transform.position.z;
             _snapshot.moveX=_telemetry.InputSource.MovementIntent.x;_snapshot.moveY=_telemetry.InputSource.MovementIntent.y;
+            var camera=FindFirstObjectByType<Camera>();
+            var glass=camera.GetComponent<TrainingGlassBackground>();
+            _snapshot.trainingGlass=glass!=null&&glass.enabled;
+            _snapshot.trainingBlurWidth=glass==null?0:glass.BufferWidth;
+            _snapshot.trainingBlurHeight=glass==null?0:glass.BufferHeight;
+            var arms=FindObjectsByType<PlayerPOVArmVisual>(FindObjectsSortMode.None);
+            _snapshot.povArms=arms.Length;
+            foreach(var arm in arms)
+                if(arm.name.Contains("Left"))_snapshot.leftElbowViewport=camera.WorldToViewportPoint(arm.Elbow);
+                else _snapshot.rightElbowViewport=camera.WorldToViewportPoint(arm.Elbow);
             PublishWave1Snapshot(JsonUtility.ToJson(_snapshot));
         }
 #endif

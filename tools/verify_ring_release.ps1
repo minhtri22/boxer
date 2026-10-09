@@ -1,7 +1,8 @@
 param(
     [Parameter(Mandatory=$true)][ValidatePattern('^[a-f0-9]{40}$')][string]$ArtifactCommit,
     [Parameter(Mandatory=$true)][ValidatePattern('^[a-f0-9]{40}$')][string]$CompiledSource,
-    [Parameter(Mandatory=$true)][long]$WorkflowId
+    [Parameter(Mandatory=$true)][long]$WorkflowId,
+    [ValidateSet('ring-intro','training-pov')][string]$EvidenceSuite='ring-intro'
 )
 $ErrorActionPreference='Stop'
 $ringRoot=Split-Path -Parent $PSScriptRoot
@@ -11,7 +12,7 @@ $ringLines=[IO.File]::ReadAllLines((Join-Path $ringOutput 'provenance.txt'))
 if("source_sha=$CompiledSource" -notin $ringLines){throw 'Unexpected compiled source'}
 $ringVersion='w1-'+$CompiledSource
 if("productVersion=$ringVersion" -notin $ringLines){throw 'Unexpected product version'}
-$ringDecoder=Get-Content (Join-Path $ringRoot 'evidence/wave1/ring-intro/media-browser-public/report.json') -Raw | ConvertFrom-Json
+$ringDecoder=Get-Content (Join-Path $ringRoot ('evidence/wave1/'+$EvidenceSuite+'/media-browser-public/report.json')) -Raw | ConvertFrom-Json
 if($ringDecoder.status -ne 'PASS' -or $ringDecoder.productVersion -ne $ringVersion -or $ringDecoder.checks.Count -ne 20 -or $ringDecoder.errors.Count -ne 0 -or @($ringDecoder.checks | Where-Object {-not $_.pass}).Count -ne 0 -or $ringDecoder.url -notlike 'https://minhtri22.github.io/boxer/*'){throw 'Full current public decoder/lifecycle audit required'}
 $ringClient=[Net.Http.HttpClient]::new()
 $ringClient.Timeout=[TimeSpan]::FromSeconds(45)
@@ -60,6 +61,6 @@ try{
     $ringReceipt.Add('DEPLOYMENT_BRANCH_POLICIES=ALL_FIVE_PRESERVED_NO_NEW_POLICY')
     $ringReceipt.Add('VERIFIED_UTC='+[DateTimeOffset]::UtcNow.ToString('o'))
     $ringReceipt.Add('SCOPE=PUBLIC_BYTES_MIME_AND_REAL_BROWSER_MEDIA_NOT_PHONE_OR_SPEAKER_UAT')
-    [IO.File]::WriteAllLines((Join-Path $ringRoot 'evidence/wave1/ring-intro/deployment.txt'),$ringReceipt)
+    [IO.File]::WriteAllLines((Join-Path $ringRoot ('evidence/wave1/'+$EvidenceSuite+'/deployment.txt')),$ringReceipt)
     $ringReceipt | Write-Output
 }finally{$ringHash.Dispose();$ringClient.Dispose()}
