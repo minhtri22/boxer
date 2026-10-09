@@ -36,13 +36,28 @@ tail has residual crowd, and faded loop edges are not isolated crowd stems.
 ## Verification
 
 Model/vitals/flow: 111/111 PASS; geometry/regression: 172/172 PASS; controller:
-118 checks EXIT=0; initial media unit harness: 14/14 PASS. Controller tests simulate
+118 checks EXIT=0; final media unit harness: 15/15 PASS. Controller tests simulate
 the browser completion callback, not actual clip playback. Existing Round2/P1V
 regressions run via Wave1SelfTests with frozen historical files restored.
-Pending: real WebGL media lifecycle and contact tests, build, deployment and
-phone/audio Human UAT. New evidence exclusively in
+Repaired compiled source `9ba71d51dfc23e42aa1fc7228d2c666deab1bb39`:
+WebGL build PASS (10.1815667-second incremental repair after the first
+310.3022826-second full build); 12 local payload hashes match provenance;
+scene/settings unchanged after build. Real WebGL media 20/20 PASS (zero errors),
+general UI/training 28/28 PASS (zero errors), full physical browser-input/contact
+18/18 PASS (zero errors). The extra contact check proves actual KO stops crowd
+and schedules end bell once, retaining all 17 previous contact requirements.
+Media clip's measured playing→ended span is 5153.1 ms. Timeout ends at exactly
+45 scored seconds, separately from the intro. Actual touch attacks yielded
+9 HITs, KO at 26.099 scored seconds, player HP 94 / opponent HP 0, both actors
+and gameplay input locked. No score/contact callback injection in browser tests.
+Native model/controller code is identical between e2a03d6 and 9ba71d5; no
+damage, fatigue, AI-choice or contact-threshold changes were made for this repair.
+Pending: deployment and phone/audio Human UAT. New evidence exclusively in
 `evidence/wave1/ring-intro`; do not overwrite combat-v3/onboarding-v2 reports.
-Status is not HUMAN_PASS.
+Status: **IMPLEMENTATION_PASS_PENDING_HUMAN_UAT**. Browser automation does not
+verify speaker output, seamless-sounding loop quality, phone autoplay/motion or
+device performance. Owner should listen on target phone. Source clip's existing
+visual marks are retained; no image/character redesign is part of this work.
 
 First compiled source `e2a03d625815617380912cbcdc37cf5e94b5df1f`: build PASS,
 12 payload hashes PASS, but real media lifecycle FAIL (cancel callback targets

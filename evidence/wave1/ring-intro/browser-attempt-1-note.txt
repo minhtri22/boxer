@@ -1,0 +1,12 @@
+SCOPE=SYNTHETIC_WEBGL_UI_NOT_HUMAN_UAT
+PRODUCT_VERSION=w1-e2a03d625815617380912cbcdc37cf5e94b5df1f
+STATUS=FAIL_NOT_RELEASE_GATE
+The first general UI audit reached Home and Preview but timed out (150000 ms)
+waiting for Fight. Its compiled template used the incorrect ring callback
+receiver, independently confirmed by media-browser attempt-1 FAIL. The old audit
+persisted its report only after browser.close, which delayed retrieval. The
+process exited naturally with code 1 and the final FAIL report was recovered.
+An identity-guarded stop check found PID 34780 already absent, so no process was
+stopped. Neither Python 9152 nor 24528 was touched. Preserve Home/Preview captures.
+The audit now persists results before browser shutdown, matching the contact
+and media audits. Rerun on the repaired compiled template; this is not PASS.

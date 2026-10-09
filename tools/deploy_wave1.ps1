@@ -39,7 +39,7 @@ if($Mode -eq 'Deploy'){
     }
     if($EvidenceSubdirectory -eq 'wave1/ring-intro'){
         $waveMediaGate=Get-Content (Join-Path $waveGateDirectory 'media-browser/report.json') -Raw | ConvertFrom-Json
-        if($waveMediaGate.status -ne 'PASS' -or $waveMediaGate.errors.Count -ne 0 -or $waveMediaGate.productVersion -ne $waveProductVersion -or @($waveMediaGate.checks | Where-Object {-not $_.pass}).Count -ne 0){throw 'Current compiled media lifecycle gate not PASS'}
+        if($waveMediaGate.status -ne 'PASS' -or $waveMediaGate.errors.Count -ne 0 -or $waveMediaGate.productVersion -ne $waveProductVersion -or $waveMediaGate.checks.Count -ne 20 -or @($waveMediaGate.checks | Where-Object {-not $_.pass}).Count -ne 0){throw 'Current compiled full 20-check media lifecycle gate not PASS'}
     }
     if(-not ((Get-Content (Join-Path $waveGateDirectory 'vitals-tests.txt') -Tail 1) -eq "TOTAL=$ExpectedVitalsChecks PASS=$ExpectedVitalsChecks FAIL=0")){throw 'Vitals gate not PASS'}
     if(-not ((Get-Content (Join-Path $waveGateDirectory 'controller-runtime.txt') -Tail 1) -eq "CHECKS=$ExpectedControllerChecks EXIT=0")){throw 'Controller gate not PASS'}

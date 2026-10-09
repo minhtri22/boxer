@@ -128,5 +128,5 @@ function check(ok, name) { report.checks.push({name, pass: !!ok}); if (!ok) thro
     check(report.errors.length===0,'browser has no JS/load errors');
     report.status='PASS';
   } catch(e) {report.status='FAIL';report.failure=String(e);process.exitCode=1;}
-  finally {await browser.close();fs.writeFileSync(path.join(evidence,'report.json'),JSON.stringify(report,null,2));console.log(report.status,report.failure||'');}
+  finally {fs.writeFileSync(path.join(evidence,'report.json'),JSON.stringify(report,null,2));console.log(report.status,report.failure||'');await browser.close();}
 })();

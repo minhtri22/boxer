@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <title>Boxer P0 — P1 Web UAT</title>
-  <link rel="icon" type="image/x-icon" href="TemplateData/favicon.ico?v=w1-874065708917a3240d887779fe5de7ab14787bb6">
+  <link rel="icon" type="image/x-icon" href="TemplateData/favicon.ico?v=w1-9ba71d51dfc23e42aa1fc7228d2c666deab1bb39">
   <link rel="stylesheet" href="TemplateData/style.css">
 </head>
 <body>
@@ -20,6 +20,15 @@
   <div id="unity-container" class="hidden">
     <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
   </div>
+  <section id="ring-intro" class="hidden" aria-label="Round introduction">
+    <video id="ring-video" playsinline muted preload="auto" disablepictureinpicture></video>
+    <div class="ring-caption">
+      <p id="ring-status" role="status">ROUND 1</p>
+      <button id="ring-retry" class="hidden">PHÁT GIỚI THIỆU / BẬT ÂM THANH</button>
+      <button id="ring-back">QUAY LẠI</button>
+    </div>
+  </section>
+  <script src="TemplateData/ring-media.js?v=w1-9ba71d51dfc23e42aa1fc7228d2c666deab1bb39"></script>
   <script>
     const gate = document.getElementById('gate');
     const statusEl = document.getElementById('status');
@@ -38,7 +47,7 @@
     let unityLoading = false;
 
     const buildUrl = 'Build';
-    const productVersion = "w1-874065708917a3240d887779fe5de7ab14787bb6";
+    const productVersion = "w1-9ba71d51dfc23e42aa1fc7228d2c666deab1bb39";
     const assetVersion = encodeURIComponent(productVersion || 'unknown');
     const versioned = (url) => `${url}?v=${assetVersion}`;
     const loaderUrl = versioned(buildUrl + '/boxer-round2.loader.js');
@@ -62,6 +71,10 @@
     function send(method, payload) {
       if (unityInstance) unityInstance.SendMessage('P0 Systems', method, payload || '');
     }
+    function sendRing(method, payload) {
+      if (unityInstance) unityInstance.SendMessage('Boxer P0 Bootstrap', method, payload || '');
+    }
+    window.boxerRingMedia=createBoxerRingMedia({send:sendRing,version:productVersion});
 
     function enterGame() {
       gate.classList.add('hidden');
@@ -147,6 +160,8 @@
 
     enableButton.addEventListener('click', async () => {
       enableButton.disabled = true;
+      // A failed media load will be shown/retried at Intro, not silently bypassed.
+      window.boxerRingMedia.unlock().catch(error=>{console.warn('Ring media preparation:',String(error));});
       permissionStatus = desktopValidation ? "DESKTOP_SYNTHETIC" : await requestMotionPermission();
       setStatus('MOTION ' + permissionStatus + ' — build ' + productVersion);
       if (!desktopValidation && permissionStatus !== 'GRANTED') {
