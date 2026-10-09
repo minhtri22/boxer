@@ -58,7 +58,7 @@ if($Mode -eq 'Deploy'){
         if((Get-Content (Join-Path $waveGateDirectory 'coach-tests.txt') -Tail 1) -ne 'TOTAL=53 PASS=53 FAIL=0'){throw 'Full Coach model gate required'}
         if((Get-Content (Join-Path $waveGateDirectory 'punch-feel-tests.txt') -Tail 1) -ne 'TOTAL=14741 PASS=14741 FAIL=0'){throw 'Existing punch motion/timeline regression required'}
         $coachGate=Get-Content (Join-Path $waveGateDirectory 'coach-browser/report.json') -Raw | ConvertFrom-Json
-        if($coachGate.status -ne 'PASS' -or $coachGate.productVersion -ne $waveProductVersion -or $coachGate.errors.Count -ne 0 -or $coachGate.checks.Count -lt 20 -or @($coachGate.checks | Where-Object {-not $_.pass}).Count -ne 0){throw 'Current compiled full Coach browser gate required'}
+        if($coachGate.status -ne 'PASS' -or $coachGate.productVersion -ne $waveProductVersion -or $coachGate.errors.Count -ne 0 -or $coachGate.checks.Count -ne 30 -or @($coachGate.checks | Where-Object {-not $_.pass}).Count -ne 0){throw 'Current compiled full 30-check Coach browser gate required'}
     }
     $wavePolicies=WaveApi "$waveApi/environments/github-pages/deployment-branch-policies"
     $waveBefore=@($wavePolicies.branch_policies | ForEach-Object { $_.name+'|'+$_.type })

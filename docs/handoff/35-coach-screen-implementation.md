@@ -21,6 +21,7 @@ Date: 2026-10-10. Roadmap: `34-product-screens-roadmap.md`. Balance disposition:
 - Existing native motion/timeline/feedback: 14,741/14,741; combat geometry 172/172; vitals 111/111; POV presentation 550/550.
 - Existing injected controller audit: 118 checks, EXIT=0. Not physical touch evidence; startup logs may contain Unity indexing diagnostics, so no blanket claim of error-free Editor logs.
 - Compiled Coach browser, former UI/contact/media regressions, reference-render inspection, WebGL provenance and public verification: pending.
+- First compiled candidate `a3f14d9` is NOT deployed: initial Coach browser FAIL (27 checks, one hidden preloaded-video request aborted during persistence reload), plus manual render inspection found long Conditioning copy clipped. Its full report/screenshots are retained in `coach-browser-first-candidate`, unchanged FAIL. Shortened information copy and added measured native text-height gates; reload test now waits for both Unity/media transfers after an ordinary intro/bout lifecycle. No browser error is filtered out or relabelled PASS. A new committed-source build is required.
 - Final allowed status remains `IMPLEMENTATION_PASS_PENDING_HUMAN_UAT`. Phone is the product; browser desktop synthetic input is only engineering evidence. HP-KO-001 remains an explicit owner-held issue.
 
 ## Remaining sequence

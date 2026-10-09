@@ -22,8 +22,8 @@ namespace BoxerP0
             CoachModule.Head => new("NÉ ĐẦU", "Nghiêng trái / phải\nTHỰC HÀNH", "Điện thoại là đầu. Giữ tư thế trung lập, nghiêng hoặc lắc sang trái rồi sang phải.\n\nCho phép Motion trên điện thoại; dùng đặt lại tư thế nếu cần.", OnboardingStage.HeadControl),
             CoachModule.Footwork => new("DI CHUYỂN", "Giữ + vuốt góc trái\nTHỰC HÀNH", "Ngón trái là chân. Giữ vùng dưới bên trái, vuốt lên / xuống để tiến / lùi; vuốt ngang để đổi góc.", OnboardingStage.Footwork),
             CoachModule.Punches => new("ĐÒN ĐẤM", "Chạm / vuốt dứt khoát\nTHỰC HÀNH", "Ngón phải là đòn đấm. Chạm để đấm thẳng; vuốt lên / xuống / ngang rồi thả để chọn họ đòn.", OnboardingStage.Punches),
-            CoachModule.Guard => new("PHÒNG THỦ", "Giữ bình tĩnh\nHƯỚNG DẪN", "Không có hành động đang diễn ra: tay trở về thế thủ. Ngừng chạm để chờ hồi phục; quan sát đối thủ trước khi ra đòn tiếp.\n\nThủ không bảo đảm chặn mọi đòn. Vẫn cần né đầu và di chuyển.\n\nĐây là hướng dẫn quy tắc hiện tại, không phải nâng chỉ số hoặc bài đỡ có AI."),
-            CoachModule.Conditioning => new("THỂ LỰC", "Quản lý nhịp đánh\nHƯỚNG DẪN", "Stamina là sức bền; vạch Capacity mảnh là khả năng bùng nổ. Đòn được chấp nhận tốn tài nguyên kể cả khi đánh hụt.\n\nNăng lượng thấp làm giảm hiệu quả và kéo dài thu tay. Ngừng đấm để hồi phục; di chuyển vẫn có chi phí.\n\nMàn này không tăng Stamina, HP hay sức mạnh. Cân bằng trận hiện tại đang được giữ nguyên."),
+            CoachModule.Guard => new("PHÒNG THỦ", "Giữ bình tĩnh\nHƯỚNG DẪN", "Ngừng chạm: tay trở về thủ sau khi đòn kết thúc. Quan sát rồi ra đòn tiếp.\n\nThủ không chặn mọi đòn; vẫn cần né đầu và di chuyển.\n\nĐây là hướng dẫn, không nâng chỉ số hoặc bật AI trong bài tập."),
+            CoachModule.Conditioning => new("THỂ LỰC", "Quản lý nhịp đánh\nHƯỚNG DẪN", "Stamina = sức bền. Capacity = năng lượng bùng nổ.\n\nĐánh hụt vẫn tốn tài nguyên. Năng lượng thấp làm đòn yếu và thu tay chậm; ngừng đấm để hồi phục.\n\nHướng dẫn này không tăng HP, Stamina hay sức mạnh."),
             _ => throw new ArgumentOutOfRangeException(nameof(module))
         };
     }

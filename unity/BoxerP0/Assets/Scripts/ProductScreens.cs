@@ -10,6 +10,7 @@ namespace BoxerP0
         private Texture2D _brand;
         private Texture2D _coachPortrait;
         public bool CoachArtLoaded => _coachPortrait != null;
+        public float CoachInfoContentHeight { get; private set; }
         private TrainingGlassBackground _glass;
         private static readonly Color Gold = new(.93f, .67f, .24f);
         private void Start()
@@ -166,7 +167,8 @@ namespace BoxerP0
             var lesson=CoachCatalog.Get(_bootstrap.SelectedCoachModule);
             GUI.color=Gold; Text(230,lesson.Title,55); GUI.color=Color.white;
             Text(290,"HƯỚNG DẪN · KHÔNG NÂNG CHỈ SỐ",50);
-            Text(360,lesson.Instructions,320);
+            CoachInfoContentHeight=_small.CalcHeight(new GUIContent(lesson.Instructions),456);
+            GUI.Label(new Rect(42,360,456,320),lesson.Instructions,_small);
             if (Button(745,"THỬ TRONG BÀI TẬP ĐẤM",true,76)) _bootstrap.PracticeFromCoachInfo();
             if (Button(835,"BACK / COACH",false,76)) _bootstrap.BackToCoach();
         }
