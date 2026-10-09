@@ -1,0 +1,7 @@
+# Earlier negative outcomes (not relabelled PASS)
+
+1. Initial native regression: `initial-compile.log:814` reports `Exception: Expected None, got Hook` in Phase0SelfTests. The old test expected a 60 ms swipe to fail; the approved new input contract accepts 60 ms. The replacement explicitly asserts 60 ms is Hook and 30 ms is None. Full current suite subsequently passed.
+2. Expanded test compile: `native-gates.log:194` reports `Assets\Editor\PunchFeelSelfTests.cs(109,21): error CS0819: Implicitly-typed variables cannot have multiple declarators`. Declaration fixed without dropping coverage; `native-gates-fixed.log` rerun produced 14,741/14,741 and all native regression gates.
+3. First browser quick-swipe harness: `feel-browser-serial-input-failure/report.json` remains FAIL. Serial protocol acknowledgements stretched nominal 80 ms touch strokes to 162-233 ms, so it did not exercise the new fast-input requirement. Harness now schedules trusted start/move/end by elapsed time and awaits all acknowledgements afterwards. Current `feel-browser/report.json` is separately PASS, 45 checks, same compiled product version; no gameplay change was made to obtain that rerun.
+
+Raw native/build logs and scene backup remain locally preserved in this evidence folder, outside the curated release commit. The failed browser JSON is included in the release evidence. No failure is used as positive evidence.

@@ -2,6 +2,7 @@
 const {chromium}=require('playwright'),fs=require('fs'),path=require('path');
 const dir=path.resolve(__dirname,'../evidence/wave1/punch-feel/feel-browser');fs.mkdirSync(dir,{recursive:true});
 const report={scope:'COMPILED_WEBGL_TOUCH_PROFILE_AB_NOT_PHONE_UAT',checks:[],errors:[],modes:{}};
+const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 function check(ok,name){report.checks.push({name,pass:!!ok});if(!ok)throw Error(name);}
 (async()=>{
  const browser=await chromium.launch({executablePath:'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',headless:true,
@@ -10,6 +11,8 @@ function check(ok,name){report.checks.push({name,pass:!!ok});if(!ok)throw Error(
   for(const mode of ['legacy','curve','fast']){
    const context=await browser.newContext({viewport:{width:540,height:960},hasTouch:true});
    const page=await context.newPage(),touch=await context.newCDPSession(page),trace=report.modes[mode]={punches:[],balance:[]};
+   await page.addInitScript(()=>{window.feelTouchEvents=[];for(const type of ['touchstart','touchmove','touchend','touchcancel'])
+    document.addEventListener(type,e=>window.feelTouchEvents.push({type,at:performance.now(),trusted:e.isTrusted}),{passive:true});});
    page.on('pageerror',e=>report.errors.push(String(e)));page.on('console',m=>{if(m.type()==='error')report.errors.push(m.text());});
    page.on('response',r=>{if(r.status()>=400)report.errors.push('HTTP '+r.status()+' '+r.url());});
    const url=new URL(process.argv[2]||'http://127.0.0.1:8000/?desktop=1&metrics=1');url.searchParams.set('punchFeel',mode);
@@ -27,9 +30,12 @@ function check(ok,name){report.checks.push({name,pass:!!ok});if(!ok)throw Error(
    const strokes=[['Straight',0,0],['Straight',0,0],['LeadHook',120,0],['RearHook',-120,0],['Uppercut',0,-120],['Overhand',0,120]];
    for(const [name,dx,dy] of strokes){
     const before=await snap();const now=Date.now();
-    await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{id:2,x:400,y:750}]});await page.waitForTimeout(40);
-    if(dx||dy)await touch.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{id:2,x:400+dx,y:750+dy}]});
-    await page.waitForTimeout(40);await touch.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+    // Schedule trusted input at real wall-clock intervals without awaiting each
+    // CDP acknowledgement: serial ACK round trips stretched old 80ms strokes to >160ms.
+    const sends=[touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{id:2,x:400,y:750}]})];
+    await sleep(35);
+    if(dx||dy)sends.push(touch.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{id:2,x:400+dx,y:750+dy}]}));
+    await sleep(45);sends.push(touch.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]}));await Promise.all(sends);
     await page.waitForFunction(n=>window.boxerWave1Snapshot.acceptedPunches===n,before.acceptedPunches+1,{timeout:3000});
     await page.waitForFunction(()=>window.boxerWave1Snapshot.playerPhase==='Guard',null,{timeout:3000});
     const after=await snap();trace.punches.push({name,wallMs:Date.now()-now,after});
@@ -39,7 +45,9 @@ function check(ok,name){report.checks.push({name,pass:!!ok});if(!ok)throw Error(
     mode+' unscored training has all families and air sound but no fake HIT/BLOCK');
    const quick=trace.punches.filter(p=>p.name!=='Straight');
    check(quick.some(p=>p.after.gestureDurationMs>=60&&p.after.gestureDurationMs<120),mode+' measured decisive swipe below old 120ms threshold');
-   check(quick.every(p=>p.after.releaseToAcceptMs>=0&&p.after.releaseToAcceptMs<34),mode+' accepted release latency under two 60Hz frames, desktop only');
+   trace.domTouchEvents=await page.evaluate(()=>window.feelTouchEvents);
+   check(trace.domTouchEvents.every(e=>e.trusted),mode+' gesture events are trusted browser input');
+   check(quick.every(p=>p.after.releaseToAcceptMs>=0&&p.after.releaseToAcceptMs<34),mode+' Unity-processed release to acceptance under two 60Hz frames; not DOM or device latency');
    const expected=mode==='fast'?495:510;check(Math.abs(s.recoveryAgeMs-expected)<2,mode+' overhand full cycle matches phase timeline');
    await page.screenshot({path:path.join(dir,mode+'-training.png')});
    // Browser cancel must not be converted into a punch.
