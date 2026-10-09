@@ -36,7 +36,9 @@ function check(pass,name){report.checks.push({name,pass:!!pass});if(!pass)throw 
     check(frozen(after)&&after.native.screen==='Home'&&after.media.phase==='Idle'&&count(after,'start-bell')===0,'Back cancels media; old ended event cannot start hidden combat');
     check(cancelled.media.token===intro.media.token,'cancel evidence retains original token');
     await page.mouse.click(270,674);await state('preview-again','Preview');await page.mouse.click(270,779);await state('intro-again','Intro');
+    await page.waitForFunction(()=>window.boxerRingMedia.state.events.some(e=>e.name==='intro-playing'&&e.token===window.boxerRingMedia.state.token),null,{timeout:15000});
     await page.waitForTimeout(2200);const middle=await snap();
+    report.states['intro-middle']=middle;
     check(frozen(middle)&&middle.video.time>1&&middle.media.token!==intro.media.token,'new intro is fresh, frozen and epoch separated');
     const fight=await state('fight','Fight');
     check(fight.native.result==='IN_PROGRESS'&&fight.native.seconds<1&&fight.native.playerHP===100&&fight.native.opponentHP===100,'fight starts fresh only after video completes');

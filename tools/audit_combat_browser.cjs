@@ -101,17 +101,19 @@ function check(ok,name){report.checks.push({name,pass:!!ok});if(!ok)throw Error(
     await guard.context.close();
     const bodyGuard=await match('body-guard');await bodyGuard.advanceHeld(true);
     const bodyDeadline=Date.now()+20000;
+    let bodyReady;
     while(Date.now()<bodyDeadline){
       const s=await bodyGuard.record();
-      if(s.screen==='Fight'&&s.opponentPhase==='Commit'&&s.opponentBody&&s.distance<.7)break;
+      if(s.screen==='Fight'&&s.opponentPhase==='Commit'&&s.opponentBody&&s.distance<.7){bodyReady=s;break;}
       await bodyGuard.pause(80);
     }
-    const bodyReady=await bodyGuard.snap();
-    check(bodyReady.opponentPhase==='Commit'&&bodyReady.opponentBody&&bodyReady.distance<.7,'close body guard contact precondition reached with real touch input');
-    const bodyBefore=await bodyGuard.snap();await bodyGuard.pause(650);const bodyAfter=await bodyGuard.record();
+    check(bodyReady&&bodyReady.opponentPhase==='Commit'&&bodyReady.opponentBody&&bodyReady.distance<.7,'close body guard contact precondition reached with real touch input');
+    // Keep the exact matched Commit baseline. A second async read may already
+    // contain this attack's resolved BLOCK, producing a false negative delta.
+    const bodyBefore=bodyReady;await bodyGuard.pause(650);const bodyAfter=await bodyGuard.record();
     bodyGuard.scenario.contact={before:bodyBefore,after:bodyAfter};await bodyGuard.picture('contact');
     console.log('BODY_GUARD',JSON.stringify(bodyGuard.scenario.contact));
-    check(bodyAfter.playerBlocks>bodyBefore.playerBlocks&&bodyAfter.playerHP===bodyBefore.playerHP,'actual body attack intersecting close high guard BLOCKS without HP loss');
+    check(bodyAfter.playerBlocks>bodyBefore.playerBlocks&&bodyAfter.playerHP===bodyBefore.playerHP&&bodyAfter.opponentAttacks===bodyBefore.opponentAttacks,'actual body attack intersecting close high guard BLOCKS without HP loss');
     check(bodyAfter.distance<.7,'lower-left forward touch can follow retreating AI into real close range');
     await bodyGuard.advanceHeld(false);
     await bodyGuard.context.close();

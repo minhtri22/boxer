@@ -25,4 +25,6 @@ Dedicated evidence: `evidence/wave1/training-pov`; previous release evidence is 
 
 ## Acceptance
 
+First compiled candidate `af62e84` is not deployed. UI suite passed 33 checks; visual inspection required a circular elbow fillet to avoid inner-bend surface overlap. Two browser audit races are preserved under `first-candidate`: contact re-read its baseline after the actual BLOCK had already occurred (HP remained 100); media sampled 2.2 seconds after the Intro UI without waiting for playback to start. The corrected contact test retains the exact matched Commit snapshot and additionally requires the same attack count; the media test waits for the current epoch's actual playing event before its unchanged mid-intro/five-second checks. No combat/media game rules or thresholds were relaxed.
+
 Implementation is being validated. Build/deployment evidence will be recorded after execution. Device motion, perceived arm anatomy, panel readability and touch ergonomics remain **PENDING_HUMAN_UAT**; numeric tests do not replace visual/device acceptance.

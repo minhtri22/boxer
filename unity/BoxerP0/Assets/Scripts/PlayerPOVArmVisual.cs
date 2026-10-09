@@ -55,6 +55,9 @@ namespace BoxerP0
             Vector3 cuff = Wrist - forearm * .135f;
             float trim = Mathf.Min(.10f, (Elbow - Shoulder).magnitude * .4f, (cuff - Elbow).magnitude * .65f);
             Vector3 entry = Elbow - upper * trim, exit = Elbow + forearm * trim;
+            float turn = Vector3.Angle(upper, forearm);
+            float bendRadius = trim / Mathf.Max(.001f, Mathf.Tan(turn * Mathf.Deg2Rad * .5f));
+            Vector3 bendCenter = entry + Vector3.Cross(across, upper).normalized * bendRadius;
             for (int ring = 0; ring < Rings; ring++)
             {
                 float t = ring / (float)(Rings - 1);
@@ -71,8 +74,13 @@ namespace BoxerP0
                 else if (t <= .70f)
                 {
                     float u = (t - .36f) / .34f;
-                    center = (1-u)*(1-u)*entry + 2*u*(1-u)*Elbow + u*u*exit;
-                    tangent = ((1-u)*(Elbow-entry) + u*(exit-Elbow)).normalized;
+                    if (turn < 5f) { center = Vector3.Lerp(entry, exit, u); tangent = Vector3.Slerp(upper, forearm, u); }
+                    else
+                    {
+                        Quaternion sweep = Quaternion.AngleAxis(turn * u, across);
+                        center = bendCenter + sweep * (entry - bendCenter);
+                        tangent = sweep * upper;
+                    }
                     radius = Mathf.Lerp(.056f, .053f, u);
                 }
                 else
@@ -82,12 +90,15 @@ namespace BoxerP0
                     radius = Mathf.Lerp(.053f, .043f, u);
                 }
                 Vector3 depth = Vector3.Cross(tangent, across).normalized;
+                float depthRadius = radius * .88f;
+                if (t >= .36f && t <= .70f && turn >= 5f)
+                    depthRadius = Mathf.Min(depthRadius, bendRadius * .85f);
                 for (int side = 0; side < Sides; side++)
                 {
                     float angle = side * Mathf.PI * 2 / Sides;
                     _vertices[ring * Sides + side] = transform.InverseTransformPoint(center
                         + across * (Mathf.Cos(angle) * radius)
-                        + depth * (Mathf.Sin(angle) * radius * .88f));
+                        + depth * (Mathf.Sin(angle) * depthRadius));
                 }
             }
             _mesh.vertices = _vertices;
