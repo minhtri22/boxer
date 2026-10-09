@@ -95,7 +95,7 @@ namespace BoxerP0
             if (defender.HP <= 0) End(player ? "PLAYER_WIN" : "OPPONENT_WIN", "KO");
             return true;
         }
-        public void Tick(double dt, ActionPhase playerPhase, ActionPhase opponentPhase, double playerMove, double opponentMove)
+        public void Tick(double dt, ActionPhase playerPhase, ActionPhase opponentPhase, double playerMove, double opponentMove, bool deferTimeout = false)
         {
             if (double.IsNaN(dt) || double.IsInfinity(dt) || dt < 0) throw new ArgumentOutOfRangeException(nameof(dt));
             if (double.IsNaN(playerMove) || double.IsInfinity(playerMove) || double.IsNaN(opponentMove) || double.IsInfinity(opponentMove))
@@ -104,7 +104,8 @@ namespace BoxerP0
             double step = Math.Min(dt, Math.Max(0, 45 - Seconds));
             Player.Tick(step, playerPhase, playerMove); Opponent.Tick(step, opponentPhase, opponentMove);
             Seconds += step;
-            if (Seconds >= 45 - 1e-9) FinishTimeout();
+            // Shared rig resolves the final chronological contact slice before points.
+            if (!deferTimeout && Seconds >= 45 - 1e-9) FinishTimeout();
         }
         public void FinishTimeout()
         {

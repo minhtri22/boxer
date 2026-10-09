@@ -51,6 +51,8 @@ namespace BoxerP0
         public ActionPhase CurrentPhase => _action.Phase;
         public float ActionNormalizedPhase(float phaseDuration) => _action.NormalizedPhase(phaseDuration);
         public float CurrentActionPhaseDuration => PhaseDuration(_action.Phase);
+        public long ActionId => _action.ActionId;
+        public float SecondsToPhaseBoundary => _action.IsBusy ? Mathf.Max(0f, CurrentActionPhaseDuration - _action.PhaseTime) : float.PositiveInfinity;
         public Vector3 AttackTargetLocal => _attackTargetLocal;
         public string AttributeProfileLabel => P1OpponentAttributes.ProfileToken(_attributes.Profile);
         public string AttributeInspectorText => _attributes.ToInspectorText();
@@ -104,7 +106,7 @@ namespace BoxerP0
                 StartAttack();
             }
 
-            UpdateAttack();
+            // Timeline/contact/vitals are advanced together by Round2CombatRig.
         }
 
         public void SetCombatEnabled(bool enabled)
@@ -184,14 +186,14 @@ namespace BoxerP0
             _playerHeadOffsetAtCommit = _player.HeadOffset;
         }
 
-        private void UpdateAttack()
+        public void AdvanceAttack(float seconds, float frameSecondsRemaining = 0f)
         {
             ActionPhase prior = _action.Phase;
-            _action.Step(Time.deltaTime, _attributes.CommitSeconds, _attributes.ExtendSeconds, _activeRecoverSeconds);
+            _action.Step(seconds, _attributes.CommitSeconds, _attributes.ExtendSeconds, _activeRecoverSeconds);
             if (prior != _action.Phase && _action.Phase == ActionPhase.Guard)
             {
                 _counterOpportunity.Clear();
-                _nextAttackTime = Time.time + NextFloat(_attributes.AttackGapMinSeconds, _attributes.AttackGapMaxSeconds);
+                _nextAttackTime = Time.time - frameSecondsRemaining + NextFloat(_attributes.AttackGapMinSeconds, _attributes.AttackGapMaxSeconds);
             }
 
         }
@@ -219,7 +221,8 @@ namespace BoxerP0
                 _telemetry?.RecordEvent(opportunity.ToSemanticEvent());
             }
             _telemetry?.RecordOutcome("OPPONENT", outcome, false, reason);
-            BoxerFeedback.Emit(outcome);
+            BoxerFeedback.Emit(new PunchImpact(false, _vitalAttack.Id, _action.Intent, outcome, reason,
+                end, end - start, (float)_vitalAttack.Quality));
         }
 
         public void ResetForBout()

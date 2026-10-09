@@ -58,6 +58,7 @@ namespace BoxerP0
             public Quaternion RootCorrection, ForearmCorrection, HandCorrection;
             public PlayerPOVArmVisual Arm;
             public Transform Shoulder;
+            public Material[] Leather;
         }
 
         OpponentBoxer _opponent;
@@ -146,6 +147,8 @@ namespace BoxerP0
             ApplyReferenceMaterials(opponentInstance);
             ApplyPlayerMaterials(_playerLeft.Instance);
             ApplyPlayerMaterials(_playerRight.Instance);
+            _playerLeft.Leather=LeatherMaterials(_playerLeft.Instance);
+            _playerRight.Leather=LeatherMaterials(_playerRight.Instance);
 
             Ready = true;
             if (AcceptedRig == null) LateUpdate();
@@ -261,6 +264,14 @@ namespace BoxerP0
             rig.RootBone.SetPositionAndRotation(elbow.position - direction * .05f, aim * rig.RootCorrection);
             rig.ForearmBone.SetPositionAndRotation(elbow.position, aim * rig.ForearmCorrection);
             rig.HandBone.SetPositionAndRotation(handHead, aim * rig.HandCorrection);
+            foreach(var material in rig.Leather)material.SetFloat("_Impact",BoxerFeedback.PlayerGlovePulse(left));
+        }
+        static Material[] LeatherMaterials(GameObject instance)
+        {
+            var materials=new List<Material>();
+            foreach(var renderer in instance.GetComponentsInChildren<Renderer>())
+                foreach(var material in renderer.sharedMaterials)if(material.HasProperty("_Impact"))materials.Add(material);
+            return materials.ToArray();
         }
 
         void HideAuthoritativeVisuals(Transform root)

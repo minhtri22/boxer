@@ -87,7 +87,10 @@ namespace BoxerP0.Editor
             GestureMetrics metrics = new(new Vector2(150f, 24f), 158f, 0.25f);
             AssertEqual(PunchFamily.Hook, PunchGestureClassifier.ClassifyFamily(metrics));
 
-            GestureMetrics tooFast = new(new Vector2(150f, 10f), 151f, 0.06f);
+            // Approved punch-feel contract: a decisive 60ms swipe is now valid.
+            GestureMetrics quick = new(new Vector2(150f, 10f), 151f, 0.06f);
+            AssertEqual(PunchFamily.Hook, PunchGestureClassifier.ClassifyFamily(quick));
+            GestureMetrics tooFast = new(new Vector2(150f, 10f), 151f, 0.03f);
             AssertEqual(PunchFamily.None, PunchGestureClassifier.ClassifyFamily(tooFast));
         }
 

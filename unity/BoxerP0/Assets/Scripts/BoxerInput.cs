@@ -44,6 +44,10 @@ namespace BoxerP0
         public uint OrientationEventCount { get; private set; }
         public uint TouchEventCount { get; private set; }
         public uint PunchEventCount { get; private set; }
+        public float LastPunchReleaseRealtime { get; private set; } = -1f;
+        public uint RejectedGestures { get; private set; }
+        public float LastGestureDurationMs { get; private set; }
+        public bool LastRequestFromTouch { get; private set; }
         public bool TouchActive => _leftFinger >= 0 || _rightFinger >= 0;
 
         private int _leftFinger = -1;
@@ -243,13 +247,17 @@ namespace BoxerP0
 
                     if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
                     {
+                        if (touch.phase == TouchPhase.Canceled) { _rightFinger = -1; continue; }
                         _rightPathLength += Vector2.Distance(_rightPrevious, touch.position);
                         float duration = Mathf.Max(0.001f, Time.unscaledTime - _rightStartTime);
+                        LastGestureDurationMs = duration * 1000f;
+                        LastPunchReleaseRealtime = Time.realtimeSinceStartup;
                         float scale = Mathf.Max(1f, Screen.dpi / 160f);
                         GestureMetrics metrics = new(touch.position - _rightStart, _rightPathLength, duration);
                         PunchIntent intent = PunchGestureClassifier.Resolve(metrics, LastPunchIntent, scale);
                         _rightFinger = -1;
-                        RequestPunch(intent);
+                        if (intent == PunchIntent.None) RejectedGestures++;
+                        RequestPunch(intent,true);
                     }
                 }
             }
@@ -281,8 +289,9 @@ namespace BoxerP0
             if (Input.GetKeyDown(KeyCode.R)) RecalibrateHead();
         }
 
-        private void RequestPunch(PunchIntent intent)
+        private void RequestPunch(PunchIntent intent,bool fromTouch=false)
         {
+            LastRequestFromTouch=fromTouch;
             LastPunchIntent = intent;
             if (intent != PunchIntent.None)
             {

@@ -172,7 +172,7 @@ namespace BoxerP0
     /// </summary>
     public static class PunchGestureClassifier
     {
-        public const float HoldSeconds = 0.12f;
+        public const float HoldSeconds = 0.06f;
 
         public static PunchFamily ClassifyFamily(GestureMetrics metrics, float pixelScale = 1f)
         {
@@ -308,6 +308,7 @@ namespace BoxerP0
         public ActionPhase Phase { get; private set; } = ActionPhase.Guard;
         public PunchIntent Intent { get; private set; } = PunchIntent.None;
         public float PhaseTime { get; private set; }
+        public long ActionId { get; private set; }
 
         public bool IsBusy => Phase != ActionPhase.Guard;
         public bool CounterWindowOpen => Phase == ActionPhase.Recover;
@@ -320,6 +321,7 @@ namespace BoxerP0
             }
 
             Intent = intent;
+            ActionId++;
             Phase = ActionPhase.Commit;
             PhaseTime = 0f;
             return true;
@@ -332,32 +334,22 @@ namespace BoxerP0
                 return;
             }
 
-            PhaseTime += Mathf.Max(0f, deltaTime);
-            float duration = Phase switch
+            float remaining = Mathf.Max(0f, deltaTime);
+            for (int transitions = 0; transitions < 4 && Phase != ActionPhase.Guard; transitions++)
             {
-                ActionPhase.Commit => commitSeconds,
-                ActionPhase.Extend => extendSeconds,
-                ActionPhase.Recover => recoverSeconds,
-                _ => float.PositiveInfinity
-            };
-
-            if (PhaseTime < duration)
-            {
-                return;
-            }
-
-            PhaseTime = 0f;
-            Phase = Phase switch
-            {
-                ActionPhase.Commit => ActionPhase.Extend,
-                ActionPhase.Extend => ActionPhase.Recover,
-                ActionPhase.Recover => ActionPhase.Guard,
-                _ => ActionPhase.Guard
-            };
-
-            if (Phase == ActionPhase.Guard)
-            {
-                Intent = PunchIntent.None;
+                float duration = Phase switch
+                {
+                    ActionPhase.Commit => commitSeconds,
+                    ActionPhase.Extend => extendSeconds,
+                    _ => recoverSeconds
+                };
+                float used = Mathf.Min(remaining, Mathf.Max(0f, duration - PhaseTime));
+                PhaseTime += used; remaining -= used;
+                if (PhaseTime + .0000001f < duration) return;
+                PhaseTime = 0f;
+                Phase = Phase == ActionPhase.Commit ? ActionPhase.Extend : Phase == ActionPhase.Extend ? ActionPhase.Recover : ActionPhase.Guard;
+                if (Phase == ActionPhase.Guard) Intent = PunchIntent.None;
+                if (remaining <= 0f) return;
             }
         }
 

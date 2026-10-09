@@ -30,6 +30,11 @@ namespace BoxerP0
             public int povArms,trainingBlurWidth,trainingBlurHeight;
             public bool trainingGlass;
             public Vector3 leftElbowViewport,rightElbowViewport;
+            public string punchFeel,lastImpactRegion;
+            public uint acceptedPunches,rejectedGestures,rejectedBusyPunches;
+            public float contactAgeMs,recoveryAgeMs,releaseToAcceptMs,gestureDurationMs;
+            public int impactHits,impactBlocks,impactMisses,swings;
+            public Vector3 contactPoint;
         }
         private readonly Snapshot _snapshot=new();
         private void Start()
@@ -61,6 +66,13 @@ namespace BoxerP0
             _snapshot.playerX=_telemetry.Player.transform.position.x;_snapshot.playerZ=_telemetry.Player.transform.position.z;
             _snapshot.opponentX=_telemetry.Opponent.transform.position.x;_snapshot.opponentZ=_telemetry.Opponent.transform.position.z;
             _snapshot.moveX=_telemetry.InputSource.MovementIntent.x;_snapshot.moveY=_telemetry.InputSource.MovementIntent.y;
+            _snapshot.punchFeel=PunchMotionProfile.Mode.ToString();_snapshot.acceptedPunches=_telemetry.Player.AcceptedPunches;
+            _snapshot.contactAgeMs=_telemetry.Player.LastContactAgeMs;_snapshot.recoveryAgeMs=_telemetry.Player.LastRecoveryAgeMs;
+            _snapshot.releaseToAcceptMs=_telemetry.Player.LastAcceptedReleaseLatencyMs;_snapshot.rejectedBusyPunches=_telemetry.Player.RejectedBusyPunches;
+            _snapshot.gestureDurationMs=_telemetry.InputSource.LastGestureDurationMs;_snapshot.rejectedGestures=_telemetry.InputSource.RejectedGestures;
+            _snapshot.impactHits=BoxerFeedback.HitEvents;_snapshot.impactBlocks=BoxerFeedback.BlockEvents;
+            _snapshot.impactMisses=BoxerFeedback.MissEvents;_snapshot.swings=BoxerFeedback.SwingEvents;
+            _snapshot.lastImpactRegion=BoxerFeedback.LastRegion;_snapshot.contactPoint=BoxerFeedback.LastContactPoint;
             var camera=FindFirstObjectByType<Camera>();
             var glass=camera.GetComponent<TrainingGlassBackground>();
             _snapshot.trainingGlass=glass!=null&&glass.enabled;

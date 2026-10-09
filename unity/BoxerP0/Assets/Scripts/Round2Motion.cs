@@ -44,25 +44,30 @@ namespace BoxerP0
                 _ => g + new Vector3(s*0.03f, -0.03f, -0.06f)
             };
         }
-        public static float Load(PunchIntent intent, ActionPhase phase, float t) =>
-            intent == PunchIntent.None ? 0f : P1BodyRotationMath.Sample(intent, phase, t).Amplitude;
-        public static Quaternion Torso(PunchIntent intent, ActionPhase phase, float t)
+        public static float Load(PunchIntent intent, ActionPhase phase, float t, bool ballistic = false)
+        {
+            if (intent == PunchIntent.None || phase == ActionPhase.Guard) return 0f;
+            if (!ballistic) return P1BodyRotationMath.Sample(intent, phase, t).Amplitude;
+            float u = PunchMotionProfile.Progress(phase, t, true);
+            return phase == ActionPhase.Commit ? .65f * u : phase == ActionPhase.Extend ? .65f + .35f * u : 1f - u;
+        }
+        public static Quaternion Torso(PunchIntent intent, ActionPhase phase, float t, bool ballistic = false)
         {
             float sign = PunchLabels.IsRearHand(intent) ? -1f : 1f;
-            return Quaternion.Euler(0f, sign * 14f * Load(intent, phase, t), 0f);
+            return Quaternion.Euler(0f, sign * 14f * Load(intent, phase, t, ballistic), 0f);
         }
-        public static Vector3 Shift(PunchIntent intent, ActionPhase phase, float t) =>
-            new Vector3(0f, -0.012f * Load(intent, phase, t), 0.035f * Load(intent, phase, t));
+        public static Vector3 Shift(PunchIntent intent, ActionPhase phase, float t, bool ballistic = false) =>
+            new Vector3(0f, -0.012f * Load(intent, phase, t, ballistic), 0.035f * Load(intent, phase, t, ballistic));
         public static ArmChainSolution Sample(bool left, PunchIntent intent, ActionPhase phase, float t,
-            Vector3 endpoint)
+            Vector3 endpoint, bool ballistic = false)
         {
             bool active = intent != PunchIntent.None && left != PunchLabels.IsRearHand(intent);
             Vector3 g = Guard(left), requested = g;
-            Vector3 shoulder = Torso(intent, phase, t) * new Vector3(left ? -0.38f : 0.38f, 1.43f, 0.02f) + Shift(intent, phase, t);
+            Vector3 shoulder = Torso(intent, phase, t, ballistic) * new Vector3(left ? -0.38f : 0.38f, 1.43f, 0.02f) + Shift(intent, phase, t, ballistic);
             if (active)
             {
                 Vector3 c = Commit(intent);
-                float u = Smooth(t);
+                float u = PunchMotionProfile.Progress(phase, t, ballistic);
                 requested = phase switch
                 {
                     ActionPhase.Commit => Vector3.Lerp(g, c, u),

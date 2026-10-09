@@ -116,7 +116,7 @@ namespace BoxerP0.Editor
             Check(!illustrative.HeadReady&&!illustrative.FootworkReady&&!illustrative.PunchesReady,"illustrative guide does not grant practice progress");
             Log.AppendLine($"TOTAL={_passed+_failed} PASS={_passed} FAIL={_failed}");
             string selected=Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE");
-            string suite=selected=="training-pov"?"training-pov":selected=="ring-intro"?"ring-intro":selected=="combat-v3"?"combat-v3":"onboarding-v2";
+            string suite=selected=="punch-feel"?"punch-feel":selected=="training-pov"?"training-pov":selected=="ring-intro"?"ring-intro":selected=="combat-v3"?"combat-v3":"onboarding-v2";
             string dir=Path.GetFullPath(Path.Combine(Application.dataPath,"../../../evidence/wave1/"+suite));Directory.CreateDirectory(dir);
             File.WriteAllText(Path.Combine(dir,"vitals-tests.txt"),Log.ToString()); Debug.Log(Log);
             if(_failed!=0)throw new Exception("Wave1 vitals/flow invariant failure");

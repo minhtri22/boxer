@@ -69,6 +69,7 @@ namespace BoxerP0
 
         private void Awake()
         {
+            PunchMotionProfile.Configure(Application.absoluteURL);
             Application.targetFrameRate = 60;
             ConfigureSmokeQuit();
             BuildLightingAndRing();
@@ -99,13 +100,7 @@ namespace BoxerP0
                 _armVisual?.SetDeveloperDebugVisible(_showDeveloperDiagnostics);
             }
 
-            if (_telemetry.Bout.Active)
-            {
-                float dt = Time.deltaTime;
-                double pm = PlanarSpeed(_player.transform.position, _lastPlayerPosition, dt) / 1.5;
-                double om = PlanarSpeed(_opponent.transform.position, _lastOpponentPosition, dt) / 0.36;
-                _telemetry.Bout.Tick(dt, _player.CurrentPhase, _opponent.CurrentPhase, pm, om);
-            }
+            // Round2CombatRig integrates vitals with each chronological phase slice.
             RememberPositions();
             UpdateOnboarding();
 #if !UNITY_WEBGL || UNITY_EDITOR
@@ -142,6 +137,8 @@ namespace BoxerP0
         private void ResetActors()
         {
             _input.SetGameplayInput(false);
+            FindFirstObjectByType<Round2CombatRig>()?.ResetTimeline();
+            BoxerFeedback.ResetImpacts();
             _player.ResetForBout(); _opponent.ResetForBout();
             _telemetry.ResetSessionCounters();
             _player.transform.SetPositionAndRotation(new Vector3(0, 0, -0.7f), Quaternion.identity);
@@ -573,7 +570,7 @@ namespace BoxerP0
                 OnboardingStage.Footwork =>
                     $"2 / 3 — DI CHUYỂN\nGiữ và vuốt vùng DƯỚI BÊN TRÁI theo 4 hướng.\nTRÁI {Mark(_training.MoveLeft)}  PHẢI {Mark(_training.MoveRight)}\nTIẾN {Mark(_training.MoveForward)}  LÙI {Mark(_training.MoveBack)}",
                 OnboardingStage.Punches =>
-                    $"3 / 3 — BỐN NHÓM ĐÒN\nVùng DƯỚI BÊN PHẢI: giữ nhẹ rồi vuốt, thả tay để đấm.\nLÊN: móc từ dưới {Mark(_training.Uppercut)}\nXUỐNG: từ trên xuống {Mark(_training.Overhand)}\nNGANG trái/phải: móc ngang {Mark(_trainingLeadHook && _trainingRearHook)}\nCHẠM nhiều lần: jab/cross {Mathf.Min(2,_trainingTaps)}/2\nChờ găng trở lại giữa các đòn; không cần đấm thật nhanh.",
+                    $"3 / 3 — BỐN NHÓM ĐÒN\nVùng DƯỚI BÊN PHẢI: vuốt dứt khoát, thả tay để đấm.\nLÊN: móc từ dưới {Mark(_training.Uppercut)}\nXUỐNG: từ trên xuống {Mark(_training.Overhand)}\nNGANG trái/phải: móc ngang {Mark(_trainingLeadHook && _trainingRearHook)}\nCHẠM nhiều lần: jab/cross {Mathf.Min(2,_trainingTaps)}/2\nĐợi nhịp hồi găng rồi ra đòn tiếp; không cần giữ lâu.",
                 _ => string.Empty
             };
         }

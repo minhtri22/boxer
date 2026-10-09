@@ -9,13 +9,15 @@ namespace BoxerP0
         public PunchIntent Intent;
         public ActionPhase Phase;
         public float T, Duration, HeadOffset;
+        public bool Ballistic;
+        public long ActionId;
         public Vector3 World(Vector3 p) => Position + Rotation*p;
-        public ArmChainSolution Arm(bool left) => Round2Motion.Sample(left,Intent,Phase,T,Endpoint);
+        public ArmChainSolution Arm(bool left) => Round2Motion.Sample(left,Intent,Phase,T,Endpoint,Ballistic);
         public Vector3 Target(int index)
         {
             if(index<2) return World(Arm(index==0).Wrist);
-            Vector3 shift=Round2Motion.Shift(Intent,Phase,T);
-            if(index>=4) return World(Round2Motion.Torso(Intent,Phase,T)*new Vector3((index-5)*0.165f,1.37f,0f)+shift);
+            Vector3 shift=Round2Motion.Shift(Intent,Phase,T,Ballistic);
+            if(index>=4) return World(Round2Motion.Torso(Intent,Phase,T,Ballistic)*new Vector3((index-5)*0.165f,1.37f,0f)+shift);
             return World((index==2 ? new Vector3(HeadOffset,1.62f,0f) : new Vector3(0f,1.16f,0f))+shift);
         }
         public static Round2Frame Between(Round2Frame a, Round2Frame b, float t)
@@ -24,8 +26,8 @@ namespace BoxerP0
             r.Position=Vector3.Lerp(a.Position,b.Position,t);
             r.Rotation=Quaternion.Slerp(a.Rotation,b.Rotation,t);
             r.HeadOffset=Mathf.Lerp(a.HeadOffset,b.HeadOffset,t);
-            if(a.Intent==b.Intent && a.Phase==b.Phase) r.T=Mathf.Lerp(a.T,b.T,t);
-            else if(a.Intent==b.Intent && a.Phase==ActionPhase.Extend && b.Phase==ActionPhase.Recover)
+            if(a.ActionId==b.ActionId && a.Intent==b.Intent && a.Phase==b.Phase) r.T=Mathf.Lerp(a.T,b.T,t);
+            else if(a.ActionId==b.ActionId && a.Intent==b.Intent && a.Phase==ActionPhase.Extend && b.Phase==ActionPhase.Recover)
             { r.Phase=ActionPhase.Extend; r.T=Mathf.Lerp(a.T,1f,t); }
             else if(b.Phase==ActionPhase.Extend) r.T=b.T*t;
             return r;
@@ -42,6 +44,7 @@ namespace BoxerP0
         Rig _p,_o;
         Round2Frame _previousP,_previousO;
         bool _ready;
+        Phase0Telemetry _telemetry;
         public long Samples { get; private set; }
         public long Contacts { get; private set; }
         public float LastContactFraction { get; private set; }
@@ -60,6 +63,7 @@ namespace BoxerP0
         public void Initialize(PlayerBoxer player, OpponentBoxer opponent)
         {
             _player=player; _opponent=opponent;
+            _telemetry=FindFirstObjectByType<Phase0Telemetry>();
             _p=Build(player.transform,player.LeftGlove,player.RightGlove,player.Head,player.BodyCollider.transform,true);
             _o=Build(opponent.transform,opponent.LeftGlove,opponent.RightGlove,opponent.HeadCollider.transform,opponent.BodyCollider.transform,false);
         }
@@ -92,28 +96,68 @@ namespace BoxerP0
         }
         public Round2Frame PlayerFrame() => new Round2Frame { Position=_player.transform.position,Rotation=_player.transform.rotation,
             Intent=_player.CurrentIntent,Phase=_player.CurrentPhase,T=_player.ActionNormalizedPhase(_player.CurrentActionPhaseDuration),
-            Duration=_player.CurrentActionPhaseDuration,Endpoint=_player.Round2Endpoint,HeadOffset=_player.HeadOffset };
+            Duration=_player.CurrentActionPhaseDuration,Endpoint=_player.Round2Endpoint,HeadOffset=_player.HeadOffset,
+            Ballistic=PunchMotionProfile.Ballistic,ActionId=_player.ActionId };
         public Round2Frame OpponentFrame() => new Round2Frame { Position=_opponent.transform.position,Rotation=_opponent.transform.rotation,
             Intent=_opponent.CurrentIntent,Phase=_opponent.CurrentPhase,T=_opponent.ActionNormalizedPhase(_opponent.CurrentActionPhaseDuration),
-            Duration=_opponent.CurrentActionPhaseDuration,Endpoint=_opponent.AttackTargetLocal };
+            Duration=_opponent.CurrentActionPhaseDuration,Endpoint=_opponent.AttackTargetLocal,ActionId=_opponent.ActionId };
+
+        public void ResetTimeline() { _ready=false; }
 
         void LateUpdate()
         {
             if(_player==null) return;
             double start=Time.realtimeSinceStartupAsDouble;
-            Round2Frame p=PlayerFrame(), o=OpponentFrame();
-            if(!_ready) { _previousP=p; _previousO=o; _ready=true; }
-            if(_player.CombatEnabled && _opponent.CombatEnabled && !_player.Round2Resolved)
-                Resolve(_previousP,p,_previousO,o,true);
-            if(_player.CombatEnabled && _opponent.CombatEnabled && !_opponent.Round2Resolved)
-                Resolve(_previousO,o,_previousP,p,false);
-            Draw(_p,p,true); Draw(_o,o,false);
-            _previousP=p; _previousO=o;
+            Simulate(Time.deltaTime);
             LastUpdateMs=(float)((Time.realtimeSinceStartupAsDouble-start)*1000.0);
         }
+
+        // Phase-boundary substeps are never skipped, even when one render frame
+        // spans an entire strike. Vitals use the PRE-step phases for their duration.
+        public void Simulate(float frameSeconds)
+        {
+            Round2Frame p=PlayerFrame(),o=OpponentFrame();
+            if(!_ready) { _previousP=p;_previousO=o;_ready=true; }
+            Round2Frame originP=_previousP,originO=_previousO,targetP=p,targetO=o;
+            float elapsed=0f;
+            double pm=Movement(originP.Position,targetP.Position,frameSeconds,1.5f);
+            double om=Movement(originO.Position,targetO.Position,frameSeconds,.36f);
+            for(int iteration=0;iteration<4096 && elapsed<frameSeconds;iteration++)
+            {
+                if(_telemetry.Bout.Ended || (!_player.CombatEnabled && !_opponent.CombatEnabled)) break;
+                float step=Mathf.Min(Round2Motion.SampleSeconds,frameSeconds-elapsed);
+                step=Mathf.Min(step,_player.CombatEnabled?_player.SecondsToPhaseBoundary:float.PositiveInfinity);
+                step=Mathf.Min(step,_opponent.CombatEnabled?_opponent.SecondsToPhaseBoundary:float.PositiveInfinity);
+                if(_telemetry.Bout.Active) step=Mathf.Min(step,(float)(45-_telemetry.Bout.Seconds));
+                Round2Frame beforeP=At(PlayerFrame(),originP,targetP,frameSeconds>0?elapsed/frameSeconds:1),
+                    beforeO=At(OpponentFrame(),originO,targetO,frameSeconds>0?elapsed/frameSeconds:1);
+                _telemetry.Bout.Tick(step,beforeP.Phase,beforeO.Phase,pm,om,true);
+                if(_player.CombatEnabled) _player.AdvancePunch(step);
+                if(_opponent.CombatEnabled) _opponent.AdvanceAttack(step,frameSeconds-elapsed-step);
+                elapsed+=step;
+                p=At(PlayerFrame(),originP,targetP,elapsed/frameSeconds);
+                o=At(OpponentFrame(),originO,targetO,elapsed/frameSeconds);
+                Draw(_p,p,true);Draw(_o,o,false);
+                if(_player.CombatEnabled && _opponent.CombatEnabled && !_player.Round2Resolved)
+                    Resolve(beforeP,p,beforeO,o,true);
+                if(_player.CombatEnabled && _opponent.CombatEnabled && !_opponent.Round2Resolved)
+                    Resolve(beforeO,o,beforeP,p,false);
+                if(_telemetry.Bout.Active && _telemetry.Bout.Seconds>=45-1e-9) _telemetry.Bout.FinishTimeout();
+                // A zero boundary step only promotes the phase; no dt is discarded.
+            }
+            p=PlayerFrame();o=OpponentFrame();
+            Draw(_p,p,true); Draw(_o,o,false);
+            _previousP=p; _previousO=o;
+        }
+        static double Movement(Vector3 a,Vector3 b,float dt,float speed)
+        { a.y=b.y=0;return dt>0?Vector3.Distance(a,b)/(dt*speed):0; }
+        static Round2Frame At(Round2Frame state,Round2Frame from,Round2Frame to,float alpha)
+        { state.Position=Vector3.Lerp(from.Position,to.Position,alpha);state.Rotation=Quaternion.Slerp(from.Rotation,to.Rotation,alpha);
+          state.HeadOffset=Mathf.Lerp(from.HeadOffset,to.HeadOffset,alpha);return state; }
         void Resolve(Round2Frame old,Round2Frame now,Round2Frame targetOld,Round2Frame target,bool player)
         {
             bool tail=old.Phase==ActionPhase.Extend && now.Phase==ActionPhase.Recover;
+            if(old.ActionId!=now.ActionId) return;
             if(now.Phase!=ActionPhase.Extend && !tail) return;
             bool left=!PunchLabels.IsRearHand(now.Intent);
             float begin=old.Phase==ActionPhase.Extend ? old.T : 0f;
@@ -140,8 +184,9 @@ namespace BoxerP0
                     LastContactGap=Vector3.Distance(Vector3.Lerp(a,b,earliest),Vector3.Lerp(ta.Target(hit),tb.Target(hit),earliest))-Round2Motion.GloveRadius-TargetRadius(hit);
                     CombatOutcome outcome=hit<2?CombatOutcome.Block:CombatOutcome.Hit;
                     string reason=(player?"OPPONENT_":"PLAYER_")+(hit<2?"GUARD":hit==2?"HEAD":"BODY")+"_SWEPT_CONTACT";
-                    if(player) _player.CompleteRound2Punch(outcome,reason,a,b);
-                    else _opponent.CompleteRound2Attack(outcome,reason,a,b);
+                    Vector3 contact=Vector3.Lerp(a,b,earliest);
+                    if(player) _player.CompleteRound2Punch(outcome,reason,a,contact);
+                    else _opponent.CompleteRound2Attack(outcome,reason,a,contact);
                     return;
                 }
                 a=b; ta=tb;
@@ -150,7 +195,7 @@ namespace BoxerP0
             {
                 // Counter qualification still uses committed aim vs actual target displacement.
                 Vector3 origin=now.World(Round2Motion.Commit(now.Intent));
-                Vector3 finish=now.World(Round2Motion.Sample(left,now.Intent,ActionPhase.Extend,1f,now.Endpoint).Wrist);
+                Vector3 finish=now.World(Round2Motion.Sample(left,now.Intent,ActionPhase.Extend,1f,now.Endpoint,now.Ballistic).Wrist);
                 if(player) _player.CompleteRound2Punch(CombatOutcome.Miss,"NO_SWEPT_TARGET_CONTACT",origin,finish);
                 else _opponent.CompleteRound2Attack(CombatOutcome.Miss,"NO_SWEPT_TARGET_CONTACT",origin,finish);
             }
@@ -175,10 +220,10 @@ namespace BoxerP0
                 rig.Head.position=frame.Target(2);
                 rig.Body.position=frame.Target(3);
                 _opponent.BodyCollider.transform.position=rig.Body.position;
-                Vector3 shift=Round2Motion.Shift(frame.Intent,frame.Phase,frame.T);
+                Vector3 shift=Round2Motion.Shift(frame.Intent,frame.Phase,frame.T,frame.Ballistic);
                 rig.Chest.position=frame.Target(5);
                 rig.ChestLeft.position=frame.Target(4); rig.ChestRight.position=frame.Target(6);
-                rig.Chest.rotation=frame.Rotation*Round2Motion.Torso(frame.Intent,frame.Phase,frame.T);
+                rig.Chest.rotation=frame.Rotation*Round2Motion.Torso(frame.Intent,frame.Phase,frame.T,frame.Ballistic);
                 rig.Neck.position=frame.World(new Vector3(0f,1.51f,0f)+shift);
             }
             else { rig.Head.position=frame.Target(2); rig.Body.position=frame.Target(3); }

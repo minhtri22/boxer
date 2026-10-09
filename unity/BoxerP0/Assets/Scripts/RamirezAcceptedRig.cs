@@ -115,8 +115,8 @@ namespace BoxerP0
             // feet and use only the necessary visual crouch to keep soles attached.
             float crouch=Mathf.Max(RequiredCrouch(_leftLeg),RequiredCrouch(_rightLeg));
             _root.position-=Vector3.up*crouch;
-            _spine.rotation=_chest.rotation*_spineRest;
-            _head.rotation=_actor.rotation*_headRest;
+            _spine.rotation=BoxerFeedback.OpponentReaction(false)*_chest.rotation*_spineRest;
+            _head.rotation=BoxerFeedback.OpponentReaction(true)*_actor.rotation*_headRest;
             Drive(_leftArm,true); Drive(_rightArm,true); Drive(_leftLeg,false); Drive(_rightLeg,false);
             LastGloveError=Mathf.Max(Vector3.Distance(Center(_leftArm),_leftArm.Target.position),Vector3.Distance(Center(_rightArm),_rightArm.Target.position));
             LastFootError=Mathf.Max(Vector3.Distance(Center(_leftLeg),_leftLeg.Target.position),Vector3.Distance(Center(_rightLeg),_rightLeg.Target.position));
@@ -149,6 +149,7 @@ namespace BoxerP0
         {
             Vector3 direction=arm?(l.Target.position-l.Pole.position).normalized:_actor.up;
             Quaternion orientation=arm?Quaternion.FromToRotation(_actor.rotation*l.EndDirection,direction)*_actor.rotation*l.EndRotation:l.Target.rotation*l.EndRotation;
+            if(arm) orientation=BoxerFeedback.OpponentGuardReaction(l.Target.position)*orientation;
             Vector3 offset=orientation*Vector3.Scale(l.EndOffset,l.End.lossyScale);
             if(arm)
             {

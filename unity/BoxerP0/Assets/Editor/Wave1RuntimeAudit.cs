@@ -15,7 +15,7 @@ namespace BoxerP0.Editor
         private static readonly StringBuilder Log=new();
         private static int _stage, _frame=-1, _rematches, _checks;
         private static double _start;
-        private static string Dir=>Path.GetFullPath(Path.Combine(Application.dataPath,"../../../evidence/wave1/"+(Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="training-pov"?"training-pov":Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="ring-intro"?"ring-intro":Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="combat-v3"?"combat-v3":"onboarding-v2")));
+        private static string Dir=>Path.GetFullPath(Path.Combine(Application.dataPath,"../../../evidence/wave1/"+(Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="punch-feel"?"punch-feel":Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="training-pov"?"training-pov":Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="ring-intro"?"ring-intro":Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="combat-v3"?"combat-v3":"onboarding-v2")));
         static Wave1RuntimeAudit() { if(SessionState.GetBool("wave1Audit",false))EditorApplication.update+=Tick; }
         public static void Run()
         {
@@ -91,7 +91,9 @@ namespace BoxerP0.Editor
                     for(int i=0;i<12;i++) {var r=t.Bout.Accept(true,PunchIntent.RearOverhand);t.Bout.Resolve(true,r,CombatOutcome.Miss,false);}
                     double quality=t.Bout.Player.Quality;double defenderHP=t.Bout.Opponent.HP;
                     Punch(p,PunchIntent.Cross);
-                    Check(Math.Abs(p.ActiveRecoverSeconds-.28*(1+.75*(1-quality)))<1e-6&&p.ActiveRecoverSeconds>.28,"real player fatigue slows recovery");
+                    // The approved per-intent base changed, NOT the fatigue multiplier.
+                    double crossRecovery=PunchMotionProfile.Player(PunchIntent.Cross).Recover;
+                    Check(Math.Abs(p.ActiveRecoverSeconds-crossRecovery*(1+.75*(1-quality)))<1e-6&&p.ActiveRecoverSeconds>crossRecovery,"real player fatigue slows recovery");
                     p.CompleteRound2Punch(CombatOutcome.Hit,"OPPONENT_HEAD_SWEPT_CONTACT",Vector3.zero,Vector3.one);
                     Check(Math.Abs(t.Bout.Opponent.HP-(defenderHP-9*quality))<1e-7,"real player fatigue reduces impact");
                     for(int i=0;i<12;i++) {var r=t.Bout.Accept(false,PunchIntent.RearOverhand);t.Bout.Resolve(false,r,CombatOutcome.Miss,false);}

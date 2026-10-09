@@ -54,6 +54,9 @@ namespace BoxerP0.Editor
                 metadata.AppendLine("training_guides=native_boot_head_glove_icons_directional_light_trails_repeat_tap_training_only");
                 metadata.AppendLine("training_glass=live_scene_separable_blur_reduced_256x512_max_card_only_no_fight_postprocess");
                 metadata.AppendLine("player_arms=continuous_two_segment_tucked_pov_elbow_visual_only_shared_shoulder_glove_anchors");
+                metadata.AppendLine("punch_feel=per_intent_ballistic_shared_pose_fast_pull_guard_settle_60ms_swipe_no_combo_buffer");
+                metadata.AppendLine("combat_timeline=phase_boundary_substeps_max_240Hz_contact_vitals_same_timeline_carry_over_no_global_hitstop");
+                metadata.AppendLine("impact=resolved_receipt_head_body_block_layered_sfx_bounded_native_bone_reaction_material_pressure_35ms_no_camera_shake");
                 metadata.AppendLine("combat_fairness=multiply_high_ai_choice_shared_all_volume_contact_neutral_straight_engagement_range");
                 metadata.AppendLine("footwork=pov_facing_relative_axes_shared_forward_ring_extent_minimum_torso_separation");
                 foreach(string side in new[]{"Left","Right"})

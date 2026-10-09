@@ -89,7 +89,7 @@ namespace BoxerP0
         {
             ControlCard(42,245,"PHONE = HEAD\n\nLook, react,\nstay aware.");
             ControlCard(278,245,"LEFT THUMB = FEET\n\nMove, angle,\ncontrol.");
-            ControlCard(42,420,"RIGHT THUMB = PUNCH\n\nTap, or hold + swipe\nfor punch families.");
+            ControlCard(42,420,"RIGHT THUMB = PUNCH\n\nTap, or quick swipe.\nRelease to punch.");
             ControlCard(278,420,"NO TOUCH = GUARD\n\nRecover, then choose\nyour next attack.");
             if (Button(640,"START",true)) _bootstrap.ShowPreview();
             if (Button(725,_bootstrap.Flow.TutorialSeen ? "PRACTICE CONTROLS" : "NEW? LEARN CONTROLS")) _bootstrap.BeginTraining();
@@ -119,7 +119,7 @@ namespace BoxerP0
                 float x=feet?20:285;
                 GUI.color=new Color(Gold.r,Gold.g,Gold.b,.14f);
                 GUI.DrawTexture(new Rect(x,610,235,285),Texture2D.whiteTexture);GUI.color=Color.white;
-                GUI.Label(new Rect(x+8,617,219,55),feet?"VÙNG DI CHUYỂN\nGIỮ + VUỐT 4 HƯỚNG":"VÙNG ĐẤM\nCHẠM / GIỮ NHẸ + VUỐT",_small);
+                GUI.Label(new Rect(x+8,617,219,55),feet?"VÙNG DI CHUYỂN\nGIỮ + VUỐT 4 HƯỚNG":"VÙNG ĐẤM\nCHẠM / VUỐT DỨT KHOÁT",_small);
             }
             // Drawn only in training, using the same safe-area/portrait coordinate space.
             TrainingGestureGuide.Draw(_bootstrap.TrainingToken,Time.unscaledTime,_small);
