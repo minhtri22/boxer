@@ -15,7 +15,7 @@ namespace BoxerP0.Editor
         private static readonly StringBuilder Log=new();
         private static int _stage, _frame=-1, _rematches, _checks;
         private static double _start;
-        private static string Dir=>Path.GetFullPath(Path.Combine(Application.dataPath,"../../../evidence/wave1/"+(Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="combat-v3"?"combat-v3":"onboarding-v2")));
+        private static string Dir=>Path.GetFullPath(Path.Combine(Application.dataPath,"../../../evidence/wave1/"+(Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="ring-intro"?"ring-intro":Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="combat-v3"?"combat-v3":"onboarding-v2")));
         static Wave1RuntimeAudit() { if(SessionState.GetBool("wave1Audit",false))EditorApplication.update+=Tick; }
         public static void Run()
         {
@@ -28,6 +28,18 @@ namespace BoxerP0.Editor
         { _checks++;Log.AppendLine((condition?"PASS ":"FAIL ")+name); if(!condition)throw new Exception(name); }
         private static void Punch(PlayerBoxer player,PunchIntent intent)
         { typeof(PlayerBoxer).GetMethod("OnPunchRequested",Flags).Invoke(player,new object[]{intent}); }
+        private static void BeginScored(BoxerBootstrap b, PlayerBoxer p, OpponentBoxer o, Phase0Telemetry t, BoxerInput input)
+        {
+            b.BeginProductBout();
+            Check(b.Flow.Screen==ProductScreen.Intro&&!t.Bout.Active&&!input.GameplayInput&&!p.CombatEnabled&&!o.CombatEnabled,"ring intro locks input, AI, score");
+            Punch(p,PunchIntent.Cross);t.Bout.Tick(6,ActionPhase.Guard,ActionPhase.Guard,1,1);
+            Check(t.Bout.Seconds==0&&t.Bout.Player.HP==100&&t.Bout.Opponent.HP==100&&t.Bout.Player.Stamina==100&&t.Bout.Player.Capacity==100,"intro rejects punch and freezes vitals/clock");
+            b.BrowserIntroReady("stale");Check(b.Flow.Screen==ProductScreen.Intro&&!t.Bout.Active,"stale media completion rejected");
+            // Simulated browser callback for controller wiring ONLY; real media timing is tested in WebGL.
+            b.BrowserIntroReady(b.IntroToken);
+            Check(b.Flow.Screen==ProductScreen.Fight&&t.Bout.Active&&t.Bout.Seconds==0,"matching media completion starts fresh bout");
+            b.BrowserIntroReady(b.IntroToken);Check(t.Bout.Seconds==0,"duplicate media completion does not reset bout");
+        }
         private static void Tick()
         {
             if(!EditorApplication.isPlaying||EditorApplication.isCompiling||_frame==Time.frameCount)return;
@@ -63,7 +75,9 @@ namespace BoxerP0.Editor
                     b.AdvanceTraining();Check(b.TrainingToken=="HEADCONTROL"&&!b.TrainingReady,"unperformed practice cannot advance by timer or button");
                     b.ReturnHome();Check(!input.GameplayInput&&!t.Bout.Active,"training exit returns Home without starting fight");
                     b.ShowPreview();Check(b.Flow.Screen==ProductScreen.Preview&&!input.GameplayInput,"preview consumes menu input");
-                    b.BeginProductBout();Check(b.Flow.Screen==ProductScreen.Fight&&t.Bout.Active&&t.Bout.Seconds==0,"first scored bout starts directly without tutorial bypass");
+                    b.BeginProductBout();string cancelled=b.IntroToken;b.ReturnHome();b.BrowserIntroReady(cancelled);
+                    Check(b.Flow.Screen==ProductScreen.Home&&!t.Bout.Active,"cancelled intro cannot start hidden combat");
+                    b.ShowPreview();BeginScored(b,p,o,t,input);
                     Punch(p,PunchIntent.Cross); double capacity=t.Bout.Player.Capacity;
                     Check(capacity==84&&Math.Abs(t.Bout.Player.Stamina-96.8)<1e-7,"real player accepted action spends once");
                     Punch(p,PunchIntent.Jab);Check(t.Bout.Player.Capacity==capacity,"real busy rejection costs zero");
@@ -89,7 +103,7 @@ namespace BoxerP0.Editor
                     typeof(P1VCombatPresentation).GetMethod("UpdateStamina",Flags).Invoke(hud,null);
                     float shown=(float)typeof(P1VCombatPresentation).GetField("_playerStamina",Flags).GetValue(hud);
                     Check(Math.Abs(shown-t.Bout.Player.Stamina/100)<1e-7,"HUD stamina reads combat state exactly");
-                    b.ReturnHome();b.ShowPreview();b.BeginProductBout();
+                    b.ReturnHome();b.ShowPreview();BeginScored(b,p,o,t,input);
                     Check(t.Bout.Player.HP==100&&t.Bout.Opponent.HP==100&&t.PlayerHits==0&&o.AttackEventCount==0,"next bout resets vitals/counters/AI count");
                     _stage=1;
                 }
@@ -119,7 +133,7 @@ namespace BoxerP0.Editor
                 {
                     if(b.Flow.Screen!=ProductScreen.Result)return;
                     Check(t.BoutResult==(_rematches==0?"PLAYER_WIN":"DRAW")&&!input.GameplayInput,"result transition and input lock "+_rematches);
-                    b.BeginProductBout();_rematches++;
+                    BeginScored(b,p,o,t,input);_rematches++;
                     Check(b.Flow.Screen==ProductScreen.Fight&&t.Bout.Player.HP==100&&t.Bout.Opponent.HP==100&&t.Bout.Player.Stamina==100&&t.Bout.Player.Capacity==100,"rematch full reset "+_rematches);
                     Check(UnityEngine.Object.FindObjectsByType<PlayerBoxer>(FindObjectsSortMode.None).Length==1&&UnityEngine.Object.FindObjectsByType<OpponentBoxer>(FindObjectsSortMode.None).Length==1,"no duplicate actors "+_rematches);
                     if(_rematches<10)t.Bout.FinishTimeout();else {b.ReturnHome();Check(!input.GameplayInput&&!t.Bout.Active,"return home freezes model");Finish(0);}

@@ -23,7 +23,8 @@ namespace BoxerP0
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.M)) AudioEnabled = !AudioEnabled;
+            if (Input.GetKeyDown(KeyCode.M))
+            { AudioEnabled = !AudioEnabled; RingPresentation.Command(AudioEnabled ? 3 : 4); }
             if (Input.GetKeyDown(KeyCode.H)) HapticsEnabled = !HapticsEnabled;
         }
 

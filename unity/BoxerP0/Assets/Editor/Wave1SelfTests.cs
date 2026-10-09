@@ -80,18 +80,24 @@ namespace BoxerP0.Editor
             b.Reset(); Check(!b.Ended&&b.Result=="PENDING"&&Near(b.Player.HP,100)&&Near(b.Player.Stamina,100)&&Near(b.Player.Capacity,100),"full rematch reset");
             try{b.Tick(double.NaN,ActionPhase.Guard,ActionPhase.Guard,0,0);Check(false,"invalid dt rejected");}catch(ArgumentOutOfRangeException){Check(true,"invalid dt rejected");}
             var f=new ProductFlow(); Check(f.Screen==ProductScreen.Home&&!f.Gameplay,"home blocks gameplay");
-            Check(!f.Begin()&&f.Preview()&&f.Begin()&&f.Screen==ProductScreen.Fight,"first bout starts immediately without tutorial");
+            Check(!f.Begin()&&f.Preview()&&f.Begin()&&f.Screen==ProductScreen.Intro&&!f.Gameplay,"first bout enters unscored ring intro, not training");
+            Check(!f.Begin()&&!f.Preview(),"intro cannot reenter or preview");
+            f.Finish(); Check(f.Screen==ProductScreen.Intro,"premature finish cannot unlock intro");
+            Check(f.IntroFinished()&&f.Screen==ProductScreen.Fight&&f.Gameplay,"media completion opens fight");
+            Check(!f.IntroFinished(),"duplicate intro completion rejected");
             Check(!f.Preview()&&!f.Begin(),"illegal mid-bout navigation rejected");
             f.TutorialFinished(); Check(f.Screen==ProductScreen.Fight&&f.Gameplay&&!f.TutorialSeen,"combat cannot falsely complete training");
             f.Finish();Check(f.Screen==ProductScreen.Result&&!f.Gameplay,"result blocks gameplay");
-            Check(f.Begin()&&f.Screen==ProductScreen.Fight,"rematch skips already-shown tutorial");
-            f.Home();Check(f.Preview()&&f.Begin()&&f.Screen==ProductScreen.Fight,"home preview next bout route");
+            Check(f.Begin()&&f.Screen==ProductScreen.Intro&&!f.Gameplay&&f.IntroFinished(),"rematch replays intro without tutorial");
+            f.Home();Check(f.Preview()&&f.Begin()&&f.Screen==ProductScreen.Intro&&f.IntroFinished(),"home preview next bout route");
             f.Home();Check(f.Begin(true)&&f.Screen==ProductScreen.Onboarding,"explicit practice replays tutorial");
             Check(!f.Preview()&&!f.Begin(),"training cannot silently start combat");
             f.TutorialFinished();Check(f.Screen==ProductScreen.Home&&!f.Gameplay&&f.TutorialSeen,"training completion returns Home not Fight");
             var restored=new ProductFlow();restored.RestoreTutorialSeen(true);
             Check(restored.TutorialSeen&&restored.Screen==ProductScreen.Home,"completed training preference restores without auto training");
-            Check(restored.Preview()&&restored.Begin()&&restored.Screen==ProductScreen.Fight,"trained player still starts fight immediately");
+            Check(restored.Preview()&&restored.Begin()&&restored.Screen==ProductScreen.Intro&&!restored.Gameplay,"trained player still sees ring intro");
+            restored.Home();Check(!restored.IntroFinished()&&!restored.Gameplay,"cancelled intro callback cannot start combat");
+            Check(!f.IntroFinished()&&f.Screen==ProductScreen.Home,"intro callback cannot start fight after practice");
             var progress=new OnboardingProgress();progress.ObserveHead(-.13f);progress.ObserveHead(.13f);
             Check(progress.HeadReady&&!progress.FootworkReady&&!progress.PunchesReady,"head practice isolated from other skills");
             progress.ObserveMovement(Vector2.left);progress.ObserveMovement(Vector2.right);progress.ObserveMovement(Vector2.up);progress.ObserveMovement(Vector2.down);
@@ -109,7 +115,8 @@ namespace BoxerP0.Editor
             var illustrative=new OnboardingProgress();TrainingGestureGuide.Cue("PUNCHES",10);
             Check(!illustrative.HeadReady&&!illustrative.FootworkReady&&!illustrative.PunchesReady,"illustrative guide does not grant practice progress");
             Log.AppendLine($"TOTAL={_passed+_failed} PASS={_passed} FAIL={_failed}");
-            string suite=Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="combat-v3"?"combat-v3":"onboarding-v2";
+            string selected=Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE");
+            string suite=selected=="ring-intro"?"ring-intro":selected=="combat-v3"?"combat-v3":"onboarding-v2";
             string dir=Path.GetFullPath(Path.Combine(Application.dataPath,"../../../evidence/wave1/"+suite));Directory.CreateDirectory(dir);
             File.WriteAllText(Path.Combine(dir,"vitals-tests.txt"),Log.ToString()); Debug.Log(Log);
             if(_failed!=0)throw new Exception("Wave1 vitals/flow invariant failure");

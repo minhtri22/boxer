@@ -47,7 +47,9 @@ namespace BoxerP0.Editor
                 metadata.AppendLine("contact=shared_anatomical_pose_relative_sphere_sweep_240Hz");
                 metadata.AppendLine("presentation=accepted_ramirez_native_rig_readonly_mapping_no_bottom_controls");
                 metadata.AppendLine("vitals=wave1_authoritative_hp_stamina_capacity_quality_recovery_ko");
-                metadata.AppendLine("product_loop=home_preview_immediate_fight_result_rematch");
+                metadata.AppendLine("product_loop=home_preview_ring_intro_bell_fight_end_bell_result_rematch");
+                metadata.AppendLine("ring_intro=owner_clip_5.166667s_no_ai_no_input_no_vitals_no_clock_epoch_checked_media_completion");
+                metadata.AppendLine("ring_audio=owner_clip_time_segment_bell_5.15_end_crowd_0.25_4.85_not_isolated_stems");
                 metadata.AppendLine("training=separate_optional_head_footwork_four_punch_families_no_ai_no_score_persist_completion");
                 metadata.AppendLine("training_guides=native_boot_head_glove_icons_directional_light_trails_repeat_tap_training_only");
                 metadata.AppendLine("combat_fairness=multiply_high_ai_choice_shared_all_volume_contact_neutral_straight_engagement_range");

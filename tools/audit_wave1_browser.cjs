@@ -2,7 +2,7 @@
 const { chromium } = require('playwright');
 const fs = require('fs');
 const path = require('path');
-const suite=process.env.BOXER_WAVE_EVIDENCE==='combat-v3'?'combat-v3':'onboarding-v2';
+const suite=process.env.BOXER_WAVE_EVIDENCE==='ring-intro'?'ring-intro':process.env.BOXER_WAVE_EVIDENCE==='combat-v3'?'combat-v3':'onboarding-v2';
 const evidence = path.resolve(__dirname, '../evidence/wave1/'+suite+'/browser');
 fs.mkdirSync(evidence, { recursive: true });
 const report = { scope: 'SYNTHETIC_DESKTOP_REAL_UI_NOT_DEVICE_UAT', checks: [], states: {}, errors: [] };
@@ -55,7 +55,7 @@ function check(ok, name) { report.checks.push({name, pass: !!ok}); if (!ok) thro
     await page.mouse.click(270,779);
     const fightStarted=Date.now();
     const initialFight=await state('fight-start','Fight');
-    check(Date.now()-fightStarted<5000&&initialFight.result==='IN_PROGRESS'&&!initialFight.trainingStage,'first bout starts without tutorial wait');
+    check(Date.now()-fightStarted>=5000&&Date.now()-fightStarted<20000&&initialFight.result==='IN_PROGRESS'&&!initialFight.trainingStage,'first bout starts after ring intro, without control training');
     const before=await snap();
     await page.keyboard.down('k'); await page.waitForTimeout(120); await page.keyboard.up('k');
     await page.waitForTimeout(250);

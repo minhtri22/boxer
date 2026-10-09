@@ -1,0 +1,125 @@
+SCOPE=SYNTHETIC_EDITOR_CONTROLLER_AND_INJECTED_CONSEQUENCE_TEST_NOT_PHYSICS_OR_HUMAN_UAT
+PASS home input and combat locked
+PASS menu request rejected without cost
+PASS Left glove imported
+PASS Left glove valid skinned bind
+PASS Left no imported combat collider
+Left glove triangles=16717
+PASS Right glove imported
+PASS Right glove valid skinned bind
+PASS Right no imported combat collider
+Right glove triangles=16717
+PASS accepted Ramirez still owns opponent presentation
+PASS standalone training has no AI or scored bout
+PASS unperformed practice cannot advance by timer or button
+PASS training exit returns Home without starting fight
+PASS preview consumes menu input
+PASS cancelled intro cannot start hidden combat
+PASS ring intro locks input, AI, score
+PASS intro rejects punch and freezes vitals/clock
+PASS stale media completion rejected
+PASS matching media completion starts fresh bout
+PASS duplicate media completion does not reset bout
+PASS real player accepted action spends once
+PASS real busy rejection costs zero
+PASS controller resolution applies exact committed damage
+PASS controller resolution cannot double count
+PASS guard-only stale callback cannot change score or HP
+PASS real player fatigue slows recovery
+PASS real player fatigue reduces impact
+PASS real opponent fatigue slows recovery
+PASS HUD stamina reads combat state exactly
+PASS ring intro locks input, AI, score
+PASS intro rejects punch and freezes vitals/clock
+PASS stale media completion rejected
+PASS matching media completion starts fresh bout
+PASS duplicate media completion does not reset bout
+PASS next bout resets vitals/counters/AI count
+Left thumb_relative_world_x=-0,04468384
+Right thumb_relative_world_x=0,053763
+native_ramirez_max_glove_error_m=3,591767E-07
+PASS injected controller hits reach HP-zero KO
+PASS both controllers immediately locked at KO
+PASS post-KO input cannot spend
+PASS result transition and input lock 0
+PASS ring intro locks input, AI, score
+PASS intro rejects punch and freezes vitals/clock
+PASS stale media completion rejected
+PASS matching media completion starts fresh bout
+PASS duplicate media completion does not reset bout
+PASS rematch full reset 1
+PASS no duplicate actors 1
+PASS result transition and input lock 1
+PASS ring intro locks input, AI, score
+PASS intro rejects punch and freezes vitals/clock
+PASS stale media completion rejected
+PASS matching media completion starts fresh bout
+PASS duplicate media completion does not reset bout
+PASS rematch full reset 2
+PASS no duplicate actors 2
+PASS result transition and input lock 2
+PASS ring intro locks input, AI, score
+PASS intro rejects punch and freezes vitals/clock
+PASS stale media completion rejected
+PASS matching media completion starts fresh bout
+PASS duplicate media completion does not reset bout
+PASS rematch full reset 3
+PASS no duplicate actors 3
+PASS result transition and input lock 3
+PASS ring intro locks input, AI, score
+PASS intro rejects punch and freezes vitals/clock
+PASS stale media completion rejected
+PASS matching media completion starts fresh bout
+PASS duplicate media completion does not reset bout
+PASS rematch full reset 4
+PASS no duplicate actors 4
+PASS result transition and input lock 4
+PASS ring intro locks input, AI, score
+PASS intro rejects punch and freezes vitals/clock
+PASS stale media completion rejected
+PASS matching media completion starts fresh bout
+PASS duplicate media completion does not reset bout
+PASS rematch full reset 5
+PASS no duplicate actors 5
+PASS result transition and input lock 5
+PASS ring intro locks input, AI, score
+PASS intro rejects punch and freezes vitals/clock
+PASS stale media completion rejected
+PASS matching media completion starts fresh bout
+PASS duplicate media completion does not reset bout
+PASS rematch full reset 6
+PASS no duplicate actors 6
+PASS result transition and input lock 6
+PASS ring intro locks input, AI, score
+PASS intro rejects punch and freezes vitals/clock
+PASS stale media completion rejected
+PASS matching media completion starts fresh bout
+PASS duplicate media completion does not reset bout
+PASS rematch full reset 7
+PASS no duplicate actors 7
+PASS result transition and input lock 7
+PASS ring intro locks input, AI, score
+PASS intro rejects punch and freezes vitals/clock
+PASS stale media completion rejected
+PASS matching media completion starts fresh bout
+PASS duplicate media completion does not reset bout
+PASS rematch full reset 8
+PASS no duplicate actors 8
+PASS result transition and input lock 8
+PASS ring intro locks input, AI, score
+PASS intro rejects punch and freezes vitals/clock
+PASS stale media completion rejected
+PASS matching media completion starts fresh bout
+PASS duplicate media completion does not reset bout
+PASS rematch full reset 9
+PASS no duplicate actors 9
+PASS result transition and input lock 9
+PASS ring intro locks input, AI, score
+PASS intro rejects punch and freezes vitals/clock
+PASS stale media completion rejected
+PASS matching media completion starts fresh bout
+PASS duplicate media completion does not reset bout
+PASS rematch full reset 10
+PASS no duplicate actors 10
+PASS return home freezes model
+CHECKS=118 EXIT=0

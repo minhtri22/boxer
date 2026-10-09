@@ -20,6 +20,15 @@
   <div id="unity-container" class="hidden">
     <canvas id="unity-canvas" width={{{ WIDTH }}} height={{{ HEIGHT }}} tabindex="-1"></canvas>
   </div>
+  <section id="ring-intro" class="hidden" aria-label="Round introduction">
+    <video id="ring-video" playsinline muted preload="auto" disablepictureinpicture></video>
+    <div class="ring-caption">
+      <p id="ring-status" role="status">ROUND 1</p>
+      <button id="ring-retry" class="hidden">PHÁT GIỚI THIỆU / BẬT ÂM THANH</button>
+      <button id="ring-back">QUAY LẠI</button>
+    </div>
+  </section>
+  <script src="TemplateData/ring-media.js?v={{{ PRODUCT_VERSION }}}"></script>
   <script>
     const gate = document.getElementById('gate');
     const statusEl = document.getElementById('status');
@@ -67,6 +76,7 @@
     function send(method, payload) {
       if (unityInstance) unityInstance.SendMessage('P0 Systems', method, payload || '');
     }
+    window.boxerRingMedia=createBoxerRingMedia({send,version:productVersion});
 
     function enterGame() {
       gate.classList.add('hidden');
@@ -152,6 +162,8 @@
 
     enableButton.addEventListener('click', async () => {
       enableButton.disabled = true;
+      // A failed media load will be shown/retried at Intro, not silently bypassed.
+      window.boxerRingMedia.unlock().catch(error=>{console.warn('Ring media preparation:',String(error));});
       permissionStatus = desktopValidation ? "DESKTOP_SYNTHETIC" : await requestMotionPermission();
       setStatus('MOTION ' + permissionStatus + ' — build ' + productVersion);
       if (!desktopValidation && permissionStatus !== 'GRANTED') {

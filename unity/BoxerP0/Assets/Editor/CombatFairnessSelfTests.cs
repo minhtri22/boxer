@@ -65,7 +65,8 @@ namespace BoxerP0.Editor
                 }
             }
             Log.AppendLine($"TOTAL={_pass+_fail} PASS={_pass} FAIL={_fail}");
-            string dir=Path.GetFullPath(Path.Combine(Application.dataPath,"../../../evidence/wave1/combat-v3"));Directory.CreateDirectory(dir);
+            string suite=Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="ring-intro"?"ring-intro":"combat-v3";
+            string dir=Path.GetFullPath(Path.Combine(Application.dataPath,"../../../evidence/wave1/"+suite));Directory.CreateDirectory(dir);
             File.WriteAllText(Path.Combine(dir,"combat-tests.txt"),Log.ToString());Debug.Log(Log);
             if(_fail!=0)throw new Exception("Combat fairness geometry invariant failure");
             Wave1SelfTests.Run();

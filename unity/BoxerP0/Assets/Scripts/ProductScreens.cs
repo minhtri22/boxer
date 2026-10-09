@@ -41,6 +41,7 @@ namespace BoxerP0
                     case ProductScreen.Preview: Preview(); break;
                     case ProductScreen.Result: Result(); break;
                     case ProductScreen.Onboarding: Training(); break;
+                    case ProductScreen.Intro: Text(360,"ROUND 1 — RING INTRO",100); break;
                 }
             }
             finally { GUI.matrix = prior; GUI.color = color; GUI.depth = depth; }
@@ -82,7 +83,7 @@ namespace BoxerP0
             ControlCard(278,420,"NO TOUCH = GUARD\n\nRecover, then choose\nyour next attack.");
             if (Button(640,"START",true)) _bootstrap.ShowPreview();
             if (Button(725,_bootstrap.Flow.TutorialSeen ? "PRACTICE CONTROLS" : "NEW? LEARN CONTROLS")) _bootstrap.BeginTraining();
-            GUI.Label(new Rect(42,815,456,65),"START = FIGHT NOW\nTraining is separate, optional and unscored.",_small);
+            GUI.Label(new Rect(42,815,456,65),"RING INTRO → BELL → FIGHT\nTraining is separate, optional and unscored.",_small);
         }
         private void Training()
         {

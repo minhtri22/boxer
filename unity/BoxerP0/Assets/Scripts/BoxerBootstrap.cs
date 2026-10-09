@@ -22,6 +22,9 @@ namespace BoxerP0
         private float _smokeQuitAt = -1f;
         private bool _boutStarted;
         private bool _boutCompleted;
+        private int _introSerial;
+        private float _editorIntroEnd;
+        public string IntroToken => _introSerial.ToString(System.Globalization.CultureInfo.InvariantCulture);
         private OnboardingStage _stage = OnboardingStage.WaitingForCalibration;
 
         private const float BoutSeconds = 45f;
@@ -105,6 +108,9 @@ namespace BoxerP0
             }
             RememberPositions();
             UpdateOnboarding();
+#if !UNITY_WEBGL || UNITY_EDITOR
+            if (Flow.Screen == ProductScreen.Intro && Time.unscaledTime >= _editorIntroEnd) BrowserIntroReady(IntroToken);
+#endif
 
             if (_boutStarted && !_boutCompleted && _telemetry.Bout.Ended)
             {
@@ -158,9 +164,22 @@ namespace BoxerP0
 #endif
             if (!Flow.Begin(tutorial)) return;
             ResetActors();
-            _input.SetGameplayInput(true);
-            if (Flow.Screen == ProductScreen.Onboarding) BeginOnboarding(); else StartBout();
+            if (Flow.Screen == ProductScreen.Onboarding) BeginOnboarding();
+            else
+            {
+                _introSerial++;
+                _editorIntroEnd = Time.unscaledTime + 5.166667f;
+                RingPresentation.Command(1, _introSerial);
+            }
         }
+        // Media completion is epoch checked: cancelled/previous-bout callbacks cannot start combat.
+        public void BrowserIntroReady(string token)
+        {
+            if (token != IntroToken || !Flow.IntroFinished()) return;
+            StartBout();
+        }
+        public void BrowserCancelIntro(string token)
+        { if (Flow.Screen == ProductScreen.Intro && token == IntroToken) ReturnHome(); }
         public void BeginTraining() => BeginProductBout(true);
         public void RecenterTrainingHead() { if (Flow.Screen == ProductScreen.Onboarding) _input.RecalibrateHead(); }
         public void AdvanceTraining()
@@ -186,6 +205,8 @@ namespace BoxerP0
         }
         public void ReturnHome()
         {
+            _introSerial++;
+            RingPresentation.Command(0, _introSerial);
             Flow.Home(); ResetActors();
         }
 
@@ -256,6 +277,7 @@ namespace BoxerP0
         private void CompleteBout()
         {
             Flow.Finish();
+            RingPresentation.Command(2, _introSerial);
             _input.SetGameplayInput(false);
             _boutCompleted = true;
             _stage = OnboardingStage.Complete;

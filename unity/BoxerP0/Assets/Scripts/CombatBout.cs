@@ -116,7 +116,7 @@ namespace BoxerP0
         { Active = false; Ended = true; Result = result; EndReason = reason; }
     }
 
-    public enum ProductScreen { Home, Preview, Onboarding, Fight, Result }
+    public enum ProductScreen { Home, Preview, Onboarding, Fight, Result, Intro }
     public sealed class ProductFlow
     {
         public ProductScreen Screen { get; private set; } = ProductScreen.Home;
@@ -125,8 +125,9 @@ namespace BoxerP0
         public bool Begin(bool tutorial = false)
         {
             if (Screen != ProductScreen.Preview && Screen != ProductScreen.Result && !(tutorial && Screen == ProductScreen.Home)) return false;
-            Screen = tutorial ? ProductScreen.Onboarding : ProductScreen.Fight; return true;
+            Screen = tutorial ? ProductScreen.Onboarding : ProductScreen.Intro; return true;
         }
+        public bool IntroFinished() { if (Screen != ProductScreen.Intro) return false; Screen = ProductScreen.Fight; return true; }
         public void RestoreTutorialSeen(bool seen) { TutorialSeen = seen; }
         public void TutorialFinished() { if (Screen != ProductScreen.Onboarding) return; TutorialSeen = true; Screen = ProductScreen.Home; }
         public void Finish() { if (Screen == ProductScreen.Fight) Screen = ProductScreen.Result; }

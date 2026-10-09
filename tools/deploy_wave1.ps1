@@ -29,12 +29,17 @@ if($Mode -eq 'Deploy'){
     $waveLocalProof=Get-Content (Join-Path $waveRoot 'builds/web/boxer-round2/provenance.txt')
     $waveProductVersion=($waveLocalProof | Where-Object {$_ -like 'productVersion=*'}) -replace '^productVersion=',''
     if($waveProductVersion -ne $waveBrowserGate.productVersion){throw 'Stale browser report: compiled product version differs'}
-    if($EvidenceSubdirectory -eq 'wave1/combat-v3'){
+    if($EvidenceSubdirectory -eq 'wave1/combat-v3' -or $EvidenceSubdirectory -eq 'wave1/ring-intro'){
         $waveContactGate=Get-Content (Join-Path $waveGateDirectory 'combat-browser/report.json') -Raw | ConvertFrom-Json
         if($waveContactGate.status -ne 'PASS' -or $waveContactGate.errors.Count -ne 0 -or $waveContactGate.productVersion -ne $waveProductVersion){throw 'Physical input/contact browser gate not PASS or stale'}
-        if($waveContactGate.checks.Count -ne 17 -or @($waveContactGate.checks | Where-Object {-not $_.pass}).Count -ne 0){throw 'Full 17-check contact suite required; tactical probe is not a release gate'}
+        $waveContactChecks=if($EvidenceSubdirectory -eq 'wave1/ring-intro'){18}else{17}
+        if($waveContactGate.checks.Count -ne $waveContactChecks -or @($waveContactGate.checks | Where-Object {-not $_.pass}).Count -ne 0){throw "Full $waveContactChecks-check contact suite required; tactical probe is not a release gate"}
         $waveCombatTail=Get-Content (Join-Path $waveGateDirectory 'combat-tests.txt') -Tail 1
         if($waveCombatTail -notmatch '^TOTAL=(\d+) PASS=(\d+) FAIL=0$' -or $Matches[1] -ne $Matches[2]){throw 'Combat geometry invariant gate not PASS'}
+    }
+    if($EvidenceSubdirectory -eq 'wave1/ring-intro'){
+        $waveMediaGate=Get-Content (Join-Path $waveGateDirectory 'media-browser/report.json') -Raw | ConvertFrom-Json
+        if($waveMediaGate.status -ne 'PASS' -or $waveMediaGate.errors.Count -ne 0 -or $waveMediaGate.productVersion -ne $waveProductVersion -or @($waveMediaGate.checks | Where-Object {-not $_.pass}).Count -ne 0){throw 'Current compiled media lifecycle gate not PASS'}
     }
     if(-not ((Get-Content (Join-Path $waveGateDirectory 'vitals-tests.txt') -Tail 1) -eq "TOTAL=$ExpectedVitalsChecks PASS=$ExpectedVitalsChecks FAIL=0")){throw 'Vitals gate not PASS'}
     if(-not ((Get-Content (Join-Path $waveGateDirectory 'controller-runtime.txt') -Tail 1) -eq "CHECKS=$ExpectedControllerChecks EXIT=0")){throw 'Controller gate not PASS'}

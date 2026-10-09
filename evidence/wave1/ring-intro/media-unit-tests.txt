@@ -1,0 +1,15 @@
+PASS intro does not call native start before ended
+PASS premature under-five-second ended is rejected
+PASS completed media sends exact current token
+PASS completed intro schedules one bell/crowd
+PASS duplicate ended does not send callback again
+PASS result stops crowd and emits end bell once
+PASS cancelled media cannot start combat
+PASS cancel stops all live audio nodes
+PASS mute follows master gain
+PASS unmute restores master gain
+PASS locked AudioContext never bypasses intro
+PASS real retry handler resumes context and replays intro
+PASS media failure keeps combat locked
+PASS failed asset load can retry successfully
+TOTAL=14 PASS=14 FAIL=0
