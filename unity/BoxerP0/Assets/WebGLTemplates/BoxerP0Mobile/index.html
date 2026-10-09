@@ -21,7 +21,8 @@
     <canvas id="unity-canvas" width={{{ WIDTH }}} height={{{ HEIGHT }}} tabindex="-1"></canvas>
   </div>
   <section id="ring-intro" class="hidden" aria-label="Round introduction">
-    <video id="ring-video" playsinline muted preload="auto" disablepictureinpicture></video>
+    <!-- Coach/practice must not start an unused background video transfer. play() loads it for the real intro. -->
+    <video id="ring-video" playsinline muted preload="none" disablepictureinpicture></video>
     <div class="ring-caption">
       <p id="ring-status" role="status">ROUND 1</p>
       <button id="ring-retry" class="hidden">PHÁT GIỚI THIỆU / BẬT ÂM THANH</button>
