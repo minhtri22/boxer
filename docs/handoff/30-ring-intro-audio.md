@@ -52,7 +52,17 @@ Media clip's measured playing→ended span is 5153.1 ms. Timeout ends at exactly
 and gameplay input locked. No score/contact callback injection in browser tests.
 Native model/controller code is identical between e2a03d6 and 9ba71d5; no
 damage, fatigue, AI-choice or contact-threshold changes were made for this repair.
-Pending: deployment and phone/audio Human UAT. New evidence exclusively in
+Deployment PASS: workflow [37877876524](https://github.com/minhtri22/boxer/actions/runs/37877876524)
+completed successfully at artifact commit `638bcc282ff3b5e7c8e4e36021a906daa3af7931`.
+Public provenance is byte-identical; all 12 public payloads return HTTP 200 and
+match local hashes. Direct public WebGL media lifecycle also passed 20/20 with
+zero JS/load/HTTP errors, including decoder, cancel, reset, timer and end bell.
+Pages serves MP3 as audio/mp3 rather than the verifier's initial audio/mpeg
+assumption. The first verifier mismatch is retained; real public audio decoding
+was independently verified without changing the published artifact or gameplay
+checks. All five Pages policies remained unchanged. Test:
+https://minhtri22.github.io/boxer/?release=9ba71d5
+Pending: phone/audio Human UAT. New evidence exclusively in
 `evidence/wave1/ring-intro`; do not overwrite combat-v3/onboarding-v2 reports.
 Status: **IMPLEMENTATION_PASS_PENDING_HUMAN_UAT**. Browser automation does not
 verify speaker output, seamless-sounding loop quality, phone autoplay/motion or

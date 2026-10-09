@@ -1,7 +1,7 @@
 // Real compiled Unity UI + rendered browser media; read-only state, no callback/score injection.
 const {chromium}=require('playwright');
 const fs=require('fs'),path=require('path');
-const dir=path.resolve(__dirname,'../evidence/wave1/ring-intro/media-browser');fs.mkdirSync(dir,{recursive:true});
+const dir=path.resolve(__dirname,'../evidence/wave1/ring-intro/'+(process.env.BOXER_RING_PUBLIC==='1'?'media-browser-public':'media-browser'));fs.mkdirSync(dir,{recursive:true});
 const report={scope:'REAL_WEBGL_UI_MEDIA_SYNTHETIC_DESKTOP_NOT_PHONE_OR_LISTENING_UAT',checks:[],errors:[],states:{}};
 function check(pass,name){report.checks.push({name,pass:!!pass});if(!pass)throw Error(name);}
 (async()=>{
@@ -14,7 +14,8 @@ function check(pass,name){report.checks.push({name,pass:!!pass});if(!pass)throw 
     page.on('console',m=>{if(m.type()==='error')report.errors.push(m.text());});
     page.on('requestfailed',r=>report.errors.push(r.url()+' '+r.failure()?.errorText));
     page.on('response',r=>{if(r.status()>=400)report.errors.push('HTTP '+r.status()+' '+r.url());});
-    await page.goto(process.argv[2]||'http://127.0.0.1:8000/?desktop=1&metrics=1');
+    report.url=process.argv[2]||'http://127.0.0.1:8000/?desktop=1&metrics=1';
+    await page.goto(report.url);
     report.productVersion=await page.evaluate(()=>productVersion);
     const snap=()=>page.evaluate(()=>({native:window.boxerWave1Snapshot,media:window.boxerRingMedia.state,video:{time:document.querySelector('#ring-video').currentTime,width:document.querySelector('#ring-video').videoWidth,muted:document.querySelector('#ring-video').muted}}));
     async function state(name,screen){await page.waitForFunction(s=>window.boxerWave1Snapshot?.screen===s,screen,{timeout:150000});const s=await snap();report.states[name]=s;return s;}

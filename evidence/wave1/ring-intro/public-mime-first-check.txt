@@ -1,0 +1,9 @@
+STATUS=VERIFIER_EXPECTATION_MISMATCH_NOT_GAME_FAILURE
+FIRST_PUBLIC_HASH_VERIFIER_EXIT=1
+CAUSE=EXPECTED_audio/mpeg_BUT_GITHUB_PAGES_RETURNS_audio/mp3
+OBSERVED_HEAD=HTTP_200_audio/mp3_18950_BYTES_BELL;video/mp4_RING_VIDEO
+All hashes retrieved before the MIME assertion matched the local candidate.
+The MIME assumption was not a frozen gameplay threshold. The verifier now
+records the provider's audio/mp3 alias and requires an independent real public
+WebGL audio decoder/lifecycle audit, without changing the released artifact or
+relaxing any gameplay/media check. This first mismatch is preserved, not PASS.
