@@ -1,7 +1,7 @@
 // Real compiled Unity UI + rendered browser media; read-only state, no callback/score injection.
 const {chromium}=require('playwright');
 const fs=require('fs'),path=require('path');
-const suite=process.env.BOXER_WAVE_EVIDENCE==='punch-feel'?'punch-feel':process.env.BOXER_WAVE_EVIDENCE==='training-pov'?'training-pov':'ring-intro';
+const suite=process.env.BOXER_WAVE_EVIDENCE==='coach-ui'?'coach-ui':process.env.BOXER_WAVE_EVIDENCE==='punch-feel'?'punch-feel':process.env.BOXER_WAVE_EVIDENCE==='training-pov'?'training-pov':'ring-intro';
 const dir=path.resolve(__dirname,'../evidence/wave1/'+suite+'/'+(process.env.BOXER_RING_PUBLIC==='1'?'media-browser-public':'media-browser'));fs.mkdirSync(dir,{recursive:true});
 const report={scope:'REAL_WEBGL_UI_MEDIA_SYNTHETIC_DESKTOP_NOT_PHONE_OR_LISTENING_UAT',checks:[],errors:[],states:{}};
 function check(pass,name){report.checks.push({name,pass:!!pass});if(!pass)throw Error(name);}

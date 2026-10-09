@@ -62,3 +62,19 @@ later:
   - ko_highlight_generation
   - career_progression
   - advanced_damage_knockdown
+product_screen_execution:
+  owner_direction_date: 2026-10-10
+  active_branch: feature/boxer-product-loop-wave1
+  baseline_head: 10123ff984a4aa24b19dbe4aeda7aff3d7d01c3d
+  historical_research_snapshot_above_preserved: true
+  mobile_is_primary: true
+  delivery: unity_webgl_temporary_phone_uat
+  sequence:
+    - {id: SCREEN-A, name: training_coach, status: active}
+    - {id: SCREEN-B, name: fighter_customization, status: next}
+    - {id: SCREEN-C, name: venues_career_surface, status: next}
+    - {id: SCREEN-D, name: integrated_mobile_navigation, status: next}
+  held_backlog:
+    - {id: HP-KO-001, status: owner_hold_until_explicit_review_after_screens, file: docs/handoff/backlog.md}
+  combat_balance_changes_allowed: false
+  progression_economy_replay_implicitly_unlocked: false

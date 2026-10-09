@@ -2,7 +2,7 @@ param(
     [Parameter(Mandatory=$true)][ValidatePattern('^[a-f0-9]{40}$')][string]$ArtifactCommit,
     [Parameter(Mandatory=$true)][ValidatePattern('^[a-f0-9]{40}$')][string]$CompiledSource,
     [Parameter(Mandatory=$true)][long]$WorkflowId,
-    [ValidateSet('ring-intro','training-pov','punch-feel')][string]$EvidenceSuite='ring-intro'
+    [ValidateSet('ring-intro','training-pov','punch-feel','coach-ui')][string]$EvidenceSuite='ring-intro'
 )
 $ErrorActionPreference='Stop'
 $ringRoot=Split-Path -Parent $PSScriptRoot

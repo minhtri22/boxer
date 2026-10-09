@@ -117,22 +117,33 @@ namespace BoxerP0
         { Active = false; Ended = true; Result = result; EndReason = reason; }
     }
 
-    public enum ProductScreen { Home, Preview, Onboarding, Fight, Result, Intro }
+    public enum ProductScreen { Home, Preview, Onboarding, Fight, Result, Intro, Coach, TrainingInfo }
     public sealed class ProductFlow
     {
         public ProductScreen Screen { get; private set; } = ProductScreen.Home;
         public bool TutorialSeen { get; private set; }
+        public bool TrainingFromCoach { get; private set; }
+        public bool OpenCoach() { if (Screen != ProductScreen.Home) return false; Screen = ProductScreen.Coach; return true; }
+        public bool OpenTrainingInfo() { if (Screen != ProductScreen.Coach) return false; Screen = ProductScreen.TrainingInfo; return true; }
+        public bool BackToCoach() { if (Screen != ProductScreen.TrainingInfo) return false; Screen = ProductScreen.Coach; return true; }
         public bool Preview() { if (Screen != ProductScreen.Home && Screen != ProductScreen.Result) return false; Screen = ProductScreen.Preview; return true; }
         public bool Begin(bool tutorial = false)
         {
-            if (Screen != ProductScreen.Preview && Screen != ProductScreen.Result && !(tutorial && Screen == ProductScreen.Home)) return false;
+            if (Screen != ProductScreen.Preview && Screen != ProductScreen.Result && !(tutorial && (Screen == ProductScreen.Home || Screen == ProductScreen.Coach))) return false;
+            TrainingFromCoach = tutorial && Screen == ProductScreen.Coach;
             Screen = tutorial ? ProductScreen.Onboarding : ProductScreen.Intro; return true;
         }
         public bool IntroFinished() { if (Screen != ProductScreen.Intro) return false; Screen = ProductScreen.Fight; return true; }
         public void RestoreTutorialSeen(bool seen) { TutorialSeen = seen; }
-        public void TutorialFinished() { if (Screen != ProductScreen.Onboarding) return; TutorialSeen = true; Screen = ProductScreen.Home; }
+        public void TutorialFinished() { if (Screen != ProductScreen.Onboarding || TrainingFromCoach) return; TutorialSeen = true; Screen = ProductScreen.Home; }
+        public bool CoachLessonFinished(bool allControlsCompleted)
+        { if (Screen != ProductScreen.Onboarding || !TrainingFromCoach) return false;
+          TutorialSeen |= allControlsCompleted; TrainingFromCoach = false; Screen = ProductScreen.Coach; return true; }
+        public bool CancelTraining()
+        { if (Screen != ProductScreen.Onboarding) return false;
+          Screen = TrainingFromCoach ? ProductScreen.Coach : ProductScreen.Home; TrainingFromCoach = false; return true; }
         public void Finish() { if (Screen == ProductScreen.Fight) Screen = ProductScreen.Result; }
-        public void Home() { Screen = ProductScreen.Home; }
+        public void Home() { Screen = ProductScreen.Home; TrainingFromCoach = false; }
         public bool Gameplay => Screen == ProductScreen.Onboarding || Screen == ProductScreen.Fight;
     }
 }

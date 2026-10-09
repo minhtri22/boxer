@@ -17,6 +17,9 @@ namespace BoxerP0
         private int _trainingTaps;
         private bool _trainingLeadHook, _trainingRearHook;
         private const string TrainingPreference = "BOXER_CONTROL_TRAINING_V2_COMPLETE";
+        private const string CoachPreference = "BOXER_COACH_CONTROL_LESSONS_V1";
+        public CoachModule SelectedCoachModule { get; private set; }
+        public int CoachCompletionMask { get; private set; }
 
         private float _boutEnd;
         private float _smokeQuitAt = -1f;
@@ -75,6 +78,7 @@ namespace BoxerP0
             BuildLightingAndRing();
             BuildActors();
             Flow.RestoreTutorialSeen(PlayerPrefs.GetInt(TrainingPreference, 0) == 1);
+            CoachCompletionMask = PlayerPrefs.GetInt(CoachPreference, 0) & 7;
             _player.PunchAccepted += ObserveTrainingPunch;
             _lastPerfRefreshRealtime = Time.realtimeSinceStartup;
             _nextUiRefresh = _lastPerfRefreshRealtime;
@@ -178,16 +182,47 @@ namespace BoxerP0
         public void BrowserCancelIntro(string token)
         { if (Flow.Screen == ProductScreen.Intro && token == IntroToken) ReturnHome(); }
         public void BeginTraining() => BeginProductBout(true);
+        public bool ShowCoach()
+        { if (!Flow.OpenCoach()) return false; ResetActors(); return true; }
+        public bool SelectCoachModule(CoachModule module)
+        { if (Flow.Screen != ProductScreen.Coach || !CoachCatalog.Valid(module)) return false; SelectedCoachModule = module; return true; }
+        public bool OpenSelectedCoachModule()
+        {
+            if (Flow.Screen != ProductScreen.Coach) return false;
+            var lesson = CoachCatalog.Get(SelectedCoachModule);
+            if (!lesson.Interactive) return Flow.OpenTrainingInfo();
+            BeginProductBout(true);
+            if (Flow.Screen != ProductScreen.Onboarding) return false;
+            if (_stage != lesson.Stage) EnterStage(lesson.Stage);
+            return true;
+        }
+        public bool BackToCoach() => Flow.BackToCoach();
+        public void ExitTraining()
+        { if (Flow.CancelTraining()) ResetActors(); }
+        public void PracticeFromCoachInfo()
+        { if (!Flow.BackToCoach()) return; SelectCoachModule(CoachModule.Punches); OpenSelectedCoachModule(); }
         public void RecenterTrainingHead() { if (Flow.Screen == ProductScreen.Onboarding) _input.RecalibrateHead(); }
         public void AdvanceTraining()
         {
             if (Flow.Screen != ProductScreen.Onboarding || !TrainingReady) return;
+            if (Flow.TrainingFromCoach)
+            {
+                CoachCompletionMask |= CoachCatalog.CompletionBit(SelectedCoachModule);
+                PlayerPrefs.SetInt(CoachPreference, CoachCompletionMask);
+                bool all = CoachCompletionMask == 7;
+                if (all) PlayerPrefs.SetInt(TrainingPreference, 1);
+                PlayerPrefs.Save();
+                Flow.CoachLessonFinished(all);
+                _telemetry.RecordEvent("COACH_LESSON_COMPLETE_" + SelectedCoachModule);
+                ResetActors(); return;
+            }
             if (_stage == OnboardingStage.HeadControl) EnterStage(OnboardingStage.Footwork);
             else if (_stage == OnboardingStage.Footwork) EnterStage(OnboardingStage.Punches);
             else if (_stage == OnboardingStage.Punches)
             {
                 Flow.TutorialFinished();
                 PlayerPrefs.SetInt(TrainingPreference, 1); PlayerPrefs.Save();
+                CoachCompletionMask = 7; PlayerPrefs.SetInt(CoachPreference, 7); PlayerPrefs.Save();
                 _telemetry.RecordEvent("CONTROL_TRAINING_COMPLETE");
                 ResetActors();
             }

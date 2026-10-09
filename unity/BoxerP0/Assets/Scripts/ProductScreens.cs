@@ -8,10 +8,12 @@ namespace BoxerP0
         private Phase0Telemetry _telemetry;
         private GUIStyle _title, _copy, _small, _button;
         private Texture2D _brand;
+        private Texture2D _coachPortrait;
+        public bool CoachArtLoaded => _coachPortrait != null;
         private TrainingGlassBackground _glass;
         private static readonly Color Gold = new(.93f, .67f, .24f);
         private void Start()
-        { _bootstrap = GetComponent<BoxerBootstrap>(); _telemetry = FindFirstObjectByType<Phase0Telemetry>(); _brand=Resources.Load<Texture2D>("Product/HomeBrand"); }
+        { _bootstrap = GetComponent<BoxerBootstrap>(); _telemetry = FindFirstObjectByType<Phase0Telemetry>(); _brand=Resources.Load<Texture2D>("Product/HomeBrand"); _coachPortrait=Resources.Load<Texture2D>("Product/CoachReference"); }
         private void Update()
         {
             if (_glass == null)
@@ -52,6 +54,8 @@ namespace BoxerP0
                     case ProductScreen.Result: Result(); break;
                     case ProductScreen.Onboarding: Training(); break;
                     case ProductScreen.Intro: Text(360,"ROUND 1 — RING INTRO",100); break;
+                    case ProductScreen.Coach: Coach(); break;
+                    case ProductScreen.TrainingInfo: CoachingInfo(); break;
                 }
             }
             finally { GUI.matrix = prior; GUI.color = color; GUI.depth = depth; }
@@ -71,13 +75,13 @@ namespace BoxerP0
         }
         private void Text(float y, string value, float height = 70)
         { GUI.Label(new Rect(42,y,456,height),value,_copy); }
-        private bool Button(float y, string value, bool primary=false)
+        private bool Button(float y, string value, bool primary=false, float height=68)
         {
-            GUI.color=Gold; GUI.DrawTexture(new Rect(42,y,456,68),Texture2D.whiteTexture);
+            GUI.color=Gold; GUI.DrawTexture(new Rect(42,y,456,height),Texture2D.whiteTexture);
             GUI.color=primary?Gold:new Color(.025f,.022f,.019f);
-            GUI.DrawTexture(new Rect(44,y+2,452,64),Texture2D.whiteTexture); GUI.color=Color.white;
+            GUI.DrawTexture(new Rect(44,y+2,452,height-4),Texture2D.whiteTexture); GUI.color=Color.white;
             _button.normal.textColor=_button.hover.textColor=primary?new Color(.025f,.022f,.019f):Gold;
-            return GUI.Button(new Rect(42,y,456,68),value,_button);
+            return GUI.Button(new Rect(42,y,456,height),value,_button);
         }
         private void ControlCard(float x,float y,string value)
         {
@@ -93,7 +97,8 @@ namespace BoxerP0
             ControlCard(278,420,"NO TOUCH = GUARD\n\nRecover, then choose\nyour next attack.");
             if (Button(640,"START",true)) _bootstrap.ShowPreview();
             if (Button(725,_bootstrap.Flow.TutorialSeen ? "PRACTICE CONTROLS" : "NEW? LEARN CONTROLS")) _bootstrap.BeginTraining();
-            GUI.Label(new Rect(42,815,456,65),"RING INTRO → BELL → FIGHT\nTraining is separate, optional and unscored.",_small);
+            if (Button(815,"TRAINING / COACH",false,76)) _bootstrap.ShowCoach();
+            GUI.Label(new Rect(42,893,456,45),"RING INTRO → BELL → FIGHT",_small);
         }
         private void Training()
         {
@@ -104,9 +109,9 @@ namespace BoxerP0
             GUI.Label(new Rect(35,25+offset,470,45),"TẬP ĐIỀU KHIỂN — KHÔNG TÍNH ĐIỂM",_small);
             GUI.Label(new Rect(35,72+offset,470,245),_bootstrap.TrainingInstructions,_small);
             bool enabled=GUI.enabled; GUI.enabled=_bootstrap.TrainingReady;
-            if (Button(320+offset,_bootstrap.TrainingToken=="PUNCHES" ? "HOÀN THÀNH TẬP" : "BÀI TIẾP THEO",true)) _bootstrap.AdvanceTraining();
+            if (Button(320+offset,_bootstrap.Flow.TrainingFromCoach || _bootstrap.TrainingToken=="PUNCHES" ? "HOÀN THÀNH TẬP" : "BÀI TIẾP THEO",true)) _bootstrap.AdvanceTraining();
             GUI.enabled=enabled;
-            if (Button(395+offset,"THOÁT TẬP / HOME")) _bootstrap.ReturnHome();
+            if (Button(395+offset,_bootstrap.Flow.TrainingFromCoach ? "THOÁT TẬP / COACH" : "THOÁT TẬP / HOME")) _bootstrap.ExitTraining();
             if (head)
             {
                 if (_glass != null) _glass.Draw(new Rect(20,16,500,122));
@@ -132,6 +137,38 @@ namespace BoxerP0
             Text(600,"STAMINA = ENDURANCE\nThin gold strip = burst capacity.\nLow energy reduces impact and slows recovery.",110);
             if (Button(745,"ENTER RING",true)) _bootstrap.BeginProductBout();
             if (Button(835,"BACK")) _bootstrap.ReturnHome();
+        }
+        private void Coach()
+        {
+            if (_coachPortrait != null)
+                GUI.DrawTextureWithTexCoords(new Rect(0,190,250,600),_coachPortrait,new Rect(0,.23f,.48f,.64f));
+            GUI.color=Gold;
+            GUI.Label(new Rect(255,192,270,42),"COACH · TRAINING",_copy); GUI.color=Color.white;
+            for (int i=0;i<CoachCatalog.Count;i++)
+            {
+                var module=(CoachModule)i; var lesson=CoachCatalog.Get(module);
+                Rect card=new Rect(260,245+i*96,264,88);
+                GUI.color=Gold; GUI.DrawTexture(card,Texture2D.whiteTexture);
+                GUI.color=module==_bootstrap.SelectedCoachModule ? new Color(.16f,.115f,.055f) : new Color(.02f,.021f,.024f);
+                GUI.DrawTexture(new Rect(card.x+2,card.y+2,card.width-4,card.height-4),Texture2D.whiteTexture); GUI.color=Color.white;
+                string completed=(_bootstrap.CoachCompletionMask & CoachCatalog.CompletionBit(module))!=0 ? " · ĐÃ TẬP" : "";
+                GUI.Label(new Rect(card.x+10,card.y+5,card.width-20,29),lesson.Title+completed,_small);
+                GUI.Label(new Rect(card.x+10,card.y+34,card.width-20,50),lesson.Summary,_small);
+                if (GUI.Button(card,GUIContent.none,_button)) _bootstrap.SelectCoachModule(module);
+            }
+            GUI.Label(new Rect(24,740,492,38),"KỸ NĂNG THẬT · KHÔNG NÂNG CHỈ SỐ",_small);
+            bool interactive=CoachCatalog.Get(_bootstrap.SelectedCoachModule).Interactive;
+            if (Button(790,interactive ? "TRAIN NOW · TẬP NGAY" : "XEM HƯỚNG DẪN",true,76)) _bootstrap.OpenSelectedCoachModule();
+            if (Button(875,"HOME",false,76)) _bootstrap.ReturnHome();
+        }
+        private void CoachingInfo()
+        {
+            var lesson=CoachCatalog.Get(_bootstrap.SelectedCoachModule);
+            GUI.color=Gold; Text(230,lesson.Title,55); GUI.color=Color.white;
+            Text(290,"HƯỚNG DẪN · KHÔNG NÂNG CHỈ SỐ",50);
+            Text(360,lesson.Instructions,320);
+            if (Button(745,"THỬ TRONG BÀI TẬP ĐẤM",true,76)) _bootstrap.PracticeFromCoachInfo();
+            if (Button(835,"BACK / COACH",false,76)) _bootstrap.BackToCoach();
         }
         private void Result()
         {

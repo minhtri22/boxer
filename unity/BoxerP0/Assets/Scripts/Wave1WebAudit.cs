@@ -31,6 +31,9 @@ namespace BoxerP0
             public bool trainingGlass;
             public Vector3 leftElbowViewport,rightElbowViewport;
             public string punchFeel,lastImpactRegion;
+            public string coachModule;
+            public int coachCompletionMask;
+            public bool trainingFromCoach,coachArtLoaded;
             public uint acceptedPunches,rejectedGestures,rejectedBusyPunches;
             public float contactAgeMs,recoveryAgeMs,releaseToAcceptMs,gestureDurationMs;
             public int impactHits,impactBlocks,impactMisses,swings;
@@ -51,6 +54,8 @@ namespace BoxerP0
             _snapshot.trainingStage=_bootstrap.TrainingToken;_snapshot.trainingReady=_bootstrap.TrainingReady;
             _snapshot.trainingGuide=TrainingGestureGuide.Cue(_bootstrap.TrainingToken,Time.unscaledTime);
             _snapshot.tutorialSeen=_bootstrap.Flow.TutorialSeen;
+            _snapshot.coachModule=_bootstrap.SelectedCoachModule.ToString();_snapshot.coachCompletionMask=_bootstrap.CoachCompletionMask;
+            _snapshot.trainingFromCoach=_bootstrap.Flow.TrainingFromCoach;_snapshot.coachArtLoaded=_bootstrap.GetComponent<ProductScreens>().CoachArtLoaded;
             _snapshot.players=FindObjectsByType<PlayerBoxer>(FindObjectsSortMode.None).Length;
             _snapshot.opponents=FindObjectsByType<OpponentBoxer>(FindObjectsSortMode.None).Length;
             _snapshot.playerHits=_telemetry.PlayerHits;_snapshot.opponentHits=_telemetry.OpponentHits;
