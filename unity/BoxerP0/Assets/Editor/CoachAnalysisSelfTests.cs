@@ -49,7 +49,8 @@ namespace BoxerP0.Editor
             Check(result.OpenCoachReview()&&result.Screen==ProductScreen.CoachReview&&!result.Gameplay,"completed Result opens locked review");
             for(int i=0;i<3;i++){var card=new Rect(42,550+i*94,456,88);Check(card.yMax<=855&&card.height*320/540>=44,"supplemental card fits minimum phone target "+i);}
             log.AppendLine($"TOTAL={pass+fail} PASS={pass} FAIL={fail}");
-            string dir=Path.GetFullPath(Path.Combine(Application.dataPath,"../../../evidence/wave1/coach-analysis"));Directory.CreateDirectory(dir);
+            string suite=Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="bell-repair"?"bell-repair":"coach-analysis";
+            string dir=Path.GetFullPath(Path.Combine(Application.dataPath,"../../../evidence/wave1/"+suite));Directory.CreateDirectory(dir);
             File.WriteAllText(Path.Combine(dir,"analysis-tests.txt"),log.ToString());Debug.Log(log);
             if(fail>0)throw new Exception("Coach analysis invariant failure");
         }

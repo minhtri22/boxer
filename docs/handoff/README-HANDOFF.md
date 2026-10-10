@@ -6,6 +6,8 @@
 
 ## Project identity
 
+> Latest repair/expanded product plan: `37-bell-repair-and-product-roadmap.md`. The prior duration/event-only bell checks did not detect the released silent audio asset. Bell repair needs actual decoded-signal/public verification; Street/Cage, rewards/shop, achievements and FACE-001 are separate planned packages, not an implemented release claim.
+
 **Boxer** is a POV boxing career simulator/research game built around one product thesis:
 
 > **The player does not control a boxer from outside. The player is the boxer.**

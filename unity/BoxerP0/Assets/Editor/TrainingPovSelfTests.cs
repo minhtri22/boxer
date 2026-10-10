@@ -54,7 +54,7 @@ namespace BoxerP0.Editor
             }
             finally { UnityEngine.Object.DestroyImmediate(root); UnityEngine.Object.DestroyImmediate(cameraObject); }
             log.AppendLine($"TOTAL={passed + failed} PASS={passed} FAIL={failed}");
-            string dir = Path.GetFullPath(Path.Combine(Application.dataPath, "../../../evidence/wave1/"+(Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="coach-analysis"?"coach-analysis":Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="coach-ui"?"coach-ui":Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="punch-feel"?"punch-feel":"training-pov")));
+            string dir = Path.GetFullPath(Path.Combine(Application.dataPath, "../../../evidence/wave1/"+(Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="bell-repair"?"bell-repair":Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="coach-analysis"?"coach-analysis":Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="coach-ui"?"coach-ui":Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="punch-feel"?"punch-feel":"training-pov")));
             Directory.CreateDirectory(dir); File.WriteAllText(Path.Combine(dir, "presentation-tests.txt"), log.ToString()); Debug.Log(log);
             if (failed != 0) throw new Exception("POV presentation invariant failure");
         }

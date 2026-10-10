@@ -12,6 +12,8 @@ Date: 2026-10-10. Owner authorizes continuing remaining screens and holds HP/KO 
 
 ## Execution sequence
 
+Owner-expanded plan (2026-10-10): `37-bell-repair-and-product-roadmap.md` supersedes the original B/C/D order below for remaining planning. It includes three boxing venues (Tournament/Street/Cage), completed-match reward/wallet, shop/owned equipment, saved record/achievements, career progression, settings/pause/exit, and integrated navigation/Result. FACE-001 is a separate resolved-hit facial-expression presentation slice; it does not reopen held combat balance. These new systems are planned, not already delivered. Street/Cage art and shop/record screens need additional approved references/assets.
+
 | Slice | Surface / reference | Actual minimum behavior | Boundary |
 | --- | --- | --- | --- |
 | A - implementation pass, phone UAT pending | Training / Coach, 05 | Home entry; five native touchable module cards; head/feet/punch entry into existing unscored practice; guard/conditioning coaching detail; Home/back/exit | No attribute upgrade, score, enemy AI or vitality spending in menus/practice. Approved portrait is 2D art, not new 3D coach; visual fidelity PARTIAL. |

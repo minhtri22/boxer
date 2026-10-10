@@ -12,7 +12,7 @@ namespace BoxerP0.Editor
     {
         static readonly StringBuilder Log=new(),Trace=new(),Summary=new();
         static int pass,fail;
-        static string Dir=>Path.GetFullPath(Path.Combine(Application.dataPath,"../../../evidence/wave1/"+(Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="coach-analysis"?"coach-analysis":Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="coach-ui"?"coach-ui":"punch-feel")));
+        static string Dir=>Path.GetFullPath(Path.Combine(Application.dataPath,"../../../evidence/wave1/"+(Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="bell-repair"?"bell-repair":Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="coach-analysis"?"coach-analysis":Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="coach-ui"?"coach-ui":"punch-feel")));
         static void Check(bool ok,string text) { if(ok)pass++;else fail++;Log.AppendLine((ok?"PASS ":"FAIL ")+text); }
         static bool Near(double a,double b,double tolerance=.001)=>Math.Abs(a-b)<tolerance;
         static readonly PunchIntent[] Intents={PunchIntent.Jab,PunchIntent.Cross,PunchIntent.LeadHook,PunchIntent.RearHook,

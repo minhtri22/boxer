@@ -1,4 +1,4 @@
-param([string]$Baseline='10123ff984a4aa24b19dbe4aeda7aff3d7d01c3d',[ValidateSet('coach-ui','coach-analysis')][string]$EvidenceSuite='coach-ui')
+param([string]$Baseline='10123ff984a4aa24b19dbe4aeda7aff3d7d01c3d',[ValidateSet('coach-ui','coach-analysis','bell-repair')][string]$EvidenceSuite='coach-ui')
 $ErrorActionPreference='Stop'
 $coachRoot=Split-Path -Parent $PSScriptRoot
 $coachChecks=[Collections.Generic.List[string]]::new()
