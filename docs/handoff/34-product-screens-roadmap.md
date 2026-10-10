@@ -10,6 +10,7 @@ Date: 2026-10-10. Owner authorizes continuing remaining screens and holds HP/KO 
 - All six approved reference images are present. The older September research roadmap/state remain historical; this product-screen sequence does not rewrite those evidence claims or reopen combat research.
 - HP/KO ordinary-phone balance is unresolved and held. Technical KO wiring success is not a phone-balance pass.
 - Latest audio-only repair: compiled `b2dabf90b3fa8ae55c902ffa10210f735f0778f8`, artifact `929e8874b7b80d1ef94ddc70c8651a6614e6ad16`, successful workflow `38046281808`; public media 21/21 now includes actual non-silent bell PCM, all 12 public payload hashes match. See handoff 37 and `evidence/wave1/bell-repair/deployment.txt`. New facial/venue/economy/record systems remain planned.
+- Current arena release supersedes that audio-only public build: compiled `dd9434bfb74287845f980cf72ff9363c0b201952`, artifact `6a604fe136af30c58fd75e2fec91e9ff111ccb91`, workflow `38051517093` success. Four photo-scenery audience sides + localized sparse Fight-only flashes; public arena 12/12, media 21/21, payload hashes 12/12 PASS, phone Human UAT pending and production visual fidelity PARTIAL. Current scope/receipt: handoff 38. No Profile/economy/Career/face implementation implied.
 
 ## Execution sequence
 
