@@ -2,7 +2,7 @@ param(
     [Parameter(Mandatory=$true)][ValidatePattern('^[a-f0-9]{40}$')][string]$ArtifactCommit,
     [Parameter(Mandatory=$true)][ValidatePattern('^[a-f0-9]{40}$')][string]$CompiledSource,
     [Parameter(Mandatory=$true)][long]$WorkflowId,
-    [ValidateSet('ring-intro','training-pov','punch-feel','coach-ui','coach-analysis','bell-repair','arena-surround')][string]$EvidenceSuite='ring-intro'
+    [ValidateSet('ring-intro','training-pov','punch-feel','coach-ui','coach-analysis','bell-repair','arena-surround','fighter-profile')][string]$EvidenceSuite='ring-intro'
 )
 $ErrorActionPreference='Stop'
 $ringRoot=Split-Path -Parent $PSScriptRoot
@@ -13,7 +13,7 @@ if("source_sha=$CompiledSource" -notin $ringLines){throw 'Unexpected compiled so
 $ringVersion='w1-'+$CompiledSource
 if("productVersion=$ringVersion" -notin $ringLines){throw 'Unexpected product version'}
 $ringDecoder=Get-Content (Join-Path $ringRoot ('evidence/wave1/'+$EvidenceSuite+'/media-browser-public/report.json')) -Raw | ConvertFrom-Json
-if($ringDecoder.status -ne 'PASS' -or $ringDecoder.productVersion -ne $ringVersion -or $ringDecoder.checks.Count -ne $(if($EvidenceSuite -in @('bell-repair','arena-surround')){21}else{20}) -or $ringDecoder.errors.Count -ne 0 -or @($ringDecoder.checks | Where-Object {-not $_.pass}).Count -ne 0 -or $ringDecoder.url -notlike 'https://minhtri22.github.io/boxer/*'){throw 'Full current public decoder/lifecycle audit required'}
+if($ringDecoder.status -ne 'PASS' -or $ringDecoder.productVersion -ne $ringVersion -or $ringDecoder.checks.Count -ne $(if($EvidenceSuite -in @('bell-repair','arena-surround','fighter-profile')){21}else{20}) -or $ringDecoder.errors.Count -ne 0 -or @($ringDecoder.checks | Where-Object {-not $_.pass}).Count -ne 0 -or $ringDecoder.url -notlike 'https://minhtri22.github.io/boxer/*'){throw 'Full current public decoder/lifecycle audit required'}
 $ringClient=[Net.Http.HttpClient]::new()
 $ringClient.Timeout=[TimeSpan]::FromSeconds(45)
 $ringClient.DefaultRequestHeaders.UserAgent.ParseAdd('Boxer-release-verification/1.0')
@@ -54,10 +54,11 @@ try{
             $ringCount++;$ringReceipt.Add('HTTP_200_HASH_PASS '+$ringRelative+' '+$ringExpected+' '+$ringPublic.Type)
         }
     }
-    if($ringCount -ne 12){throw 'Full twelve-payload release required'}
-    $ringReceipt.Add('PUBLIC_PAYLOADS=12/12_HTTP_200_SHA256_MATCH')
+    $ringExpectedCount=if($EvidenceSuite -eq 'fighter-profile'){13}else{12}
+    if($ringCount -ne $ringExpectedCount){throw "Full $ringExpectedCount-payload release required"}
+    $ringReceipt.Add("PUBLIC_PAYLOADS=$ringExpectedCount/$ringExpectedCount"+'_HTTP_200_SHA256_MATCH')
     $ringReceipt.Add('MEDIA_MIME=OBSERVED_video/mp4_audio/mp3_PUBLIC_DECODER_AUDIT_PASS')
-    $ringMediaCount=if($EvidenceSuite -in @('bell-repair','arena-surround')){21}else{20}
+    $ringMediaCount=if($EvidenceSuite -in @('bell-repair','arena-surround','fighter-profile')){21}else{20}
     $ringReceipt.Add('PUBLIC_MEDIA_BROWSER='+$ringMediaCount+'/'+$ringMediaCount+'_PASS_ZERO_JS_LOAD_HTTP_ERRORS_CURRENT_PRODUCT_VERSION')
     $ringReceipt.Add('DEPLOYMENT_BRANCH_POLICIES=ALL_FIVE_PRESERVED_NO_NEW_POLICY')
     $ringReceipt.Add('VERIFIED_UTC='+[DateTimeOffset]::UtcNow.ToString('o'))

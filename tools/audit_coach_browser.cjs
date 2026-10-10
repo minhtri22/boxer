@@ -1,7 +1,7 @@
 // Real compiled UI / trusted input. No state, score, orientation callback or completion setters.
 const {chromium}=require('playwright'),fs=require('fs'),path=require('path');
-const analysisSuite=['coach-analysis','bell-repair','arena-surround'].includes(process.env.BOXER_WAVE_EVIDENCE);
-const dir=path.resolve(__dirname,'../evidence/wave1/'+(process.env.BOXER_WAVE_EVIDENCE==='arena-surround'?'arena-surround':process.env.BOXER_WAVE_EVIDENCE==='bell-repair'?'bell-repair':analysisSuite?'coach-analysis':'coach-ui')+'/coach-browser');fs.mkdirSync(dir,{recursive:true});
+const analysisSuite=['coach-analysis','bell-repair','arena-surround','fighter-profile'].includes(process.env.BOXER_WAVE_EVIDENCE);
+const dir=path.resolve(__dirname,'../evidence/wave1/'+(process.env.BOXER_WAVE_EVIDENCE==='fighter-profile'?'fighter-profile':process.env.BOXER_WAVE_EVIDENCE==='arena-surround'?'arena-surround':process.env.BOXER_WAVE_EVIDENCE==='bell-repair'?'bell-repair':analysisSuite?'coach-analysis':'coach-ui')+'/coach-browser');fs.mkdirSync(dir,{recursive:true});
 const report={scope:'COMPILED_COACH_UI_SYNTHETIC_MOBILE_VIEWPORT_NOT_PHONE_UAT',checks:[],errors:[],states:{},mediaRequests:[]};
 function check(ok,label){report.checks.push({name:label,pass:!!ok});if(!ok)throw Error(label);}
 function frozen(s){return !s.gameplayInput&&!s.playerEnabled&&!s.opponentEnabled&&s.seconds===0&&s.playerHP===100&&s.opponentHP===100&&s.playerStamina===100&&s.opponentStamina===100&&s.playerCapacity===100&&s.opponentCapacity===100;}
@@ -21,7 +21,13 @@ try{
  async function practice(module,stage){await choose(module);await tap(270,trainY);const s=await state('practice-'+stage,'Onboarding');check(s.trainingStage===stage&&s.trainingFromCoach&&!s.opponentEnabled&&s.seconds===0&&s.opponentAttacks===0,'Coach starts selected unscored '+stage);return s;}
  async function punch(dx=0,dy=0){await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{id:2,x:420,y:710}]});await page.waitForTimeout(85);if(dx||dy)await touch.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{id:2,x:420+dx,y:710+dy}]});await page.waitForTimeout(85);await touch.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await page.waitForTimeout(800);}
  await state('home','Home');
- if(analysisSuite){await tap(270,853);await page.waitForTimeout(200);check((await snap()).screen==='Home'&&frozen(await snap()),'retired duplicate training entry does not open another route');}
+ if(process.env.BOXER_WAVE_EVIDENCE==='fighter-profile'){
+  await tap(270,853);await state('profile-not-duplicate-training','Profile');
+  check((await snap()).screen!=='Onboarding'&&frozen(await snap()),'retired duplicate training slot no longer starts practice');
+  check((await snap()).screen==='Profile','replacement slot opens genuine Profile');
+  await page.locator('#profile-cancel').click();await state('profile-back-home','Home');
+  check(frozen(await snap()),'cancel replacement profile returns locked Home');
+ }else if(analysisSuite){await tap(270,853);await page.waitForTimeout(200);check((await snap()).screen==='Home'&&frozen(await snap()),'retired duplicate training entry does not open another route');}
  await tap(270,coachEntryY);let s=await state('coach','Coach');check(frozen(s)&&s.coachArtLoaded&&s.coachCompletionMask===0,'Coach native hub includes art and no combat or false progress');
  if(analysisSuite){await tap(270,728);s=await state('review-empty','CoachReview');check(!s.hasMatchReview&&s.coachSuggestions.length===0&&frozen(s),'fresh install has honest empty review with no fake statistics');await page.keyboard.press('k');await page.waitForTimeout(250);check(!(await snap()).hasMatchReview&&frozen(await snap()),'empty review blocks punches and cannot fabricate record');await tap(270,893);await state('review-empty-back','Coach');}
  await page.keyboard.press('k');await page.keyboard.press('w');await page.waitForTimeout(250);check(frozen(await snap()),'Coach keys cannot move, punch or spend');

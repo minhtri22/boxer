@@ -46,6 +46,8 @@ namespace BoxerP0
             public Vector3 contactPoint;
             public int audienceSides,audienceFlashNodes,audienceActiveFlash,audienceEnabledFlashes,audienceObservedSideMask;
             public float audienceFlashStrength;
+            public bool profileSaved, profileInvalidStored, captureKeyboard;
+            public string profileId, profileName, profileNationality;
         }
         private readonly Snapshot _snapshot=new();
         private void Start()
@@ -60,6 +62,12 @@ namespace BoxerP0
             _snapshot.audienceEnabledFlashes=_arena==null?0:_arena.EnabledFlashes;
             _snapshot.audienceObservedSideMask=_arena==null?0:_arena.ObservedSideMask;
             _snapshot.audienceFlashStrength=_arena==null?0:_arena.Strength;
+            _snapshot.profileSaved=_bootstrap.Profile.HasSaved;
+            _snapshot.profileInvalidStored=_bootstrap.Profile.InvalidStored;
+            _snapshot.profileId=_bootstrap.Profile.Identity;
+            _snapshot.profileName=_bootstrap.Profile.DisplayName;
+            _snapshot.profileNationality=_bootstrap.Profile.Nationality;
+            _snapshot.captureKeyboard=WebGLInput.captureAllKeyboardInput;
             var b=_telemetry.Bout;_snapshot.screen=_bootstrap.Flow.Screen.ToString();_snapshot.result=b.Result;_snapshot.reason=b.EndReason;
             _snapshot.seconds=b.Seconds;_snapshot.playerHP=b.Player.HP;_snapshot.opponentHP=b.Opponent.HP;
             _snapshot.playerStamina=b.Player.Stamina;_snapshot.opponentStamina=b.Opponent.Stamina;

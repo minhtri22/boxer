@@ -36,7 +36,7 @@ namespace BoxerP0
                 bool practice = _bootstrap.Flow.Screen == ProductScreen.Onboarding;
                 if (!practice)
                 {
-                    GUI.color = new Color(.01f,.012f,.014f,.82f);
+                    GUI.color = new Color(.01f,.012f,.014f,_bootstrap.Flow.Screen == ProductScreen.Profile ? .38f : .82f);
                     GUI.DrawTexture(new Rect(0,0,Screen.width,Screen.height), Texture2D.whiteTexture);
                 }
                 GUI.color = Color.white;
@@ -59,6 +59,7 @@ namespace BoxerP0
                     case ProductScreen.Coach: Coach(); break;
                     case ProductScreen.TrainingInfo: CoachingInfo(); break;
                     case ProductScreen.CoachReview: MatchReview(); break;
+                    case ProductScreen.Profile: Profile(); break;
                 }
             }
             finally { GUI.matrix = prior; GUI.color = color; GUI.depth = depth; }
@@ -94,13 +95,33 @@ namespace BoxerP0
         }
         private void Home()
         {
+            GUI.Label(new Rect(42,197,456,40),_bootstrap.Profile.DisplayName,_small);
             ControlCard(42,245,"PHONE = HEAD\n\nLook, react,\nstay aware.");
             ControlCard(278,245,"LEFT THUMB = FEET\n\nMove, angle,\ncontrol.");
             ControlCard(42,420,"RIGHT THUMB = PUNCH\n\nTap, or quick swipe.\nRelease to punch.");
             ControlCard(278,420,"NO TOUCH = GUARD\n\nRecover, then choose\nyour next attack.");
             if (Button(640,"START",true)) _bootstrap.ShowPreview();
             if (Button(725,"TRAINING / COACH",false,76)) _bootstrap.ShowCoach();
-            GUI.Label(new Rect(42,820,456,70),"TẬP ĐIỀU KHIỂN & PHÂN TÍCH TRẬN\nTẤT CẢ TRONG COACH",_small);
+            if (Button(812,"FIGHTER PROFILE · HỒ SƠ",false,80)) _bootstrap.ShowProfile();
+            GUI.Label(new Rect(42,919,456,35),"TẬP ĐIỀU KHIỂN & PHÂN TÍCH TRẬN TRONG COACH",_small);
+        }
+        private void Profile()
+        {
+#if !UNITY_WEBGL || UNITY_EDITOR
+            var p = _bootstrap.Profile;
+            Text(215,"FIGHTER PROFILE · HỒ SƠ",55);
+            Text(285,"Hồ sơ cục bộ · không phải tài khoản",45);
+            Text(350,"TÊN VÕ SĨ (24 ký tự)",40);
+            p.DraftName = GUI.TextField(new Rect(42,397,456,55),p.DraftName ?? "",96);
+            Text(465,"QUỐC TỊCH TỰ KHAI (40 ký tự)",40);
+            p.DraftNationality = GUI.TextField(new Rect(42,512,456,55),p.DraftNationality ?? "",160);
+            Text(580,p.Error.Length > 0 ? p.Error : "Ngoại hình đang tạm hold. Khung cảnh ring hiện tại chưa phải chân dung riêng.",90);
+            if (Button(690,"CONFIRM · LƯU HỒ SƠ",true,76)) p.Save();
+            bool enabled=GUI.enabled; GUI.enabled=_bootstrap.LastMatchReview != null;
+            if (Button(775,"TRẬN GẦN NHẤT TRÊN THIẾT BỊ",false,76)) p.Review();
+            GUI.enabled=enabled;
+            if (Button(860,"CANCEL · HỦY",false,76)) p.Cancel();
+#endif
         }
         private void Training()
         {

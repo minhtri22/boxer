@@ -30,6 +30,7 @@
     </div>
   </section>
   <script src="TemplateData/ring-media.js?v={{{ PRODUCT_VERSION }}}"></script>
+  <script src="TemplateData/fighter-profile.js?v={{{ PRODUCT_VERSION }}}"></script>
   <script>
     const gate = document.getElementById('gate');
     const statusEl = document.getElementById('status');
@@ -81,6 +82,7 @@
       if (unityInstance) unityInstance.SendMessage('Boxer P0 Bootstrap', method, payload || '');
     }
     window.boxerRingMedia=createBoxerRingMedia({send:sendRing,version:productVersion});
+    window.boxerProfileView=createBoxerProfileView({send:sendRing});
 
     function enterGame() {
       gate.classList.add('hidden');
@@ -186,7 +188,7 @@
     });
 
     document.addEventListener('touchmove', event => {
-      if (!gate.contains(event.target)) event.preventDefault();
+      if (!gate.contains(event.target) && !window.boxerProfileView.contains(event.target)) event.preventDefault();
     }, { passive: false });
     document.addEventListener('gesturestart', event => event.preventDefault(), { passive: false });
     document.addEventListener('gesturechange', event => event.preventDefault(), { passive: false });

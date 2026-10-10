@@ -243,7 +243,14 @@ namespace BoxerP0
             float w=Screen.width,h=Screen.height,pad=w*.025f;
             float ph=Mathf.Clamp(w*.145f,66f,106f),pw=w*.335f;
             float top = Screen.height - Screen.safeArea.yMax + 12;
-            DrawFighterPanel(new Rect(pad,top,pw,ph),"BOXER",(float)(_telemetry.Bout.Player.HP/100),_playerStamina,false);
+            string playerName=_bootstrap?.Profile?.DisplayName ?? "BOXER";
+            // Bounded HUD title only; stored identity remains complete. Do not change meters.
+            if(System.Globalization.StringInfo.ParseCombiningCharacters(playerName).Length>12)
+            {
+                int[] marks=System.Globalization.StringInfo.ParseCombiningCharacters(playerName);
+                playerName=playerName.Substring(0,marks[11])+"…";
+            }
+            DrawFighterPanel(new Rect(pad,top,pw,ph),playerName,(float)(_telemetry.Bout.Player.HP/100),_playerStamina,false);
             DrawFighterPanel(new Rect(w-pad-pw,top,pw,ph),"RAMIREZ",(float)(_telemetry.Bout.Opponent.HP/100),_opponentStamina,true);
             Rect timer=new(w*.39f,top,w*.22f,ph);
             DrawPanel(timer,new Color(.018f,.017f,.016f,.90f),Gold,1);

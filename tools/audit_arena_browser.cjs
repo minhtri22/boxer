@@ -1,6 +1,6 @@
 // Actual compiled UI/trusted touch; diagnostics are strictly read-only. Not physical phone UAT.
 const {chromium}=require('playwright'),fs=require('fs'),path=require('path');
-const dir=path.resolve(__dirname,'../evidence/wave1/arena-surround/'+(process.env.BOXER_ARENA_PUBLIC==='1'?'arena-browser-public':'arena-browser'));
+const dir=path.resolve(__dirname,'../evidence/wave1/'+(process.env.BOXER_WAVE_EVIDENCE==='fighter-profile'?'fighter-profile':'arena-surround')+'/'+(process.env.BOXER_ARENA_PUBLIC==='1'?'arena-browser-public':'arena-browser'));
 fs.mkdirSync(dir,{recursive:true});
 const report={scope:'REAL_COMPILED_UI_READONLY_ARENA_OBSERVATION_NOT_PHONE_VISUAL_UAT',checks:[],errors:[],states:{},trace:[]};
 function check(ok,name){report.checks.push({name,pass:!!ok});if(!ok)throw Error(name);}

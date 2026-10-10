@@ -2,7 +2,7 @@
 const {chromium}=require('playwright');
 const fs=require('fs'),path=require('path');
 const probe=process.env.COMBAT_TACTIC_PROBE==='1';
-const suite=process.env.BOXER_WAVE_EVIDENCE==='arena-surround'?'arena-surround':process.env.BOXER_WAVE_EVIDENCE==='bell-repair'?'bell-repair':process.env.BOXER_WAVE_EVIDENCE==='coach-analysis'?'coach-analysis':process.env.BOXER_WAVE_EVIDENCE==='coach-ui'?'coach-ui':process.env.BOXER_WAVE_EVIDENCE==='punch-feel'?'punch-feel':process.env.BOXER_WAVE_EVIDENCE==='training-pov'?'training-pov':process.env.BOXER_WAVE_EVIDENCE==='ring-intro'?'ring-intro':'combat-v3';
+const suite=process.env.BOXER_WAVE_EVIDENCE==='fighter-profile'?'fighter-profile':process.env.BOXER_WAVE_EVIDENCE==='arena-surround'?'arena-surround':process.env.BOXER_WAVE_EVIDENCE==='bell-repair'?'bell-repair':process.env.BOXER_WAVE_EVIDENCE==='coach-analysis'?'coach-analysis':process.env.BOXER_WAVE_EVIDENCE==='coach-ui'?'coach-ui':process.env.BOXER_WAVE_EVIDENCE==='punch-feel'?'punch-feel':process.env.BOXER_WAVE_EVIDENCE==='training-pov'?'training-pov':process.env.BOXER_WAVE_EVIDENCE==='ring-intro'?'ring-intro':'combat-v3';
 const evidence=path.resolve(__dirname,'../evidence/wave1/'+suite+'/'+(probe?'combat-tactic-probe':'combat-browser'));
 fs.mkdirSync(evidence,{recursive:true});
 const report={scope:'REAL_WEBGL_INPUT_AND_SOLVED_CONTACT_SYNTHETIC_DESKTOP_NOT_PHONE_UAT',checks:[],errors:[],scenarios:{}};
@@ -155,7 +155,7 @@ function check(ok,name){report.checks.push({name,pass:!!ok});if(!ok)throw Error(
     check(final.screen==='Result'&&final.opponentHP<100&&final.playerHits>0,'real directional touch punches geometrically HIT and reduce opponent HP');
     check(final.result==='PLAYER_WIN','patient real touch attack can win default Ramirez bout');
     check(final.reason==='KO'&&final.opponentHP===0&&!final.playerEnabled&&!final.opponentEnabled,'physical punch HP zero produces KO and locks both actors');
-    if(['ring-intro','training-pov','punch-feel','coach-ui','coach-analysis','bell-repair','arena-surround'].includes(suite)){
+    if(['ring-intro','training-pov','punch-feel','coach-ui','coach-analysis','bell-repair','arena-surround','fighter-profile'].includes(suite)){
       const media=await fight.page.evaluate(()=>window.boxerRingMedia.state);fight.scenario.mediaAtKO=media;
       check(media.phase==='Result'&&!media.crowdActive&&media.events.filter(e=>e.name==='end-bell').length===1,'real physical-input KO stops crowd and plays end bell exactly once');
     }

@@ -1,0 +1,55 @@
+SCOPE=COACH_MODEL_NAVIGATION_NOT_RENDERED_OR_PHONE_UAT
+PASS approved portrait included in Resources
+PASS invalid module rejected
+PASS catalog copy Head
+PASS practice versus information Head
+PASS Home to Coach locks gameplay Head
+PASS Coach cannot start hidden scored bout Head
+PASS Coach to practice Head
+PASS single lesson cannot start combat or mark whole tutorial Head
+PASS cancel returns Coach without completion Head
+PASS partial completion not whole training Head
+PASS all controls complete persist state Head
+PASS catalog copy Footwork
+PASS practice versus information Footwork
+PASS Home to Coach locks gameplay Footwork
+PASS Coach cannot start hidden scored bout Footwork
+PASS Coach to practice Footwork
+PASS single lesson cannot start combat or mark whole tutorial Footwork
+PASS cancel returns Coach without completion Footwork
+PASS partial completion not whole training Footwork
+PASS all controls complete persist state Footwork
+PASS catalog copy Punches
+PASS practice versus information Punches
+PASS Home to Coach locks gameplay Punches
+PASS Coach cannot start hidden scored bout Punches
+PASS Coach to practice Punches
+PASS single lesson cannot start combat or mark whole tutorial Punches
+PASS cancel returns Coach without completion Punches
+PASS partial completion not whole training Punches
+PASS all controls complete persist state Punches
+PASS catalog copy Guard
+PASS practice versus information Guard
+PASS Home to Coach locks gameplay Guard
+PASS Coach cannot start hidden scored bout Guard
+PASS information locks gameplay Guard
+PASS information cannot award or jump practice Guard
+PASS information returns Coach Guard
+PASS catalog copy Conditioning
+PASS practice versus information Conditioning
+PASS Home to Coach locks gameplay Conditioning
+PASS Coach cannot start hidden scored bout Conditioning
+PASS information locks gameplay Conditioning
+PASS information cannot award or jump practice Conditioning
+PASS information returns Coach Conditioning
+PASS Home cannot bypass Coach into separate practice
+PASS Preview cannot bypass Coach into practice
+PASS no UI escape or injection into active fight
+PASS unscored coach model cannot spend resources
+PASS card bounds minimum 320-wide portrait target 0
+PASS card bounds minimum 320-wide portrait target 1
+PASS card bounds minimum 320-wide portrait target 2
+PASS card bounds minimum 320-wide portrait target 3
+PASS card bounds minimum 320-wide portrait target 4
+PASS new navigation CTA minimum portrait touch target
+TOTAL=53 PASS=53 FAIL=0

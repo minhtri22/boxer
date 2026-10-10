@@ -47,7 +47,7 @@ namespace BoxerP0.Editor
             { var rect=new Rect(260,230+i*90,264,88);Check(rect.xMin>=0&&rect.xMax<=540&&rect.yMax<=690&&rect.height*320/540>=44,"card bounds minimum 320-wide portrait target "+i); }
             Check(76f*320/540>=44&&875+76<=960,"new navigation CTA minimum portrait touch target");
             log.AppendLine($"TOTAL={pass+fail} PASS={pass} FAIL={fail}");
-            string suite=Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="arena-surround"?"arena-surround":Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="bell-repair"?"bell-repair":Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="coach-analysis"?"coach-analysis":"coach-ui";
+            string suite=Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="fighter-profile"?"fighter-profile":Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="arena-surround"?"arena-surround":Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="bell-repair"?"bell-repair":Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="coach-analysis"?"coach-analysis":"coach-ui";
             string dir=Path.GetFullPath(Path.Combine(Application.dataPath,"../../../evidence/wave1/"+suite));Directory.CreateDirectory(dir);
             File.WriteAllText(Path.Combine(dir,"coach-tests.txt"),log.ToString());Debug.Log(log);
             if(fail>0)throw new Exception("Coach UI model invariant failure");

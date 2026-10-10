@@ -8,7 +8,7 @@ namespace BoxerP0.Editor
 {
     public static class ArenaSurroundSelfTests
     {
-        static string Dir=>Path.GetFullPath(Path.Combine(Application.dataPath,"../../../evidence/wave1/arena-surround"));
+        static string Dir=>Path.GetFullPath(Path.Combine(Application.dataPath,"../../../evidence/wave1/"+(Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="fighter-profile"?"fighter-profile":"arena-surround")));
         public static void RunAll(){Run();CoachAnalysisSelfTests.RunAll();}
         public static void RunRendered(){RunAll();Render();}
         public static void Run()

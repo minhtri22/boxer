@@ -15,7 +15,7 @@ namespace BoxerP0.Editor
         private static readonly StringBuilder Log=new();
         private static int _stage, _frame=-1, _rematches, _checks;
         private static double _start;
-        private static string Dir=>Path.GetFullPath(Path.Combine(Application.dataPath,"../../../evidence/wave1/"+(Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="arena-surround"?"arena-surround":Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="bell-repair"?"bell-repair":Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="coach-analysis"?"coach-analysis":Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="coach-ui"?"coach-ui":Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="punch-feel"?"punch-feel":Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="training-pov"?"training-pov":Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="ring-intro"?"ring-intro":Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="combat-v3"?"combat-v3":"onboarding-v2")));
+        private static string Dir=>Path.GetFullPath(Path.Combine(Application.dataPath,"../../../evidence/wave1/"+(Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="fighter-profile"?"fighter-profile":Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="arena-surround"?"arena-surround":Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="bell-repair"?"bell-repair":Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="coach-analysis"?"coach-analysis":Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="coach-ui"?"coach-ui":Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="punch-feel"?"punch-feel":Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="training-pov"?"training-pov":Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="ring-intro"?"ring-intro":Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="combat-v3"?"combat-v3":"onboarding-v2")));
         static Wave1RuntimeAudit() { if(SessionState.GetBool("wave1Audit",false))EditorApplication.update+=Tick; }
         public static void Run()
         {
@@ -57,6 +57,7 @@ namespace BoxerP0.Editor
                 if(b==null||f==null||!f.Ready)return;
                 if(_stage==0)
                 {
+                    if(Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="fighter-profile")FighterProfileRuntimeChecks.Run(b);
                     Log.AppendLine("SCOPE=SYNTHETIC_EDITOR_CONTROLLER_AND_INJECTED_CONSEQUENCE_TEST_NOT_PHYSICS_OR_HUMAN_UAT");
                     Check(b.Flow.Screen==ProductScreen.Home&&!input.GameplayInput&&!p.CombatEnabled&&!o.CombatEnabled,"home input and combat locked");
                     Punch(p,PunchIntent.Cross);Check(t.Bout.Player.Capacity==100&&!p.IsActionBusy,"menu request rejected without cost");

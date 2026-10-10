@@ -117,13 +117,14 @@ namespace BoxerP0
         { Active = false; Ended = true; Result = result; EndReason = reason; }
     }
 
-    public enum ProductScreen { Home, Preview, Onboarding, Fight, Result, Intro, Coach, TrainingInfo, CoachReview }
+    public enum ProductScreen { Home, Preview, Onboarding, Fight, Result, Intro, Coach, TrainingInfo, CoachReview, Profile }
     public sealed class ProductFlow
     {
         public ProductScreen Screen { get; private set; } = ProductScreen.Home;
         public bool TutorialSeen { get; private set; }
         public bool TrainingFromCoach { get; private set; }
-        public bool OpenCoach() { if (Screen != ProductScreen.Home) return false; Screen = ProductScreen.Coach; return true; }
+        public bool OpenProfile() { if (Screen != ProductScreen.Home) return false; Screen = ProductScreen.Profile; return true; }
+        public bool OpenCoach() { if (Screen != ProductScreen.Home && Screen != ProductScreen.Profile) return false; Screen = ProductScreen.Coach; return true; }
         public bool OpenTrainingInfo() { if (Screen != ProductScreen.Coach) return false; Screen = ProductScreen.TrainingInfo; return true; }
         public bool OpenCoachReview() { if (Screen != ProductScreen.Coach && Screen != ProductScreen.Result) return false; Screen = ProductScreen.CoachReview; return true; }
         public bool BackToCoach() { if (Screen != ProductScreen.TrainingInfo && Screen != ProductScreen.CoachReview) return false; Screen = ProductScreen.Coach; return true; }

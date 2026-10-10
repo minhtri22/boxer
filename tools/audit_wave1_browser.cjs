@@ -2,9 +2,9 @@
 const { chromium } = require('playwright');
 const fs = require('fs');
 const path = require('path');
-const suite=process.env.BOXER_WAVE_EVIDENCE==='arena-surround'?'arena-surround':process.env.BOXER_WAVE_EVIDENCE==='bell-repair'?'bell-repair':process.env.BOXER_WAVE_EVIDENCE==='coach-analysis'?'coach-analysis':process.env.BOXER_WAVE_EVIDENCE==='coach-ui'?'coach-ui':process.env.BOXER_WAVE_EVIDENCE==='punch-feel'?'punch-feel':process.env.BOXER_WAVE_EVIDENCE==='training-pov'?'training-pov':process.env.BOXER_WAVE_EVIDENCE==='ring-intro'?'ring-intro':process.env.BOXER_WAVE_EVIDENCE==='combat-v3'?'combat-v3':'onboarding-v2';
-const analysisSuite=['coach-analysis','bell-repair','arena-surround'].includes(suite);
-const povSuite=['training-pov','punch-feel','coach-ui','coach-analysis','bell-repair','arena-surround'].includes(suite);
+const suite=process.env.BOXER_WAVE_EVIDENCE==='fighter-profile'?'fighter-profile':process.env.BOXER_WAVE_EVIDENCE==='arena-surround'?'arena-surround':process.env.BOXER_WAVE_EVIDENCE==='bell-repair'?'bell-repair':process.env.BOXER_WAVE_EVIDENCE==='coach-analysis'?'coach-analysis':process.env.BOXER_WAVE_EVIDENCE==='coach-ui'?'coach-ui':process.env.BOXER_WAVE_EVIDENCE==='punch-feel'?'punch-feel':process.env.BOXER_WAVE_EVIDENCE==='training-pov'?'training-pov':process.env.BOXER_WAVE_EVIDENCE==='ring-intro'?'ring-intro':process.env.BOXER_WAVE_EVIDENCE==='combat-v3'?'combat-v3':'onboarding-v2';
+const analysisSuite=['coach-analysis','bell-repair','arena-surround','fighter-profile'].includes(suite);
+const povSuite=['training-pov','punch-feel','coach-ui','coach-analysis','bell-repair','arena-surround','fighter-profile'].includes(suite);
 const evidence = path.resolve(__dirname, '../evidence/wave1/'+suite+'/browser');
 fs.mkdirSync(evidence, { recursive: true });
 const report = { scope: 'SYNTHETIC_DESKTOP_REAL_UI_NOT_DEVICE_UAT', checks: [], states: {}, errors: [] };

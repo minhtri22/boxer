@@ -1,0 +1,71 @@
+SCOPE=LOCAL_IDENTITY_AND_ROUTE_INVARIANTS_NOT_PHONE_UAT
+PASS normalize Unicode and spaces without assumed nationality
+PASS exact identity round trip
+PASS rename preserves local ID
+PASS separate first save has separate ID
+PASS NFC combining marks
+PASS invalid name rejected 0
+PASS invalid name rejected 1
+PASS invalid name rejected 8
+PASS invalid name rejected 3
+PASS invalid name rejected 3
+PASS invalid name rejected 3
+PASS invalid name rejected 3
+PASS invalid name rejected 2
+PASS invalid name rejected 1
+PASS invalid name rejected 5
+PASS invalid name rejected 25
+PASS invalid name rejected 97
+PASS invalid nationality rejected 0
+PASS invalid nationality rejected 1
+PASS invalid nationality rejected 8
+PASS invalid nationality rejected 4
+PASS invalid nationality rejected 2
+PASS invalid nationality rejected 41
+PASS invalid nationality rejected 161
+PASS self reported Unicode nationality Việt Nam
+PASS self reported Unicode nationality Côte d’Ivoire
+PASS self reported Unicode nationality Timor-Leste
+PASS self reported Unicode nationality México
+PASS self reported Unicode nationality 대한민국
+PASS self reported Unicode nationality 日本
+PASS exact text limits accepted
+PASS malformed unsupported or missing schema rejected 0
+PASS malformed unsupported or missing schema rejected 4
+PASS malformed unsupported or missing schema rejected 2
+PASS malformed unsupported or missing schema rejected 3
+PASS malformed unsupported or missing schema rejected 8
+PASS malformed unsupported or missing schema rejected 2049
+PASS malformed unsupported or missing schema rejected 86
+PASS malformed unsupported or missing schema rejected 97
+PASS invalid ID rejected
+PASS invalid ID rejected
+PASS invalid ID rejected
+PASS invalid ID rejected
+PASS invalid ID rejected
+PASS invalid ID rejected
+PASS invalid ID rejected
+PASS Home opens locked profile
+PASS profile cannot start combat or fabricate progress
+PASS profile link uses existing Coach review route
+PASS test reaches real route Home
+PASS profile route restricted Home
+PASS test reaches real route Preview
+PASS profile route restricted Preview
+PASS test reaches real route Onboarding
+PASS profile route restricted Onboarding
+PASS test reaches real route Fight
+PASS profile route restricted Fight
+PASS test reaches real route Result
+PASS profile route restricted Result
+PASS test reaches real route Intro
+PASS profile route restricted Intro
+PASS test reaches real route Coach
+PASS profile route restricted Coach
+PASS test reaches real route TrainingInfo
+PASS profile route restricted TrainingInfo
+PASS test reaches real route CoachReview
+PASS profile route restricted CoachReview
+PASS test reaches real route Profile
+PASS profile route restricted Profile
+TOTAL=69 PASS=69 FAIL=0

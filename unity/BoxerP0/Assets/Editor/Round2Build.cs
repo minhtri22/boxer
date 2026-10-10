@@ -54,6 +54,8 @@ namespace BoxerP0.Editor
                 metadata.AppendLine("coach=approved_2d_reference_art_five_native_cards_three_existing_unscored_drills_two_information_modules_no_stat_upgrade");
                 metadata.AppendLine("coach_review=last_completed_bout_authoritative_endpoints_resolved_accuracy_validated_local_record_count_based_existing_module_links_no_upgrade");
                 metadata.AppendLine("hp_ko_balance=HP-KO-001_OWNER_HOLD_COMBAT_RULES_UNCHANGED");
+                metadata.AppendLine("fighter_profile=versioned_local_identity_explicit_save_cancel_stable_guid_unicode_self_reported_nationality_no_account_no_cosmetics_no_career_stats");
+                metadata.AppendLine("profile_input=browser_native_text_form_scoped_keyboard_capture_visual_viewport_scroll_native_editor_fallback_pending_phone_uat");
                 metadata.AppendLine("arena_audience=four_inward_photo_scenery_sides_shared_mesh_material_not_animated_3d_crowd");
                 metadata.AppendLine("audience_flash=24_local_quads_one_at_time_1.5s_interval_0.16s_pulse_fight_only_no_lights_no_physics");
                 metadata.AppendLine("training_guides=native_boot_head_glove_icons_directional_light_trails_repeat_tap_training_only");

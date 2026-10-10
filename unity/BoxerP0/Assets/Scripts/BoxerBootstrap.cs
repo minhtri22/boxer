@@ -22,6 +22,7 @@ namespace BoxerP0
         public CoachModule SelectedCoachModule { get; private set; }
         public int CoachCompletionMask { get; private set; }
         public CoachMatchReview LastMatchReview { get; private set; }
+        public FighterProfileController Profile { get; private set; }
 
         private float _boutEnd;
         private float _smokeQuitAt = -1f;
@@ -82,6 +83,8 @@ namespace BoxerP0
             Flow.RestoreTutorialSeen(PlayerPrefs.GetInt(TrainingPreference, 0) == 1);
             CoachCompletionMask = PlayerPrefs.GetInt(CoachPreference, 0) & 7;
             LastMatchReview = CoachMatchReview.Parse(PlayerPrefs.GetString(ReviewPreference, string.Empty));
+            Profile = gameObject.AddComponent<FighterProfileController>();
+            Profile.Initialize(this);
             _player.PunchAccepted += ObserveTrainingPunch;
             _lastPerfRefreshRealtime = Time.realtimeSinceStartup;
             _nextUiRefresh = _lastPerfRefreshRealtime;
@@ -186,6 +189,9 @@ namespace BoxerP0
         { if (Flow.Screen == ProductScreen.Intro && token == IntroToken) ReturnHome(); }
         public bool ShowCoach()
         { if (!Flow.OpenCoach()) return false; ResetActors(); return true; }
+        public bool ShowProfile()
+        { if (!Flow.OpenProfile()) return false; ResetActors(); Profile.Open(); return true; }
+        public void BrowserProfileCommand(string payload) { Profile.Receive(payload); }
         public bool ShowMatchReview()
         { if (!Flow.OpenCoachReview()) return false; ResetActors(); return true; }
         public bool TrainFromReview(CoachModule module)
