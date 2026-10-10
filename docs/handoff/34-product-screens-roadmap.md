@@ -9,6 +9,7 @@ Date: 2026-10-10. Owner authorizes continuing remaining screens and holds HP/KO 
 - Owner-requested Slice A refinement: one TRAINING / COACH entrance, controls contained within it, actual last-completed-match analysis -> existing supplemental practice. See `36-coach-last-match-analysis.md` and `evidence/wave1/coach-analysis/deployment.txt` for latest release status; absent receipt means not publicly verified. No historical match backfill, training stat awards or combat retuning.
 - All six approved reference images are present. The older September research roadmap/state remain historical; this product-screen sequence does not rewrite those evidence claims or reopen combat research.
 - HP/KO ordinary-phone balance is unresolved and held. Technical KO wiring success is not a phone-balance pass.
+- Latest audio-only repair: compiled `b2dabf90b3fa8ae55c902ffa10210f735f0778f8`, artifact `929e8874b7b80d1ef94ddc70c8651a6614e6ad16`, successful workflow `38046281808`; public media 21/21 now includes actual non-silent bell PCM, all 12 public payload hashes match. See handoff 37 and `evidence/wave1/bell-repair/deployment.txt`. New facial/venue/economy/record systems remain planned.
 
 ## Execution sequence
 

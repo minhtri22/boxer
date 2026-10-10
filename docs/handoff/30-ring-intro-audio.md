@@ -1,5 +1,7 @@
 # Ring introduction and bout audio — 2026-10-09
 
+> 2026-10-10 correction: the historical duration/event/decoder passes below did not test PCM amplitude. Owner reported no bells; the released derived `bell.mp3` was confirmed digitally silent. Handoff `37-bell-repair-and-product-roadmap.md` and `evidence/wave1/bell-repair/deployment.txt` record the corrected source extraction, nonzero signal gate, public 21-check media audit and phone-listening UAT boundary. Original historical receipts remain unchanged; they are not audible-bell acceptance.
+
 Owner approved use and temporal splitting of their supplied 6-second video.
 Work remains on `feature/boxer-product-loop-wave1`; prior combat-v3 evidence and
 HP/Stamina/damage/recovery/KO formulas are preserved.

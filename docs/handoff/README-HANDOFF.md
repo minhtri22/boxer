@@ -6,7 +6,7 @@
 
 ## Project identity
 
-> Latest repair/expanded product plan: `37-bell-repair-and-product-roadmap.md`. The prior duration/event-only bell checks did not detect the released silent audio asset. Bell repair needs actual decoded-signal/public verification; Street/Cage, rewards/shop, achievements and FACE-001 are separate planned packages, not an implemented release claim.
+> Latest repair/expanded product plan: `37-bell-repair-and-product-roadmap.md`. The prior duration/event-only bell checks did not detect the released silent audio asset. Corrected bell now has actual decoded-signal/public verification (compiled source `b2dabf9`, public receipt under `bell-repair`), phone listening UAT pending. Street/Cage, rewards/shop, achievements and FACE-001 are separate planned packages, not an implemented release claim.
 
 **Boxer** is a POV boxing career simulator/research game built around one product thesis:
 
