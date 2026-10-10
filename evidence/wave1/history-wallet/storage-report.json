@@ -1,0 +1,72 @@
+{
+  "scope": "ISOLATED_REAL_INDEXEDDB_CONCURRENCY_ABORT_RELOAD_NOT_GAMEPLAY_OR_PHONE_UAT",
+  "checks": [
+    {
+      "name": "fresh real DB does not backfill old review",
+      "pass": true
+    },
+    {
+      "name": "transaction commit stores one win and 100 together",
+      "pass": true
+    },
+    {
+      "name": "same real transaction retry exactly once",
+      "pass": true
+    },
+    {
+      "name": "two tabs distinct transactions retain both completions",
+      "pass": true
+    },
+    {
+      "name": "two tabs same ID pays only once",
+      "pass": true
+    },
+    {
+      "name": "conflicting duplicate aborts",
+      "pass": true
+    },
+    {
+      "name": "abort retains original ledger and balance together",
+      "pass": true
+    },
+    {
+      "name": "caller reward mutation rejected with no partial write",
+      "pass": true
+    },
+    {
+      "name": "real page reload persists exact committed record",
+      "pass": true
+    },
+    {
+      "name": "closed database failure never changes confirmed coins",
+      "pass": true
+    },
+    {
+      "name": "corrupt persisted balance fails closed",
+      "pass": true
+    },
+    {
+      "name": "cannot reward on corrupt base",
+      "pass": true
+    },
+    {
+      "name": "corrupt bytes preserved no silent reset",
+      "pass": true
+    },
+    {
+      "name": "unsupported schema retained and rejected",
+      "pass": true
+    },
+    {
+      "name": "injected unavailable storage returns error not fabricated empty wallet",
+      "pass": true
+    },
+    {
+      "name": "no unexpected browser errors",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "status": "PASS",
+  "testDatabaseRemoved": true
+}

@@ -48,6 +48,9 @@ namespace BoxerP0
             public float audienceFlashStrength;
             public bool profileSaved, profileInvalidStored, captureKeyboard;
             public string profileId, profileName, profileNationality;
+            public bool walletReady;
+            public int walletBalance,historyCount,historyWins,historyDraws,historyLosses,walletPending;
+            public string walletError,walletLatestId,walletFirstName;
         }
         private readonly Snapshot _snapshot=new();
         private void Start()
@@ -68,6 +71,12 @@ namespace BoxerP0
             _snapshot.profileName=_bootstrap.Profile.DisplayName;
             _snapshot.profileNationality=_bootstrap.Profile.Nationality;
             _snapshot.captureKeyboard=WebGLInput.captureAllKeyboardInput;
+            var wallet=_bootstrap.Wallet;var ledger=wallet.Ledger;
+            _snapshot.walletReady=wallet.Ready;_snapshot.walletBalance=ledger?.balance ?? 0;
+            _snapshot.historyCount=ledger?.entries.Length ?? 0;
+            _snapshot.historyWins=ledger?.Count("PLAYER_WIN") ?? 0;_snapshot.historyDraws=ledger?.Count("DRAW") ?? 0;_snapshot.historyLosses=ledger?.Count("OPPONENT_WIN") ?? 0;
+            _snapshot.walletPending=wallet.PendingCount;_snapshot.walletError=wallet.Error;_snapshot.walletLatestId=wallet.LatestId;
+            _snapshot.walletFirstName=ledger!=null&&ledger.entries.Length>0?ledger.entries[0].fighterName:"";
             var b=_telemetry.Bout;_snapshot.screen=_bootstrap.Flow.Screen.ToString();_snapshot.result=b.Result;_snapshot.reason=b.EndReason;
             _snapshot.seconds=b.Seconds;_snapshot.playerHP=b.Player.HP;_snapshot.opponentHP=b.Opponent.HP;
             _snapshot.playerStamina=b.Player.Stamina;_snapshot.opponentStamina=b.Opponent.Stamina;

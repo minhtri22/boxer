@@ -31,6 +31,7 @@
   </section>
   <script src="TemplateData/ring-media.js?v={{{ PRODUCT_VERSION }}}"></script>
   <script src="TemplateData/fighter-profile.js?v={{{ PRODUCT_VERSION }}}"></script>
+  <script src="TemplateData/match-ledger.js?v={{{ PRODUCT_VERSION }}}"></script>
   <script>
     const gate = document.getElementById('gate');
     const statusEl = document.getElementById('status');
@@ -83,6 +84,7 @@
     }
     window.boxerRingMedia=createBoxerRingMedia({send:sendRing,version:productVersion});
     window.boxerProfileView=createBoxerProfileView({send:sendRing});
+    window.boxerLedger=createBoxerLedger({send:sendRing});
 
     function enterGame() {
       gate.classList.add('hidden');
@@ -124,6 +126,7 @@
       script.onload = () => {
         createUnityInstance(canvas, config).then(instance => {
           unityInstance = instance;
+          window.boxerLedger.ready();
           if (desktopValidation) send('BrowserStartDesktopValidation', '');
           else send('BrowserSetMotionStatus', permissionStatus);
           if (latestOrientationPayload) send('BrowserSetOrientation', latestOrientationPayload);
@@ -188,7 +191,7 @@
     });
 
     document.addEventListener('touchmove', event => {
-      if (!gate.contains(event.target) && !window.boxerProfileView.contains(event.target)) event.preventDefault();
+      if (!gate.contains(event.target) && !window.boxerProfileView.contains(event.target) && !window.boxerLedger.contains(event.target)) event.preventDefault();
     }, { passive: false });
     document.addEventListener('gesturestart', event => event.preventDefault(), { passive: false });
     document.addEventListener('gesturechange', event => event.preventDefault(), { passive: false });

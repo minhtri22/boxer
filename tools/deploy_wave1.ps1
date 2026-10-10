@@ -29,21 +29,21 @@ if($Mode -eq 'Deploy'){
     $waveLocalProof=Get-Content (Join-Path $waveRoot 'builds/web/boxer-round2/provenance.txt')
     $waveProductVersion=($waveLocalProof | Where-Object {$_ -like 'productVersion=*'}) -replace '^productVersion=',''
     if($waveProductVersion -ne $waveBrowserGate.productVersion){throw 'Stale browser report: compiled product version differs'}
-    if($EvidenceSubdirectory -in @('wave1/combat-v3','wave1/ring-intro','wave1/training-pov','wave1/punch-feel','wave1/coach-ui','wave1/coach-analysis','wave1/bell-repair','wave1/arena-surround','wave1/fighter-profile')){
+    if($EvidenceSubdirectory -in @('wave1/combat-v3','wave1/ring-intro','wave1/training-pov','wave1/punch-feel','wave1/coach-ui','wave1/coach-analysis','wave1/bell-repair','wave1/arena-surround','wave1/fighter-profile','wave1/history-wallet')){
         $waveContactGate=Get-Content (Join-Path $waveGateDirectory 'combat-browser/report.json') -Raw | ConvertFrom-Json
         if($waveContactGate.status -ne 'PASS' -or $waveContactGate.errors.Count -ne 0 -or $waveContactGate.productVersion -ne $waveProductVersion){throw 'Physical input/contact browser gate not PASS or stale'}
-        $waveContactChecks=if($EvidenceSubdirectory -in @('wave1/ring-intro','wave1/training-pov','wave1/punch-feel','wave1/coach-ui','wave1/coach-analysis','wave1/bell-repair','wave1/arena-surround','wave1/fighter-profile')){18}else{17}
+        $waveContactChecks=if($EvidenceSubdirectory -in @('wave1/ring-intro','wave1/training-pov','wave1/punch-feel','wave1/coach-ui','wave1/coach-analysis','wave1/bell-repair','wave1/arena-surround','wave1/fighter-profile','wave1/history-wallet')){18}else{17}
         if($waveContactGate.checks.Count -ne $waveContactChecks -or @($waveContactGate.checks | Where-Object {-not $_.pass}).Count -ne 0){throw "Full $waveContactChecks-check contact suite required; tactical probe is not a release gate"}
         $waveCombatTail=Get-Content (Join-Path $waveGateDirectory 'combat-tests.txt') -Tail 1
         if($waveCombatTail -notmatch '^TOTAL=(\d+) PASS=(\d+) FAIL=0$' -or $Matches[1] -ne $Matches[2]){throw 'Combat geometry invariant gate not PASS'}
     }
-    if($EvidenceSubdirectory -in @('wave1/ring-intro','wave1/training-pov','wave1/punch-feel','wave1/coach-ui','wave1/coach-analysis','wave1/bell-repair','wave1/arena-surround','wave1/fighter-profile')){
+    if($EvidenceSubdirectory -in @('wave1/ring-intro','wave1/training-pov','wave1/punch-feel','wave1/coach-ui','wave1/coach-analysis','wave1/bell-repair','wave1/arena-surround','wave1/fighter-profile','wave1/history-wallet')){
         $waveMediaGate=Get-Content (Join-Path $waveGateDirectory 'media-browser/report.json') -Raw | ConvertFrom-Json
-        if($waveMediaGate.status -ne 'PASS' -or $waveMediaGate.errors.Count -ne 0 -or $waveMediaGate.productVersion -ne $waveProductVersion -or $waveMediaGate.checks.Count -ne $(if($EvidenceSubdirectory -in @('wave1/bell-repair','wave1/arena-surround','wave1/fighter-profile')){21}else{20}) -or @($waveMediaGate.checks | Where-Object {-not $_.pass}).Count -ne 0){throw 'Current compiled full 20-check media lifecycle gate not PASS'}
+        if($waveMediaGate.status -ne 'PASS' -or $waveMediaGate.errors.Count -ne 0 -or $waveMediaGate.productVersion -ne $waveProductVersion -or $waveMediaGate.checks.Count -ne $(if($EvidenceSubdirectory -in @('wave1/bell-repair','wave1/arena-surround','wave1/fighter-profile','wave1/history-wallet')){21}else{20}) -or @($waveMediaGate.checks | Where-Object {-not $_.pass}).Count -ne 0){throw 'Current compiled full 20-check media lifecycle gate not PASS'}
     }
     if(-not ((Get-Content (Join-Path $waveGateDirectory 'vitals-tests.txt') -Tail 1) -eq "TOTAL=$ExpectedVitalsChecks PASS=$ExpectedVitalsChecks FAIL=0")){throw 'Vitals gate not PASS'}
     if(-not ((Get-Content (Join-Path $waveGateDirectory 'controller-runtime.txt') -Tail 1) -eq "CHECKS=$ExpectedControllerChecks EXIT=0")){throw 'Controller gate not PASS'}
-    if($EvidenceSubdirectory -in @('wave1/training-pov','wave1/punch-feel','wave1/coach-ui','wave1/coach-analysis','wave1/bell-repair','wave1/arena-surround','wave1/fighter-profile')){
+    if($EvidenceSubdirectory -in @('wave1/training-pov','wave1/punch-feel','wave1/coach-ui','wave1/coach-analysis','wave1/bell-repair','wave1/arena-surround','wave1/fighter-profile','wave1/history-wallet')){
         if($waveBrowserGate.checks.Count -ne 33 -or @($waveBrowserGate.checks | Where-Object {-not $_.pass}).Count -ne 0){throw 'Full training and POV browser suite required'}
         if(-not ((Get-Content (Join-Path $waveGateDirectory 'presentation-tests.txt') -Tail 1) -eq 'TOTAL=550 PASS=550 FAIL=0')){throw 'POV presentation geometry gate not PASS'}
     }
@@ -53,33 +53,43 @@ if($Mode -eq 'Deploy'){
         $feelGate=Get-Content (Join-Path $waveGateDirectory 'feel-browser/report.json') -Raw | ConvertFrom-Json
         if($feelGate.status -ne 'PASS' -or $feelGate.errors.Count -ne 0 -or $feelGate.productVersion -ne $waveProductVersion -or @($feelGate.checks | Where-Object {-not $_.pass}).Count -ne 0){throw 'Current compiled punch-feel interaction gate not PASS'}
     }
-    if($EvidenceSubdirectory -in @('wave1/coach-ui','wave1/coach-analysis','wave1/bell-repair','wave1/arena-surround','wave1/fighter-profile')){
-        $coachSuite=if($EvidenceSubdirectory -eq 'wave1/fighter-profile'){'fighter-profile'}elseif($EvidenceSubdirectory -eq 'wave1/arena-surround'){'arena-surround'}elseif($EvidenceSubdirectory -eq 'wave1/bell-repair'){'bell-repair'}elseif($EvidenceSubdirectory -eq 'wave1/coach-analysis'){'coach-analysis'}else{'coach-ui'}
+    if($EvidenceSubdirectory -in @('wave1/coach-ui','wave1/coach-analysis','wave1/bell-repair','wave1/arena-surround','wave1/fighter-profile','wave1/history-wallet')){
+        $coachSuite=if($EvidenceSubdirectory -eq 'wave1/history-wallet'){'history-wallet'}elseif($EvidenceSubdirectory -eq 'wave1/fighter-profile'){'fighter-profile'}elseif($EvidenceSubdirectory -eq 'wave1/arena-surround'){'arena-surround'}elseif($EvidenceSubdirectory -eq 'wave1/bell-repair'){'bell-repair'}elseif($EvidenceSubdirectory -eq 'wave1/coach-analysis'){'coach-analysis'}else{'coach-ui'}
         & (Join-Path $PSScriptRoot 'check_coach_combat_freeze.ps1') -EvidenceSuite $coachSuite
         if((Get-Content (Join-Path $waveGateDirectory 'coach-tests.txt') -Tail 1) -ne 'TOTAL=53 PASS=53 FAIL=0'){throw 'Full Coach model gate required'}
         if((Get-Content (Join-Path $waveGateDirectory 'punch-feel-tests.txt') -Tail 1) -ne 'TOTAL=14741 PASS=14741 FAIL=0'){throw 'Existing punch motion/timeline regression required'}
         $coachGate=Get-Content (Join-Path $waveGateDirectory 'coach-browser/report.json') -Raw | ConvertFrom-Json
-        $coachCount=if($coachSuite -eq 'fighter-profile'){54}elseif($coachSuite -in @('coach-analysis','bell-repair','arena-surround')){52}else{31}
+        $coachCount=if($coachSuite -in @('fighter-profile','history-wallet')){54}elseif($coachSuite -in @('coach-analysis','bell-repair','arena-surround')){52}else{31}
         if($coachGate.status -ne 'PASS' -or $coachGate.productVersion -ne $waveProductVersion -or $coachGate.errors.Count -ne 0 -or $coachGate.checks.Count -ne $coachCount -or @($coachGate.checks | Where-Object {-not $_.pass}).Count -ne 0){throw "Current compiled full $coachCount-check Coach browser gate required"}
-        if($coachSuite -in @('coach-analysis','bell-repair','arena-surround','fighter-profile') -and (Get-Content (Join-Path $waveGateDirectory 'analysis-tests.txt') -Tail 1) -ne 'TOTAL=56 PASS=56 FAIL=0'){throw 'Full completed-record and analysis model gate required'}
+        if($coachSuite -in @('coach-analysis','bell-repair','arena-surround','fighter-profile','history-wallet') -and (Get-Content (Join-Path $waveGateDirectory 'analysis-tests.txt') -Tail 1) -ne 'TOTAL=56 PASS=56 FAIL=0'){throw 'Full completed-record and analysis model gate required'}
         if($coachSuite -eq 'bell-repair'){
             $bellSignalGate=Get-Content (Join-Path $waveGateDirectory 'bell-signal.json') -Raw | ConvertFrom-Json
             $bellFile=Join-Path $waveRoot 'unity/BoxerP0/Assets/StreamingAssets/RingMedia/bell.mp3'
             if($bellSignalGate.status -ne 'PASS' -or $bellSignalGate.checks.Count -ne 6 -or @($bellSignalGate.checks | Where-Object {-not $_.pass}).Count -ne 0 -or $bellSignalGate.after.sha256 -ne (Get-FileHash -LiteralPath $bellFile).Hash.ToLowerInvariant()){throw 'Actual decoded bell signal gate not PASS or stale'}
         }
     }
-    if($EvidenceSubdirectory -in @('wave1/arena-surround','wave1/fighter-profile')){
+    if($EvidenceSubdirectory -in @('wave1/arena-surround','wave1/fighter-profile','wave1/history-wallet')){
         if((Get-Content (Join-Path $waveGateDirectory 'arena-tests.txt') -Tail 1) -ne 'TOTAL=3700 PASS=3700 FAIL=0'){throw 'Full bounded arena invariant gate required'}
         $arenaGate=Get-Content (Join-Path $waveGateDirectory 'arena-browser/report.json') -Raw | ConvertFrom-Json
         if($arenaGate.status -ne 'PASS' -or $arenaGate.productVersion -ne $waveProductVersion -or $arenaGate.errors.Count -ne 0 -or $arenaGate.checks.Count -ne 12 -or @($arenaGate.checks | Where-Object {-not $_.pass}).Count -ne 0){throw 'Current compiled full arena real-UI gate required'}
     }
-    if($EvidenceSubdirectory -eq 'wave1/fighter-profile'){
-        if((Get-Content (Join-Path $waveGateDirectory 'profile-tests.txt') -Tail 1) -ne 'TOTAL=69 PASS=69 FAIL=0'){throw 'Full Profile identity model gate required'}
+    if($EvidenceSubdirectory -in @('wave1/fighter-profile','wave1/history-wallet')){
+        if((Get-Content (Join-Path $waveGateDirectory 'profile-tests.txt') -Tail 1) -ne ($(if($EvidenceSubdirectory -eq 'wave1/history-wallet'){'TOTAL=71 PASS=71 FAIL=0'}else{'TOTAL=69 PASS=69 FAIL=0'}))){throw 'Full Profile identity model gate required'}
         if((Get-Content (Join-Path $waveGateDirectory 'profile-runtime.txt') -Tail 1) -ne 'CHECKS=19 PREFERENCE_RESTORED=True'){throw 'Profile lifecycle and scoped storage restoration gate required'}
         $profileGate=Get-Content (Join-Path $waveGateDirectory 'profile-browser/report.json') -Raw | ConvertFrom-Json
         if($profileGate.status -ne 'PASS' -or $profileGate.productVersion -ne $waveProductVersion -or $profileGate.errors.Count -ne 0 -or $profileGate.checks.Count -ne 38 -or @($profileGate.checks | Where-Object {-not $_.pass}).Count -ne 0){throw 'Full current compiled 38-check Profile interaction gate required'}
         $profileScrollGate=Get-Content (Join-Path $waveGateDirectory 'profile-scroll/report.json') -Raw | ConvertFrom-Json
         if($profileScrollGate.status -ne 'PASS' -or $profileScrollGate.productVersion -ne $waveProductVersion -or $profileScrollGate.errors.Count -ne 0 -or $profileScrollGate.checks.Count -ne 4 -or @($profileScrollGate.checks | Where-Object {-not $_.pass}).Count -ne 0){throw 'Current additive trusted mobile touch scroll gate required'}
+    }
+    if($EvidenceSubdirectory -eq 'wave1/history-wallet'){
+        if((Get-Content (Join-Path $waveGateDirectory 'ledger-tests.txt') -Tail 1) -ne 'TOTAL=78 PASS=78 FAIL=0'){throw 'Full ledger model gate required'}
+        if((Get-Content (Join-Path $waveGateDirectory 'ledger-runtime.txt') -Tail 1) -ne 'CHECKS=12 PASS=12 FAIL=0'){throw 'Isolated ledger lifecycle gate required'}
+        foreach($g in @(@('js-model-report.json',36),@('storage-report.json',16))){
+            $r=Get-Content (Join-Path $waveGateDirectory $g[0]) -Raw | ConvertFrom-Json
+            if($r.status -ne 'PASS' -or $r.checks.Count -ne $g[1] -or @($r.checks | Where-Object {-not $_.pass}).Count -ne 0){throw ('Ledger storage/model gate required: '+$g[0])}
+        }
+        $historyGate=Get-Content (Join-Path $waveGateDirectory 'history-browser/report.json') -Raw | ConvertFrom-Json
+        if($historyGate.status -ne 'PASS' -or $historyGate.productVersion -ne $waveProductVersion -or $historyGate.errors.Count -ne 0 -or $historyGate.checks.Count -ne 28 -or @($historyGate.checks | Where-Object {-not $_.pass}).Count -ne 0){throw 'Current full 28-check genuine completed history gate required'}
     }
     $wavePolicies=WaveApi "$waveApi/environments/github-pages/deployment-branch-policies"
     $waveBefore=@($wavePolicies.branch_policies | ForEach-Object { $_.name+'|'+$_.type })

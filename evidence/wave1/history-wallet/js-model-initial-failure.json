@@ -1,0 +1,79 @@
+{
+  "scope": "SHARED_CSHARP_JS_MODEL_FIXTURES_NOT_GAMEPLAY_UAT",
+  "checks": [
+    {
+      "name": "same validation empty wallet honest",
+      "pass": true
+    },
+    {
+      "name": "same validation valid win ledger",
+      "pass": true
+    },
+    {
+      "name": "same validation valid draw ledger",
+      "pass": true
+    },
+    {
+      "name": "same validation valid loss ledger",
+      "pass": true
+    },
+    {
+      "name": "same validation valid KO win",
+      "pass": true
+    },
+    {
+      "name": "same validation valid KO loss",
+      "pass": true
+    },
+    {
+      "name": "same validation named identity snapshot",
+      "pass": true
+    },
+    {
+      "name": "same validation Unicode nationalities Côte d’Ivoire",
+      "pass": true
+    },
+    {
+      "name": "same validation Unicode nationalities 대한민국",
+      "pass": true
+    },
+    {
+      "name": "same validation Unicode nationalities 日本",
+      "pass": true
+    },
+    {
+      "name": "same validation Unicode nationalities Timor-Leste",
+      "pass": true
+    },
+    {
+      "name": "same validation invalid ledger fixture 11",
+      "pass": true
+    },
+    {
+      "name": "same validation invalid ledger fixture 12",
+      "pass": true
+    },
+    {
+      "name": "same validation invalid ledger fixture 13",
+      "pass": true
+    },
+    {
+      "name": "same validation invalid ledger fixture 14",
+      "pass": true
+    },
+    {
+      "name": "same validation invalid ledger fixture 15",
+      "pass": true
+    },
+    {
+      "name": "same validation invalid ledger fixture 16",
+      "pass": true
+    },
+    {
+      "name": "same validation invalid ledger fixture 17",
+      "pass": false
+    }
+  ],
+  "status": "FAIL",
+  "failure": "Error: same validation invalid ledger fixture 17"
+}

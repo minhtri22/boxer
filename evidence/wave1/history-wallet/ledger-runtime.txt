@@ -1,0 +1,14 @@
+SCOPE=ISOLATED_EDITOR_LEDGER_CONTROLLER_NOT_PHYSICS_OR_PHONE_UAT
+PASS only isolated native ledger key
+PASS fresh controller empty ledger no backfill
+PASS uncaptured incomplete review cannot grant reward
+PASS malformed stale ledger callback cannot alter wallet
+PASS actual controller opens locked history
+PASS history cannot start fight
+PASS retry without completed entry cannot grant
+PASS history Home route
+PASS real controller terminal callback saved test KO at ordinary reward
+PASS all native test completion acknowledgements cleared
+PASS controller wallet matches completed-history sum
+PASS coupled native preference matches confirmed ledger
+CHECKS=12 PASS=12 FAIL=0

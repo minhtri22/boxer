@@ -1,0 +1,558 @@
+SCOPE=PRESENTATION_GEOMETRY_NOT_RENDERED_REFERENCE_OR_HUMAN_UAT
+PASS arm has no collider True
+PASS read-only shared endpoints True None Commit 0
+PASS finite bounded continuous mesh True None Commit 0
+PASS portrait guard elbow inside frustum True Commit
+elbow_viewport=(0.1106, 0.1374, 0.3410)
+PASS read-only shared endpoints True None Commit 0,25
+PASS finite bounded continuous mesh True None Commit 0,25
+PASS read-only shared endpoints True None Commit 0,5
+PASS finite bounded continuous mesh True None Commit 0,5
+PASS read-only shared endpoints True None Commit 0,75
+PASS finite bounded continuous mesh True None Commit 0,75
+PASS read-only shared endpoints True None Commit 1
+PASS finite bounded continuous mesh True None Commit 1
+PASS read-only shared endpoints True None Extend 0
+PASS finite bounded continuous mesh True None Extend 0
+PASS portrait guard elbow inside frustum True Extend
+elbow_viewport=(0.1106, 0.1374, 0.3410)
+PASS read-only shared endpoints True None Extend 0,25
+PASS finite bounded continuous mesh True None Extend 0,25
+PASS read-only shared endpoints True None Extend 0,5
+PASS finite bounded continuous mesh True None Extend 0,5
+PASS read-only shared endpoints True None Extend 0,75
+PASS finite bounded continuous mesh True None Extend 0,75
+PASS read-only shared endpoints True None Extend 1
+PASS finite bounded continuous mesh True None Extend 1
+PASS read-only shared endpoints True None Recover 0
+PASS finite bounded continuous mesh True None Recover 0
+PASS portrait guard elbow inside frustum True Recover
+elbow_viewport=(0.1106, 0.1374, 0.3410)
+PASS read-only shared endpoints True None Recover 0,25
+PASS finite bounded continuous mesh True None Recover 0,25
+PASS read-only shared endpoints True None Recover 0,5
+PASS finite bounded continuous mesh True None Recover 0,5
+PASS read-only shared endpoints True None Recover 0,75
+PASS finite bounded continuous mesh True None Recover 0,75
+PASS read-only shared endpoints True None Recover 1
+PASS finite bounded continuous mesh True None Recover 1
+PASS read-only shared endpoints True Jab Commit 0
+PASS finite bounded continuous mesh True Jab Commit 0
+PASS read-only shared endpoints True Jab Commit 0,25
+PASS finite bounded continuous mesh True Jab Commit 0,25
+PASS read-only shared endpoints True Jab Commit 0,5
+PASS finite bounded continuous mesh True Jab Commit 0,5
+PASS read-only shared endpoints True Jab Commit 0,75
+PASS finite bounded continuous mesh True Jab Commit 0,75
+PASS read-only shared endpoints True Jab Commit 1
+PASS finite bounded continuous mesh True Jab Commit 1
+PASS read-only shared endpoints True Jab Extend 0
+PASS finite bounded continuous mesh True Jab Extend 0
+PASS read-only shared endpoints True Jab Extend 0,25
+PASS finite bounded continuous mesh True Jab Extend 0,25
+PASS read-only shared endpoints True Jab Extend 0,5
+PASS finite bounded continuous mesh True Jab Extend 0,5
+PASS read-only shared endpoints True Jab Extend 0,75
+PASS finite bounded continuous mesh True Jab Extend 0,75
+PASS read-only shared endpoints True Jab Extend 1
+PASS finite bounded continuous mesh True Jab Extend 1
+PASS read-only shared endpoints True Jab Recover 0
+PASS finite bounded continuous mesh True Jab Recover 0
+PASS read-only shared endpoints True Jab Recover 0,25
+PASS finite bounded continuous mesh True Jab Recover 0,25
+PASS read-only shared endpoints True Jab Recover 0,5
+PASS finite bounded continuous mesh True Jab Recover 0,5
+PASS read-only shared endpoints True Jab Recover 0,75
+PASS finite bounded continuous mesh True Jab Recover 0,75
+PASS read-only shared endpoints True Jab Recover 1
+PASS finite bounded continuous mesh True Jab Recover 1
+PASS read-only shared endpoints True Cross Commit 0
+PASS finite bounded continuous mesh True Cross Commit 0
+PASS read-only shared endpoints True Cross Commit 0,25
+PASS finite bounded continuous mesh True Cross Commit 0,25
+PASS read-only shared endpoints True Cross Commit 0,5
+PASS finite bounded continuous mesh True Cross Commit 0,5
+PASS read-only shared endpoints True Cross Commit 0,75
+PASS finite bounded continuous mesh True Cross Commit 0,75
+PASS read-only shared endpoints True Cross Commit 1
+PASS finite bounded continuous mesh True Cross Commit 1
+PASS read-only shared endpoints True Cross Extend 0
+PASS finite bounded continuous mesh True Cross Extend 0
+PASS read-only shared endpoints True Cross Extend 0,25
+PASS finite bounded continuous mesh True Cross Extend 0,25
+PASS read-only shared endpoints True Cross Extend 0,5
+PASS finite bounded continuous mesh True Cross Extend 0,5
+PASS read-only shared endpoints True Cross Extend 0,75
+PASS finite bounded continuous mesh True Cross Extend 0,75
+PASS read-only shared endpoints True Cross Extend 1
+PASS finite bounded continuous mesh True Cross Extend 1
+PASS read-only shared endpoints True Cross Recover 0
+PASS finite bounded continuous mesh True Cross Recover 0
+PASS read-only shared endpoints True Cross Recover 0,25
+PASS finite bounded continuous mesh True Cross Recover 0,25
+PASS read-only shared endpoints True Cross Recover 0,5
+PASS finite bounded continuous mesh True Cross Recover 0,5
+PASS read-only shared endpoints True Cross Recover 0,75
+PASS finite bounded continuous mesh True Cross Recover 0,75
+PASS read-only shared endpoints True Cross Recover 1
+PASS finite bounded continuous mesh True Cross Recover 1
+PASS read-only shared endpoints True LeadHook Commit 0
+PASS finite bounded continuous mesh True LeadHook Commit 0
+PASS read-only shared endpoints True LeadHook Commit 0,25
+PASS finite bounded continuous mesh True LeadHook Commit 0,25
+PASS read-only shared endpoints True LeadHook Commit 0,5
+PASS finite bounded continuous mesh True LeadHook Commit 0,5
+PASS read-only shared endpoints True LeadHook Commit 0,75
+PASS finite bounded continuous mesh True LeadHook Commit 0,75
+PASS read-only shared endpoints True LeadHook Commit 1
+PASS finite bounded continuous mesh True LeadHook Commit 1
+PASS read-only shared endpoints True LeadHook Extend 0
+PASS finite bounded continuous mesh True LeadHook Extend 0
+PASS read-only shared endpoints True LeadHook Extend 0,25
+PASS finite bounded continuous mesh True LeadHook Extend 0,25
+PASS read-only shared endpoints True LeadHook Extend 0,5
+PASS finite bounded continuous mesh True LeadHook Extend 0,5
+PASS read-only shared endpoints True LeadHook Extend 0,75
+PASS finite bounded continuous mesh True LeadHook Extend 0,75
+PASS read-only shared endpoints True LeadHook Extend 1
+PASS finite bounded continuous mesh True LeadHook Extend 1
+PASS read-only shared endpoints True LeadHook Recover 0
+PASS finite bounded continuous mesh True LeadHook Recover 0
+PASS read-only shared endpoints True LeadHook Recover 0,25
+PASS finite bounded continuous mesh True LeadHook Recover 0,25
+PASS read-only shared endpoints True LeadHook Recover 0,5
+PASS finite bounded continuous mesh True LeadHook Recover 0,5
+PASS read-only shared endpoints True LeadHook Recover 0,75
+PASS finite bounded continuous mesh True LeadHook Recover 0,75
+PASS read-only shared endpoints True LeadHook Recover 1
+PASS finite bounded continuous mesh True LeadHook Recover 1
+PASS read-only shared endpoints True RearHook Commit 0
+PASS finite bounded continuous mesh True RearHook Commit 0
+PASS read-only shared endpoints True RearHook Commit 0,25
+PASS finite bounded continuous mesh True RearHook Commit 0,25
+PASS read-only shared endpoints True RearHook Commit 0,5
+PASS finite bounded continuous mesh True RearHook Commit 0,5
+PASS read-only shared endpoints True RearHook Commit 0,75
+PASS finite bounded continuous mesh True RearHook Commit 0,75
+PASS read-only shared endpoints True RearHook Commit 1
+PASS finite bounded continuous mesh True RearHook Commit 1
+PASS read-only shared endpoints True RearHook Extend 0
+PASS finite bounded continuous mesh True RearHook Extend 0
+PASS read-only shared endpoints True RearHook Extend 0,25
+PASS finite bounded continuous mesh True RearHook Extend 0,25
+PASS read-only shared endpoints True RearHook Extend 0,5
+PASS finite bounded continuous mesh True RearHook Extend 0,5
+PASS read-only shared endpoints True RearHook Extend 0,75
+PASS finite bounded continuous mesh True RearHook Extend 0,75
+PASS read-only shared endpoints True RearHook Extend 1
+PASS finite bounded continuous mesh True RearHook Extend 1
+PASS read-only shared endpoints True RearHook Recover 0
+PASS finite bounded continuous mesh True RearHook Recover 0
+PASS read-only shared endpoints True RearHook Recover 0,25
+PASS finite bounded continuous mesh True RearHook Recover 0,25
+PASS read-only shared endpoints True RearHook Recover 0,5
+PASS finite bounded continuous mesh True RearHook Recover 0,5
+PASS read-only shared endpoints True RearHook Recover 0,75
+PASS finite bounded continuous mesh True RearHook Recover 0,75
+PASS read-only shared endpoints True RearHook Recover 1
+PASS finite bounded continuous mesh True RearHook Recover 1
+PASS read-only shared endpoints True LeadUppercut Commit 0
+PASS finite bounded continuous mesh True LeadUppercut Commit 0
+PASS read-only shared endpoints True LeadUppercut Commit 0,25
+PASS finite bounded continuous mesh True LeadUppercut Commit 0,25
+PASS read-only shared endpoints True LeadUppercut Commit 0,5
+PASS finite bounded continuous mesh True LeadUppercut Commit 0,5
+PASS read-only shared endpoints True LeadUppercut Commit 0,75
+PASS finite bounded continuous mesh True LeadUppercut Commit 0,75
+PASS read-only shared endpoints True LeadUppercut Commit 1
+PASS finite bounded continuous mesh True LeadUppercut Commit 1
+PASS read-only shared endpoints True LeadUppercut Extend 0
+PASS finite bounded continuous mesh True LeadUppercut Extend 0
+PASS read-only shared endpoints True LeadUppercut Extend 0,25
+PASS finite bounded continuous mesh True LeadUppercut Extend 0,25
+PASS read-only shared endpoints True LeadUppercut Extend 0,5
+PASS finite bounded continuous mesh True LeadUppercut Extend 0,5
+PASS read-only shared endpoints True LeadUppercut Extend 0,75
+PASS finite bounded continuous mesh True LeadUppercut Extend 0,75
+PASS read-only shared endpoints True LeadUppercut Extend 1
+PASS finite bounded continuous mesh True LeadUppercut Extend 1
+PASS read-only shared endpoints True LeadUppercut Recover 0
+PASS finite bounded continuous mesh True LeadUppercut Recover 0
+PASS read-only shared endpoints True LeadUppercut Recover 0,25
+PASS finite bounded continuous mesh True LeadUppercut Recover 0,25
+PASS read-only shared endpoints True LeadUppercut Recover 0,5
+PASS finite bounded continuous mesh True LeadUppercut Recover 0,5
+PASS read-only shared endpoints True LeadUppercut Recover 0,75
+PASS finite bounded continuous mesh True LeadUppercut Recover 0,75
+PASS read-only shared endpoints True LeadUppercut Recover 1
+PASS finite bounded continuous mesh True LeadUppercut Recover 1
+PASS read-only shared endpoints True RearUppercut Commit 0
+PASS finite bounded continuous mesh True RearUppercut Commit 0
+PASS read-only shared endpoints True RearUppercut Commit 0,25
+PASS finite bounded continuous mesh True RearUppercut Commit 0,25
+PASS read-only shared endpoints True RearUppercut Commit 0,5
+PASS finite bounded continuous mesh True RearUppercut Commit 0,5
+PASS read-only shared endpoints True RearUppercut Commit 0,75
+PASS finite bounded continuous mesh True RearUppercut Commit 0,75
+PASS read-only shared endpoints True RearUppercut Commit 1
+PASS finite bounded continuous mesh True RearUppercut Commit 1
+PASS read-only shared endpoints True RearUppercut Extend 0
+PASS finite bounded continuous mesh True RearUppercut Extend 0
+PASS read-only shared endpoints True RearUppercut Extend 0,25
+PASS finite bounded continuous mesh True RearUppercut Extend 0,25
+PASS read-only shared endpoints True RearUppercut Extend 0,5
+PASS finite bounded continuous mesh True RearUppercut Extend 0,5
+PASS read-only shared endpoints True RearUppercut Extend 0,75
+PASS finite bounded continuous mesh True RearUppercut Extend 0,75
+PASS read-only shared endpoints True RearUppercut Extend 1
+PASS finite bounded continuous mesh True RearUppercut Extend 1
+PASS read-only shared endpoints True RearUppercut Recover 0
+PASS finite bounded continuous mesh True RearUppercut Recover 0
+PASS read-only shared endpoints True RearUppercut Recover 0,25
+PASS finite bounded continuous mesh True RearUppercut Recover 0,25
+PASS read-only shared endpoints True RearUppercut Recover 0,5
+PASS finite bounded continuous mesh True RearUppercut Recover 0,5
+PASS read-only shared endpoints True RearUppercut Recover 0,75
+PASS finite bounded continuous mesh True RearUppercut Recover 0,75
+PASS read-only shared endpoints True RearUppercut Recover 1
+PASS finite bounded continuous mesh True RearUppercut Recover 1
+PASS read-only shared endpoints True LeadOverhand Commit 0
+PASS finite bounded continuous mesh True LeadOverhand Commit 0
+PASS read-only shared endpoints True LeadOverhand Commit 0,25
+PASS finite bounded continuous mesh True LeadOverhand Commit 0,25
+PASS read-only shared endpoints True LeadOverhand Commit 0,5
+PASS finite bounded continuous mesh True LeadOverhand Commit 0,5
+PASS read-only shared endpoints True LeadOverhand Commit 0,75
+PASS finite bounded continuous mesh True LeadOverhand Commit 0,75
+PASS read-only shared endpoints True LeadOverhand Commit 1
+PASS finite bounded continuous mesh True LeadOverhand Commit 1
+PASS read-only shared endpoints True LeadOverhand Extend 0
+PASS finite bounded continuous mesh True LeadOverhand Extend 0
+PASS read-only shared endpoints True LeadOverhand Extend 0,25
+PASS finite bounded continuous mesh True LeadOverhand Extend 0,25
+PASS read-only shared endpoints True LeadOverhand Extend 0,5
+PASS finite bounded continuous mesh True LeadOverhand Extend 0,5
+PASS read-only shared endpoints True LeadOverhand Extend 0,75
+PASS finite bounded continuous mesh True LeadOverhand Extend 0,75
+PASS read-only shared endpoints True LeadOverhand Extend 1
+PASS finite bounded continuous mesh True LeadOverhand Extend 1
+PASS read-only shared endpoints True LeadOverhand Recover 0
+PASS finite bounded continuous mesh True LeadOverhand Recover 0
+PASS read-only shared endpoints True LeadOverhand Recover 0,25
+PASS finite bounded continuous mesh True LeadOverhand Recover 0,25
+PASS read-only shared endpoints True LeadOverhand Recover 0,5
+PASS finite bounded continuous mesh True LeadOverhand Recover 0,5
+PASS read-only shared endpoints True LeadOverhand Recover 0,75
+PASS finite bounded continuous mesh True LeadOverhand Recover 0,75
+PASS read-only shared endpoints True LeadOverhand Recover 1
+PASS finite bounded continuous mesh True LeadOverhand Recover 1
+PASS read-only shared endpoints True RearOverhand Commit 0
+PASS finite bounded continuous mesh True RearOverhand Commit 0
+PASS read-only shared endpoints True RearOverhand Commit 0,25
+PASS finite bounded continuous mesh True RearOverhand Commit 0,25
+PASS read-only shared endpoints True RearOverhand Commit 0,5
+PASS finite bounded continuous mesh True RearOverhand Commit 0,5
+PASS read-only shared endpoints True RearOverhand Commit 0,75
+PASS finite bounded continuous mesh True RearOverhand Commit 0,75
+PASS read-only shared endpoints True RearOverhand Commit 1
+PASS finite bounded continuous mesh True RearOverhand Commit 1
+PASS read-only shared endpoints True RearOverhand Extend 0
+PASS finite bounded continuous mesh True RearOverhand Extend 0
+PASS read-only shared endpoints True RearOverhand Extend 0,25
+PASS finite bounded continuous mesh True RearOverhand Extend 0,25
+PASS read-only shared endpoints True RearOverhand Extend 0,5
+PASS finite bounded continuous mesh True RearOverhand Extend 0,5
+PASS read-only shared endpoints True RearOverhand Extend 0,75
+PASS finite bounded continuous mesh True RearOverhand Extend 0,75
+PASS read-only shared endpoints True RearOverhand Extend 1
+PASS finite bounded continuous mesh True RearOverhand Extend 1
+PASS read-only shared endpoints True RearOverhand Recover 0
+PASS finite bounded continuous mesh True RearOverhand Recover 0
+PASS read-only shared endpoints True RearOverhand Recover 0,25
+PASS finite bounded continuous mesh True RearOverhand Recover 0,25
+PASS read-only shared endpoints True RearOverhand Recover 0,5
+PASS finite bounded continuous mesh True RearOverhand Recover 0,5
+PASS read-only shared endpoints True RearOverhand Recover 0,75
+PASS finite bounded continuous mesh True RearOverhand Recover 0,75
+PASS read-only shared endpoints True RearOverhand Recover 1
+PASS finite bounded continuous mesh True RearOverhand Recover 1
+PASS arm has no collider False
+PASS read-only shared endpoints False None Commit 0
+PASS finite bounded continuous mesh False None Commit 0
+PASS portrait guard elbow inside frustum False Commit
+elbow_viewport=(0.9260, 0.0909, 0.3286)
+PASS read-only shared endpoints False None Commit 0,25
+PASS finite bounded continuous mesh False None Commit 0,25
+PASS read-only shared endpoints False None Commit 0,5
+PASS finite bounded continuous mesh False None Commit 0,5
+PASS read-only shared endpoints False None Commit 0,75
+PASS finite bounded continuous mesh False None Commit 0,75
+PASS read-only shared endpoints False None Commit 1
+PASS finite bounded continuous mesh False None Commit 1
+PASS read-only shared endpoints False None Extend 0
+PASS finite bounded continuous mesh False None Extend 0
+PASS portrait guard elbow inside frustum False Extend
+elbow_viewport=(0.9260, 0.0909, 0.3286)
+PASS read-only shared endpoints False None Extend 0,25
+PASS finite bounded continuous mesh False None Extend 0,25
+PASS read-only shared endpoints False None Extend 0,5
+PASS finite bounded continuous mesh False None Extend 0,5
+PASS read-only shared endpoints False None Extend 0,75
+PASS finite bounded continuous mesh False None Extend 0,75
+PASS read-only shared endpoints False None Extend 1
+PASS finite bounded continuous mesh False None Extend 1
+PASS read-only shared endpoints False None Recover 0
+PASS finite bounded continuous mesh False None Recover 0
+PASS portrait guard elbow inside frustum False Recover
+elbow_viewport=(0.9260, 0.0909, 0.3286)
+PASS read-only shared endpoints False None Recover 0,25
+PASS finite bounded continuous mesh False None Recover 0,25
+PASS read-only shared endpoints False None Recover 0,5
+PASS finite bounded continuous mesh False None Recover 0,5
+PASS read-only shared endpoints False None Recover 0,75
+PASS finite bounded continuous mesh False None Recover 0,75
+PASS read-only shared endpoints False None Recover 1
+PASS finite bounded continuous mesh False None Recover 1
+PASS read-only shared endpoints False Jab Commit 0
+PASS finite bounded continuous mesh False Jab Commit 0
+PASS read-only shared endpoints False Jab Commit 0,25
+PASS finite bounded continuous mesh False Jab Commit 0,25
+PASS read-only shared endpoints False Jab Commit 0,5
+PASS finite bounded continuous mesh False Jab Commit 0,5
+PASS read-only shared endpoints False Jab Commit 0,75
+PASS finite bounded continuous mesh False Jab Commit 0,75
+PASS read-only shared endpoints False Jab Commit 1
+PASS finite bounded continuous mesh False Jab Commit 1
+PASS read-only shared endpoints False Jab Extend 0
+PASS finite bounded continuous mesh False Jab Extend 0
+PASS read-only shared endpoints False Jab Extend 0,25
+PASS finite bounded continuous mesh False Jab Extend 0,25
+PASS read-only shared endpoints False Jab Extend 0,5
+PASS finite bounded continuous mesh False Jab Extend 0,5
+PASS read-only shared endpoints False Jab Extend 0,75
+PASS finite bounded continuous mesh False Jab Extend 0,75
+PASS read-only shared endpoints False Jab Extend 1
+PASS finite bounded continuous mesh False Jab Extend 1
+PASS read-only shared endpoints False Jab Recover 0
+PASS finite bounded continuous mesh False Jab Recover 0
+PASS read-only shared endpoints False Jab Recover 0,25
+PASS finite bounded continuous mesh False Jab Recover 0,25
+PASS read-only shared endpoints False Jab Recover 0,5
+PASS finite bounded continuous mesh False Jab Recover 0,5
+PASS read-only shared endpoints False Jab Recover 0,75
+PASS finite bounded continuous mesh False Jab Recover 0,75
+PASS read-only shared endpoints False Jab Recover 1
+PASS finite bounded continuous mesh False Jab Recover 1
+PASS read-only shared endpoints False Cross Commit 0
+PASS finite bounded continuous mesh False Cross Commit 0
+PASS read-only shared endpoints False Cross Commit 0,25
+PASS finite bounded continuous mesh False Cross Commit 0,25
+PASS read-only shared endpoints False Cross Commit 0,5
+PASS finite bounded continuous mesh False Cross Commit 0,5
+PASS read-only shared endpoints False Cross Commit 0,75
+PASS finite bounded continuous mesh False Cross Commit 0,75
+PASS read-only shared endpoints False Cross Commit 1
+PASS finite bounded continuous mesh False Cross Commit 1
+PASS read-only shared endpoints False Cross Extend 0
+PASS finite bounded continuous mesh False Cross Extend 0
+PASS read-only shared endpoints False Cross Extend 0,25
+PASS finite bounded continuous mesh False Cross Extend 0,25
+PASS read-only shared endpoints False Cross Extend 0,5
+PASS finite bounded continuous mesh False Cross Extend 0,5
+PASS read-only shared endpoints False Cross Extend 0,75
+PASS finite bounded continuous mesh False Cross Extend 0,75
+PASS read-only shared endpoints False Cross Extend 1
+PASS finite bounded continuous mesh False Cross Extend 1
+PASS read-only shared endpoints False Cross Recover 0
+PASS finite bounded continuous mesh False Cross Recover 0
+PASS read-only shared endpoints False Cross Recover 0,25
+PASS finite bounded continuous mesh False Cross Recover 0,25
+PASS read-only shared endpoints False Cross Recover 0,5
+PASS finite bounded continuous mesh False Cross Recover 0,5
+PASS read-only shared endpoints False Cross Recover 0,75
+PASS finite bounded continuous mesh False Cross Recover 0,75
+PASS read-only shared endpoints False Cross Recover 1
+PASS finite bounded continuous mesh False Cross Recover 1
+PASS read-only shared endpoints False LeadHook Commit 0
+PASS finite bounded continuous mesh False LeadHook Commit 0
+PASS read-only shared endpoints False LeadHook Commit 0,25
+PASS finite bounded continuous mesh False LeadHook Commit 0,25
+PASS read-only shared endpoints False LeadHook Commit 0,5
+PASS finite bounded continuous mesh False LeadHook Commit 0,5
+PASS read-only shared endpoints False LeadHook Commit 0,75
+PASS finite bounded continuous mesh False LeadHook Commit 0,75
+PASS read-only shared endpoints False LeadHook Commit 1
+PASS finite bounded continuous mesh False LeadHook Commit 1
+PASS read-only shared endpoints False LeadHook Extend 0
+PASS finite bounded continuous mesh False LeadHook Extend 0
+PASS read-only shared endpoints False LeadHook Extend 0,25
+PASS finite bounded continuous mesh False LeadHook Extend 0,25
+PASS read-only shared endpoints False LeadHook Extend 0,5
+PASS finite bounded continuous mesh False LeadHook Extend 0,5
+PASS read-only shared endpoints False LeadHook Extend 0,75
+PASS finite bounded continuous mesh False LeadHook Extend 0,75
+PASS read-only shared endpoints False LeadHook Extend 1
+PASS finite bounded continuous mesh False LeadHook Extend 1
+PASS read-only shared endpoints False LeadHook Recover 0
+PASS finite bounded continuous mesh False LeadHook Recover 0
+PASS read-only shared endpoints False LeadHook Recover 0,25
+PASS finite bounded continuous mesh False LeadHook Recover 0,25
+PASS read-only shared endpoints False LeadHook Recover 0,5
+PASS finite bounded continuous mesh False LeadHook Recover 0,5
+PASS read-only shared endpoints False LeadHook Recover 0,75
+PASS finite bounded continuous mesh False LeadHook Recover 0,75
+PASS read-only shared endpoints False LeadHook Recover 1
+PASS finite bounded continuous mesh False LeadHook Recover 1
+PASS read-only shared endpoints False RearHook Commit 0
+PASS finite bounded continuous mesh False RearHook Commit 0
+PASS read-only shared endpoints False RearHook Commit 0,25
+PASS finite bounded continuous mesh False RearHook Commit 0,25
+PASS read-only shared endpoints False RearHook Commit 0,5
+PASS finite bounded continuous mesh False RearHook Commit 0,5
+PASS read-only shared endpoints False RearHook Commit 0,75
+PASS finite bounded continuous mesh False RearHook Commit 0,75
+PASS read-only shared endpoints False RearHook Commit 1
+PASS finite bounded continuous mesh False RearHook Commit 1
+PASS read-only shared endpoints False RearHook Extend 0
+PASS finite bounded continuous mesh False RearHook Extend 0
+PASS read-only shared endpoints False RearHook Extend 0,25
+PASS finite bounded continuous mesh False RearHook Extend 0,25
+PASS read-only shared endpoints False RearHook Extend 0,5
+PASS finite bounded continuous mesh False RearHook Extend 0,5
+PASS read-only shared endpoints False RearHook Extend 0,75
+PASS finite bounded continuous mesh False RearHook Extend 0,75
+PASS read-only shared endpoints False RearHook Extend 1
+PASS finite bounded continuous mesh False RearHook Extend 1
+PASS read-only shared endpoints False RearHook Recover 0
+PASS finite bounded continuous mesh False RearHook Recover 0
+PASS read-only shared endpoints False RearHook Recover 0,25
+PASS finite bounded continuous mesh False RearHook Recover 0,25
+PASS read-only shared endpoints False RearHook Recover 0,5
+PASS finite bounded continuous mesh False RearHook Recover 0,5
+PASS read-only shared endpoints False RearHook Recover 0,75
+PASS finite bounded continuous mesh False RearHook Recover 0,75
+PASS read-only shared endpoints False RearHook Recover 1
+PASS finite bounded continuous mesh False RearHook Recover 1
+PASS read-only shared endpoints False LeadUppercut Commit 0
+PASS finite bounded continuous mesh False LeadUppercut Commit 0
+PASS read-only shared endpoints False LeadUppercut Commit 0,25
+PASS finite bounded continuous mesh False LeadUppercut Commit 0,25
+PASS read-only shared endpoints False LeadUppercut Commit 0,5
+PASS finite bounded continuous mesh False LeadUppercut Commit 0,5
+PASS read-only shared endpoints False LeadUppercut Commit 0,75
+PASS finite bounded continuous mesh False LeadUppercut Commit 0,75
+PASS read-only shared endpoints False LeadUppercut Commit 1
+PASS finite bounded continuous mesh False LeadUppercut Commit 1
+PASS read-only shared endpoints False LeadUppercut Extend 0
+PASS finite bounded continuous mesh False LeadUppercut Extend 0
+PASS read-only shared endpoints False LeadUppercut Extend 0,25
+PASS finite bounded continuous mesh False LeadUppercut Extend 0,25
+PASS read-only shared endpoints False LeadUppercut Extend 0,5
+PASS finite bounded continuous mesh False LeadUppercut Extend 0,5
+PASS read-only shared endpoints False LeadUppercut Extend 0,75
+PASS finite bounded continuous mesh False LeadUppercut Extend 0,75
+PASS read-only shared endpoints False LeadUppercut Extend 1
+PASS finite bounded continuous mesh False LeadUppercut Extend 1
+PASS read-only shared endpoints False LeadUppercut Recover 0
+PASS finite bounded continuous mesh False LeadUppercut Recover 0
+PASS read-only shared endpoints False LeadUppercut Recover 0,25
+PASS finite bounded continuous mesh False LeadUppercut Recover 0,25
+PASS read-only shared endpoints False LeadUppercut Recover 0,5
+PASS finite bounded continuous mesh False LeadUppercut Recover 0,5
+PASS read-only shared endpoints False LeadUppercut Recover 0,75
+PASS finite bounded continuous mesh False LeadUppercut Recover 0,75
+PASS read-only shared endpoints False LeadUppercut Recover 1
+PASS finite bounded continuous mesh False LeadUppercut Recover 1
+PASS read-only shared endpoints False RearUppercut Commit 0
+PASS finite bounded continuous mesh False RearUppercut Commit 0
+PASS read-only shared endpoints False RearUppercut Commit 0,25
+PASS finite bounded continuous mesh False RearUppercut Commit 0,25
+PASS read-only shared endpoints False RearUppercut Commit 0,5
+PASS finite bounded continuous mesh False RearUppercut Commit 0,5
+PASS read-only shared endpoints False RearUppercut Commit 0,75
+PASS finite bounded continuous mesh False RearUppercut Commit 0,75
+PASS read-only shared endpoints False RearUppercut Commit 1
+PASS finite bounded continuous mesh False RearUppercut Commit 1
+PASS read-only shared endpoints False RearUppercut Extend 0
+PASS finite bounded continuous mesh False RearUppercut Extend 0
+PASS read-only shared endpoints False RearUppercut Extend 0,25
+PASS finite bounded continuous mesh False RearUppercut Extend 0,25
+PASS read-only shared endpoints False RearUppercut Extend 0,5
+PASS finite bounded continuous mesh False RearUppercut Extend 0,5
+PASS read-only shared endpoints False RearUppercut Extend 0,75
+PASS finite bounded continuous mesh False RearUppercut Extend 0,75
+PASS read-only shared endpoints False RearUppercut Extend 1
+PASS finite bounded continuous mesh False RearUppercut Extend 1
+PASS read-only shared endpoints False RearUppercut Recover 0
+PASS finite bounded continuous mesh False RearUppercut Recover 0
+PASS read-only shared endpoints False RearUppercut Recover 0,25
+PASS finite bounded continuous mesh False RearUppercut Recover 0,25
+PASS read-only shared endpoints False RearUppercut Recover 0,5
+PASS finite bounded continuous mesh False RearUppercut Recover 0,5
+PASS read-only shared endpoints False RearUppercut Recover 0,75
+PASS finite bounded continuous mesh False RearUppercut Recover 0,75
+PASS read-only shared endpoints False RearUppercut Recover 1
+PASS finite bounded continuous mesh False RearUppercut Recover 1
+PASS read-only shared endpoints False LeadOverhand Commit 0
+PASS finite bounded continuous mesh False LeadOverhand Commit 0
+PASS read-only shared endpoints False LeadOverhand Commit 0,25
+PASS finite bounded continuous mesh False LeadOverhand Commit 0,25
+PASS read-only shared endpoints False LeadOverhand Commit 0,5
+PASS finite bounded continuous mesh False LeadOverhand Commit 0,5
+PASS read-only shared endpoints False LeadOverhand Commit 0,75
+PASS finite bounded continuous mesh False LeadOverhand Commit 0,75
+PASS read-only shared endpoints False LeadOverhand Commit 1
+PASS finite bounded continuous mesh False LeadOverhand Commit 1
+PASS read-only shared endpoints False LeadOverhand Extend 0
+PASS finite bounded continuous mesh False LeadOverhand Extend 0
+PASS read-only shared endpoints False LeadOverhand Extend 0,25
+PASS finite bounded continuous mesh False LeadOverhand Extend 0,25
+PASS read-only shared endpoints False LeadOverhand Extend 0,5
+PASS finite bounded continuous mesh False LeadOverhand Extend 0,5
+PASS read-only shared endpoints False LeadOverhand Extend 0,75
+PASS finite bounded continuous mesh False LeadOverhand Extend 0,75
+PASS read-only shared endpoints False LeadOverhand Extend 1
+PASS finite bounded continuous mesh False LeadOverhand Extend 1
+PASS read-only shared endpoints False LeadOverhand Recover 0
+PASS finite bounded continuous mesh False LeadOverhand Recover 0
+PASS read-only shared endpoints False LeadOverhand Recover 0,25
+PASS finite bounded continuous mesh False LeadOverhand Recover 0,25
+PASS read-only shared endpoints False LeadOverhand Recover 0,5
+PASS finite bounded continuous mesh False LeadOverhand Recover 0,5
+PASS read-only shared endpoints False LeadOverhand Recover 0,75
+PASS finite bounded continuous mesh False LeadOverhand Recover 0,75
+PASS read-only shared endpoints False LeadOverhand Recover 1
+PASS finite bounded continuous mesh False LeadOverhand Recover 1
+PASS read-only shared endpoints False RearOverhand Commit 0
+PASS finite bounded continuous mesh False RearOverhand Commit 0
+PASS read-only shared endpoints False RearOverhand Commit 0,25
+PASS finite bounded continuous mesh False RearOverhand Commit 0,25
+PASS read-only shared endpoints False RearOverhand Commit 0,5
+PASS finite bounded continuous mesh False RearOverhand Commit 0,5
+PASS read-only shared endpoints False RearOverhand Commit 0,75
+PASS finite bounded continuous mesh False RearOverhand Commit 0,75
+PASS read-only shared endpoints False RearOverhand Commit 1
+PASS finite bounded continuous mesh False RearOverhand Commit 1
+PASS read-only shared endpoints False RearOverhand Extend 0
+PASS finite bounded continuous mesh False RearOverhand Extend 0
+PASS read-only shared endpoints False RearOverhand Extend 0,25
+PASS finite bounded continuous mesh False RearOverhand Extend 0,25
+PASS read-only shared endpoints False RearOverhand Extend 0,5
+PASS finite bounded continuous mesh False RearOverhand Extend 0,5
+PASS read-only shared endpoints False RearOverhand Extend 0,75
+PASS finite bounded continuous mesh False RearOverhand Extend 0,75
+PASS read-only shared endpoints False RearOverhand Extend 1
+PASS finite bounded continuous mesh False RearOverhand Extend 1
+PASS read-only shared endpoints False RearOverhand Recover 0
+PASS finite bounded continuous mesh False RearOverhand Recover 0
+PASS read-only shared endpoints False RearOverhand Recover 0,25
+PASS finite bounded continuous mesh False RearOverhand Recover 0,25
+PASS read-only shared endpoints False RearOverhand Recover 0,5
+PASS finite bounded continuous mesh False RearOverhand Recover 0,5
+PASS read-only shared endpoints False RearOverhand Recover 0,75
+PASS finite bounded continuous mesh False RearOverhand Recover 0,75
+PASS read-only shared endpoints False RearOverhand Recover 1
+PASS finite bounded continuous mesh False RearOverhand Recover 1
+PASS blur shader included through Resources
+PASS skin shader included through Resources
+TOTAL=550 PASS=550 FAIL=0

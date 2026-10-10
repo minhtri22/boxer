@@ -1,7 +1,7 @@
 // Real compiled UI / trusted input. No state, score, orientation callback or completion setters.
 const {chromium}=require('playwright'),fs=require('fs'),path=require('path');
-const analysisSuite=['coach-analysis','bell-repair','arena-surround','fighter-profile'].includes(process.env.BOXER_WAVE_EVIDENCE);
-const dir=path.resolve(__dirname,'../evidence/wave1/'+(process.env.BOXER_WAVE_EVIDENCE==='fighter-profile'?'fighter-profile':process.env.BOXER_WAVE_EVIDENCE==='arena-surround'?'arena-surround':process.env.BOXER_WAVE_EVIDENCE==='bell-repair'?'bell-repair':analysisSuite?'coach-analysis':'coach-ui')+'/coach-browser');fs.mkdirSync(dir,{recursive:true});
+const analysisSuite=['coach-analysis','bell-repair','arena-surround','fighter-profile','history-wallet'].includes(process.env.BOXER_WAVE_EVIDENCE);
+const dir=path.resolve(__dirname,'../evidence/wave1/'+(process.env.BOXER_WAVE_EVIDENCE==='history-wallet'?'history-wallet':process.env.BOXER_WAVE_EVIDENCE==='fighter-profile'?'fighter-profile':process.env.BOXER_WAVE_EVIDENCE==='arena-surround'?'arena-surround':process.env.BOXER_WAVE_EVIDENCE==='bell-repair'?'bell-repair':analysisSuite?'coach-analysis':'coach-ui')+'/coach-browser');fs.mkdirSync(dir,{recursive:true});
 const report={scope:'COMPILED_COACH_UI_SYNTHETIC_MOBILE_VIEWPORT_NOT_PHONE_UAT',checks:[],errors:[],states:{},mediaRequests:[]};
 function check(ok,label){report.checks.push({name:label,pass:!!ok});if(!ok)throw Error(label);}
 function frozen(s){return !s.gameplayInput&&!s.playerEnabled&&!s.opponentEnabled&&s.seconds===0&&s.playerHP===100&&s.opponentHP===100&&s.playerStamina===100&&s.opponentStamina===100&&s.playerCapacity===100&&s.opponentCapacity===100;}
@@ -21,7 +21,7 @@ try{
  async function practice(module,stage){await choose(module);await tap(270,trainY);const s=await state('practice-'+stage,'Onboarding');check(s.trainingStage===stage&&s.trainingFromCoach&&!s.opponentEnabled&&s.seconds===0&&s.opponentAttacks===0,'Coach starts selected unscored '+stage);return s;}
  async function punch(dx=0,dy=0){await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{id:2,x:420,y:710}]});await page.waitForTimeout(85);if(dx||dy)await touch.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{id:2,x:420+dx,y:710+dy}]});await page.waitForTimeout(85);await touch.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await page.waitForTimeout(800);}
  await state('home','Home');
- if(process.env.BOXER_WAVE_EVIDENCE==='fighter-profile'){
+ if(['fighter-profile','history-wallet'].includes(process.env.BOXER_WAVE_EVIDENCE)){
   await tap(270,853);await state('profile-not-duplicate-training','Profile');
   check((await snap()).screen!=='Onboarding'&&frozen(await snap()),'retired duplicate training slot no longer starts practice');
   check((await snap()).screen==='Profile','replacement slot opens genuine Profile');

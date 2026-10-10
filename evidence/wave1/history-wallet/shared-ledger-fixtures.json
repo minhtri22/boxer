@@ -1,0 +1,2408 @@
+{
+    "cases": [
+        {
+            "label": "empty wallet honest",
+            "valid": true,
+            "ledger": {
+                "schema": 1,
+                "balance": 0,
+                "entries": []
+            }
+        },
+        {
+            "label": "valid win ledger",
+            "valid": true,
+            "ledger": {
+                "schema": 1,
+                "balance": 100,
+                "entries": [
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000001",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "PLAYER_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 90.0,
+                            "opponentHP": 60.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 100
+                    }
+                ]
+            }
+        },
+        {
+            "label": "valid draw ledger",
+            "valid": true,
+            "ledger": {
+                "schema": 1,
+                "balance": 150,
+                "entries": [
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000001",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "PLAYER_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 90.0,
+                            "opponentHP": 60.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 100
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000002",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "DRAW",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 80.0,
+                            "opponentHP": 80.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 50
+                    }
+                ]
+            }
+        },
+        {
+            "label": "valid loss ledger",
+            "valid": true,
+            "ledger": {
+                "schema": 1,
+                "balance": 175,
+                "entries": [
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000001",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "PLAYER_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 90.0,
+                            "opponentHP": 60.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 100
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000002",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "DRAW",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 80.0,
+                            "opponentHP": 80.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 50
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000003",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "OPPONENT_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 60.0,
+                            "opponentHP": 90.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 25
+                    }
+                ]
+            }
+        },
+        {
+            "label": "valid KO win",
+            "valid": true,
+            "ledger": {
+                "schema": 1,
+                "balance": 275,
+                "entries": [
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000001",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "PLAYER_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 90.0,
+                            "opponentHP": 60.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 100
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000002",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "DRAW",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 80.0,
+                            "opponentHP": 80.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 50
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000003",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "OPPONENT_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 60.0,
+                            "opponentHP": 90.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 25
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000004",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "PLAYER_WIN",
+                            "reason": "KO",
+                            "seconds": 23.0,
+                            "playerHP": 90.0,
+                            "opponentHP": 0.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 100
+                    }
+                ]
+            }
+        },
+        {
+            "label": "valid KO loss",
+            "valid": true,
+            "ledger": {
+                "schema": 1,
+                "balance": 300,
+                "entries": [
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000001",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "PLAYER_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 90.0,
+                            "opponentHP": 60.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 100
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000002",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "DRAW",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 80.0,
+                            "opponentHP": 80.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 50
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000003",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "OPPONENT_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 60.0,
+                            "opponentHP": 90.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 25
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000004",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "PLAYER_WIN",
+                            "reason": "KO",
+                            "seconds": 23.0,
+                            "playerHP": 90.0,
+                            "opponentHP": 0.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 100
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000005",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "OPPONENT_WIN",
+                            "reason": "KO",
+                            "seconds": 45.0,
+                            "playerHP": 0.0,
+                            "opponentHP": 90.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 25
+                    }
+                ]
+            }
+        },
+        {
+            "label": "named identity snapshot",
+            "valid": true,
+            "ledger": {
+                "schema": 1,
+                "balance": 375,
+                "entries": [
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000001",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "PLAYER_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 90.0,
+                            "opponentHP": 60.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 100
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000002",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "DRAW",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 80.0,
+                            "opponentHP": 80.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 50
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000003",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "OPPONENT_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 60.0,
+                            "opponentHP": 90.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 25
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000004",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "PLAYER_WIN",
+                            "reason": "KO",
+                            "seconds": 23.0,
+                            "playerHP": 90.0,
+                            "opponentHP": 0.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 100
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000006",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "PLAYER_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 90.0,
+                            "opponentHP": 60.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                        "fighterName": "Nguyễn Trí",
+                        "nationality": "Việt Nam",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 100
+                    }
+                ]
+            }
+        },
+        {
+            "label": "Unicode nationalities Côte d’Ivoire",
+            "valid": true,
+            "ledger": {
+                "schema": 1,
+                "balance": 100,
+                "entries": [
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000007",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "PLAYER_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 90.0,
+                            "opponentHP": 60.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+                        "fighterName": "O'Connor",
+                        "nationality": "Côte d’Ivoire",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 100
+                    }
+                ]
+            }
+        },
+        {
+            "label": "Unicode nationalities 대한민국",
+            "valid": true,
+            "ledger": {
+                "schema": 1,
+                "balance": 100,
+                "entries": [
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000007",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "PLAYER_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 90.0,
+                            "opponentHP": 60.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+                        "fighterName": "O'Connor",
+                        "nationality": "대한민국",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 100
+                    }
+                ]
+            }
+        },
+        {
+            "label": "Unicode nationalities 日本",
+            "valid": true,
+            "ledger": {
+                "schema": 1,
+                "balance": 100,
+                "entries": [
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000007",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "PLAYER_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 90.0,
+                            "opponentHP": 60.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+                        "fighterName": "O'Connor",
+                        "nationality": "日本",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 100
+                    }
+                ]
+            }
+        },
+        {
+            "label": "Unicode nationalities Timor-Leste",
+            "valid": true,
+            "ledger": {
+                "schema": 1,
+                "balance": 100,
+                "entries": [
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000007",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "PLAYER_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 90.0,
+                            "opponentHP": 60.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+                        "fighterName": "O'Connor",
+                        "nationality": "Timor-Leste",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 100
+                    }
+                ]
+            }
+        },
+        {
+            "label": "invalid ledger fixture 11",
+            "valid": false,
+            "ledger": {
+                "schema": 0,
+                "balance": 175,
+                "entries": [
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000001",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "PLAYER_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 90.0,
+                            "opponentHP": 60.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 100
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000002",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "DRAW",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 80.0,
+                            "opponentHP": 80.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 50
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000003",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "OPPONENT_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 60.0,
+                            "opponentHP": 90.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 25
+                    }
+                ]
+            }
+        },
+        {
+            "label": "invalid ledger fixture 12",
+            "valid": false,
+            "ledger": {
+                "schema": 2,
+                "balance": 175,
+                "entries": [
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000001",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "PLAYER_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 90.0,
+                            "opponentHP": 60.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 100
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000002",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "DRAW",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 80.0,
+                            "opponentHP": 80.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 50
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000003",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "OPPONENT_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 60.0,
+                            "opponentHP": 90.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 25
+                    }
+                ]
+            }
+        },
+        {
+            "label": "invalid ledger fixture 13",
+            "valid": false,
+            "ledger": {
+                "schema": 1,
+                "balance": -1,
+                "entries": [
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000001",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "PLAYER_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 90.0,
+                            "opponentHP": 60.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 100
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000002",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "DRAW",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 80.0,
+                            "opponentHP": 80.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 50
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000003",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "OPPONENT_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 60.0,
+                            "opponentHP": 90.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 25
+                    }
+                ]
+            }
+        },
+        {
+            "label": "invalid ledger fixture 14",
+            "valid": false,
+            "ledger": {
+                "schema": 1,
+                "balance": 176,
+                "entries": [
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000001",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "PLAYER_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 90.0,
+                            "opponentHP": 60.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 100
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000002",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "DRAW",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 80.0,
+                            "opponentHP": 80.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 50
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000003",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "OPPONENT_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 60.0,
+                            "opponentHP": 90.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 25
+                    }
+                ]
+            }
+        },
+        {
+            "label": "invalid ledger fixture 15",
+            "valid": false,
+            "ledger": {
+                "schema": 1,
+                "balance": 175,
+                "entries": []
+            }
+        },
+        {
+            "label": "invalid ledger fixture 16",
+            "valid": false,
+            "ledger": {
+                "schema": 1,
+                "balance": 175,
+                "entries": [
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000001",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "PLAYER_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 90.0,
+                            "opponentHP": 60.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 101
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000002",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "DRAW",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 80.0,
+                            "opponentHP": 80.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 50
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000003",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "OPPONENT_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 60.0,
+                            "opponentHP": 90.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 25
+                    }
+                ]
+            }
+        },
+        {
+            "label": "invalid ledger fixture 17",
+            "valid": false,
+            "ledger": {
+                "schema": 1,
+                "balance": 175,
+                "entries": [
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000001",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "PLAYER_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 90.0,
+                            "opponentHP": 60.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "Not BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 100
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000002",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "DRAW",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 80.0,
+                            "opponentHP": 80.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 50
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000003",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "OPPONENT_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 60.0,
+                            "opponentHP": 90.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 25
+                    }
+                ]
+            }
+        },
+        {
+            "label": "invalid ledger fixture 18",
+            "valid": false,
+            "ledger": {
+                "schema": 1,
+                "balance": 175,
+                "entries": [
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000001",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "PLAYER_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 90.0,
+                            "opponentHP": 60.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "Việt Nam",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 100
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000002",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "DRAW",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 80.0,
+                            "opponentHP": 80.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 50
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000003",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "OPPONENT_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 60.0,
+                            "opponentHP": 90.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 25
+                    }
+                ]
+            }
+        },
+        {
+            "label": "invalid ledger fixture 19",
+            "valid": false,
+            "ledger": {
+                "schema": 1,
+                "balance": 175,
+                "entries": [
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000001",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "PLAYER_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 90.0,
+                            "opponentHP": 60.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "yesterday",
+                        "reward": 100
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000002",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "DRAW",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 80.0,
+                            "opponentHP": 80.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 50
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000003",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "OPPONENT_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 60.0,
+                            "opponentHP": 90.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 25
+                    }
+                ]
+            }
+        },
+        {
+            "label": "invalid ledger fixture 20",
+            "valid": false,
+            "ledger": {
+                "schema": 1,
+                "balance": 175,
+                "entries": [
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000001",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "PLAYER_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 90.0,
+                            "opponentHP": 60.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-02-30T00:00:00.000Z",
+                        "reward": 100
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000002",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "DRAW",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 80.0,
+                            "opponentHP": 80.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 50
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000003",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "OPPONENT_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 60.0,
+                            "opponentHP": 90.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 25
+                    }
+                ]
+            }
+        },
+        {
+            "label": "invalid ledger fixture 21",
+            "valid": false,
+            "ledger": {
+                "schema": 1,
+                "balance": 175,
+                "entries": [
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "fixture",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "PLAYER_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 90.0,
+                            "opponentHP": 60.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 100
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000002",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "DRAW",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 80.0,
+                            "opponentHP": 80.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 50
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000003",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "OPPONENT_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 60.0,
+                            "opponentHP": 90.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 25
+                    }
+                ]
+            }
+        },
+        {
+            "label": "invalid ledger fixture 22",
+            "valid": false,
+            "ledger": {
+                "schema": 1,
+                "balance": 175,
+                "entries": [
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000001",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "IN_PROGRESS",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 90.0,
+                            "opponentHP": 60.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 100
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000002",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "DRAW",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 80.0,
+                            "opponentHP": 80.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 50
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000003",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "OPPONENT_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 60.0,
+                            "opponentHP": 90.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 25
+                    }
+                ]
+            }
+        },
+        {
+            "label": "invalid ledger fixture 23",
+            "valid": false,
+            "ledger": {
+                "schema": 1,
+                "balance": 175,
+                "entries": [
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000001",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "PLAYER_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 90.0,
+                            "opponentHP": 60.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 100,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 100
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000002",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "DRAW",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 80.0,
+                            "opponentHP": 80.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 50
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000003",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "OPPONENT_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 60.0,
+                            "opponentHP": 90.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 25
+                    }
+                ]
+            }
+        },
+        {
+            "label": "invalid ledger fixture 24",
+            "valid": false,
+            "ledger": {
+                "schema": 1,
+                "balance": 175,
+                "entries": [
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000001",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "PLAYER_WIN",
+                            "reason": "POINTS",
+                            "seconds": 46.0,
+                            "playerHP": 90.0,
+                            "opponentHP": 60.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 100
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000002",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "DRAW",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 80.0,
+                            "opponentHP": 80.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 50
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000003",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "OPPONENT_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 60.0,
+                            "opponentHP": 90.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 25
+                    }
+                ]
+            }
+        },
+        {
+            "label": "invalid ledger fixture 25",
+            "valid": false,
+            "ledger": {
+                "schema": 1,
+                "balance": 175,
+                "entries": [
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000001",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "PLAYER_WIN",
+                            "reason": "KO",
+                            "seconds": 45.0,
+                            "playerHP": 90.0,
+                            "opponentHP": 60.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 100
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000002",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "DRAW",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 80.0,
+                            "opponentHP": 80.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 50
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000003",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "OPPONENT_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 60.0,
+                            "opponentHP": 90.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 25
+                    }
+                ]
+            }
+        },
+        {
+            "label": "invalid ledger fixture 26",
+            "valid": false,
+            "ledger": {
+                "schema": 1,
+                "balance": 175,
+                "entries": [
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000001",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "PLAYER_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 0.0,
+                            "opponentHP": 60.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 100
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000002",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "DRAW",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 80.0,
+                            "opponentHP": 80.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 50
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000003",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "OPPONENT_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 60.0,
+                            "opponentHP": 90.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 25
+                    }
+                ]
+            }
+        },
+        {
+            "label": "invalid ledger fixture 27",
+            "valid": false,
+            "ledger": {
+                "schema": 1,
+                "balance": 175,
+                "entries": [
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000001",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "PLAYER_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 90.0,
+                            "opponentHP": 101.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 100
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000002",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "DRAW",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 80.0,
+                            "opponentHP": 80.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 50
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000003",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "OPPONENT_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 60.0,
+                            "opponentHP": 90.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 25
+                    }
+                ]
+            }
+        },
+        {
+            "label": "invalid ledger fixture 28",
+            "valid": false,
+            "ledger": {
+                "schema": 1,
+                "balance": 175,
+                "entries": [
+                    {
+                        "review": {
+                            "schema": 0,
+                            "id": "",
+                            "sourceVersion": "",
+                            "opponent": "RAMIREZ",
+                            "result": "",
+                            "reason": "",
+                            "seconds": 0.0,
+                            "playerHP": 0.0,
+                            "opponentHP": 0.0,
+                            "playerStamina": 0.0,
+                            "playerCapacity": 0.0,
+                            "accepted": 0,
+                            "hits": 0,
+                            "blocked": 0,
+                            "misses": 0,
+                            "received": 0,
+                            "defended": 0,
+                            "opponentMisses": 0
+                        },
+                        "profileId": "",
+                        "fighterName": "",
+                        "nationality": "",
+                        "completedUtc": "",
+                        "reward": 0
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000002",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "DRAW",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 80.0,
+                            "opponentHP": 80.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 50
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000003",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "OPPONENT_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 60.0,
+                            "opponentHP": 90.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 25
+                    }
+                ]
+            }
+        },
+        {
+            "label": "invalid ledger fixture 29",
+            "valid": false,
+            "ledger": {
+                "schema": 1,
+                "balance": 175,
+                "entries": [
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000001",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "PLAYER_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 90.0,
+                            "opponentHP": 60.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 100
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000001",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "PLAYER_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 90.0,
+                            "opponentHP": 60.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 100
+                    },
+                    {
+                        "review": {
+                            "schema": 1,
+                            "id": "00000000000000000000000000000003",
+                            "sourceVersion": "native-ledger-fixture",
+                            "opponent": "RAMIREZ",
+                            "result": "OPPONENT_WIN",
+                            "reason": "POINTS",
+                            "seconds": 45.0,
+                            "playerHP": 60.0,
+                            "opponentHP": 90.0,
+                            "playerStamina": 70.25,
+                            "playerCapacity": 90.5,
+                            "accepted": 6,
+                            "hits": 2,
+                            "blocked": 2,
+                            "misses": 1,
+                            "received": 3,
+                            "defended": 4,
+                            "opponentMisses": 1
+                        },
+                        "profileId": "",
+                        "fighterName": "BOXER",
+                        "nationality": "",
+                        "completedUtc": "2026-10-11T00:00:00.000Z",
+                        "reward": 25
+                    }
+                ]
+            }
+        }
+    ]
+}

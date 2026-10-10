@@ -1,0 +1,21 @@
+SCOPE=EDITOR_PROFILE_LIFECYCLE_WITH_SCOPED_PREFERENCE_BACKUP_NOT_PHONE_UAT
+PASS unsaved defaults honest
+PASS native actual profile route
+PASS session token scoped
+PASS stale save cannot persist
+PASS malformed request rejected
+PASS invalid save cannot persist
+PASS cancel discards unsaved draft
+PASS callback after close rejected
+PASS reopen creates new session
+PASS previous-session callback rejected
+PASS matching valid save returns Home
+PASS actual saved preference validates
+PASS duplicate late save unchanged
+PASS cancel edits preserves saved identity
+PASS reload native preferences retains identity
+PASS explicit rename preserves ID
+PASS offscreen save rejected
+PASS corrupt storage reported not silently rewritten
+PASS cancel preserves corrupt evidence
+CHECKS=19 PREFERENCE_RESTORED=True

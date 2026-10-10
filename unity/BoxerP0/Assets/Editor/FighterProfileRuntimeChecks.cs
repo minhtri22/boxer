@@ -50,7 +50,7 @@ namespace BoxerP0.Editor
                 if(existed)PlayerPrefs.SetString(key,prior);else PlayerPrefs.DeleteKey(key);
                 PlayerPrefs.Save();b.Profile.Initialize(b);
                 log.AppendLine($"CHECKS={count} PREFERENCE_RESTORED={(PlayerPrefs.HasKey(key)==existed&&PlayerPrefs.GetString(key,"")==prior)}");
-                File.WriteAllText(Path.GetFullPath(Path.Combine(Application.dataPath,"../../../evidence/wave1/fighter-profile/profile-runtime.txt")),log.ToString());
+                File.WriteAllText(Path.GetFullPath(Path.Combine(Application.dataPath,"../../../evidence/wave1/"+(Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="history-wallet"?"history-wallet":"fighter-profile")+"/profile-runtime.txt")),log.ToString());
             }
         }
     }

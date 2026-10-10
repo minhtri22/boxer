@@ -23,6 +23,7 @@ namespace BoxerP0
         public int CoachCompletionMask { get; private set; }
         public CoachMatchReview LastMatchReview { get; private set; }
         public FighterProfileController Profile { get; private set; }
+        public MatchLedgerController Wallet { get; private set; }
 
         private float _boutEnd;
         private float _smokeQuitAt = -1f;
@@ -85,6 +86,7 @@ namespace BoxerP0
             LastMatchReview = CoachMatchReview.Parse(PlayerPrefs.GetString(ReviewPreference, string.Empty));
             Profile = gameObject.AddComponent<FighterProfileController>();
             Profile.Initialize(this);
+            Wallet=gameObject.AddComponent<MatchLedgerController>(); Wallet.Initialize(this);
             _player.PunchAccepted += ObserveTrainingPunch;
             _lastPerfRefreshRealtime = Time.realtimeSinceStartup;
             _nextUiRefresh = _lastPerfRefreshRealtime;
@@ -192,6 +194,14 @@ namespace BoxerP0
         public bool ShowProfile()
         { if (!Flow.OpenProfile()) return false; ResetActors(); Profile.Open(); return true; }
         public void BrowserProfileCommand(string payload) { Profile.Receive(payload); }
+        public bool ShowHistory()
+        { if(!Flow.OpenHistory())return false; Profile.Close();ResetActors();Wallet.Refresh();return true; }
+        public void BrowserLedgerState(string payload) { Wallet.Receive(payload); }
+        public void BrowserHistoryCommand(string action)
+        {
+            if(Flow.Screen!=ProductScreen.History)return;
+            if(action=="home")ReturnHome();else if(action=="retry")Wallet.Retry();
+        }
         public bool ShowMatchReview()
         { if (!Flow.OpenCoachReview()) return false; ResetActors(); return true; }
         public bool TrainFromReview(CoachModule module)
@@ -306,6 +316,7 @@ namespace BoxerP0
             _player.transform.SetPositionAndRotation(new Vector3(0, 0, -0.7f), Quaternion.identity);
             _opponent.transform.SetPositionAndRotation(new Vector3(0, 0, 0.70f), Quaternion.Euler(0, 180, 0));
             _telemetry?.RecordBoutStart();
+            Wallet.BoutStarted();
             _player.SetCombatEnabled(true); _opponent.SetCombatEnabled(true);
             _input.SetGameplayInput(true); RememberPositions();
         }
@@ -324,6 +335,7 @@ namespace BoxerP0
             if (review != null)
             {
                 LastMatchReview = review;
+                Wallet.Completed(review);
                 PlayerPrefs.SetString(ReviewPreference, review.Serialize()); PlayerPrefs.Save();
             }
             _resultText = BuildResultText();

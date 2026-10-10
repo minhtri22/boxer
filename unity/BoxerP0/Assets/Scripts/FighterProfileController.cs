@@ -63,6 +63,7 @@ namespace BoxerP0
             if (request.action == "save") { DraftName = request.name; DraftNationality = request.nationality; Save(); }
             else if (request.action == "cancel") Cancel();
             else if (request.action == "review") Review();
+            else if (request.action == "history") _bootstrap.ShowHistory();
         }
         public bool Save()
         {

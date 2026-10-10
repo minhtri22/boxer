@@ -1,6 +1,6 @@
 // Additive mobile-viewport touch scroll probe; never evidence of a real soft keyboard.
 const {chromium}=require('playwright'),fs=require('fs'),path=require('path');
-const dir=path.resolve(__dirname,'../evidence/wave1/fighter-profile/profile-scroll');fs.mkdirSync(dir,{recursive:true});
+const dir=path.resolve(__dirname,'../evidence/wave1/'+(process.env.BOXER_WAVE_EVIDENCE==='history-wallet'?'history-wallet':'fighter-profile')+'/profile-scroll');fs.mkdirSync(dir,{recursive:true});
 const report={scope:'TRUSTED_CDP_TOUCH_SCROLL_MOBILE_EMULATION_NOT_PHONE_KEYBOARD_UAT',checks:[],errors:[]};
 function check(ok,name){report.checks.push({name,pass:!!ok});if(!ok)throw Error(name);}
 (async()=>{

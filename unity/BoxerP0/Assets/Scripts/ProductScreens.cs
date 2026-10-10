@@ -13,11 +13,15 @@ namespace BoxerP0
         public float CoachInfoContentHeight { get; private set; }
         public float CoachReviewContentHeight { get; private set; }
         private TrainingGlassBackground _glass;
+        private ProductScreen _previousScreen;
+        private Vector2 _historyScroll;
         private static readonly Color Gold = new(.93f, .67f, .24f);
         private void Start()
         { _bootstrap = GetComponent<BoxerBootstrap>(); _telemetry = FindFirstObjectByType<Phase0Telemetry>(); _brand=Resources.Load<Texture2D>("Product/HomeBrand"); _coachPortrait=Resources.Load<Texture2D>("Product/CoachReference"); }
         private void Update()
         {
+            if(_bootstrap!=null&&_previousScreen!=_bootstrap.Flow.Screen)
+            { _previousScreen=_bootstrap.Flow.Screen;_bootstrap.Wallet.Publish(); }
             if (_glass == null)
             {
                 var camera = FindFirstObjectByType<Camera>();
@@ -60,6 +64,7 @@ namespace BoxerP0
                     case ProductScreen.TrainingInfo: CoachingInfo(); break;
                     case ProductScreen.CoachReview: MatchReview(); break;
                     case ProductScreen.Profile: Profile(); break;
+                    case ProductScreen.History: History(); break;
                 }
             }
             finally { GUI.matrix = prior; GUI.color = color; GUI.depth = depth; }
@@ -95,7 +100,8 @@ namespace BoxerP0
         }
         private void Home()
         {
-            GUI.Label(new Rect(42,197,456,40),_bootstrap.Profile.DisplayName,_small);
+            GUI.Label(new Rect(42,197,456,26),_bootstrap.Profile.DisplayName,_small);
+            GUI.Label(new Rect(42,225,456,20),_bootstrap.Wallet.RewardStatus,new GUIStyle(_small){fontSize=16});
             ControlCard(42,245,"PHONE = HEAD\n\nLook, react,\nstay aware.");
             ControlCard(278,245,"LEFT THUMB = FEET\n\nMove, angle,\ncontrol.");
             ControlCard(42,420,"RIGHT THUMB = PUNCH\n\nTap, or quick swipe.\nRelease to punch.");
@@ -115,12 +121,34 @@ namespace BoxerP0
             p.DraftName = GUI.TextField(new Rect(42,397,456,55),p.DraftName ?? "",96);
             Text(465,"QUỐC TỊCH TỰ KHAI (40 ký tự)",40);
             p.DraftNationality = GUI.TextField(new Rect(42,512,456,55),p.DraftNationality ?? "",160);
-            Text(580,p.Error.Length > 0 ? p.Error : "Ngoại hình đang tạm hold. Khung cảnh ring hiện tại chưa phải chân dung riêng.",90);
+            Text(580,p.Error.Length > 0 ? "Tên/quốc tịch không hợp lệ hoặc chưa lưu được. Kiểm tra rồi thử lại." : "Ngoại hình đang hold; chưa có chân dung riêng.",50);
             if (Button(690,"CONFIRM · LƯU HỒ SƠ",true,76)) p.Save();
             bool enabled=GUI.enabled; GUI.enabled=_bootstrap.LastMatchReview != null;
             if (Button(775,"TRẬN GẦN NHẤT TRÊN THIẾT BỊ",false,76)) p.Review();
             GUI.enabled=enabled;
+            if(Button(637,"LỊCH SỬ / VÍ COIN",false,48))_bootstrap.ShowHistory();
             if (Button(860,"CANCEL · HỦY",false,76)) p.Cancel();
+#endif
+        }
+        private void History()
+        {
+#if !UNITY_WEBGL || UNITY_EDITOR
+            var wallet=_bootstrap.Wallet;
+            Text(210,"LỊCH SỬ TRẬN / VÍ COIN",50);Text(270,wallet.RewardStatus,50);
+            var ledger=wallet.Ledger;
+            if(ledger!=null)
+            {
+                Text(325,$"THẮNG {ledger.Count("PLAYER_WIN")} · HÒA {ledger.Count("DRAW")} · THUA {ledger.Count("OPPONENT_WIN")}",40);
+                var old=GUI.BeginScrollView(new Rect(42,390,456,340),_historyScroll,new Rect(0,0,425,Mathf.Max(340,ledger.entries.Length*140)));
+                _historyScroll=old;
+                for(int i=0;i<ledger.entries.Length;i++)
+                {var e=ledger.entries[ledger.entries.Length-1-i];GUI.Label(new Rect(8,i*140,405,136),$"{e.fighterName} vs RAMIREZ\n{e.review.result} · {e.review.reason} · +{e.reward} COIN\n{e.completedUtc}\nHP {e.review.playerHP:F1} / {e.review.opponentHP:F1}",_small);}
+                GUI.EndScrollView();
+                if(ledger.entries.Length==0)Text(420,"Chưa có trận được lưu trong đợt này.",100);
+            }
+            Text(735,wallet.Error.Length>0?wallet.Error:"Cục bộ · 100/50/25 coin · chưa có mua sắm",60);
+            if(wallet.PendingCount>0&&Button(795,"THỬ LƯU LẠI",true,60))wallet.Retry();
+            if(Button(870,"HOME",false,76))_bootstrap.ReturnHome();
 #endif
         }
         private void Training()
@@ -230,9 +258,12 @@ namespace BoxerP0
         {
             var bout = _telemetry.Bout;
             string verdict = bout.Result=="PLAYER_WIN" ? "VICTORY" : bout.Result=="OPPONENT_WIN" ? "DEFEAT" : "DRAW";
-            Text(235,verdict,70); Text(315,bout.EndReason=="KO" ? "HP DEPLETED" : "POINTS — REMAINING HP",50);
-            Text(405,$"BOXER     HP {bout.Player.HP:F1} / 100\nSTAMINA {bout.Player.Stamina:F1} / 100",90);
-            Text(515,$"RAMIREZ   HP {bout.Opponent.HP:F1} / 100\nSTAMINA {bout.Opponent.Stamina:F1} / 100",90);
+            Text(235,verdict,70); Text(315,bout.EndReason=="KO" ? "HP DEPLETED" : "POINTS — REMAINING HP",30);
+            var wallet=_bootstrap.Wallet;
+            string reward=wallet.PendingCount>0?"ĐANG / CHƯA LƯU THƯỞNG":wallet.Ready&&wallet.Ledger.Find(wallet.LatestId)!=null?$"+{wallet.Ledger.Find(wallet.LatestId).reward} COIN ĐÃ LƯU":"THƯỞNG CHƯA XÁC NHẬN";
+            if(Button(350,reward+" · LỊCH SỬ",false,76))_bootstrap.ShowHistory();
+            Text(435,$"BOXER     HP {bout.Player.HP:F1} / 100\nSTAMINA {bout.Player.Stamina:F1} / 100",66);
+            Text(515,$"RAMIREZ   HP {bout.Opponent.HP:F1} / 100\nSTAMINA {bout.Opponent.Stamina:F1} / 100",66);
             Text(615,$"HITS {_telemetry.PlayerHits} / {_telemetry.OpponentHits}   ·   BLOCKS {_telemetry.PlayerBlocks} / {_telemetry.OpponentBlocks}",35);
             if (Button(655,"PHÂN TÍCH / TẬP BỔ SUNG",false,76)) _bootstrap.ShowMatchReview();
             if (Button(745,"REMATCH",true)) _bootstrap.BeginProductBout();

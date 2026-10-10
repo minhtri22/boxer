@@ -55,6 +55,8 @@ namespace BoxerP0.Editor
                 metadata.AppendLine("coach_review=last_completed_bout_authoritative_endpoints_resolved_accuracy_validated_local_record_count_based_existing_module_links_no_upgrade");
                 metadata.AppendLine("hp_ko_balance=HP-KO-001_OWNER_HOLD_COMBAT_RULES_UNCHANGED");
                 metadata.AppendLine("fighter_profile=versioned_local_identity_explicit_save_cancel_stable_guid_unicode_self_reported_nationality_no_account_no_cosmetics_no_career_stats");
+                metadata.AppendLine("history_wallet=validated_completed_bout_identity_snapshot_100_50_25_coins_exactly_once_id_no_old_backfill_no_spending_1000_record_bound_no_prune");
+                metadata.AppendLine("wallet_storage=web_indexeddb_single_readwrite_transaction_complete_ack_native_single_preference_pending_retry_not_account_not_powerloss_guarantee");
                 metadata.AppendLine("profile_input=browser_native_text_form_scoped_keyboard_capture_visual_viewport_scroll_native_editor_fallback_pending_phone_uat");
                 metadata.AppendLine("arena_audience=four_inward_photo_scenery_sides_shared_mesh_material_not_animated_3d_crowd");
                 metadata.AppendLine("audience_flash=24_local_quads_one_at_time_1.5s_interval_0.16s_pulse_fight_only_no_lights_no_physics");

@@ -1,0 +1,80 @@
+SCOPE=PURE_COMPLETED_HISTORY_REWARD_INVARIANTS_NOT_DEVICE_UAT
+PASS empty wallet honest
+PASS empty has no paid old review
+PASS valid win ledger
+PASS win 100 without changing prior
+PASS valid draw ledger
+PASS draw 50
+PASS valid loss ledger
+PASS loss 25 and genuine tally
+PASS same completed ID retry never pays twice
+PASS same ID different content rejected
+PASS exact reload round trip
+PASS valid KO win
+PASS KO no extra bonus
+PASS valid KO loss
+PASS named identity snapshot
+PASS entry is detached snapshot
+PASS Unicode nationalities Côte d’Ivoire
+PASS Unicode nationalities 대한민국
+PASS Unicode nationalities 日本
+PASS Unicode nationalities Timor-Leste
+PASS invalid ledger fixture 11
+PASS invalid data cannot serialize as confirmed balance
+PASS invalid ledger fixture 12
+PASS invalid data cannot serialize as confirmed balance
+PASS invalid ledger fixture 13
+PASS invalid data cannot serialize as confirmed balance
+PASS invalid ledger fixture 14
+PASS invalid data cannot serialize as confirmed balance
+PASS invalid ledger fixture 15
+PASS invalid data cannot serialize as confirmed balance
+PASS invalid ledger fixture 16
+PASS invalid data cannot serialize as confirmed balance
+PASS invalid ledger fixture 17
+PASS invalid data cannot serialize as confirmed balance
+PASS invalid ledger fixture 18
+PASS invalid data cannot serialize as confirmed balance
+PASS invalid ledger fixture 19
+PASS invalid data cannot serialize as confirmed balance
+PASS invalid ledger fixture 20
+PASS invalid data cannot serialize as confirmed balance
+PASS invalid ledger fixture 21
+PASS invalid data cannot serialize as confirmed balance
+PASS invalid ledger fixture 22
+PASS invalid data cannot serialize as confirmed balance
+PASS invalid ledger fixture 23
+PASS invalid data cannot serialize as confirmed balance
+PASS invalid ledger fixture 24
+PASS invalid data cannot serialize as confirmed balance
+PASS invalid ledger fixture 25
+PASS invalid data cannot serialize as confirmed balance
+PASS invalid ledger fixture 26
+PASS invalid data cannot serialize as confirmed balance
+PASS invalid ledger fixture 27
+PASS invalid data cannot serialize as confirmed balance
+PASS invalid ledger fixture 28
+PASS invalid data cannot serialize as confirmed balance
+PASS invalid ledger fixture 29
+PASS invalid data cannot serialize as confirmed balance
+PASS invalid/missing-schema storage rejected 0
+PASS invalid/missing-schema storage rejected 4
+PASS invalid/missing-schema storage rejected 2
+PASS invalid/missing-schema storage rejected 8
+PASS invalid/missing-schema storage rejected 2
+PASS invalid/missing-schema storage rejected 1500001
+PASS invalid/missing-schema storage rejected 1359
+PASS native null identity rejected before serialization
+PASS null cannot be confirmed; JsonUtility would canonicalize raw null to empty so this is not a shared serialized fixture
+PASS no terminal entry means no reward
+PASS in-progress cannot earn
+PASS all thousand IDs retained
+PASS capacity rejects without prune
+PASS duplicate at capacity idempotent
+PASS Home opens locked history
+PASS history cannot play or grant lesson
+PASS Profile history route
+PASS Intro cannot open history
+PASS Fight cannot open history
+PASS Result history route
+TOTAL=78 PASS=78 FAIL=0

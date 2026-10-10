@@ -1,0 +1,27 @@
+# Completed-match history and trial wallet - 2026-10-11
+
+## Scope before implementation
+
+- Baseline `7808b4256b87a5e9ac4e453a92032df47afbfe04`, branch `feature/boxer-product-loop-wave1`, checkout `boxer-wave1`; public Profile source `7c68a607ac4217e06d222fc75d2dd5e3c64ad178`, artifact `b1fcfa7472ceaaca9ec48ddd13b8551031e17a80`.
+- Owner-approved trial reward: win 100, draw 50, loss 25 virtual coins, only one reward per completed bout ID; practice/cancelled bouts zero; no KO bonus. Implement history/wallet only. No spending, shop, stat upgrade, Career unlock or venue picker. Appearance and HP-KO-001 HOLD; settings/pause deferred.
+- Uncertainty: can a genuinely captured terminal bout persist as one coupled history/reward record, survive reload and reject duplicate/replayed/malformed saves without granting imaginary balance?
+- Hypothesis: strict schema-1 ledger with unique completed IDs, validated review endpoints, start-of-bout identity snapshot, UTC completion timestamp, derived W/L/D and exact reward sum. One new JSON record for native preference; WebGL uses an IndexedDB readwrite transaction on a single store/key, reading latest state and appending+rewarding atomically. Acknowledge only on transaction complete; explicit retry for actual pending completion; failure/corruption fail closed with existing data retained. No old-review backfill/reward.
+- Keep all IDs, never silently prune: trial bound 1000 completed records; at capacity reject further writes with visible message, preserve history/balance. Balance is earned-only and equals sum of rewards; spend support needs a subsequent version. Device/browser history, NOT authenticated fighter or online rankings. Clearing browser storage can lose it; catastrophic power-loss durability is not promised. Browser/private/storage-denied failures must not display an earned coin as saved.
+- Profile snapshot is the actual identity when scored Fight starts; unsaved identity remains BOXER / no nationality / blank profile ID. Later rename never rewrites old entries. Ledger tally is explicitly device history, not old player's lifetime statistics. Existing last-device Coach review remains separate and unchanged; opening it never grants coins.
+- Home retains existing control/Start/Coach/Profile hit coordinates. Add History link to Profile (discards draft), wallet status and History link to Result without moving existing three CTAs, and device wallet summary on Home. History is a locked scrollable black/gold screen with genuine records and summary. No new reference image exists: follow shared approved design language, label fidelity adapted, not reference PASS. Native editor fallback + browser-native mobile scroll UI.
+- Add only product capture hooks after scored Start/Complete, data/store/UI/bridge/read-only audit, isolated tests/evidence suite `history-wallet`. Combat sources/model prefix/duration, actors/contacts/AI/arena/art/reference files unchanged. Native controller audits use explicitly isolated test storage, never the user's wallet.
+- Acceptance: pure C# schema/reward/unique-ID/limits/projection tests and shared JS fixture agreement; real IndexedDB transaction/reload/concurrent-tab/idempotence/abort/corruption tests in test-only databases, never synthetic record injection into compiled gameplay. Real UI compiled suite proves empty, cancelled intro/practice no reward, genuine completed result, rematch second unique record, reload, navigation, profile snapshots, 320/375 portrait and landscape scroll. Full prior Profile/Coach/POV/media/physical-contact/arena regression gates. Clean committed-source build; current public UI, decoder and exact payload hash verification before deployment claim. Phone Human UAT remains separate.
+
+## Primary platform evidence
+
+[MDN IDBTransaction](https://developer.mozilla.org/en-US/docs/Web/API/IDBTransaction) documents readwrite transaction scheduling, completion/abort and crash durability limits. [W3C IndexedDB](https://www.w3.org/TR/IndexedDB/) is the normative transaction model. These support the storage design, not device UAT or an anti-cheat/account claim.
+
+## Native and storage receipts
+
+Ledger model 78/78; Profile model 71/71 (existing 69 plus History setup), existing controller 139 and Profile runtime 19, isolated ledger runtime 12/12. Prior model gates remain: arena 3700, analysis 56, Coach 53, motion 14741, geometry 172, vitals 111 and POV 550. Combat freeze 12/12.
+
+Shared serialized fixtures and JS model 36/36; actual IndexedDB storage 16/16 including two-tab distinct/same-ID transactions, reload, aborted conflict, corrupt/unsupported stored bytes retained and closed-storage failure. Unavailable storage capability is injected in an isolated test, not a claim about all private modes or quota/power-loss behavior. Test database removed after checks.
+
+Preserved negative `js-model-initial-failure.json`: native JsonUtility serialized a null test string as empty, so the shared fixture no longer represented the intended invalid input. Removed that test-only null case from serialized fixtures, retained native null rejection tests and unchanged strict JS validation. Final native count remains 78; JS 36 passed. No runtime rule was relaxed.
+
+Compiled real-interaction suite fixed at 28 checks before execution, including two genuine completions, correct reward, frozen identity, cancelled practice/intro, reload and responsive History. Build/local/public receipts pending; no phone Human UAT claim.

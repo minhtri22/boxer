@@ -37,6 +37,7 @@ namespace BoxerP0.Editor
             {
                 var f=new ProductFlow();
                 if(screen==ProductScreen.Profile)f.OpenProfile();
+                if(screen==ProductScreen.History)f.OpenHistory();
                 if(screen==ProductScreen.Coach||screen==ProductScreen.CoachReview||screen==ProductScreen.TrainingInfo||screen==ProductScreen.Onboarding)f.OpenCoach();
                 if(screen==ProductScreen.CoachReview)f.OpenCoachReview();
                 if(screen==ProductScreen.TrainingInfo)f.OpenTrainingInfo();
@@ -49,7 +50,7 @@ namespace BoxerP0.Editor
                 Check(f.OpenProfile()==(screen==ProductScreen.Home),"profile route restricted "+screen);
             }
             log.AppendLine($"TOTAL={pass+fail} PASS={pass} FAIL={fail}");
-            string dir=Path.GetFullPath(Path.Combine(Application.dataPath,"../../../evidence/wave1/fighter-profile"));Directory.CreateDirectory(dir);
+            string dir=Path.GetFullPath(Path.Combine(Application.dataPath,"../../../evidence/wave1/"+(Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="history-wallet"?"history-wallet":"fighter-profile")));Directory.CreateDirectory(dir);
             File.WriteAllText(Path.Combine(dir,"profile-tests.txt"),log.ToString());Debug.Log(log.ToString());
             if(fail>0)throw new Exception("Profile invariant failure");
         }

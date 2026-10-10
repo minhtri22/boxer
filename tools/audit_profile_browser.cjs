@@ -1,6 +1,6 @@
 // Real compiled navigation + browser text entry. Read-only snapshots, no gameplay setters.
 const {chromium}=require('playwright'),fs=require('fs'),path=require('path');
-const dir=path.resolve(__dirname,'../evidence/wave1/fighter-profile/'+(process.env.BOXER_PROFILE_PUBLIC==='1'?'profile-browser-public':'profile-browser'));
+const dir=path.resolve(__dirname,'../evidence/wave1/'+(process.env.BOXER_WAVE_EVIDENCE==='history-wallet'?'history-wallet':'fighter-profile')+'/'+(process.env.BOXER_PROFILE_PUBLIC==='1'?'profile-browser-public':'profile-browser'));
 fs.mkdirSync(dir,{recursive:true});
 const report={scope:'COMPILED_PROFILE_TRUSTED_INPUT_SYNTHETIC_VIEWPORT_NOT_PHONE_KEYBOARD_UAT',checks:[],errors:[],states:{}};
 function check(ok,name){report.checks.push({name,pass:!!ok});if(!ok)throw Error(name);}
