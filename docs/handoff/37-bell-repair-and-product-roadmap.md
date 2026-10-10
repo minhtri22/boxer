@@ -1,5 +1,7 @@
 # Bell repair and expanded product roadmap - 2026-10-10
 
+Planning revision: handoff `38-owner-scope-and-arena-surround.md` is the current owner scope. The table below is the historical proposal, NOT authorization to implement customization, manual venue selection or settings/pause. PROFILE only; customization HOLD; earned Street -> Cage -> Tournament confirmed; settings/pause deferred. Audio repair receipts below stay unchanged.
+
 ## Frozen repair scope before implementation
 
 - Branch `feature/boxer-product-loop-wave1`, expected HEAD `5fdb5db9d0960abdab125b5967323dd06d60aa92`; public compiled source `064aa84f9ff7a3dacf0f1be6b75877e48511b598`, release artifact `e10d14ab2b0ed9d2ef707613429515c4472145b7`.
@@ -42,7 +44,7 @@ Orders are dependencies, not calendar estimates. Implement one testable slice at
 
 ## Open product decisions (planning, not blockers for bell)
 
-Reward amounts and whether losses/draws pay; currency naming; initial shop catalogue/approved cosmetics; achievement definitions; venue unlock order and whether Cage means boxing-only; whether records are local only or eventually online. Default planning assumption: in-game currency, cosmetic-only shop, boxing in all three venues, local records first. These defaults are not an implemented economy or approved numerical balance.
+Reward amounts and whether losses/draws pay; currency naming; initial supported shop catalogue; achievement definitions and unlock thresholds; whether records are local only or eventually online. Owner has now confirmed earned Street -> Cage -> Tournament, with no manual venue selection. Appearance customization is HOLD; settings/pause deferred. Other defaults are planning assumptions, not implemented economy or approved numerical balance. See handoff 38.
 
 HP-KO-001 remains owner-held. Completing screens does not automatically resume combat balance.
 

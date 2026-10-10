@@ -15,8 +15,14 @@ Updated: 2026-10-10. The owner directs completing the remaining product screens 
 
 ## Asset / product follow-ups (not implicitly authorized mechanics)
 
+- PROFILE: approved identity/profile screen only; no appearance selector. See current scope in `38-owner-scope-and-arena-surround.md`.
+- CUSTOMIZATION-001: **HOLD - OWNER ART APPROACH REVIEW**. Current Blender character differs substantially from reference. No hair/beard/body/skin controls or fresh character refinement until a viable approach is agreed.
+- CAREER-001: approved earned order **Street -> Cage -> Tournament**, no free venue picker. Achievement/unlock thresholds remain TBD; current tournament demo does not imply earned progression.
+- SETTINGS-001: **DEFERRED - NOT NEEDED NOW**. No new settings/pause/exit package; preserve necessary existing navigation.
+- ARENA-001: approved four-sided audience coverage and localized camera flashes; presentation-only scope/evidence in handoff 38. No new Street/Cage environments or mechanics implied.
+
 - FACE-001: owner requests visible pain on real resolved HIT; current head/spine rotation is not facial emotion. Plan and acceptance in `37-bell-repair-and-product-roadmap.md`; facial rig/blendshape asset audit still required. Presentation only; no held collision/vitals changes, fake hit, or mandatory blood/injury system.
-- Owner requests Street/Cage boxing venues, post-match virtual rewards/shop and achievements. Screen/system dependency plan is in handoff 37; current gameplay still implements one tournament arena, no delivered economy/shop or global leaderboard. Do not label planned surfaces as playable systems.
+- Owner approves post-match virtual rewards/wallet, shop/owned equipment and saved record/achievements; earned Street/Cage/Tournament environments depend on Career. Current plan is handoff 38; current gameplay still implements one tournament arena, no delivered economy/shop or global leaderboard. Do not label planned surfaces as playable systems.
 
 - Production animated 3D coach asset is unavailable; an approved reference-art portrait may anchor the first coach screen, clearly reported as 2D art rather than a live coach.
 - Full fighter hair/beard/body customization, multiple playable venues/opponents, ranks/rewards, shop/economy and training stat upgrades need real assets / product implementation. Screen navigation does not imply those systems exist.

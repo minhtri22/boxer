@@ -1,7 +1,7 @@
 // Real compiled UI / trusted input. No state, score, orientation callback or completion setters.
 const {chromium}=require('playwright'),fs=require('fs'),path=require('path');
-const analysisSuite=['coach-analysis','bell-repair'].includes(process.env.BOXER_WAVE_EVIDENCE);
-const dir=path.resolve(__dirname,'../evidence/wave1/'+(process.env.BOXER_WAVE_EVIDENCE==='bell-repair'?'bell-repair':analysisSuite?'coach-analysis':'coach-ui')+'/coach-browser');fs.mkdirSync(dir,{recursive:true});
+const analysisSuite=['coach-analysis','bell-repair','arena-surround'].includes(process.env.BOXER_WAVE_EVIDENCE);
+const dir=path.resolve(__dirname,'../evidence/wave1/'+(process.env.BOXER_WAVE_EVIDENCE==='arena-surround'?'arena-surround':process.env.BOXER_WAVE_EVIDENCE==='bell-repair'?'bell-repair':analysisSuite?'coach-analysis':'coach-ui')+'/coach-browser');fs.mkdirSync(dir,{recursive:true});
 const report={scope:'COMPILED_COACH_UI_SYNTHETIC_MOBILE_VIEWPORT_NOT_PHONE_UAT',checks:[],errors:[],states:{},mediaRequests:[]};
 function check(ok,label){report.checks.push({name:label,pass:!!ok});if(!ok)throw Error(label);}
 function frozen(s){return !s.gameplayInput&&!s.playerEnabled&&!s.opponentEnabled&&s.seconds===0&&s.playerHP===100&&s.opponentHP===100&&s.playerStamina===100&&s.opponentStamina===100&&s.playerCapacity===100&&s.opponentCapacity===100;}

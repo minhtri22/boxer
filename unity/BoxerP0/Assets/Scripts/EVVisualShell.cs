@@ -412,10 +412,9 @@ namespace BoxerP0
             var arena=Resources.Load<Texture2D>("P1V/championship-arena");
             canvas.mainTexture=arena;canvas.mainTextureScale=new Vector2(.7f,.18f);canvas.mainTextureOffset=new Vector2(.15f,.01f);
             var floor=GameObject.Find("Underground Ring Canvas");if(floor!=null)floor.GetComponent<Renderer>().sharedMaterial=canvas;
-            // Distant scenery only: a depth-tested world plane behind the physical ring/fighters.
-            var backdropMat=new Material(Resources.Load<Shader>("EVBackdrop"));backdropMat.mainTexture=arena;_materials.Add(backdropMat);
-            var quad=new Mesh {vertices=new[]{new Vector3(-.5f,-.5f,0),new Vector3(-.5f,.5f,0),new Vector3(.5f,.5f,0),new Vector3(.5f,-.5f,0)},uv=new[]{new Vector2(0,.42f),new Vector2(0,1),new Vector2(1,1),new Vector2(1,.42f)},triangles=new[]{0,1,2,0,2,3}};quad.RecalculateNormals();
-            var backdrop=MeshObject("EV Distant Arena Scenery",root,quad,backdropMat);backdrop.position=new Vector3(0,3.0f,4.24f);backdrop.localScale=new Vector3(8.1f,5.5f,1);
+            // Reuse the accepted audience image on all four inward-facing scenery sides.
+            // No extra physical ring, lights, crowd colliders or character changes.
+            root.gameObject.AddComponent<ArenaSurround>().Initialize(arena);
             foreach(var renderer in FindObjectsByType<Renderer>(FindObjectsSortMode.None)) {
                 string n=renderer.name;
                 if(n=="Crowd Silhouette"||n=="Crowd Head"||n=="Back Crowd"||n=="Back Crowd Head"||n=="String Bulb"||n.StartsWith("Crate ")) renderer.enabled=false;

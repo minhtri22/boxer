@@ -171,6 +171,8 @@ A future `engine/` layer may be introduced only after Phase 0 PASS. Repository s
 
 ## Current Status
 
+Current owner-authorized product-screen scope: [handoff 38](docs/handoff/38-owner-scope-and-arena-surround.md). Fighter PROFILE only; appearance customization and HP/KO balance HOLD; Career is earned Street -> Cage -> Tournament, not manual selection. Reward/wallet, Shop and record/achievements approved as separate slices; settings/pause deferred. The foundation status below is historical, not a current delivery receipt.
+
 **Stage:** Phase 0 — foundation and proof design  
 **Boxing domain:** Active proof vehicle  
 **Development stack:** Unity + C# on Windows  

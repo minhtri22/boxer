@@ -13,16 +13,16 @@ Date: 2026-10-10. Owner authorizes continuing remaining screens and holds HP/KO 
 
 ## Execution sequence
 
-Owner-expanded plan (2026-10-10): `37-bell-repair-and-product-roadmap.md` supersedes the original B/C/D order below for remaining planning. It includes three boxing venues (Tournament/Street/Cage), completed-match reward/wallet, shop/owned equipment, saved record/achievements, career progression, settings/pause/exit, and integrated navigation/Result. FACE-001 is a separate resolved-hit facial-expression presentation slice; it does not reopen held combat balance. These new systems are planned, not already delivered. Street/Cage art and shop/record screens need additional approved references/assets.
+Latest owner scope: `38-owner-scope-and-arena-surround.md` supersedes handoff 37's remaining-screen planning. PROFILE only; appearance customization HOLD. Earned Career order is Street -> Cage -> Tournament, never a free venue picker. Reward/wallet, Shop and record/achievements are approved separate slices; thresholds and economy amounts need approval. Settings/pause is deferred. FACE-001 is a separate resolved-hit visual slice; no held combat/model rework. Street/Cage art and shop/record screens need additional approved references/assets. These systems are planned, not already delivered.
 
 | Slice | Surface / reference | Actual minimum behavior | Boundary |
 | --- | --- | --- | --- |
 | A - implementation pass, phone UAT pending | Training / Coach, 05 | Home entry; five native touchable module cards; head/feet/punch entry into existing unscored practice; guard/conditioning coaching detail; Home/back/exit | No attribute upgrade, score, enemy AI or vitality spending in menus/practice. Approved portrait is 2D art, not new 3D coach; visual fidelity PARTIAL. |
-| B - next | Fighter / Customization, 01 | Profile editing/persistence and genuine supported visual preview/options | Unsupported hair/body/style assets remain disclosed, not fake selections or combat stat changes. |
-| C - next | Venues / Career selection, 04 | Venue-card navigation, availability, route to real current fight; honest locked future content | No invented opponent, reward, rank, arena implementation or economy merely to populate cards. |
+| B - next | Fighter Profile, 01 | Identity metadata/persistence and real record linkage | No appearance controls or Blender/model rework; customization HOLD. |
+| C - after saved record/economy | Earned Career, 04 | Street -> Cage -> Tournament progress and achievement-gated next venue | No manual venue choice; unlock numbers TBD; missing arenas remain unavailable. |
 | D - integration | Home/nav and existing preview/result | Consistent safe-area/mobile hierarchy and functional cross-screen routes | Preserve fight kernel, training gestures, intro/audio epochs and held balance. |
 
-Implement and verify one complete slice before starting the next. The remaining-screen request unlocks these product surfaces, not unrelated progression/economy/replay systems. Keep approved references untouched.
+Implement and verify one complete slice before starting the next. Reward/wallet, shop and record are now approved in handoff 38, but no numerical economy or global leaderboard is implicitly approved. Keep approved references untouched.
 
 ## Slice A hypothesis / scope
 

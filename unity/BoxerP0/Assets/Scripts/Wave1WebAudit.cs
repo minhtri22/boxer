@@ -14,6 +14,7 @@ namespace BoxerP0
         private float _next;
         private BoxerBootstrap _bootstrap;
         private Phase0Telemetry _telemetry;
+        private ArenaSurround _arena;
         [Serializable] private sealed class Snapshot
         {
             public string scope="SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",screen,result,reason,trainingStage,trainingGuide;
@@ -43,6 +44,8 @@ namespace BoxerP0
             public float contactAgeMs,recoveryAgeMs,releaseToAcceptMs,gestureDurationMs;
             public int impactHits,impactBlocks,impactMisses,swings;
             public Vector3 contactPoint;
+            public int audienceSides,audienceFlashNodes,audienceActiveFlash,audienceEnabledFlashes,audienceObservedSideMask;
+            public float audienceFlashStrength;
         }
         private readonly Snapshot _snapshot=new();
         private void Start()
@@ -50,6 +53,13 @@ namespace BoxerP0
         private void LateUpdate()
         {
             if(!_enabled||Time.unscaledTime<_next)return;_next=Time.unscaledTime+.05f;
+            if(_arena==null)_arena=FindFirstObjectByType<ArenaSurround>();
+            _snapshot.audienceSides=_arena==null?0:_arena.StandCount;
+            _snapshot.audienceFlashNodes=_arena==null?0:_arena.FlashCount;
+            _snapshot.audienceActiveFlash=_arena==null?-1:_arena.ActiveFlash;
+            _snapshot.audienceEnabledFlashes=_arena==null?0:_arena.EnabledFlashes;
+            _snapshot.audienceObservedSideMask=_arena==null?0:_arena.ObservedSideMask;
+            _snapshot.audienceFlashStrength=_arena==null?0:_arena.Strength;
             var b=_telemetry.Bout;_snapshot.screen=_bootstrap.Flow.Screen.ToString();_snapshot.result=b.Result;_snapshot.reason=b.EndReason;
             _snapshot.seconds=b.Seconds;_snapshot.playerHP=b.Player.HP;_snapshot.opponentHP=b.Opponent.HP;
             _snapshot.playerStamina=b.Player.Stamina;_snapshot.opponentStamina=b.Opponent.Stamina;

@@ -1,7 +1,7 @@
 // Real compiled Unity UI + rendered browser media; read-only state, no callback/score injection.
 const {chromium}=require('playwright');
 const fs=require('fs'),path=require('path');
-const suite=process.env.BOXER_WAVE_EVIDENCE==='bell-repair'?'bell-repair':process.env.BOXER_WAVE_EVIDENCE==='coach-analysis'?'coach-analysis':process.env.BOXER_WAVE_EVIDENCE==='coach-ui'?'coach-ui':process.env.BOXER_WAVE_EVIDENCE==='punch-feel'?'punch-feel':process.env.BOXER_WAVE_EVIDENCE==='training-pov'?'training-pov':'ring-intro';
+const suite=process.env.BOXER_WAVE_EVIDENCE==='arena-surround'?'arena-surround':process.env.BOXER_WAVE_EVIDENCE==='bell-repair'?'bell-repair':process.env.BOXER_WAVE_EVIDENCE==='coach-analysis'?'coach-analysis':process.env.BOXER_WAVE_EVIDENCE==='coach-ui'?'coach-ui':process.env.BOXER_WAVE_EVIDENCE==='punch-feel'?'punch-feel':process.env.BOXER_WAVE_EVIDENCE==='training-pov'?'training-pov':'ring-intro';
 const dir=path.resolve(__dirname,'../evidence/wave1/'+suite+'/'+(process.env.BOXER_RING_PUBLIC==='1'?'media-browser-public':'media-browser'));fs.mkdirSync(dir,{recursive:true});
 const report={scope:'REAL_WEBGL_UI_MEDIA_SYNTHETIC_DESKTOP_NOT_PHONE_OR_LISTENING_UAT',checks:[],errors:[],states:{}};
 function check(pass,name){report.checks.push({name,pass:!!pass});if(!pass)throw Error(name);}
@@ -46,7 +46,7 @@ function check(pass,name){report.checks.push({name,pass:!!pass});if(!pass)throw 
     const ended=fight.media.events.find(e=>e.token===fight.media.token&&e.name==='intro-ended');
     check(ended&&ended.videoTime>=5&&ended.at-played.at>=5000&&ended.at-played.at<12000,'ring girl plays at least five real seconds before scored fight');
     check(fight.media.audioState==='running'&&fight.media.buffers.intro>5&&fight.media.buffers.bell>.8&&fight.media.buffers.crowd>4.5,'all source-derived sounds decode with active unlocked AudioContext');
-    if(suite==='bell-repair'){
+    if(['bell-repair','arena-surround'].includes(suite)){
       const signal=await page.evaluate(async()=>{const c=new (window.AudioContext||window.webkitAudioContext)();try{const response=await fetch('StreamingAssets/RingMedia/bell.mp3?v='+encodeURIComponent(productVersion));if(!response.ok)throw Error('Bell HTTP '+response.status);const b=await c.decodeAudioData(await response.arrayBuffer());let peak=0,sum=0,active=0,total=0;for(let ch=0;ch<b.numberOfChannels;ch++){const data=b.getChannelData(ch);for(const v of data){peak=Math.max(peak,Math.abs(v));sum+=v*v;total++;if(Math.abs(v)>.001)active++;}}return {seconds:b.duration,peak,rms:Math.sqrt(sum/total),activeFraction:active/total};}finally{await c.close();}});
       report.decodedBellSignal=signal;check(signal.seconds>.8&&signal.seconds<1&&signal.peak>.05&&signal.peak<.98&&signal.rms>.003&&signal.activeFraction>.5,'actual browser bell PCM is non-silent and not clipped; duration/events alone are insufficient');
     }
