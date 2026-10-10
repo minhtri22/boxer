@@ -1,0 +1,45 @@
+{
+  "scope": "ACTUAL_DECODED_PCM_NOT_PHONE_LISTENING_UAT",
+  "sourceSHA": "1dec4970847aa75bc8ef8d2cf518253554486ef8d2ee4460b3f270c9ca3569ac",
+  "before": {
+    "seconds": 0.8857369614512471,
+    "peak": 0,
+    "rms": 0,
+    "activeFraction": 0,
+    "sha256": "0ecb168ed8e1b7081c6112a3457ddc397b5a6355b03aede94c23a94ba80e8a13"
+  },
+  "after": {
+    "seconds": 0.85,
+    "peak": 0.7827242612838745,
+    "rms": 0.146582150274536,
+    "activeFraction": 0.9771908763505402,
+    "sha256": "21b2cd12f42967f0b2ee0da27b51e80dd3826ca7e530d4bb00fd17bb94a8c5a7"
+  },
+  "checks": [
+    {
+      "name": "owner source hash unchanged",
+      "pass": true
+    },
+    {
+      "name": "exact released silent asset preserved",
+      "pass": true
+    },
+    {
+      "name": "new amplitude gate rejects former duration-only silent bell",
+      "pass": true
+    },
+    {
+      "name": "corrected cue has bounded intended duration",
+      "pass": true
+    },
+    {
+      "name": "corrected decoded signal is non-silent without clipping or sparse click",
+      "pass": true
+    },
+    {
+      "name": "new bell differs from released silent asset",
+      "pass": true
+    }
+  ],
+  "status": "PASS"
+}
