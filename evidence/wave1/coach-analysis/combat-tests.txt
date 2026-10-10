@@ -1,0 +1,174 @@
+SCOPE=SOLVED_GEOMETRY_AND_DETERMINISTIC_RULES_NOT_INPUT_OR_HUMAN_UAT
+PASS AI reproducible bounded choice 0
+PASS AI reproducible bounded choice 1
+PASS AI reproducible bounded choice 2
+PASS AI reproducible bounded choice 3
+PASS AI reproducible bounded choice 4
+PASS AI reproducible bounded choice 5
+PASS AI reproducible bounded choice 6
+PASS AI reproducible bounded choice 7
+PASS AI reproducible bounded choice 8
+PASS AI reproducible bounded choice 9
+PASS AI reproducible bounded choice 10
+PASS AI reproducible bounded choice 11
+PASS AI reproducible bounded choice 12
+PASS AI reproducible bounded choice 13
+PASS AI reproducible bounded choice 14
+PASS AI reproducible bounded choice 15
+PASS AI reproducible bounded choice 16
+PASS AI reproducible bounded choice 17
+PASS AI reproducible bounded choice 18
+PASS AI reproducible bounded choice 19
+PASS AI reproducible bounded choice 20
+PASS AI reproducible bounded choice 21
+PASS AI reproducible bounded choice 22
+PASS AI reproducible bounded choice 23
+PASS AI reproducible bounded choice 24
+PASS AI reproducible bounded choice 25
+PASS AI reproducible bounded choice 26
+PASS AI reproducible bounded choice 27
+PASS AI reproducible bounded choice 28
+PASS AI reproducible bounded choice 29
+PASS AI reproducible bounded choice 30
+PASS AI reproducible bounded choice 31
+PASS AI reproducible bounded choice 32
+PASS AI reproducible bounded choice 33
+PASS AI reproducible bounded choice 34
+PASS AI reproducible bounded choice 35
+PASS AI reproducible bounded choice 36
+PASS AI reproducible bounded choice 37
+PASS AI reproducible bounded choice 38
+PASS AI reproducible bounded choice 39
+PASS AI reproducible bounded choice 40
+PASS AI reproducible bounded choice 41
+PASS AI reproducible bounded choice 42
+PASS AI reproducible bounded choice 43
+PASS AI reproducible bounded choice 44
+PASS AI reproducible bounded choice 45
+PASS AI reproducible bounded choice 46
+PASS AI reproducible bounded choice 47
+PASS AI reproducible bounded choice 48
+PASS AI reproducible bounded choice 49
+PASS AI reproducible bounded choice 50
+PASS AI reproducible bounded choice 51
+PASS AI reproducible bounded choice 52
+PASS AI reproducible bounded choice 53
+PASS AI reproducible bounded choice 54
+PASS AI reproducible bounded choice 55
+PASS AI reproducible bounded choice 56
+PASS AI reproducible bounded choice 57
+PASS AI reproducible bounded choice 58
+PASS AI reproducible bounded choice 59
+PASS AI reproducible bounded choice 60
+PASS AI reproducible bounded choice 61
+PASS AI reproducible bounded choice 62
+PASS AI reproducible bounded choice 63
+PASS AI reproducible bounded choice 64
+PASS AI reproducible bounded choice 65
+PASS AI reproducible bounded choice 66
+PASS AI reproducible bounded choice 67
+PASS AI reproducible bounded choice 68
+PASS AI reproducible bounded choice 69
+PASS AI reproducible bounded choice 70
+PASS AI reproducible bounded choice 71
+PASS AI reproducible bounded choice 72
+PASS AI reproducible bounded choice 73
+PASS AI reproducible bounded choice 74
+PASS AI reproducible bounded choice 75
+PASS AI reproducible bounded choice 76
+PASS AI reproducible bounded choice 77
+PASS AI reproducible bounded choice 78
+PASS AI reproducible bounded choice 79
+PASS AI reproducible bounded choice 80
+PASS AI reproducible bounded choice 81
+PASS AI reproducible bounded choice 82
+PASS AI reproducible bounded choice 83
+PASS AI reproducible bounded choice 84
+PASS AI reproducible bounded choice 85
+PASS AI reproducible bounded choice 86
+PASS AI reproducible bounded choice 87
+PASS AI reproducible bounded choice 88
+PASS AI reproducible bounded choice 89
+PASS AI reproducible bounded choice 90
+PASS AI reproducible bounded choice 91
+PASS AI reproducible bounded choice 92
+PASS AI reproducible bounded choice 93
+PASS AI reproducible bounded choice 94
+PASS AI reproducible bounded choice 95
+PASS AI reproducible bounded choice 96
+PASS AI reproducible bounded choice 97
+PASS AI reproducible bounded choice 98
+PASS AI reproducible bounded choice 99
+PASS AI reproducible bounded choice 100
+PASS AI reproducible bounded choice 101
+PASS AI reproducible bounded choice 102
+PASS AI reproducible bounded choice 103
+PASS AI reproducible bounded choice 104
+PASS AI reproducible bounded choice 105
+PASS AI reproducible bounded choice 106
+PASS AI reproducible bounded choice 107
+PASS AI reproducible bounded choice 108
+PASS AI reproducible bounded choice 109
+PASS AI reproducible bounded choice 110
+PASS AI reproducible bounded choice 111
+PASS AI reproducible bounded choice 112
+PASS AI reproducible bounded choice 113
+PASS AI reproducible bounded choice 114
+PASS AI reproducible bounded choice 115
+PASS AI reproducible bounded choice 116
+PASS AI reproducible bounded choice 117
+PASS AI reproducible bounded choice 118
+PASS AI reproducible bounded choice 119
+PASS AI reproducible bounded choice 120
+PASS AI reproducible bounded choice 121
+PASS AI reproducible bounded choice 122
+PASS AI reproducible bounded choice 123
+PASS AI reproducible bounded choice 124
+PASS AI reproducible bounded choice 125
+PASS AI reproducible bounded choice 126
+PASS AI reproducible bounded choice 127
+PASS AI choice 0 occurs with interleaved gap draw, count=31
+PASS AI choice 1 occurs with interleaved gap draw, count=28
+PASS AI choice 2 occurs with interleaved gap draw, count=32
+PASS AI choice 3 occurs with interleaved gap draw, count=37
+PASS AI no longer trapped in alternating head/body Cross
+PASS invalid random count rejected
+PASS real intersecting glove blocks target mode 0
+PASS real intersecting glove blocks target mode 1
+PASS real intersecting glove blocks target mode 2
+PASS guard contact invariant under actor rotation and translation
+PASS body path below a non-intersecting high guard still hits body
+PASS non-contact is MISS, not proximity damage
+PASS Jab can physically reach exposed head in engagement band 0,79
+PASS Jab can physically reach exposed head in engagement band 0,82
+PASS Jab can physically reach exposed head in engagement band 0,85
+PASS Jab reproduces old out-of-reach exposed head at .955m
+PASS Jab long-range punch remains MISS
+PASS Cross can physically reach exposed head in engagement band 0,79
+PASS Cross can physically reach exposed head in engagement band 0,82
+PASS Cross can physically reach exposed head in engagement band 0,85
+PASS Cross reproduces old out-of-reach exposed head at .955m
+PASS Cross long-range punch remains MISS
+PASS LeadHook physically reaches exposed head at close range
+PASS RearHook physically reaches exposed head at close range
+PASS LeadUppercut physically reaches exposed head at close range
+PASS RearUppercut physically reaches exposed head at close range
+PASS LeadOverhand physically reaches exposed head at close range
+PASS RearOverhand physically reaches exposed head at close range
+PASS POV footwork tracks facing yaw=0 direction=(0.00, 1.00)
+PASS POV footwork tracks facing yaw=0 direction=(0.00, -1.00)
+PASS POV footwork tracks facing yaw=0 direction=(-1.00, 0.00)
+PASS POV footwork tracks facing yaw=0 direction=(1.00, 0.00)
+PASS POV footwork tracks facing yaw=90 direction=(0.00, 1.00)
+PASS POV footwork tracks facing yaw=90 direction=(0.00, -1.00)
+PASS POV footwork tracks facing yaw=90 direction=(-1.00, 0.00)
+PASS POV footwork tracks facing yaw=90 direction=(1.00, 0.00)
+PASS POV footwork tracks facing yaw=180 direction=(0.00, 1.00)
+PASS POV footwork tracks facing yaw=180 direction=(0.00, -1.00)
+PASS POV footwork tracks facing yaw=180 direction=(-1.00, 0.00)
+PASS POV footwork tracks facing yaw=180 direction=(1.00, 0.00)
+PASS POV footwork tracks facing yaw=270 direction=(0.00, 1.00)
+PASS POV footwork tracks facing yaw=270 direction=(0.00, -1.00)
+PASS POV footwork tracks facing yaw=270 direction=(-1.00, 0.00)
+PASS POV footwork tracks facing yaw=270 direction=(1.00, 0.00)
+TOTAL=172 PASS=172 FAIL=0

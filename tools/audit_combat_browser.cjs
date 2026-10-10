@@ -155,7 +155,7 @@ function check(ok,name){report.checks.push({name,pass:!!ok});if(!ok)throw Error(
     check(final.screen==='Result'&&final.opponentHP<100&&final.playerHits>0,'real directional touch punches geometrically HIT and reduce opponent HP');
     check(final.result==='PLAYER_WIN','patient real touch attack can win default Ramirez bout');
     check(final.reason==='KO'&&final.opponentHP===0&&!final.playerEnabled&&!final.opponentEnabled,'physical punch HP zero produces KO and locks both actors');
-    if(['ring-intro','training-pov','punch-feel','coach-ui'].includes(suite)){
+    if(['ring-intro','training-pov','punch-feel','coach-ui','coach-analysis'].includes(suite)){
       const media=await fight.page.evaluate(()=>window.boxerRingMedia.state);fight.scenario.mediaAtKO=media;
       check(media.phase==='Result'&&!media.crowdActive&&media.events.filter(e=>e.name==='end-bell').length===1,'real physical-input KO stops crowd and plays end bell exactly once');
     }

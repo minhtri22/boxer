@@ -1,0 +1,2061 @@
+{
+  "scope": "REAL_WEBGL_UI_MEDIA_SYNTHETIC_DESKTOP_NOT_PHONE_OR_LISTENING_UAT",
+  "checks": [
+    {
+      "name": "Home does not play ring media/crowd",
+      "pass": true
+    },
+    {
+      "name": "Intro locks both actors, input, HP/stamina/capacity and scored clock",
+      "pass": true
+    },
+    {
+      "name": "owner video decodes and advances, without duplicate embedded audio",
+      "pass": true
+    },
+    {
+      "name": "ordinary punch/footwork keys cannot spend or enable AI in Intro",
+      "pass": true
+    },
+    {
+      "name": "Back cancels media; old ended event cannot start hidden combat",
+      "pass": true
+    },
+    {
+      "name": "cancel evidence retains original token",
+      "pass": true
+    },
+    {
+      "name": "new intro is fresh, frozen and epoch separated",
+      "pass": true
+    },
+    {
+      "name": "fight starts fresh only after video completes",
+      "pass": true
+    },
+    {
+      "name": "ring girl plays at least five real seconds before scored fight",
+      "pass": true
+    },
+    {
+      "name": "all source-derived sounds decode with active unlocked AudioContext",
+      "pass": true
+    },
+    {
+      "name": "one start bell and one crowd loop, no premature end bell",
+      "pass": true
+    },
+    {
+      "name": "M mutes intro/bell/crowd together with hit/block audio",
+      "pass": true
+    },
+    {
+      "name": "M restores ring audio",
+      "pass": true
+    },
+    {
+      "name": "actual bout completion locks both actors/input",
+      "pass": true
+    },
+    {
+      "name": "result stops crowd and schedules exactly one end bell",
+      "pass": true
+    },
+    {
+      "name": "result does not repeat bell or mutate vitals",
+      "pass": true
+    },
+    {
+      "name": "rematch resets resources but still locks them during its own intro",
+      "pass": true
+    },
+    {
+      "name": "rematch gets its own intro/start bell/crowd without duplicated actors",
+      "pass": true
+    },
+    {
+      "name": "ring presentation does not duplicate boxers",
+      "pass": true
+    },
+    {
+      "name": "media lifecycle has zero JS/load/HTTP errors",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "states": {
+    "home": {
+      "native": {
+        "scope": "SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",
+        "screen": "Home",
+        "result": "PENDING",
+        "reason": "NONE",
+        "trainingStage": "",
+        "trainingGuide": "",
+        "trainingReady": false,
+        "tutorialSeen": false,
+        "seconds": 0,
+        "playerHP": 100,
+        "opponentHP": 100,
+        "playerStamina": 100,
+        "opponentStamina": 100,
+        "playerCapacity": 100,
+        "opponentCapacity": 100,
+        "playerEnabled": false,
+        "opponentEnabled": false,
+        "gameplayInput": false,
+        "players": 1,
+        "opponents": 1,
+        "playerHits": 0,
+        "opponentHits": 0,
+        "playerBlocks": 0,
+        "opponentBlocks": 0,
+        "playerMisses": 0,
+        "opponentMisses": 0,
+        "playerPhase": "Guard",
+        "opponentPhase": "Guard",
+        "opponentIntent": "None",
+        "playerIntent": "None",
+        "playerReason": "PENDING",
+        "combatLog": "NONE",
+        "playerQuality": 1,
+        "opponentQuality": 1,
+        "distance": 1.399999976158142,
+        "opponentAttacks": 0,
+        "opponentBody": false,
+        "playerX": 0,
+        "playerZ": -0.699999988079071,
+        "opponentX": 0,
+        "opponentZ": 0.699999988079071,
+        "moveX": 0,
+        "moveY": 0,
+        "povArms": 2,
+        "trainingBlurWidth": 0,
+        "trainingBlurHeight": 0,
+        "trainingGlass": false,
+        "leftElbowViewport": {
+          "x": 0.11064600944519043,
+          "y": 0.13743028044700623,
+          "z": 0.3410418629646301
+        },
+        "rightElbowViewport": {
+          "x": 0.9259961843490601,
+          "y": 0.09090462327003479,
+          "z": 0.32857629656791687
+        },
+        "punchFeel": "Fast",
+        "lastImpactRegion": "",
+        "coachModule": "Head",
+        "coachCompletionMask": 0,
+        "trainingFromCoach": false,
+        "coachArtLoaded": true,
+        "coachInfoContentHeight": 0,
+        "coachReviewContentHeight": 0,
+        "lastMatchReview": {
+          "schema": 0,
+          "id": "",
+          "sourceVersion": "",
+          "opponent": "RAMIREZ",
+          "result": "",
+          "reason": "",
+          "seconds": 0,
+          "playerHP": 0,
+          "opponentHP": 0,
+          "playerStamina": 0,
+          "playerCapacity": 0,
+          "accepted": 0,
+          "hits": 0,
+          "blocked": 0,
+          "misses": 0,
+          "received": 0,
+          "defended": 0,
+          "opponentMisses": 0
+        },
+        "hasMatchReview": false,
+        "coachSuggestions": [],
+        "acceptedPunches": 0,
+        "rejectedGestures": 0,
+        "rejectedBusyPunches": 0,
+        "contactAgeMs": 0,
+        "recoveryAgeMs": 0,
+        "releaseToAcceptMs": -1,
+        "gestureDurationMs": 0,
+        "impactHits": 0,
+        "impactBlocks": 0,
+        "impactMisses": 0,
+        "swings": 0,
+        "contactPoint": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      "media": {
+        "phase": "Idle",
+        "token": 0,
+        "sound": true,
+        "events": [],
+        "error": null,
+        "audioState": "running",
+        "masterGain": 1,
+        "crowdActive": false,
+        "buffers": {
+          "intro": 5.166666666666667,
+          "bell": 0.8857291666666667,
+          "crowd": 4.6
+        }
+      },
+      "video": {
+        "time": 0,
+        "width": 0,
+        "muted": true
+      }
+    },
+    "preview": {
+      "native": {
+        "scope": "SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",
+        "screen": "Preview",
+        "result": "PENDING",
+        "reason": "NONE",
+        "trainingStage": "",
+        "trainingGuide": "",
+        "trainingReady": false,
+        "tutorialSeen": false,
+        "seconds": 0,
+        "playerHP": 100,
+        "opponentHP": 100,
+        "playerStamina": 100,
+        "opponentStamina": 100,
+        "playerCapacity": 100,
+        "opponentCapacity": 100,
+        "playerEnabled": false,
+        "opponentEnabled": false,
+        "gameplayInput": false,
+        "players": 1,
+        "opponents": 1,
+        "playerHits": 0,
+        "opponentHits": 0,
+        "playerBlocks": 0,
+        "opponentBlocks": 0,
+        "playerMisses": 0,
+        "opponentMisses": 0,
+        "playerPhase": "Guard",
+        "opponentPhase": "Guard",
+        "opponentIntent": "None",
+        "playerIntent": "None",
+        "playerReason": "PENDING",
+        "combatLog": "NONE",
+        "playerQuality": 1,
+        "opponentQuality": 1,
+        "distance": 1.399999976158142,
+        "opponentAttacks": 0,
+        "opponentBody": false,
+        "playerX": 0,
+        "playerZ": -0.699999988079071,
+        "opponentX": 0,
+        "opponentZ": 0.699999988079071,
+        "moveX": 0,
+        "moveY": 0,
+        "povArms": 2,
+        "trainingBlurWidth": 0,
+        "trainingBlurHeight": 0,
+        "trainingGlass": false,
+        "leftElbowViewport": {
+          "x": 0.11064600944519043,
+          "y": 0.13743028044700623,
+          "z": 0.3410418629646301
+        },
+        "rightElbowViewport": {
+          "x": 0.9259961843490601,
+          "y": 0.09090462327003479,
+          "z": 0.32857629656791687
+        },
+        "punchFeel": "Fast",
+        "lastImpactRegion": "",
+        "coachModule": "Head",
+        "coachCompletionMask": 0,
+        "trainingFromCoach": false,
+        "coachArtLoaded": true,
+        "coachInfoContentHeight": 0,
+        "coachReviewContentHeight": 0,
+        "lastMatchReview": {
+          "schema": 0,
+          "id": "",
+          "sourceVersion": "",
+          "opponent": "RAMIREZ",
+          "result": "",
+          "reason": "",
+          "seconds": 0,
+          "playerHP": 0,
+          "opponentHP": 0,
+          "playerStamina": 0,
+          "playerCapacity": 0,
+          "accepted": 0,
+          "hits": 0,
+          "blocked": 0,
+          "misses": 0,
+          "received": 0,
+          "defended": 0,
+          "opponentMisses": 0
+        },
+        "hasMatchReview": false,
+        "coachSuggestions": [],
+        "acceptedPunches": 0,
+        "rejectedGestures": 0,
+        "rejectedBusyPunches": 0,
+        "contactAgeMs": -1,
+        "recoveryAgeMs": 0,
+        "releaseToAcceptMs": -1,
+        "gestureDurationMs": 0,
+        "impactHits": 0,
+        "impactBlocks": 0,
+        "impactMisses": 0,
+        "swings": 0,
+        "contactPoint": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      "media": {
+        "phase": "Idle",
+        "token": 0,
+        "sound": true,
+        "events": [],
+        "error": null,
+        "audioState": "running",
+        "masterGain": 1,
+        "crowdActive": false,
+        "buffers": {
+          "intro": 5.166666666666667,
+          "bell": 0.8857291666666667,
+          "crowd": 4.6
+        }
+      },
+      "video": {
+        "time": 0,
+        "width": 0,
+        "muted": true
+      }
+    },
+    "cancel-intro": {
+      "native": {
+        "scope": "SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",
+        "screen": "Intro",
+        "result": "PENDING",
+        "reason": "NONE",
+        "trainingStage": "",
+        "trainingGuide": "",
+        "trainingReady": false,
+        "tutorialSeen": false,
+        "seconds": 0,
+        "playerHP": 100,
+        "opponentHP": 100,
+        "playerStamina": 100,
+        "opponentStamina": 100,
+        "playerCapacity": 100,
+        "opponentCapacity": 100,
+        "playerEnabled": false,
+        "opponentEnabled": false,
+        "gameplayInput": false,
+        "players": 1,
+        "opponents": 1,
+        "playerHits": 0,
+        "opponentHits": 0,
+        "playerBlocks": 0,
+        "opponentBlocks": 0,
+        "playerMisses": 0,
+        "opponentMisses": 0,
+        "playerPhase": "Guard",
+        "opponentPhase": "Guard",
+        "opponentIntent": "None",
+        "playerIntent": "None",
+        "playerReason": "PENDING",
+        "combatLog": "NONE",
+        "playerQuality": 1,
+        "opponentQuality": 1,
+        "distance": 1.399999976158142,
+        "opponentAttacks": 0,
+        "opponentBody": false,
+        "playerX": 0,
+        "playerZ": -0.699999988079071,
+        "opponentX": 0,
+        "opponentZ": 0.699999988079071,
+        "moveX": 0,
+        "moveY": 0,
+        "povArms": 2,
+        "trainingBlurWidth": 0,
+        "trainingBlurHeight": 0,
+        "trainingGlass": false,
+        "leftElbowViewport": {
+          "x": 0.11064600944519043,
+          "y": 0.13743028044700623,
+          "z": 0.3410418629646301
+        },
+        "rightElbowViewport": {
+          "x": 0.9259961843490601,
+          "y": 0.09090462327003479,
+          "z": 0.32857629656791687
+        },
+        "punchFeel": "Fast",
+        "lastImpactRegion": "",
+        "coachModule": "Head",
+        "coachCompletionMask": 0,
+        "trainingFromCoach": false,
+        "coachArtLoaded": true,
+        "coachInfoContentHeight": 0,
+        "coachReviewContentHeight": 0,
+        "lastMatchReview": {
+          "schema": 0,
+          "id": "",
+          "sourceVersion": "",
+          "opponent": "RAMIREZ",
+          "result": "",
+          "reason": "",
+          "seconds": 0,
+          "playerHP": 0,
+          "opponentHP": 0,
+          "playerStamina": 0,
+          "playerCapacity": 0,
+          "accepted": 0,
+          "hits": 0,
+          "blocked": 0,
+          "misses": 0,
+          "received": 0,
+          "defended": 0,
+          "opponentMisses": 0
+        },
+        "hasMatchReview": false,
+        "coachSuggestions": [],
+        "acceptedPunches": 0,
+        "rejectedGestures": 0,
+        "rejectedBusyPunches": 0,
+        "contactAgeMs": -1,
+        "recoveryAgeMs": 0,
+        "releaseToAcceptMs": -1,
+        "gestureDurationMs": 0,
+        "impactHits": 0,
+        "impactBlocks": 0,
+        "impactMisses": 0,
+        "swings": 0,
+        "contactPoint": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      "media": {
+        "phase": "Intro",
+        "token": 1,
+        "sound": true,
+        "events": [
+          {
+            "name": "stop",
+            "token": 0,
+            "at": 6586.099999997765,
+            "videoTime": 0
+          },
+          {
+            "name": "intro-request",
+            "token": 1,
+            "at": 6586.199999999255,
+            "videoTime": 0
+          }
+        ],
+        "error": null,
+        "audioState": "running",
+        "masterGain": 1,
+        "crowdActive": false,
+        "buffers": {
+          "intro": 5.166666666666667,
+          "bell": 0.8857291666666667,
+          "crowd": 4.6
+        }
+      },
+      "video": {
+        "time": 0,
+        "width": 0,
+        "muted": true
+      }
+    },
+    "cancel-home": {
+      "native": {
+        "scope": "SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",
+        "screen": "Home",
+        "result": "PENDING",
+        "reason": "NONE",
+        "trainingStage": "",
+        "trainingGuide": "",
+        "trainingReady": false,
+        "tutorialSeen": false,
+        "seconds": 0,
+        "playerHP": 100,
+        "opponentHP": 100,
+        "playerStamina": 100,
+        "opponentStamina": 100,
+        "playerCapacity": 100,
+        "opponentCapacity": 100,
+        "playerEnabled": false,
+        "opponentEnabled": false,
+        "gameplayInput": false,
+        "players": 1,
+        "opponents": 1,
+        "playerHits": 0,
+        "opponentHits": 0,
+        "playerBlocks": 0,
+        "opponentBlocks": 0,
+        "playerMisses": 0,
+        "opponentMisses": 0,
+        "playerPhase": "Guard",
+        "opponentPhase": "Guard",
+        "opponentIntent": "None",
+        "playerIntent": "None",
+        "playerReason": "PENDING",
+        "combatLog": "NONE",
+        "playerQuality": 1,
+        "opponentQuality": 1,
+        "distance": 1.399999976158142,
+        "opponentAttacks": 0,
+        "opponentBody": false,
+        "playerX": 0,
+        "playerZ": -0.699999988079071,
+        "opponentX": 0,
+        "opponentZ": 0.699999988079071,
+        "moveX": 0,
+        "moveY": 0,
+        "povArms": 2,
+        "trainingBlurWidth": 0,
+        "trainingBlurHeight": 0,
+        "trainingGlass": false,
+        "leftElbowViewport": {
+          "x": 0.11064600944519043,
+          "y": 0.13743028044700623,
+          "z": 0.3410418629646301
+        },
+        "rightElbowViewport": {
+          "x": 0.9259961843490601,
+          "y": 0.09090462327003479,
+          "z": 0.32857629656791687
+        },
+        "punchFeel": "Fast",
+        "lastImpactRegion": "",
+        "coachModule": "Head",
+        "coachCompletionMask": 0,
+        "trainingFromCoach": false,
+        "coachArtLoaded": true,
+        "coachInfoContentHeight": 0,
+        "coachReviewContentHeight": 0,
+        "lastMatchReview": {
+          "schema": 0,
+          "id": "",
+          "sourceVersion": "",
+          "opponent": "RAMIREZ",
+          "result": "",
+          "reason": "",
+          "seconds": 0,
+          "playerHP": 0,
+          "opponentHP": 0,
+          "playerStamina": 0,
+          "playerCapacity": 0,
+          "accepted": 0,
+          "hits": 0,
+          "blocked": 0,
+          "misses": 0,
+          "received": 0,
+          "defended": 0,
+          "opponentMisses": 0
+        },
+        "hasMatchReview": false,
+        "coachSuggestions": [],
+        "acceptedPunches": 0,
+        "rejectedGestures": 0,
+        "rejectedBusyPunches": 0,
+        "contactAgeMs": -1,
+        "recoveryAgeMs": 0,
+        "releaseToAcceptMs": -1,
+        "gestureDurationMs": 0,
+        "impactHits": 0,
+        "impactBlocks": 0,
+        "impactMisses": 0,
+        "swings": 0,
+        "contactPoint": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      "media": {
+        "phase": "Idle",
+        "token": 1,
+        "sound": true,
+        "events": [
+          {
+            "name": "stop",
+            "token": 0,
+            "at": 6586.099999997765,
+            "videoTime": 0
+          },
+          {
+            "name": "intro-request",
+            "token": 1,
+            "at": 6586.199999999255,
+            "videoTime": 0
+          },
+          {
+            "name": "intro-playing",
+            "token": 1,
+            "at": 6784.599999997765,
+            "videoTime": 0.023832
+          },
+          {
+            "name": "stop",
+            "token": 1,
+            "at": 9077.300000000745,
+            "videoTime": 2.318548
+          },
+          {
+            "name": "stop",
+            "token": 1,
+            "at": 9077.89999999851,
+            "videoTime": 2.318548
+          }
+        ],
+        "error": null,
+        "audioState": "running",
+        "masterGain": 1,
+        "crowdActive": false,
+        "buffers": {
+          "intro": 5.166666666666667,
+          "bell": 0.8857291666666667,
+          "crowd": 4.6
+        }
+      },
+      "video": {
+        "time": 2.318548,
+        "width": 480,
+        "muted": true
+      }
+    },
+    "preview-again": {
+      "native": {
+        "scope": "SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",
+        "screen": "Preview",
+        "result": "PENDING",
+        "reason": "NONE",
+        "trainingStage": "",
+        "trainingGuide": "",
+        "trainingReady": false,
+        "tutorialSeen": false,
+        "seconds": 0,
+        "playerHP": 100,
+        "opponentHP": 100,
+        "playerStamina": 100,
+        "opponentStamina": 100,
+        "playerCapacity": 100,
+        "opponentCapacity": 100,
+        "playerEnabled": false,
+        "opponentEnabled": false,
+        "gameplayInput": false,
+        "players": 1,
+        "opponents": 1,
+        "playerHits": 0,
+        "opponentHits": 0,
+        "playerBlocks": 0,
+        "opponentBlocks": 0,
+        "playerMisses": 0,
+        "opponentMisses": 0,
+        "playerPhase": "Guard",
+        "opponentPhase": "Guard",
+        "opponentIntent": "None",
+        "playerIntent": "None",
+        "playerReason": "PENDING",
+        "combatLog": "NONE",
+        "playerQuality": 1,
+        "opponentQuality": 1,
+        "distance": 1.399999976158142,
+        "opponentAttacks": 0,
+        "opponentBody": false,
+        "playerX": 0,
+        "playerZ": -0.699999988079071,
+        "opponentX": 0,
+        "opponentZ": 0.699999988079071,
+        "moveX": 0,
+        "moveY": 0,
+        "povArms": 2,
+        "trainingBlurWidth": 0,
+        "trainingBlurHeight": 0,
+        "trainingGlass": false,
+        "leftElbowViewport": {
+          "x": 0.11064600944519043,
+          "y": 0.13743028044700623,
+          "z": 0.3410418629646301
+        },
+        "rightElbowViewport": {
+          "x": 0.9259961843490601,
+          "y": 0.09090462327003479,
+          "z": 0.32857629656791687
+        },
+        "punchFeel": "Fast",
+        "lastImpactRegion": "",
+        "coachModule": "Head",
+        "coachCompletionMask": 0,
+        "trainingFromCoach": false,
+        "coachArtLoaded": true,
+        "coachInfoContentHeight": 0,
+        "coachReviewContentHeight": 0,
+        "lastMatchReview": {
+          "schema": 0,
+          "id": "",
+          "sourceVersion": "",
+          "opponent": "RAMIREZ",
+          "result": "",
+          "reason": "",
+          "seconds": 0,
+          "playerHP": 0,
+          "opponentHP": 0,
+          "playerStamina": 0,
+          "playerCapacity": 0,
+          "accepted": 0,
+          "hits": 0,
+          "blocked": 0,
+          "misses": 0,
+          "received": 0,
+          "defended": 0,
+          "opponentMisses": 0
+        },
+        "hasMatchReview": false,
+        "coachSuggestions": [],
+        "acceptedPunches": 0,
+        "rejectedGestures": 0,
+        "rejectedBusyPunches": 0,
+        "contactAgeMs": -1,
+        "recoveryAgeMs": 0,
+        "releaseToAcceptMs": -1,
+        "gestureDurationMs": 0,
+        "impactHits": 0,
+        "impactBlocks": 0,
+        "impactMisses": 0,
+        "swings": 0,
+        "contactPoint": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      "media": {
+        "phase": "Idle",
+        "token": 1,
+        "sound": true,
+        "events": [
+          {
+            "name": "stop",
+            "token": 0,
+            "at": 6586.099999997765,
+            "videoTime": 0
+          },
+          {
+            "name": "intro-request",
+            "token": 1,
+            "at": 6586.199999999255,
+            "videoTime": 0
+          },
+          {
+            "name": "intro-playing",
+            "token": 1,
+            "at": 6784.599999997765,
+            "videoTime": 0.023832
+          },
+          {
+            "name": "stop",
+            "token": 1,
+            "at": 9077.300000000745,
+            "videoTime": 2.318548
+          },
+          {
+            "name": "stop",
+            "token": 1,
+            "at": 9077.89999999851,
+            "videoTime": 2.318548
+          }
+        ],
+        "error": null,
+        "audioState": "running",
+        "masterGain": 1,
+        "crowdActive": false,
+        "buffers": {
+          "intro": 5.166666666666667,
+          "bell": 0.8857291666666667,
+          "crowd": 4.6
+        }
+      },
+      "video": {
+        "time": 2.318548,
+        "width": 480,
+        "muted": true
+      }
+    },
+    "intro-again": {
+      "native": {
+        "scope": "SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",
+        "screen": "Intro",
+        "result": "PENDING",
+        "reason": "NONE",
+        "trainingStage": "",
+        "trainingGuide": "",
+        "trainingReady": false,
+        "tutorialSeen": false,
+        "seconds": 0,
+        "playerHP": 100,
+        "opponentHP": 100,
+        "playerStamina": 100,
+        "opponentStamina": 100,
+        "playerCapacity": 100,
+        "opponentCapacity": 100,
+        "playerEnabled": false,
+        "opponentEnabled": false,
+        "gameplayInput": false,
+        "players": 1,
+        "opponents": 1,
+        "playerHits": 0,
+        "opponentHits": 0,
+        "playerBlocks": 0,
+        "opponentBlocks": 0,
+        "playerMisses": 0,
+        "opponentMisses": 0,
+        "playerPhase": "Guard",
+        "opponentPhase": "Guard",
+        "opponentIntent": "None",
+        "playerIntent": "None",
+        "playerReason": "PENDING",
+        "combatLog": "NONE",
+        "playerQuality": 1,
+        "opponentQuality": 1,
+        "distance": 1.399999976158142,
+        "opponentAttacks": 0,
+        "opponentBody": false,
+        "playerX": 0,
+        "playerZ": -0.699999988079071,
+        "opponentX": 0,
+        "opponentZ": 0.699999988079071,
+        "moveX": 0,
+        "moveY": 0,
+        "povArms": 2,
+        "trainingBlurWidth": 0,
+        "trainingBlurHeight": 0,
+        "trainingGlass": false,
+        "leftElbowViewport": {
+          "x": 0.11064600944519043,
+          "y": 0.13743028044700623,
+          "z": 0.3410418629646301
+        },
+        "rightElbowViewport": {
+          "x": 0.9259961843490601,
+          "y": 0.09090462327003479,
+          "z": 0.32857629656791687
+        },
+        "punchFeel": "Fast",
+        "lastImpactRegion": "",
+        "coachModule": "Head",
+        "coachCompletionMask": 0,
+        "trainingFromCoach": false,
+        "coachArtLoaded": true,
+        "coachInfoContentHeight": 0,
+        "coachReviewContentHeight": 0,
+        "lastMatchReview": {
+          "schema": 0,
+          "id": "",
+          "sourceVersion": "",
+          "opponent": "RAMIREZ",
+          "result": "",
+          "reason": "",
+          "seconds": 0,
+          "playerHP": 0,
+          "opponentHP": 0,
+          "playerStamina": 0,
+          "playerCapacity": 0,
+          "accepted": 0,
+          "hits": 0,
+          "blocked": 0,
+          "misses": 0,
+          "received": 0,
+          "defended": 0,
+          "opponentMisses": 0
+        },
+        "hasMatchReview": false,
+        "coachSuggestions": [],
+        "acceptedPunches": 0,
+        "rejectedGestures": 0,
+        "rejectedBusyPunches": 0,
+        "contactAgeMs": -1,
+        "recoveryAgeMs": 0,
+        "releaseToAcceptMs": -1,
+        "gestureDurationMs": 0,
+        "impactHits": 0,
+        "impactBlocks": 0,
+        "impactMisses": 0,
+        "swings": 0,
+        "contactPoint": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      "media": {
+        "phase": "Intro",
+        "token": 3,
+        "sound": true,
+        "events": [
+          {
+            "name": "stop",
+            "token": 0,
+            "at": 6586.099999997765,
+            "videoTime": 0
+          },
+          {
+            "name": "intro-request",
+            "token": 1,
+            "at": 6586.199999999255,
+            "videoTime": 0
+          },
+          {
+            "name": "intro-playing",
+            "token": 1,
+            "at": 6784.599999997765,
+            "videoTime": 0.023832
+          },
+          {
+            "name": "stop",
+            "token": 1,
+            "at": 9077.300000000745,
+            "videoTime": 2.318548
+          },
+          {
+            "name": "stop",
+            "token": 1,
+            "at": 9077.89999999851,
+            "videoTime": 2.318548
+          },
+          {
+            "name": "stop",
+            "token": 1,
+            "at": 15428.699999999255,
+            "videoTime": 2.318548
+          },
+          {
+            "name": "intro-request",
+            "token": 3,
+            "at": 15429,
+            "videoTime": 0
+          },
+          {
+            "name": "intro-playing",
+            "token": 3,
+            "at": 15543.099999997765,
+            "videoTime": 0.101505
+          }
+        ],
+        "error": null,
+        "audioState": "running",
+        "masterGain": 1,
+        "crowdActive": false,
+        "buffers": {
+          "intro": 5.166666666666667,
+          "bell": 0.8857291666666667,
+          "crowd": 4.6
+        }
+      },
+      "video": {
+        "time": 0.102286,
+        "width": 480,
+        "muted": true
+      }
+    },
+    "intro-middle": {
+      "native": {
+        "scope": "SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",
+        "screen": "Intro",
+        "result": "PENDING",
+        "reason": "NONE",
+        "trainingStage": "",
+        "trainingGuide": "",
+        "trainingReady": false,
+        "tutorialSeen": false,
+        "seconds": 0,
+        "playerHP": 100,
+        "opponentHP": 100,
+        "playerStamina": 100,
+        "opponentStamina": 100,
+        "playerCapacity": 100,
+        "opponentCapacity": 100,
+        "playerEnabled": false,
+        "opponentEnabled": false,
+        "gameplayInput": false,
+        "players": 1,
+        "opponents": 1,
+        "playerHits": 0,
+        "opponentHits": 0,
+        "playerBlocks": 0,
+        "opponentBlocks": 0,
+        "playerMisses": 0,
+        "opponentMisses": 0,
+        "playerPhase": "Guard",
+        "opponentPhase": "Guard",
+        "opponentIntent": "None",
+        "playerIntent": "None",
+        "playerReason": "PENDING",
+        "combatLog": "NONE",
+        "playerQuality": 1,
+        "opponentQuality": 1,
+        "distance": 1.399999976158142,
+        "opponentAttacks": 0,
+        "opponentBody": false,
+        "playerX": 0,
+        "playerZ": -0.699999988079071,
+        "opponentX": 0,
+        "opponentZ": 0.699999988079071,
+        "moveX": 0,
+        "moveY": 0,
+        "povArms": 2,
+        "trainingBlurWidth": 0,
+        "trainingBlurHeight": 0,
+        "trainingGlass": false,
+        "leftElbowViewport": {
+          "x": 0.11064600944519043,
+          "y": 0.13743028044700623,
+          "z": 0.3410418629646301
+        },
+        "rightElbowViewport": {
+          "x": 0.9259961843490601,
+          "y": 0.09090462327003479,
+          "z": 0.32857629656791687
+        },
+        "punchFeel": "Fast",
+        "lastImpactRegion": "",
+        "coachModule": "Head",
+        "coachCompletionMask": 0,
+        "trainingFromCoach": false,
+        "coachArtLoaded": true,
+        "coachInfoContentHeight": 0,
+        "coachReviewContentHeight": 0,
+        "lastMatchReview": {
+          "schema": 0,
+          "id": "",
+          "sourceVersion": "",
+          "opponent": "RAMIREZ",
+          "result": "",
+          "reason": "",
+          "seconds": 0,
+          "playerHP": 0,
+          "opponentHP": 0,
+          "playerStamina": 0,
+          "playerCapacity": 0,
+          "accepted": 0,
+          "hits": 0,
+          "blocked": 0,
+          "misses": 0,
+          "received": 0,
+          "defended": 0,
+          "opponentMisses": 0
+        },
+        "hasMatchReview": false,
+        "coachSuggestions": [],
+        "acceptedPunches": 0,
+        "rejectedGestures": 0,
+        "rejectedBusyPunches": 0,
+        "contactAgeMs": -1,
+        "recoveryAgeMs": 0,
+        "releaseToAcceptMs": -1,
+        "gestureDurationMs": 0,
+        "impactHits": 0,
+        "impactBlocks": 0,
+        "impactMisses": 0,
+        "swings": 0,
+        "contactPoint": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      "media": {
+        "phase": "Intro",
+        "token": 3,
+        "sound": true,
+        "events": [
+          {
+            "name": "stop",
+            "token": 0,
+            "at": 6586.099999997765,
+            "videoTime": 0
+          },
+          {
+            "name": "intro-request",
+            "token": 1,
+            "at": 6586.199999999255,
+            "videoTime": 0
+          },
+          {
+            "name": "intro-playing",
+            "token": 1,
+            "at": 6784.599999997765,
+            "videoTime": 0.023832
+          },
+          {
+            "name": "stop",
+            "token": 1,
+            "at": 9077.300000000745,
+            "videoTime": 2.318548
+          },
+          {
+            "name": "stop",
+            "token": 1,
+            "at": 9077.89999999851,
+            "videoTime": 2.318548
+          },
+          {
+            "name": "stop",
+            "token": 1,
+            "at": 15428.699999999255,
+            "videoTime": 2.318548
+          },
+          {
+            "name": "intro-request",
+            "token": 3,
+            "at": 15429,
+            "videoTime": 0
+          },
+          {
+            "name": "intro-playing",
+            "token": 3,
+            "at": 15543.099999997765,
+            "videoTime": 0.101505
+          }
+        ],
+        "error": null,
+        "audioState": "running",
+        "masterGain": 1,
+        "crowdActive": false,
+        "buffers": {
+          "intro": 5.166666666666667,
+          "bell": 0.8857291666666667,
+          "crowd": 4.6
+        }
+      },
+      "video": {
+        "time": 2.338829,
+        "width": 480,
+        "muted": true
+      }
+    },
+    "fight": {
+      "native": {
+        "scope": "SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",
+        "screen": "Fight",
+        "result": "IN_PROGRESS",
+        "reason": "NONE",
+        "trainingStage": "",
+        "trainingGuide": "",
+        "trainingReady": false,
+        "tutorialSeen": false,
+        "seconds": 0.03300000028684735,
+        "playerHP": 100,
+        "opponentHP": 100,
+        "playerStamina": 100,
+        "opponentStamina": 100,
+        "playerCapacity": 100,
+        "opponentCapacity": 100,
+        "playerEnabled": true,
+        "opponentEnabled": true,
+        "gameplayInput": true,
+        "players": 1,
+        "opponents": 1,
+        "playerHits": 0,
+        "opponentHits": 0,
+        "playerBlocks": 0,
+        "opponentBlocks": 0,
+        "playerMisses": 0,
+        "opponentMisses": 0,
+        "playerPhase": "Guard",
+        "opponentPhase": "Guard",
+        "opponentIntent": "None",
+        "playerIntent": "None",
+        "playerReason": "PENDING",
+        "combatLog": "NONE",
+        "playerQuality": 1,
+        "opponentQuality": 1,
+        "distance": 1.3881217241287231,
+        "opponentAttacks": 0,
+        "opponentBody": false,
+        "playerX": 0,
+        "playerZ": -0.699999988079071,
+        "opponentX": 0.003069162368774414,
+        "opponentZ": 0.6881183981895447,
+        "moveX": 0,
+        "moveY": 0,
+        "povArms": 2,
+        "trainingBlurWidth": 0,
+        "trainingBlurHeight": 0,
+        "trainingGlass": false,
+        "leftElbowViewport": {
+          "x": 0.11064592003822327,
+          "y": 0.13743019104003906,
+          "z": 0.34104180335998535
+        },
+        "rightElbowViewport": {
+          "x": 0.9259963035583496,
+          "y": 0.09090454131364822,
+          "z": 0.32857629656791687
+        },
+        "punchFeel": "Fast",
+        "lastImpactRegion": "",
+        "coachModule": "Head",
+        "coachCompletionMask": 0,
+        "trainingFromCoach": false,
+        "coachArtLoaded": true,
+        "coachInfoContentHeight": 0,
+        "coachReviewContentHeight": 0,
+        "lastMatchReview": {
+          "schema": 0,
+          "id": "",
+          "sourceVersion": "",
+          "opponent": "RAMIREZ",
+          "result": "",
+          "reason": "",
+          "seconds": 0,
+          "playerHP": 0,
+          "opponentHP": 0,
+          "playerStamina": 0,
+          "playerCapacity": 0,
+          "accepted": 0,
+          "hits": 0,
+          "blocked": 0,
+          "misses": 0,
+          "received": 0,
+          "defended": 0,
+          "opponentMisses": 0
+        },
+        "hasMatchReview": false,
+        "coachSuggestions": [],
+        "acceptedPunches": 0,
+        "rejectedGestures": 0,
+        "rejectedBusyPunches": 0,
+        "contactAgeMs": -1,
+        "recoveryAgeMs": 0,
+        "releaseToAcceptMs": -1,
+        "gestureDurationMs": 0,
+        "impactHits": 0,
+        "impactBlocks": 0,
+        "impactMisses": 0,
+        "swings": 0,
+        "contactPoint": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      "media": {
+        "phase": "Fight",
+        "token": 3,
+        "sound": true,
+        "events": [
+          {
+            "name": "stop",
+            "token": 0,
+            "at": 6586.099999997765,
+            "videoTime": 0
+          },
+          {
+            "name": "intro-request",
+            "token": 1,
+            "at": 6586.199999999255,
+            "videoTime": 0
+          },
+          {
+            "name": "intro-playing",
+            "token": 1,
+            "at": 6784.599999997765,
+            "videoTime": 0.023832
+          },
+          {
+            "name": "stop",
+            "token": 1,
+            "at": 9077.300000000745,
+            "videoTime": 2.318548
+          },
+          {
+            "name": "stop",
+            "token": 1,
+            "at": 9077.89999999851,
+            "videoTime": 2.318548
+          },
+          {
+            "name": "stop",
+            "token": 1,
+            "at": 15428.699999999255,
+            "videoTime": 2.318548
+          },
+          {
+            "name": "intro-request",
+            "token": 3,
+            "at": 15429,
+            "videoTime": 0
+          },
+          {
+            "name": "intro-playing",
+            "token": 3,
+            "at": 15543.099999997765,
+            "videoTime": 0.101505
+          },
+          {
+            "name": "intro-ended",
+            "token": 3,
+            "at": 20613.39999999851,
+            "videoTime": 5.166667
+          },
+          {
+            "name": "start-bell",
+            "token": 3,
+            "at": 20613.599999997765,
+            "videoTime": 5.166667
+          },
+          {
+            "name": "crowd-start",
+            "token": 3,
+            "at": 20613.800000000745,
+            "videoTime": 5.166667
+          }
+        ],
+        "error": null,
+        "audioState": "running",
+        "masterGain": 1,
+        "crowdActive": true,
+        "buffers": {
+          "intro": 5.166666666666667,
+          "bell": 0.8857291666666667,
+          "crowd": 4.6
+        }
+      },
+      "video": {
+        "time": 5.166667,
+        "width": 480,
+        "muted": true
+      }
+    },
+    "result": {
+      "native": {
+        "scope": "SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",
+        "screen": "Result",
+        "result": "OPPONENT_WIN",
+        "reason": "POINTS",
+        "trainingStage": "",
+        "trainingGuide": "",
+        "trainingReady": false,
+        "tutorialSeen": false,
+        "seconds": 45,
+        "playerHP": 28,
+        "opponentHP": 100,
+        "playerStamina": 100,
+        "opponentStamina": 96.93328365934825,
+        "playerCapacity": 100,
+        "opponentCapacity": 84.81000022217631,
+        "playerEnabled": false,
+        "opponentEnabled": false,
+        "gameplayInput": false,
+        "players": 1,
+        "opponents": 1,
+        "playerHits": 0,
+        "opponentHits": 8,
+        "playerBlocks": 15,
+        "opponentBlocks": 0,
+        "playerMisses": 0,
+        "opponentMisses": 1,
+        "playerPhase": "Guard",
+        "opponentPhase": "Guard",
+        "opponentIntent": "None",
+        "playerIntent": "None",
+        "playerReason": "PENDING",
+        "combatLog": "RESOLUTION ACTOR=OPPONENT OUTCOME=BLOCK REASON=PLAYER_GUARD_SWEPT_CONTACT COUNTER=0\nVITALS ACTION=ACCEPT ACTOR=OPPONENT RECEIPT=24 HP=100.0000 STAMINA=96.8000 CAPACITY=84.0000 PLAYER_HP=28.0000 OPPONENT_HP=100.0000\nVITALS ACTION=BLOCK ACTOR=OPPONENT RECEIPT=24 HP=100.0000 STAMINA=96.7983 CAPACITY=84.0000 PLAYER_HP=28.0000 OPPONENT_HP=100.0000\nRESOLUTION ACTOR=OPPONENT OUTCOME=BLOCK REASON=PLAYER_GUARD_SWEPT_CONTACT COUNTER=0",
+        "playerQuality": 1,
+        "opponentQuality": 0.9379558815822705,
+        "distance": 0.8491860032081604,
+        "opponentAttacks": 24,
+        "opponentBody": false,
+        "playerX": 0,
+        "playerZ": -0.699999988079071,
+        "opponentX": -0.12620703876018524,
+        "opponentZ": 0.13975514471530914,
+        "moveX": 0,
+        "moveY": 0,
+        "povArms": 2,
+        "trainingBlurWidth": 0,
+        "trainingBlurHeight": 0,
+        "trainingGlass": false,
+        "leftElbowViewport": {
+          "x": 0.11064600944519043,
+          "y": 0.13743019104003906,
+          "z": 0.3410418629646301
+        },
+        "rightElbowViewport": {
+          "x": 0.9259963631629944,
+          "y": 0.09090454131364822,
+          "z": 0.3285762667655945
+        },
+        "punchFeel": "Fast",
+        "lastImpactRegion": "GUARD",
+        "coachModule": "Head",
+        "coachCompletionMask": 0,
+        "trainingFromCoach": false,
+        "coachArtLoaded": true,
+        "coachInfoContentHeight": 0,
+        "coachReviewContentHeight": 0,
+        "lastMatchReview": {
+          "schema": 1,
+          "id": "4bee3a3c147941b9881047f461a1f901",
+          "sourceVersion": "w1-68be2c6e2dd3309754516a5eff89036460c11e47",
+          "opponent": "RAMIREZ",
+          "result": "OPPONENT_WIN",
+          "reason": "POINTS",
+          "seconds": 45,
+          "playerHP": 28,
+          "opponentHP": 100,
+          "playerStamina": 100,
+          "playerCapacity": 100,
+          "accepted": 0,
+          "hits": 0,
+          "blocked": 0,
+          "misses": 0,
+          "received": 8,
+          "defended": 15,
+          "opponentMisses": 1
+        },
+        "hasMatchReview": true,
+        "coachSuggestions": [
+          "Head",
+          "Punches",
+          "Conditioning"
+        ],
+        "acceptedPunches": 0,
+        "rejectedGestures": 0,
+        "rejectedBusyPunches": 0,
+        "contactAgeMs": -1,
+        "recoveryAgeMs": 0,
+        "releaseToAcceptMs": -1,
+        "gestureDurationMs": 0,
+        "impactHits": 8,
+        "impactBlocks": 15,
+        "impactMisses": 1,
+        "swings": 0,
+        "contactPoint": {
+          "x": -0.25290635228157043,
+          "y": 1.4523683786392212,
+          "z": -0.22899219393730164
+        }
+      },
+      "media": {
+        "phase": "Result",
+        "token": 3,
+        "sound": true,
+        "events": [
+          {
+            "name": "stop",
+            "token": 0,
+            "at": 6586.099999997765,
+            "videoTime": 0
+          },
+          {
+            "name": "intro-request",
+            "token": 1,
+            "at": 6586.199999999255,
+            "videoTime": 0
+          },
+          {
+            "name": "intro-playing",
+            "token": 1,
+            "at": 6784.599999997765,
+            "videoTime": 0.023832
+          },
+          {
+            "name": "stop",
+            "token": 1,
+            "at": 9077.300000000745,
+            "videoTime": 2.318548
+          },
+          {
+            "name": "stop",
+            "token": 1,
+            "at": 9077.89999999851,
+            "videoTime": 2.318548
+          },
+          {
+            "name": "stop",
+            "token": 1,
+            "at": 15428.699999999255,
+            "videoTime": 2.318548
+          },
+          {
+            "name": "intro-request",
+            "token": 3,
+            "at": 15429,
+            "videoTime": 0
+          },
+          {
+            "name": "intro-playing",
+            "token": 3,
+            "at": 15543.099999997765,
+            "videoTime": 0.101505
+          },
+          {
+            "name": "intro-ended",
+            "token": 3,
+            "at": 20613.39999999851,
+            "videoTime": 5.166667
+          },
+          {
+            "name": "start-bell",
+            "token": 3,
+            "at": 20613.599999997765,
+            "videoTime": 5.166667
+          },
+          {
+            "name": "crowd-start",
+            "token": 3,
+            "at": 20613.800000000745,
+            "videoTime": 5.166667
+          },
+          {
+            "name": "sound-off",
+            "token": 3,
+            "at": 20676.39999999851,
+            "videoTime": 5.166667
+          },
+          {
+            "name": "sound-on",
+            "token": 3,
+            "at": 20973.599999997765,
+            "videoTime": 5.166667
+          },
+          {
+            "name": "crowd-stop",
+            "token": 3,
+            "at": 65628,
+            "videoTime": 5.166667
+          },
+          {
+            "name": "end-bell",
+            "token": 3,
+            "at": 65628.19999999925,
+            "videoTime": 5.166667
+          }
+        ],
+        "error": null,
+        "audioState": "running",
+        "masterGain": 1,
+        "crowdActive": false,
+        "buffers": {
+          "intro": 5.166666666666667,
+          "bell": 0.8857291666666667,
+          "crowd": 4.6
+        }
+      },
+      "video": {
+        "time": 5.166667,
+        "width": 480,
+        "muted": true
+      }
+    },
+    "rematch-intro": {
+      "native": {
+        "scope": "SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",
+        "screen": "Intro",
+        "result": "PENDING",
+        "reason": "NONE",
+        "trainingStage": "",
+        "trainingGuide": "",
+        "trainingReady": false,
+        "tutorialSeen": false,
+        "seconds": 0,
+        "playerHP": 100,
+        "opponentHP": 100,
+        "playerStamina": 100,
+        "opponentStamina": 100,
+        "playerCapacity": 100,
+        "opponentCapacity": 100,
+        "playerEnabled": false,
+        "opponentEnabled": false,
+        "gameplayInput": false,
+        "players": 1,
+        "opponents": 1,
+        "playerHits": 0,
+        "opponentHits": 0,
+        "playerBlocks": 0,
+        "opponentBlocks": 0,
+        "playerMisses": 0,
+        "opponentMisses": 0,
+        "playerPhase": "Guard",
+        "opponentPhase": "Guard",
+        "opponentIntent": "None",
+        "playerIntent": "None",
+        "playerReason": "PENDING",
+        "combatLog": "NONE",
+        "playerQuality": 1,
+        "opponentQuality": 1,
+        "distance": 1.399999976158142,
+        "opponentAttacks": 0,
+        "opponentBody": false,
+        "playerX": 0,
+        "playerZ": -0.699999988079071,
+        "opponentX": 0,
+        "opponentZ": 0.699999988079071,
+        "moveX": 0,
+        "moveY": 0,
+        "povArms": 2,
+        "trainingBlurWidth": 0,
+        "trainingBlurHeight": 0,
+        "trainingGlass": false,
+        "leftElbowViewport": {
+          "x": 0.11064600944519043,
+          "y": 0.13743028044700623,
+          "z": 0.3410418629646301
+        },
+        "rightElbowViewport": {
+          "x": 0.9259961843490601,
+          "y": 0.09090462327003479,
+          "z": 0.32857629656791687
+        },
+        "punchFeel": "Fast",
+        "lastImpactRegion": "",
+        "coachModule": "Head",
+        "coachCompletionMask": 0,
+        "trainingFromCoach": false,
+        "coachArtLoaded": true,
+        "coachInfoContentHeight": 0,
+        "coachReviewContentHeight": 0,
+        "lastMatchReview": {
+          "schema": 1,
+          "id": "4bee3a3c147941b9881047f461a1f901",
+          "sourceVersion": "w1-68be2c6e2dd3309754516a5eff89036460c11e47",
+          "opponent": "RAMIREZ",
+          "result": "OPPONENT_WIN",
+          "reason": "POINTS",
+          "seconds": 45,
+          "playerHP": 28,
+          "opponentHP": 100,
+          "playerStamina": 100,
+          "playerCapacity": 100,
+          "accepted": 0,
+          "hits": 0,
+          "blocked": 0,
+          "misses": 0,
+          "received": 8,
+          "defended": 15,
+          "opponentMisses": 1
+        },
+        "hasMatchReview": true,
+        "coachSuggestions": [
+          "Head",
+          "Punches",
+          "Conditioning"
+        ],
+        "acceptedPunches": 0,
+        "rejectedGestures": 0,
+        "rejectedBusyPunches": 0,
+        "contactAgeMs": -1,
+        "recoveryAgeMs": 0,
+        "releaseToAcceptMs": -1,
+        "gestureDurationMs": 0,
+        "impactHits": 0,
+        "impactBlocks": 0,
+        "impactMisses": 0,
+        "swings": 0,
+        "contactPoint": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      "media": {
+        "phase": "Intro",
+        "token": 4,
+        "sound": true,
+        "events": [
+          {
+            "name": "stop",
+            "token": 0,
+            "at": 6586.099999997765,
+            "videoTime": 0
+          },
+          {
+            "name": "intro-request",
+            "token": 1,
+            "at": 6586.199999999255,
+            "videoTime": 0
+          },
+          {
+            "name": "intro-playing",
+            "token": 1,
+            "at": 6784.599999997765,
+            "videoTime": 0.023832
+          },
+          {
+            "name": "stop",
+            "token": 1,
+            "at": 9077.300000000745,
+            "videoTime": 2.318548
+          },
+          {
+            "name": "stop",
+            "token": 1,
+            "at": 9077.89999999851,
+            "videoTime": 2.318548
+          },
+          {
+            "name": "stop",
+            "token": 1,
+            "at": 15428.699999999255,
+            "videoTime": 2.318548
+          },
+          {
+            "name": "intro-request",
+            "token": 3,
+            "at": 15429,
+            "videoTime": 0
+          },
+          {
+            "name": "intro-playing",
+            "token": 3,
+            "at": 15543.099999997765,
+            "videoTime": 0.101505
+          },
+          {
+            "name": "intro-ended",
+            "token": 3,
+            "at": 20613.39999999851,
+            "videoTime": 5.166667
+          },
+          {
+            "name": "start-bell",
+            "token": 3,
+            "at": 20613.599999997765,
+            "videoTime": 5.166667
+          },
+          {
+            "name": "crowd-start",
+            "token": 3,
+            "at": 20613.800000000745,
+            "videoTime": 5.166667
+          },
+          {
+            "name": "sound-off",
+            "token": 3,
+            "at": 20676.39999999851,
+            "videoTime": 5.166667
+          },
+          {
+            "name": "sound-on",
+            "token": 3,
+            "at": 20973.599999997765,
+            "videoTime": 5.166667
+          },
+          {
+            "name": "crowd-stop",
+            "token": 3,
+            "at": 65628,
+            "videoTime": 5.166667
+          },
+          {
+            "name": "end-bell",
+            "token": 3,
+            "at": 65628.19999999925,
+            "videoTime": 5.166667
+          },
+          {
+            "name": "stop",
+            "token": 3,
+            "at": 67663.39999999851,
+            "videoTime": 5.166667
+          },
+          {
+            "name": "intro-request",
+            "token": 4,
+            "at": 67663.5,
+            "videoTime": 0
+          }
+        ],
+        "error": null,
+        "audioState": "running",
+        "masterGain": 1,
+        "crowdActive": false,
+        "buffers": {
+          "intro": 5.166666666666667,
+          "bell": 0.8857291666666667,
+          "crowd": 4.6
+        }
+      },
+      "video": {
+        "time": 0.00706,
+        "width": 480,
+        "muted": true
+      }
+    },
+    "rematch-fight": {
+      "native": {
+        "scope": "SYNTHETIC_DESKTOP_READONLY_NOT_HUMAN_UAT",
+        "screen": "Fight",
+        "result": "IN_PROGRESS",
+        "reason": "NONE",
+        "trainingStage": "",
+        "trainingGuide": "",
+        "trainingReady": false,
+        "tutorialSeen": false,
+        "seconds": 0.057999998796731234,
+        "playerHP": 100,
+        "opponentHP": 100,
+        "playerStamina": 100,
+        "opponentStamina": 100,
+        "playerCapacity": 100,
+        "opponentCapacity": 100,
+        "playerEnabled": true,
+        "opponentEnabled": true,
+        "gameplayInput": true,
+        "players": 1,
+        "opponents": 1,
+        "playerHits": 0,
+        "opponentHits": 0,
+        "playerBlocks": 0,
+        "opponentBlocks": 0,
+        "playerMisses": 0,
+        "opponentMisses": 0,
+        "playerPhase": "Guard",
+        "opponentPhase": "Guard",
+        "opponentIntent": "None",
+        "playerIntent": "None",
+        "playerReason": "PENDING",
+        "combatLog": "NONE",
+        "playerQuality": 1,
+        "opponentQuality": 1,
+        "distance": 1.3791240453720093,
+        "opponentAttacks": 0,
+        "opponentBody": false,
+        "playerX": 0,
+        "playerZ": -0.699999988079071,
+        "opponentX": 0.004602175671607256,
+        "opponentZ": 0.6791163682937622,
+        "moveX": 0,
+        "moveY": 0,
+        "povArms": 2,
+        "trainingBlurWidth": 0,
+        "trainingBlurHeight": 0,
+        "trainingGlass": false,
+        "leftElbowViewport": {
+          "x": 0.11064594984054565,
+          "y": 0.13743028044700623,
+          "z": 0.3410418629646301
+        },
+        "rightElbowViewport": {
+          "x": 0.9259961843490601,
+          "y": 0.09090468287467957,
+          "z": 0.32857632637023926
+        },
+        "punchFeel": "Fast",
+        "lastImpactRegion": "",
+        "coachModule": "Head",
+        "coachCompletionMask": 0,
+        "trainingFromCoach": false,
+        "coachArtLoaded": true,
+        "coachInfoContentHeight": 0,
+        "coachReviewContentHeight": 0,
+        "lastMatchReview": {
+          "schema": 1,
+          "id": "4bee3a3c147941b9881047f461a1f901",
+          "sourceVersion": "w1-68be2c6e2dd3309754516a5eff89036460c11e47",
+          "opponent": "RAMIREZ",
+          "result": "OPPONENT_WIN",
+          "reason": "POINTS",
+          "seconds": 45,
+          "playerHP": 28,
+          "opponentHP": 100,
+          "playerStamina": 100,
+          "playerCapacity": 100,
+          "accepted": 0,
+          "hits": 0,
+          "blocked": 0,
+          "misses": 0,
+          "received": 8,
+          "defended": 15,
+          "opponentMisses": 1
+        },
+        "hasMatchReview": true,
+        "coachSuggestions": [
+          "Head",
+          "Punches",
+          "Conditioning"
+        ],
+        "acceptedPunches": 0,
+        "rejectedGestures": 0,
+        "rejectedBusyPunches": 0,
+        "contactAgeMs": -1,
+        "recoveryAgeMs": 0,
+        "releaseToAcceptMs": -1,
+        "gestureDurationMs": 0,
+        "impactHits": 0,
+        "impactBlocks": 0,
+        "impactMisses": 0,
+        "swings": 0,
+        "contactPoint": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        }
+      },
+      "media": {
+        "phase": "Fight",
+        "token": 4,
+        "sound": true,
+        "events": [
+          {
+            "name": "stop",
+            "token": 0,
+            "at": 6586.099999997765,
+            "videoTime": 0
+          },
+          {
+            "name": "intro-request",
+            "token": 1,
+            "at": 6586.199999999255,
+            "videoTime": 0
+          },
+          {
+            "name": "intro-playing",
+            "token": 1,
+            "at": 6784.599999997765,
+            "videoTime": 0.023832
+          },
+          {
+            "name": "stop",
+            "token": 1,
+            "at": 9077.300000000745,
+            "videoTime": 2.318548
+          },
+          {
+            "name": "stop",
+            "token": 1,
+            "at": 9077.89999999851,
+            "videoTime": 2.318548
+          },
+          {
+            "name": "stop",
+            "token": 1,
+            "at": 15428.699999999255,
+            "videoTime": 2.318548
+          },
+          {
+            "name": "intro-request",
+            "token": 3,
+            "at": 15429,
+            "videoTime": 0
+          },
+          {
+            "name": "intro-playing",
+            "token": 3,
+            "at": 15543.099999997765,
+            "videoTime": 0.101505
+          },
+          {
+            "name": "intro-ended",
+            "token": 3,
+            "at": 20613.39999999851,
+            "videoTime": 5.166667
+          },
+          {
+            "name": "start-bell",
+            "token": 3,
+            "at": 20613.599999997765,
+            "videoTime": 5.166667
+          },
+          {
+            "name": "crowd-start",
+            "token": 3,
+            "at": 20613.800000000745,
+            "videoTime": 5.166667
+          },
+          {
+            "name": "sound-off",
+            "token": 3,
+            "at": 20676.39999999851,
+            "videoTime": 5.166667
+          },
+          {
+            "name": "sound-on",
+            "token": 3,
+            "at": 20973.599999997765,
+            "videoTime": 5.166667
+          },
+          {
+            "name": "crowd-stop",
+            "token": 3,
+            "at": 65628,
+            "videoTime": 5.166667
+          },
+          {
+            "name": "end-bell",
+            "token": 3,
+            "at": 65628.19999999925,
+            "videoTime": 5.166667
+          },
+          {
+            "name": "stop",
+            "token": 3,
+            "at": 67663.39999999851,
+            "videoTime": 5.166667
+          },
+          {
+            "name": "intro-request",
+            "token": 4,
+            "at": 67663.5,
+            "videoTime": 0
+          },
+          {
+            "name": "intro-playing",
+            "token": 4,
+            "at": 67734,
+            "videoTime": 0.021726
+          },
+          {
+            "name": "intro-ended",
+            "token": 4,
+            "at": 74308.09999999776,
+            "videoTime": 5.166667
+          },
+          {
+            "name": "start-bell",
+            "token": 4,
+            "at": 74308.80000000075,
+            "videoTime": 5.166667
+          },
+          {
+            "name": "crowd-start",
+            "token": 4,
+            "at": 74308.89999999851,
+            "videoTime": 5.166667
+          }
+        ],
+        "error": null,
+        "audioState": "running",
+        "masterGain": 1,
+        "crowdActive": true,
+        "buffers": {
+          "intro": 5.166666666666667,
+          "bell": 0.8857291666666667,
+          "crowd": 4.6
+        }
+      },
+      "video": {
+        "time": 5.166667,
+        "width": 480,
+        "muted": true
+      }
+    }
+  },
+  "url": "http://127.0.0.1:8000/?desktop=1&metrics=1",
+  "productVersion": "w1-68be2c6e2dd3309754516a5eff89036460c11e47",
+  "status": "PASS"
+}

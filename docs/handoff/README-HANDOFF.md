@@ -2,7 +2,7 @@
 
 > Read this file first. Then read `11-current-state.md`, `14-agent-working-protocol.md`, and the approved visual authority under `reference-ui/`. Do not implement anything until you can restate the verified state, frozen invariants, unresolved question, acceptance gate, and UAT visual target.
 
-> 2026-10-10 product-screen continuation: use `34-product-screens-roadmap.md`, `35-coach-screen-implementation.md` and `backlog.md` on `feature/boxer-product-loop-wave1`. HP-KO-001 is owner-held; the older research/branch/artifact facts below are historical, not current release receipts. Phone remains primary and WebGL is temporary phone UAT delivery.
+> 2026-10-10 product-screen continuation: use `34-product-screens-roadmap.md`, `35-coach-screen-implementation.md`, `36-coach-last-match-analysis.md` and `backlog.md` on `feature/boxer-product-loop-wave1`. The latest Coach slice consolidates all control practice and adds last-completed-match analysis -> supplemental practice; see its release receipt for delivery status. HP-KO-001 is owner-held; the older research/branch/artifact facts below are historical, not current release receipts. Phone remains primary and WebGL is temporary phone UAT delivery.
 
 ## Project identity
 

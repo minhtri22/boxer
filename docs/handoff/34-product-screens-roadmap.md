@@ -5,7 +5,8 @@ Date: 2026-10-10. Owner authorizes continuing remaining screens and holds HP/KO 
 ## Current source of truth
 
 - Checkout `boxer-wave1`, branch `feature/boxer-product-loop-wave1`, starting HEAD `10123ff984a4aa24b19dbe4aeda7aff3d7d01c3d`.
-- Pre-screen public compiled source `3035003caa96a96f8a1d3c347b43eb56c55a4b44` provided Home / Preview / Intro / Fight / Result / Rematch and independent control training. Slice A now adds Coach; current public compiled source `f6ff54a0356454bedc2ba29425f9789eba1a87ec`, artifact commit `32d7d9df14bd2f6cacca4c6e24176c76bed20f86`, successful workflow `38025081874`. See `35-coach-screen-implementation.md` and `evidence/wave1/coach-ui/deployment.txt` for verification and device-UAT boundaries.
+- Pre-screen public compiled source `3035003caa96a96f8a1d3c347b43eb56c55a4b44` provided Home / Preview / Intro / Fight / Result / Rematch and independent control training. Initial Slice A delivery: compiled source `f6ff54a0356454bedc2ba29425f9789eba1a87ec`, artifact commit `32d7d9df14bd2f6cacca4c6e24176c76bed20f86`, successful workflow `38025081874`. Its receipts remain historical under `coach-ui`.
+- Owner-requested Slice A refinement: one TRAINING / COACH entrance, controls contained within it, actual last-completed-match analysis -> existing supplemental practice. See `36-coach-last-match-analysis.md` and `evidence/wave1/coach-analysis/deployment.txt` for latest release status; absent receipt means not publicly verified. No historical match backfill, training stat awards or combat retuning.
 - All six approved reference images are present. The older September research roadmap/state remain historical; this product-screen sequence does not rewrite those evidence claims or reopen combat research.
 - HP/KO ordinary-phone balance is unresolved and held. Technical KO wiring success is not a phone-balance pass.
 

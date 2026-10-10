@@ -1,0 +1,2009 @@
+[Licensing::Module] Trying to connect to existing licensing client channel...
+[Licensing::IpcConnector] Channel LicenseClient-minht doesn't exist
+Built from '6000.5/staging' branch; Version is '6000.5.8f1 (5cb7df797b7d) revision 6076383'; Using compiler version '194234433'; Build Type 'Release'
+OS: 'Windows 11  (10.0.26300) CoreSingleLanguage' Language: 'en' Physical Memory: 32345 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+Date: 2026-10-10T05:00:15Z
+[Licensing::Module] Successfully launched the LicensingClient (PId: 11960)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-minht" at "2026-10-10T05:00:15.7368545Z"
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.5.8f1\Editor\Unity.exe
+-batchmode
+-noUpm
+-projectPath
+D:\WORK\RESEARCH\POVGame\boxer-wave1\unity\BoxerP0
+-executeMethod
+BoxerP0.Editor.CoachAnalysisSelfTests.RunAll
+-logFile
+D:\WORK\RESEARCH\POVGame\boxer-wave1\evidence\wave1\coach-analysis\native-meta-fix.log
+-quit
+-force-d3d11
+Successfully changed project path to: D:\WORK\RESEARCH\POVGame\boxer-wave1\unity\BoxerP0
+D:/WORK/RESEARCH/POVGame/boxer-wave1/unity/BoxerP0
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-main-allocator-mimalloc-enabled=0"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+Logging is directed to a specific file, skipping project log.Player connection [21732]  Target information:
+
+Player connection [21732]  * "[IP] 172.25.96.1 [Port] 55504 [Flags] 2 [Guid] 33923108 [EditorId] 33923108 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-4PSD0G2) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [21732]  * "[IP] 192.168.1.18 [Port] 55504 [Flags] 2 [Guid] 33923108 [EditorId] 33923108 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-4PSD0G2) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [21732] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [21732] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 11960, path: "C:/Program Files/Unity/Hub/Editor/6000.5.8f1/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client.exe")
+[Licensing::Module] LicensingClient has failed validation; ignoring
+Library Redirect Path: Library/
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.18.1+9fbee8e
+  Session Id:              26c7640bdc074430a8868d24067200a1
+  Correlation Id:          668a2202196fcbbb274c42edd0dcc837
+  External correlation Id: 8948406081914402454
+  Machine Id:              gaoNjVOiA5/w7c0j7NjRnkSH0Fg=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-minht" (connect: 0.25s, validation: 0.32s, handshake: 0.12s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-minht-notifications" at "2026-10-10T05:00:16.1830487Z"
+[Licensing::Module] Connected to LicensingClient (PId: 11960, launch time: 0.01, total connection time: 0.69s)
+[Licensing::Module] Error: Access token is unavailable; failed to update
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: F4-84B2-AJYW-2F6S-HS3K-XXXX
+  Product: Unity Personal
+  Type: ULF
+  Expiration: 2026-11-16T05:59:20Z
+[Licensing::Module] License group:
+  Id: 18968483178885-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+[Licensing::Client] Successfully updated license, isAsync: True, time: 0.02
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: F4-84B2-AJYW-2F6S-HS3K-XXXX
+  Product: Unity Personal
+  Type: ULF
+  Expiration: 2026-11-16T05:59:20Z
+[Licensing::Module] License group:
+  Id: 18968483178885-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+[Licensing::Module] Licensing Background thread has ended after 0.77s
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Initialize engine version: 6000.5.8f1 (5cb7df797b7d)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.5.8f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path D:/WORK/RESEARCH/POVGame/boxer-wave1/unity/BoxerP0/Assets
+Forcing GfxDevice: Direct3D 11
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: Intel(R) Arc(TM) 140V GPU (16GB) (ID=0x64a0)
+    Vendor:   Intel
+    VRAM:     18436 MB
+    Driver:   32.0.101.8860
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.5.8f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.5.8f1/Editor/Data/BCLExtensions/runtime/netstandard2.1'
+Mono path[2] = 'C:/Program Files/Unity/Hub/Editor/6000.5.8f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.5.8f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56312
+CodeReloadManager initialized
+ImportWorker Server TCP listen port: 0
+AcceleratorClientConnectionCallback - disconnected - :0
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.5.8f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.5.8f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.002272 seconds.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Package Manager log level set to [2]
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:False
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.458 seconds
+Domain Reload Profiling: 943ms
+	BeginReloadAssembly (126ms)
+	RebuildCommonClasses (4ms)
+	RebuildNativeTypeToScriptingClass (14ms)
+	initialDomainReloadingComplete (61ms)
+	LoadAllAssembliesAndSetupDomain (279ms)
+		LoadAssemblies (121ms)
+		AnalyzeDomain (203ms)
+			TypeCache.Refresh (201ms)
+				TypeCache.ScanAssembly (189ms)
+	FinalizeReload (459ms)
+		SetupLoadedEditorAssemblies (0ms)
+			BeforeProcessingInitializeOnLoad (72ms)
+			ProcessInitializeOnLoadAttributes (94ms)
+			ProcessInitializeOnLoadMethodAttributes (222ms)
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: F4-84B2-AJYW-2F6S-HS3K-XXXX
+  Product: Unity Personal
+  Type: ULF
+  Expiration: 2026-11-16T06:00:17Z
+[Licensing::Module] License group:
+  Id: 18968483178885-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+Application.AssetDatabase Initial Refresh Start
+[ScriptCompilation] Requested script compilation because: AssetDatabase observed changes in script compilation related files
+Starting: C:\Program Files\Unity\Hub\Editor\6000.5.8f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/2000b0aE.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssemblies
+WorkingDir: D:/WORK/RESEARCH/POVGame/boxer-wave1/unity/BoxerP0
+DisplayProgressbar: Compiling Scripts
+Starting: C:\Program Files\Unity\Hub\Editor\6000.5.8f1\Editor\Data\netcorerun\netcorerun.exe "C:\Program Files\Unity\Hub\Editor\6000.5.8f1\Editor\Data\Tools\BuildPipeline\ScriptCompilationBuildProgram.exe" "Library/Bee/2000b0aE.dag.json" "Library/Bee/2000b0aE-inputdata.json" "Library\Bee\buildprogram0.traceevents"
+WorkingDir: D:/WORK/RESEARCH/POVGame/boxer-wave1/unity/BoxerP0
+ExitCode: 4 Duration: 0s805ms
+Rebuilding DAG because FileSignature timestamp changed: Library/Bee/2000b0aE-inputdata.json
+*** Tundra requires additional run (0.75 seconds), 1 items updated, 160 evaluated
+ExitCode: 0 Duration: 0s240ms
+Starting: C:\Program Files\Unity\Hub\Editor\6000.5.8f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/2000b0aE.dag" --continue-on-failure --dagfilejson="Library\Bee\2000b0aE.dag.json" --profile="Library/Bee/backend2.traceevents" ScriptAssemblies
+WorkingDir: D:/WORK/RESEARCH/POVGame/boxer-wave1/unity/BoxerP0
+Assets\Scripts\Blender3DVisualFollower.cs(88,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\Blender3DVisualFollower.cs(89,23): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\BoxerVisualShell.cs(56,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\BoxerVisualShell.cs(57,22): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\BoxerVisualShell.cs(58,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\BoxerVisualShell.cs(181,64): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Scripts\BoxerVisualShell.cs(181,34): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Scripts\BoxerBootstrap.cs(147,13): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\EVVisualShell.cs(55,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\EVVisualShell.cs(56,24): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\BoxerBootstrap.cs(443,17): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\P1PunchGuide.cs(22,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\P1PunchGuide.cs(45,17): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\P1VCombatPresentation.cs(74,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\P1VCombatPresentation.cs(75,22): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\P1VCombatPresentation.cs(76,23): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\P1VCombatPresentation.cs(77,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\P1VCombatPresentation.cs(78,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\P1VCombatPresentation.cs(79,38): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\ProductScreens.cs(18,69): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\ProductScreens.cs(23,30): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\Round2CombatRig.cs(66,24): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\EVVisualShell.cs(419,65): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Scripts\EVVisualShell.cs(419,37): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Scripts\OpponentLegEmbodiment.cs(19,40): warning CS0414: The field 'OpponentLegEmbodiment._thighLength' is assigned but its value is never used
+Assets\Scripts\ArmVisualEmbodiment.cs(85,40): warning CS0414: The field 'ArmVisualEmbodiment._upperArmLength' is assigned but its value is never used
+Assets\Scripts\OpponentLegEmbodiment.cs(20,40): warning CS0414: The field 'OpponentLegEmbodiment._shinLength' is assigned but its value is never used
+Assets\Scripts\OpponentLegEmbodiment.cs(17,40): warning CS0414: The field 'OpponentLegEmbodiment._pelvisHeight' is assigned but its value is never used
+Assets\Scripts\OpponentLegEmbodiment.cs(21,40): warning CS0414: The field 'OpponentLegEmbodiment._footLength' is assigned but its value is never used
+Assets\Scripts\ArmVisualEmbodiment.cs(86,40): warning CS0414: The field 'ArmVisualEmbodiment._forearmLength' is assigned but its value is never used
+Assets\Editor\EVEvaluation.cs(17,23): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\EVEvaluation.cs(19,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\EVEvaluation.cs(20,24): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\P1B15TSelfTests.cs(83,19): warning CS0219: The variable 'upperArmRadius' is assigned but its value is never used
+Assets\Editor\P1B15TSelfTests.cs(84,19): warning CS0219: The variable 'forearmRadius' is assigned but its value is never used
+Assets\Editor\P1B15USelfTests.cs(59,19): warning CS0219: The variable 'leftRightHeightDiff' is assigned but its value is never used
+Assets\Editor\P1B15USelfTests.cs(60,19): warning CS0219: The variable 'elbowInwardBiasGuard' is assigned but its value is never used
+Assets\Editor\P1B15USelfTests.cs(61,19): warning CS0219: The variable 'gloveLateralInset' is assigned but its value is never used
+Assets\Editor\P1B15USelfTests.cs(62,19): warning CS0219: The variable 'gloveForwardOffset' is assigned but its value is never used
+Assets\Editor\P1B15USelfTests.cs(63,19): warning CS0219: The variable 'gloveHeightOffset' is assigned but its value is never used
+Assets\Editor\Round2RuntimeAudit.cs(41,21): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\Round2RuntimeAudit.cs(42,24): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\Round2RuntimeAudit.cs(43,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\Round2RuntimeAudit.cs(48,31): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\Round2RuntimeAudit.cs(75,22): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\Round2RuntimeAudit.cs(77,16): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\Round2RuntimeAudit.cs(87,16): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\Round2RuntimeAudit.cs(100,27): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\RamirezIntegrationAudit.cs(103,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\RamirezIntegrationAudit.cs(104,19): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\RamirezIntegrationAudit.cs(105,19): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\RamirezIntegrationAudit.cs(106,24): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\RamirezIntegrationAudit.cs(107,22): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\RamirezIntegrationAudit.cs(112,76): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\RamirezIntegrationAudit.cs(164,24): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\RamirezIntegrationAudit.cs(176,22): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\Wave1RuntimeAudit.cs(51,23): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\Wave1RuntimeAudit.cs(52,23): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\Wave1RuntimeAudit.cs(53,23): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\Wave1RuntimeAudit.cs(54,23): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\Wave1RuntimeAudit.cs(55,27): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\Wave1RuntimeAudit.cs(56,23): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\Wave1RuntimeAudit.cs(106,29): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Editor\Wave1RuntimeAudit.cs(145,77): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\Wave1RuntimeAudit.cs(145,27): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Editor\Wave1RuntimeAudit.cs(145,166): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Editor\Wave1RuntimeAudit.cs(145,114): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+ExitCode: 0 Duration: 9s70ms
+Finished compiling graph: 172 nodes, 649 flattened edges (639 ToBuild, 4 ToUse), maximum node priority 18
+[159/169    0s] WriteText Library/Bee/artifacts/2000b0aE.dag/Assembly-CSharp.rsp
+[163/169    2s] Csc Library/Bee/artifacts/2000b0aE.dag/Assembly-CSharp.dll (+2 others)
+Assets\Scripts\Blender3DVisualFollower.cs(88,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\Blender3DVisualFollower.cs(89,23): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\BoxerVisualShell.cs(56,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\BoxerVisualShell.cs(57,22): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\BoxerVisualShell.cs(58,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\BoxerVisualShell.cs(181,64): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Scripts\BoxerVisualShell.cs(181,34): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\Scripts\BoxerBootstrap.cs(147,13): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\EVVisualShell.cs(55,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\EVVisualShell.cs(56,24): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\BoxerBootstrap.cs(443,17): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\P1PunchGuide.cs(22,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\P1PunchGuide.cs(45,17): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\P1VCombatPresentation.cs(74,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\P1VCombatPresentation.cs(75,22): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\P1VCombatPresentation.cs(76,23): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\P1VCombatPresentation.cs(77,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\P1VCombatPresentation.cs(78,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\P1VCombatPresentation.cs(79,38): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\ProductScreens.cs(18,69): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\ProductScreens.cs(23,30): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\Round2CombatRig.cs(66,24): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\EVVisualShell.cs(419,65): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Scripts\EVVisualShell.cs(419,37): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\Scripts\OpponentLegEmbodiment.cs(19,40): warning CS0414: The field 'OpponentLegEmbodiment._thighLength' is assigned but its value is never used
+
+Assets\Scripts\ArmVisualEmbodiment.cs(85,40): warning CS0414: The field 'ArmVisualEmbodiment._upperArmLength' is assigned but its value is never used
+
+Assets\Scripts\OpponentLegEmbodiment.cs(20,40): warning CS0414: The field 'OpponentLegEmbodiment._shinLength' is assigned but its value is never used
+
+Assets\Scripts\OpponentLegEmbodiment.cs(17,40): warning CS0414: The field 'OpponentLegEmbodiment._pelvisHeight' is assigned but its value is never used
+
+Assets\Scripts\OpponentLegEmbodiment.cs(21,40): warning CS0414: The field 'OpponentLegEmbodiment._footLength' is assigned but its value is never used
+
+Assets\Scripts\ArmVisualEmbodiment.cs(86,40): warning CS0414: The field 'ArmVisualEmbodiment._forearmLength' is assigned but its value is never used
+[164/169    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp.pdb
+[165/169    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp.dll
+[166/169    4s] Csc Library/Bee/artifacts/2000b0aE.dag/Assembly-CSharp-Editor.dll (+2 others)
+Assets\Editor\EVEvaluation.cs(17,23): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\EVEvaluation.cs(19,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\EVEvaluation.cs(20,24): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\P1B15TSelfTests.cs(83,19): warning CS0219: The variable 'upperArmRadius' is assigned but its value is never used
+
+Assets\Editor\P1B15TSelfTests.cs(84,19): warning CS0219: The variable 'forearmRadius' is assigned but its value is never used
+
+Assets\Editor\P1B15USelfTests.cs(59,19): warning CS0219: The variable 'leftRightHeightDiff' is assigned but its value is never used
+
+Assets\Editor\P1B15USelfTests.cs(60,19): warning CS0219: The variable 'elbowInwardBiasGuard' is assigned but its value is never used
+
+Assets\Editor\P1B15USelfTests.cs(61,19): warning CS0219: The variable 'gloveLateralInset' is assigned but its value is never used
+
+Assets\Editor\P1B15USelfTests.cs(62,19): warning CS0219: The variable 'gloveForwardOffset' is assigned but its value is never used
+
+Assets\Editor\P1B15USelfTests.cs(63,19): warning CS0219: The variable 'gloveHeightOffset' is assigned but its value is never used
+
+Assets\Editor\Round2RuntimeAudit.cs(41,21): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\Round2RuntimeAudit.cs(42,24): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\Round2RuntimeAudit.cs(43,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\Round2RuntimeAudit.cs(48,31): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\Round2RuntimeAudit.cs(75,22): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\Round2RuntimeAudit.cs(77,16): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\Round2RuntimeAudit.cs(87,16): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\Round2RuntimeAudit.cs(100,27): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\RamirezIntegrationAudit.cs(103,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\RamirezIntegrationAudit.cs(104,19): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\RamirezIntegrationAudit.cs(105,19): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\RamirezIntegrationAudit.cs(106,24): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\RamirezIntegrationAudit.cs(107,22): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\RamirezIntegrationAudit.cs(112,76): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\RamirezIntegrationAudit.cs(164,24): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\RamirezIntegrationAudit.cs(176,22): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\Wave1RuntimeAudit.cs(51,23): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\Wave1RuntimeAudit.cs(52,23): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\Wave1RuntimeAudit.cs(53,23): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\Wave1RuntimeAudit.cs(54,23): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\Wave1RuntimeAudit.cs(55,27): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\Wave1RuntimeAudit.cs(56,23): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\Wave1RuntimeAudit.cs(106,29): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Editor\Wave1RuntimeAudit.cs(145,77): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Editor\Wave1RuntimeAudit.cs(145,27): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\Editor\Wave1RuntimeAudit.cs(145,166): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Editor\Wave1RuntimeAudit.cs(145,114): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+[167/169    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp-Editor.pdb
+[168/169    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp-Editor.dll
+*** Tundra build success (8.99 seconds), 7 items updated, 169 evaluated
+Total cache size 15393888
+Total cache size after purge 15393888, took 00:00:00.0340890
+AssetDatabase: script compilation time: 12.696900s
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.389 seconds
+Domain Reload Profiling: 805ms
+	BeginReloadAssembly (204ms)
+		DisableScriptedObjects (17ms)
+		CreateAndSetChildDomain (40ms)
+	RebuildCommonClasses (9ms)
+	RebuildNativeTypeToScriptingClass (15ms)
+	initialDomainReloadingComplete (38ms)
+	LoadAllAssembliesAndSetupDomain (148ms)
+		LoadAssemblies (152ms)
+		AnalyzeDomain (13ms)
+			TypeCache.Refresh (6ms)
+			BuildScriptInfoCaches (4ms)
+	FinalizeReload (391ms)
+		SetupLoadedEditorAssemblies (0ms)
+			BeforeProcessingInitializeOnLoad (82ms)
+			ProcessInitializeOnLoadAttributes (63ms)
+			ProcessInitializeOnLoadMethodAttributes (54ms)
+			AfterProcessingInitializeOnLoad (6ms)
+		AwakeInstancesAfterBackupRestoration (38ms)
+Importing 'GUID: d00c93fd34b0abe49a334af5f111422f - Path: Assets/Scenes/Phase0Boxer.unity' with importer (DefaultImporter)
+Imported 'GUID: d00c93fd34b0abe49a334af5f111422f' -> (Import Result ID: 'c7f9de529a8034ec347a790f0060c8f6') in 0.008 seconds [static dependencies only]. Details - ImportResultOutputID=c49193a4f5988da42816871b830c47ac DependenciesID=5954b3ba9cbd4f96edaf9b8bbaa8be54 StaticDependenciesID=ffddb033611be80e4a33395a721d7672 
+Starting new worker id: 0 with log in D:/WORK/RESEARCH/POVGame/boxer-wave1/unity/BoxerP0/Logs/AssetImportWorkerHW0.log
+
+Asset Pipeline Refresh (id=85d83d792e326cb4ebe6ac17b4a21f7f): Total: 13.753 seconds - Initiated by InitialRefreshV2(ForceSynchronousImport)
+	(Values over 0.05ms)
+	Summary:
+		Imports: total=1 (actual=1, local cache=0, cache server=0)
+		Asset DB Process Time: managed=1 ms, native=550 ms
+		Asset DB Callback time: managed=48 ms, native=1 ms
+		Scripting: domain reloads=1, domain reload time=439 ms, compile time=12703 ms, other=8 ms
+		Project Asset Count: scripts=40, non-scripts=43
+		Asset File Changes: new=1, changed=3, moved=0, deleted=0
+		Scan Filter Count: 0
+	ApplyChangesToAssetFolders: 0.132ms
+	Scan: 72.973ms
+	Collect global state as custom dependencies: 8.811ms
+	OnSourceAssetsModified: 0.718ms
+	CategorizeScriptCompilationAssets: 0.167ms
+	ProcessAssetsWithTransientArtifactChanges: 1.682ms
+	CategorizeAssets: 0.446ms
+	CompileScripts: 12702.511ms
+	ImportOutOfDateAssets: 422.808ms (396.740ms without children)
+		ImportManagerImport: 9.557ms (1.014ms without children)
+		UnloadImportedAssets: 0.117ms
+		ImportSchedulerStart: 16.370ms
+	PostProcessAllAssets: 48.320ms
+		VCAutoAddAssetPostprocess 0.890ms
+		XRBuildSystem.XRAssetImported 0.058ms
+		MonoPostProcessAllAssets: 46.962ms
+			AssetPostprocessor.OnPostprocessAllAssets 10.113ms
+			StyleCatalogPostProcessor.OnPostprocessAllAssets 9.351ms
+			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 7.092ms
+			BuilderAssetPostprocessor.OnPostprocessAllAssets 4.357ms
+			AssetChangedListener.OnPostprocessAllAssets 1.754ms
+			SyncVS.PostprocessSyncProject 1.314ms
+			RetainedModeAssetPostprocessor.OnPostprocessAllAssets 1.023ms
+			EditModeScopePostprocessor.OnPostprocessAllAssets 0.809ms
+			SpeedTree9Postprocessor.OnPostprocessAllAssets 0.784ms
+			TextAssetPostProcessor.OnPostprocessAllAssets 0.642ms
+			ArtifactBrowserPostProcessor.OnPostprocessAllAssets 0.519ms
+			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.443ms
+			ReferencedClipsPostProcessor.OnPostprocessAllAssets 0.324ms
+			AudioMixerPostprocessor.OnPostprocessAllAssets 0.251ms
+			AssetEvents.OnPostprocessAllAssets 0.246ms
+			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.169ms
+			SpeedTreePostProcessor.OnPostprocessAllAssets 0.148ms
+			ScenarioDriftAssetsTracker.OnPostprocessAllAssets 0.122ms
+			ConfigAssetsTracker.OnPostprocessAllAssets 0.113ms
+			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 0.082ms
+			AudioContainerPostProcessor.OnPostprocessAllAssets 0.075ms
+	PostAssetChangesProfiler: 1.079ms
+	UnloadStreamsBegin: 1.504ms
+	Untracked: 483.171ms
+
+Application.AssetDatabase Initial Refresh End
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.06 seconds
+Scanning for USB devices : 2.909ms
+Initializing Unity extensions:
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+[MODES] Loading mode Default (0) for mode-current-id-Boxer P0
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 90 unused Assets / (0.6 MB). Loaded Objects now: 881.
+Memory consumption went from 199.3 MB to 198.7 MB.
+Total: 4.730000 ms (FindLiveObjects: 0.053100 ms CreateObjectMapping: 0.016800 ms MarkObjects: 4.099400 ms  DeleteObjects: 0.557200 ms)
+
+SCOPE=COACH_COMPLETED_RECORD_AND_NAVIGATION_NOT_PHONE_UAT
+PASS completed valid record
+PASS accuracy excludes unresolved and blocked shots are not hits
+PASS exact serialized round trip preserves endpoint values and counters
+PASS observed received/missed outcomes map to existing drills
+PASS real module and evidence reason Head
+PASS real module and evidence reason Footwork
+PASS real module and evidence reason Punches
+PASS zero shots has defined no-data denominator
+PASS zero shots uses real punch lesson plus labelled information only
+PASS zero denominator is not labelled 0 percent accuracy
+PASS invalid persisted record rejected 0
+PASS invalid persisted record rejected 4
+PASS invalid persisted record rejected 2
+PASS invalid persisted record rejected 3
+PASS invalid persisted record rejected 8
+PASS invalid persisted record rejected 4097
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS missing schema cannot masquerade as current record
+PASS valid HP-zero terminal record retained
+PASS no fabricated record without completed telemetry
+PASS review illegal route rejected Home
+PASS review illegal route rejected Preview
+PASS review illegal route rejected Intro
+PASS review illegal route rejected Fight
+PASS review illegal route rejected Onboarding
+PASS review illegal route rejected TrainingInfo
+PASS Coach opens locked review
+PASS review cannot directly grant progress or start combat
+PASS review back routes Coach
+PASS completed Result opens locked review
+PASS supplemental card fits minimum phone target 0
+PASS supplemental card fits minimum phone target 1
+PASS supplemental card fits minimum phone target 2
+TOTAL=56 PASS=56 FAIL=0
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.CoachAnalysisSelfTests:Run () (at Assets/Editor/CoachAnalysisSelfTests.cs:53)
+BoxerP0.Editor.CoachAnalysisSelfTests:RunAll () (at Assets/Editor/CoachAnalysisSelfTests.cs:10)
+
+(Filename: Assets/Editor/CoachAnalysisSelfTests.cs Line: 53)
+
+SCOPE=COACH_MODEL_NAVIGATION_NOT_RENDERED_OR_PHONE_UAT
+PASS approved portrait included in Resources
+PASS invalid module rejected
+PASS catalog copy Head
+PASS practice versus information Head
+PASS Home to Coach locks gameplay Head
+PASS Coach cannot start hidden scored bout Head
+PASS Coach to practice Head
+PASS single lesson cannot start combat or mark whole tutorial Head
+PASS cancel returns Coach without completion Head
+PASS partial completion not whole training Head
+PASS all controls complete persist state Head
+PASS catalog copy Footwork
+PASS practice versus information Footwork
+PASS Home to Coach locks gameplay Footwork
+PASS Coach cannot start hidden scored bout Footwork
+PASS Coach to practice Footwork
+PASS single lesson cannot start combat or mark whole tutorial Footwork
+PASS cancel returns Coach without completion Footwork
+PASS partial completion not whole training Footwork
+PASS all controls complete persist state Footwork
+PASS catalog copy Punches
+PASS practice versus information Punches
+PASS Home to Coach locks gameplay Punches
+PASS Coach cannot start hidden scored bout Punches
+PASS Coach to practice Punches
+PASS single lesson cannot start combat or mark whole tutorial Punches
+PASS cancel returns Coach without completion Punches
+PASS partial completion not whole training Punches
+PASS all controls complete persist state Punches
+PASS catalog copy Guard
+PASS practice versus information Guard
+PASS Home to Coach locks gameplay Guard
+PASS Coach cannot start hidden scored bout Guard
+PASS information locks gameplay Guard
+PASS information cannot award or jump practice Guard
+PASS information returns Coach Guard
+PASS catalog copy Conditioning
+PASS practice versus information Conditioning
+PASS Home to Coach locks gameplay Conditioning
+PASS Coach cannot start hidden scored bout Conditioning
+PASS information locks gameplay Conditioning
+PASS information cannot award or jump practice Conditioning
+PASS information returns Coach Conditioning
+PASS Home cannot bypass Coach into separate practice
+PASS Preview cannot bypass Coach into practice
+PASS no UI escape or injection into active fight
+PASS unscored coach model cannot spend resources
+PASS card bounds minimum 320-wide portrait target 0
+PASS card bounds minimum 320-wide portrait target 1
+PASS card bounds minimum 320-wide portrait target 2
+PASS card bounds minimum 320-wide portrait target 3
+PASS card bounds minimum 320-wide portrait target 4
+PASS new navigation CTA minimum portrait touch target
+TOTAL=53 PASS=53 FAIL=0
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.CoachUiSelfTests:Run () (at Assets/Editor/CoachUiSelfTests.cs:52)
+BoxerP0.Editor.CoachAnalysisSelfTests:RunAll () (at Assets/Editor/CoachAnalysisSelfTests.cs:10)
+
+(Filename: Assets/Editor/CoachUiSelfTests.cs Line: 52)
+
+PUNCH_FEEL_TESTS TOTAL=14741 PASS=14741 FAIL=0
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.PunchFeelSelfTests:Run () (at Assets/Editor/PunchFeelSelfTests.cs:120)
+BoxerP0.Editor.PunchFeelSelfTests:RunAll () (at Assets/Editor/PunchFeelSelfTests.cs:20)
+BoxerP0.Editor.CoachAnalysisSelfTests:RunAll () (at Assets/Editor/CoachAnalysisSelfTests.cs:10)
+
+(Filename: Assets/Editor/PunchFeelSelfTests.cs Line: 120)
+
+SCOPE=SOLVED_GEOMETRY_AND_DETERMINISTIC_RULES_NOT_INPUT_OR_HUMAN_UAT
+PASS AI reproducible bounded choice 0
+PASS AI reproducible bounded choice 1
+PASS AI reproducible bounded choice 2
+PASS AI reproducible bounded choice 3
+PASS AI reproducible bounded choice 4
+PASS AI reproducible bounded choice 5
+PASS AI reproducible bounded choice 6
+PASS AI reproducible bounded choice 7
+PASS AI reproducible bounded choice 8
+PASS AI reproducible bounded choice 9
+PASS AI reproducible bounded choice 10
+PASS AI reproducible bounded choice 11
+PASS AI reproducible bounded choice 12
+PASS AI reproducible bounded choice 13
+PASS AI reproducible bounded choice 14
+PASS AI reproducible bounded choice 15
+PASS AI reproducible bounded choice 16
+PASS AI reproducible bounded choice 17
+PASS AI reproducible bounded choice 18
+PASS AI reproducible bounded choice 19
+PASS AI reproducible bounded choice 20
+PASS AI reproducible bounded choice 21
+PASS AI reproducible bounded choice 22
+PASS AI reproducible bounded choice 23
+PASS AI reproducible bounded choice 24
+PASS AI reproducible bounded choice 25
+PASS AI reproducible bounded choice 26
+PASS AI reproducible bounded choice 27
+PASS AI reproducible bounded choice 28
+PASS AI reproducible bounded choice 29
+PASS AI reproducible bounded choice 30
+PASS AI reproducible bounded choice 31
+PASS AI reproducible bounded choice 32
+PASS AI reproducible bounded choice 33
+PASS AI reproducible bounded choice 34
+PASS AI reproducible bounded choice 35
+PASS AI reproducible bounded choice 36
+PASS AI reproducible bounded choice 37
+PASS AI reproducible bounded choice 38
+PASS AI reproducible bounded choice 39
+PASS AI reproducible bounded choice 40
+PASS AI reproducible bounded choice 41
+PASS AI reproducible bounded choice 42
+PASS AI reproducible bounded choice 43
+PASS AI reproducible bounded choice 44
+PASS AI reproducible bounded choice 45
+PASS AI reproducible bounded choice 46
+PASS AI reproducible bounded choice 47
+PASS AI reproducible bounded choice 48
+PASS AI reproducible bounded choice 49
+PASS AI reproducible bounded choice 50
+PASS AI reproducible bounded choice 51
+PASS AI reproducible bounded choice 52
+PASS AI reproducible bounded choice 53
+PASS AI reproducible bounded choice 54
+PASS AI reproducible bounded choice 55
+PASS AI reproducible bounded choice 56
+PASS AI reproducible bounded choice 57
+PASS AI reproducible bounded choice 58
+PASS AI reproducible bounded choice 59
+PASS AI reproducible bounded choice 60
+PASS AI reproducible bounded choice 61
+PASS AI reproducible bounded choice 62
+PASS AI reproducible bounded choice 63
+PASS AI reproducible bounded choice 64
+PASS AI reproducible bounded choice 65
+PASS AI reproducible bounded choice 66
+PASS AI reproducible bounded choice 67
+PASS AI reproducible bounded choice 68
+PASS AI reproducible bounded choice 69
+PASS AI reproducible bounded choice 70
+PASS AI reproducible bounded choice 71
+PASS AI reproducible bounded choice 72
+PASS AI reproducible bounded choice 73
+PASS AI reproducible bounded choice 74
+PASS AI reproducible bounded choice 75
+PASS AI reproducible bounded choice 76
+PASS AI reproducible bounded choice 77
+PASS AI reproducible bounded choice 78
+PASS AI reproducible bounded choice 79
+PASS AI reproducible bounded choice 80
+PASS AI reproducible bounded choice 81
+PASS AI reproducible bounded choice 82
+PASS AI reproducible bounded choice 83
+PASS AI reproducible bounded choice 84
+PASS AI reproducible bounded choice 85
+PASS AI reproducible bounded choice 86
+PASS AI reproducible bounded choice 87
+PASS AI reproducible bounded choice 88
+PASS AI reproducible bounded choice 89
+PASS AI reproducible bounded choice 90
+PASS AI reproducible bounded choice 91
+PASS AI reproducible bounded choice 92
+PASS AI reproducible bounded choice 93
+PASS AI reproducible bounded choice 94
+PASS AI reproducible bounded choice 95
+PASS AI reproducible bounded choice 96
+PASS AI reproducible bounded choice 97
+PASS AI reproducible bounded choice 98
+PASS AI reproducible bounded choice 99
+PASS AI reproducible bounded choice 100
+PASS AI reproducible bounded choice 101
+PASS AI reproducible bounded choice 102
+PASS AI reproducible bounded choice 103
+PASS AI reproducible bounded choice 104
+PASS AI reproducible bounded choice 105
+PASS AI reproducible bounded choice 106
+PASS AI reproducible bounded choice 107
+PASS AI reproducible bounded choice 108
+PASS AI reproducible bounded choice 109
+PASS AI reproducible bounded choice 110
+PASS AI reproducible bounded choice 111
+PASS AI reproducible bounded choice 112
+PASS AI reproducible bounded choice 113
+PASS AI reproducible bounded choice 114
+PASS AI reproducible bounded choice 115
+PASS AI reproducible bounded choice 116
+PASS AI reproducible bounded choice 117
+PASS AI reproducible bounded choice 118
+PASS AI reproducible bounded choice 119
+PASS AI reproducible bounded choice 120
+PASS AI reproducible bounded choice 121
+PASS AI reproducible bounded choice 122
+PASS AI reproducible bounded choice 123
+PASS AI reproducible bounded choice 124
+PASS AI reproducible bounded choice 125
+PASS AI reproducible bounded choice 126
+PASS AI reproducible bounded choice 127
+PASS AI choice 0 occurs with interleaved gap draw, count=31
+PASS AI choice 1 occurs with interleaved gap draw, count=28
+PASS AI choice 2 occurs with interleaved gap draw, count=32
+PASS AI choice 3 occurs with interleaved gap draw, count=37
+PASS AI no longer trapped in alternating head/body Cross
+PASS invalid random count rejected
+PASS real intersecting glove blocks target mode 0
+PASS real intersecting glove blocks target mode 1
+PASS real intersecting glove blocks target mode 2
+PASS guard contact invariant under actor rotation and translation
+PASS body path below a non-intersecting high guard still hits body
+PASS non-contact is MISS, not proximity damage
+PASS Jab can physically reach exposed head in engagement band 0,79
+PASS Jab can physically reach exposed head in engagement band 0,82
+PASS Jab can physically reach exposed head in engagement band 0,85
+PASS Jab reproduces old out-of-reach exposed head at .955m
+PASS Jab long-range punch remains MISS
+PASS Cross can physically reach exposed head in engagement band 0,79
+PASS Cross can physically reach exposed head in engagement band 0,82
+PASS Cross can physically reach exposed head in engagement band 0,85
+PASS Cross reproduces old out-of-reach exposed head at .955m
+PASS Cross long-range punch remains MISS
+PASS LeadHook physically reaches exposed head at close range
+PASS RearHook physically reaches exposed head at close range
+PASS LeadUppercut physically reaches exposed head at close range
+PASS RearUppercut physically reaches exposed head at close range
+PASS LeadOverhand physically reaches exposed head at close range
+PASS RearOverhand physically reaches exposed head at close range
+PASS POV footwork tracks facing yaw=0 direction=(0.00, 1.00)
+PASS POV footwork tracks facing yaw=0 direction=(0.00, -1.00)
+PASS POV footwork tracks facing yaw=0 direction=(-1.00, 0.00)
+PASS POV footwork tracks facing yaw=0 direction=(1.00, 0.00)
+PASS POV footwork tracks facing yaw=90 direction=(0.00, 1.00)
+PASS POV footwork tracks facing yaw=90 direction=(0.00, -1.00)
+PASS POV footwork tracks facing yaw=90 direction=(-1.00, 0.00)
+PASS POV footwork tracks facing yaw=90 direction=(1.00, 0.00)
+PASS POV footwork tracks facing yaw=180 direction=(0.00, 1.00)
+PASS POV footwork tracks facing yaw=180 direction=(0.00, -1.00)
+PASS POV footwork tracks facing yaw=180 direction=(-1.00, 0.00)
+PASS POV footwork tracks facing yaw=180 direction=(1.00, 0.00)
+PASS POV footwork tracks facing yaw=270 direction=(0.00, 1.00)
+PASS POV footwork tracks facing yaw=270 direction=(0.00, -1.00)
+PASS POV footwork tracks facing yaw=270 direction=(-1.00, 0.00)
+PASS POV footwork tracks facing yaw=270 direction=(1.00, 0.00)
+TOTAL=172 PASS=172 FAIL=0
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.CombatFairnessSelfTests:Run () (at Assets/Editor/CombatFairnessSelfTests.cs:70)
+BoxerP0.Editor.TrainingPovSelfTests:Run () (at Assets/Editor/TrainingPovSelfTests.cs:13)
+BoxerP0.Editor.PunchFeelSelfTests:RunAll () (at Assets/Editor/PunchFeelSelfTests.cs:20)
+BoxerP0.Editor.CoachAnalysisSelfTests:RunAll () (at Assets/Editor/CoachAnalysisSelfTests.cs:10)
+
+(Filename: Assets/Editor/CombatFairnessSelfTests.cs Line: 70)
+
+PASS inactive initial state full resources
+PASS menu/tutorial no spend or regeneration
+PASS Jab accepted cost exact
+PASS Jab quality captured before cost
+PASS Jab hit damage exact
+PASS Jab duplicate resolution ignored
+PASS Jab player/opponent symmetric
+PASS Cross accepted cost exact
+PASS Cross quality captured before cost
+PASS Cross hit damage exact
+PASS Cross duplicate resolution ignored
+PASS Cross player/opponent symmetric
+PASS LeadHook accepted cost exact
+PASS LeadHook quality captured before cost
+PASS LeadHook hit damage exact
+PASS LeadHook duplicate resolution ignored
+PASS LeadHook player/opponent symmetric
+PASS RearHook accepted cost exact
+PASS RearHook quality captured before cost
+PASS RearHook hit damage exact
+PASS RearHook duplicate resolution ignored
+PASS RearHook player/opponent symmetric
+PASS LeadUppercut accepted cost exact
+PASS LeadUppercut quality captured before cost
+PASS LeadUppercut hit damage exact
+PASS LeadUppercut duplicate resolution ignored
+PASS LeadUppercut player/opponent symmetric
+PASS RearUppercut accepted cost exact
+PASS RearUppercut quality captured before cost
+PASS RearUppercut hit damage exact
+PASS RearUppercut duplicate resolution ignored
+PASS RearUppercut player/opponent symmetric
+PASS LeadOverhand accepted cost exact
+PASS LeadOverhand quality captured before cost
+PASS LeadOverhand hit damage exact
+PASS LeadOverhand duplicate resolution ignored
+PASS LeadOverhand player/opponent symmetric
+PASS RearOverhand accepted cost exact
+PASS RearOverhand quality captured before cost
+PASS RearOverhand hit damage exact
+PASS RearOverhand duplicate resolution ignored
+PASS RearOverhand player/opponent symmetric
+PASS MISS no HP change
+PASS MISS still pays accepted action cost
+PASS BLOCK zero HP and bounded guard cost
+PASS BODY hit stamina consequence exact
+PASS caller cannot forge receipt quality or intent
+PASS previous-bout receipt invalid after reset
+PASS receipt cannot switch actor
+PASS invalid outcome cannot consume receipt
+PASS valid resolution after invalid attempt
+PASS invalid or no-action request costs zero
+PASS fatigue monotonic bounded snapshot 0
+PASS fatigue monotonic bounded snapshot 1
+PASS fatigue monotonic bounded snapshot 2
+PASS fatigue monotonic bounded snapshot 3
+PASS fatigue monotonic bounded snapshot 4
+PASS fatigue monotonic bounded snapshot 5
+PASS fatigue monotonic bounded snapshot 6
+PASS fatigue monotonic bounded snapshot 7
+PASS fatigue monotonic bounded snapshot 8
+PASS fatigue monotonic bounded snapshot 9
+PASS fatigue monotonic bounded snapshot 10
+PASS fatigue monotonic bounded snapshot 11
+PASS exhaustion clamp no negative resource
+PASS guard capacity18 stamina4 per simulation second
+PASS recovery capacity6 stamina1 per second
+PASS active phase no regen actual locomotion cost
+PASS HP never regenerates and regen caps
+PASS dt partition accounting tolerance
+PASS timeout clamp and draw
+PASS timeout winner by remaining HP
+PASS HP zero ends bout exactly
+PASS no writes after KO
+PASS full rematch reset
+PASS invalid dt rejected
+PASS home blocks gameplay
+PASS first bout enters unscored ring intro, not training
+PASS intro cannot reenter or preview
+PASS premature finish cannot unlock intro
+PASS media completion opens fight
+PASS duplicate intro completion rejected
+PASS illegal mid-bout navigation rejected
+PASS combat cannot falsely complete training
+PASS result blocks gameplay
+PASS rematch replays intro without tutorial
+PASS home preview next bout route
+PASS explicit Coach entry opens control lesson
+PASS training cannot silently start combat
+PASS training completion returns Coach not Fight
+PASS completed training preference restores without auto training
+PASS trained player still sees ring intro
+PASS cancelled intro callback cannot start combat
+PASS intro callback cannot start fight after practice
+PASS head practice isolated from other skills
+PASS movement practice requires four directions
+PASS tap up down horizontal map to all four families
+PASS light guide mapping HEAD_LEFT
+PASS light guide mapping HEAD_RIGHT
+PASS light guide mapping MOVE_UP
+PASS light guide mapping MOVE_DOWN
+PASS light guide mapping MOVE_LEFT
+PASS light guide mapping MOVE_RIGHT
+PASS light guide mapping PUNCH_DOWN
+PASS light guide mapping PUNCH_UP
+PASS light guide mapping PUNCH_RIGHT
+PASS light guide mapping PUNCH_LEFT
+PASS light guide mapping TAP_REPEAT
+PASS light guide loops all punch examples
+PASS light guide absent outside training
+PASS illustrative guide does not grant practice progress
+TOTAL=111 PASS=111 FAIL=0
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Wave1SelfTests:Run () (at Assets/Editor/Wave1SelfTests.cs:121)
+BoxerP0.Editor.CombatFairnessSelfTests:Run () (at Assets/Editor/CombatFairnessSelfTests.cs:72)
+BoxerP0.Editor.TrainingPovSelfTests:Run () (at Assets/Editor/TrainingPovSelfTests.cs:13)
+BoxerP0.Editor.PunchFeelSelfTests:RunAll () (at Assets/Editor/PunchFeelSelfTests.cs:20)
+BoxerP0.Editor.CoachAnalysisSelfTests:RunAll () (at Assets/Editor/CoachAnalysisSelfTests.cs:10)
+
+(Filename: Assets/Editor/Wave1SelfTests.cs Line: 121)
+
+P0_SELF_TESTS_PASS=D:\WORK\RESEARCH\POVGame\boxer-wave1\evidence\phase0\SYNTHETIC\deterministic-self-tests.txt
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Phase0SelfTests:RunBatch () (at Assets/Editor/Phase0SelfTests.cs:47)
+BoxerP0.Editor.P1DOpponentAttributesSelfTests:RunSuite (string,System.Action,System.Collections.Generic.ICollection`1<string>) (at Assets/Editor/P1DOpponentAttributesSelfTests.cs:157)
+BoxerP0.Editor.P1DOpponentAttributesSelfTests:RunWithRegressions () (at Assets/Editor/P1DOpponentAttributesSelfTests.cs:14)
+BoxerP0.Editor.Round2SelfTests:RunAll () (at Assets/Editor/Round2SelfTests.cs:13)
+BoxerP0.Editor.Wave1SelfTests:Run () (at Assets/Editor/Wave1SelfTests.cs:127)
+BoxerP0.Editor.CombatFairnessSelfTests:Run () (at Assets/Editor/CombatFairnessSelfTests.cs:72)
+BoxerP0.Editor.TrainingPovSelfTests:Run () (at Assets/Editor/TrainingPovSelfTests.cs:13)
+BoxerP0.Editor.PunchFeelSelfTests:RunAll () (at Assets/Editor/PunchFeelSelfTests.cs:20)
+BoxerP0.Editor.CoachAnalysisSelfTests:RunAll () (at Assets/Editor/CoachAnalysisSelfTests.cs:10)
+
+(Filename: Assets/Editor/Phase0SelfTests.cs Line: 47)
+
+P1_A3_SELF_TESTS_PASS=D:\WORK\RESEARCH\POVGame\boxer-wave1\evidence\phase1\SYNTHETIC\p1-a3-deterministic-self-tests.txt
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.P1A3SelfTests:RunBatch () (at Assets/Editor/P1A3SelfTests.cs:28)
+BoxerP0.Editor.P1DOpponentAttributesSelfTests:RunSuite (string,System.Action,System.Collections.Generic.ICollection`1<string>) (at Assets/Editor/P1DOpponentAttributesSelfTests.cs:157)
+BoxerP0.Editor.P1DOpponentAttributesSelfTests:RunWithRegressions () (at Assets/Editor/P1DOpponentAttributesSelfTests.cs:15)
+BoxerP0.Editor.Round2SelfTests:RunAll () (at Assets/Editor/Round2SelfTests.cs:13)
+BoxerP0.Editor.Wave1SelfTests:Run () (at Assets/Editor/Wave1SelfTests.cs:127)
+BoxerP0.Editor.CombatFairnessSelfTests:Run () (at Assets/Editor/CombatFairnessSelfTests.cs:72)
+BoxerP0.Editor.TrainingPovSelfTests:Run () (at Assets/Editor/TrainingPovSelfTests.cs:13)
+BoxerP0.Editor.PunchFeelSelfTests:RunAll () (at Assets/Editor/PunchFeelSelfTests.cs:20)
+BoxerP0.Editor.CoachAnalysisSelfTests:RunAll () (at Assets/Editor/CoachAnalysisSelfTests.cs:10)
+
+(Filename: Assets/Editor/P1A3SelfTests.cs Line: 28)
+
+P1_B1_5R_SELF_TESTS_PASS=D:\WORK\RESEARCH\POVGame\boxer-wave1\evidence\phase1\SYNTHETIC\p1-b1-5r-deterministic-self-tests.txt
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.P1B15RSelfTests:RunBatch () (at Assets/Editor/P1B15RSelfTests.cs:34)
+BoxerP0.Editor.P1DOpponentAttributesSelfTests:RunSuite (string,System.Action,System.Collections.Generic.ICollection`1<string>) (at Assets/Editor/P1DOpponentAttributesSelfTests.cs:157)
+BoxerP0.Editor.P1DOpponentAttributesSelfTests:RunWithRegressions () (at Assets/Editor/P1DOpponentAttributesSelfTests.cs:16)
+BoxerP0.Editor.Round2SelfTests:RunAll () (at Assets/Editor/Round2SelfTests.cs:13)
+BoxerP0.Editor.Wave1SelfTests:Run () (at Assets/Editor/Wave1SelfTests.cs:127)
+BoxerP0.Editor.CombatFairnessSelfTests:Run () (at Assets/Editor/CombatFairnessSelfTests.cs:72)
+BoxerP0.Editor.TrainingPovSelfTests:Run () (at Assets/Editor/TrainingPovSelfTests.cs:13)
+BoxerP0.Editor.PunchFeelSelfTests:RunAll () (at Assets/Editor/PunchFeelSelfTests.cs:20)
+BoxerP0.Editor.CoachAnalysisSelfTests:RunAll () (at Assets/Editor/CoachAnalysisSelfTests.cs:10)
+
+(Filename: Assets/Editor/P1B15RSelfTests.cs Line: 34)
+
+P1_B1_5S_SELF_TESTS_PASS=D:\WORK\RESEARCH\POVGame\boxer-wave1\evidence\phase1\SYNTHETIC\p1-b1-5s-deterministic-self-tests.txt
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.P1B15SSelfTests:RunBatch () (at Assets/Editor/P1B15SSelfTests.cs:33)
+BoxerP0.Editor.P1DOpponentAttributesSelfTests:RunSuite (string,System.Action,System.Collections.Generic.ICollection`1<string>) (at Assets/Editor/P1DOpponentAttributesSelfTests.cs:157)
+BoxerP0.Editor.P1DOpponentAttributesSelfTests:RunWithRegressions () (at Assets/Editor/P1DOpponentAttributesSelfTests.cs:17)
+BoxerP0.Editor.Round2SelfTests:RunAll () (at Assets/Editor/Round2SelfTests.cs:13)
+BoxerP0.Editor.Wave1SelfTests:Run () (at Assets/Editor/Wave1SelfTests.cs:127)
+BoxerP0.Editor.CombatFairnessSelfTests:Run () (at Assets/Editor/CombatFairnessSelfTests.cs:72)
+BoxerP0.Editor.TrainingPovSelfTests:Run () (at Assets/Editor/TrainingPovSelfTests.cs:13)
+BoxerP0.Editor.PunchFeelSelfTests:RunAll () (at Assets/Editor/PunchFeelSelfTests.cs:20)
+BoxerP0.Editor.CoachAnalysisSelfTests:RunAll () (at Assets/Editor/CoachAnalysisSelfTests.cs:10)
+
+(Filename: Assets/Editor/P1B15SSelfTests.cs Line: 33)
+
+P1_B1_5T_SELF_TESTS_PASS=D:\WORK\RESEARCH\POVGame\boxer-wave1\evidence\phase1\SYNTHETIC\p1-b1-5t-deterministic-self-tests.txt
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.P1B15TSelfTests:RunBatch () (at Assets/Editor/P1B15TSelfTests.cs:50)
+BoxerP0.Editor.P1DOpponentAttributesSelfTests:RunSuite (string,System.Action,System.Collections.Generic.ICollection`1<string>) (at Assets/Editor/P1DOpponentAttributesSelfTests.cs:157)
+BoxerP0.Editor.P1DOpponentAttributesSelfTests:RunWithRegressions () (at Assets/Editor/P1DOpponentAttributesSelfTests.cs:18)
+BoxerP0.Editor.Round2SelfTests:RunAll () (at Assets/Editor/Round2SelfTests.cs:13)
+BoxerP0.Editor.Wave1SelfTests:Run () (at Assets/Editor/Wave1SelfTests.cs:127)
+BoxerP0.Editor.CombatFairnessSelfTests:Run () (at Assets/Editor/CombatFairnessSelfTests.cs:72)
+BoxerP0.Editor.TrainingPovSelfTests:Run () (at Assets/Editor/TrainingPovSelfTests.cs:13)
+BoxerP0.Editor.PunchFeelSelfTests:RunAll () (at Assets/Editor/PunchFeelSelfTests.cs:20)
+BoxerP0.Editor.CoachAnalysisSelfTests:RunAll () (at Assets/Editor/CoachAnalysisSelfTests.cs:10)
+
+(Filename: Assets/Editor/P1B15TSelfTests.cs Line: 50)
+
+P1_B1_5U_SELF_TESTS_PASS=D:\WORK\RESEARCH\POVGame\boxer-wave1\evidence\phase1\SYNTHETIC\p1-b1-5u-deterministic-self-tests.txt
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.P1B15USelfTests:RunBatch () (at Assets/Editor/P1B15USelfTests.cs:36)
+BoxerP0.Editor.P1DOpponentAttributesSelfTests:RunSuite (string,System.Action,System.Collections.Generic.ICollection`1<string>) (at Assets/Editor/P1DOpponentAttributesSelfTests.cs:157)
+BoxerP0.Editor.P1DOpponentAttributesSelfTests:RunWithRegressions () (at Assets/Editor/P1DOpponentAttributesSelfTests.cs:19)
+BoxerP0.Editor.Round2SelfTests:RunAll () (at Assets/Editor/Round2SelfTests.cs:13)
+BoxerP0.Editor.Wave1SelfTests:Run () (at Assets/Editor/Wave1SelfTests.cs:127)
+BoxerP0.Editor.CombatFairnessSelfTests:Run () (at Assets/Editor/CombatFairnessSelfTests.cs:72)
+BoxerP0.Editor.TrainingPovSelfTests:Run () (at Assets/Editor/TrainingPovSelfTests.cs:13)
+BoxerP0.Editor.PunchFeelSelfTests:RunAll () (at Assets/Editor/PunchFeelSelfTests.cs:20)
+BoxerP0.Editor.CoachAnalysisSelfTests:RunAll () (at Assets/Editor/CoachAnalysisSelfTests.cs:10)
+
+(Filename: Assets/Editor/P1B15USelfTests.cs Line: 36)
+
+P1_B1_5V_SELF_TESTS_PASS=D:\WORK\RESEARCH\POVGame\boxer-wave1\evidence\phase1\SYNTHETIC\p1-b1-5v-deterministic-self-tests.txt
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.P1B15VSelfTests:RunBatch () (at Assets/Editor/P1B15VSelfTests.cs:34)
+BoxerP0.Editor.P1DOpponentAttributesSelfTests:RunSuite (string,System.Action,System.Collections.Generic.ICollection`1<string>) (at Assets/Editor/P1DOpponentAttributesSelfTests.cs:157)
+BoxerP0.Editor.P1DOpponentAttributesSelfTests:RunWithRegressions () (at Assets/Editor/P1DOpponentAttributesSelfTests.cs:20)
+BoxerP0.Editor.Round2SelfTests:RunAll () (at Assets/Editor/Round2SelfTests.cs:13)
+BoxerP0.Editor.Wave1SelfTests:Run () (at Assets/Editor/Wave1SelfTests.cs:127)
+BoxerP0.Editor.CombatFairnessSelfTests:Run () (at Assets/Editor/CombatFairnessSelfTests.cs:72)
+BoxerP0.Editor.TrainingPovSelfTests:Run () (at Assets/Editor/TrainingPovSelfTests.cs:13)
+BoxerP0.Editor.PunchFeelSelfTests:RunAll () (at Assets/Editor/PunchFeelSelfTests.cs:20)
+BoxerP0.Editor.CoachAnalysisSelfTests:RunAll () (at Assets/Editor/CoachAnalysisSelfTests.cs:10)
+
+(Filename: Assets/Editor/P1B15VSelfTests.cs Line: 34)
+
+P1_B2_SELF_TESTS_PASS=D:\WORK\RESEARCH\POVGame\boxer-wave1\evidence\phase1\SYNTHETIC\p1-b2-deterministic-self-tests.txt
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.P1B2SelfTests:RunBatch () (at Assets/Editor/P1B2SelfTests.cs:43)
+BoxerP0.Editor.P1DOpponentAttributesSelfTests:RunSuite (string,System.Action,System.Collections.Generic.ICollection`1<string>) (at Assets/Editor/P1DOpponentAttributesSelfTests.cs:157)
+BoxerP0.Editor.P1DOpponentAttributesSelfTests:RunWithRegressions () (at Assets/Editor/P1DOpponentAttributesSelfTests.cs:21)
+BoxerP0.Editor.Round2SelfTests:RunAll () (at Assets/Editor/Round2SelfTests.cs:13)
+BoxerP0.Editor.Wave1SelfTests:Run () (at Assets/Editor/Wave1SelfTests.cs:127)
+BoxerP0.Editor.CombatFairnessSelfTests:Run () (at Assets/Editor/CombatFairnessSelfTests.cs:72)
+BoxerP0.Editor.TrainingPovSelfTests:Run () (at Assets/Editor/TrainingPovSelfTests.cs:13)
+BoxerP0.Editor.PunchFeelSelfTests:RunAll () (at Assets/Editor/PunchFeelSelfTests.cs:20)
+BoxerP0.Editor.CoachAnalysisSelfTests:RunAll () (at Assets/Editor/CoachAnalysisSelfTests.cs:10)
+
+(Filename: Assets/Editor/P1B2SelfTests.cs Line: 43)
+
+P1_C0_SELF_TESTS_PASS=D:\WORK\RESEARCH\POVGame\boxer-wave1\evidence\phase1\SYNTHETIC\p1-c0-deterministic-self-tests.txt
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.P1C0SelfTests:RunBatch () (at Assets/Editor/P1C0SelfTests.cs:62)
+BoxerP0.Editor.P1DOpponentAttributesSelfTests:RunSuite (string,System.Action,System.Collections.Generic.ICollection`1<string>) (at Assets/Editor/P1DOpponentAttributesSelfTests.cs:157)
+BoxerP0.Editor.P1DOpponentAttributesSelfTests:RunWithRegressions () (at Assets/Editor/P1DOpponentAttributesSelfTests.cs:22)
+BoxerP0.Editor.Round2SelfTests:RunAll () (at Assets/Editor/Round2SelfTests.cs:13)
+BoxerP0.Editor.Wave1SelfTests:Run () (at Assets/Editor/Wave1SelfTests.cs:127)
+BoxerP0.Editor.CombatFairnessSelfTests:Run () (at Assets/Editor/CombatFairnessSelfTests.cs:72)
+BoxerP0.Editor.TrainingPovSelfTests:Run () (at Assets/Editor/TrainingPovSelfTests.cs:13)
+BoxerP0.Editor.PunchFeelSelfTests:RunAll () (at Assets/Editor/PunchFeelSelfTests.cs:20)
+BoxerP0.Editor.CoachAnalysisSelfTests:RunAll () (at Assets/Editor/CoachAnalysisSelfTests.cs:10)
+
+(Filename: Assets/Editor/P1C0SelfTests.cs Line: 62)
+
+P1_C1_SELF_TESTS_PASS=D:\WORK\RESEARCH\POVGame\boxer-wave1\evidence\phase1\SYNTHETIC\p1-c1-deterministic-self-tests.txt
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.P1C1SelfTests:RunBatch () (at Assets/Editor/P1C1SelfTests.cs:58)
+BoxerP0.Editor.P1DOpponentAttributesSelfTests:RunSuite (string,System.Action,System.Collections.Generic.ICollection`1<string>) (at Assets/Editor/P1DOpponentAttributesSelfTests.cs:157)
+BoxerP0.Editor.P1DOpponentAttributesSelfTests:RunWithRegressions () (at Assets/Editor/P1DOpponentAttributesSelfTests.cs:23)
+BoxerP0.Editor.Round2SelfTests:RunAll () (at Assets/Editor/Round2SelfTests.cs:13)
+BoxerP0.Editor.Wave1SelfTests:Run () (at Assets/Editor/Wave1SelfTests.cs:127)
+BoxerP0.Editor.CombatFairnessSelfTests:Run () (at Assets/Editor/CombatFairnessSelfTests.cs:72)
+BoxerP0.Editor.TrainingPovSelfTests:Run () (at Assets/Editor/TrainingPovSelfTests.cs:13)
+BoxerP0.Editor.PunchFeelSelfTests:RunAll () (at Assets/Editor/PunchFeelSelfTests.cs:20)
+BoxerP0.Editor.CoachAnalysisSelfTests:RunAll () (at Assets/Editor/CoachAnalysisSelfTests.cs:10)
+
+(Filename: Assets/Editor/P1C1SelfTests.cs Line: 58)
+
+P1_C2_SELF_TESTS_PASS=D:\WORK\RESEARCH\POVGame\boxer-wave1\evidence\phase1\SYNTHETIC\p1-c2-deterministic-self-tests.txt
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.P1C2SelfTests:RunBatch () (at Assets/Editor/P1C2SelfTests.cs:56)
+BoxerP0.Editor.P1DOpponentAttributesSelfTests:RunSuite (string,System.Action,System.Collections.Generic.ICollection`1<string>) (at Assets/Editor/P1DOpponentAttributesSelfTests.cs:157)
+BoxerP0.Editor.P1DOpponentAttributesSelfTests:RunWithRegressions () (at Assets/Editor/P1DOpponentAttributesSelfTests.cs:24)
+BoxerP0.Editor.Round2SelfTests:RunAll () (at Assets/Editor/Round2SelfTests.cs:13)
+BoxerP0.Editor.Wave1SelfTests:Run () (at Assets/Editor/Wave1SelfTests.cs:127)
+BoxerP0.Editor.CombatFairnessSelfTests:Run () (at Assets/Editor/CombatFairnessSelfTests.cs:72)
+BoxerP0.Editor.TrainingPovSelfTests:Run () (at Assets/Editor/TrainingPovSelfTests.cs:13)
+BoxerP0.Editor.PunchFeelSelfTests:RunAll () (at Assets/Editor/PunchFeelSelfTests.cs:20)
+BoxerP0.Editor.CoachAnalysisSelfTests:RunAll () (at Assets/Editor/CoachAnalysisSelfTests.cs:10)
+
+(Filename: Assets/Editor/P1C2SelfTests.cs Line: 56)
+
+P1_C3_SELF_TESTS_PASS=D:\WORK\RESEARCH\POVGame\boxer-wave1\evidence\phase1\SYNTHETIC\p1-c3-deterministic-self-tests.txt
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.P1C3SelfTests:RunBatch () (at Assets/Editor/P1C3SelfTests.cs:58)
+BoxerP0.Editor.P1DOpponentAttributesSelfTests:RunSuite (string,System.Action,System.Collections.Generic.ICollection`1<string>) (at Assets/Editor/P1DOpponentAttributesSelfTests.cs:157)
+BoxerP0.Editor.P1DOpponentAttributesSelfTests:RunWithRegressions () (at Assets/Editor/P1DOpponentAttributesSelfTests.cs:25)
+BoxerP0.Editor.Round2SelfTests:RunAll () (at Assets/Editor/Round2SelfTests.cs:13)
+BoxerP0.Editor.Wave1SelfTests:Run () (at Assets/Editor/Wave1SelfTests.cs:127)
+BoxerP0.Editor.CombatFairnessSelfTests:Run () (at Assets/Editor/CombatFairnessSelfTests.cs:72)
+BoxerP0.Editor.TrainingPovSelfTests:Run () (at Assets/Editor/TrainingPovSelfTests.cs:13)
+BoxerP0.Editor.PunchFeelSelfTests:RunAll () (at Assets/Editor/PunchFeelSelfTests.cs:20)
+BoxerP0.Editor.CoachAnalysisSelfTests:RunAll () (at Assets/Editor/CoachAnalysisSelfTests.cs:10)
+
+(Filename: Assets/Editor/P1C3SelfTests.cs Line: 58)
+
+P1_OBS_SELF_TESTS_PASS=D:\WORK\RESEARCH\POVGame\boxer-wave1\evidence\phase1\SYNTHETIC\p1-obs-deterministic-self-tests.txt
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.P1ObsSelfTests:RunBatch () (at Assets/Editor/P1ObsSelfTests.cs:59)
+BoxerP0.Editor.P1DOpponentAttributesSelfTests:RunSuite (string,System.Action,System.Collections.Generic.ICollection`1<string>) (at Assets/Editor/P1DOpponentAttributesSelfTests.cs:157)
+BoxerP0.Editor.P1DOpponentAttributesSelfTests:RunWithRegressions () (at Assets/Editor/P1DOpponentAttributesSelfTests.cs:26)
+BoxerP0.Editor.Round2SelfTests:RunAll () (at Assets/Editor/Round2SelfTests.cs:13)
+BoxerP0.Editor.Wave1SelfTests:Run () (at Assets/Editor/Wave1SelfTests.cs:127)
+BoxerP0.Editor.CombatFairnessSelfTests:Run () (at Assets/Editor/CombatFairnessSelfTests.cs:72)
+BoxerP0.Editor.TrainingPovSelfTests:Run () (at Assets/Editor/TrainingPovSelfTests.cs:13)
+BoxerP0.Editor.PunchFeelSelfTests:RunAll () (at Assets/Editor/PunchFeelSelfTests.cs:20)
+BoxerP0.Editor.CoachAnalysisSelfTests:RunAll () (at Assets/Editor/CoachAnalysisSelfTests.cs:10)
+
+(Filename: Assets/Editor/P1ObsSelfTests.cs Line: 59)
+
+P1_A3_2_SELF_TESTS_PASS=D:\WORK\RESEARCH\POVGame\boxer-wave1\evidence\phase1\SYNTHETIC\p1-a3-2-deterministic-self-tests.txt
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.P1A32SelfTests:RunBatch () (at Assets/Editor/P1A32SelfTests.cs:60)
+BoxerP0.Editor.P1DOpponentAttributesSelfTests:RunSuite (string,System.Action,System.Collections.Generic.ICollection`1<string>) (at Assets/Editor/P1DOpponentAttributesSelfTests.cs:157)
+BoxerP0.Editor.P1DOpponentAttributesSelfTests:RunWithRegressions () (at Assets/Editor/P1DOpponentAttributesSelfTests.cs:27)
+BoxerP0.Editor.Round2SelfTests:RunAll () (at Assets/Editor/Round2SelfTests.cs:13)
+BoxerP0.Editor.Wave1SelfTests:Run () (at Assets/Editor/Wave1SelfTests.cs:127)
+BoxerP0.Editor.CombatFairnessSelfTests:Run () (at Assets/Editor/CombatFairnessSelfTests.cs:72)
+BoxerP0.Editor.TrainingPovSelfTests:Run () (at Assets/Editor/TrainingPovSelfTests.cs:13)
+BoxerP0.Editor.PunchFeelSelfTests:RunAll () (at Assets/Editor/PunchFeelSelfTests.cs:20)
+BoxerP0.Editor.CoachAnalysisSelfTests:RunAll () (at Assets/Editor/CoachAnalysisSelfTests.cs:10)
+
+(Filename: Assets/Editor/P1A32SelfTests.cs Line: 60)
+
+P1_A3_3_SELF_TESTS_PASS=D:\WORK\RESEARCH\POVGame\boxer-wave1\evidence\phase1\SYNTHETIC\p1-a3-3-deterministic-self-tests.txt
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.P1A33SelfTests:RunBatch () (at Assets/Editor/P1A33SelfTests.cs:63)
+BoxerP0.Editor.P1DOpponentAttributesSelfTests:RunSuite (string,System.Action,System.Collections.Generic.ICollection`1<string>) (at Assets/Editor/P1DOpponentAttributesSelfTests.cs:157)
+BoxerP0.Editor.P1DOpponentAttributesSelfTests:RunWithRegressions () (at Assets/Editor/P1DOpponentAttributesSelfTests.cs:28)
+BoxerP0.Editor.Round2SelfTests:RunAll () (at Assets/Editor/Round2SelfTests.cs:13)
+BoxerP0.Editor.Wave1SelfTests:Run () (at Assets/Editor/Wave1SelfTests.cs:127)
+BoxerP0.Editor.CombatFairnessSelfTests:Run () (at Assets/Editor/CombatFairnessSelfTests.cs:72)
+BoxerP0.Editor.TrainingPovSelfTests:Run () (at Assets/Editor/TrainingPovSelfTests.cs:13)
+BoxerP0.Editor.PunchFeelSelfTests:RunAll () (at Assets/Editor/PunchFeelSelfTests.cs:20)
+BoxerP0.Editor.CoachAnalysisSelfTests:RunAll () (at Assets/Editor/CoachAnalysisSelfTests.cs:10)
+
+(Filename: Assets/Editor/P1A33SelfTests.cs Line: 63)
+
+P1_COUNTER_GEOMETRY_SELF_TESTS_PASS=D:\WORK\RESEARCH\POVGame\boxer-wave1\evidence\phase1\SYNTHETIC\p1-counter-geometry-deterministic-self-tests.txt
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.P1CounterGeometrySelfTests:RunBatch () (at Assets/Editor/P1CounterGeometrySelfTests.cs:68)
+BoxerP0.Editor.P1DOpponentAttributesSelfTests:RunSuite (string,System.Action,System.Collections.Generic.ICollection`1<string>) (at Assets/Editor/P1DOpponentAttributesSelfTests.cs:157)
+BoxerP0.Editor.P1DOpponentAttributesSelfTests:RunWithRegressions () (at Assets/Editor/P1DOpponentAttributesSelfTests.cs:29)
+BoxerP0.Editor.Round2SelfTests:RunAll () (at Assets/Editor/Round2SelfTests.cs:13)
+BoxerP0.Editor.Wave1SelfTests:Run () (at Assets/Editor/Wave1SelfTests.cs:127)
+BoxerP0.Editor.CombatFairnessSelfTests:Run () (at Assets/Editor/CombatFairnessSelfTests.cs:72)
+BoxerP0.Editor.TrainingPovSelfTests:Run () (at Assets/Editor/TrainingPovSelfTests.cs:13)
+BoxerP0.Editor.PunchFeelSelfTests:RunAll () (at Assets/Editor/PunchFeelSelfTests.cs:20)
+BoxerP0.Editor.CoachAnalysisSelfTests:RunAll () (at Assets/Editor/CoachAnalysisSelfTests.cs:10)
+
+(Filename: Assets/Editor/P1CounterGeometrySelfTests.cs Line: 68)
+
+P1_D_SELF_TESTS_PASS=D:\WORK\RESEARCH\POVGame\boxer-wave1\evidence\phase1\SYNTHETIC\p1-d-opponent-attributes-deterministic-self-tests.txt
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.P1DOpponentAttributesSelfTests:RunBatch () (at Assets/Editor/P1DOpponentAttributesSelfTests.cs:65)
+BoxerP0.Editor.P1DOpponentAttributesSelfTests:RunSuite (string,System.Action,System.Collections.Generic.ICollection`1<string>) (at Assets/Editor/P1DOpponentAttributesSelfTests.cs:157)
+BoxerP0.Editor.P1DOpponentAttributesSelfTests:RunWithRegressions () (at Assets/Editor/P1DOpponentAttributesSelfTests.cs:30)
+BoxerP0.Editor.Round2SelfTests:RunAll () (at Assets/Editor/Round2SelfTests.cs:13)
+BoxerP0.Editor.Wave1SelfTests:Run () (at Assets/Editor/Wave1SelfTests.cs:127)
+BoxerP0.Editor.CombatFairnessSelfTests:Run () (at Assets/Editor/CombatFairnessSelfTests.cs:72)
+BoxerP0.Editor.TrainingPovSelfTests:Run () (at Assets/Editor/TrainingPovSelfTests.cs:13)
+BoxerP0.Editor.PunchFeelSelfTests:RunAll () (at Assets/Editor/PunchFeelSelfTests.cs:20)
+BoxerP0.Editor.CoachAnalysisSelfTests:RunAll () (at Assets/Editor/CoachAnalysisSelfTests.cs:10)
+
+(Filename: Assets/Editor/P1DOpponentAttributesSelfTests.cs Line: 65)
+
+P1_D_COMBINED_REGRESSION_PASS=D:\WORK\RESEARCH\POVGame\boxer-wave1\evidence\phase1\SYNTHETIC\p1-d-opponent-attributes-combined-regression.txt
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.P1DOpponentAttributesSelfTests:RunWithRegressions () (at Assets/Editor/P1DOpponentAttributesSelfTests.cs:40)
+BoxerP0.Editor.Round2SelfTests:RunAll () (at Assets/Editor/Round2SelfTests.cs:13)
+BoxerP0.Editor.Wave1SelfTests:Run () (at Assets/Editor/Wave1SelfTests.cs:127)
+BoxerP0.Editor.CombatFairnessSelfTests:Run () (at Assets/Editor/CombatFairnessSelfTests.cs:72)
+BoxerP0.Editor.TrainingPovSelfTests:Run () (at Assets/Editor/TrainingPovSelfTests.cs:13)
+BoxerP0.Editor.PunchFeelSelfTests:RunAll () (at Assets/Editor/PunchFeelSelfTests.cs:20)
+BoxerP0.Editor.CoachAnalysisSelfTests:RunAll () (at Assets/Editor/CoachAnalysisSelfTests.cs:10)
+
+(Filename: Assets/Editor/P1DOpponentAttributesSelfTests.cs Line: 40)
+
+evidence=SYNTHETIC
+unity=6000.5.8f1
+utc=2026-10-10T05:00:32.7000616Z
+PASS P1-V opponent scale is bounded
+PASS P1-V opponent scale is distance-monotonic
+PASS P1-V guard pose token is stable
+PASS P1-V straight pose mapping is stable
+PASS P1-V hook pose mapping is stable
+PASS P1-V lead/rear mirroring is stable
+PASS P1-V bottom controls preserve left-center-right hierarchy
+PASS P1-V production resources are present
+TOTAL=8 PASS
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.P1VPresentationSelfTests:Run () (at Assets/Editor/P1VPresentationSelfTests.cs:38)
+BoxerP0.Editor.Round2SelfTests:RunAll () (at Assets/Editor/Round2SelfTests.cs:14)
+BoxerP0.Editor.Wave1SelfTests:Run () (at Assets/Editor/Wave1SelfTests.cs:127)
+BoxerP0.Editor.CombatFairnessSelfTests:Run () (at Assets/Editor/CombatFairnessSelfTests.cs:72)
+BoxerP0.Editor.TrainingPovSelfTests:Run () (at Assets/Editor/TrainingPovSelfTests.cs:13)
+BoxerP0.Editor.PunchFeelSelfTests:RunAll () (at Assets/Editor/PunchFeelSelfTests.cs:20)
+BoxerP0.Editor.CoachAnalysisSelfTests:RunAll () (at Assets/Editor/CoachAnalysisSelfTests.cs:10)
+
+(Filename: Assets/Editor/P1VPresentationSelfTests.cs Line: 38)
+
+Curl error 7: Failed to connect to config.uca.cloud.unity3d.com port 443 after 2340 ms: Could not connect to server
+ROUND2 CANDIDATE EXPERIMENT — identical anatomical pose; independent dense contact oracle
+fixtures=1860 families=5 bands=3 fps=15,30,60,120 lateral_offsets=31 dense_oracle=2049_samples
+B_POINT false_miss=1 false_contact=0
+C_SUBSAMPLED_SWEEP false_miss=0 false_contact=0
+max_midpoint_chord_deviation_m=0,000595322635 combined_experiment_ms=3320,11
+A_LEGACY_ENDPOINT rejected_before_AB: baseline arm excess 0.622574m jab; frozen bones cannot reach without shoulder detachment or disproportionate torso translation.
+Selection must also pass moving-target, runtime ownership, regression and visual gates; this experiment alone is not implementation PASS.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Round2Experiments:Run () (at Assets/Editor/Round2Experiments.cs:71)
+BoxerP0.Editor.Round2SelfTests:RunAll () (at Assets/Editor/Round2SelfTests.cs:15)
+BoxerP0.Editor.Wave1SelfTests:Run () (at Assets/Editor/Wave1SelfTests.cs:127)
+BoxerP0.Editor.CombatFairnessSelfTests:Run () (at Assets/Editor/CombatFairnessSelfTests.cs:72)
+BoxerP0.Editor.TrainingPovSelfTests:Run () (at Assets/Editor/TrainingPovSelfTests.cs:13)
+BoxerP0.Editor.PunchFeelSelfTests:RunAll () (at Assets/Editor/PunchFeelSelfTests.cs:20)
+BoxerP0.Editor.CoachAnalysisSelfTests:RunAll () (at Assets/Editor/CoachAnalysisSelfTests.cs:10)
+
+(Filename: Assets/Editor/Round2Experiments.cs Line: 71)
+
+CASES=288 CLASSIFICATION_DISAGREEMENTS=0 dense=2049_samples moving_targets_included=true
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Round2ContactMatrix:Run () (at Assets/Editor/Round2ContactMatrix.cs:55)
+BoxerP0.Editor.Round2SelfTests:RunAll () (at Assets/Editor/Round2SelfTests.cs:16)
+BoxerP0.Editor.Wave1SelfTests:Run () (at Assets/Editor/Wave1SelfTests.cs:127)
+BoxerP0.Editor.CombatFairnessSelfTests:Run () (at Assets/Editor/CombatFairnessSelfTests.cs:72)
+BoxerP0.Editor.TrainingPovSelfTests:Run () (at Assets/Editor/TrainingPovSelfTests.cs:13)
+BoxerP0.Editor.PunchFeelSelfTests:RunAll () (at Assets/Editor/PunchFeelSelfTests.cs:20)
+BoxerP0.Editor.CoachAnalysisSelfTests:RunAll () (at Assets/Editor/CoachAnalysisSelfTests.cs:10)
+
+(Filename: Assets/Editor/Round2ContactMatrix.cs Line: 55)
+
+PASS Jab frozen bone lengths across all phases
+PASS Jab continuous recovery to guard
+PASS Jab continuous commit to extension
+PASS Jab continuous extension to recovery
+PASS Jab A1 solved advance > neutral > retreat
+PASS Cross frozen bone lengths across all phases
+PASS Cross continuous recovery to guard
+PASS Cross continuous commit to extension
+PASS Cross continuous extension to recovery
+PASS Cross A1 solved advance > neutral > retreat
+PASS LeadHook frozen bone lengths across all phases
+PASS LeadHook continuous recovery to guard
+PASS LeadHook continuous commit to extension
+PASS LeadHook continuous extension to recovery
+PASS LeadHook A3.1 close extension > far extension
+PASS RearHook frozen bone lengths across all phases
+PASS RearHook continuous recovery to guard
+PASS RearHook continuous commit to extension
+PASS RearHook continuous extension to recovery
+PASS RearHook A3.1 close extension > far extension
+PASS LeadUppercut frozen bone lengths across all phases
+PASS LeadUppercut continuous recovery to guard
+PASS LeadUppercut continuous commit to extension
+PASS LeadUppercut continuous extension to recovery
+PASS RearUppercut frozen bone lengths across all phases
+PASS RearUppercut continuous recovery to guard
+PASS RearUppercut continuous commit to extension
+PASS RearUppercut continuous extension to recovery
+PASS LeadOverhand frozen bone lengths across all phases
+PASS LeadOverhand continuous recovery to guard
+PASS LeadOverhand continuous commit to extension
+PASS LeadOverhand continuous extension to recovery
+PASS RearOverhand frozen bone lengths across all phases
+PASS RearOverhand continuous recovery to guard
+PASS RearOverhand continuous commit to extension
+PASS RearOverhand continuous extension to recovery
+PASS outside path MISS
+PASS first surface contact, not endpoint prediction
+PASS moving target crossing is not missed
+PASS equal velocity separated volumes MISS
+PASS geometry-derived distance ordering
+PASS P1-D long reach retains effect within frozen bone lengths
+PASS pose plus sweep hot loop allocates zero managed bytes
+benchmark_iterations=100000 elapsed_ms=145,206 allocated_bytes=0 checksum=100000
+TOTAL=43 PASS=43 FAIL=0
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Round2SelfTests:Run () (at Assets/Editor/Round2SelfTests.cs:85)
+BoxerP0.Editor.Round2SelfTests:RunAll () (at Assets/Editor/Round2SelfTests.cs:17)
+BoxerP0.Editor.Wave1SelfTests:Run () (at Assets/Editor/Wave1SelfTests.cs:127)
+BoxerP0.Editor.CombatFairnessSelfTests:Run () (at Assets/Editor/CombatFairnessSelfTests.cs:72)
+BoxerP0.Editor.TrainingPovSelfTests:Run () (at Assets/Editor/TrainingPovSelfTests.cs:13)
+BoxerP0.Editor.PunchFeelSelfTests:RunAll () (at Assets/Editor/PunchFeelSelfTests.cs:20)
+BoxerP0.Editor.CoachAnalysisSelfTests:RunAll () (at Assets/Editor/CoachAnalysisSelfTests.cs:10)
+
+(Filename: Assets/Editor/Round2SelfTests.cs Line: 85)
+
+SCOPE=PRESENTATION_GEOMETRY_NOT_RENDERED_REFERENCE_OR_HUMAN_UAT
+PASS arm has no collider True
+PASS read-only shared endpoints True None Commit 0
+PASS finite bounded continuous mesh True None Commit 0
+PASS portrait guard elbow inside frustum True Commit
+elbow_viewport=(0.1106, 0.1374, 0.3410)
+PASS read-only shared endpoints True None Commit 0,25
+PASS finite bounded continuous mesh True None Commit 0,25
+PASS read-only shared endpoints True None Commit 0,5
+PASS finite bounded continuous mesh True None Commit 0,5
+PASS read-only shared endpoints True None Commit 0,75
+PASS finite bounded continuous mesh True None Commit 0,75
+PASS read-only shared endpoints True None Commit 1
+PASS finite bounded continuous mesh True None Commit 1
+PASS read-only shared endpoints True None Extend 0
+PASS finite bounded continuous mesh True None Extend 0
+PASS portrait guard elbow inside frustum True Extend
+elbow_viewport=(0.1106, 0.1374, 0.3410)
+PASS read-only shared endpoints True None Extend 0,25
+PASS finite bounded continuous mesh True None Extend 0,25
+PASS read-only shared endpoints True None Extend 0,5
+PASS finite bounded continuous mesh True None Extend 0,5
+PASS read-only shared endpoints True None Extend 0,75
+PASS finite bounded continuous mesh True None Extend 0,75
+PASS read-only shared endpoints True None Extend 1
+PASS finite bounded continuous mesh True None Extend 1
+PASS read-only shared endpoints True None Recover 0
+PASS finite bounded continuous mesh True None Recover 0
+PASS portrait guard elbow inside frustum True Recover
+elbow_viewport=(0.1106, 0.1374, 0.3410)
+PASS read-only shared endpoints True None Recover 0,25
+PASS finite bounded continuous mesh True None Recover 0,25
+PASS read-only shared endpoints True None Recover 0,5
+PASS finite bounded continuous mesh True None Recover 0,5
+PASS read-only shared endpoints True None Recover 0,75
+PASS finite bounded continuous mesh True None Recover 0,75
+PASS read-only shared endpoints True None Recover 1
+PASS finite bounded continuous mesh True None Recover 1
+PASS read-only shared endpoints True Jab Commit 0
+PASS finite bounded continuous mesh True Jab Commit 0
+PASS read-only shared endpoints True Jab Commit 0,25
+PASS finite bounded continuous mesh True Jab Commit 0,25
+PASS read-only shared endpoints True Jab Commit 0,5
+PASS finite bounded continuous mesh True Jab Commit 0,5
+PASS read-only shared endpoints True Jab Commit 0,75
+PASS finite bounded continuous mesh True Jab Commit 0,75
+PASS read-only shared endpoints True Jab Commit 1
+PASS finite bounded continuous mesh True Jab Commit 1
+PASS read-only shared endpoints True Jab Extend 0
+PASS finite bounded continuous mesh True Jab Extend 0
+PASS read-only shared endpoints True Jab Extend 0,25
+PASS finite bounded continuous mesh True Jab Extend 0,25
+PASS read-only shared endpoints True Jab Extend 0,5
+PASS finite bounded continuous mesh True Jab Extend 0,5
+PASS read-only shared endpoints True Jab Extend 0,75
+PASS finite bounded continuous mesh True Jab Extend 0,75
+PASS read-only shared endpoints True Jab Extend 1
+PASS finite bounded continuous mesh True Jab Extend 1
+PASS read-only shared endpoints True Jab Recover 0
+PASS finite bounded continuous mesh True Jab Recover 0
+PASS read-only shared endpoints True Jab Recover 0,25
+PASS finite bounded continuous mesh True Jab Recover 0,25
+PASS read-only shared endpoints True Jab Recover 0,5
+PASS finite bounded continuous mesh True Jab Recover 0,5
+PASS read-only shared endpoints True Jab Recover 0,75
+PASS finite bounded continuous mesh True Jab Recover 0,75
+PASS read-only shared endpoints True Jab Recover 1
+PASS finite bounded continuous mesh True Jab Recover 1
+PASS read-only shared endpoints True Cross Commit 0
+PASS finite bounded continuous mesh True Cross Commit 0
+PASS read-only shared endpoints True Cross Commit 0,25
+PASS finite bounded continuous mesh True Cross Commit 0,25
+PASS read-only shared endpoints True Cross Commit 0,5
+PASS finite bounded continuous mesh True Cross Commit 0,5
+PASS read-only shared endpoints True Cross Commit 0,75
+PASS finite bounded continuous mesh True Cross Commit 0,75
+PASS read-only shared endpoints True Cross Commit 1
+PASS finite bounded continuous mesh True Cross Commit 1
+PASS read-only shared endpoints True Cross Extend 0
+PASS finite bounded continuous mesh True Cross Extend 0
+PASS read-only shared endpoints True Cross Extend 0,25
+PASS finite bounded continuous mesh True Cross Extend 0,25
+PASS read-only shared endpoints True Cross Extend 0,5
+PASS finite bounded continuous mesh True Cross Extend 0,5
+PASS read-only shared endpoints True Cross Extend 0,75
+PASS finite bounded continuous mesh True Cross Extend 0,75
+PASS read-only shared endpoints True Cross Extend 1
+PASS finite bounded continuous mesh True Cross Extend 1
+PASS read-only shared endpoints True Cross Recover 0
+PASS finite bounded continuous mesh True Cross Recover 0
+PASS read-only shared endpoints True Cross Recover 0,25
+PASS finite bounded continuous mesh True Cross Recover 0,25
+PASS read-only shared endpoints True Cross Recover 0,5
+PASS finite bounded continuous mesh True Cross Recover 0,5
+PASS read-only shared endpoints True Cross Recover 0,75
+PASS finite bounded continuous mesh True Cross Recover 0,75
+PASS read-only shared endpoints True Cross Recover 1
+PASS finite bounded continuous mesh True Cross Recover 1
+PASS read-only shared endpoints True LeadHook Commit 0
+PASS finite bounded continuous mesh True LeadHook Commit 0
+PASS read-only shared endpoints True LeadHook Commit 0,25
+PASS finite bounded continuous mesh True LeadHook Commit 0,25
+PASS read-only shared endpoints True LeadHook Commit 0,5
+PASS finite bounded continuous mesh True LeadHook Commit 0,5
+PASS read-only shared endpoints True LeadHook Commit 0,75
+PASS finite bounded continuous mesh True LeadHook Commit 0,75
+PASS read-only shared endpoints True LeadHook Commit 1
+PASS finite bounded continuous mesh True LeadHook Commit 1
+PASS read-only shared endpoints True LeadHook Extend 0
+PASS finite bounded continuous mesh True LeadHook Extend 0
+PASS read-only shared endpoints True LeadHook Extend 0,25
+PASS finite bounded continuous mesh True LeadHook Extend 0,25
+PASS read-only shared endpoints True LeadHook Extend 0,5
+PASS finite bounded continuous mesh True LeadHook Extend 0,5
+PASS read-only shared endpoints True LeadHook Extend 0,75
+PASS finite bounded continuous mesh True LeadHook Extend 0,75
+PASS read-only shared endpoints True LeadHook Extend 1
+PASS finite bounded continuous mesh True LeadHook Extend 1
+PASS read-only shared endpoints True LeadHook Recover 0
+PASS finite bounded continuous mesh True LeadHook Recover 0
+PASS read-only shared endpoints True LeadHook Recover 0,25
+PASS finite bounded continuous mesh True LeadHook Recover 0,25
+PASS read-only shared endpoints True LeadHook Recover 0,5
+PASS finite bounded continuous mesh True LeadHook Recover 0,5
+PASS read-only shared endpoints True LeadHook Recover 0,75
+PASS finite bounded continuous mesh True LeadHook Recover 0,75
+PASS read-only shared endpoints True LeadHook Recover 1
+PASS finite bounded continuous mesh True LeadHook Recover 1
+PASS read-only shared endpoints True RearHook Commit 0
+PASS finite bounded continuous mesh True RearHook Commit 0
+PASS read-only shared endpoints True RearHook Commit 0,25
+PASS finite bounded continuous mesh True RearHook Commit 0,25
+PASS read-only shared endpoints True RearHook Commit 0,5
+PASS finite bounded continuous mesh True RearHook Commit 0,5
+PASS read-only shared endpoints True RearHook Commit 0,75
+PASS finite bounded continuous mesh True RearHook Commit 0,75
+PASS read-only shared endpoints True RearHook Commit 1
+PASS finite bounded continuous mesh True RearHook Commit 1
+PASS read-only shared endpoints True RearHook Extend 0
+PASS finite bounded continuous mesh True RearHook Extend 0
+PASS read-only shared endpoints True RearHook Extend 0,25
+PASS finite bounded continuous mesh True RearHook Extend 0,25
+PASS read-only shared endpoints True RearHook Extend 0,5
+PASS finite bounded continuous mesh True RearHook Extend 0,5
+PASS read-only shared endpoints True RearHook Extend 0,75
+PASS finite bounded continuous mesh True RearHook Extend 0,75
+PASS read-only shared endpoints True RearHook Extend 1
+PASS finite bounded continuous mesh True RearHook Extend 1
+PASS read-only shared endpoints True RearHook Recover 0
+PASS finite bounded continuous mesh True RearHook Recover 0
+PASS read-only shared endpoints True RearHook Recover 0,25
+PASS finite bounded continuous mesh True RearHook Recover 0,25
+PASS read-only shared endpoints True RearHook Recover 0,5
+PASS finite bounded continuous mesh True RearHook Recover 0,5
+PASS read-only shared endpoints True RearHook Recover 0,75
+PASS finite bounded continuous mesh True RearHook Recover 0,75
+PASS read-only shared endpoints True RearHook Recover 1
+PASS finite bounded continuous mesh True RearHook Recover 1
+PASS read-only shared endpoints True LeadUppercut Commit 0
+PASS finite bounded continuous mesh True LeadUppercut Commit 0
+PASS read-only shared endpoints True LeadUppercut Commit 0,25
+PASS finite bounded continuous mesh True LeadUppercut Commit 0,25
+PASS read-only shared endpoints True LeadUppercut Commit 0,5
+PASS finite bounded continuous mesh True LeadUppercut Commit 0,5
+PASS read-only shared endpoints True LeadUppercut Commit 0,75
+PASS finite bounded continuous mesh True LeadUppercut Commit 0,75
+PASS read-only shared endpoints True LeadUppercut Commit 1
+PASS finite bounded continuous mesh True LeadUppercut Commit 1
+PASS read-only shared endpoints True LeadUppercut Extend 0
+PASS finite bounded continuous mesh True LeadUppercut Extend 0
+PASS read-only shared endpoints True LeadUppercut Extend 0,25
+PASS finite bounded continuous mesh True LeadUppercut Extend 0,25
+PASS read-only shared endpoints True LeadUppercut Extend 0,5
+PASS finite bounded continuous mesh True LeadUppercut Extend 0,5
+PASS read-only shared endpoints True LeadUppercut Extend 0,75
+PASS finite bounded continuous mesh True LeadUppercut Extend 0,75
+PASS read-only shared endpoints True LeadUppercut Extend 1
+PASS finite bounded continuous mesh True LeadUppercut Extend 1
+PASS read-only shared endpoints True LeadUppercut Recover 0
+PASS finite bounded continuous mesh True LeadUppercut Recover 0
+PASS read-only shared endpoints True LeadUppercut Recover 0,25
+PASS finite bounded continuous mesh True LeadUppercut Recover 0,25
+PASS read-only shared endpoints True LeadUppercut Recover 0,5
+PASS finite bounded continuous mesh True LeadUppercut Recover 0,5
+PASS read-only shared endpoints True LeadUppercut Recover 0,75
+PASS finite bounded continuous mesh True LeadUppercut Recover 0,75
+PASS read-only shared endpoints True LeadUppercut Recover 1
+PASS finite bounded continuous mesh True LeadUppercut Recover 1
+PASS read-only shared endpoints True RearUppercut Commit 0
+PASS finite bounded continuous mesh True RearUppercut Commit 0
+PASS read-only shared endpoints True RearUppercut Commit 0,25
+PASS finite bounded continuous mesh True RearUppercut Commit 0,25
+PASS read-only shared endpoints True RearUppercut Commit 0,5
+PASS finite bounded continuous mesh True RearUppercut Commit 0,5
+PASS read-only shared endpoints True RearUppercut Commit 0,75
+PASS finite bounded continuous mesh True RearUppercut Commit 0,75
+PASS read-only shared endpoints True RearUppercut Commit 1
+PASS finite bounded continuous mesh True RearUppercut Commit 1
+PASS read-only shared endpoints True RearUppercut Extend 0
+PASS finite bounded continuous mesh True RearUppercut Extend 0
+PASS read-only shared endpoints True RearUppercut Extend 0,25
+PASS finite bounded continuous mesh True RearUppercut Extend 0,25
+PASS read-only shared endpoints True RearUppercut Extend 0,5
+PASS finite bounded continuous mesh True RearUppercut Extend 0,5
+PASS read-only shared endpoints True RearUppercut Extend 0,75
+PASS finite bounded continuous mesh True RearUppercut Extend 0,75
+PASS read-only shared endpoints True RearUppercut Extend 1
+PASS finite bounded continuous mesh True RearUppercut Extend 1
+PASS read-only shared endpoints True RearUppercut Recover 0
+PASS finite bounded continuous mesh True RearUppercut Recover 0
+PASS read-only shared endpoints True RearUppercut Recover 0,25
+PASS finite bounded continuous mesh True RearUppercut Recover 0,25
+PASS read-only shared endpoints True RearUppercut Recover 0,5
+PASS finite bounded continuous mesh True RearUppercut Recover 0,5
+PASS read-only shared endpoints True RearUppercut Recover 0,75
+PASS finite bounded continuous mesh True RearUppercut Recover 0,75
+PASS read-only shared endpoints True RearUppercut Recover 1
+PASS finite bounded continuous mesh True RearUppercut Recover 1
+PASS read-only shared endpoints True LeadOverhand Commit 0
+PASS finite bounded continuous mesh True LeadOverhand Commit 0
+PASS read-only shared endpoints True LeadOverhand Commit 0,25
+PASS finite bounded continuous mesh True LeadOverhand Commit 0,25
+PASS read-only shared endpoints True LeadOverhand Commit 0,5
+PASS finite bounded continuous mesh True LeadOverhand Commit 0,5
+PASS read-only shared endpoints True LeadOverhand Commit 0,75
+PASS finite bounded continuous mesh True LeadOverhand Commit 0,75
+PASS read-only shared endpoints True LeadOverhand Commit 1
+PASS finite bounded continuous mesh True LeadOverhand Commit 1
+PASS read-only shared endpoints True LeadOverhand Extend 0
+PASS finite bounded continuous mesh True LeadOverhand Extend 0
+PASS read-only shared endpoints True LeadOverhand Extend 0,25
+PASS finite bounded continuous mesh True LeadOverhand Extend 0,25
+PASS read-only shared endpoints True LeadOverhand Extend 0,5
+PASS finite bounded continuous mesh True LeadOverhand Extend 0,5
+PASS read-only shared endpoints True LeadOverhand Extend 0,75
+PASS finite bounded continuous mesh True LeadOverhand Extend 0,75
+PASS read-only shared endpoints True LeadOverhand Extend 1
+PASS finite bounded continuous mesh True LeadOverhand Extend 1
+PASS read-only shared endpoints True LeadOverhand Recover 0
+PASS finite bounded continuous mesh True LeadOverhand Recover 0
+PASS read-only shared endpoints True LeadOverhand Recover 0,25
+PASS finite bounded continuous mesh True LeadOverhand Recover 0,25
+PASS read-only shared endpoints True LeadOverhand Recover 0,5
+PASS finite bounded continuous mesh True LeadOverhand Recover 0,5
+PASS read-only shared endpoints True LeadOverhand Recover 0,75
+PASS finite bounded continuous mesh True LeadOverhand Recover 0,75
+PASS read-only shared endpoints True LeadOverhand Recover 1
+PASS finite bounded continuous mesh True LeadOverhand Recover 1
+PASS read-only shared endpoints True RearOverhand Commit 0
+PASS finite bounded continuous mesh True RearOverhand Commit 0
+PASS read-only shared endpoints True RearOverhand Commit 0,25
+PASS finite bounded continuous mesh True RearOverhand Commit 0,25
+PASS read-only shared endpoints True RearOverhand Commit 0,5
+PASS finite bounded continuous mesh True RearOverhand Commit 0,5
+PASS read-only shared endpoints True RearOverhand Commit 0,75
+PASS finite bounded continuous mesh True RearOverhand Commit 0,75
+PASS read-only shared endpoints True RearOverhand Commit 1
+PASS finite bounded continuous mesh True RearOverhand Commit 1
+PASS read-only shared endpoints True RearOverhand Extend 0
+PASS finite bounded continuous mesh True RearOverhand Extend 0
+PASS read-only shared endpoints True RearOverhand Extend 0,25
+PASS finite bounded continuous mesh True RearOverhand Extend 0,25
+PASS read-only shared endpoints True RearOverhand Extend 0,5
+PASS finite bounded continuous mesh True RearOverhand Extend 0,5
+PASS read-only shared endpoints True RearOverhand Extend 0,75
+PASS finite bounded continuous mesh True RearOverhand Extend 0,75
+PASS read-only shared endpoints True RearOverhand Extend 1
+PASS finite bounded continuous mesh True RearOverhand Extend 1
+PASS read-only shared endpoints True RearOverhand Recover 0
+PASS finite bounded continuous mesh True RearOverhand Recover 0
+PASS read-only shared endpoints True RearOverhand Recover 0,25
+PASS finite bounded continuous mesh True RearOverhand Recover 0,25
+PASS read-only shared endpoints True RearOverhand Recover 0,5
+PASS finite bounded continuous mesh True RearOverhand Recover 0,5
+PASS read-only shared endpoints True RearOverhand Recover 0,75
+PASS finite bounded continuous mesh True RearOverhand Recover 0,75
+PASS read-only shared endpoints True RearOverhand Recover 1
+PASS finite bounded continuous mesh True RearOverhand Recover 1
+PASS arm has no collider False
+PASS read-only shared endpoints False None Commit 0
+PASS finite bounded continuous mesh False None Commit 0
+PASS portrait guard elbow inside frustum False Commit
+elbow_viewport=(0.9260, 0.0909, 0.3286)
+PASS read-only shared endpoints False None Commit 0,25
+PASS finite bounded continuous mesh False None Commit 0,25
+PASS read-only shared endpoints False None Commit 0,5
+PASS finite bounded continuous mesh False None Commit 0,5
+PASS read-only shared endpoints False None Commit 0,75
+PASS finite bounded continuous mesh False None Commit 0,75
+PASS read-only shared endpoints False None Commit 1
+PASS finite bounded continuous mesh False None Commit 1
+PASS read-only shared endpoints False None Extend 0
+PASS finite bounded continuous mesh False None Extend 0
+PASS portrait guard elbow inside frustum False Extend
+elbow_viewport=(0.9260, 0.0909, 0.3286)
+PASS read-only shared endpoints False None Extend 0,25
+PASS finite bounded continuous mesh False None Extend 0,25
+PASS read-only shared endpoints False None Extend 0,5
+PASS finite bounded continuous mesh False None Extend 0,5
+PASS read-only shared endpoints False None Extend 0,75
+PASS finite bounded continuous mesh False None Extend 0,75
+PASS read-only shared endpoints False None Extend 1
+PASS finite bounded continuous mesh False None Extend 1
+PASS read-only shared endpoints False None Recover 0
+PASS finite bounded continuous mesh False None Recover 0
+PASS portrait guard elbow inside frustum False Recover
+elbow_viewport=(0.9260, 0.0909, 0.3286)
+PASS read-only shared endpoints False None Recover 0,25
+PASS finite bounded continuous mesh False None Recover 0,25
+PASS read-only shared endpoints False None Recover 0,5
+PASS finite bounded continuous mesh False None Recover 0,5
+PASS read-only shared endpoints False None Recover 0,75
+PASS finite bounded continuous mesh False None Recover 0,75
+PASS read-only shared endpoints False None Recover 1
+PASS finite bounded continuous mesh False None Recover 1
+PASS read-only shared endpoints False Jab Commit 0
+PASS finite bounded continuous mesh False Jab Commit 0
+PASS read-only shared endpoints False Jab Commit 0,25
+PASS finite bounded continuous mesh False Jab Commit 0,25
+PASS read-only shared endpoints False Jab Commit 0,5
+PASS finite bounded continuous mesh False Jab Commit 0,5
+PASS read-only shared endpoints False Jab Commit 0,75
+PASS finite bounded continuous mesh False Jab Commit 0,75
+PASS read-only shared endpoints False Jab Commit 1
+PASS finite bounded continuous mesh False Jab Commit 1
+PASS read-only shared endpoints False Jab Extend 0
+PASS finite bounded continuous mesh False Jab Extend 0
+PASS read-only shared endpoints False Jab Extend 0,25
+PASS finite bounded continuous mesh False Jab Extend 0,25
+PASS read-only shared endpoints False Jab Extend 0,5
+PASS finite bounded continuous mesh False Jab Extend 0,5
+PASS read-only shared endpoints False Jab Extend 0,75
+PASS finite bounded continuous mesh False Jab Extend 0,75
+PASS read-only shared endpoints False Jab Extend 1
+PASS finite bounded continuous mesh False Jab Extend 1
+PASS read-only shared endpoints False Jab Recover 0
+PASS finite bounded continuous mesh False Jab Recover 0
+PASS read-only shared endpoints False Jab Recover 0,25
+PASS finite bounded continuous mesh False Jab Recover 0,25
+PASS read-only shared endpoints False Jab Recover 0,5
+PASS finite bounded continuous mesh False Jab Recover 0,5
+PASS read-only shared endpoints False Jab Recover 0,75
+PASS finite bounded continuous mesh False Jab Recover 0,75
+PASS read-only shared endpoints False Jab Recover 1
+PASS finite bounded continuous mesh False Jab Recover 1
+PASS read-only shared endpoints False Cross Commit 0
+PASS finite bounded continuous mesh False Cross Commit 0
+PASS read-only shared endpoints False Cross Commit 0,25
+PASS finite bounded continuous mesh False Cross Commit 0,25
+PASS read-only shared endpoints False Cross Commit 0,5
+PASS finite bounded continuous mesh False Cross Commit 0,5
+PASS read-only shared endpoints False Cross Commit 0,75
+PASS finite bounded continuous mesh False Cross Commit 0,75
+PASS read-only shared endpoints False Cross Commit 1
+PASS finite bounded continuous mesh False Cross Commit 1
+PASS read-only shared endpoints False Cross Extend 0
+PASS finite bounded continuous mesh False Cross Extend 0
+PASS read-only shared endpoints False Cross Extend 0,25
+PASS finite bounded continuous mesh False Cross Extend 0,25
+PASS read-only shared endpoints False Cross Extend 0,5
+PASS finite bounded continuous mesh False Cross Extend 0,5
+PASS read-only shared endpoints False Cross Extend 0,75
+PASS finite bounded continuous mesh False Cross Extend 0,75
+PASS read-only shared endpoints False Cross Extend 1
+PASS finite bounded continuous mesh False Cross Extend 1
+PASS read-only shared endpoints False Cross Recover 0
+PASS finite bounded continuous mesh False Cross Recover 0
+PASS read-only shared endpoints False Cross Recover 0,25
+PASS finite bounded continuous mesh False Cross Recover 0,25
+PASS read-only shared endpoints False Cross Recover 0,5
+PASS finite bounded continuous mesh False Cross Recover 0,5
+PASS read-only shared endpoints False Cross Recover 0,75
+PASS finite bounded continuous mesh False Cross Recover 0,75
+PASS read-only shared endpoints False Cross Recover 1
+PASS finite bounded continuous mesh False Cross Recover 1
+PASS read-only shared endpoints False LeadHook Commit 0
+PASS finite bounded continuous mesh False LeadHook Commit 0
+PASS read-only shared endpoints False LeadHook Commit 0,25
+PASS finite bounded continuous mesh False LeadHook Commit 0,25
+PASS read-only shared endpoints False LeadHook Commit 0,5
+PASS finite bounded continuous mesh False LeadHook Commit 0,5
+PASS read-only shared endpoints False LeadHook Commit 0,75
+PASS finite bounded continuous mesh False LeadHook Commit 0,75
+PASS read-only shared endpoints False LeadHook Commit 1
+PASS finite bounded continuous mesh False LeadHook Commit 1
+PASS read-only shared endpoints False LeadHook Extend 0
+PASS finite bounded continuous mesh False LeadHook Extend 0
+PASS read-only shared endpoints False LeadHook Extend 0,25
+PASS finite bounded continuous mesh False LeadHook Extend 0,25
+PASS read-only shared endpoints False LeadHook Extend 0,5
+PASS finite bounded continuous mesh False LeadHook Extend 0,5
+PASS read-only shared endpoints False LeadHook Extend 0,75
+PASS finite bounded continuous mesh False LeadHook Extend 0,75
+PASS read-only shared endpoints False LeadHook Extend 1
+PASS finite bounded continuous mesh False LeadHook Extend 1
+PASS read-only shared endpoints False LeadHook Recover 0
+PASS finite bounded continuous mesh False LeadHook Recover 0
+PASS read-only shared endpoints False LeadHook Recover 0,25
+PASS finite bounded continuous mesh False LeadHook Recover 0,25
+PASS read-only shared endpoints False LeadHook Recover 0,5
+PASS finite bounded continuous mesh False LeadHook Recover 0,5
+PASS read-only shared endpoints False LeadHook Recover 0,75
+PASS finite bounded continuous mesh False LeadHook Recover 0,75
+PASS read-only shared endpoints False LeadHook Recover 1
+PASS finite bounded continuous mesh False LeadHook Recover 1
+PASS read-only shared endpoints False RearHook Commit 0
+PASS finite bounded continuous mesh False RearHook Commit 0
+PASS read-only shared endpoints False RearHook Commit 0,25
+PASS finite bounded continuous mesh False RearHook Commit 0,25
+PASS read-only shared endpoints False RearHook Commit 0,5
+PASS finite bounded continuous mesh False RearHook Commit 0,5
+PASS read-only shared endpoints False RearHook Commit 0,75
+PASS finite bounded continuous mesh False RearHook Commit 0,75
+PASS read-only shared endpoints False RearHook Commit 1
+PASS finite bounded continuous mesh False RearHook Commit 1
+PASS read-only shared endpoints False RearHook Extend 0
+PASS finite bounded continuous mesh False RearHook Extend 0
+PASS read-only shared endpoints False RearHook Extend 0,25
+PASS finite bounded continuous mesh False RearHook Extend 0,25
+PASS read-only shared endpoints False RearHook Extend 0,5
+PASS finite bounded continuous mesh False RearHook Extend 0,5
+PASS read-only shared endpoints False RearHook Extend 0,75
+PASS finite bounded continuous mesh False RearHook Extend 0,75
+PASS read-only shared endpoints False RearHook Extend 1
+PASS finite bounded continuous mesh False RearHook Extend 1
+PASS read-only shared endpoints False RearHook Recover 0
+PASS finite bounded continuous mesh False RearHook Recover 0
+PASS read-only shared endpoints False RearHook Recover 0,25
+PASS finite bounded continuous mesh False RearHook Recover 0,25
+PASS read-only shared endpoints False RearHook Recover 0,5
+PASS finite bounded continuous mesh False RearHook Recover 0,5
+PASS read-only shared endpoints False RearHook Recover 0,75
+PASS finite bounded continuous mesh False RearHook Recover 0,75
+PASS read-only shared endpoints False RearHook Recover 1
+PASS finite bounded continuous mesh False RearHook Recover 1
+PASS read-only shared endpoints False LeadUppercut Commit 0
+PASS finite bounded continuous mesh False LeadUppercut Commit 0
+PASS read-only shared endpoints False LeadUppercut Commit 0,25
+PASS finite bounded continuous mesh False LeadUppercut Commit 0,25
+PASS read-only shared endpoints False LeadUppercut Commit 0,5
+PASS finite bounded continuous mesh False LeadUppercut Commit 0,5
+PASS read-only shared endpoints False LeadUppercut Commit 0,75
+PASS finite bounded continuous mesh False LeadUppercut Commit 0,75
+PASS read-only shared endpoints False LeadUppercut Commit 1
+PASS finite bounded continuous mesh False LeadUppercut Commit 1
+PASS read-only shared endpoints False LeadUppercut Extend 0
+PASS finite bounded continuous mesh False LeadUppercut Extend 0
+PASS read-only shared endpoints False LeadUppercut Extend 0,25
+PASS finite bounded continuous mesh False LeadUppercut Extend 0,25
+PASS read-only shared endpoints False LeadUppercut Extend 0,5
+PASS finite bounded continuous mesh False LeadUppercut Extend 0,5
+PASS read-only shared endpoints False LeadUppercut Extend 0,75
+PASS finite bounded continuous mesh False LeadUppercut Extend 0,75
+PASS read-only shared endpoints False LeadUppercut Extend 1
+PASS finite bounded continuous mesh False LeadUppercut Extend 1
+PASS read-only shared endpoints False LeadUppercut Recover 0
+PASS finite bounded continuous mesh False LeadUppercut Recover 0
+PASS read-only shared endpoints False LeadUppercut Recover 0,25
+PASS finite bounded continuous mesh False LeadUppercut Recover 0,25
+PASS read-only shared endpoints False LeadUppercut Recover 0,5
+PASS finite bounded continuous mesh False LeadUppercut Recover 0,5
+PASS read-only shared endpoints False LeadUppercut Recover 0,75
+PASS finite bounded continuous mesh False LeadUppercut Recover 0,75
+PASS read-only shared endpoints False LeadUppercut Recover 1
+PASS finite bounded continuous mesh False LeadUppercut Recover 1
+PASS read-only shared endpoints False RearUppercut Commit 0
+PASS finite bounded continuous mesh False RearUppercut Commit 0
+PASS read-only shared endpoints False RearUppercut Commit 0,25
+PASS finite bounded continuous mesh False RearUppercut Commit 0,25
+PASS read-only shared endpoints False RearUppercut Commit 0,5
+PASS finite bounded continuous mesh False RearUppercut Commit 0,5
+PASS read-only shared endpoints False RearUppercut Commit 0,75
+PASS finite bounded continuous mesh False RearUppercut Commit 0,75
+PASS read-only shared endpoints False RearUppercut Commit 1
+PASS finite bounded continuous mesh False RearUppercut Commit 1
+PASS read-only shared endpoints False RearUppercut Extend 0
+PASS finite bounded continuous mesh False RearUppercut Extend 0
+PASS read-only shared endpoints False RearUppercut Extend 0,25
+PASS finite bounded continuous mesh False RearUppercut Extend 0,25
+PASS read-only shared endpoints False RearUppercut Extend 0,5
+PASS finite bounded continuous mesh False RearUppercut Extend 0,5
+PASS read-only shared endpoints False RearUppercut Extend 0,75
+PASS finite bounded continuous mesh False RearUppercut Extend 0,75
+PASS read-only shared endpoints False RearUppercut Extend 1
+PASS finite bounded continuous mesh False RearUppercut Extend 1
+PASS read-only shared endpoints False RearUppercut Recover 0
+PASS finite bounded continuous mesh False RearUppercut Recover 0
+PASS read-only shared endpoints False RearUppercut Recover 0,25
+PASS finite bounded continuous mesh False RearUppercut Recover 0,25
+PASS read-only shared endpoints False RearUppercut Recover 0,5
+PASS finite bounded continuous mesh False RearUppercut Recover 0,5
+PASS read-only shared endpoints False RearUppercut Recover 0,75
+PASS finite bounded continuous mesh False RearUppercut Recover 0,75
+PASS read-only shared endpoints False RearUppercut Recover 1
+PASS finite bounded continuous mesh False RearUppercut Recover 1
+PASS read-only shared endpoints False LeadOverhand Commit 0
+PASS finite bounded continuous mesh False LeadOverhand Commit 0
+PASS read-only shared endpoints False LeadOverhand Commit 0,25
+PASS finite bounded continuous mesh False LeadOverhand Commit 0,25
+PASS read-only shared endpoints False LeadOverhand Commit 0,5
+PASS finite bounded continuous mesh False LeadOverhand Commit 0,5
+PASS read-only shared endpoints False LeadOverhand Commit 0,75
+PASS finite bounded continuous mesh False LeadOverhand Commit 0,75
+PASS read-only shared endpoints False LeadOverhand Commit 1
+PASS finite bounded continuous mesh False LeadOverhand Commit 1
+PASS read-only shared endpoints False LeadOverhand Extend 0
+PASS finite bounded continuous mesh False LeadOverhand Extend 0
+PASS read-only shared endpoints False LeadOverhand Extend 0,25
+PASS finite bounded continuous mesh False LeadOverhand Extend 0,25
+PASS read-only shared endpoints False LeadOverhand Extend 0,5
+PASS finite bounded continuous mesh False LeadOverhand Extend 0,5
+PASS read-only shared endpoints False LeadOverhand Extend 0,75
+PASS finite bounded continuous mesh False LeadOverhand Extend 0,75
+PASS read-only shared endpoints False LeadOverhand Extend 1
+PASS finite bounded continuous mesh False LeadOverhand Extend 1
+PASS read-only shared endpoints False LeadOverhand Recover 0
+PASS finite bounded continuous mesh False LeadOverhand Recover 0
+PASS read-only shared endpoints False LeadOverhand Recover 0,25
+PASS finite bounded continuous mesh False LeadOverhand Recover 0,25
+PASS read-only shared endpoints False LeadOverhand Recover 0,5
+PASS finite bounded continuous mesh False LeadOverhand Recover 0,5
+PASS read-only shared endpoints False LeadOverhand Recover 0,75
+PASS finite bounded continuous mesh False LeadOverhand Recover 0,75
+PASS read-only shared endpoints False LeadOverhand Recover 1
+PASS finite bounded continuous mesh False LeadOverhand Recover 1
+PASS read-only shared endpoints False RearOverhand Commit 0
+PASS finite bounded continuous mesh False RearOverhand Commit 0
+PASS read-only shared endpoints False RearOverhand Commit 0,25
+PASS finite bounded continuous mesh False RearOverhand Commit 0,25
+PASS read-only shared endpoints False RearOverhand Commit 0,5
+PASS finite bounded continuous mesh False RearOverhand Commit 0,5
+PASS read-only shared endpoints False RearOverhand Commit 0,75
+PASS finite bounded continuous mesh False RearOverhand Commit 0,75
+PASS read-only shared endpoints False RearOverhand Commit 1
+PASS finite bounded continuous mesh False RearOverhand Commit 1
+PASS read-only shared endpoints False RearOverhand Extend 0
+PASS finite bounded continuous mesh False RearOverhand Extend 0
+PASS read-only shared endpoints False RearOverhand Extend 0,25
+PASS finite bounded continuous mesh False RearOverhand Extend 0,25
+PASS read-only shared endpoints False RearOverhand Extend 0,5
+PASS finite bounded continuous mesh False RearOverhand Extend 0,5
+PASS read-only shared endpoints False RearOverhand Extend 0,75
+PASS finite bounded continuous mesh False RearOverhand Extend 0,75
+PASS read-only shared endpoints False RearOverhand Extend 1
+PASS finite bounded continuous mesh False RearOverhand Extend 1
+PASS read-only shared endpoints False RearOverhand Recover 0
+PASS finite bounded continuous mesh False RearOverhand Recover 0
+PASS read-only shared endpoints False RearOverhand Recover 0,25
+PASS finite bounded continuous mesh False RearOverhand Recover 0,25
+PASS read-only shared endpoints False RearOverhand Recover 0,5
+PASS finite bounded continuous mesh False RearOverhand Recover 0,5
+PASS read-only shared endpoints False RearOverhand Recover 0,75
+PASS finite bounded continuous mesh False RearOverhand Recover 0,75
+PASS read-only shared endpoints False RearOverhand Recover 1
+PASS finite bounded continuous mesh False RearOverhand Recover 1
+PASS blur shader included through Resources
+PASS skin shader included through Resources
+TOTAL=550 PASS=550 FAIL=0
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.TrainingPovSelfTests:Run () (at Assets/Editor/TrainingPovSelfTests.cs:58)
+BoxerP0.Editor.PunchFeelSelfTests:RunAll () (at Assets/Editor/PunchFeelSelfTests.cs:20)
+BoxerP0.Editor.CoachAnalysisSelfTests:RunAll () (at Assets/Editor/CoachAnalysisSelfTests.cs:10)
+
+(Filename: Assets/Editor/TrainingPovSelfTests.cs Line: 58)
+
+Batchmode quit successfully invoked - shutting down!
+[Physics::Module] Cleanup current backend.
+[Physics::Module] Id: 0xf2b8ea05
+Input System module state changed to: ShutdownInProgress.
+Input Polling Thread exited.
+Input System module state changed to: Shutdown.
+[Licensing::IpcConnector] LicenseClient-minht-notifications channel disconnected successfully.
+[Licensing::IpcConnector] LicenseClient-minht channel disconnected successfully.
+AcceleratorClientConnectionCallback - disconnected - :0
+Cleanup mono
+CodeReloadManager destroyed
+Exiting batchmode successfully now!
+Exiting without the bug reporter. Application will terminate with return code 0
