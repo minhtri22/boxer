@@ -78,6 +78,8 @@ if($Mode -eq 'Deploy'){
         if((Get-Content (Join-Path $waveGateDirectory 'profile-runtime.txt') -Tail 1) -ne 'CHECKS=19 PREFERENCE_RESTORED=True'){throw 'Profile lifecycle and scoped storage restoration gate required'}
         $profileGate=Get-Content (Join-Path $waveGateDirectory 'profile-browser/report.json') -Raw | ConvertFrom-Json
         if($profileGate.status -ne 'PASS' -or $profileGate.productVersion -ne $waveProductVersion -or $profileGate.errors.Count -ne 0 -or $profileGate.checks.Count -ne 38 -or @($profileGate.checks | Where-Object {-not $_.pass}).Count -ne 0){throw 'Full current compiled 38-check Profile interaction gate required'}
+        $profileScrollGate=Get-Content (Join-Path $waveGateDirectory 'profile-scroll/report.json') -Raw | ConvertFrom-Json
+        if($profileScrollGate.status -ne 'PASS' -or $profileScrollGate.productVersion -ne $waveProductVersion -or $profileScrollGate.errors.Count -ne 0 -or $profileScrollGate.checks.Count -ne 4 -or @($profileScrollGate.checks | Where-Object {-not $_.pass}).Count -ne 0){throw 'Current additive trusted mobile touch scroll gate required'}
     }
     $wavePolicies=WaveApi "$waveApi/environments/github-pages/deployment-branch-policies"
     $waveBefore=@($wavePolicies.branch_policies | ForEach-Object { $_.name+'|'+$_.type })

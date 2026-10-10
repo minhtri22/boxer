@@ -1,0 +1,28 @@
+{
+  "scope": "TRUSTED_CDP_TOUCH_SCROLL_MOBILE_EMULATION_NOT_PHONE_KEYBOARD_UAT",
+  "checks": [
+    {
+      "name": "trusted vertical touch scrolls form without programmatic scroll",
+      "pass": true
+    },
+    {
+      "name": "scroll cannot trigger gameplay or audience flash",
+      "pass": true
+    },
+    {
+      "name": "trusted Cancel closes form and restores capture",
+      "pass": true
+    },
+    {
+      "name": "no browser JS errors",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "productVersion": "w1-7c68a607ac4217e06d222fc75d2dd5e3c64ad178",
+  "scroll": {
+    "before": 0,
+    "after": 225
+  },
+  "status": "PASS"
+}

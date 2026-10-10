@@ -66,3 +66,24 @@ button:disabled { opacity: 0.5; }
 .ring-caption { position:absolute;left:0;right:0;bottom:0;padding:12px 20px max(12px,env(safe-area-inset-bottom));background:linear-gradient(transparent,rgba(0,0,0,.9));text-align:center;color:#efb449; }
 .ring-caption p { margin:10px 0; }
 .ring-caption button { width:min(100%,420px);margin:8px auto;border-radius:4px;background:#181512;color:#efb449;border:1px solid #efb449;min-height:42px; }
+#fighter-profile {
+  position: fixed; z-index: 25; inset-inline: 0; top: 0; height: 100dvh;
+  overflow-y: auto; overscroll-behavior: contain; touch-action: pan-y;
+  box-sizing: border-box; padding: max(18px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(18px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+  color: #f4e6cb; background: linear-gradient(transparent, rgba(8,8,8,.55));
+  font-family: system-ui, sans-serif;
+}
+#profile-form { max-width: 440px; margin: 12vh auto 0; padding: 22px; border: 1px solid #bc862f; border-radius: 16px; background: rgba(12,12,12,.90); box-shadow: 0 12px 50px #0008; }
+#profile-form h1 { color: #eeb044; font-size: 28px; line-height: 1.15; margin: 6px 0; }
+#profile-form p { margin: 8px 0; }
+#profile-form .profile-kicker { color: #eeb044; font-size: 12px; letter-spacing: 2px; }
+#profile-form label { display: block; color: #eeb044; font-size: 14px; margin: 20px 0 8px; }
+#profile-form label span { color: #c2b597; font-size: 12px; }
+#profile-form input { width: 100%; box-sizing: border-box; min-height: 48px; border: 1px solid #a57b37; border-radius: 8px; padding: 10px; color: #fff1d4; background: #25211c; font: 18px system-ui, sans-serif; user-select: text; touch-action: manipulation; }
+#profile-form input:focus { outline: 2px solid #ffca66; outline-offset: 2px; }
+#profile-form .profile-note { color: #c2b597; font-size: 12px; line-height: 1.5; }
+#profile-error { color: #ffbe95; font-size: 14px; line-height: 1.5; }
+#profile-form button { min-height: 48px; margin: 8px 0 0; border: 1px solid #b78537; border-radius: 8px; background: #1a1712; color: #edb74d; font-size: 14px; }
+#profile-form #profile-save { background: #eeb044; color: #161009; font-weight: 700; }
+#profile-form button:disabled { opacity: .5; }
+@media (max-width: 350px), (max-height: 600px) { #profile-form { margin-top: 0; padding: 16px; } }
