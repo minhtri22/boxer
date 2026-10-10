@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <title>Boxer P0 — P1 Web UAT</title>
-  <link rel="icon" type="image/x-icon" href="TemplateData/favicon.ico?v=w1-3035003caa96a96f8a1d3c347b43eb56c55a4b44">
+  <link rel="icon" type="image/x-icon" href="TemplateData/favicon.ico?v=w1-f6ff54a0356454bedc2ba29425f9789eba1a87ec">
   <link rel="stylesheet" href="TemplateData/style.css">
 </head>
 <body>
@@ -21,14 +21,15 @@
     <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
   </div>
   <section id="ring-intro" class="hidden" aria-label="Round introduction">
-    <video id="ring-video" playsinline muted preload="auto" disablepictureinpicture></video>
+    <!-- Coach/practice must not start an unused background video transfer. play() loads it for the real intro. -->
+    <video id="ring-video" playsinline muted preload="none" disablepictureinpicture></video>
     <div class="ring-caption">
       <p id="ring-status" role="status">ROUND 1</p>
       <button id="ring-retry" class="hidden">PHÁT GIỚI THIỆU / BẬT ÂM THANH</button>
       <button id="ring-back">QUAY LẠI</button>
     </div>
   </section>
-  <script src="TemplateData/ring-media.js?v=w1-3035003caa96a96f8a1d3c347b43eb56c55a4b44"></script>
+  <script src="TemplateData/ring-media.js?v=w1-f6ff54a0356454bedc2ba29425f9789eba1a87ec"></script>
   <script>
     const gate = document.getElementById('gate');
     const statusEl = document.getElementById('status');
@@ -47,7 +48,7 @@
     let unityLoading = false;
 
     const buildUrl = 'Build';
-    const productVersion = "w1-3035003caa96a96f8a1d3c347b43eb56c55a4b44";
+    const productVersion = "w1-f6ff54a0356454bedc2ba29425f9789eba1a87ec";
     const assetVersion = encodeURIComponent(productVersion || 'unknown');
     const versioned = (url) => `${url}?v=${assetVersion}`;
     const loaderUrl = versioned(buildUrl + '/boxer-round2.loader.js');
