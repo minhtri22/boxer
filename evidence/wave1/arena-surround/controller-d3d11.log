@@ -1,0 +1,858 @@
+Built from '6000.5/staging' branch; Version is '6000.5.8f1 (5cb7df797b7d) revision 6076383'; Using compiler version '194234433'; Build Type 'Release'
+OS: 'Windows 11  (10.0.26300) CoreSingleLanguage' Language: 'en' Physical Memory: 32345 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+Date: 2026-10-10T12:06:57Z
+[Licensing::Module] Trying to connect to existing licensing client channel...
+[Licensing::IpcConnector] Channel LicenseClient-minht doesn't exist
+[Licensing::Module] Successfully launched the LicensingClient (PId: 25140)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-minht" at "2026-10-10T12:06:57.9005361Z"
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.5.8f1\Editor\Unity.exe
+-batchmode
+-force-d3d11
+-projectPath
+D:\WORK\RESEARCH\POVGame\boxer-wave1\unity\BoxerP0
+-executeMethod
+BoxerP0.Editor.Wave1RuntimeAudit.Run
+-logFile
+D:\WORK\RESEARCH\POVGame\boxer-wave1\evidence\wave1\arena-surround\controller-d3d11.log
+Successfully changed project path to: D:\WORK\RESEARCH\POVGame\boxer-wave1\unity\BoxerP0
+D:/WORK/RESEARCH/POVGame/boxer-wave1/unity/BoxerP0
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-main-allocator-mimalloc-enabled=0"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+Logging is directed to a specific file, skipping project log.Player connection [27696]  Target information:
+
+Player connection [27696]  * "[IP] 172.25.96.1 [Port] 55504 [Flags] 2 [Guid] 2745645977 [EditorId] 2745645977 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-4PSD0G2) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [27696]  * "[IP] 192.168.1.18 [Port] 55504 [Flags] 2 [Guid] 2745645977 [EditorId] 2745645977 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-4PSD0G2) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [27696] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [27696] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 25140, path: "C:/Program Files/Unity/Hub/Editor/6000.5.8f1/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client.exe")
+[Licensing::Module] LicensingClient has failed validation; ignoring
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.18.1+9fbee8e
+  Session Id:              1ec3129281c74f07877ba3317fc61fd2
+  Correlation Id:          761e32e89173114d93467f33dfd7ff42
+  External correlation Id: 4184583646922626702
+  Machine Id:              gaoNjVOiA5/w7c0j7NjRnkSH0Fg=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-minht" (connect: 0.25s, validation: 0.23s, handshake: 0.10s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-minht-notifications" at "2026-10-10T12:06:58.2229471Z"
+[Licensing::Module] Connected to LicensingClient (PId: 25140, launch time: 0.01, total connection time: 0.58s)
+[Licensing::Module] Error: Access token is unavailable; failed to update
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: F4-84B2-AJYW-2F6S-HS3K-XXXX
+  Product: Unity Personal
+  Type: ULF
+  Expiration: 2026-11-16T13:06:33Z
+[Licensing::Module] License group:
+  Id: 18968483178885-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+[Licensing::Client] Successfully updated license, isAsync: True, time: 0.01
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: F4-84B2-AJYW-2F6S-HS3K-XXXX
+  Product: Unity Personal
+  Type: ULF
+  Expiration: 2026-11-16T13:06:33Z
+[Licensing::Module] License group:
+  Id: 18968483178885-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+[Licensing::Module] Licensing Background thread has ended after 0.63s
+[Package Manager] Connected to IPC stream "Upm-23564" after 0.4 seconds.
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: F4-84B2-AJYW-2F6S-HS3K-XXXX
+  Product: Unity Personal
+  Type: ULF
+  Expiration: 2026-11-16T13:06:33Z
+[Licensing::Module] License group:
+  Id: 18968483178885-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+Library Redirect Path: Library/
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Initialize engine version: 6000.5.8f1 (5cb7df797b7d)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.5.8f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path D:/WORK/RESEARCH/POVGame/boxer-wave1/unity/BoxerP0/Assets
+Forcing GfxDevice: Direct3D 11
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: Intel(R) Arc(TM) 140V GPU (16GB) (ID=0x64a0)
+    Vendor:   Intel
+    VRAM:     18436 MB
+    Driver:   32.0.101.8860
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.5.8f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.5.8f1/Editor/Data/BCLExtensions/runtime/netstandard2.1'
+Mono path[2] = 'C:/Program Files/Unity/Hub/Editor/6000.5.8f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.5.8f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56564
+CodeReloadManager initialized
+ImportWorker Server TCP listen port: 0
+AcceleratorClientConnectionCallback - disconnected - :0
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.5.8f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.5.8f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.002011 seconds.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Package Manager log level set to [2]
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:False
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.514 seconds
+Domain Reload Profiling: 989ms
+	BeginReloadAssembly (125ms)
+		CreateAndSetChildDomain (3ms)
+	RebuildCommonClasses (4ms)
+	RebuildNativeTypeToScriptingClass (15ms)
+	initialDomainReloadingComplete (64ms)
+	LoadAllAssembliesAndSetupDomain (266ms)
+		LoadAssemblies (119ms)
+		AnalyzeDomain (190ms)
+			TypeCache.Refresh (189ms)
+				TypeCache.ScanAssembly (177ms)
+	FinalizeReload (516ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (3ms)
+			BeforeProcessingInitializeOnLoad (87ms)
+			ProcessInitializeOnLoadAttributes (78ms)
+			ProcessInitializeOnLoadMethodAttributes (282ms)
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: F4-84B2-AJYW-2F6S-HS3K-XXXX
+  Product: Unity Personal
+  Type: ULF
+  Expiration: 2026-11-16T13:06:59Z
+[Licensing::Module] License group:
+  Id: 18968483178885-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+Application.AssetDatabase Initial Refresh Start
+[Package Manager] Restoring resolved packages state from cache
+[Licensing::Client] Successfully resolved entitlement details
+[Package Manager] Registered 37 packages:
+  Built-in packages:
+    com.unity.multiplayer.center@1.0.1 (location: D:\WORK\RESEARCH\POVGame\boxer-wave1\unity\BoxerP0\Library\PackageCache\com.unity.multiplayer.center@b860850997d0)
+    com.unity.modules.accessibility@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer-wave1\unity\BoxerP0\Library\PackageCache\com.unity.modules.accessibility)
+    com.unity.modules.adaptiveperformance@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer-wave1\unity\BoxerP0\Library\PackageCache\com.unity.modules.adaptiveperformance)
+    com.unity.modules.ai@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer-wave1\unity\BoxerP0\Library\PackageCache\com.unity.modules.ai)
+    com.unity.modules.androidjni@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer-wave1\unity\BoxerP0\Library\PackageCache\com.unity.modules.androidjni)
+    com.unity.modules.animation@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer-wave1\unity\BoxerP0\Library\PackageCache\com.unity.modules.animation)
+    com.unity.modules.assetbundle@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer-wave1\unity\BoxerP0\Library\PackageCache\com.unity.modules.assetbundle)
+    com.unity.modules.audio@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer-wave1\unity\BoxerP0\Library\PackageCache\com.unity.modules.audio)
+    com.unity.modules.cloth@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer-wave1\unity\BoxerP0\Library\PackageCache\com.unity.modules.cloth)
+    com.unity.modules.director@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer-wave1\unity\BoxerP0\Library\PackageCache\com.unity.modules.director)
+    com.unity.modules.imageconversion@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer-wave1\unity\BoxerP0\Library\PackageCache\com.unity.modules.imageconversion)
+    com.unity.modules.imgui@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer-wave1\unity\BoxerP0\Library\PackageCache\com.unity.modules.imgui)
+    com.unity.modules.jsonserialize@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer-wave1\unity\BoxerP0\Library\PackageCache\com.unity.modules.jsonserialize)
+    com.unity.modules.particlesystem@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer-wave1\unity\BoxerP0\Library\PackageCache\com.unity.modules.particlesystem)
+    com.unity.modules.physics@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer-wave1\unity\BoxerP0\Library\PackageCache\com.unity.modules.physics)
+    com.unity.modules.physics2d@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer-wave1\unity\BoxerP0\Library\PackageCache\com.unity.modules.physics2d)
+    com.unity.modules.physicscore2d@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer-wave1\unity\BoxerP0\Library\PackageCache\com.unity.modules.physicscore2d)
+    com.unity.modules.screencapture@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer-wave1\unity\BoxerP0\Library\PackageCache\com.unity.modules.screencapture)
+    com.unity.modules.terrain@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer-wave1\unity\BoxerP0\Library\PackageCache\com.unity.modules.terrain)
+    com.unity.modules.terrainphysics@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer-wave1\unity\BoxerP0\Library\PackageCache\com.unity.modules.terrainphysics)
+    com.unity.modules.tilemap@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer-wave1\unity\BoxerP0\Library\PackageCache\com.unity.modules.tilemap)
+    com.unity.modules.ui@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer-wave1\unity\BoxerP0\Library\PackageCache\com.unity.modules.ui)
+    com.unity.modules.uielements@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer-wave1\unity\BoxerP0\Library\PackageCache\com.unity.modules.uielements)
+    com.unity.modules.umbra@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer-wave1\unity\BoxerP0\Library\PackageCache\com.unity.modules.umbra)
+    com.unity.modules.unityanalytics@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer-wave1\unity\BoxerP0\Library\PackageCache\com.unity.modules.unityanalytics)
+    com.unity.modules.unitywebrequest@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer-wave1\unity\BoxerP0\Library\PackageCache\com.unity.modules.unitywebrequest)
+    com.unity.modules.unitywebrequestassetbundle@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer-wave1\unity\BoxerP0\Library\PackageCache\com.unity.modules.unitywebrequestassetbundle)
+    com.unity.modules.unitywebrequestaudio@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer-wave1\unity\BoxerP0\Library\PackageCache\com.unity.modules.unitywebrequestaudio)
+    com.unity.modules.unitywebrequesttexture@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer-wave1\unity\BoxerP0\Library\PackageCache\com.unity.modules.unitywebrequesttexture)
+    com.unity.modules.unitywebrequestwww@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer-wave1\unity\BoxerP0\Library\PackageCache\com.unity.modules.unitywebrequestwww)
+    com.unity.modules.vectorgraphics@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer-wave1\unity\BoxerP0\Library\PackageCache\com.unity.modules.vectorgraphics)
+    com.unity.modules.vehicles@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer-wave1\unity\BoxerP0\Library\PackageCache\com.unity.modules.vehicles)
+    com.unity.modules.video@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer-wave1\unity\BoxerP0\Library\PackageCache\com.unity.modules.video)
+    com.unity.modules.wind@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer-wave1\unity\BoxerP0\Library\PackageCache\com.unity.modules.wind)
+    com.unity.modules.xr@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer-wave1\unity\BoxerP0\Library\PackageCache\com.unity.modules.xr)
+    com.unity.modules.subsystems@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer-wave1\unity\BoxerP0\Library\PackageCache\com.unity.modules.subsystems)
+    com.unity.modules.hierarchycore@1.0.0 (location: D:\WORK\RESEARCH\POVGame\boxer-wave1\unity\BoxerP0\Library\PackageCache\com.unity.modules.hierarchycore)
+[Subsystems] No new subsystems found in resolved package list.
+[Package Manager] Done registering packages in 0.02 seconds
+[ScriptCompilation] Requested script compilation because: AssetDatabase observed changes in script compilation related files
+Starting: C:\Program Files\Unity\Hub\Editor\6000.5.8f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/2000b0aE.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssemblies
+WorkingDir: D:/WORK/RESEARCH/POVGame/boxer-wave1/unity/BoxerP0
+DisplayProgressbar: Compiling Scripts
+Assets\Scripts\BoxerVisualShell.cs(56,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\BoxerVisualShell.cs(57,22): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\BoxerVisualShell.cs(58,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\Blender3DVisualFollower.cs(88,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\Blender3DVisualFollower.cs(89,23): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\BoxerVisualShell.cs(181,64): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Scripts\BoxerVisualShell.cs(181,34): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Scripts\ArenaSurround.cs(69,24): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\BoxerBootstrap.cs(147,13): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\EVVisualShell.cs(55,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\EVVisualShell.cs(56,24): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\P1PunchGuide.cs(22,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\P1PunchGuide.cs(45,17): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\BoxerBootstrap.cs(443,17): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\P1VCombatPresentation.cs(74,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\P1VCombatPresentation.cs(75,22): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\P1VCombatPresentation.cs(76,23): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\P1VCombatPresentation.cs(77,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\P1VCombatPresentation.cs(78,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\P1VCombatPresentation.cs(79,38): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\ProductScreens.cs(18,69): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\ProductScreens.cs(23,30): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\EVVisualShell.cs(418,65): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\Scripts\EVVisualShell.cs(418,37): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\Scripts\Round2CombatRig.cs(66,24): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\Scripts\OpponentLegEmbodiment.cs(21,40): warning CS0414: The field 'OpponentLegEmbodiment._footLength' is assigned but its value is never used
+Assets\Scripts\ArmVisualEmbodiment.cs(86,40): warning CS0414: The field 'ArmVisualEmbodiment._forearmLength' is assigned but its value is never used
+Assets\Scripts\OpponentLegEmbodiment.cs(17,40): warning CS0414: The field 'OpponentLegEmbodiment._pelvisHeight' is assigned but its value is never used
+Assets\Scripts\OpponentLegEmbodiment.cs(19,40): warning CS0414: The field 'OpponentLegEmbodiment._thighLength' is assigned but its value is never used
+Assets\Scripts\OpponentLegEmbodiment.cs(20,40): warning CS0414: The field 'OpponentLegEmbodiment._shinLength' is assigned but its value is never used
+Assets\Scripts\ArmVisualEmbodiment.cs(85,40): warning CS0414: The field 'ArmVisualEmbodiment._upperArmLength' is assigned but its value is never used
+ExitCode: 0 Duration: 2s862ms
+[181/187    2s] Csc Library/Bee/artifacts/2000b0aE.dag/Assembly-CSharp.dll (+2 others)
+Assets\Scripts\BoxerVisualShell.cs(56,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\BoxerVisualShell.cs(57,22): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\BoxerVisualShell.cs(58,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\Blender3DVisualFollower.cs(88,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\Blender3DVisualFollower.cs(89,23): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\BoxerVisualShell.cs(181,64): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Scripts\BoxerVisualShell.cs(181,34): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\Scripts\ArenaSurround.cs(69,24): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\BoxerBootstrap.cs(147,13): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\EVVisualShell.cs(55,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\EVVisualShell.cs(56,24): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\P1PunchGuide.cs(22,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\P1PunchGuide.cs(45,17): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\BoxerBootstrap.cs(443,17): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\P1VCombatPresentation.cs(74,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\P1VCombatPresentation.cs(75,22): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\P1VCombatPresentation.cs(76,23): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\P1VCombatPresentation.cs(77,25): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\P1VCombatPresentation.cs(78,26): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\P1VCombatPresentation.cs(79,38): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\ProductScreens.cs(18,69): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\ProductScreens.cs(23,30): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\EVVisualShell.cs(418,65): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\Scripts\EVVisualShell.cs(418,37): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\Scripts\Round2CombatRig.cs(66,24): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\Scripts\OpponentLegEmbodiment.cs(21,40): warning CS0414: The field 'OpponentLegEmbodiment._footLength' is assigned but its value is never used
+
+Assets\Scripts\ArmVisualEmbodiment.cs(86,40): warning CS0414: The field 'ArmVisualEmbodiment._forearmLength' is assigned but its value is never used
+
+Assets\Scripts\OpponentLegEmbodiment.cs(17,40): warning CS0414: The field 'OpponentLegEmbodiment._pelvisHeight' is assigned but its value is never used
+
+Assets\Scripts\OpponentLegEmbodiment.cs(19,40): warning CS0414: The field 'OpponentLegEmbodiment._thighLength' is assigned but its value is never used
+
+Assets\Scripts\OpponentLegEmbodiment.cs(20,40): warning CS0414: The field 'OpponentLegEmbodiment._shinLength' is assigned but its value is never used
+
+Assets\Scripts\ArmVisualEmbodiment.cs(85,40): warning CS0414: The field 'ArmVisualEmbodiment._upperArmLength' is assigned but its value is never used
+[182/187    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp.pdb
+[186/187    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp.dll
+*** Tundra build success (2.76 seconds), 3 items updated, 187 evaluated
+Total cache size 15393888
+Total cache size after purge 15393888, took 00:00:00.0533393
+AssetDatabase: script compilation time: 3.865138s
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.544 seconds
+Domain Reload Profiling: 1019ms
+	BeginReloadAssembly (240ms)
+		DisableScriptedObjects (22ms)
+		CreateAndSetChildDomain (45ms)
+	RebuildCommonClasses (9ms)
+	RebuildNativeTypeToScriptingClass (16ms)
+	initialDomainReloadingComplete (41ms)
+	LoadAllAssembliesAndSetupDomain (169ms)
+		LoadAssemblies (126ms)
+		AnalyzeDomain (13ms)
+			TypeCache.Refresh (7ms)
+				TypeCache.ScanAssembly (3ms)
+			BuildScriptInfoCaches (4ms)
+	FinalizeReload (546ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (4ms)
+			BeforeProcessingInitializeOnLoad (103ms)
+			ProcessInitializeOnLoadAttributes (82ms)
+			ProcessInitializeOnLoadMethodAttributes (116ms)
+			AfterProcessingInitializeOnLoad (13ms)
+		AwakeInstancesAfterBackupRestoration (35ms)
+Starting new worker id: 0 with log in D:/WORK/RESEARCH/POVGame/boxer-wave1/unity/BoxerP0/Logs/AssetImportWorkerHW0.log
+
+Asset Pipeline Refresh (id=bceb11619896021448e461f9a7642de7): Total: 5.239 seconds - Initiated by InitialRefreshV2(ForceSynchronousImport)
+	(Values over 0.05ms)
+	Summary:
+		Imports: total=0 (actual=0, local cache=0, cache server=0)
+		Asset DB Process Time: managed=0 ms, native=776 ms
+		Asset DB Callback time: managed=55 ms, native=24 ms
+		Scripting: domain reloads=1, domain reload time=506 ms, compile time=3868 ms, other=8 ms
+		Project Asset Count: scripts=131, non-scripts=124
+		Asset File Changes: new=0, changed=1, moved=0, deleted=0
+		Scan Filter Count: 0
+	InvokePackagesCallback: 19.381ms
+	ApplyChangesToAssetFolders: 0.339ms
+	Scan: 156.163ms
+	Collect global state as custom dependencies: 7.332ms
+	OnSourceAssetsModified: 0.646ms
+	CategorizeScriptCompilationAssets: 0.361ms
+	ProcessAssetsWithTransientArtifactChanges: 4.297ms
+	CategorizeAssets: 2.070ms
+	CompileScripts: 3867.610ms
+	ImportOutOfDateAssets: 563.408ms (547.997ms without children)
+		UnloadImportedAssets: 0.127ms
+		ImportSchedulerStart: 15.242ms
+	PostProcessAllAssets: 57.225ms
+		VCAutoAddAssetPostprocess 1.459ms
+		XRBuildSystem.XRAssetImported 0.065ms
+		MonoPostProcessAllAssets: 55.203ms
+			AssetPostprocessor.OnPostprocessAllAssets 14.772ms
+			StyleCatalogPostProcessor.OnPostprocessAllAssets 8.262ms
+			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 8.249ms
+			BuilderAssetPostprocessor.OnPostprocessAllAssets 5.140ms
+			AssetChangedListener.OnPostprocessAllAssets 1.974ms
+			SyncVS.PostprocessSyncProject 1.531ms
+			RetainedModeAssetPostprocessor.OnPostprocessAllAssets 1.252ms
+			EditModeScopePostprocessor.OnPostprocessAllAssets 0.941ms
+			ArtifactBrowserPostProcessor.OnPostprocessAllAssets 0.769ms
+			SpeedTree9Postprocessor.OnPostprocessAllAssets 0.755ms
+			TextAssetPostProcessor.OnPostprocessAllAssets 0.666ms
+			AudioMixerPostprocessor.OnPostprocessAllAssets 0.287ms
+			ReferencedClipsPostProcessor.OnPostprocessAllAssets 0.277ms
+			AssetEvents.OnPostprocessAllAssets 0.252ms
+			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.215ms
+			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.173ms
+			SpeedTreePostProcessor.OnPostprocessAllAssets 0.154ms
+			ScenarioDriftAssetsTracker.OnPostprocessAllAssets 0.129ms
+			ConfigAssetsTracker.OnPostprocessAllAssets 0.129ms
+			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 0.109ms
+			AudioContainerPostProcessor.OnPostprocessAllAssets 0.083ms
+	PostAssetChangesProfiler: 4.331ms
+	UnloadStreamsBegin: 1.374ms
+	GenerateScriptTypeHashes: 0.483ms
+	GenerateScriptTypeSerializationHashes: 1.047ms
+	Untracked: 551.929ms
+
+Application.AssetDatabase Initial Refresh End
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.01 seconds
+Scanning for USB devices : 2.896ms
+Initializing Unity extensions:
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+[MODES] Loading mode Default (0) for mode-current-id-Boxer P0
+Unloading 7 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 155 unused Assets / (0.7 MB). Loaded Objects now: 943.
+Memory consumption went from 203.8 MB to 203.1 MB.
+Total: 4.297100 ms (FindLiveObjects: 0.063700 ms CreateObjectMapping: 0.025800 ms MarkObjects: 3.897200 ms  DeleteObjects: 0.306900 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 0 unused Assets / (2.2 KB). Loaded Objects now: 945.
+Memory consumption went from 197.6 MB to 197.6 MB.
+Total: 3.734400 ms (FindLiveObjects: 0.047900 ms CreateObjectMapping: 0.015900 ms MarkObjects: 3.663200 ms  DeleteObjects: 0.005600 ms)
+
+Importing 'GUID: d00c93fd34b0abe49a334af5f111422f - Path: Assets/Scenes/Phase0Boxer.unity' with importer (DefaultImporter)
+Imported 'GUID: d00c93fd34b0abe49a334af5f111422f' -> (Import Result ID: '5a08a845086bc10c7e10241b42c0a006') in 0.005 seconds [static dependencies only]. Details - ImportResultOutputID=c49193a4f5988da42816871b830c47ac DependenciesID=970e3f8e21f57d1990a19de6f9a5755f StaticDependenciesID=c849bb985ce6e740394154855d0df821 
+Asset Pipeline Refresh (id=8e2be2c6ae6f80142a449559642d33eb): Total: 0.026 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+P0_SCENE_BUILT=Assets/Scenes/Phase0Boxer.unity
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Phase0SceneBuilder:Build () (at Assets/Editor/Phase0SceneBuilder.cs:32)
+BoxerP0.Editor.Wave1RuntimeAudit:Run () (at Assets/Editor/Wave1RuntimeAudit.cs:24)
+
+(Filename: Assets/Editor/Phase0SceneBuilder.cs Line: 32)
+
+[Project] Loading completed in 8.071 seconds
+	Project init time: 				7.512 seconds
+		Template init time: 		0.000 seconds
+		Package Manager init time: 		0.418 seconds
+		Asset Database init time: 		0.461 seconds
+		Global illumination init time: 	0.002 seconds
+		Assemblies load time: 			1.028 seconds
+		Unity extensions init time: 	0.001 seconds
+		Asset Database refresh time: 	5.240 seconds
+	Scene opening time: 			0.165 seconds
+##utp:{"type":"ProjectInfo","version":2,"phase":"Immediate","time":1791634025657,"processId":23564,"projectLoad":8.0713921,"projectInit":7.5122897,"templateInit":0.0,"packageManagerInit":0.4176435,"assetDatabaseInit":0.4612987,"globalIlluminationInit":0.0022943,"assembliesLoad":1.0276691,"unityExtensionsInit":0.0010908,"assetDatabaseRefresh":5.2395624,"sceneOpening":0.1654574}
+##utp:{"type":"EditorInfo","version":2,"phase":"Immediate","time":1791634025657,"processId":23564,"editorVersion":"6000.5.8f1 (5cb7df797b7d)","branch":"6000.5/staging","buildType":"Release","platform":"Windows"}
+Reloading assemblies for play mode.
+Reloading assemblies after forced synchronous recompile.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.527 seconds
+Domain Reload Profiling: 930ms
+	BeginReloadAssembly (222ms)
+		DisableScriptedObjects (23ms)
+		CreateAndSetChildDomain (47ms)
+	RebuildCommonClasses (9ms)
+	RebuildNativeTypeToScriptingClass (17ms)
+	initialDomainReloadingComplete (44ms)
+	LoadAllAssembliesAndSetupDomain (109ms)
+		LoadAssemblies (118ms)
+		AnalyzeDomain (6ms)
+			TypeCache.Refresh (4ms)
+	FinalizeReload (529ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (3ms)
+			BeforeProcessingInitializeOnLoad (93ms)
+			ProcessInitializeOnLoadAttributes (78ms)
+			ProcessInitializeOnLoadMethodAttributes (74ms)
+			AfterProcessingInitializeOnLoad (9ms)
+		AwakeInstancesAfterBackupRestoration (36ms)
+
+Asset Pipeline Refresh (id=b42b52083fffb2d49bc823d3377186c4): Total: 1.075 seconds - Initiated by StopAssetImportingV2(ForceSynchronousImport | ForceDomainReload)
+	(Values over 0.05ms)
+	Summary:
+		Imports: total=0 (actual=0, local cache=0, cache server=0)
+		Asset DB Process Time: managed=0 ms, native=568 ms
+		Asset DB Callback time: managed=65 ms, native=5 ms
+		Scripting: domain reloads=1, domain reload time=432 ms, compile time=3 ms, other=0 ms
+		Project Asset Count: scripts=131, non-scripts=124
+		Asset File Changes: new=0, changed=0, moved=0, deleted=0
+		Scan Filter Count: 0
+	InvokePackagesCallback: 1.428ms
+	ApplyChangesToAssetFolders: 0.177ms
+	Collect global state as custom dependencies: 1.404ms
+	ProcessAssetsWithTransientArtifactChanges: 4.950ms
+	CategorizeAssets: 1.505ms
+	CompileScripts: 2.672ms
+	ImportOutOfDateAssets: 530.591ms (529.742ms without children)
+		UnloadImportedAssets: 0.160ms
+		ImportSchedulerStart: 0.648ms
+	PostProcessAllAssets: 67.643ms
+		PostProcessCallbackCreateDeferredMaterials 0.481ms
+		ShaderAssetModifiedCallback 0.285ms
+		RaytracingShaderImportPostprocess 0.090ms
+		ComputeShaderImportPostprocess 0.087ms
+		XRBuildSystem.XRAssetImported 0.077ms
+		SpeedTreeImporter.PostprocessAllAssets 0.077ms
+		LocalizationDatabase.AssetDatabasePostprocessCallback 0.060ms
+		MonoPostProcessAllAssets: 65.003ms
+			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 13.151ms
+			StyleCatalogPostProcessor.OnPostprocessAllAssets 11.434ms
+			BuilderAssetPostprocessor.OnPostprocessAllAssets 8.749ms
+			AssetPostprocessor.OnPostprocessAllAssets 8.340ms
+			AssetChangedListener.OnPostprocessAllAssets 2.112ms
+			SyncVS.PostprocessSyncProject 1.498ms
+			RetainedModeAssetPostprocessor.OnPostprocessAllAssets 1.296ms
+			SpeedTree9Postprocessor.OnPostprocessAllAssets 0.964ms
+			TextAssetPostProcessor.OnPostprocessAllAssets 0.932ms
+			ArtifactBrowserPostProcessor.OnPostprocessAllAssets 0.659ms
+			EditModeScopePostprocessor.OnPostprocessAllAssets 0.437ms
+			AudioMixerPostprocessor.OnPostprocessAllAssets 0.412ms
+			ReferencedClipsPostProcessor.OnPostprocessAllAssets 0.373ms
+			AssetEvents.OnPostprocessAllAssets 0.354ms
+			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.269ms
+			ScenarioDriftAssetsTracker.OnPostprocessAllAssets 0.243ms
+			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.237ms
+			ConfigAssetsTracker.OnPostprocessAllAssets 0.231ms
+			SpeedTreePostProcessor.OnPostprocessAllAssets 0.163ms
+			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 0.098ms
+			AudioContainerPostProcessor.OnPostprocessAllAssets 0.080ms
+	PostAssetChangesProfiler: 3.358ms
+	GenerateScriptTypeHashes: 0.309ms
+	GenerateScriptTypeSerializationHashes: 0.653ms
+	Untracked: 456.275ms
+
+Loaded scene 'Temp/__Backupscenes/0.backup'
+	Deserialize:            0.587 ms
+	Integration:            56.059 ms
+	Integration of assets:  0.002 ms
+	Thread Wait Time:       0.014 ms
+	Total Operation Time:   56.662 ms
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+Start Indexing on Editor startup
+ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+  at System.Collections.Generic.List`1[T].get_Item (System.Int32 index) [0x00009] in <816f70bc2a9c4332b0bd119906a8d40e>:0 
+  at UnityEditor.Search.SearchDatabase+<EnumerateAll>d__76.MoveNext () [0x00089] in <dd17d9b243f3485ab399f5c24f024906>:0 
+  at System.Linq.Enumerable.TryGetFirst[TSource] (System.Collections.Generic.IEnumerable`1[T] source, System.Boolean& found) [0x00045] in <fe644d7ad1cf499ebe4e7ad937bc03bf>:0 
+  at System.Linq.Enumerable.First[TSource] (System.Collections.Generic.IEnumerable`1[T] source) [0x00000] in <fe644d7ad1cf499ebe4e7ad937bc03bf>:0 
+  at UnityEditor.Search.SearchDatabase.GetDefaultSearchDatabase () [0x00005] in <dd17d9b243f3485ab399f5c24f024906>:0 
+  at UnityEditor.Search.SearchInit.IndexationOnStartup () [0x0000a] in <dd17d9b243f3485ab399f5c24f024906>:0 
+  at UnityEditor.EditorApplication.Internal_CallDelayFunctions () [0x00029] in <da871bb30d6448e2981f366171b14bb9>:0 
+
+Created GICache directory at C:/Users/minht/AppData/LocalLow/Unity/Caches/GiCache. Took: 0.013s, timestamps: [9.442 - 9.455]
+[Licensing::Client] Successfully resolved entitlement details
+P0_BOUT_COMPLETE PLAYER_WIN
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.BoxerBootstrap:CompleteBout () (at Assets/Scripts/BoxerBootstrap.cs:324)
+BoxerP0.BoxerBootstrap:Update () (at Assets/Scripts/BoxerBootstrap.cs:119)
+
+(Filename: Assets/Scripts/BoxerBootstrap.cs Line: 324)
+
+P0_BOUT_COMPLETE DRAW
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.BoxerBootstrap:CompleteBout () (at Assets/Scripts/BoxerBootstrap.cs:324)
+BoxerP0.BoxerBootstrap:Update () (at Assets/Scripts/BoxerBootstrap.cs:119)
+
+(Filename: Assets/Scripts/BoxerBootstrap.cs Line: 324)
+
+P0_BOUT_COMPLETE DRAW
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.BoxerBootstrap:CompleteBout () (at Assets/Scripts/BoxerBootstrap.cs:324)
+BoxerP0.BoxerBootstrap:Update () (at Assets/Scripts/BoxerBootstrap.cs:119)
+
+(Filename: Assets/Scripts/BoxerBootstrap.cs Line: 324)
+
+P0_BOUT_COMPLETE DRAW
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.BoxerBootstrap:CompleteBout () (at Assets/Scripts/BoxerBootstrap.cs:324)
+BoxerP0.BoxerBootstrap:Update () (at Assets/Scripts/BoxerBootstrap.cs:119)
+
+(Filename: Assets/Scripts/BoxerBootstrap.cs Line: 324)
+
+P0_BOUT_COMPLETE DRAW
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.BoxerBootstrap:CompleteBout () (at Assets/Scripts/BoxerBootstrap.cs:324)
+BoxerP0.BoxerBootstrap:Update () (at Assets/Scripts/BoxerBootstrap.cs:119)
+
+(Filename: Assets/Scripts/BoxerBootstrap.cs Line: 324)
+
+P0_BOUT_COMPLETE DRAW
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.BoxerBootstrap:CompleteBout () (at Assets/Scripts/BoxerBootstrap.cs:324)
+BoxerP0.BoxerBootstrap:Update () (at Assets/Scripts/BoxerBootstrap.cs:119)
+
+(Filename: Assets/Scripts/BoxerBootstrap.cs Line: 324)
+
+P0_BOUT_COMPLETE DRAW
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.BoxerBootstrap:CompleteBout () (at Assets/Scripts/BoxerBootstrap.cs:324)
+BoxerP0.BoxerBootstrap:Update () (at Assets/Scripts/BoxerBootstrap.cs:119)
+
+(Filename: Assets/Scripts/BoxerBootstrap.cs Line: 324)
+
+P0_BOUT_COMPLETE DRAW
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.BoxerBootstrap:CompleteBout () (at Assets/Scripts/BoxerBootstrap.cs:324)
+BoxerP0.BoxerBootstrap:Update () (at Assets/Scripts/BoxerBootstrap.cs:119)
+
+(Filename: Assets/Scripts/BoxerBootstrap.cs Line: 324)
+
+P0_BOUT_COMPLETE DRAW
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.BoxerBootstrap:CompleteBout () (at Assets/Scripts/BoxerBootstrap.cs:324)
+BoxerP0.BoxerBootstrap:Update () (at Assets/Scripts/BoxerBootstrap.cs:119)
+
+(Filename: Assets/Scripts/BoxerBootstrap.cs Line: 324)
+
+P0_BOUT_COMPLETE DRAW
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.BoxerBootstrap:CompleteBout () (at Assets/Scripts/BoxerBootstrap.cs:324)
+BoxerP0.BoxerBootstrap:Update () (at Assets/Scripts/BoxerBootstrap.cs:119)
+
+(Filename: Assets/Scripts/BoxerBootstrap.cs Line: 324)
+
+SCOPE=SYNTHETIC_EDITOR_CONTROLLER_AND_INJECTED_CONSEQUENCE_TEST_NOT_PHYSICS_OR_HUMAN_UAT
+PASS home input and combat locked
+PASS menu request rejected without cost
+PASS Left glove imported
+PASS Left glove valid skinned bind
+PASS Left no imported combat collider
+Left glove triangles=16717
+PASS Right glove imported
+PASS Right glove valid skinned bind
+PASS Right no imported combat collider
+Right glove triangles=16717
+PASS accepted Ramirez still owns opponent presentation
+PASS removed Home practice bypass rejected
+PASS standalone training has no AI or scored bout
+PASS unperformed practice cannot advance by timer or button
+PASS training exit returns Coach without starting fight
+PASS preview consumes menu input
+PASS cancelled intro cannot start hidden combat
+PASS ring intro locks input, AI, score
+PASS intro rejects punch and freezes vitals/clock
+PASS stale media completion rejected
+PASS matching media completion starts fresh bout
+PASS duplicate media completion does not reset bout
+PASS real player accepted action spends once
+PASS real busy rejection costs zero
+PASS controller resolution applies exact committed damage
+PASS controller resolution cannot double count
+PASS guard-only stale callback cannot change score or HP
+PASS real player fatigue slows recovery
+PASS real player fatigue reduces impact
+PASS real opponent fatigue slows recovery
+PASS HUD stamina reads combat state exactly
+PASS ring intro locks input, AI, score
+PASS intro rejects punch and freezes vitals/clock
+PASS stale media completion rejected
+PASS matching media completion starts fresh bout
+PASS duplicate media completion does not reset bout
+PASS next bout resets vitals/counters/AI count
+Left thumb_relative_world_x=-0,2013344
+Right thumb_relative_world_x=0,2094811
+native_ramirez_max_glove_error_m=3,591767E-07
+PASS injected controller hits reach HP-zero KO
+PASS both controllers immediately locked at KO
+PASS post-KO input cannot spend
+PASS result transition and input lock 0
+PASS completed result snapshot equals authoritative counters and HP 0
+PASS ring intro locks input, AI, score
+PASS intro rejects punch and freezes vitals/clock
+PASS stale media completion rejected
+PASS matching media completion starts fresh bout
+PASS duplicate media completion does not reset bout
+PASS running rematch does not replace last completed record 1
+PASS rematch full reset 1
+PASS no duplicate actors 1
+PASS result transition and input lock 1
+PASS completed result snapshot equals authoritative counters and HP 1
+PASS ring intro locks input, AI, score
+PASS intro rejects punch and freezes vitals/clock
+PASS stale media completion rejected
+PASS matching media completion starts fresh bout
+PASS duplicate media completion does not reset bout
+PASS running rematch does not replace last completed record 2
+PASS rematch full reset 2
+PASS no duplicate actors 2
+PASS result transition and input lock 2
+PASS completed result snapshot equals authoritative counters and HP 2
+PASS ring intro locks input, AI, score
+PASS intro rejects punch and freezes vitals/clock
+PASS stale media completion rejected
+PASS matching media completion starts fresh bout
+PASS duplicate media completion does not reset bout
+PASS running rematch does not replace last completed record 3
+PASS rematch full reset 3
+PASS no duplicate actors 3
+PASS result transition and input lock 3
+PASS completed result snapshot equals authoritative counters and HP 3
+PASS ring intro locks input, AI, score
+PASS intro rejects punch and freezes vitals/clock
+PASS stale media completion rejected
+PASS matching media completion starts fresh bout
+PASS duplicate media completion does not reset bout
+PASS running rematch does not replace last completed record 4
+PASS rematch full reset 4
+PASS no duplicate actors 4
+PASS result transition and input lock 4
+PASS completed result snapshot equals authoritative counters and HP 4
+PASS ring intro locks input, AI, score
+PASS intro rejects punch and freezes vitals/clock
+PASS stale media completion rejected
+PASS matching media completion starts fresh bout
+PASS duplicate media completion does not reset bout
+PASS running rematch does not replace last completed record 5
+PASS rematch full reset 5
+PASS no duplicate actors 5
+PASS result transition and input lock 5
+PASS completed result snapshot equals authoritative counters and HP 5
+PASS ring intro locks input, AI, score
+PASS intro rejects punch and freezes vitals/clock
+PASS stale media completion rejected
+PASS matching media completion starts fresh bout
+PASS duplicate media completion does not reset bout
+PASS running rematch does not replace last completed record 6
+PASS rematch full reset 6
+PASS no duplicate actors 6
+PASS result transition and input lock 6
+PASS completed result snapshot equals authoritative counters and HP 6
+PASS ring intro locks input, AI, score
+PASS intro rejects punch and freezes vitals/clock
+PASS stale media completion rejected
+PASS matching media completion starts fresh bout
+PASS duplicate media completion does not reset bout
+PASS running rematch does not replace last completed record 7
+PASS rematch full reset 7
+PASS no duplicate actors 7
+PASS result transition and input lock 7
+PASS completed result snapshot equals authoritative counters and HP 7
+PASS ring intro locks input, AI, score
+PASS intro rejects punch and freezes vitals/clock
+PASS stale media completion rejected
+PASS matching media completion starts fresh bout
+PASS duplicate media completion does not reset bout
+PASS running rematch does not replace last completed record 8
+PASS rematch full reset 8
+PASS no duplicate actors 8
+PASS result transition and input lock 8
+PASS completed result snapshot equals authoritative counters and HP 8
+PASS ring intro locks input, AI, score
+PASS intro rejects punch and freezes vitals/clock
+PASS stale media completion rejected
+PASS matching media completion starts fresh bout
+PASS duplicate media completion does not reset bout
+PASS running rematch does not replace last completed record 9
+PASS rematch full reset 9
+PASS no duplicate actors 9
+PASS result transition and input lock 9
+PASS completed result snapshot equals authoritative counters and HP 9
+PASS ring intro locks input, AI, score
+PASS intro rejects punch and freezes vitals/clock
+PASS stale media completion rejected
+PASS matching media completion starts fresh bout
+PASS duplicate media completion does not reset bout
+PASS running rematch does not replace last completed record 10
+PASS rematch full reset 10
+PASS no duplicate actors 10
+PASS return home freezes model
+CHECKS=139 EXIT=0
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+BoxerP0.Editor.Wave1RuntimeAudit:Finish (int) (at Assets/Editor/Wave1RuntimeAudit.cs:161)
+BoxerP0.Editor.Wave1RuntimeAudit:Tick () (at Assets/Editor/Wave1RuntimeAudit.cs:146)
+UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()
+
+(Filename: Assets/Editor/Wave1RuntimeAudit.cs Line: 161)
+
+Curl error 7: Failed to connect to config.uca.cloud.unity3d.com port 443 after 2033 ms: Could not connect to server
+MonoPathRemapper: Attempts to remap: 1586; Successful remaps: 0
+Serialized file version minimum: 23, current 23
+Worker ready: AssetImportWorkerHW0 0
+[Physics::Module] Cleanup current backend.
+[Physics::Module] Id: 0xf2b8ea05
+Input System module state changed to: ShutdownInProgress.
+Input Polling Thread exited.
+Input System module state changed to: Shutdown.
+[Licensing::IpcConnector] LicenseClient-minht-notifications channel disconnected successfully.
+[Licensing::IpcConnector] LicenseClient-minht channel disconnected successfully.
+Lingering sessions upon destruction of worker manager
+AcceleratorClientConnectionCallback - disconnected - :0
+Cleanup mono
+CodeReloadManager destroyed
+Checking for leaked weakptr:
+  Found no leaked weakptrs.
+[Package Manager] Server process was shutdown
+##utp:{"type":"MemoryLeaks","version":2,"phase":"Immediate","time":1791634031503,"processId":23564,"allocatedMemory":11563798,"memoryLabels":[{"Default":181563},{"Permanent":15516},{"NewDelete":66155},{"Thread":4197640},{"Manager":31109},{"VertexData":968},{"Geometry":816},{"Texture":24},{"Shader":841652},{"Material":24},{"GfxDevice":55976},{"Animation":952},{"FreeType":8},{"FontEngine":736},{"Physics":2146},{"Physics2D":16},{"Serialization":1016},{"Input":42840},{"JobScheduler":256},{"TextLib":280},{"Mono":48},{"ScriptingNativeRuntime":674964},{"BaseObject":1623424},{"Resource":1208},{"Renderer":3080},{"Transform":4685},{"File":1032},{"WebCam":616},{"Culling":32},{"Terrain":11442},{"Wind":24},{"STL":40},{"String":22867},{"StaticString":3808},{"Utility":2672694},{"Curl":2559},{"PoolAlloc":2168},{"AI":80},{"TypeTree":17165},{"CodeReload":448},{"RuntimeInitializeOnLoadManager":64},{"Sprites":102},{"SpriteAtlas":120},{"GI":7816},{"Director":8296},{"CloudService":9512},{"WebRequest":629},{"VR":47114},{"SceneManager":608},{"Video":208},{"LazyScriptCache":32},{"Camera":17},{"Secure":2377},{"SerializationCache":1576},{"APIUpdating":10320},{"Subsystems":336},{"VirtualTexturing":57888},{"StaticSafetyDebugInfo":278528},{"Analytics":552},{"Hierarchy":1176},{"UIElements":72},{"CoreStats":13688},{"Identifiers":6768},{"Gui":128},{"EditorUtility":101340},{"VersionControl":8},{"Undo":931},{"AssetDatabase":475373},{"AssetImporter":40},{"EditorGi":328},{"UnityConnect":38929},{"Upm":1912},{"UpmDiagnostics":8},{"AssetCompliance":64},{"DrivenProperties":72},{"LocalIPC":211},{"ProfilerEditor":9746},{"CoreBusinessMetrics":3480},{"Windowing":456},{"Licensing":1232},{"AssetReference":32},{"IPCStream":32}]}

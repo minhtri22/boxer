@@ -18,7 +18,7 @@ function off(s){return s.audienceEnabledFlashes===0&&s.audienceActiveFlash===-1&
   let s=await state('home','Home');check(s.audienceSides===4&&s.audienceFlashNodes===24,'four compiled scenery sides and bounded twenty-four flash nodes');check(off(s),'Home effect disabled');
   await tap(270,763);s=await state('coach','Coach');check(off(s)&&s.seconds===0&&!s.gameplayInput,'Coach has no flash or scored gameplay');
   await tap(390,274);await tap(270,808);s=await state('practice','Onboarding');await page.waitForTimeout(800);check(off(await snap())&&s.seconds===0&&!s.opponentEnabled,'unscored practice has no fight flash');
-  await tap(270,429);await state('coach-return','Coach');await tap(270,893);await state('home-return','Home');
+  await tap(270,s.trainingStage==='HEADCONTROL'?569:429);await state('coach-return','Coach');await tap(270,893);await state('home-return','Home');
   await tap(270,674);s=await state('preview','Preview');check(off(s)&&s.seconds===0,'Preview effect disabled');
   await tap(270,779);s=await state('intro','Intro');check(off(s)&&s.seconds===0&&!s.opponentEnabled,'ring intro has no flashes or scored clock');
   s=await state('fight','Fight');check(s.audienceSides===4&&s.audienceFlashNodes===24&&s.seconds<1&&s.result==='IN_PROGRESS','actual intro completion starts fresh Fight with scenery');

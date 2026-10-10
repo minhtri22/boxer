@@ -1,0 +1,58 @@
+SCOPE=COACH_COMPLETED_RECORD_AND_NAVIGATION_NOT_PHONE_UAT
+PASS completed valid record
+PASS accuracy excludes unresolved and blocked shots are not hits
+PASS exact serialized round trip preserves endpoint values and counters
+PASS observed received/missed outcomes map to existing drills
+PASS real module and evidence reason Head
+PASS real module and evidence reason Footwork
+PASS real module and evidence reason Punches
+PASS zero shots has defined no-data denominator
+PASS zero shots uses real punch lesson plus labelled information only
+PASS zero denominator is not labelled 0 percent accuracy
+PASS invalid persisted record rejected 0
+PASS invalid persisted record rejected 4
+PASS invalid persisted record rejected 2
+PASS invalid persisted record rejected 3
+PASS invalid persisted record rejected 8
+PASS invalid persisted record rejected 4097
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS invalid endpoint/counter/schema/verdict cannot persist
+PASS missing schema cannot masquerade as current record
+PASS valid HP-zero terminal record retained
+PASS no fabricated record without completed telemetry
+PASS review illegal route rejected Home
+PASS review illegal route rejected Preview
+PASS review illegal route rejected Intro
+PASS review illegal route rejected Fight
+PASS review illegal route rejected Onboarding
+PASS review illegal route rejected TrainingInfo
+PASS Coach opens locked review
+PASS review cannot directly grant progress or start combat
+PASS review back routes Coach
+PASS completed Result opens locked review
+PASS supplemental card fits minimum phone target 0
+PASS supplemental card fits minimum phone target 1
+PASS supplemental card fits minimum phone target 2
+TOTAL=56 PASS=56 FAIL=0
