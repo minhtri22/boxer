@@ -27,4 +27,8 @@ All four current browser reports identify the same exact compiled version. Full 
 - `coach-browser-idle-video-failure`: source `3d7bf74`, FAIL 30, timestamped request trace locates `net::ERR_ABORTED` at 15,096 ms during `feet-completed`, before intro/reload. `preload="none"` fixes unused idle fetching; zero-error gate remains strict.
 - `browser-text-fix-candidate`: source `3d7bf74`, former UI regression PASS; locally preserved, not the current release gate.
 
-Public release receipt and public decoder audit will be added only after actual deployment verification. HP-KO-001 remains HOLD in `docs/handoff/backlog.md`; no combat balance changes in this package.
+## Verified public release
+
+Artifact commit `32d7d9df14bd2f6cacca4c6e24176c76bed20f86`; workflow `38025081874` completed success. `media-browser-public/report.json`: 20/20, zero errors, same exact compiled product version. `deployment.txt`: all twelve payloads HTTP 200 and SHA256-identical to tested local build; public provenance identical and video/audio MIME plus actual decoder verified. All five deployment branch policies preserved. Verified 2026-10-10 04:46:49 UTC.
+
+Subsequent receipt-only commits do not modify the compiled source or deployment artifact. HP-KO-001 remains HOLD in `docs/handoff/backlog.md`; no combat balance changes in this package. No device/physical speaker Human UAT pass is asserted.
