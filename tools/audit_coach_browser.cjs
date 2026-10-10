@@ -17,7 +17,7 @@ try{
  async function tap(x,y){const v=page.viewportSize(),scale=Math.min(v.width/540,v.height/960),ox=(v.width-540*scale)/2,oy=(v.height-960*scale)/2;
   await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{id:1,x:ox+x*scale,y:oy+y*scale}]});await page.waitForTimeout(75);await touch.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await page.waitForTimeout(150);}
  const coachEntryY=analysisSuite?763:853,trainY=analysisSuite?808:828,coachHomeY=analysisSuite?893:913;
- async function choose(module){await tap(390,analysisSuite?276+86*module:289+96*module);await page.waitForFunction(m=>window.boxerWave1Snapshot.coachModule===m,['Head','Footwork','Punches','Guard','Conditioning'][module]);}
+ async function choose(module){await tap(390,analysisSuite?274+90*module:289+96*module);await page.waitForFunction(m=>window.boxerWave1Snapshot.coachModule===m,['Head','Footwork','Punches','Guard','Conditioning'][module]);}
  async function practice(module,stage){await choose(module);await tap(270,trainY);const s=await state('practice-'+stage,'Onboarding');check(s.trainingStage===stage&&s.trainingFromCoach&&!s.opponentEnabled&&s.seconds===0&&s.opponentAttacks===0,'Coach starts selected unscored '+stage);return s;}
  async function punch(dx=0,dy=0){await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{id:2,x:420,y:710}]});await page.waitForTimeout(85);if(dx||dy)await touch.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{id:2,x:420+dx,y:710+dy}]});await page.waitForTimeout(85);await touch.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await page.waitForTimeout(800);}
  await state('home','Home');

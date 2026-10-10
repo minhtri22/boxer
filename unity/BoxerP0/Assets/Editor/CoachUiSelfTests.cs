@@ -44,7 +44,7 @@ namespace BoxerP0.Editor
             var bout=new CombatBout();bout.Tick(45,ActionPhase.Guard,ActionPhase.Guard,1,1);bout.Accept(true,PunchIntent.Jab);
             Check(!bout.Active&&bout.Seconds==0&&bout.Player.HP==100&&bout.Player.Capacity==100,"unscored coach model cannot spend resources");
             for(int i=0;i<5;i++)
-            { var rect=new Rect(260,235+i*86,264,82);Check(rect.xMin>=0&&rect.xMax<=540&&rect.yMax<=690&&rect.height*320/540>=44,"card bounds minimum 320-wide portrait target "+i); }
+            { var rect=new Rect(260,230+i*90,264,88);Check(rect.xMin>=0&&rect.xMax<=540&&rect.yMax<=690&&rect.height*320/540>=44,"card bounds minimum 320-wide portrait target "+i); }
             Check(76f*320/540>=44&&875+76<=960,"new navigation CTA minimum portrait touch target");
             log.AppendLine($"TOTAL={pass+fail} PASS={pass} FAIL={fail}");
             string suite=Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="coach-analysis"?"coach-analysis":"coach-ui";

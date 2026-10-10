@@ -143,13 +143,13 @@ namespace BoxerP0
         private void Coach()
         {
             if (_coachPortrait != null)
-                GUI.DrawTextureWithTexCoords(new Rect(0,200,250,467),_coachPortrait,new Rect(0,.31f,.48f,.50f));
+                GUI.DrawTextureWithTexCoords(new Rect(0,200,250,467),_coachPortrait,new Rect(0,.366f,.48f,.504f));
             GUI.color=Gold;
-            GUI.Label(new Rect(255,192,270,42),"COACH · TRAINING",_copy); GUI.color=Color.white;
+            GUI.Label(new Rect(255,192,270,32),"COACH · TRAINING",_copy); GUI.color=Color.white;
             for (int i=0;i<CoachCatalog.Count;i++)
             {
                 var module=(CoachModule)i; var lesson=CoachCatalog.Get(module);
-                Rect card=new Rect(260,235+i*86,264,82);
+                Rect card=new Rect(260,230+i*90,264,88);
                 GUI.color=Gold; GUI.DrawTexture(card,Texture2D.whiteTexture);
                 GUI.color=module==_bootstrap.SelectedCoachModule ? new Color(.16f,.115f,.055f) : new Color(.02f,.021f,.024f);
                 GUI.DrawTexture(new Rect(card.x+2,card.y+2,card.width-4,card.height-4),Texture2D.whiteTexture); GUI.color=Color.white;
@@ -171,7 +171,7 @@ namespace BoxerP0
             if (review == null)
             {
                 CoachReviewContentHeight = 0;
-                Text(340,"CHƯA CÓ TRẬN HOÀN TẤT\n\nChơi một trận để Coach phân tích. Bài tập không tạo số liệu trận đấu.",190);
+                Text(340,"CHƯA CÓ DỮ LIỆU TRẬN\n\nHoàn tất một trận trong bản mới để Coach phân tích. Bài tập không tạo số liệu trận đấu.",190);
                 Text(560,"Bạn vẫn có thể chọn các bài tập trong Coach.",90);
             }
             else

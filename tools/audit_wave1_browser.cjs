@@ -39,7 +39,7 @@ function check(ok, name) { report.checks.push({name, pass: !!ok}); if (!ok) thro
       console.log(name,JSON.stringify(report.states[name]));
       return report.states[name];
     }
-    async function coachLesson(module) { await state('coach-lesson-'+module,'Coach');await page.mouse.click(390,276+86*module);await page.mouse.click(270,808); }
+    async function coachLesson(module) { await state('coach-lesson-'+module,'Coach');await page.mouse.click(390,274+90*module);await page.mouse.click(270,808); }
     await page.goto(process.argv[2] || 'http://127.0.0.1:8000/?desktop=1&metrics=1');
     report.productVersion=await page.evaluate(()=>productVersion);
     const iconUrl=await page.locator('link[rel="icon"]').getAttribute('href');
