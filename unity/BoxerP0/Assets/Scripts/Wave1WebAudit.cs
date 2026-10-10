@@ -35,6 +35,10 @@ namespace BoxerP0
             public int coachCompletionMask;
             public bool trainingFromCoach,coachArtLoaded;
             public float coachInfoContentHeight;
+            public float coachReviewContentHeight;
+            public CoachMatchReview lastMatchReview;
+            public bool hasMatchReview;
+            public string[] coachSuggestions;
             public uint acceptedPunches,rejectedGestures,rejectedBusyPunches;
             public float contactAgeMs,recoveryAgeMs,releaseToAcceptMs,gestureDurationMs;
             public int impactHits,impactBlocks,impactMisses,swings;
@@ -58,6 +62,11 @@ namespace BoxerP0
             _snapshot.coachModule=_bootstrap.SelectedCoachModule.ToString();_snapshot.coachCompletionMask=_bootstrap.CoachCompletionMask;
             _snapshot.trainingFromCoach=_bootstrap.Flow.TrainingFromCoach;_snapshot.coachArtLoaded=_bootstrap.GetComponent<ProductScreens>().CoachArtLoaded;
             _snapshot.coachInfoContentHeight=_bootstrap.GetComponent<ProductScreens>().CoachInfoContentHeight;
+            _snapshot.coachReviewContentHeight=_bootstrap.GetComponent<ProductScreens>().CoachReviewContentHeight;
+            _snapshot.lastMatchReview=_bootstrap.LastMatchReview;
+            _snapshot.hasMatchReview=_bootstrap.LastMatchReview != null;
+            var modules = _bootstrap.LastMatchReview?.Suggestions() ?? Array.Empty<CoachModule>();
+            _snapshot.coachSuggestions=Array.ConvertAll(modules,m=>m.ToString());
             _snapshot.players=FindObjectsByType<PlayerBoxer>(FindObjectsSortMode.None).Length;
             _snapshot.opponents=FindObjectsByType<OpponentBoxer>(FindObjectsSortMode.None).Length;
             _snapshot.playerHits=_telemetry.PlayerHits;_snapshot.opponentHits=_telemetry.OpponentHits;

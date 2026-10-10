@@ -50,8 +50,9 @@ namespace BoxerP0.Editor
                 metadata.AppendLine("product_loop=home_preview_ring_intro_bell_fight_end_bell_result_rematch");
                 metadata.AppendLine("ring_intro=owner_clip_5.166667s_no_ai_no_input_no_vitals_no_clock_epoch_checked_media_completion");
                 metadata.AppendLine("ring_audio=owner_clip_time_segment_bell_5.15_end_crowd_0.25_4.85_not_isolated_stems");
-                metadata.AppendLine("training=separate_optional_head_footwork_four_punch_families_no_ai_no_score_persist_completion");
+                metadata.AppendLine("training=coach_only_optional_head_footwork_four_punch_families_no_ai_no_score_persist_completion");
                 metadata.AppendLine("coach=approved_2d_reference_art_five_native_cards_three_existing_unscored_drills_two_information_modules_no_stat_upgrade");
+                metadata.AppendLine("coach_review=last_completed_bout_authoritative_endpoints_resolved_accuracy_validated_local_record_count_based_existing_module_links_no_upgrade");
                 metadata.AppendLine("hp_ko_balance=HP-KO-001_OWNER_HOLD_COMBAT_RULES_UNCHANGED");
                 metadata.AppendLine("training_guides=native_boot_head_glove_icons_directional_light_trails_repeat_tap_training_only");
                 metadata.AppendLine("training_glass=live_scene_separable_blur_reduced_256x512_max_card_only_no_fight_postprocess");

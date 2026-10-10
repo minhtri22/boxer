@@ -24,7 +24,7 @@ namespace BoxerP0.Editor
                 if(lesson.Interactive)
                 {
                     Check(flow.Begin(true)&&flow.TrainingFromCoach&&flow.Gameplay,"Coach to practice "+module);
-                    flow.TutorialFinished();Check(!flow.TutorialSeen&&flow.Screen==ProductScreen.Onboarding,"single lesson cannot mark whole tutorial "+module);
+                    Check(!flow.Begin(false)&&!flow.TutorialSeen&&flow.Screen==ProductScreen.Onboarding,"single lesson cannot start combat or mark whole tutorial "+module);
                     Check(flow.CancelTraining()&&flow.Screen==ProductScreen.Coach&&!flow.TutorialSeen&&!flow.Gameplay,"cancel returns Coach without completion "+module);
                     flow.Begin(true);Check(flow.CoachLessonFinished(false)&&flow.Screen==ProductScreen.Coach&&!flow.TutorialSeen,"partial completion not whole training "+module);
                     flow.Begin(true);Check(flow.CoachLessonFinished(true)&&flow.TutorialSeen&&!flow.Gameplay,"all controls complete persist state "+module);
@@ -36,18 +36,19 @@ namespace BoxerP0.Editor
                     Check(flow.BackToCoach()&&flow.Screen==ProductScreen.Coach&&!flow.TutorialSeen,"information returns Coach "+module);
                 }
             }
-            var direct=new ProductFlow();direct.Begin(true);direct.CancelTraining();
-            Check(direct.Screen==ProductScreen.Home&&!direct.TutorialSeen,"legacy practice cancel still Home");
-            direct.Begin(true);direct.TutorialFinished();Check(direct.Screen==ProductScreen.Home&&direct.TutorialSeen,"legacy full training still Home and seen");
+            var direct=new ProductFlow();
+            Check(!direct.Begin(true)&&direct.Screen==ProductScreen.Home&&!direct.TutorialSeen,"Home cannot bypass Coach into separate practice");
+            direct.Preview();Check(!direct.Begin(true)&&direct.Screen==ProductScreen.Preview&&!direct.TutorialSeen,"Preview cannot bypass Coach into practice");
             var fighting=new ProductFlow();fighting.Preview();fighting.Begin();fighting.IntroFinished();
             Check(!fighting.OpenCoach()&&!fighting.OpenTrainingInfo()&&!fighting.BackToCoach()&&!fighting.CancelTraining(),"no UI escape or injection into active fight");
             var bout=new CombatBout();bout.Tick(45,ActionPhase.Guard,ActionPhase.Guard,1,1);bout.Accept(true,PunchIntent.Jab);
             Check(!bout.Active&&bout.Seconds==0&&bout.Player.HP==100&&bout.Player.Capacity==100,"unscored coach model cannot spend resources");
             for(int i=0;i<5;i++)
-            { var rect=new Rect(260,245+i*96,264,88);Check(rect.xMin>=0&&rect.xMax<=540&&rect.yMax<=960&&rect.height*320/540>=44,"card bounds minimum 320-wide portrait target "+i); }
+            { var rect=new Rect(260,235+i*86,264,82);Check(rect.xMin>=0&&rect.xMax<=540&&rect.yMax<=690&&rect.height*320/540>=44,"card bounds minimum 320-wide portrait target "+i); }
             Check(76f*320/540>=44&&875+76<=960,"new navigation CTA minimum portrait touch target");
             log.AppendLine($"TOTAL={pass+fail} PASS={pass} FAIL={fail}");
-            string dir=Path.GetFullPath(Path.Combine(Application.dataPath,"../../../evidence/wave1/coach-ui"));Directory.CreateDirectory(dir);
+            string suite=Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE")=="coach-analysis"?"coach-analysis":"coach-ui";
+            string dir=Path.GetFullPath(Path.Combine(Application.dataPath,"../../../evidence/wave1/"+suite));Directory.CreateDirectory(dir);
             File.WriteAllText(Path.Combine(dir,"coach-tests.txt"),log.ToString());Debug.Log(log);
             if(fail>0)throw new Exception("Coach UI model invariant failure");
         }

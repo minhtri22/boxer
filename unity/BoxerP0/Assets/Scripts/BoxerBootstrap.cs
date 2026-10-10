@@ -18,8 +18,10 @@ namespace BoxerP0
         private bool _trainingLeadHook, _trainingRearHook;
         private const string TrainingPreference = "BOXER_CONTROL_TRAINING_V2_COMPLETE";
         private const string CoachPreference = "BOXER_COACH_CONTROL_LESSONS_V1";
+        private const string ReviewPreference = "BOXER_COACH_LAST_COMPLETED_MATCH_V1";
         public CoachModule SelectedCoachModule { get; private set; }
         public int CoachCompletionMask { get; private set; }
+        public CoachMatchReview LastMatchReview { get; private set; }
 
         private float _boutEnd;
         private float _smokeQuitAt = -1f;
@@ -79,6 +81,7 @@ namespace BoxerP0
             BuildActors();
             Flow.RestoreTutorialSeen(PlayerPrefs.GetInt(TrainingPreference, 0) == 1);
             CoachCompletionMask = PlayerPrefs.GetInt(CoachPreference, 0) & 7;
+            LastMatchReview = CoachMatchReview.Parse(PlayerPrefs.GetString(ReviewPreference, string.Empty));
             _player.PunchAccepted += ObserveTrainingPunch;
             _lastPerfRefreshRealtime = Time.realtimeSinceStartup;
             _nextUiRefresh = _lastPerfRefreshRealtime;
@@ -181,9 +184,17 @@ namespace BoxerP0
         }
         public void BrowserCancelIntro(string token)
         { if (Flow.Screen == ProductScreen.Intro && token == IntroToken) ReturnHome(); }
-        public void BeginTraining() => BeginProductBout(true);
         public bool ShowCoach()
         { if (!Flow.OpenCoach()) return false; ResetActors(); return true; }
+        public bool ShowMatchReview()
+        { if (!Flow.OpenCoachReview()) return false; ResetActors(); return true; }
+        public bool TrainFromReview(CoachModule module)
+        {
+            if (Flow.Screen != ProductScreen.CoachReview || LastMatchReview == null ||
+                Array.IndexOf(LastMatchReview.Suggestions(), module) < 0) return false;
+            if (!Flow.BackToCoach() || !SelectCoachModule(module)) return false;
+            return OpenSelectedCoachModule();
+        }
         public bool SelectCoachModule(CoachModule module)
         { if (Flow.Screen != ProductScreen.Coach || !CoachCatalog.Valid(module)) return false; SelectedCoachModule = module; return true; }
         public bool OpenSelectedCoachModule()
@@ -204,28 +215,15 @@ namespace BoxerP0
         public void RecenterTrainingHead() { if (Flow.Screen == ProductScreen.Onboarding) _input.RecalibrateHead(); }
         public void AdvanceTraining()
         {
-            if (Flow.Screen != ProductScreen.Onboarding || !TrainingReady) return;
-            if (Flow.TrainingFromCoach)
-            {
-                CoachCompletionMask |= CoachCatalog.CompletionBit(SelectedCoachModule);
-                PlayerPrefs.SetInt(CoachPreference, CoachCompletionMask);
-                bool all = CoachCompletionMask == 7;
-                if (all) PlayerPrefs.SetInt(TrainingPreference, 1);
-                PlayerPrefs.Save();
-                Flow.CoachLessonFinished(all);
-                _telemetry.RecordEvent("COACH_LESSON_COMPLETE_" + SelectedCoachModule);
-                ResetActors(); return;
-            }
-            if (_stage == OnboardingStage.HeadControl) EnterStage(OnboardingStage.Footwork);
-            else if (_stage == OnboardingStage.Footwork) EnterStage(OnboardingStage.Punches);
-            else if (_stage == OnboardingStage.Punches)
-            {
-                Flow.TutorialFinished();
-                PlayerPrefs.SetInt(TrainingPreference, 1); PlayerPrefs.Save();
-                CoachCompletionMask = 7; PlayerPrefs.SetInt(CoachPreference, 7); PlayerPrefs.Save();
-                _telemetry.RecordEvent("CONTROL_TRAINING_COMPLETE");
-                ResetActors();
-            }
+            if (Flow.Screen != ProductScreen.Onboarding || !Flow.TrainingFromCoach || !TrainingReady) return;
+            CoachCompletionMask |= CoachCatalog.CompletionBit(SelectedCoachModule);
+            PlayerPrefs.SetInt(CoachPreference, CoachCompletionMask);
+            bool all = CoachCompletionMask == 7;
+            if (all) PlayerPrefs.SetInt(TrainingPreference, 1);
+            PlayerPrefs.Save();
+            Flow.CoachLessonFinished(all);
+            _telemetry.RecordEvent("COACH_LESSON_COMPLETE_" + SelectedCoachModule);
+            ResetActors();
         }
         private void ObserveTrainingPunch(PunchIntent intent)
         {
@@ -316,6 +314,12 @@ namespace BoxerP0
             _player?.SetCombatEnabled(false);
             _opponent?.SetCombatEnabled(false);
             string result = _telemetry?.CompleteBout() ?? "UNKNOWN";
+            var review = CoachMatchReview.Capture(_telemetry, Application.version);
+            if (review != null)
+            {
+                LastMatchReview = review;
+                PlayerPrefs.SetString(ReviewPreference, review.Serialize()); PlayerPrefs.Save();
+            }
             _resultText = BuildResultText();
             Debug.Log($"P0_BOUT_COMPLETE {result}");
         }

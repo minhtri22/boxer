@@ -1,4 +1,4 @@
-param([string]$Baseline='10123ff984a4aa24b19dbe4aeda7aff3d7d01c3d')
+param([string]$Baseline='10123ff984a4aa24b19dbe4aeda7aff3d7d01c3d',[ValidateSet('coach-ui','coach-analysis')][string]$EvidenceSuite='coach-ui')
 $ErrorActionPreference='Stop'
 $coachRoot=Split-Path -Parent $PSScriptRoot
 $coachChecks=[Collections.Generic.List[string]]::new()
@@ -22,6 +22,6 @@ $coachChecks.Add('UNCHANGED Bootstrap_45_second_duration')
 $coachChecks.Insert(0,'STATUS=COMBAT_HOLD_PRESERVED')
 $coachChecks.Insert(1,'BASELINE='+$Baseline)
 $coachChecks.Add('CHECKS=12 PASS=12 FAIL=0')
-$coachOutput=Join-Path $coachRoot 'evidence/wave1/coach-ui/combat-freeze.txt'
+$coachOutput=Join-Path $coachRoot ('evidence/wave1/'+$EvidenceSuite+'/combat-freeze.txt')
 [IO.File]::WriteAllLines($coachOutput,$coachChecks,[Text.UTF8Encoding]::new($false))
 $coachChecks | Write-Output

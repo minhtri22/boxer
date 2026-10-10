@@ -2,8 +2,9 @@
 const { chromium } = require('playwright');
 const fs = require('fs');
 const path = require('path');
-const suite=process.env.BOXER_WAVE_EVIDENCE==='coach-ui'?'coach-ui':process.env.BOXER_WAVE_EVIDENCE==='punch-feel'?'punch-feel':process.env.BOXER_WAVE_EVIDENCE==='training-pov'?'training-pov':process.env.BOXER_WAVE_EVIDENCE==='ring-intro'?'ring-intro':process.env.BOXER_WAVE_EVIDENCE==='combat-v3'?'combat-v3':'onboarding-v2';
-const povSuite=['training-pov','punch-feel','coach-ui'].includes(suite);
+const suite=process.env.BOXER_WAVE_EVIDENCE==='coach-analysis'?'coach-analysis':process.env.BOXER_WAVE_EVIDENCE==='coach-ui'?'coach-ui':process.env.BOXER_WAVE_EVIDENCE==='punch-feel'?'punch-feel':process.env.BOXER_WAVE_EVIDENCE==='training-pov'?'training-pov':process.env.BOXER_WAVE_EVIDENCE==='ring-intro'?'ring-intro':process.env.BOXER_WAVE_EVIDENCE==='combat-v3'?'combat-v3':'onboarding-v2';
+const analysisSuite=suite==='coach-analysis';
+const povSuite=['training-pov','punch-feel','coach-ui','coach-analysis'].includes(suite);
 const evidence = path.resolve(__dirname, '../evidence/wave1/'+suite+'/browser');
 fs.mkdirSync(evidence, { recursive: true });
 const report = { scope: 'SYNTHETIC_DESKTOP_REAL_UI_NOT_DEVICE_UAT', checks: [], states: {}, errors: [] };
@@ -38,6 +39,7 @@ function check(ok, name) { report.checks.push({name, pass: !!ok}); if (!ok) thro
       console.log(name,JSON.stringify(report.states[name]));
       return report.states[name];
     }
+    async function coachLesson(module) { await state('coach-lesson-'+module,'Coach');await page.mouse.click(390,276+86*module);await page.mouse.click(270,808); }
     await page.goto(process.argv[2] || 'http://127.0.0.1:8000/?desktop=1&metrics=1');
     report.productVersion=await page.evaluate(()=>productVersion);
     const iconUrl=await page.locator('link[rel="icon"]').getAttribute('href');
@@ -84,6 +86,7 @@ function check(ok, name) { report.checks.push({name, pass: !!ok}); if (!ok) thro
     await state('result-rematch','Result');
     await page.mouse.click(270,869); await state('home-return','Home');
     await page.mouse.click(270,759);
+    if(analysisSuite)await coachLesson(0);
     const practice=await state('practice-head','Onboarding');
     if(povSuite) {
       await page.waitForFunction(()=>window.boxerWave1Snapshot?.trainingBlurWidth>0);
@@ -104,7 +107,8 @@ function check(ok, name) { report.checks.push({name, pass: !!ok}); if (!ok) thro
     check((await snap()).trainingReady,'synthetic head movement completes both directions');
     await state('practice-head-ready','Onboarding');
     await page.mouse.click(270,494);await page.waitForTimeout(400);
-    check((await snap()).trainingStage==='FOOTWORK','explicit Next opens movement lesson');
+    if(analysisSuite){await coachLesson(1);await page.waitForTimeout(400);}
+    check((await snap()).trainingStage==='FOOTWORK',analysisSuite?'Coach selects movement lesson after head completion':'explicit Next opens movement lesson');
     for(const cue of ['MOVE_UP','MOVE_DOWN','MOVE_LEFT','MOVE_RIGHT']) {
       await page.waitForFunction(c=>window.boxerWave1Snapshot?.trainingGuide===c,cue,{timeout:12000});
       await page.screenshot({path:path.join(evidence,'guide-'+cue.toLowerCase()+'.png')});
@@ -115,7 +119,8 @@ function check(ok, name) { report.checks.push({name, pass: !!ok}); if (!ok) thro
     check((await snap()).trainingReady,'lower-left touch swipes register all four movement directions');
     await state('practice-feet-ready','Onboarding');
     await page.mouse.click(270,354);await page.waitForTimeout(400);
-    check((await snap()).trainingStage==='PUNCHES','explicit Next opens punch lesson');
+    if(analysisSuite){await coachLesson(2);await page.waitForTimeout(400);}
+    check((await snap()).trainingStage==='PUNCHES',analysisSuite?'Coach selects punch lesson after footwork completion':'explicit Next opens punch lesson');
     for(const cue of ['PUNCH_DOWN','PUNCH_UP','PUNCH_RIGHT','PUNCH_LEFT','TAP_REPEAT']) {
       await page.waitForFunction(c=>window.boxerWave1Snapshot?.trainingGuide===c,cue,{timeout:15000});
       await page.screenshot({path:path.join(evidence,'guide-'+cue.toLowerCase()+'.png')});
@@ -134,12 +139,14 @@ function check(ok, name) { report.checks.push({name, pass: !!ok}); if (!ok) thro
     }
     check(practiced.playerHP===100&&practiced.opponentHP===100&&practiced.playerStamina===100&&practiced.seconds===0&&!practiced.opponentEnabled,'practice never changes scored HP stamina or timer');
     await page.mouse.click(270,354);
-    const trained=await state('practice-complete-home','Home');
+    const trained=await state(analysisSuite?'practice-complete-coach':'practice-complete-home',analysisSuite?'Coach':'Home');
     if(povSuite)check(!trained.trainingGlass&&trained.trainingBlurWidth===0&&trained.povArms===2,'leaving training releases blur buffers without duplicating arms');
-    check(trained.tutorialSeen&&!trained.gameplayInput,'completed training returns Home and records completion');
-    await page.mouse.click(270,759);await state('practice-repeat','Onboarding');
-    await page.mouse.click(270,569);const exited=await state('practice-exit-home','Home');
+    check(trained.tutorialSeen&&!trained.gameplayInput,analysisSuite?'completed control lessons return Coach and record completion':'completed training returns Home and records completion');
+    if(analysisSuite){await page.mouse.click(270,893);await state('completed-coach-home','Home');}
+    await page.mouse.click(270,759);if(analysisSuite)await coachLesson(0);await state('practice-repeat','Onboarding');
+    await page.mouse.click(270,569);const exited=await state(analysisSuite?'practice-exit-coach':'practice-exit-home',analysisSuite?'Coach':'Home');
     check(exited.tutorialSeen&&!exited.gameplayInput&&exited.seconds===0,'practice exit does not auto-start a match');
+    if(analysisSuite){await page.mouse.click(270,893);await state('practice-exit-home','Home');}
     // Do not cancel a still-running payload/cache transfer with our own navigation.
     const assetsDeadline=Date.now()+45000;
     while(pendingAssets.size&&Date.now()<assetsDeadline)await page.waitForTimeout(500);

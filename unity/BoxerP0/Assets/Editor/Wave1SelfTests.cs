@@ -86,13 +86,13 @@ namespace BoxerP0.Editor
             Check(f.IntroFinished()&&f.Screen==ProductScreen.Fight&&f.Gameplay,"media completion opens fight");
             Check(!f.IntroFinished(),"duplicate intro completion rejected");
             Check(!f.Preview()&&!f.Begin(),"illegal mid-bout navigation rejected");
-            f.TutorialFinished(); Check(f.Screen==ProductScreen.Fight&&f.Gameplay&&!f.TutorialSeen,"combat cannot falsely complete training");
+            Check(!f.CoachLessonFinished(true)&&f.Screen==ProductScreen.Fight&&f.Gameplay&&!f.TutorialSeen,"combat cannot falsely complete training");
             f.Finish();Check(f.Screen==ProductScreen.Result&&!f.Gameplay,"result blocks gameplay");
             Check(f.Begin()&&f.Screen==ProductScreen.Intro&&!f.Gameplay&&f.IntroFinished(),"rematch replays intro without tutorial");
             f.Home();Check(f.Preview()&&f.Begin()&&f.Screen==ProductScreen.Intro&&f.IntroFinished(),"home preview next bout route");
-            f.Home();Check(f.Begin(true)&&f.Screen==ProductScreen.Onboarding,"explicit practice replays tutorial");
+            f.Home();Check(f.OpenCoach()&&f.Begin(true)&&f.Screen==ProductScreen.Onboarding,"explicit Coach entry opens control lesson");
             Check(!f.Preview()&&!f.Begin(),"training cannot silently start combat");
-            f.TutorialFinished();Check(f.Screen==ProductScreen.Home&&!f.Gameplay&&f.TutorialSeen,"training completion returns Home not Fight");
+            Check(f.CoachLessonFinished(true)&&f.Screen==ProductScreen.Coach&&!f.Gameplay&&f.TutorialSeen,"training completion returns Coach not Fight");f.Home();
             var restored=new ProductFlow();restored.RestoreTutorialSeen(true);
             Check(restored.TutorialSeen&&restored.Screen==ProductScreen.Home,"completed training preference restores without auto training");
             Check(restored.Preview()&&restored.Begin()&&restored.Screen==ProductScreen.Intro&&!restored.Gameplay,"trained player still sees ring intro");
@@ -116,7 +116,7 @@ namespace BoxerP0.Editor
             Check(!illustrative.HeadReady&&!illustrative.FootworkReady&&!illustrative.PunchesReady,"illustrative guide does not grant practice progress");
             Log.AppendLine($"TOTAL={_passed+_failed} PASS={_passed} FAIL={_failed}");
             string selected=Environment.GetEnvironmentVariable("BOXER_WAVE_EVIDENCE");
-            string suite=selected=="coach-ui"?"coach-ui":selected=="punch-feel"?"punch-feel":selected=="training-pov"?"training-pov":selected=="ring-intro"?"ring-intro":selected=="combat-v3"?"combat-v3":"onboarding-v2";
+            string suite=selected=="coach-analysis"?"coach-analysis":selected=="coach-ui"?"coach-ui":selected=="punch-feel"?"punch-feel":selected=="training-pov"?"training-pov":selected=="ring-intro"?"ring-intro":selected=="combat-v3"?"combat-v3":"onboarding-v2";
             string dir=Path.GetFullPath(Path.Combine(Application.dataPath,"../../../evidence/wave1/"+suite));Directory.CreateDirectory(dir);
             File.WriteAllText(Path.Combine(dir,"vitals-tests.txt"),Log.ToString()); Debug.Log(Log);
             if(_failed!=0)throw new Exception("Wave1 vitals/flow invariant failure");

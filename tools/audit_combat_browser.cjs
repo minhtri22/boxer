@@ -2,7 +2,7 @@
 const {chromium}=require('playwright');
 const fs=require('fs'),path=require('path');
 const probe=process.env.COMBAT_TACTIC_PROBE==='1';
-const suite=process.env.BOXER_WAVE_EVIDENCE==='coach-ui'?'coach-ui':process.env.BOXER_WAVE_EVIDENCE==='punch-feel'?'punch-feel':process.env.BOXER_WAVE_EVIDENCE==='training-pov'?'training-pov':process.env.BOXER_WAVE_EVIDENCE==='ring-intro'?'ring-intro':'combat-v3';
+const suite=process.env.BOXER_WAVE_EVIDENCE==='coach-analysis'?'coach-analysis':process.env.BOXER_WAVE_EVIDENCE==='coach-ui'?'coach-ui':process.env.BOXER_WAVE_EVIDENCE==='punch-feel'?'punch-feel':process.env.BOXER_WAVE_EVIDENCE==='training-pov'?'training-pov':process.env.BOXER_WAVE_EVIDENCE==='ring-intro'?'ring-intro':'combat-v3';
 const evidence=path.resolve(__dirname,'../evidence/wave1/'+suite+'/'+(probe?'combat-tactic-probe':'combat-browser'));
 fs.mkdirSync(evidence,{recursive:true});
 const report={scope:'REAL_WEBGL_INPUT_AND_SOLVED_CONTACT_SYNTHETIC_DESKTOP_NOT_PHONE_UAT',checks:[],errors:[],scenarios:{}};
