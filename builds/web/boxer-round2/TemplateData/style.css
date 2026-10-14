@@ -87,3 +87,17 @@ button:disabled { opacity: 0.5; }
 #profile-form #profile-save { background: #eeb044; color: #161009; font-weight: 700; }
 #profile-form button:disabled { opacity: .5; }
 @media (max-width: 350px), (max-height: 600px) { #profile-form { margin-top: 0; padding: 16px; } }
+#match-history { position:fixed; z-index:26; inset-inline:0; top:0; height:100dvh; box-sizing:border-box; overflow-y:auto; overscroll-behavior:contain; touch-action:pan-y; padding:max(18px,env(safe-area-inset-top)) 16px max(18px,env(safe-area-inset-bottom)); background:rgba(5,5,5,.65); color:#f4e6cb; }
+#history-panel { max-width:500px; margin:0 auto; padding:20px; border:1px solid #bc862f; border-radius:16px; background:rgba(12,12,12,.92); }
+#history-panel h1 { color:#eeb044; font-size:28px; margin:8px 0; }
+.history-kicker { color:#eeb044; font-size:12px; letter-spacing:2px; }
+.history-note { color:#c2b597; font-size:12px; line-height:1.5; }
+#history-wallet { color:#ffcf77; font-size:24px; padding:16px 0; }
+#history-tally { font-size:16px; padding:8px 0; }
+#history-error { color:#ffbe95; font-size:14px; }
+#history-empty { font-size:16px; padding:12px 0; }
+.history-entry { margin:14px 0; border:1px solid #a57b37; border-radius:10px; padding:12px; }
+.history-entry summary { min-height:48px; display:flex; align-items:center; font-size:16px; color:#eeb044; cursor:pointer; }
+.history-endpoints { white-space:pre-wrap; overflow-wrap:anywhere; font-size:14px; line-height:1.6; }
+#history-panel button { min-height:48px; margin:10px 0 0; border:1px solid #b78537; border-radius:8px; background:#eeb044; color:#161009; font-size:16px; }
+@media (max-width:350px) { #history-panel { padding:14px; } }

@@ -14,6 +14,8 @@ Date: 2026-10-10. Owner authorizes continuing remaining screens and holds HP/KO 
 
 ## Execution sequence
 
+Update 2026-10-11: Profile metadata is delivered (handoff 39). Completed-match history and the owner-approved trial wallet (win 100 / draw 50 / loss 25, once per completed ID) are implemented in handoff 40; use that handoff and its deployment receipt for current release status. Shop/owned equipment is next, followed by earned Career and FACE-001 feasibility. Shop prices, Career unlock thresholds and new assets/references still need separate decisions. No appearance customization, combat retuning or settings/pause work is opened by this update.
+
 Latest owner scope: `38-owner-scope-and-arena-surround.md` supersedes handoff 37's remaining-screen planning. PROFILE only; appearance customization HOLD. Earned Career order is Street -> Cage -> Tournament, never a free venue picker. Reward/wallet, Shop and record/achievements are approved separate slices; thresholds and economy amounts need approval. Settings/pause is deferred. FACE-001 is a separate resolved-hit visual slice; no held combat/model rework. Street/Cage art and shop/record screens need additional approved references/assets. These systems are planned, not already delivered.
 
 | Slice | Surface / reference | Actual minimum behavior | Boundary |

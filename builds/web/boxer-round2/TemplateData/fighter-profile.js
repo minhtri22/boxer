@@ -20,6 +20,7 @@ function createBoxerProfileView({send}) {
     <button id="profile-save" type="submit">CONFIRM · LƯU HỒ SƠ</button>
     <button id="profile-review" type="button">TRẬN GẦN NHẤT TRÊN THIẾT BỊ</button>
     <p id="profile-record" class="profile-note"></p>
+    <button id="profile-history" type="button">LỊCH SỬ TRẬN / VÍ COIN</button>
     <button id="profile-cancel" type="button">CANCEL · HỦY</button>
   </form>`;
   document.body.appendChild(root);
@@ -32,6 +33,7 @@ function createBoxerProfileView({send}) {
   field('form').addEventListener('submit', e => {e.preventDefault(); command('save');});
   field('cancel').addEventListener('click', () => command('cancel'));
   field('review').addEventListener('click', () => command('review'));
+  field('history').addEventListener('click', () => command('history'));
   function resize() {
     const viewport = window.visualViewport;
     root.style.height = `${viewport ? viewport.height : innerHeight}px`;

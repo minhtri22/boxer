@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <title>Boxer P0 — P1 Web UAT</title>
-  <link rel="icon" type="image/x-icon" href="TemplateData/favicon.ico?v=w1-7c68a607ac4217e06d222fc75d2dd5e3c64ad178">
+  <link rel="icon" type="image/x-icon" href="TemplateData/favicon.ico?v=w1-c7a37cd2e6a7335a4b596c078933861e3f607aad">
   <link rel="stylesheet" href="TemplateData/style.css">
 </head>
 <body>
@@ -29,8 +29,9 @@
       <button id="ring-back">QUAY LẠI</button>
     </div>
   </section>
-  <script src="TemplateData/ring-media.js?v=w1-7c68a607ac4217e06d222fc75d2dd5e3c64ad178"></script>
-  <script src="TemplateData/fighter-profile.js?v=w1-7c68a607ac4217e06d222fc75d2dd5e3c64ad178"></script>
+  <script src="TemplateData/ring-media.js?v=w1-c7a37cd2e6a7335a4b596c078933861e3f607aad"></script>
+  <script src="TemplateData/fighter-profile.js?v=w1-c7a37cd2e6a7335a4b596c078933861e3f607aad"></script>
+  <script src="TemplateData/match-ledger.js?v=w1-c7a37cd2e6a7335a4b596c078933861e3f607aad"></script>
   <script>
     const gate = document.getElementById('gate');
     const statusEl = document.getElementById('status');
@@ -49,7 +50,7 @@
     let unityLoading = false;
 
     const buildUrl = 'Build';
-    const productVersion = "w1-7c68a607ac4217e06d222fc75d2dd5e3c64ad178";
+    const productVersion = "w1-c7a37cd2e6a7335a4b596c078933861e3f607aad";
     const assetVersion = encodeURIComponent(productVersion || 'unknown');
     const versioned = (url) => `${url}?v=${assetVersion}`;
     const loaderUrl = versioned(buildUrl + '/boxer-round2.loader.js');
@@ -78,6 +79,7 @@
     }
     window.boxerRingMedia=createBoxerRingMedia({send:sendRing,version:productVersion});
     window.boxerProfileView=createBoxerProfileView({send:sendRing});
+    window.boxerLedger=createBoxerLedger({send:sendRing});
 
     function enterGame() {
       gate.classList.add('hidden');
@@ -119,6 +121,7 @@
       script.onload = () => {
         createUnityInstance(canvas, config).then(instance => {
           unityInstance = instance;
+          window.boxerLedger.ready();
           if (desktopValidation) send('BrowserStartDesktopValidation', '');
           else send('BrowserSetMotionStatus', permissionStatus);
           if (latestOrientationPayload) send('BrowserSetOrientation', latestOrientationPayload);
@@ -183,7 +186,7 @@
     });
 
     document.addEventListener('touchmove', event => {
-      if (!gate.contains(event.target) && !window.boxerProfileView.contains(event.target)) event.preventDefault();
+      if (!gate.contains(event.target) && !window.boxerProfileView.contains(event.target) && !window.boxerLedger.contains(event.target)) event.preventDefault();
     }, { passive: false });
     document.addEventListener('gesturestart', event => event.preventDefault(), { passive: false });
     document.addEventListener('gesturechange', event => event.preventDefault(), { passive: false });
