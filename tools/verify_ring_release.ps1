@@ -14,6 +14,12 @@ $ringVersion='w1-'+$CompiledSource
 if("productVersion=$ringVersion" -notin $ringLines){throw 'Unexpected product version'}
 $ringDecoder=Get-Content (Join-Path $ringRoot ('evidence/wave1/'+$EvidenceSuite+'/media-browser-public/report.json')) -Raw | ConvertFrom-Json
 if($ringDecoder.status -ne 'PASS' -or $ringDecoder.productVersion -ne $ringVersion -or $ringDecoder.checks.Count -ne $(if($EvidenceSuite -in @('bell-repair','arena-surround','fighter-profile','history-wallet')){21}else{20}) -or $ringDecoder.errors.Count -ne 0 -or @($ringDecoder.checks | Where-Object {-not $_.pass}).Count -ne 0 -or $ringDecoder.url -notlike 'https://minhtri22.github.io/boxer/*'){throw 'Full current public decoder/lifecycle audit required'}
+if($EvidenceSuite -eq 'history-wallet'){
+    foreach($g in @(@('history-browser-public',28),@('profile-browser-public',38),@('arena-browser-public',12))){
+        $r=Get-Content (Join-Path $ringRoot ('evidence/wave1/history-wallet/'+$g[0]+'/report.json')) -Raw | ConvertFrom-Json
+        if($r.status -ne 'PASS' -or $r.productVersion -ne $ringVersion -or $r.checks.Count -ne $g[1] -or $r.errors.Count -ne 0 -or @($r.checks | Where-Object {-not $_.pass}).Count -ne 0 -or $r.url -notlike 'https://minhtri22.github.io/boxer/*'){throw ('Full current public real-interaction gate required: '+$g[0])}
+    }
+}
 $ringClient=[Net.Http.HttpClient]::new()
 $ringClient.Timeout=[TimeSpan]::FromSeconds(45)
 $ringClient.DefaultRequestHeaders.UserAgent.ParseAdd('Boxer-release-verification/1.0')
@@ -60,9 +66,15 @@ try{
     $ringReceipt.Add('MEDIA_MIME=OBSERVED_video/mp4_audio/mp3_PUBLIC_DECODER_AUDIT_PASS')
     $ringMediaCount=if($EvidenceSuite -in @('bell-repair','arena-surround','fighter-profile','history-wallet')){21}else{20}
     $ringReceipt.Add('PUBLIC_MEDIA_BROWSER='+$ringMediaCount+'/'+$ringMediaCount+'_PASS_ZERO_JS_LOAD_HTTP_ERRORS_CURRENT_PRODUCT_VERSION')
+    if($EvidenceSuite -eq 'history-wallet'){
+        $ringReceipt.Add('PUBLIC_HISTORY_BROWSER=28/28_PASS_CURRENT_PRODUCT_VERSION')
+        $ringReceipt.Add('PUBLIC_PROFILE_BROWSER=38/38_PASS_CURRENT_PRODUCT_VERSION')
+        $ringReceipt.Add('PUBLIC_ARENA_BROWSER=12/12_PASS_CURRENT_PRODUCT_VERSION')
+    }
     $ringReceipt.Add('DEPLOYMENT_BRANCH_POLICIES=ALL_FIVE_PRESERVED_NO_NEW_POLICY')
     $ringReceipt.Add('VERIFIED_UTC='+[DateTimeOffset]::UtcNow.ToString('o'))
-    $ringReceipt.Add('SCOPE=PUBLIC_BYTES_MIME_AND_REAL_BROWSER_MEDIA_NOT_PHONE_OR_SPEAKER_UAT')
+    $ringScope=if($EvidenceSuite -eq 'history-wallet'){'PUBLIC_BYTES_MIME_AND_COMPILED_TRUSTED_INPUT_SYNTHETIC_VIEWPORT_NOT_PHONE_OR_SPEAKER_UAT'}else{'PUBLIC_BYTES_MIME_AND_REAL_BROWSER_MEDIA_NOT_PHONE_OR_SPEAKER_UAT'}
+    $ringReceipt.Add('SCOPE='+$ringScope)
     [IO.File]::WriteAllLines((Join-Path $ringRoot ('evidence/wave1/'+$EvidenceSuite+'/deployment.txt')),$ringReceipt)
     $ringReceipt | Write-Output
 }finally{$ringHash.Dispose();$ringClient.Dispose()}
